@@ -10,7 +10,7 @@ The app is a Node.js server that serves the modern PowerBuilder documentation br
 
 ## Requirements
 
-- Node.js 20 or newer
+- Node.js 18 or newer. Node.js 20 LTS is recommended on Ubuntu.
 - npm
 - git
 - PM2 on the Ubuntu host
@@ -21,7 +21,7 @@ Check the Node.js version:
 node -v
 ```
 
-If the version is older than `v20`, upgrade first. Old Ubuntu packages such as Node 12 cannot run the current app.
+If the version is older than `v18`, upgrade first. Old Ubuntu packages such as Node 12 cannot run the current app.
 
 ## Local One-Command Deploy
 
