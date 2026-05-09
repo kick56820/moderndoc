@@ -15,6 +15,7 @@ const searchSource = document.querySelector("#searchSource");
 const searchInsight = document.querySelector("#searchInsight");
 const results = document.querySelector("#results");
 const topic = document.querySelector("#topic");
+const insightPane = document.querySelector("#insightPane");
 const bookFrame = document.querySelector("#bookFrame");
 const POWER_SCRIPT_KEYWORDS = new Set([
   "and", "any", "blob", "boolean", "catch", "char", "choose", "close", "constant", "continue",
@@ -35,6 +36,7 @@ let currentTopicLinks = {};
 let ignoreNextHashChange = false;
 let currentPage = null;
 let currentHighlightQuery = "";
+let insightCollapsed = false;
 const contentTopicByTitle = new Map();
 const STORAGE_KEYS = {
   recent: "pbdocs.recent",
@@ -231,14 +233,15 @@ async function loadSearch() {
       : fetchJson(`/api/search-insight?q=${encodeURIComponent(query)}&source=${encodeURIComponent(source)}`),
   ]);
   searchInsight.innerHTML = renderSearchInsight(insight);
+  insightPane.classList.toggle("hidden", !searchInsight.innerHTML.trim());
   results.innerHTML = renderSearchResults(items);
 }
 
 function renderSearchResults(items) {
-  if (!items.length) return `<div class="empty-state compact">No search results</div>`;
+  if (!items.length) return `<div class="alert alert-secondary py-2 px-3 small mb-0">No search results</div>`;
   return groupSearchResults(items).map((group) => `
-    <section class="result-group">
-      <h4>${escapeHtml(group.label)} <span>${group.items.length}</span></h4>
+    <section class="result-group card border-0 bg-transparent">
+      <h4 class="small fw-semibold text-body-secondary mb-1">${escapeHtml(group.label)} <span class="badge text-bg-secondary">${group.items.length}</span></h4>
       ${group.items.map(renderSearchResult).join("")}
     </section>
   `).join("");
@@ -263,9 +266,9 @@ function groupSearchResults(items) {
 
 function renderSearchResult(item) {
   return `
-    <button class="result" ${renderResultTargetAttrs(item)}>
+    <button class="result card card-body text-start" ${renderResultTargetAttrs(item)}>
       <strong>${escapeHtml(item.title)}</strong>
-      <span class="result-source">${escapeHtml(item.category || (item.source === "html-books" ? "HTML Books" : "Reference"))}</span>
+      <span class="result-source badge rounded-pill text-bg-info-subtle text-info-emphasis border">${escapeHtml(item.category || (item.source === "html-books" ? "HTML Books" : "Reference"))}</span>
       <p>${escapeHtml(item.excerpt)}</p>
     </button>
   `;
@@ -283,17 +286,28 @@ function renderSearchInsight(insight) {
   if (!hasDetails) return "";
 
   return `
-    <section class="insight-card">
-      <div class="insight-eyebrow">Search insight</div>
-      <button class="insight-title" type="button" data-topic="${escapeHtml(insight.primary.id)}" data-title="${escapeHtml(insight.primary.title)}">
-        ${escapeHtml(insight.primary.title)}
-      </button>
-      ${sections.overview ? `<p class="insight-overview">${escapeHtml(sections.overview)}</p>` : ""}
-      ${renderInsightSyntax(sections.syntax || [])}
-      ${renderInsightUses(sections.commonUses || [])}
-      ${renderInsightExamples(sections.examples || [])}
-      ${renderInsightNotes(sections.notes || [])}
-      ${renderInsightEventFlow(sections.eventFlow)}
+    <section class="insight-card card ${insightCollapsed ? "collapsed" : ""}">
+      <div class="card-body">
+        <div class="insight-header">
+          <div>
+            <div class="insight-eyebrow">Search insight</div>
+            <button class="insight-title" type="button" data-topic="${escapeHtml(insight.primary.id)}" data-title="${escapeHtml(insight.primary.title)}">
+              ${escapeHtml(insight.primary.title)}
+            </button>
+          </div>
+          <button class="insight-collapse" type="button" aria-expanded="${insightCollapsed ? "false" : "true"}">
+            ${insightCollapsed ? "open" : "close"}
+          </button>
+        </div>
+        <div class="insight-content">
+          ${sections.overview ? `<p class="insight-overview">${escapeHtml(sections.overview)}</p>` : ""}
+          ${renderInsightSyntax(sections.syntax || [])}
+          ${renderInsightUses(sections.commonUses || [])}
+          ${renderInsightExamples(sections.examples || [])}
+          ${renderInsightNotes(sections.notes || [])}
+          ${renderInsightEventFlow(sections.eventFlow)}
+        </div>
+      </div>
     </section>
   `;
 }
@@ -322,7 +336,7 @@ function renderInsightUses(items) {
       <h4>Common uses</h4>
       <div class="use-grid">
         ${items.map((item) => `
-          <div class="use-row">
+          <div class="use-row small">
             <span>${escapeHtml(item.to)}</span>
             <strong>${escapeHtml(item.use)}</strong>
           </div>
@@ -400,8 +414,8 @@ async function openTopic(id, options = {}) {
         ${data.keywords?.length ? ` - ${escapeHtml(data.keywords.slice(0, 10).join("; "))}` : ""}
       </div>
       ${renderTopicNav(data.nav, "top")}
-      ${renderOnThisPage(data.blocks)}
-      ${data.blocks.map((block, index) => renderBlock(block, index)).join("")}
+      ${renderOnThisPage(data.sections || data.blocks)}
+      ${renderTopicBody(data)}
       ${renderTopicNav(data.nav, "bottom")}
     `;
     highlightTopicQuery(options.highlightQuery ?? currentHighlightQuery);
@@ -464,13 +478,13 @@ function renderTopicNav(nav, position) {
   return `
     <nav class="topic-nav ${position === "bottom" ? "bottom" : ""}" aria-label="Topic navigation">
       ${nav.prev ? `
-        <button class="topic-jump topic-nav-link prev" data-topic="${escapeHtml(nav.prev.id)}" data-title="${escapeHtml(nav.prev.title)}">
+        <button class="topic-jump topic-nav-link prev btn btn-outline-secondary" data-topic="${escapeHtml(nav.prev.id)}" data-title="${escapeHtml(nav.prev.title)}">
           <span>Previous</span>
           ${escapeHtml(nav.prev.title)}
         </button>
       ` : "<span></span>"}
       ${nav.next ? `
-        <button class="topic-jump topic-nav-link next" data-topic="${escapeHtml(nav.next.id)}" data-title="${escapeHtml(nav.next.title)}">
+        <button class="topic-jump topic-nav-link next btn btn-outline-secondary" data-topic="${escapeHtml(nav.next.id)}" data-title="${escapeHtml(nav.next.title)}">
           <span>Next</span>
           ${escapeHtml(nav.next.title)}
         </button>
@@ -518,6 +532,7 @@ function applyBookFrameTheme() {
 
 function showReaderPane(kind) {
   topic.classList.toggle("hidden", kind !== "topic");
+  if (kind === "book") insightPane.classList.add("hidden");
   bookFrame.classList.toggle("hidden", kind !== "book");
 }
 
@@ -566,8 +581,8 @@ function renderQuickList(container, items, emptyText) {
   }
   container.classList.remove("empty");
   container.innerHTML = items.map((item) => `
-    <button class="quick-item" data-quick-type="${escapeHtml(item.type)}" data-quick-id="${escapeHtml(item.id)}" title="${escapeHtml(item.title)}">
-      <span>${item.type === "book" ? "HTML" : "REF"}</span>
+    <button class="quick-item btn btn-sm btn-outline-secondary" data-quick-type="${escapeHtml(item.type)}" data-quick-id="${escapeHtml(item.id)}" title="${escapeHtml(item.title)}">
+      <span class="badge text-bg-primary">${item.type === "book" ? "HTML" : "REF"}</span>
       ${escapeHtml(item.title)}
     </button>
   `).join("");
@@ -583,32 +598,80 @@ function setActiveStatus(message) {
   else indexStatus.textContent = message;
 }
 
-function renderOnThisPage(blocks) {
-  const headings = blocks
-    .map((block, index) => ({ ...block, index }))
-    .filter((block) => block.type === "heading")
-    .slice(1);
+function renderOnThisPage(items) {
+  const headings = Array.isArray(items) && items[0]?.blocks
+    ? items.filter((section) => section.title && section.title !== "Overview")
+    : items
+      .map((block, index) => ({ ...block, id: `section-${index}` }))
+      .filter((block) => block.type === "heading")
+      .slice(1);
 
   if (!headings.length) return "";
   return `
     <nav class="on-this-page" aria-label="On this page">
       <strong>On this page</strong>
-      ${headings.map((heading) => `<a href="#section-${heading.index}" data-section="section-${heading.index}">${escapeHtml(heading.text)}</a>`).join("")}
+      ${headings.map((heading) => `<a href="#${escapeHtml(heading.id)}" data-section="${escapeHtml(heading.id)}">${escapeHtml(heading.title || heading.text)}</a>`).join("")}
     </nav>
   `;
 }
 
+function renderTopicBody(data) {
+  if (Array.isArray(data.sections) && data.sections.length) {
+    return data.sections.map(renderSection).join("");
+  }
+  return (data.blocks || []).map((block, index) => renderBlock(block, index)).join("");
+}
+
+function renderSection(section, sectionIndex) {
+  const title = formatHeadingLabel(section.title || "Overview");
+  const kind = section.kind || "section";
+  const body = (section.blocks || [])
+    .map((block, blockIndex) => renderBlock(block, `${sectionIndex}-${blockIndex}`))
+    .join("");
+
+  return `
+    <section id="${escapeHtml(section.id)}" class="topic-section topic-section-${escapeHtml(kind)}">
+      <div class="topic-section-header">
+        <span class="topic-section-label">${escapeHtml(sectionLabel(kind))}</span>
+        <h3>${escapeHtml(title)}</h3>
+      </div>
+      <div class="topic-section-body">
+        ${body}
+      </div>
+    </section>
+  `;
+}
+
+function sectionLabel(kind) {
+  const labels = {
+    overview: "Overview",
+    summary: "Overview",
+    description: "Description",
+    syntax: "Syntax",
+    usage: "Usage",
+    "return-value": "Return",
+    examples: "Examples",
+    controls: "Controls",
+    arguments: "Arguments",
+    notes: "Notes",
+    "see-also": "See also",
+  };
+  return labels[kind] || "Section";
+}
+
 function renderBlock(block, index = 0) {
   if (block.type === "heading") {
-    return `<h3 id="section-${index}">${escapeHtml(block.text)}</h3>`;
+    const headingText = formatHeadingLabel(block.text);
+    const extraClass = /^Examples(?:\b|$)/i.test(headingText) ? " topic-heading-examples" : "";
+    return `<h3 id="section-${index}" class="${extraClass.trim()}">${escapeHtml(headingText)}</h3>`;
   }
   if (block.type === "code") {
     const codeId = `code-${index}`;
     return `
-      <div class="code-wrap">
+      <div class="code-wrap card">
         <div class="code-label">
           <span>PowerScript</span>
-          <button class="copy-code" type="button" data-copy-target="${codeId}">Copy</button>
+          <button class="copy-code btn btn-sm btn-outline-secondary" type="button" data-copy-target="${codeId}">Copy</button>
         </div>
         <pre><code id="${codeId}">${highlightPowerScript(block.text)}</code></pre>
       </div>
@@ -624,7 +687,7 @@ function renderBlock(block, index = 0) {
     const rows = block.rows || [];
     return `
       <div class="table-wrap">
-        <table>
+        <table class="table table-sm mb-0">
           <tbody>
             ${rows.map((row, rowIndex) => `
               <tr>
@@ -640,6 +703,13 @@ function renderBlock(block, index = 0) {
     `;
   }
   return `<p>${renderInlineText(block.text)}</p>`;
+}
+
+function formatHeadingLabel(text) {
+  const value = String(text || "").trim();
+  const exampleMatch = value.match(/^Examples for\s+(.+)$/i);
+  if (exampleMatch) return `Examples: ${exampleMatch[1]}`;
+  return value;
 }
 
 function renderInlineText(text) {
@@ -705,6 +775,9 @@ function applyRouteFromHash() {
 function applyTheme(theme) {
   const next = theme === "dark" ? "dark" : "light";
   document.documentElement.dataset.theme = next;
+  document.documentElement.setAttribute("data-bs-theme", next);
+  document.body.dataset.theme = next;
+  document.body.setAttribute("data-bs-theme", next);
   localStorage.setItem(STORAGE_KEYS.theme, next);
   themeToggle.textContent = next === "dark" ? "Light mode" : "Dark mode";
   applyBookFrameTheme();
@@ -716,6 +789,8 @@ function toggleTheme() {
 
 function switchMode(mode) {
   currentMode = mode;
+  document.body.classList.toggle("books-mode", mode === "books");
+  if (mode !== "search") insightPane.classList.add("hidden");
   document.querySelectorAll(".tab").forEach((tab) => {
     tab.classList.toggle("active", tab.dataset.mode === mode);
   });
@@ -849,6 +924,18 @@ function openSearchTargetFromClick(event) {
   }
 }
 
+searchInsight.addEventListener("click", (event) => {
+  const collapse = event.target.closest(".insight-collapse");
+  if (!collapse) return;
+  event.preventDefault();
+  event.stopPropagation();
+  insightCollapsed = !insightCollapsed;
+  const card = searchInsight.querySelector(".insight-card");
+  if (!card) return;
+  card.classList.toggle("collapsed", insightCollapsed);
+  collapse.textContent = insightCollapsed ? "open" : "close";
+  collapse.setAttribute("aria-expanded", insightCollapsed ? "false" : "true");
+});
 searchInsight.addEventListener("click", openSearchTargetFromClick);
 results.addEventListener("click", openSearchTargetFromClick);
 

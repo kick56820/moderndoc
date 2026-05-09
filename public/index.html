@@ -4,89 +4,109 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PowerBuilder 10.5 Docs</title>
-  <link rel="stylesheet" href="/styles.css?v=20260509-19">
+  <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles.css?v=20260509-47">
 </head>
-<body>
-  <header class="topbar">
-    <div>
-      <h1>PowerBuilder 10.5 Docs</h1>
-      <p>Local HelpDeco full-text reference with WinHelp-style index.</p>
+<body data-bs-theme="light" class="bg-body-tertiary">
+  <header class="border-bottom bg-body">
+    <div class="container-fluid py-3">
+      <div class="row g-3 align-items-center">
+        <div class="col-lg-4">
+          <h1 class="h4 mb-1">PowerBuilder 10.5 Docs</h1>
+          <p class="text-body-secondary small mb-0">Local HelpDeco full-text reference with WinHelp-style index.</p>
+        </div>
+        <div class="col-lg-auto d-flex gap-2">
+          <button id="favoriteToggle" class="btn btn-outline-secondary btn-sm" type="button" disabled>Favorite</button>
+          <button id="themeToggle" class="btn btn-outline-secondary btn-sm" type="button">Dark mode</button>
+        </div>
+        <label class="col-lg form-label mb-0">
+          <span class="d-block text-body-secondary small mb-1">Full-text search across Reference and HTML Books</span>
+          <input id="globalSearch" class="form-control" placeholder="DataWindow / deployment / AcceptText" autocomplete="off">
+        </label>
+      </div>
     </div>
-    <div class="top-actions">
-      <button id="favoriteToggle" class="ghost" type="button" disabled>☆ Favorite</button>
-      <button id="themeToggle" class="ghost" type="button">Dark mode</button>
-    </div>
-    <label class="global-search">
-      <span>Full-text search across Reference and HTML Books</span>
-      <input id="globalSearch" placeholder="DataWindow / deployment / AcceptText" autocomplete="off">
-    </label>
   </header>
 
-  <div class="app">
-    <aside class="sidebar">
-      <section class="quick-panel">
-        <details open>
-          <summary>Recent</summary>
-          <div id="recentList" class="quick-list empty">No recent pages</div>
-        </details>
-        <details>
-          <summary>Favorites</summary>
-          <div id="favoriteList" class="quick-list empty">No favorites yet</div>
-        </details>
-      </section>
+  <div class="container-fluid app py-3">
+    <div class="row g-3 h-100 min-vh-0">
+      <aside class="col-12 col-md-4 col-xxl-3">
+        <div class="sidebar card shadow-sm h-100">
+          <div class="card-body p-3 d-flex flex-column min-vh-0">
+            <section class="quick-panel card border mb-3">
+              <div class="card-body p-2">
+                <details open>
+                  <summary class="small fw-semibold text-primary">Recent</summary>
+                  <div id="recentList" class="quick-list empty mt-2">No recent pages</div>
+                </details>
+                <details class="mt-2">
+                  <summary class="small fw-semibold text-primary">Favorites</summary>
+                  <div id="favoriteList" class="quick-list empty mt-2">No favorites yet</div>
+                </details>
+              </div>
+            </section>
 
-      <div class="tabs">
-        <button class="tab active" data-mode="contents">Contents</button>
-        <button class="tab" data-mode="index">Index</button>
-        <button class="tab" data-mode="search">Search</button>
-        <button class="tab" data-mode="books">HTML Books</button>
-      </div>
+            <ul class="tabs nav nav-tabs small mb-3">
+              <li class="nav-item"><button class="tab nav-link active" data-mode="contents" type="button">Contents</button></li>
+              <li class="nav-item"><button class="tab nav-link" data-mode="index" type="button">Index</button></li>
+              <li class="nav-item"><button class="tab nav-link" data-mode="search" type="button">Search</button></li>
+              <li class="nav-item"><button class="tab nav-link" data-mode="books" type="button">HTML Books</button></li>
+            </ul>
 
-      <section id="contentsMode" class="panel">
-        <div id="contentsStatus" class="status">Loading contents...</div>
-        <div id="contentsList" class="contents-list" role="tree"></div>
-      </section>
+            <section id="contentsMode" class="panel">
+              <div id="contentsStatus" class="status text-body-secondary small">Loading contents...</div>
+              <div id="contentsList" class="contents-list mt-2" role="tree"></div>
+            </section>
 
-      <section id="indexMode" class="panel hidden">
-        <label class="field">
-          <span>Type an index keyword</span>
-          <input id="indexInput" placeholder="decimal" autocomplete="off">
-        </label>
-        <div id="indexStatus" class="status">Loading index...</div>
-        <div id="indexList" class="index-list" role="listbox" tabindex="0"></div>
-        <button id="openIndex" class="primary">Show</button>
-      </section>
+            <section id="indexMode" class="panel hidden">
+              <label class="field form-label mb-0">
+                <span class="d-block text-body-secondary small mb-1">Type an index keyword</span>
+                <input id="indexInput" class="form-control form-control-sm" placeholder="decimal" autocomplete="off">
+              </label>
+              <div id="indexStatus" class="status text-body-secondary small mt-2">Loading index...</div>
+              <div id="indexList" class="index-list mt-2" role="listbox" tabindex="0"></div>
+              <button id="openIndex" class="btn btn-primary btn-sm mt-2">Show</button>
+            </section>
 
-      <section id="searchMode" class="panel hidden">
-        <label class="field">
-          <span>Search source</span>
-          <select id="searchSource">
-            <option value="all">All sources</option>
-            <option value="reference">Reference only</option>
-            <option value="html-books">HTML Books only</option>
-          </select>
-        </label>
-        <div id="searchInsight" class="search-insight"></div>
-        <div id="results" class="results"></div>
-      </section>
+            <section id="searchMode" class="panel hidden">
+              <label class="field form-label mb-0">
+                <span class="d-block text-body-secondary small mb-1">Search source</span>
+                <select id="searchSource" class="form-select form-select-sm">
+                  <option value="all">All sources</option>
+                  <option value="reference">Reference only</option>
+                  <option value="html-books">HTML Books only</option>
+                </select>
+              </label>
+              <div id="results" class="results mt-2"></div>
+            </section>
 
-      <section id="booksMode" class="panel hidden">
-        <div id="bookStatus" class="status">Loading HTML Books...</div>
-        <div id="bookContentsList" class="contents-list" role="tree"></div>
-      </section>
-    </aside>
-
-    <main class="reader">
-      <article id="topic" class="topic reader-pane">
-        <div class="empty-state">
-          <h2>Select a contents or index item to start reading</h2>
-          <p>Try: PowerScript Reference, decimal, DataWindow, AcceptText.</p>
+            <section id="booksMode" class="panel hidden">
+              <div id="bookStatus" class="status text-body-secondary small">Loading HTML Books...</div>
+              <div id="bookContentsList" class="contents-list mt-2" role="tree"></div>
+            </section>
+          </div>
         </div>
-      </article>
-      <iframe id="bookFrame" class="book-frame reader-pane hidden" title="PowerBuilder HTML Books"></iframe>
-    </main>
+      </aside>
+
+      <main class="col-12 col-md-8 col-xxl-9 reader">
+        <article id="insightPane" class="insight-pane reader-pane card shadow-sm hidden">
+          <div class="card-body">
+            <div id="searchInsight" class="search-insight"></div>
+          </div>
+        </article>
+        <article id="topic" class="topic reader-pane card shadow-sm">
+          <div class="card-body">
+            <div class="empty-state">
+              <h2 class="h5">Select a contents or index item to start reading</h2>
+              <p class="mb-0">Try: PowerScript Reference, decimal, DataWindow, AcceptText.</p>
+            </div>
+          </div>
+        </article>
+        <iframe id="bookFrame" class="book-frame reader-pane hidden" title="PowerBuilder HTML Books"></iframe>
+      </main>
+    </div>
   </div>
 
-  <script src="/app.js?v=20260509-18"></script>
+  <script src="/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="/app.js?v=20260509-47"></script>
 </body>
 </html>

@@ -5,11 +5,16 @@
   "description": "Standalone PowerBuilder 10.5 Help browser.",
   "scripts": {
     "start": "node server.js",
-    "check": "node --check server.js && node --check public/app.js && node scripts/check-parser-samples.js && node scripts/check-parser-warnings.js",
+    "ui:build": "node scripts/build-bootstrap-assets.js",
+    "check": "node scripts/release-check.js",
     "release:check": "node scripts/release-check.js",
     "release:package": "node scripts/package-release.js"
   },
   "engines": {
     "node": ">=12"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "express": "^4.22.1"
   }
 }
