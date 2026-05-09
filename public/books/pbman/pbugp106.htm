@@ -1,0 +1,46 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the 3D look</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp105.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp107.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF298661299"></A><h1>Using the 3D look</h1>
+<A NAME="TI2743"></A><p>Applications sometimes have a three-dimensional look and feel.
+To use this appearance for an application, select a 3D border for
+your SingleLineEdit boxes and other controls and make the window
+background gray.</p>
+<A NAME="TI2744"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use the 3D look by default:</p>
+<ol><li class=fi><p>Select Design&gt;Options from the
+menu bar.</p><p>The Options dialog box displays.</p></li>
+<li class=ds><p>On the General property page, select Default to
+3D.</p><p>When you build a new window, PowerBuilder automatically sets
+the window background color to gray and uses 3D borders when you
+place controls.</p></li></ol>
+<A NAME="TI2745"></A><p>PowerBuilder records this preference in the Default3D variable
+in the [Window] section of the PowerBuilder initialization
+file, so the preference is maintained across sessions.</p>
+<br><A NAME="TI2746"></A><h4>Mapping 3D colors for pictures</h4>
+<A NAME="TI2747"></A><p>You can make the background of Picture, PictureHyperlink,
+and PictureButton controls blend in with the background of your
+window. This applies to whatever color scheme the user has selected
+on the Appearance page of the Display Properties dialog box in the
+Windows Control Panel.</p>
+<A NAME="TI2748"></A><p>Use this feature if you want to place a control containing
+a picture on a window and have the picture blend in with the background
+color of the window when the window's background is using
+Button Face for a 3D effect. The control's picture takes
+on the 3D colors the user has selected. </p>
+<A NAME="TI2749"></A><p>The window's background must be set to Button Face.
+To make the image blend in with the window, give it a background
+color in the range between RGB(160,160,160) and RGB(223,223,223),
+such as silver. Lighter shades of gray map to the button highlight
+color and darker shades to the button shadow color. </p>
+<A NAME="TI2750"></A><p>This option can affect other colors used in the bitmap. It
+does not affect the control's border settings, and it has
+no effect if there is no image associated with the control.</p>
+

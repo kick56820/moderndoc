@@ -1,0 +1,79 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Ancestor and descendent variables </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp17.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp19.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF354893310"></A><h1>Ancestor and descendent variables </h1>
+<A NAME="TI283"></A><p>All objects in PowerBuilder are descendants of PowerBuilder
+system objects&#8212;the objects you see listed on the System
+page in the Browser.</p>
+<A NAME="TI284"></A><p>Therefore, whenever you declare an object instance, you are
+declaring a descendant. You decide how specific you want your declarations
+to be.</p>
+<A NAME="TI285"></A><h4>As specific as possible</h4>
+<A NAME="TI286"></A><p>If you define a user object class named <b>uo_empdata</b>,
+you can declare a variable whose type is <b>uo_empdata</b> to
+hold the user object reference:<p><PRE> uo_empdata uo_emp1<br>uo_emp1 = CREATE uo_empdata</PRE></p>
+<A NAME="TI287"></A><p>You can refer to the variables and functions that are part
+of the definition of <b>uo_empdata</b> because
+the type of <i>uo_emp1</i> is <b>uo_empdata</b>.</p>
+<A NAME="TI288"></A><h4>When the application requires flexibility</h4>
+<A NAME="TI289"></A><p>Suppose the user object you want to create depends on the
+user's choices. You can declare a user object variable
+whose type is UserObject or an ancestor class for the user object.
+Then you can specify the object class you want to instantiate in
+a string variable and use it with <b>CREATE</b>:<p><PRE> uo_empdata uo_emp1<br>string ls_objname<br>ls_objname = ... // Establish the user object to open<br>uo_emp1 = CREATE USING ls_objname</PRE></p>
+<A NAME="TI290"></A><p>This more general approach limits your access to the object's
+variables and functions. The compiler knows only the properties
+and functions of the ancestor class <b>uo_empdata</b> (or
+the system class UserObject if that is what you declared). It does
+not know which object you will actually create and cannot allow
+references to properties defined on that unknown object.</p>
+<p><b>Abstract ancestor object</b>   In order to address properties and functions of the descendants
+you plan to instantiate, you can define the ancestor object class
+to include the properties and functions that you will implement
+in the descendants. In the ancestor, the functions do not need code
+other than a return value&#8212;they exist so that the compiler
+can recognize the function names. When you declare a variable of
+the ancestor class, you can reference the functions. During execution,
+you can instantiate the variable with a descendant, where that descendant
+implements the functions as appropriate:</p>
+<A NAME="TI291"></A><p><p><PRE> uo_empdata uo_emp1<br>string ls_objname<br>// Establish which descendant of uo_empdata to open<br>ls_objname = ...<br>uo_emp1 = CREATE USING ls_objname</PRE><PRE> <br>// Function is declared in the ancestor class<br>result = uo_emp1.uf_special()</PRE></p>
+<A NAME="TI292"></A><p>This technique is described in more detail in <A HREF="apptechp10.htm#CCJDEAEG">"Dynamic versus static lookup"</A>.</p>
+<p><b>Dynamic function calls</b>    Another way to handle functions that
+are not defined for the declared class is to use dynamic function
+calls.</p>
+<A NAME="TI293"></A><p>When you use the <b>DYNAMIC</b> keyword in a function
+call, the compiler does not check whether the function call is valid.
+The checking happens during execution when the variable has been
+instantiated with the appropriate object:<p><PRE> // Function not declared in the ancestor class<br>result = uo_emp1.DYNAMIC uf_special()</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Performance and errors</span> <A NAME="TI294"></A>You should avoid using the dynamic capabilities of PowerBuilder
+when your application design does not require them. Runtime evaluation
+means that work the compiler usually does must be done at runtime,
+making the application slower when dynamic calls are used often
+or used within a large loop. Skipping compiler checking also means
+that errors that might be caught by the compiler are not found until
+the user is executing the program.</p>
+<A NAME="TI295"></A><h4>Dynamic object selection for windows and visual
+user objects</h4>
+<A NAME="TI296"></A><p>A window or visual user object is opened with a function call
+instead of the <b>CREATE</b> statement. With the <b>Open</b> and <b>OpenUserObject</b> functions,
+you can specify the class of the window or object to be opened,
+making it possible to open a descendant different from the declaration's
+object type.</p>
+<A NAME="TI297"></A><p>This example displays a user object of the type specified
+in the string <b>s_u_name</b> and
+stores the reference to the user object in the variable <i>u_to_open</i>.
+Variable <i>u_to_open</i> is of
+type DragObject, which is the ancestor of all user objects. It can
+hold a reference to any user object:<p><PRE> DragObject u_to_open<br>string s_u_name<br>s_u_name = sle_user.Text<br>w_info.OpenUserObject(u_to_open, s_u_name, 100, 200)</PRE></p>
+<A NAME="TI298"></A><p>For a window, comparable code looks like this. The actual
+window opened could be the class <b>w_data_entry</b> or
+any of its descendants:<p><PRE> w_data_entry w_data<br>string s_window_name<br>s_window_name = sle_win.Text<br>Open(w_data, s_window_name)</PRE></p>
+

@@ -1,0 +1,71 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Accessing the properties of a DataWindow object</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp11.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp13.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF354203223"></A><h1>Accessing the properties of a DataWindow object</h1>
+<A NAME="TI457"></A><h4>About DataWindow object properties</h4>
+<A NAME="TI458"></A><p>DataWindow object properties store the information that controls
+the behavior of a DataWindow object. They are not properties of
+the DataWindow control, but of the DataWindow object displayed in
+the control. The DataWindow object
+is itself made up of individual controls&#8212;column, text,
+graph, and drawing controls&#8212;that have DataWindow object
+properties.</p>
+<A NAME="TI459"></A><p>You establish initial values for DataWindow object properties
+in the DataWindow painter. You can also get and set property values
+during execution in your code.</p>
+<A NAME="TI460"></A><p>You can access the properties of a DataWindow object by using
+the Describe and Modify methods or DataWindow property expressions.
+Which you use depends on the type of error checking you want to
+provide and on whether you know the names of the controls within
+the DataWindow object and properties you want to access when the
+script is compiled.</p>
+<A NAME="TI461"></A><p>Note that in the Web ActiveX, only the Describe and Modify
+methods (not property expressions) are supported.</p>
+<A NAME="TI462"></A><p>For guidelines on deciding which method to
+use and for lists and descriptions of DataWindow object properties,
+see the <i>DataWindow Reference</i>
+. </p>
+<A NAME="TI463"></A><h4>Using methods to access object properties</h4>
+<A NAME="TI464"></A><p>You can use the following methods to work with the properties
+of a DataWindow object:<A NAME="TI465"></A>
+<ul>
+<li class=fi>Describe&#8212;Reports
+the values of properties of a DataWindow object and controls within
+the DataWindow object</li>
+<li class=ds>Modify&#8212;Modifies a DataWindow object by
+specifying a list of instructions that change the DataWindow object's
+definition
+</li>
+</ul>
+</p>
+<p><b>PowerBuilder</b>   For example, the following statements assign the value of
+the Border property for the empname column to a string variable:<p><PRE> string ls_border</PRE><PRE> ls_border = dw_1.<i>Describe</i>("empname.Border")</PRE></p>
+<A NAME="TI466"></A><p>The following statement changes the value of the Border property
+for the empname column to 1:<p><PRE> dw_emp<i>.Modify</i>("empname.Border=1")</PRE></p>
+<p><b>Web ActiveX</b>   The JavaScript code is nearly identical to PowerScript. These statements
+get the value of the Border property for the empname column:<p><PRE> string ls_border</PRE><PRE> ls_border = dw_1.<i>Describe</i>("empname.Border");</PRE></p>
+<A NAME="TI467"></A><p>The following statement changes the value of the Border property
+for the empname column to 1:<p><PRE> dw_emp<i>.Modify</i>("empname.Border=1");</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About dynamic DataWindow objects</span> <A NAME="TI468"></A>Using Describe and Modify, you can provide an interface through
+which application users can alter the DataWindow object during execution.
+For example, you can change the appearance of a DataWindow object
+or allow an application user to create ad hoc reports. For more
+information, see <A HREF="dwprgugp19.htm#BIIBCCDA">Chapter 3, "Dynamically Changing DataWindow
+Objects ."</A></p>
+<A NAME="TI469"></A><h4>Using expressions</h4>
+<A NAME="TI470"></A><p>DataWindow property expressions provide access to properties
+with fewer nested strings. In PowerBuilder, you can handle problems
+with incorrect object and property names in the Error event:</p>
+<p><b>PowerBuilder</b>   Use the Object property and dot notation. For example:<p><PRE> integer li_border</PRE><PRE> li_border = Integer(dw_1.Object.empname.Border)</PRE><PRE> dw_1.Object.empname.Border = 1</PRE></p>
+<A NAME="TI471"></A><p>For reference material on the available variations
+for property expressions, see the <i>DataWindow Reference</i>
+.</p>
+

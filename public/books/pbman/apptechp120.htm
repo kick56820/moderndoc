@@ -1,0 +1,178 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+PowerBuilder.Application server object</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp119.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp121.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF350582958"></A><h1>Deploying an application that uses the automation server </h1>
+<A NAME="TI3920"></A><p>When deploying your objects, you need to coordinate registry
+entries with the locations of all the files.</p>
+<A NAME="TI3921"></A><h4>PowerBuilder runtime files</h4>
+<A NAME="TI3922"></A><p>For both PowerBuilder.Application and a registered user object
+as a server, you need to deploy the PowerBuilder runtime environment
+on each user's machine.</p>
+<A NAME="TI3923"></A><p>For information about PowerBuilder deployment
+and required files, see Part 9, "Deployment Techniques."</p>
+<A NAME="TI3924"></A><p>Instead of the PowerBuilder executable, the registry looks
+for the PowerBuilder virtual machine <i>DLL</i>, <i>PBVM105.DLL</i>,
+to start the runtime environment. When you deploy, the path for
+this file is recorded in the registry. Users should not move the
+file to another directory&#8212;the registry entry would be made
+invalid.</p>
+<A NAME="TI3925"></A><h4>Object library and type library</h4>
+<A NAME="TI3926"></A><p>The registry records the location of the library containing
+your object and the location of the type library.</p>
+<A NAME="TI3927"></A><p>Therefore, when you generate a registry update file on your
+own computer, path information reflects the file location on your
+machine. When you deploy, you can:<A NAME="TI3928"></A>
+<ul>
+<li class=fi>Customize the registry update file (it is an editable text
+file)</li>
+<li class=ds>Make changes to the registry after it has been updated<br>
+You do this programmatically using functions in PowerBuilder
+or the Windows SDK, or manually with the Registry Editor.<br>
+</li>
+</ul>
+</p>
+<A NAME="BFCBDGCG"></A><h2>Multiple versions and updates</h2>
+<A NAME="TI3929"></A><p>When you distribute a new version of an object, you can reuse
+the GUID that was the CLSID for the previous version, or you can
+assign a new GUID. Your choice should depend on the degree of compatibility
+between the versions.</p>
+<A NAME="TI3930"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 20-7: CLSID options</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3931"></A>Option for the CLSID</th>
+<th  rowspan="1"  ><A NAME="TI3932"></A>Conditions</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3933"></A>Reuse the GUID</td>
+<td  rowspan="1"  ><A NAME="TI3934"></A>The interface for the object is the same
+and existing applications can access the same properties and functions
+that were in the old version</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3935"></A>Assign a new GUID</td>
+<td  rowspan="1"  ><A NAME="TI3936"></A>The interface has changed and existing
+applications will fail if they access the new version</td>
+</tr>
+</table>
+<A NAME="TI3937"></A><p>If you assign a new GUID so that the old object remains available
+to existing applications, you need a new ProgID too. If the existing
+application refers to the version-independent ProgID and you use
+the same ProgID for the new version, the old application will connect
+to the new object anyway.</p>
+<A NAME="TI3938"></A><p>When you design your server object, you need to think about
+its future development and design current applications accordingly.</p>
+<A NAME="X-REF349033929"></A><h1>Runtime automation server reference </h1>
+<A NAME="TI3939"></A><p>This section describes the PowerBuilder.Application runtime
+automation server and its properties and functions:<A NAME="TI3940"></A>
+<ul>
+<li class=fi><A HREF="apptechp120.htm#X-REF349370559">PowerBuilder.Application
+server object</A></li>
+<li class=ds><A HREF="apptechp121.htm#X-REF349370572">CreateObject
+function</A></li>
+<li class=ds><A HREF="apptechp122.htm#CAIBCBBA">GenerateGUID function</A></li>
+<li class=ds><A HREF="apptechp123.htm#CAIEBFGD">GenerateRegFile function</A></li>
+<li class=ds><A HREF="apptechp124.htm#CAICHGII">GenerateTypeLib function</A></li>
+<li class=ds><A HREF="apptechp124.htm#X-REF349370608">Exception
+codes</A></li>
+<li class=ds><A HREF="apptechp124.htm#X-REF349370617">Sample registry
+update file</A>
+</li>
+</ul>
+</p>
+<A NAME="X-REF349370559"></A><h1>PowerBuilder.Application server object</h1>
+<A NAME="TI3941"></A><h4>Description</h4>
+<A NAME="TI3942"></A><p>PowerBuilder.Application is an automation server. The OLE
+client that starts the automation server can be PowerBuilder or
+some other client that supports automation and automation object
+types.</p>
+<p><b>Accessing objects by means of the server</b>   You can access PowerBuilder objects using automation by:</p>
+<A NAME="TI3943"></A><p><A NAME="TI3944"></A>
+<ol>
+</li>
+<li class=ds>Connecting an OLEObject
+(or the equivalent object type in other client applications) to
+PowerBuilder.Application, which starts PowerBuilder as a server
+application.</li>
+<li class=ds>Setting properties of PowerBuilder.Application to
+specify the PowerBuilder libraries you want to access.</li>
+<li class=ds>Calling functions that create class user objects
+(nonvisual) in those libraries and assigning those objects to additional
+OLEObject variables.</li>
+<li class=ds>Accessing the properties and functions of the user
+objects using automation syntax.
+</li>
+</ol>
+</p>
+<p><b>Programmable object in the registry</b>   PowerBuilder.Application is not a class in the PowerBuilder
+system object hierarchy. It is a programmable object registered
+in the Windows registry. To see it in the Browser, click the OLE
+tab and expand the Programmable Objects category.</p>
+<A NAME="TI3945"></A><h4>Properties</h4>
+<A NAME="TI3946"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 20-8: Properties of PowerBuilder.Application</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3947"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI3948"></A>Datatype</th>
+<th  rowspan="1"  ><A NAME="TI3949"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3950"></A>LibraryList</td>
+<td  rowspan="1"  ><A NAME="TI3951"></A><b>String</b></td>
+<td  rowspan="1"  ><A NAME="TI3952"></A>A list of file names separated by semicolons that
+are the <i>DLL</i>s or <i>PBD</i>s containing
+the objects you will access in your PowerBuilder.Application session.<A NAME="TI3953"></A><p>All the libraries should have the same executable type, either
+compiled machine code or Pcode. Setting LibraryList is effective
+only before you create any object instances. After the first object
+is instantiated, changes are ignored.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3954"></A>MachineCode</td>
+<td  rowspan="1"  ><A NAME="TI3955"></A><b>Boolean</b></td>
+<td  rowspan="1"  ><A NAME="TI3956"></A>Specifies whether the objects you will instantiate
+are generated with machine code or Pcode.<A NAME="TI3957"></A><p>Values are:</p><A NAME="TI3958"></A><p><A NAME="TI3959"></A>
+<ul>
+<li class=fi><b>TRUE</b> &#8211; (Default)
+The library was compiled with machine code. The default file name extension
+is <i>DLL</i>.</li>
+<li class=ds><b>FALSE</b> &#8211; The library
+was compiled with Pcode. The default file name extension is <i>PBD</i>.
+</li>
+</ul>
+</p><A NAME="TI3960"></A><p>Setting MachineCode is effective only before you create any
+object instances. After the first object is instantiated, changes
+are ignored.</p></td>
+</tr>
+</table>
+<A NAME="TI3961"></A><h4>Functions</h4>
+<A NAME="TI3962"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 20-9: Functions of PowerBuilder.Application</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3963"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI3964"></A>Datatype returned</th>
+<th  rowspan="1"  ><A NAME="TI3965"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3966"></A><b>CreateObject</b></td>
+<td  rowspan="1"  ><A NAME="TI3967"></A><b>OLEObject</b></td>
+<td  rowspan="1"  ><A NAME="TI3968"></A>Creates an instance of a class user object
+in an OLE server session. An object reference is returned to the
+client session so that the client can access its properties and
+functions by means of automation syntax.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3969"></A><b>GenerateGUID</b></td>
+<td  rowspan="1"  ><A NAME="TI3970"></A><b>Long</b></td>
+<td  rowspan="1"  ><A NAME="TI3971"></A>Generates a globally unique identifier
+and puts the string representation of the identifier in a string
+variable passed by reference.<A NAME="TI3972"></A><p>A network card is required for this function to succeed.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3973"></A><b>GenerateRegFile</b></td>
+<td  rowspan="1"  ><A NAME="TI3974"></A><b>Long</b></td>
+<td  rowspan="1"  ><A NAME="TI3975"></A>Generates a file that contains instructions
+for updating the registry with information about a PowerBuilder
+object that you want to deploy as an independent automation server.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3976"></A><b>GenerateTypeLib</b></td>
+<td  rowspan="1"  ><A NAME="TI3977"></A><b>Long</b></td>
+<td  rowspan="1"  ><A NAME="TI3978"></A>Generates a type library file with browsing information
+about a PowerBuilder object that you want to deploy as an independent automation
+server.</td>
+</tr>
+</table>
+

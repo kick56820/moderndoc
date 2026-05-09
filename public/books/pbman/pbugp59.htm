@@ -1,0 +1,52 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating runtime libraries</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp58.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp60.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF345205729"></A><h1>Creating runtime libraries</h1>
+<A NAME="TI1743"></A><p>If you want your deployed target to use dynamic runtime libraries,
+you can create them in the Library painter.</p>
+<A NAME="TI1744"></A><p>For information about using runtime libraries,
+see <A HREF="pbugp262.htm#CAIBCBBH">Chapter 34, "Creating Executables and Components."</A> That
+chapter also describes the Project painter, which you can use to
+create dynamic runtime libraries automatically.</p>
+<A NAME="TI1745"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a runtime library:</p>
+<ol><li class=fi><p>Select the library you want to use to build
+a runtime library.</p></li>
+<li class=ds><p>Select Entry&gt;Library&gt;Build Runtime
+Library from the menu bar, or select Build Runtime Library from
+the library's pop-up menu.</p><p>The Build Runtime Library dialog box displays, listing the
+name of the selected library.</p><br><img src="images/lib23.gif"><br>
+</li>
+<li class=ds><p>If any of the objects in the source library use
+resources, specify a PowerBuilder resource file in the Resource
+File Name box (see <A HREF="pbugp59.htm#X-REF351347413">"Including additional
+resources"</A>).</p></li>
+<li class=ds><p>Select other options as appropriate.</p><p>Most options are available only if you select
+Machine Code, which creates a DLL file. The default is Pcode, which
+creates a PBD file. For more information about build options, see <A HREF="pbugp265.htm#CHDDBBDJ">"Executable application project
+options"</A>.</p></li>
+<li class=ds><p>Click OK.</p><p>PowerBuilder closes the dialog box and creates a runtime library
+with the same name as the selected library and the extension .<i>dll</i> or
+.<i>pbd</i>.</p></li></ol>
+<br><A NAME="X-REF351347413"></A><h2>Including additional resources</h2>
+<A NAME="TI1746"></A><p>When building a runtime library, PowerBuilder does not inspect
+the objects; it simply removes the source form of the objects. Therefore,
+if any of the objects in the library use resources (pictures, icons,
+and pointers)&#8212;either specified in a painter or assigned
+dynamically in a script&#8212;and you do not want to provide these
+resources separately, you must list the resources in a PowerBuilder resource
+file (PBR file). Doing so enables PowerBuilder to include the resources
+in the runtime library when it builds it.</p>
+<A NAME="TI1747"></A><p>For more on resource files, see <A HREF="pbugp267.htm#X-REF364141074">"Using PowerBuilder
+resource files"</A>.</p>
+<A NAME="TI1748"></A><p>After you have defined the resource file, specify it in the
+Resource File Name box to include the named resources in the runtime
+library.</p>
+

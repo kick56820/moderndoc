@@ -1,0 +1,45 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Installing and configuring the PowerBuilder window plug-ins</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp220.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp222.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIDIAEI"></A><h1>Installing and configuring the PowerBuilder window plug-ins</h1>
+<A NAME="TI6709"></A><p>The PowerBuilder window plug-ins are not installed on your
+computer if you select the Typical setup type when you install PowerBuilder.
+You can install the plug-ins by running a custom installation of
+PowerBuilder and checking the Web Plugins box on the Select Components
+page. Click the Change button on that page to select the plug-ins
+and controls you want to install.</p>
+<A NAME="TI6710"></A><p>This section describes setup tasks that you may need to perform <i>after</i> installing the
+plug-ins.</p>
+<A NAME="TI6711"></A><h4>Installation location</h4>
+<A NAME="TI6712"></A><p>The PowerBuilder window plug-in DLLs are installed in the <i>PowerBuilder 10.5\Internet
+Tools\Plugins</i> directory. The PowerBuilder installation
+program may also install a copy of the plug-ins in your Web browser's <i>Plugins</i> directory if
+you have Netscape installed.</p>
+<A NAME="TI6713"></A><p>If you have no browser installed or the installation program
+did not find the browser, you need to install Netscape and then
+copy or move the plug-ins to the browser's <i>Plugins</i> directory.</p>
+<A NAME="TI6714"></A><h4>PowerBuilder deployment DLLs</h4>
+<A NAME="TI6715"></A><p>The PowerBuilder window plug-in must know the location of
+the PowerBuilder runtime DLLs (<i>PBVM105.DLL</i>, <i>PBDWE105.DLL</i> and
+so forth). If the Setup program finds your browser, it will make
+the appropriate registry modifications, but if it cannot find your
+browser, you must make the modifications. You can do this in one
+of two ways:<A NAME="TI6716"></A>
+<ul>
+<li class=fi>Add the directory
+for the PowerBuilder runtime DLLs to the application path key for
+the browser's executable in the Windows registry</li>
+<li class=ds>Add the directory for the PowerBuilder runtime DLLs
+to the system path
+</li>
+</ul>
+</p>
+

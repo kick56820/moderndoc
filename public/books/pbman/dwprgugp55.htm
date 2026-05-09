@@ -1,0 +1,84 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+How to use the Web ActiveX in a Web target</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp54.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp56.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBCBHCJ"></A><h1>How to use the Web ActiveX in a Web target</h1>
+<A NAME="TI2359"></A><p>The PowerBuilder Setup program installs the Web ActiveX and
+the Transaction Object control in the system registry. You can find
+them in the System Tree on the Components tab.</p>
+<A NAME="TI2360"></A><p>These procedures provide a summary of the ways you author
+Web pages with ActiveX controls in a Web target. </p>
+<A NAME="TI2361"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To find the controls in the System Tree:</p>
+<ol><li class=fi><p>Select the Components tab.</p></li>
+<li class=ds><p>Expand ActiveX Controls.</p></li>
+<li class=ds><p>Expand Controls.</p></li>
+<li class=ds><p>Look for the controls with these names:<A NAME="TI2362"></A>
+<ul>
+<li class=fi>Sybase DataWindow Web Control 10.5</li>
+<li class=ds>Sybase DataWindow Transaction Object Control
+</li>
+</ul>
+
+                  </p><p>These controls have Properties and Methods branches (the Web
+ActiveX also has an Events branch) that you can expand to view available properties
+and methods. </p></li></ol>
+<br><A NAME="TI2363"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add the controls to a Web page:</p>
+<ol><li class=fi><p>Drag the control name from the System Tree
+to the Web page<br><i>or</i><br>Select
+Insert&gt;Component&gt;ActiveX from the menu bar, select
+the Controls page, make sure that Controls is selected in the drop-down
+list box, and select the control (Sybase DataWindow Web Control
+or Sybase DataWindow Transaction Object Control) you want.</p></li></ol>
+<br><A NAME="TI2364"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set standard ActiveX properties for the control:</p>
+<ol><li class=fi><p><i>In the Page view</i>,
+right-click the control and select ActiveX OBJECT<i>n</i> Properties
+from the pop-up menu, where <i>n</i> is the order
+in which the object is placed on the page. When you specify a name
+for the control, the menu item uses that name instead of OBJECT<i>n</i>.<br><i>or<br></i><i>In
+Source view</i>, right-click the Object tag and select Properties
+from the pop-up menu.</p></li>
+<li class=ds><p>In the ActiveX Properties dialog box, specify
+the values you want. Some of the more common attributes to set include:</p><p><A NAME="TI2365"></A>
+<ul>
+<li class=fi>Network Code Base&#8212;its value
+is the URL and version number of the CAB file that the browser downloads
+to install the ActiveX control <br>
+For more about the CODEBASE attribute, see <A HREF="dwprgugp54.htm#BGBDCAIG">"HTML for inserting the controls
+on a Web page"</A>.<br></li>
+<li class=ds>Width and Height&#8212;also set by dragging the
+control's resizing handles in Page view</li>
+<li class=ds>Name for forms and scripting
+</li>
+</ul>
+</p></li></ol>
+<br><A NAME="TI2366"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set custom properties for the controls:</p>
+<ol><li class=fi><p>In the Page view, right-click the control
+and select Sybase DataWindow Web Control Properties (or Sybase DataWindow
+Transaction Object Control Properties) from the pop-up menu. </p><p>For information on specifying the DataWindow object on the
+General tab page, see <A HREF="dwprgugp56.htm#BGBCDJFJ">"Specifying a DataWindow
+object for the control"</A>.</p><p>For information about specifying connection information on
+the Transaction and Trans User tab pages, see <A HREF="dwprgugp58.htm#BGBCHHGF">"Making database connections"</A>.</p><p>The custom properties dialog box is not available from the
+Source view.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Where to set connection properties</span> <A NAME="TI2367"></A>You need to set connection properties only once. If you are
+using a separate Transaction Object control, you do not need to
+set properties on the Transaction and Trans User pages for the Web
+ActiveX. The same property pages are available for the Transaction
+Object control. </p>
+<A NAME="TI2368"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use the System Tree when writing code for the
+controls:</p>
+<ol><li class=fi><p>On the Page tab of the System Tree, expand <i>window</i> in
+the Client Side branch.</p></li>
+<li class=ds><p>Under <i>window</i>, expand Properties
+and find the name of your control as one of the properties.</p></li>
+<li class=ds><p>For the control, expand Properties, Events, or
+Methods.</p></li>
+<li class=ds><p>Find the item you want to insert in the script
+editor and drag it to its position in the code. </p><p>A fully qualified expression is inserted, such as:<p><PRE> window.dw1.Describe(propertylist)</PRE><PRE> window.dw1.dbParm</PRE></p><p>Substitute your own variables and expressions for method parameters.</p></li></ol>
+<br>

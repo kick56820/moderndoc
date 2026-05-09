@@ -1,0 +1,100 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining user events </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp76.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp78.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF345206685"></A><h1>Defining user events </h1>
+<A NAME="TI2149"></A><p>In PowerBuilder, you can define both mapped and unmapped user
+events for windows, user objects, controls, menus, and the Application
+object. </p>
+<A NAME="TI2150"></A><p>When you add a new event, a Prototype window displays above
+the script area in the Script view. Most of the fields in the Prototype
+window are the same as when you define a user-defined function.
+They are in the same order as the event's signature: access
+level, return type, and name; then for each parameter, how it is
+passed, its datatype, and its name; and finally, the <b>THROWS</b> clause. For
+information about filling in these fields, see <A HREF="pbugp72.htm#X-REF297023136">"Defining user-defined
+functions "</A>.</p>
+<A NAME="TI2151"></A><p>The access level for events is always public.</p>
+<br><img src="images/ue03.gif">
+<A NAME="TI2152"></A><p>The Prototype window for user events has an additional field
+that you use if you want to map the user event to an event ID.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>External check box</span> <A NAME="TI2153"></A>When you select the External check box, PowerBuilder sets
+the IsExternalEvent property of the ScriptDefinition object associated
+with the event to <b>true</b>. This has no effect on
+your application in this release. The feature may be used in a future
+release. </p>
+<A NAME="TI2154"></A><h4>Mapped user events</h4>
+<A NAME="TI2155"></A><p>When a system message occurs, PowerBuilder triggers any user
+event that has been mapped to the message and passes the appropriate
+values to the event script as arguments. When you define a user
+event and map it to an event ID, you must use the return value and
+arguments that are associated with the event ID.</p>
+<A NAME="CHDBCEAI"></A><h4>Unmapped user events</h4>
+<A NAME="TI2156"></A><p>Unmapped user events are associated with a PowerBuilder activity
+and do not have an event ID. When you define an unmapped user event,
+you specify the arguments and return datatype; only your application
+scripts can trigger the user event. For example, if you create an
+event called <b>ue_update</b> that updates
+a database, you might trigger or post the event in the Clicked event
+of an Update command button.</p>
+<A NAME="TI2157"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a mapped user event:</p>
+<ol><li class=fi><p>Open the object for which you want to define
+a user event.</p></li>
+<li class=ds><p>If you want to define a user event for a control
+on a window or visual user object, double-click the control to select
+it.</p></li>
+<li class=ds><p>Select Insert&gt;Event from the menu bar,
+or, in the Event List view, select Add from the pop-up menu.</p><p>The Prototype window opens in the Script view. If you display
+the Script view's title bar, you see <FONT FACE="Courier New">(Untitled) </FONT>because
+you have not named the event yet. If there is no open Script view,
+a new view opens.</p></li>
+<li class=ds><p>Name the event and tab to the next field. </p><p>Event names can have up to 40 characters. For valid characters,
+see the <i>PowerScript Reference</i>
+. </p><p>To recognize user events easily, consider prefacing the name
+with an easily recognizable prefix such as <b>ue_</b>. </p><p>When you tab to the next field, the user event is added to
+the Event List view. It is saved as part of the object whenever
+you save the object.</p></li>
+<li class=ds><p>Select an ID from the drop-down list box at the
+bottom of the Prototype window.</p></li></ol>
+<br><A NAME="TI2158"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define an unmapped user event:</p>
+<ol><li class=fi><p>Open the object for which you want to define
+a user event.</p></li>
+<li class=ds><p>If you want to define a user event for a control
+on a window or visual user object, double-click the control to select
+it.</p></li>
+<li class=ds><p>Select Insert&gt;Event from the menu bar,
+or, in the Event List view, select Add from the pop-up menu.</p><p>The Prototype window opens in the Script view. If you display
+the Script view's title bar, you see <FONT FACE="Courier New">(Untitled) </FONT>because
+you have not named the event yet. If there is no open Script view,
+a new view opens.</p></li>
+<li class=ds><p>Select a return type and tab to the next field.</p><p>Defining return types for events is similar to defining them
+for functions. See <A HREF="pbugp72.htm#CDEBHHEA">"Defining a return type"</A>.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>When you can specify return type and arguments</span> <A NAME="TI2159"></A>If you map the user event to an event ID, you cannot change
+its return type or specify arguments.</p>
+</li>
+<li class=ds><p>Name the event and tab to the next field. </p><p>Event names can have up to 40 characters. For valid characters,
+see the <i>PowerScript Reference</i>
+. </p><p>To recognize user events easily, consider prefacing the name
+with an easily recognizable prefix such as <b>ue_</b>. </p><p>When you tab to the next field, the user event is added to
+the Event List view. It is saved as part of the object whenever
+you save the object.</p></li>
+<li class=ds><p>If the event will take arguments, define arguments
+for the event. </p><p>Defining arguments for events is similar to defining them
+for functions. See <A HREF="pbugp72.htm#CDECBAED">"Defining
+arguments"</A> and <A HREF="pbugp73.htm#CIHDIGHG">"Changing the arguments"</A>.</p></li>
+<li class=ds><p>Optionally enter the name of exceptions that can
+be thrown by the event.</p></li></ol>
+<br><A NAME="TI2160"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To open a user event for editing:</p>
+<ol><li class=fi><p>In the Event List view, double-click the
+event's name.</p></li></ol>
+<br><A NAME="TI2161"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete a user event:</p>
+<ol><li class=fi><p>In the Event List view, select the user
+event's name and select Delete from the Edit menu or the
+pop-up menu.</p></li></ol>
+<br>

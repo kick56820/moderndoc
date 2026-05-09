@@ -1,0 +1,53 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating and deleting an Adaptive Server Anywhere database</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp134.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp136.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJBHEBB"></A><h1>Creating and deleting an Adaptive Server Anywhere database</h1>
+<A NAME="TI4073"></A><p>In PowerBuilder you work within an existing database. With one
+exception, creating or deleting a database is an administrative
+task that is not performed directly in PowerBuilder. The one exception
+is that you can create and delete a local Adaptive Server Anywhere database from
+within PowerBuilder.</p>
+<A NAME="TI4074"></A><p>For information about creating and deleting
+other databases, see your DBMS documentation.</p>
+<A NAME="TI4075"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a local Adaptive Server Anywhere database:</p>
+<ol><li class=fi><p>From the Objects view, launch the Create
+ASA Database utility included with the ODBC interface.</p><p>The Create Adaptive Server Anywhere Database dialog box displays.</p></li>
+<li class=ds><p>In the Database Name box, specify the file name
+and path of the database you are creating. </p><p>If you do not provide a file extension, the database file
+name is given the extension <i>DB</i>.</p></li>
+<li class=ds><p>Define other properties of the database as needed. </p><p>If you are using a non-English database, you can specify a
+code page in the Collation Sequence box.</p><p>For complete information about filling in
+the dialog box, click the Help button in the dialog box.</p></li>
+<li class=ds><p>Click OK.</p><p>When you click OK, PowerBuilder does the following:<A NAME="TI4076"></A>
+<ul>
+<li class=fi>Creates a database with the
+specified name in the specified directory or folder. If a database
+with the same name exists, you are asked whether you want to replace
+it.</li>
+<li class=ds>Adds a data source to the <i>ODBC.INI</i> key
+in the registry. The data source has the same name as the database
+unless one with the same name already exists, in which case a suffix
+is appended.</li>
+<li class=ds>Creates a database profile and adds it to the registry.
+The profile has the same name as the database unless one with the
+same name already exists, in which case a suffix is appended.</li>
+<li class=ds>Connects to the new database.
+</li>
+</ul>
+</p></li></ol>
+<br><A NAME="TI4077"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete a local Adaptive Server Anywhere database:</p>
+<ol><li class=fi><p>Open the Database painter.</p></li>
+<li class=ds><p>From the Objects view, launch the Delete ASA Database
+utility included with the ODBC interface.</p></li>
+<li class=ds><p>Select the database you want to delete and select
+Open.</p></li>
+<li class=ds><p>Click Yes to delete the database.</p><p>When you click Yes, PowerBuilder deletes the specified database.</p></li></ol>
+<br>

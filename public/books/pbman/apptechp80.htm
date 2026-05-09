@@ -1,0 +1,39 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Adding pbdom105.pbx to your application</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp79.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp81.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABHCBAIA"></A><h1>Adding pbdom105.pbx to your application</h1>
+<A NAME="TI2261"></A><p>The PBDOM classes are implemented in a DLL file with the suffix
+PBX (for PowerBuilder extension). The simplest way to add the PBDOM
+classes to a PowerBuilder target is to import the object descriptions
+in the <i>pbdom105.pbx</i> PBX file into a library
+in the PowerBuilder System Tree. You can also the add <i>pbdom105.pbd</i> file,
+which acts as a wrapper for the classes, to the target's library
+search path. </p>
+<A NAME="TI2262"></A><p>The <i>pbdom105.pbx</i> and <i>pbdom105.pbd</i> files
+are placed in the <i>Shared\PowerBuilder</i> directory
+when you install PowerBuilder. When you are building a PBDOM application,
+you do not need to copy <i>pbdom105.pbx</i> to another
+location, but you do need to deploy it with the application in a
+directory in the application's search path.</p>
+<A NAME="TI2263"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To import the descriptions in an extension into
+a library:</p>
+<ol><li class=fi><p>In the System Tree, expand the target in
+which you want to use the extension, right-click a library, and
+select Import PB Extension from the pop-up menu.</p><br><img src="images/pbext01.gif"><br>
+</li>
+<li class=ds><p>Navigate to the location of the PBX<i></i> file
+and click Open.</p><p>Each class in the PBX displays in the System Tree so that
+you can expand it, view its properties, events, and methods, and
+drag and drop to add them to your scripts.</p></li></ol>
+<br><A NAME="TI2264"></A><p>After you import <i>pbdom105.pbx</i>, the PBDOM
+objects display in the System Tree:</p>
+<br><img src="images/systree1.gif">
+

@@ -1,0 +1,155 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About XML</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp236.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp238.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABEAFBE"></A><h1>About XML</h1>
+<A NAME="TI8199"></A><p>Like Hypertext Markup Language
+(HTML), Extensible Markup Language (XML) is a subset of Standardized
+General Markup Language (SGML) and has been designed specifically
+for use on the Web. XML is defined in the W3C Recommendation published
+by the World Wide Web Consortium. The latest version of this document
+is available<A HREF="http://www.w3.org/TR/REC-xml"></A>
+.</p>
+<A NAME="TI8200"></A><p>XML is more complete and disciplined than HTML, and it is
+also a framework for creating markup languages&#8212;it allows
+you to define your own application-oriented markup tags. </p>
+<A NAME="TI8201"></A><p>XML provides a set of rules for structuring data. Like HTML,
+XML uses tags and attributes, but the tags are used to delimit pieces
+of data, allowing the application that receives the data to interpret
+the meaning of each tag. These properties make XML particularly
+suitable for data interchange across applications, platforms, enterprises,
+and the Web. The data can be structured in a hierarchy that includes
+nesting.</p>
+<A NAME="TI8202"></A><p>An XML document is made up of declarations, elements, comments,
+character references, and processing instructions, indicated in
+the document by explicit markup. </p>
+<A NAME="TI8203"></A><p>The simple XML document that follows contains an XML declaration followed
+by the start tag of the root element, <FONT FACE="Courier New">&lt;d_dept_list&gt;</FONT>,
+nested row and column elements, and finally the end tag of the root
+element. The root element is the starting point for the XML processor. <p><PRE> &lt;?xml version="1.0"&gt;<br>&lt;d_dept_list&gt;<br>   &lt;d_dept_list_row&gt;<br>      &lt;dept_id&gt;100&lt;/dept_id&gt;<br>      &lt;dept_name&gt;R &amp;amp;D&lt;/dept_name&gt;<br>      &lt;dept_head_id&gt;501&lt;/dept_head_id&gt;<br>   &lt;/d_dept_list_row&gt;<br>   ...<br>&lt;/d_dept_list&gt;</PRE></p>
+<A NAME="TI8204"></A><p>This section contains a brief overview of XML rules and syntax.
+For a good introduction to XML, see <A HREF="http://www.w3.org/XML/1999/XML-in-10-points">XML in 10 points</A>
+. For more detailed information, see
+the <A HREF="http://www.w3.org/XML/">W3C XML page</A>
+, the O'Reilly page <A HREF="http://www.xml.com">XML from the inside out</A>
+,
+the <A HREF="http://xml.coverpages.org/xml.html">XML Cover Pages</A>
+, or one of the many books about XML.</p>
+<A NAME="TI8205"></A><h2>Valid and well-formed XML documents</h2>
+<A NAME="TI8206"></A><p>An XML document
+must be valid, well-formed, or both. </p>
+<A NAME="TI8207"></A><h4>Valid documents</h4>
+<A NAME="TI8208"></A><p>To define a set of tags for use in a particular application,
+XML uses a separate document named a document type definition (DTD).
+A DTD states what tags are allowed in an XML document and defines
+rules for how those tags can be used in relation to each other.
+It defines the elements that are allowed in the language, the attributes
+each element can have, and the type of information each element
+can hold. Documents can be verified against a DTD to ensure that they
+follow all the rules of the language. A document that satisfies
+a DTD is said to be valid. </p>
+<A NAME="TI8209"></A><p>If a document uses a DTD, the DTD must immediately follow
+the declaration.</p>
+<A NAME="TI8210"></A><p>XML Schema provides an alternative mechanism for describing
+and validating XML data. It provides a richer set of datatypes than
+a DTD, as well as support for namespaces, including the ability
+to use prefixes in instance documents and accept unknown elements
+and attributes from known or unknown namespaces. For more information,
+see the <A HREF="http://www.w3.org/XML/Schema">W3C XML Schema page</A>
+.</p>
+<A NAME="TI8211"></A><h4>Well-formed documents</h4>
+<A NAME="TI8212"></A><p>The second way to specify XML syntax is to assume that a document
+is using its language properly. XML provides a set of generic syntax
+rules that must be satisfied, and as long as a document satisfies
+these rules, it is said to be well-formed. All valid documents
+must be well-formed. </p>
+<A NAME="TI8213"></A><p>Processing well-formed documents is faster than processing
+valid documents because the parser does not have to verify against
+the DTD or XML schema. When valid documents are transmitted, the
+DTD or XML schema must also be transmitted if the receiver does
+not already possess it. Well-formed documents can be sent
+without other information.</p>
+<A NAME="TI8214"></A><p>XML documents should conform to a DTD or XML schema if they
+are going to be used by more than one application. If they are not
+valid, there is no way to guarantee that various applications will
+be able to understand each other. </p>
+<A NAME="TI8215"></A><h2>XML syntax</h2>
+<A NAME="TI8216"></A><p>There are a few more restrictions
+on XML than on HTML; they make parsing of XML simpler. </p>
+<A NAME="TI8217"></A><h4>Tags cannot be omitted</h4>
+<A NAME="TI8218"></A><p>Unlike HTML, XML does not allow you to omit tags. This guarantees
+that parsers know where elements end. </p>
+<A NAME="TI8219"></A><p>The following example is acceptable HTML, but not XML:</p>
+<A NAME="TI8220"></A><p><p><PRE> &lt;table&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Dog&lt;/td&gt;<br>    &lt;td&gt;Cat<br>    &lt;td&gt;Mouse<br>&lt;/table&gt;</PRE></p>
+<A NAME="TI8221"></A><p>To change this into well-formed XML, you need to add all the
+missing end tags:<p><PRE> &lt;table&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Dog&lt;/td&gt;<br>    &lt;td&gt;Cat&lt;/td&gt;<br>    &lt;td&gt;Mouse&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;</PRE></p>
+<A NAME="TI8222"></A><h4>Representing empty elements</h4>
+<A NAME="TI8223"></A><p>Empty elements cannot be represented in XML in the same way
+they are in HTML. An empty element is one that is not used to mark
+up data, so in HTML, there is no end tag. There are two ways to
+handle empty elements:<A NAME="TI8224"></A>
+<ul>
+<li class=fi>Place a dummy tag immediately
+after the start tag. For example:<p><PRE> &lt;img href="picture.jpg"&gt;&lt;/img&gt;</PRE></li>
+<li class=ds>Use a slash character at the end of the initial
+tag:<p><PRE> &lt;img href="picture.jpg"/&gt;</PRE><br>
+This tells a parser that the element consists only of one
+tag.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI8225"></A><h4>XML is case sensitive</h4>
+<A NAME="TI8226"></A><p>XML is case sensitive, which allows it to be used with non-Latin
+alphabets. You must ensure that letter case matches in start and
+end tags: <FONT FACE="Courier New">&lt;MyTag&gt; </FONT>and<FONT FACE="Courier New"> &lt;/Mytag&gt; </FONT>belong
+to two different elements.</p>
+<A NAME="TI8227"></A><h4>White space</h4>
+<A NAME="TI8228"></A><p>White space within tags in XML is unchanged by parsers. </p>
+<A NAME="TI8229"></A><h4>All elements must be nested. </h4>
+<A NAME="TI8230"></A><p>All XML elements must be properly nested. All child elements
+must be closed before their parent elements close. </p>
+<A NAME="TI8231"></A><h2>XML parsing</h2>
+<A NAME="TI8232"></A><p>There are two major types
+of application programming interfaces (APIs) that can be used to
+parse XML:<A NAME="TI8233"></A>
+<ul>
+<li class=fi>Tree-based APIs map the XML document
+to a tree structure. The major tree-based API is the Document Object
+Model (DOM) maintained by W3C. A DOM parser is particularly useful
+if you are working with a deeply-nested document that must be traversed
+multiple times.<br>
+For more information about the DOM parser, see the <A HREF="http://www.w3c.org/DOM">W3C Document Object Model page</A>
+.<br><br>
+ PowerBuilder provides the PowerBuilder Document Object Model (PBDOM)
+extension to enable you to manipulate complex XML documents. For
+more information about PBDOM, see <i>Application Techniques</i>
+ and
+the <i>PowerBuilder Extension Reference</i>
+.<br></li>
+<li class=ds>Event-based APIs use callbacks to report events,
+such as the start and end of elements, to the calling application,
+and the application handles those events. These APIs provide faster,
+lower-level access to the XML and are most efficient when extracting
+data from an XML document in a single traversal. <br>
+For more information about the best-known event-driven parser,
+SAX (Simple API for XML), see the <A HREF="http://sax.sourceforge.net/">SAX page</A>
+.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI8234"></A><h4>Xerces parser</h4>
+<A NAME="TI8235"></A><p>PowerBuilder includes software developed by the Apache Software Foundation
+(<b>http://www.apache.org/</b>).
+The XML services for DataWindow objects are built on the Apache Xerces-C++ parser,
+which conforms to both DOM and SAX specifications and is portable
+across Windows and UNIX platforms. For more information about SAX,
+see the <A HREF="http://xml.apache.org/xerces-c/index.html">Xerces C++ Parser page</A>
+.</p>
+

@@ -1,0 +1,336 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Working with libraries</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp51.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp53.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDBDHJA"></A><h1>Working with libraries</h1>
+<A NAME="TI1599"></A><p>The Library painter is designed for working with PowerBuilder
+libraries.</p>
+<A NAME="CHDBCFCC"></A><h2>Displaying libraries and objects</h2>
+<A NAME="TI1600"></A><h4>What you see in the views</h4>
+<A NAME="TI1601"></A><p>In the Tree view, you can expand items and see the folders,
+libraries, or objects they contain. The List view displays the contents
+of a selection in the Tree view. </p>
+<A NAME="TI1602"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To expand or collapse an item in the Tree view:</p>
+<ol><li class=fi><p>Double-click the item.</p><p>If the item contains libraries or objects, they display in
+the List view.</p></li></ol>
+<br><A NAME="TI1603"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display the contents of an item in the List
+view:</p>
+<ol><li class=fi><p>Select the item in the Tree view or double-click
+the item in the List view.</p></li></ol>
+<br><A NAME="TI1604"></A><h4>Using drag and drop to expand items</h4>
+<A NAME="TI1605"></A><p>You can drag and drop items to expand them and see the contents.</p>
+<A NAME="TI1606"></A><p>If you drag an item from a Tree view or List view to a List
+view, the List view sets the item as the root and displays its contents.</p>
+<A NAME="TI1607"></A><p>If you drag an item from a Tree view or List view to a Tree
+view, the Tree view expands to display the dragged item.</p>
+<A NAME="TI1608"></A><p>For example, you can drag a library from the Tree view and
+drop it in the List view to quickly display the objects the library
+contains in the List view. If you are using one Tree view and multiple
+List views, you can drag a specific library from the Tree view to
+each List view so each List view contains the contents of a specific
+library.</p>
+<A NAME="TI1609"></A><p>For information about using drag and drop to copy or move
+items, see <A HREF="pbugp52.htm#X-REF302058104">"Copying, moving, and
+deleting objects"</A>.</p>
+<A NAME="TI1610"></A><h2>Using
+the pop-up menu</h2>
+<A NAME="TI1611"></A><p>Like other painters, the Library painter has a pop-up menu
+that provides options that apply to the selected item in the Tree
+view or the List view. For example, from a library's pop-up
+menu, you can delete, optimize, or search the library, print the
+directory, specify the objects that display in the library, and import
+objects into it. </p>
+<A NAME="TI1612"></A><p>The actions available from an object's pop-up menu
+depend on the object type. For PowerBuilder objects that you can
+work with in painters, you can edit the object in a painter or in
+the Source editor, copy, move, or delete the object, export it to
+a text file, search it, regenerate it, or send it to a printer.
+You can also preview and inherit from some objects. For most of
+these actions, the object must be in a library in your current workspace.</p>
+<A NAME="TI1613"></A><p>Actions available from the pop-up menus are also available
+on the Entry menu on the menu bar.</p>
+<A NAME="BGBDFFEA"></A><h2>Controlling columns that display in the List view</h2>
+<A NAME="TI1614"></A><p>You can control whether to display the last modification date,
+compilation date, size, SCC version number, and comments (if a comment
+was created when an object or library was created) in the List view.</p>
+<A NAME="TI1615"></A><p>The version number column in the Library painter list view
+remains blank if the source control system for your workspace does
+not support the PowerBuilder extension to the SCC API. If your source
+control system supports this extension and if you are connected
+to source control, you can override the SCC version number of a
+PowerScript object in the local copy directory through the property
+sheet for that object.</p>
+<A NAME="TI1616"></A><p>For more information about listing the SCC version number
+and overriding it through the PowerBuilder interface, see <A HREF="pbugp24.htm#CIHDAGBB">"Extension to the SCC API"</A>.</p>
+<A NAME="TI1617"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To control the display of columns in the List
+view:</p>
+<ol><li class=fi><p>Select Design&gt;Options from the
+menu bar.</p></li>
+<li class=ds><p>On the General tab page, select or clear these
+display items: Modification Date, Compilation Date, Sizes, SCC Version
+Number, and Comments.</p></li></ol>
+<br><A NAME="TI1618"></A><h2>Selecting objects</h2>
+<A NAME="TI1619"></A><p>In the List view, you can select one or more libraries or
+objects to act on.</p>
+<A NAME="TI1620"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select multiple entries:</p>
+<ol><li class=fi><p>In the List view, use Ctrl+Click
+(for individual entries) and Shift+Click (for a group of
+entries).</p></li></ol>
+<br><A NAME="TI1621"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select all entries:</p>
+<ol><li class=fi><p>In the List view, select an object and
+click the Select All button on the PainterBar.</p></li></ol>
+<br><A NAME="CHDDBGGE"></A><h2>Filtering the display of objects</h2>
+<A NAME="TI1622"></A><p>You can change what objects display in expanded libraries. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Settings are remembered</span> <A NAME="TI1623"></A>PowerBuilder records your preferences in the Library section
+of the PowerBuilder initialization file so that the next time you
+open the Library painter, the same information is displayed.</p>
+<A NAME="TI1624"></A><h4>Specifying which objects display in all libraries</h4>
+<A NAME="TI1625"></A><p>In the Tree and List views, the Library painter displays all
+objects in libraries that you expand, as well as targets, workspaces,
+folders, and files. You can specify that the Library painter display
+only specific kinds of objects and/or objects whose names
+match a specific pattern. For example, you can limit the display
+to only DataWindow objects, or limit the display to windows that
+begin with <FONT FACE="Courier New">w_emp</FONT>.</p>
+<A NAME="TI1626"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To restrict which objects are displayed:</p>
+<ol><li class=fi><p>Select Design&gt;Options from the
+menu bar and select the Include tab. </p></li>
+<li class=ds><p>Specify the display criteria:</p><p><A NAME="TI1627"></A>
+<ul>
+<li class=fi>To limit the display
+to entries that contain specific text in their names, enter the
+text in the Name box. You can use the wildcard characters question
+mark (?) and asterisk (*) in the string. The ? represents
+one character; an * represents any string of characters.
+The default is all entries of the selected types.</li>
+<li class=ds>To limit the display to specific entry types, clear
+the check boxes for the entry types that you do not want to display.
+The default is all entries.
+</li>
+</ul>
+</p></li>
+<li class=ds><p>Click OK.</p><p>The Options dialog box closes.</p></li>
+<li class=ds><p>In the Tree view, expand libraries or select a
+library to display the objects that meet the criteria.</p></li></ol>
+<br><A NAME="TI1628"></A><h4>Overriding the choices you made for a specific
+view</h4>
+<A NAME="TI1629"></A><p>In either the Tree view or the List view, you can override
+your choice of objects that display in all libraries by selecting
+a library, displaying the library's pop-up menu,
+and then clearing or selecting items on the list of objects.</p>
+<A NAME="X-REF345205635"></A><h2>Creating and deleting libraries</h2>
+<A NAME="TI1630"></A><p>A library is created automatically when you create a new PowerScript
+target, but you can create as many libraries as you need for your
+project in the Library painter. </p>
+<A NAME="TI1631"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a library:</p>
+<ol><li class=fi><p>Click the Create button or select Entry&gt;Library&gt;Create
+from the menu bar.</p><p>The Create Library dialog box displays showing the current
+directory and listing the libraries it contains.</p></li>
+<li class=ds><p>Enter the name of the library you are creating
+and specify the directory in which you want to store it. </p><p>The file is given the extension .<i>PBL</i>.</p></li>
+<li class=ds><p>Click Save.</p><p>The library properties dialog box displays.</p></li>
+<li class=ds><p>Enter any comments you want to associate with
+the library.</p><p>Adding comments to describe the purpose of a library is important
+if you are working on a large project with other developers.</p></li>
+<li class=ds><p>Click OK.</p><p>PowerBuilder creates the library.</p></li></ol>
+<br><A NAME="TI1632"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete a library:</p>
+<ol><li class=fi><p>In either the Tree view or the List view,
+select the library you want to delete.</p></li>
+<li class=ds><p>Select Entry&gt;Delete from the menu bar
+or select Delete from the pop-up menu.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Restriction</span> <A NAME="TI1633"></A>You cannot delete a library that is in the current target's
+library search path.</p>
+<p>The Delete Library dialog box displays showing the library
+you selected.</p></li>
+<li class=ds><p>Click Yes to delete the library.</p><p>The library and all its entries are deleted from the file
+system. </p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Creating and deleting libraries at runtime</span> <A NAME="TI1634"></A>You can use the <b>LibraryCreate</b> and <b>LibraryDelete</b> functions
+in scripts to create and delete libraries. For information about
+these functions, see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI1635"></A><h2>Filtering the display of libraries and folders</h2>
+<A NAME="TI1636"></A><p>In either the Tree view or the List view, you can control
+what displays when you expand a drive or folder. An expanded drive
+or folder can display folders, workspaces, targets, files, and libraries.</p>
+<A NAME="TI1637"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To control display of the contents of drives and
+folders:</p>
+<ol><li class=fi><p>In either the Tree or List view, select
+a drive or folder, select Show from the pop-up menu, and select
+or clear items from the cascading menu.</p></li></ol>
+<br><A NAME="CHDCEIGC"></A><h2>Working in the current library</h2>
+<A NAME="TI1638"></A><p>In PowerBuilder,
+the current library is the library that contains the object most recently
+opened or edited. That library becomes the default for Open and Inherit.
+If you click the Open or Inherit button in the PowerBar, the current library
+is the one selected in the Libraries list. </p>
+<A NAME="TI1639"></A><p>You can display the current library in the Library painter.</p>
+<A NAME="TI1640"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display objects in the current library:</p>
+<ol><li class=fi><p>Click in the Tree view or the List view.</p></li>
+<li class=ds><p>Click the Display Most Recent Object button on
+the PainterBar or select Most Recent Object from the View menu.</p><p>The library that contains the object you opened or edited
+last displays in the view you selected with the object highlighted.</p></li></ol>
+<br><A NAME="BFCCJEDB"></A><h2>Opening and previewing objects</h2>
+<A NAME="TI1641"></A><p>You can open and preview objects in the current workspace.</p>
+<A NAME="TI1642"></A><h4>Opening PowerBuilder objects</h4>
+<A NAME="TI1643"></A><p>PowerBuilder objects, such as windows and menus, are opened
+only if they are in a <ACRONYM title = "pibble" >PBL</ACRONYM> in
+the current workspace. </p>
+<A NAME="TI1644"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To open an object:</p>
+<ol><li class=fi><p>In either the Tree view or the List view,
+double-click the object, or select Edit from the object's
+pop-up menu.</p><p>PowerBuilder takes you to the painter for that object and
+opens the object. You can work on the object and save it as you
+work. When you close it, you return to the Library painter.</p></li></ol>
+<br><A NAME="TI1645"></A><h4>Opening other objects</h4>
+<A NAME="TI1646"></A><p>The Library painter allows you to open most of the different
+file types it displays. When you double-click on an object, PowerBuilder
+attempts to open it using the following algorithm:<A NAME="TI1647"></A>
+<ol>
+</li>
+<li class=ds>PowerBuilder determines if the object can be opened
+in the File editor. For example, files with the extensions .<i>txt</i>,
+.<i>ini</i>, and .<i>sr*</i> open
+in the File editor. </li>
+<li class=ds>PowerBuilder determines if the object can be opened
+in a painter or HTML editor. </li>
+<li class=ds>PowerBuilder checks to see if the object is associated
+with a program in the <i>HKEY_CLASSES_ROOT</i> section
+of the Windows registry and, if so, launches the application. 
+</li>
+</ol>
+</p>
+<A NAME="TI1648"></A><h4>Previewing PowerBuilder objects</h4>
+<A NAME="TI1649"></A><p>You can run windows and preview DataWindow objects from the
+Library painter.</p>
+<A NAME="TI1650"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To preview an object in the Library painter:</p>
+<ol><li class=fi><p>Select Run/Preview from the object's
+pop-up menu.</p></li></ol>
+<br><A NAME="X-REF302058104"></A><h2>Copying, moving, and deleting objects</h2>
+<A NAME="TI1651"></A><p>As the needs of your target change, you can rearrange the
+objects in libraries. You can copy and move objects between libraries
+or delete objects that you no longer need.</p>
+<A NAME="TI1652"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To copy objects using drag and drop:</p>
+<ol><li class=fi><p>In the Tree view or the List view, select
+the objects you want to copy.</p></li>
+<li class=ds><p>Drag the objects to a library in either view.
+If the contents of a library are displaying in the List view, you
+can drop it there.</p><p>PowerBuilder copies the objects. If an object with the same
+name already exists, PowerBuilder prompts you and if you allow it,
+replaces it with the copied object.</p></li></ol>
+<br><A NAME="TI1653"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To move objects using drag and drop:</p>
+<ol><li class=fi><p>In the Tree view or the List view, select
+the objects you want to move.</p></li>
+<li class=ds><p>Press and hold Shift and drag the objects to a
+library in either view. If the contents of a library are displaying
+in the List view, you can drop it there.</p><p>PowerBuilder moves the objects and deletes them from the source
+library. If an object with the same name already exists, PowerBuilder
+prompts you and if you allow it, replaces it with the moved object.</p></li></ol>
+<br><A NAME="TI1654"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To copy or move objects using a button or menu
+item:</p>
+<ol><li class=fi><p>Select the objects you want to copy or
+move to another library.</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI1655"></A>
+<ul>
+<li class=fi>Click
+the Copy button or the Move button.</li>
+<li class=ds>Select Copy or Move from the pop-up menu.</li>
+<li class=ds>Select Entry&gt;Library Item&gt;Copy
+or Entry&gt;Library Item&gt;Move from the menu bar.
+</li>
+</ul>
+
+                      </p><p>The Select Library dialog box displays.</p></li>
+<li class=ds><p>Select the library to which you want to copy or
+move the objects and click OK.</p></li></ol>
+<br><A NAME="TI1656"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete objects:</p>
+<ol><li class=fi><p>Select the objects you want to delete.</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI1657"></A>
+<ul>
+<li class=fi>Click
+the Delete button.</li>
+<li class=ds>Select Delete from the pop-up menu.</li>
+<li class=ds>Select Entry&gt;Delete from the menu bar.
+</li>
+</ul>
+
+                      </p><p>You are asked to confirm the first deletion.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Being asked for confirmation</span> <A NAME="TI1658"></A>By default, PowerBuilder asks you to confirm each deletion.
+If you do not want to have to confirm deletions, select Design&gt;Options
+to open the Options dialog box for the Library painter and clear
+the Confirm on Delete check box in the General tab page.</p>
+<A NAME="TI1659"></A>PowerBuilder records this preference as the DeletePrompt variable
+in the Library section of the PowerBuilder initialization file.</p>
+</li>
+<li class=ds><p>Click Yes to delete the entry or Yes To All to
+delete all entries. Click No to skip the current entry and go on
+to the next selected entry.</p></li></ol>
+<br><A NAME="CHDBIFDG"></A><h2>Setting the root</h2>
+<A NAME="TI1660"></A><p>In either the Tree view or the List view, you can set the
+root location of the view.</p>
+<A NAME="TI1661"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set the root of the current view:</p>
+<ol><li class=fi><p>In either view, select View&gt;Set
+Root from the menu bar or select Set Root from the pop-up menu to
+display the Set Root dialog box.</p><br><img src="images/lib27.gif"><br>
+</li>
+<li class=ds><p>If you want the root to be a directory or library,
+type the path or browse to the path.</p></li></ol>
+<br><A NAME="TI1662"></A><h4>Setting the root to the current workspace</h4>
+<A NAME="TI1663"></A><p>In the System Tree, the default root is the current workspace.
+If you prefer to work in the Library painter, you may find it convenient
+to set the root to the current workspace. Using the current workspace
+as your root is particularly helpful if you are using many libraries
+in various locations, because they are all displayed in the same
+tree. </p>
+<A NAME="CHDBAFAE"></A><h2>Moving back, forward, and up one level</h2>
+<A NAME="TI1664"></A><p>You can also set a new root by moving back to where you were
+before, moving forward to where you just were, or for the List view,
+moving up a level.</p>
+<A NAME="TI1665"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To move back, forward, or up one level:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI1666"></A>
+<ul>
+<li class=fi>Select
+View&gt;Back, View&gt;Forward, or View&gt;Up One
+Level from the menu bar.</li>
+<li class=ds>Select Back, Forward, or Up One Level from the pop-up
+menu.
+</li>
+</ul>
+
+                      </p><p>The name of the location you are moving back to or forward
+to is appended to Back and Forward.</p></li></ol>
+<br><A NAME="TI1667"></A><h2>Modifying comments</h2>
+<A NAME="TI1668"></A><p>You can use comments to document your objects and libraries.
+For example, you might use comments to describe how a window is
+used, specify the differences between descendent objects, or identify
+a PowerBuilder library.</p>
+<A NAME="TI1669"></A><p>You can associate comments with an object or library when
+you first save it in a painter and add or modify comments in the
+System Tree or Library painter. If you want to modify comments for
+a set of objects, you can do so quickly in the List view.</p>
+<A NAME="TI1670"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify comments for multiple objects:</p>
+<ol><li class=fi><p>In the List view, select the objects you
+want.</p></li>
+<li class=ds><p>Select Entry&gt;Properties from the menu
+bar or select Properties from the pop-up menu.</p><p>PowerBuilder displays the Properties dialog box. The information
+that displays is for one of the objects you selected. You can change
+existing comments, or, if there are no comments, you can enter new
+descriptive text. </p></li>
+<li class=ds><p>Click OK when you have finished editing comments
+for this object.</p><p>If you do not want to change the comments for an object, click
+OK. The next object displays.</p></li>
+<li class=ds><p>Enter comments and click OK for each object until
+you have finished.</p><p>If you want to stop working on comments before you finish
+with the objects you selected, click Cancel. The comments you have
+entered until the most recent OK are retained and display in the
+List view.</p></li></ol>
+<br><A NAME="TI1671"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify comments for a library:</p>
+<ol><li class=fi><p>Select the library you want.</p></li>
+<li class=ds><p>Click the Properties button or select Library
+from the pop-up menu.</p></li>
+<li class=ds><p>Add or modify the comments.</p></li></ol>
+<br>

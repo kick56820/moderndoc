@@ -1,0 +1,203 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining validation rules</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp198.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp200.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BHACGBIC"></A><h1>Defining validation rules</h1>
+<A NAME="TI6572"></A><p>Typically, you define validation rules in the Database painter,
+because validation rules are properties of the data itself. Once
+defined in the Database painter, the rules are used by default each time
+the column is placed in a DataWindow object. You can also define a validation
+rule in the DataWindow painter that overrides the rule defined in the Database painter.</p>
+<A NAME="BHAEDJFB"></A><h2>Defining a validation rule in the Database painter</h2>
+<A NAME="TI6573"></A><p>This section describes the ways you can manipulate validation
+rules in the Database painter.</p>
+<A NAME="TI6574"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new validation rule</p>
+<ol><li class=fi><p>In the Database painter, select Object&gt;Insert&gt;Validation
+Rule from the menu bar.</p><p>The Validation Rule view displays in the Properties view.</p></li>
+<li class=ds><p>Assign a name to the rule, select the datatype
+of the columns to which it applies, and customize the error message
+(if desired).</p><p>For information, see <A HREF="pbugp199.htm#BFCECHDI">"Customizing the error message"</A>.</p></li>
+<li class=ds><p>Click the Definition tab and define the expression
+for the rule.</p><p>For information, see <A HREF="pbugp199.htm#X-REF353596681">"Defining the expression"</A>.</p><br><img src="images/dwdis24b.gif"><br>
+</li></ol>
+<A NAME="TI6575"></A><p>You can use this rule with any column of the appropriate datatype
+in the database.</p>
+<br><A NAME="TI6576"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify a validation rule:</p>
+<ol><li class=fi><p>In the Database painter, open the Extended Attributes
+view.</p></li>
+<li class=ds><p>In the Extended Attributes view, open the list
+of validation rules.</p></li>
+<li class=ds><p>Position the pointer on the validation rule you
+want to modify, display the pop-up menu, and select Properties.</p></li>
+<li class=ds><p>In the Validation Rule view, modify the validation
+rule as desired.</p><p>For information, see <A HREF="pbugp199.htm#X-REF353596681">"Defining the expression"</A> and <A HREF="pbugp199.htm#BFCECHDI">"Customizing the error message"</A>.</p></li></ol>
+<br><A NAME="TI6577"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To associate a validation rule with a column in
+the Database painter:</p>
+<ol><li class=fi><p>In the Database painter (Objects view), position
+the pointer on the column, select Properties from the column's
+pop-up menu, and select the Validation tab.</p></li>
+<li class=ds><p>Select a validation rule from the Validation Rule
+drop-down list.</p><p>The column now has the selected validation rule associated
+with it in the extended attribute system tables. Whenever you use
+this column in a DataWindow object, it will use this validation rule unless
+you override it in the DataWindow painter.</p></li></ol>
+<br><A NAME="TI6578"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To remove a validation rule from a column in the Database painter:</p>
+<ol><li class=fi><p>In the Database painter (Objects view), position
+the pointer on the column, select Properties from its pop-up menu,
+and select the Validation tab in the Properties view.</p></li>
+<li class=ds><p>Select (None) from the list in the Validation
+Rule drop-down list.</p><p>The validation rule is no longer associated with the column.</p></li></ol>
+<br><A NAME="X-REF353596681"></A><h3>Defining the expression</h3>
+<A NAME="TI6579"></A><p>A validation rule is a boolean expression. PowerBuilder applies
+the boolean expression to an entered value. If the expression returns <b>TRUE</b>,
+the value is accepted. Otherwise, the value is not accepted and
+an ItemError event is triggered.</p>
+<A NAME="TI6580"></A><h4>What expressions can contain</h4>
+<A NAME="TI6581"></A><p>You can use any valid DataWindow expression in validation rules.</p>
+<A NAME="TI6582"></A><p>Validation rules can include most DataWindow expression functions. A DataWindow object that
+will be used in PowerBuilder can also include user-defined
+functions. DataWindow expression functions are displayed in the Functions list
+and can be pasted into the definition.</p>
+<A NAME="TI6583"></A><p>For information about these functions, see the <i>DataWindow Reference.</i>
+</p>
+<A NAME="TI6584"></A><p>Use the notation <i>@placeholder</i> (where <i>placeholder</i> is
+any group of characters) to indicate the current column in the rule.
+When you define a validation rule in the Database painter, PowerBuilder stores
+it in the extended attribute system tables with the placeholder
+name. At runtime, PowerBuilder substitutes the value of the column
+for <i>placeholder</i>.</p>
+<A NAME="TI6585"></A><h4>Pasting the placeholder</h4>
+<A NAME="TI6586"></A><p>The @col can be easily used as the placeholder. A
+button in the Paste area is labeled with @col. You can
+click the button to paste the @col into the validation
+rule.</p>
+<A NAME="TI6587"></A><h4>An example</h4>
+<A NAME="TI6588"></A><p>For example, to make sure that both <b>Age</b> and <b>Salary</b> are
+greater than zero using a single validation rule, define the validation
+rule as follows:<p><PRE> @col &gt; 0</PRE></p>
+<A NAME="TI6589"></A><p>Then associate the validation rule with both the <b>Age</b> and <b>Salary</b> columns.
+At runtime, PowerBuilder substitutes the appropriate values for the
+column data when the rule is applied.</p>
+<A NAME="BFCDCEDI"></A><h3>Using match values for character columns</h3>
+<A NAME="TI6590"></A><p>If you are defining the validation rule for a character column,
+you can use the Match button on the Definition page of the Validation
+Rule view. This button lets you define a match pattern for matching
+the contents of a column to a specified text pattern (for example,
+^[0-9]+$ for all numbers and
+^[A-Za-z]+$ for all letters).</p>
+<A NAME="TI6591"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a match pattern for character columns:</p>
+<ol><li class=fi><p>Click the Match button on the Definition
+page of the Validation Rule view.</p><p>The Match Pattern dialog box displays.</p></li>
+<li class=ds><p>Enter the text pattern you want to match the column
+to, or select a displayed pattern.</p></li>
+<li class=ds><p>(Optional) Enter a test value and click the Test
+button to test the pattern.</p></li>
+<li class=ds><p>Click OK when you are satisfied that the pattern
+is correct.</p></li></ol>
+<br><A NAME="TI6592"></A><p>For more on the <b>Match</b> function
+and text patterns, see the <i>DataWindowReference.</i>
+</p>
+<A NAME="BFCECHDI"></A><h3>Customizing the error message</h3>
+<A NAME="TI6593"></A><p>When you define a validation rule, PowerBuilder automatically
+creates the error message that displays by default when users enter
+an invalid value:<p><PRE>'Item ~'' + @<i>Col</i> + '~' does not pass validation test.'</PRE></p>
+</p>
+<A NAME="TI6594"></A><p>You can edit the string expression to create a custom error
+message.</p>
+<A NAME="TI6595"></A><h4>Different syntax in the DataWindow painter</h4>
+<A NAME="TI6596"></A><p>If you are working in the DataWindow painter, you can enter a string expression
+for the message, but you do not use the @ sign for placeholders.
+For example, this is the default message:<p><PRE>'Item ~'' + <i>ColumnName</i> + '~' does not pass validation test.'</PRE></p>
+</p>
+<A NAME="TI6597"></A><p>A validation rule for the Salary column in the Employee table
+might have the following custom error message associated with it:<p><PRE>Please enter a salary greater than $10,000.'</PRE></p>
+</p>
+<A NAME="TI6598"></A><p>If users enter a salary less than or equal to $10,000,
+the custom error message displays.</p>
+<A NAME="TI6599"></A><h3>Specifying initial values</h3>
+<A NAME="TI6600"></A><p>As part of defining a validation rule, you can supply an initial
+value for a column.</p>
+<A NAME="TI6601"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify an initial value for a column in the Database painter:</p>
+<ol><li class=fi><p>Select Properties from the column's
+pop-up menu and select the Validation tab.</p></li>
+<li class=ds><p>Specify a value in the Initial Value box.</p></li></ol>
+<br><A NAME="BHAEFHIC"></A><h2>Defining a validation rule in the DataWindow painter</h2>
+<A NAME="TI6602"></A><p>Validation rules you assign to a column in the Database painter are
+used by default when you place the column in a DataWindow object. You can
+override the validation rule in the DataWindow painter by defining an ad
+hoc rule for one specific column.</p>
+<A NAME="TI6603"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a validation rule for a column in the DataWindow painter:</p>
+<ol><li class=fi><p>In the DataWindow painter, select View&gt;Column
+Specifications from the menu bar.</p><p>The Column Specification view displays.</p><br><img src="images/dwdis25b.gif"><br>
+</li>
+<li class=ds><p>Create or modify the validation expression. To
+display the Modify Expression dialog box, display the pop-up menu
+for the box in which you want to enter a Validation Expression and
+select Expression. Follow the directions in <A HREF="pbugp199.htm#BABCFCCI">"Specifying the expression"</A>.</p></li>
+<li class=ds><p>(Optional) Enter a string or string expression
+to customize the validation error message.</p><p>For more information, see <A HREF="pbugp199.htm#BFCECHDI">"Customizing the error message"</A>.</p></li>
+<li class=ds><p>(Optional) Enter an initial value.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Used for current column only</span> <A NAME="TI6604"></A>If you create a validation rule here, it is used only for
+the current column and is not saved in the extended attribute system
+tables.</p>
+</li></ol>
+<br><A NAME="BABCFCCI"></A><h3>Specifying the expression</h3>
+<A NAME="TI6605"></A><p>Since a user might have just entered a value in the column,
+validation rules refer to the current data value, which you can
+obtain through the <b>GetText</b> DataWindow expression function.</p>
+<A NAME="TI6606"></A><p>Using <b>GetText</b> ensures that the most recent
+data entered in the current column is evaluated.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>PowerBuilder does the conversion for you</span> <A NAME="TI6607"></A>If you have associated a validation rule for a column in the Database painter, PowerBuilder automatically
+converts the syntax to use <b>GetText</b> when you place the
+column in a DataWindow object.</p>
+<A NAME="TI6608"></A><p><b>GetText</b> returns a string. Be sure to use
+a data conversion function (such as <b>Integer</b> or <b>Real</b>)
+if you want to compare the entered value with a datatype other than
+string.</p>
+<A NAME="TI6609"></A><p>For more on the <b>GetText</b> function
+and text patterns, see the <i>DataWindowReference.</i>
+</p>
+<A NAME="TI6610"></A><h4>Referring to other columns</h4>
+<A NAME="TI6611"></A><p>You can refer to the values in other columns by specifying
+their names in the validation rule. You can paste the column names
+in the rule using the Columns box.</p>
+<A NAME="TI6612"></A><h3>Examples</h3>
+<A NAME="TI6613"></A><p>Here are some examples of validation rules.</p>
+<p><b>Example 1</b>   To check that the data entered in the current column is a
+positive integer, use this validation rule:</p>
+<A NAME="TI6614"></A><p><p><PRE> Integer(GetText( )) &gt; 0</PRE></p>
+<p><b>Example 2</b>   If the current column contains the discounted price and the column
+named <b>Full_Price</b> contains the full
+price, you could use the following validation rule to evaluate the
+contents of the column using the <b>Full_Price</b> column:</p>
+<A NAME="TI6615"></A><p><p><PRE> Match(GetText( ),"^[0-9]+$") AND<br>Real(GetText( )) &lt; Full_Price</PRE></p>
+<A NAME="TI6616"></A><p>To pass the validation rule, the data must be all digits (must
+match the text pattern <FONT FACE="Courier New">^[0-9]+$</FONT>)
+and must be less than the amount in the <b>Full_Price</b> column.</p>
+<A NAME="TI6617"></A><p>Notice that to compare the numeric value in the column with
+the numeric value in the <b>Full_Price</b> column,
+the <b>Real</b> function was used to convert the text
+to a number.</p>
+<p><b>Example 3</b>   In your company, a product price and a sales commission are related
+in the following way:<A NAME="TI6618"></A>
+<ul>
+<li class=fi>If
+the price is greater than or equal to $1000, the commission
+is between 10 percent and 20 percent</li>
+<li class=ds>If the price is less than $1000, the commission
+is between 4 percent and 9 percent
+</li>
+</ul>
+</p>
+<A NAME="TI6619"></A><p>The <b>Sales</b> table has two columns, <b>Price</b> and <b>Commission</b>.
+The validation rule for the <b>Commission</b> column
+is:<p><PRE> (Number(GetText( )) &gt;= If(price &gt;= 1000, .10, .04))<br>AND<br>(Number(GetText( )) &lt;= If(price &gt;= 1000, .20, .09))</PRE></p>
+<A NAME="TI6620"></A><p>A customized error message for the <b>Commission</b> column
+is:<p><PRE> "Price is " + if(price &gt;= 1000,<br>"greater than or equal to","less than") +<br>" 1000. Commission must be between " +<br>If(price &gt;= 1000,".10", ".04") + " and " +<br>If(price &gt;= 1000, ".20.", ".09.")</PRE></p>
+

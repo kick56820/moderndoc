@@ -1,0 +1,52 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating an HTML page</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp215.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp217.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF364150483"></A><h1>Creating an HTML page</h1>
+<A NAME="TI6540"></A><p>You include a Powersoft report (PSR) on a Web page with the
+Embed element. Element attributes specify the space allocated for
+the report and the report file name.</p>
+<A NAME="TI6541"></A><p>A sample Embed element might look like this:<p><PRE> &lt;EMBED src=April_sales.psr WIDTH=370 HEIGHT=320&gt;</PRE></p>
+<A NAME="TI6542"></A><h4>Attributes of the Embed element</h4>
+<A NAME="TI6543"></A><p>The Embed element is part of the HTML specification for plug-ins.
+For the DataWindow plug-in, you specify only standard HTML attributes.</p>
+<p><b>HTML attributes</b>   HTML attributes name the file to be downloaded to the client
+and the space reserved for the plug-in on the Web page.</p>
+<A NAME="TI6544"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 32-3: HTML attributes for the DataWindow plug-in</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6545"></A>HTML attribute</th>
+<th  rowspan="1"  ><A NAME="TI6546"></A>Value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6547"></A>SRC</td>
+<td  rowspan="1"  ><A NAME="TI6548"></A>A URL identifying the object to be downloaded.<A NAME="TI6549"></A><p>When the browser processes the Embed element, it requests the
+resource from the server and finds the DLL in its Plugins directory
+that handles the content type.</p><A NAME="TI6550"></A><p>For a DataWindow plug-in, the object is a PSR file.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6551"></A>WIDTH</td>
+<td  rowspan="1"  ><A NAME="TI6552"></A>The width of the viewing window in pixels.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6553"></A>HEIGHT</td>
+<td  rowspan="1"  ><A NAME="TI6554"></A>The height of the viewing window in pixels.</td>
+</tr>
+</table>
+<A NAME="TI6555"></A><h2>Sample page</h2>
+<A NAME="TI6556"></A><p>Here is HTML code that includes the DataWindow plug-in in
+a sample page. Note the use of the Embed element to specify a PSR
+file.</p>
+<A NAME="TI6557"></A><h4>Opening element</h4>
+<A NAME="TI6558"></A><p><p><PRE> &lt;HTML&gt;</PRE></p>
+<A NAME="TI6559"></A><h4>Document heading</h4>
+<A NAME="TI6560"></A><p><p><PRE> &lt;HEAD&gt;<br>&lt;TITLE&gt;On Leave report&lt;/TITLE&gt;<br>&lt;/HEAD&gt;<br>&lt;BODY&gt;</PRE></p>
+<A NAME="TI6561"></A><h4>H1 heading</h4>
+<A NAME="TI6562"></A><p><p><PRE> &lt;H1&gt;On Leave report&lt;/H1&gt;</PRE></p>
+<A NAME="TI6563"></A><h4>Embed element in a paragraph</h4>
+<A NAME="TI6564"></A><p><p><PRE> &lt;P&gt;&lt;EMBED src=DWB_att_crossout.psr WIDTH=680 HEIGHT =<br>    350&gt;&lt;/P&gt;</PRE></p>
+<A NAME="TI6565"></A><h4>Closing elements</h4>
+<A NAME="TI6566"></A><p><p><PRE> &lt;/BODY&gt;<br>&lt;/HTML&gt;</PRE></p>
+

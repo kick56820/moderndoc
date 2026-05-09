@@ -1,0 +1,94 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using point and click</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp35.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp37.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF377543587"></A><h1>Using point and click</h1>
+<A NAME="TI1214"></A><p>Users can click graphs during execution. The DataWindow control
+provides a method called ObjectAtPointer that stores information
+about what was clicked. You can use this method in a number of ways
+in mouse events. For example, with the ObjectAtPointer information,
+you can call other graph methods to report to the user the value
+of the clicked data point. This section shows you how.</p>
+<A NAME="TI1215"></A><h4>Mouse events and graphs</h4>
+<A NAME="TI1216"></A><p>To cause actions when a user clicks a graph, you might:<A NAME="TI1217"></A>
+<ul>
+<li class=fi><b>PowerBuilder</b>   Write a Clicked script for the DataWindow control</li>
+<li class=ds><b>Web ActiveX</b>   Write code for the MouseDown or onButtonClick event
+</li>
+</ul>
+</p>
+<A NAME="TI1218"></A><p>You should call ObjectAtPointer in the first statement of
+the event's code.</p>
+<A NAME="TI1219"></A><h4>Using ObjectAtPointer</h4>
+<A NAME="TI1220"></A><p>ObjectAtPointer works differently in PowerBuilder and the
+Web ActiveX.</p>
+<p><b>PowerBuilder</b>   ObjectAtPointer has this syntax:<p><PRE><i>DataWindowName</i>.<b>ObjectAtPointer</b> ( "<i>graphName</i>", <i>seriesNumber,<br>    dataNumber</i> )</PRE></p>
+</p>
+<A NAME="TI1221"></A><p>ObjectAtPointer does these things:<A NAME="TI1222"></A>
+<ul>
+<li class=fi>Returns the kind of object the user clicked<br>
+The object is identified by a grObjectType enumerated value.
+For example, if the user clicks on a data point, ObjectAtPointer
+returns TypeData!. If the user clicks on the graph's title,
+ObjectAtPointer returns TypeTitle!.<br><br>
+For a list of object values, see the chapter on constants
+in the <i>DataWindow Reference</i>
+. In PowerBuilder,
+you can also open the Browser and click the Enumerated tab.<br></li>
+<li class=ds>Stores the number of the series the pointer was
+over in the variable <i>seriesNumber</i>, which is
+an argument passed by reference</li>
+<li class=ds>Stores the number of the data point in the variable <i>dataNumber</i>,
+also an argument passed by reference
+</li>
+</ul>
+</p>
+<p><b>Web ActiveX</b>   ObjectAtPointer is used with two supporting methods to get
+all the information. ObjectAtPointer has this syntax:<p><PRE><i>DataWindowName</i>.<b>ObjectAtPointer</b> ( "<i>graphName</i>" )</PRE></p>
+</p>
+<A NAME="TI1223"></A><p>To get the information, you:<A NAME="TI1224"></A>
+<ol>
+</li>
+<li class=ds>Call ObjectAtPointer, which returns the kind of graph element
+the user clicked.<br>
+The element type is identified by a number. For example, if
+the user clicks on a series, ObjectAtPointer returns 1. If the user
+clicks on a graph's title, ObjectAtPointer returns 4.<br><br>
+For a list of values for individual graph elements, see the
+chapter on constants in the <i>DataWindow Reference</i>
+.<br></li>
+<li class=ds>Call ObjectAtPointerSeries, which returns the number
+of the series the pointer was over.</li>
+<li class=ds>Call ObjectAtPointerDataPoint, which returns the
+number of the data point the pointer was over.
+</li>
+</ol>
+</p>
+<A NAME="TI1225"></A><p>The second two methods must be called after ObjectAtPointer.</p>
+<A NAME="TI1226"></A><h4>Example</h4>
+<A NAME="TI1227"></A><p>Assume there is a graph named gr_sales in the DataWindow
+control dw_sales. The following code for the control's
+MouseDown event displays a message box:<A NAME="TI1228"></A>
+<ul>
+<li class=fi><i>If the user clicks on a series</i> (that
+is, if ObjectAtPointer returns 1), the message box shows the name
+of the series clicked on. The example uses the method GetSeriesName
+to get the series name, given the series number stored by ObjectAtPointer.</li>
+<li class=ds><i>If the user clicks on a data point</i> (that
+is, if ObjectAtPointer returns 2), the message box lists the name
+of the series and the value clicked on. The example uses GetDataNumber
+to get the data's value, given the data's series
+and data point number.
+</li>
+</ul>
+</p>
+<p><b>PowerBuilder</b>   This code is for the Clicked event:<p><PRE> int SeriesNum, DataNum</PRE><PRE> double Value</PRE><PRE> grObjectType ObjectType</PRE><PRE> string SeriesName, ValueAsString</PRE><PRE> string GraphName</PRE><PRE> GraphName = "gr_sale"</PRE><PRE> </PRE><PRE> // The following method stores the series number</PRE><PRE> // clicked on in SeriesNum and stores the number</PRE><PRE> // of the data point clicked on as DataNum.</PRE><PRE> ObjectType = &amp;</PRE><PRE>         dw_printer.<i>ObjectAtPointer</i> (GraphName, &amp;</PRE><PRE>         SeriesNum, DataNum)</PRE><PRE> </PRE><PRE> IF ObjectType = TypeSeries! THEN</PRE><PRE>         SeriesName = &amp;</PRE><PRE>             dw_printer.<i>SeriesName</i> (GraphName, SeriesNum)</PRE><PRE>         MessageBox("Graph", &amp;</PRE><PRE>             "You clicked on the series " + SeriesName)<br></PRE><PRE> ELSEIF ObjectType = TypeData! THEN</PRE><PRE>         Value = dw_printer.<i>GetData</i> (GraphName, &amp;</PRE><PRE>             SeriesNum, DataNum)</PRE><PRE>         ValueAsString = String(Value)</PRE><PRE>         MessageBox("Graph", &amp;</PRE><PRE>             dw_printer.<i>SeriesName</i> (GraphName, &amp;</PRE><PRE>             SeriesNum) + " value is " + ValueAsString)</PRE><PRE> END IF</PRE></p>
+<p><b>Web ActiveX</b>   This code is for the MouseDown event:<p><PRE> number SeriesNum, DataNum, ObjectType, Success, Value;</PRE><PRE> string SeriesName, GraphName;</PRE><PRE> </PRE><PRE> GraphName = "gr_sales";</PRE><PRE> </PRE><PRE> ObjectType =</PRE><PRE>         dw_sales.<i>GrObjectAtPointer</i>(GraphName);</PRE><PRE> </PRE><PRE> if (ObjectType == 1) {</PRE><PRE>         SeriesName =</PRE><PRE>             dw_sales.<i>GetSeriesName</i>(GraphName, SeriesNum);</PRE><PRE> </PRE><PRE>         alert("You clicked on the series " + SeriesName);</PRE><PRE> }</PRE><PRE> else {</PRE><PRE>         if (ObjectType == 2) {</PRE><PRE>             Success = dw_sales.<i>GetDataNumber</i>(GraphName,</PRE><PRE>                 SeriesNum, DataNum, 1);</PRE><PRE>             if (Success == 1) {</PRE><PRE>                 Value = <i>GetDataNumberVariable</i>( );</PRE><PRE> </PRE><PRE>                 alert(dw_sales.<i>GetSeriesName</i>(GraphName,</PRE><PRE>                     SeriesNum) +        " value is " + Value);    </PRE><PRE>             }        }</PRE><PRE> }</PRE></p>
+

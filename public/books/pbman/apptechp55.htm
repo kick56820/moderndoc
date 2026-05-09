@@ -1,0 +1,238 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using ListView controls</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp54.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp56.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF354799324"></A><h1>Using ListView controls</h1>
+<A NAME="TI1297"></A><p>A <strong>ListView control</strong> allows you to display
+items and icons in a variety of arrangements. You can display large
+icon or small icon freeform lists, or you can display a vertical
+static list. You can also display additional information about each
+list item by associating additional columns with each list item:</p>
+<br><img src="images/uilst03.gif">
+<A NAME="TI1298"></A><p>ListView controls consist of <strong>ListView items</strong>,
+which are stored in an array. Each ListView item consists of a:<A NAME="TI1299"></A>
+<ul>
+<li class=fi><b>Label</b>   The name of the ListView item</li>
+<li class=ds><b>Index</b>   The position of the ListView item in the control</li>
+<li class=ds><b>Picture index</b>   The number that associates the ListView item with an image<br>
+Depending on the style of the presentation, an item could
+be associated with a large picture index and a small picture index.<br></li>
+<li class=ds><b>Overlay picture index</b>   The number that associates the ListView item with an overlay
+picture</li>
+<li class=ds><b>State picture index</b>   The number that associates the ListView item with a state
+picture
+</li>
+</ul>
+</p>
+<A NAME="TI1300"></A><p>For more information about ListView items,
+picture indexes, and presentation style, see the <i>PowerBuilder
+User's Guide</i>
+.</p>
+<A NAME="TI1301"></A><h4>Creating ListView controls</h4>
+<A NAME="TI1302"></A><p>You add ListView controls to windows in the same way you add
+other controls: select ListView from the Insert&gt;Control
+menu and click the window.</p>
+<A NAME="TI1303"></A><h4>Adding ListView items</h4>
+<p><b>In the painter</b>   Use the Items property page for the control to add items.</p>
+<A NAME="TI1304"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add items to a ListView:</p>
+<ol><li class=fi><p>Select the Items tab in the Properties
+view for the control.</p></li>
+<li class=ds><p>Enter a name and a picture index number for each
+of the items you want to add to the ListView.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <A NAME="TI1305"></A>Setting the picture index for the first item to zero
+clears all the settings on the tab page.</p>
+<p>For more information about adding pictures
+to a ListView control, see <A HREF="apptechp55.htm#CAIDEIID">"Adding pictures to ListView
+controls"</A>.</p></li></ol>
+<br><p><b>In a script</b>   Use the <b>AddItem</b> and <b>InsertItem</b> functions
+to add items to a ListView dynamically at runtime. There are two levels
+of information you supply when you add items to a ListView using <b>AddItem</b> or <b>InsertItem</b>. </p>
+<A NAME="TI1306"></A><p>You can add an item by supplying
+the picture index and label, as this example shows:<p><PRE> lv_1.AddItem ("Item 1", 1)</PRE></p>
+<A NAME="TI1307"></A><p>or you can insert an item by supplying the item's
+position in the ListView, label, and picture index:<p><PRE> lv_1.InsertItem (1,"Item 2", 2)</PRE></p>
+<A NAME="TI1308"></A><p>You can add items by supplying the ListView item itself. This
+example in the ListView's DragDrop event inserts the dragged
+object into the ListView:<p><PRE> listviewitem lvi<br>This.GetItem(index, lvi)<br>lvi.label = "Test"<br>lvi.pictureindex = 1<br>This.AddItem (lvi)</PRE></p>
+<A NAME="TI1309"></A><p>You can insert an item by supplying the ListView position
+and ListView item:<p><PRE> listviewitem l_lvi<br>//Obtain the information for the<br>//second listviewitem<br>lv_list.GetItem(2, l_lvi)<br>//Change the item label to Entropy<br>//Insert the second item into the fifth position<br>lv_list.InsertItem (5, l_lvi)<br>lv_list.DeleteItem(2)</PRE></p>
+<A NAME="CAIDEIID"></A><h4>Adding pictures to ListView
+controls</h4>
+<A NAME="TI1310"></A><p>PowerBuilder stores ListView images in four image lists: </p>
+<A NAME="TI1311"></A><p><A NAME="TI1312"></A>
+<ul>
+<li class=fi>Small picture index</li>
+<li class=ds>Large picture index</li>
+<li class=ds>State picture index</li>
+<li class=ds>Overlay picture index
+</li>
+</ul>
+</p>
+<A NAME="TI1313"></A><p>You can associate a ListView item with these images when you
+create a ListView in the painter or use the <b>AddItem</b> and <b>InsertItem</b> at
+runtime.</p>
+<A NAME="TI1314"></A><p>However, before you can associate pictures with ListView items,
+they must be added to the ListView control.</p>
+<p><b>In the painter</b>   Use the Pictures and Items property pages for the control
+to add pictures.</p>
+<A NAME="TI1315"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add pictures to a ListView control:</p>
+<ol><li class=fi><p>Select the Large Picture, Small Picture,
+or State tab in the Properties view for the control.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Overlay images</span> <A NAME="TI1316"></A>You can add overlay images only to a ListView control in a
+script.</p>
+</li>
+<li class=ds><p>Select an image from the stock image list, or
+use the Browse button to select a bitmap, cursor, or icon image.</p></li>
+<li class=ds><p>Select a color from the PictureMaskColor drop-down
+menu for the image.</p><p>The color selected for the picture mask appears transparent
+in the ListView.</p></li>
+<li class=ds><p>Select a picture height and width for your image.</p><p>This controls the size of the image in the ListView.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Dynamically changing image size</span> <A NAME="TI1317"></A>The image size can be changed at runtime by setting the PictureHeight
+and PictureWidth properties before you add any pictures when you
+create a ListView. For more information about PictureHeight and
+PictureWidth, see the <i>PowerScript Reference.</i>
+</p>
+</li>
+<li class=ds><p>Repeat the procedure for the:</p><p><A NAME="TI1318"></A>
+<ul>
+<li class=fi>Number of image types
+(large, small, and state) you plan to use in your ListView</li>
+<li class=ds>Number of images for each type you plan to use in
+your ListView
+</li>
+</ul>
+</p></li></ol>
+<br><p><b>In a script</b>   Use the functions in <A HREF="apptechp55.htm#CIHCDEGB">Table 9-3</A> to add pictures to a ListView image.</p>
+<A NAME="CIHCDEGB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 9-3: Functions that add pictures to
+a ListView image</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1319"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI1320"></A>Adds a picture
+to this list</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1321"></A><b>AddLargePicture</b></td>
+<td  rowspan="1"  ><A NAME="TI1322"></A>Large image</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1323"></A><b>AddSmallPicture</b></td>
+<td  rowspan="1"  ><A NAME="TI1324"></A>Small image</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1325"></A><b>AddStatePicture</b></td>
+<td  rowspan="1"  ><A NAME="TI1326"></A>State image</td>
+</tr>
+</table>
+<p><b>Adding large and small pictures</b>   This example sets the height and width for large and small
+pictures and adds three images to the large picture image list and
+the small picture image list:</p>
+<A NAME="TI1327"></A><p><p><PRE> //Set large picture height and width<br>lv_1.LargePictureHeight=32<br>lv_1.LargePictureWidth=32<br> <br>//Add large pictures<br>lv_1.AddLargePicture("c:\ArtGal\bmps\celtic.bmp")<br>lv_1.AddLargePicture("c:\ArtGal\bmps\list.ico")<br>lv_1.AddLargePicture("Custom044!")<br> <br>//Set small picture height and width<br>lv_1.SmallPictureHeight=16<br>lv_1.SmallPictureWidth=16<br> <br>//Add small pictures<br>lv_1.AddSmallPicture("c:\ArtGal\bmps\celtic.bmp")<br>lv_1.AddSmallPicture("c:\ArtGal\bmps\list.ico")<br>lv_1.AddSmallPicture("Custom044!")<br> <br>//Add items to the ListView<br>lv_1.AddItem("Item 1", 1)<br>lv_1.AddItem("Item 2", 1)<br>lv_1.AddItem("Item 3", 1)</PRE></p>
+<p><b>Adding overlay pictures</b>   Use the <b>SetOverLayPicture</b> function to use
+a large picture or small picture as an overlay for an item. This example adds a large picture
+to a ListView, and then uses it for an overlay picture for a ListView item:<p><PRE> listviewitem lvi_1<br>int li_index<br> <br>//Add a large picture to a ListView<br>li_index = lv_list.AddLargePicture &amp;<br>   ("c:\ArtGal\bmps\dil2.ico")<br> <br>//Set the overlay picture to the<br>//large picture just added<br>lv_list.SetOverlayPicture (3, li_index)<br> <br>//Use the overlay picture with a ListViewItem<br>lv_list.GetItem(lv_list.SelectedIndex (), lvi_1)<br>lvi_1.OverlayPictureIndex = 3<br>lv_list.SetItem(lv_list.SelectedIndex (), lvi_1)</PRE></p>
+<p><b>Adding state pictures</b>   This example uses an item's state picture index property
+to set the state picture for the selected ListView item:</p>
+<A NAME="TI1328"></A><p><p><PRE> listviewitem lvi_1<br> <br>lv_list.GetItem(lv_list.SelectedIndex (), lvi_1)<br>lvi_1.StatePictureIndex = 2<br>lv_list.SetItem(lv_list.SelectedIndex (), lvi_1)</PRE></p>
+<A NAME="TI1329"></A><h4>Deleting ListView items and pictures</h4>
+<A NAME="TI1330"></A><p>You can delete items from a ListView one at a time with the <b>DeleteItem</b> function,
+or you can use the <b>DeleteItems</b> function to purge
+all the items in a ListView. Similarly, you can delete pictures
+one at a time with the <b>DeleteLargePicture</b>, <b>DeleteSmallPicture</b>,
+and <b>DeleteStatePicture</b> functions, or purge all
+pictures of a specific type by using the <b>DeleteLargePictures</b>, <b>DeleteSmallPictures</b>,
+and <b>DeleteStatePictures</b> functions.</p>
+<A NAME="TI1331"></A><p>This example deletes one item and all the small pictures from
+a ListView:<p><PRE> int li_index<br>li_index = This.SelectedIndex()<br>This.DeleteItem (li_index)<br>This.DeleteSmallPictures ()</PRE></p>
+<A NAME="TI1332"></A><h4>Hot tracking and one- or two-click activation</h4>
+<A NAME="TI1333"></A><p>Hot tracking changes the appearance of items in the Listview
+control as the mouse moves over them and, if the mouse pauses, selects
+the item under the cursor automatically. You can enable hot tracking
+by setting the TrackSelect property to <b>TRUE</b>. </p>
+<A NAME="TI1334"></A><p>Setting either OneClickActivate or TwoClickActivate to <b>TRUE</b> also
+enables hot tracking. When OneClickActivate is <b>TRUE</b>,
+you can specify that either selected or unselected items are underlined
+by setting the UnderlineHot or UnderlineCold properties. All these
+properties can be set on the control's general properties
+page or in a script.</p>
+<A NAME="TI1335"></A><p>The settings for OneClickActivate and TwoClickActivate shown
+in <A HREF="apptechp55.htm#CIHJFGDI">Table 9-4</A> affect
+when the ItemActivate event is fired.</p>
+<A NAME="CIHJFGDI"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 9-4: OneClickActivate and TwoClickActivate
+settings</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1336"></A>OneClickActivate</th>
+<th  rowspan="1"  ><A NAME="TI1337"></A>TwoClickActivate</th>
+<th  rowspan="1"  ><A NAME="TI1338"></A>ItemActivate is fired when
+you</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1339"></A><b>TRUE</b></td>
+<td  rowspan="1"  ><A NAME="TI1340"></A><b>TRUE</b> or <b>FALSE</b></td>
+<td  rowspan="1"  ><A NAME="TI1341"></A>Click any item</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1342"></A><b>FALSE</b></td>
+<td  rowspan="1"  ><A NAME="TI1343"></A><b>TRUE</b></td>
+<td  rowspan="1"  ><A NAME="TI1344"></A>Click a selected item</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1345"></A><b>FALSE</b></td>
+<td  rowspan="1"  ><A NAME="TI1346"></A><b>FALSE</b></td>
+<td  rowspan="1"  ><A NAME="TI1347"></A>Double-click any item</td>
+</tr>
+</table>
+<A NAME="TI1348"></A><h4>Using custom events</h4>
+<A NAME="TI1349"></A><p>In PowerBuilder 7 and later releases, PowerBuilder uses Microsoft
+controls for ListView and Treeview controls, and the events that
+fire when the right mouse button is clicked are different than in
+earlier releases. These are the events that fire when the right
+mouse button is clicked in a ListView control:</p>
+<A NAME="TI1350"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 9-5: ListView control events fired by right mouse button </caption>
+<tr><th  rowspan="1"  ><A NAME="TI1351"></A>Location</th>
+<th  rowspan="1"  ><A NAME="TI1352"></A>Action</th>
+<th  rowspan="1"  ><A NAME="TI1353"></A>Events fired</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1354"></A>On an item in the ListView</td>
+<td  rowspan="1"  ><A NAME="TI1355"></A>Press right mouse button</td>
+<td  rowspan="1"  ><A NAME="TI1356"></A>pbm_rbuttondown</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1357"></A></td>
+<td  rowspan="1"  ><A NAME="TI1358"></A>Release right mouse button</td>
+<td  rowspan="1"  ><A NAME="TI1359"></A>pbm_lvnrclicked (stock RightClicked!
+event)<A NAME="TI1360"></A><p>pbm_contextmenu</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1361"></A>On white space in the ListView</td>
+<td  rowspan="1"  ><A NAME="TI1362"></A>Press right mouse button</td>
+<td  rowspan="1"  ><A NAME="TI1363"></A>pbm_rbuttondown<A NAME="TI1364"></A><p>pbm_lvnrclicked (stock RightClicked! event)</p><A NAME="TI1365"></A><p>pbm_contextmenu</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1366"></A></td>
+<td  rowspan="1"  ><A NAME="TI1367"></A>Release right mouse button</td>
+<td  rowspan="1"  ><A NAME="TI1368"></A>pbm_rbuttonup<A NAME="TI1369"></A><p>pbm_contextmenu</p></td>
+</tr>
+</table>
+<A NAME="TI1370"></A><h2>Using report view</h2>
+<A NAME="TI1371"></A><p>ListView report view requires more information than the large
+icon, small icon, and list view. To enable report view in a ListView
+control, you must write a script that establishes columns with the <b>AddColumn</b> and <b>SetColumn</b> functions, and
+then populate the columns using the <b>SetItem</b> function.</p>
+<A NAME="TI1372"></A><h4>Populating columns</h4>
+<A NAME="TI1373"></A><p>Use <b>AddColumn</b> to create columns in a ListView.
+When you use the <b>AddColumn</b> function, you specify
+the:</p>
+<A NAME="TI1374"></A><p><A NAME="TI1375"></A>
+<ul>
+<li class=fi><b>Column
+label</b>   The name that will display in the column header</li>
+<li class=ds><b>Column alignment</b>   Whether the text will be left-aligned, right-aligned, or
+centered</li>
+<li class=ds><b>Column size</b>   The width of the column in PowerBuilder units 
+</li>
+</ul>
+</p>
+<A NAME="TI1376"></A><p>This example creates three columns in a ListView:<p><PRE> This.AddColumn("Name", Left!, 1000)<br>This.AddColumn("Size", Left!, 400)<br>This.AddColumn("Date", Left!, 300)</PRE></p>
+<A NAME="TI1377"></A><h4>Setting columns</h4>
+<A NAME="TI1378"></A><p>Use <b>SetColumn</b> to
+set the column number, name, alignment, and size:<p><PRE> This.SetColumn (1, "Composition", Left!, 860)<br>This.SetColumn (2, "Album", Left!, 610)<br>This.SetColumn (3, "Artist", Left!, 710")</PRE></p>
+<A NAME="TI1379"></A><h4>Setting column items</h4>
+<A NAME="TI1380"></A><p>Use <b>SetItem</b> to
+populate the columns of a ListView:<p><PRE> This.SetItem (1, 1, "St.Thomas")<br>This.SetItem (1, 2, "Saxophone Colossus")<br>This.SetItem (1, 3, "Sonny Rollins")<br>This.SetItem (2, 1, "So What")<br>This.SetItem (2, 2, "Kind of Blue")<br>This.SetItem (2, 3, "Miles Davis")<br>This.SetItem (3, 1, "Good-bye, Porkpie Hat")<br>This.SetItem (3, 2, "Mingus-ah-um")<br>This.SetItem (3, 3, "Charles Mingus")</PRE></p>
+<A NAME="TI1381"></A><p>For more information about adding columns
+to a ListView control, see the <i>PowerScript Reference</i>
+.</p>
+

@@ -1,0 +1,173 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Supported DBMS features when calling stored procedures</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp67.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp69.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF305419291"></A><h1>Supported DBMS features when calling stored procedures</h1>
+<A NAME="TI1783"></A><p>When you define and use a custom Transaction object to call
+remote stored procedures in your application, the features supported
+depend on the DBMS to which your application connects.</p>
+<A NAME="TI1784"></A><p>The following sections describe the supported features for
+some of the DBMSs that you can access in PowerBuilder. Read the
+section for your DBMS to determine what you can and cannot do when
+using the RPC technique in a PowerBuilder application.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Result sets</span> <A NAME="TI1785"></A>You <i>cannot</i> use the remote procedure call
+technique to access result sets returned by stored procedures. If
+the stored procedure returns one or more result sets, PowerBuilder
+ignores the values and returns the output parameters and return
+value.</p>
+<A NAME="TI1786"></A>If your stored procedure returns a result set, you can use
+the embedded <ACRONYM title = "sequel" >SQL</ACRONYM> <b>DECLARE
+Procedure</b> statement to call it. For information about
+the <b>DECLARE Procedure</b> statement, see the chapter
+on <ACRONYM title = "sequel" >SQL</ACRONYM> statements in the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI1787"></A><h4>Informix</h4>
+<A NAME="TI1788"></A><p>If your application connects to an Informix database, you
+can use simple nonarray datatypes. You <i>cannot</i> use
+binary large objects (blobs).</p>
+<A NAME="TI1789"></A><h4>ODBC</h4>
+<A NAME="TI1790"></A><p>If your application connects to an ODBC data source, you can
+use the following ODBC features if the back-end driver supports
+them. (For information, see the documentation for your ODBC driver.)<A NAME="TI1791"></A>
+<ul>
+<li class=fi>IN, OUT, and IN OUT parameters,
+as shown in <A HREF="apptechp68.htm#CIHCDAFF">Table 12-5</A>.<A NAME="CIHCDAFF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 12-5: ODBC IN, OUT, and IN OUT parameters</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1792"></A>Parameter</th>
+<th  rowspan="1"  ><A NAME="TI1793"></A>What happens</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1794"></A>IN</td>
+<td  rowspan="1"  ><A NAME="TI1795"></A>An IN variable is passed by value and
+indicates a value being passed to the procedure.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1796"></A>OUT</td>
+<td  rowspan="1"  ><A NAME="TI1797"></A>An OUT variable is passed by reference
+and indicates that the procedure can modify the PowerScript variable
+that was passed. Use the PowerScript REF keyword for this parameter
+type.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1798"></A>IN OUT</td>
+<td  rowspan="1"  ><A NAME="TI1799"></A>An IN OUT variable is passed by reference
+and indicates that the procedure can reference the passed value
+and can modify the PowerScript variable. Use the PowerScript REF
+keyword for this parameter type.</td>
+</tr>
+</table>
+</li>
+<li class=ds>Blobs as parameters. You can use blobs that are
+up to 32,512 bytes long.</li>
+<li class=ds>Integer return codes.
+</li>
+</ul>
+</p>
+<A NAME="TI1800"></A><h4>Oracle </h4>
+<A NAME="TI1801"></A><p>If your application connects to an Oracle database, you can
+use the following Oracle PL/<ACRONYM title = "sequel" >SQL</ACRONYM> features:<A NAME="TI1802"></A>
+<ul>
+<li class=fi>IN, OUT, and IN OUT parameters,
+as shown in <A HREF="apptechp68.htm#CIHDJGCA">Table 12-6</A>.<A NAME="CIHDJGCA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 12-6: Oracle IN, OUT, and IN OUT parameters</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1803"></A>Parameter</th>
+<th  rowspan="1"  ><A NAME="TI1804"></A>What happens</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1805"></A>IN</td>
+<td  rowspan="1"  ><A NAME="TI1806"></A>An IN variable is passed by value and
+indicates a value being passed to the procedure.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1807"></A>OUT</td>
+<td  rowspan="1"  ><A NAME="TI1808"></A>An OUT variable is passed by reference
+and indicates that the procedure can modify the PowerScript variable
+that was passed. Use the PowerScript REF keyword for this parameter
+type.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1809"></A>IN OUT</td>
+<td  rowspan="1"  ><A NAME="TI1810"></A>An IN OUT variable is passed by reference
+and indicates that the procedure can reference the passed value
+and can modify the PowerScript variable. Use the PowerScript REF
+keyword for this parameter type.</td>
+</tr>
+</table>
+</li>
+<li class=ds>Blobs as parameters. You can use blobs that are
+up to 32,512 bytes long.</li>
+<li class=ds>PL/<ACRONYM title = "sequel" >SQL</ACRONYM> tables
+as parameters. You can use PowerScript arrays.</li>
+<li class=ds>Function return codes.
+</li>
+</ul>
+</p>
+<A NAME="TI1811"></A><h4>Microsoft <ACRONYM title = "sequel" >SQL</ACRONYM> Server or
+Sybase Adaptive Server Enterprise</h4>
+<A NAME="TI1812"></A><p>If your application connects to a Microsoft <ACRONYM title = "sequel" >SQL</ACRONYM> Server or Sybase Adaptive Server
+Enterprise database, you can use the following Transact-<ACRONYM title = "sequel" >SQL</ACRONYM> features:<A NAME="TI1813"></A>
+<ul>
+<li class=fi>IN, OUT, and IN OUT parameters,
+as shown in <A HREF="apptechp68.htm#CIHBDDFD">Table 12-7</A>.<A NAME="CIHBDDFD"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 12-7: Adaptive Server Enterprise and
+Microsoft <ACRONYM title = "sequel" >SQL</ACRONYM> Server IN, OUT,
+and IN OUT parameters</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1814"></A>Parameter</th>
+<th  rowspan="1"  ><A NAME="TI1815"></A>What happens</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1816"></A>IN</td>
+<td  rowspan="1"  ><A NAME="TI1817"></A>An IN variable is passed by value and
+indicates a value being passed to the procedure.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1818"></A>OUT</td>
+<td  rowspan="1"  ><A NAME="TI1819"></A>An OUT variable is passed by reference
+and indicates that the procedure can modify the PowerScript variable
+that was passed. Use the PowerScript REF keyword for this parameter
+type.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1820"></A>IN OUT</td>
+<td  rowspan="1"  ><A NAME="TI1821"></A>An IN OUT variable is passed by reference
+and indicates that the procedure can reference the passed value
+and can modify the PowerScript variable. Use the PowerScript REF
+keyword for this parameter type.</td>
+</tr>
+</table>
+</li>
+<li class=ds>Blobs as parameters. You can use blobs that are
+up to 32,512 bytes long.</li>
+<li class=ds>Integer return codes.
+</li>
+</ul>
+</p>
+<A NAME="TI1822"></A><h4><ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere</h4>
+<A NAME="TI1823"></A><p>If your application connects to a <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere database,
+you can use the following Adaptive Server Anywhere features:<A NAME="TI1824"></A>
+<ul>
+<li class=fi>IN, OUT, and IN OUT parameters,
+as shown in <A HREF="apptechp68.htm#CIHJIDJC">Table 12-8</A>.<A NAME="CIHJIDJC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 12-8: <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere IN,
+OUT, and IN OUT parameters</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1825"></A>Parameter</th>
+<th  rowspan="1"  ><A NAME="TI1826"></A>What happens</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1827"></A>IN</td>
+<td  rowspan="1"  ><A NAME="TI1828"></A>An IN variable is passed by value and
+indicates a value being passed to the procedure.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1829"></A>OUT</td>
+<td  rowspan="1"  ><A NAME="TI1830"></A>An OUT variable is passed by reference
+and indicates that the procedure can modify the PowerScript variable
+that was passed. Use the PowerScript REF keyword for this parameter
+type.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1831"></A>IN OUT</td>
+<td  rowspan="1"  ><A NAME="TI1832"></A>An IN OUT variable is passed by reference
+and indicates that the procedure can reference the passed value
+and can modify the PowerScript variable. Use the PowerScript REF
+keyword for this parameter type.</td>
+</tr>
+</table>
+</li>
+<li class=ds>Blobs as parameters. You can use blobs that are
+up to 32,512 bytes long.
+</li>
+</ul>
+</p>
+

@@ -1,0 +1,107 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Working with edit styles</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp193.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp195.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BHAIDICA"></A><h1>Working with edit styles</h1>
+<A NAME="TI6408"></A><p>You work with edit styles in the Database painter and DataWindow painter.</p>
+<A NAME="TI6409"></A><h4>What you do in the Database painter</h4>
+<A NAME="TI6410"></A><p>In the Database painter, you can:<A NAME="TI6411"></A>
+<ul>
+<li class=fi>Create, modify, and delete named edit styles<br>
+The edit styles are stored in the extended attribute system
+tables. Once you define an edit style, it can be used by any column
+of the appropriate datatype in the database.<br></li>
+<li class=ds>Assign edit styles to columns<br>
+These styles are used by default when you place the column
+in a DataWindow object in the DataWindow painter.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI6412"></A><h4>What you do in the DataWindow painter</h4>
+<A NAME="TI6413"></A><p>In the DataWindow painter, you can:<A NAME="TI6414"></A>
+<ul>
+<li class=fi>Accept the default edit style assigned to a column in the Database painter</li>
+<li class=ds>Override the default edit style with another named
+style stored in the extended attribute system tables</li>
+<li class=ds>Create an ad hoc, unnamed edit style to use with
+one specific column
+</li>
+</ul>
+</p>
+<A NAME="TI6415"></A><h4>Edit styles and the extended attribute system
+tables</h4>
+<A NAME="TI6416"></A><p>When you have placed a column in a DataWindow object and have given
+it an edit style (either the default style from the assignment made
+in the Database painter for the column or a style assigned in the DataWindow painter), PowerBuilder records
+the name and definition of the edit style in the DataWindow object.</p>
+<A NAME="TI6417"></A><p>However, if the definition of the edit style later changes
+in the extended attribute system tables, the edit style for the
+column in a DataWindow object will not change automatically. You can update
+the column by reassigning the edit style to it in the DataWindow object.</p>
+<A NAME="BFCBIBJC"></A><h2>Working with edit styles in the Database painter</h2>
+<A NAME="TI6418"></A><p>Typically, you define edit styles in the Database painter, because
+edit styles are properties of the data itself. Once defined in the Database painter,
+the styles are used by default each time the column is placed in
+a DataWindow object.</p>
+<A NAME="TI6419"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new edit style:</p>
+<ol><li class=fi><p>In the Database painter, select Object&gt;Insert&gt;Edit
+Style from the menu bar.</p></li>
+<li class=ds><p>In the Edit Style dialog box, select the edit
+style type from the Style drop-down list.</p></li>
+<li class=ds><p>Specify the properties of the edit style and click
+OK.</p><p>For information, see <A HREF="pbugp195.htm#BHAFJDFC">"Defining edit styles"</A>.</p><p>You can use the new edit style with any column of the appropriate
+datatype in the database.</p></li></ol>
+<br><A NAME="TI6420"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify an existing edit style:</p>
+<ol><li class=fi><p>In the Database painter, open the Extended Attributes
+view.</p></li>
+<li class=ds><p>In the Extended Attributes view, open the list
+of edit styles.</p></li>
+<li class=ds><p>Position the pointer on the Edit style you want
+to modify, display the pop-up menu, then select Properties.</p></li>
+<li class=ds><p>In the Edit Style dialog box, modify the edit
+style as desired and click OK.</p><p>For information, see <A HREF="pbugp195.htm#BHAFJDFC">"Defining edit styles"</A>.</p><p>You can use the modified edit style with any column of the
+appropriate datatype in the database.</p></li></ol>
+<br><A NAME="TI6421"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To associate an edit style with a column in the Database painter:</p>
+<ol><li class=fi><p>In the Database painter (Objects view), position
+the pointer on the column, select Properties from the pop-up menu,
+then select the Edit Style tab in the Properties view.</p></li>
+<li class=ds><p>Select a style for the appropriate datatype from
+the list in the Style Name box.</p><p>PowerBuilder associates the selected edit style with the column
+in the extended attribute system tables.</p></li></ol>
+<br><A NAME="TI6422"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To remove an edit style from a column in the Database painter:</p>
+<ol><li class=fi><p>In the Database painter (Objects view), position
+the pointer on the column, select Properties from the pop-up menu,
+then select the Edit Style tab in the Properties view.</p></li>
+<li class=ds><p>Select (None) from the list in the Style Name
+box.</p><p>The edit style is no longer associated with the column.</p></li></ol>
+<br><A NAME="TI6423"></A><h2>Working
+with edit styles in the DataWindow painter</h2>
+<A NAME="TI6424"></A><p>An edit style you assign to a column in the Database painter is
+used by default when you place the column in a DataWindow object. You can
+override the edit style in the DataWindow painter by choosing another edit
+style from the extended attribute system tables or defining an ad
+hoc style for one specific column.</p>
+<A NAME="TI6425"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify an edit style for a column:</p>
+<ol><li class=fi><p>In the DataWindow painter, move the pointer to
+the column, select Properties from the column's pop-up
+menu, and then select the Edit tab.</p></li>
+<li class=ds><p>Select the type of edit style you want from the
+Style Type drop-down list.</p><p>The information on the Edit property page changes to be appropriate
+to the type of edit style you selected.</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI6426"></A>
+<ul>
+<li class=fi>Select an edit style from the Style Name box.</li>
+<li class=ds>Create an ad hoc edit style for the column, as described
+in <A HREF="pbugp195.htm#BHAFJDFC">"Defining edit styles"</A>.
+</li>
+</ul>
+
+                      </p></li></ol>
+<br>

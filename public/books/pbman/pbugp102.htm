@@ -1,0 +1,81 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining the tab order </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp101.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp103.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF298661204"></A><h1>Defining the tab order </h1>
+<A NAME="TI2697"></A><p>When you place controls in a window, PowerBuilder assigns
+them a default tab order, the default sequence in which focus moves
+from control to control when the user presses the Tab key.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Tab order in user objects</span> <A NAME="TI2698"></A>When the user tabs to a custom user object in a window and
+then presses the Tab key, focus moves to the next control in the
+tab order for the user object. After the user tabs to all the controls
+in the tab order for the user object, focus moves to the next control
+in the window tab order.</p>
+<A NAME="TI2699"></A><h2>Establishing the default tab order</h2>
+<A NAME="TI2700"></A><p>PowerBuilder uses the relative positions of controls in a
+window to establish the default tab order. It looks at the positions
+in the following order:</p>
+<A NAME="TI2701"></A><p><A NAME="TI2702"></A>
+<ul>
+<li class=fi>The distance of the
+control from the top of the window (Y)</li>
+<li class=ds>The distance of the control from the left edge of
+the window (X)
+</li>
+</ul>
+</p>
+<A NAME="TI2703"></A><p>The control with the smallest Y distance is the first control
+in the default tab order. If multiple controls have the same Y distance,
+PowerBuilder uses the X distance to determine the tab order among
+them.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Default tab values</span> <A NAME="TI2704"></A>The default tab value for drawing objects and RadioButtons
+in a GroupBox is 0, which means the control is skipped when the
+user tabs from control to control.</p>
+<A NAME="TI2705"></A><p>When you add a control to the window, PowerBuilder obtains
+the tab value of the control that precedes the new control in the
+tab order and assigns the new control the next number.</p>
+<A NAME="TI2706"></A><p>For example, if the tab values for controls A, B, and C are
+30, 10, and 20 respectively and you add control D between controls
+A and B, PowerBuilder assigns control D the tab value 40.</p>
+<A NAME="TI2707"></A><h2>Changing the window's tab order</h2>
+<A NAME="TI2708"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the tab order:</p>
+<ol><li class=fi><p>Select Format&gt;Tab Order from the
+menu bar, or click the Tab Order button on PainterBar1 (next to
+the Preview button).</p><p>The current tab order displays. If this is the first time
+you have used Tab Order for the window, the default tab order displays.</p><br><img src="images/ctl06.gif"><br>
+</li>
+<li class=ds><p>Use the mouse or the Tab key to move the pointer
+to the tab value you want to change.</p></li>
+<li class=ds><p>Enter a new tab value from 0 to 9999.</p><p>The value 0 removes the control from the tab order. It does
+not matter exactly what value you use, other than 0. Only the relative
+value is significant. For example, if you want the user to tab to
+control B after control A but before control C, set the tab value
+for control B so it is between the value for control A and the value
+for control C.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Tab tips</span> <A NAME="TI2709"></A>A tab order value of 0 does not prevent a control from being
+selected or activated or from receiving keyboard events. To prevent
+a user from activating a control with the mouse, clear the Enabled
+check box on its General property page.</p>
+<A NAME="TI2710"></A>To permit tabbing in a group box, change the tab value of
+the GroupBox control to 0, then assign nonzero tab values to the
+controls in the group box.</p>
+</li>
+<li class=ds><p>Repeat the procedure until you have the tab order
+you want.</p></li>
+<li class=ds><p>Select Format&gt;Tab Order or the Tab Order
+button again.</p><p>PowerBuilder saves the tab order.</p></li></ol>
+<br><A NAME="TI2711"></A><p>Each time you select Tab Order, PowerBuilder renumbers the
+tab order values to include any controls that have been added to
+the window and to allow space to insert new controls in the tab
+order. For example, if the original tab values for controls A, B,
+and C were 10, 20, and 30, and you insert control D between A and
+B and give it a tab value of 15, when you select tab order again,
+the controls A, B, and C will have the tab values 10, 30, and 40,
+and control D will have the tab value 20.</p>
+

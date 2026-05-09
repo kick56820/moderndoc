@@ -1,0 +1,54 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Specifying the target's library search path</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp43.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp45.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDDJJFJ"></A><h1>Specifying the target's library search path</h1>
+<A NAME="TI1351"></A><p>The objects you create in painters are stored in PowerBuilder
+libraries (<ACRONYM title = "pibbles" >PBLs</ACRONYM>). You can use
+objects from one library or multiple libraries in a PowerScript target.
+You define each library the target uses in the library search path.</p>
+<A NAME="TI1352"></A><p>PowerBuilder uses the search path to find referenced objects
+during execution. When a new object is referenced, PowerBuilder
+looks through the libraries in the order in which they are specified
+in the library search path until it finds the object.</p>
+<A NAME="TI1353"></A><p>On the Library List tab page of the Target Properties dialog
+box, you can modify the libraries associated with the current target.</p>
+<A NAME="TI1354"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the target's library search
+path:</p>
+<ol><li class=fi><p>In the Workspace tab of the System Tree,
+right-click on the target containing your application and select
+Properties from the pop-up menu. The Target Properties dialog box
+displays. </p></li>
+<li class=ds><p>Select the Library List tab page.</p><p>The libraries currently included in the library search path
+are displayed in the list. </p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI1355"></A>
+<ul>
+<li class=fi>Enter
+the name of each library you want to include in the Library Search
+Path list, separating the names with semicolons.</li>
+<li class=ds>Use the Browse button to include other libraries
+in your search path.
+</li>
+</ul>
+
+                    </p><p>You must specify libraries using an absolute path. To change
+the order of libraries in the search path, use the pop-up menu to
+copy, cut, and paste libraries.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Make sure the order is correct</span> <A NAME="TI1356"></A>When you select multiple libraries from the Select Library
+dialog box using Shift+Click or Ctrl+Click, the
+first library you select appears last in the Library Search Path
+list and will be the last library searched. </p>
+<A NAME="TI1357"></A>To delete a library from the search path, select the library
+in the list and use the pop-up menu or press Delete.</p>
+</li>
+<li class=ds><p>Click OK.</p><p>PowerBuilder updates the search path for the target.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Where PowerBuilder maintains the library search path</span> <A NAME="TI1358"></A>PowerBuilder stores your target's library search
+path in the target (<i>.pbt</i>) file in a line beginning
+with <FONT FACE="Courier New">LibList</FONT>; for example:<p><PRE> LibList "pbtutor.pbl;tutor_pb.pbl";</PRE></p>
+

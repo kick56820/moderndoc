@@ -1,0 +1,495 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using a RichTextEdit control </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp92.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp94.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCBCIDB"></A><h1>Using a RichTextEdit control </h1>
+<A NAME="TI2578"></A><p>A RichTextEdit control in a window or user object lets the
+user view or edit formatted text. Functions allow you to manipulate
+the contents of the control by inserting text, getting the selected
+text, managing input fields, and setting properties for all or some
+of the contents.</p>
+<A NAME="TI2579"></A><p>You define RichTextEdit controls in the Window painter or
+the User Object painter.</p>
+<A NAME="TI2580"></A><h2>Giving the user control</h2>
+<A NAME="TI2581"></A><p>In the Window or User Object painter, on the Document page
+of the RichTextEdit control's property sheet, you can enable
+or disable the features in <A HREF="apptechp93.htm#CHDGDCAE">Table 16-1</A>.</p>
+<A NAME="CHDGDCAE"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 16-1: RichTextEdit control features</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2582"></A>Features</th>
+<th  rowspan="1"  ><A NAME="TI2583"></A>Details</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2584"></A>Editing bars</td>
+<td  rowspan="1"  ><A NAME="TI2585"></A>A toolbar for text formatting, a ruler
+bar, and a status bar.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2586"></A>Pop-up menu</td>
+<td  rowspan="1"  ><A NAME="TI2587"></A>Provides access to the <b>InsertFile</b> and
+clipboard commands, as well as the property sheet.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2588"></A>Display of nonprinting characters</td>
+<td  rowspan="1"  ><A NAME="TI2589"></A>Carriage returns, tabs, and spaces.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2590"></A>Display of fields</td>
+<td  rowspan="1"  ><A NAME="TI2591"></A>Whether fields are visible at all, or
+whether the field name or data displays. You can also change the
+background color for fields.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2592"></A>Wordwrap</td>
+<td  rowspan="1"  ><A NAME="TI2593"></A>Affects newly entered text only.<A NAME="TI2594"></A><p>If the user enters new text in an existing paragraph, word wrap
+is triggered when the text reaches the right edge of the control. To get existing text
+to wrap within the display, the user can tweak the size of the control
+(if it is resizable).</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2595"></A>Print margins</td>
+<td  rowspan="1"  ><A NAME="TI2596"></A>Print margins can be set relative to
+the default page size.</td>
+</tr>
+</table>
+<A NAME="TI2597"></A><p>You can also specify a name for the document that is displayed
+in the print queue. The document name has nothing to do with a text
+file you might insert in the control.</p>
+<A NAME="TI2598"></A><h4>Users can change the available tools</h4>
+<A NAME="TI2599"></A><p>When users display the property sheet for the rich text document,
+they can change the tools that are available to them, which you
+might not want. For example, they might:<A NAME="TI2600"></A>
+<ul>
+<li class=fi>Remove the display-only setting so that they can
+begin editing a document you set up as protected</li>
+<li class=ds>Turn off the tool, ruler, or status bars</li>
+<li class=ds>View input fields' names instead of data</li>
+<li class=ds>Disable the pop-up menu so that they cannot restore
+tools they turn off
+</li>
+</ul>
+</p>
+<A NAME="TI2601"></A><p>You might want to guard against some of these possibilities.
+You can reset the property values for these settings in a script.
+For example, this statement restores the pop-up menu when triggered
+in an event script:<p><PRE> rte_1.PopMenu = TRUE</PRE></p>
+<A NAME="TI2602"></A><h4>Undoing changes</h4>
+<A NAME="TI2603"></A><p>The user can press Ctrl+Z to undo a change. You can
+also program a button or menu item that calls the <b>Undo</b> function.</p>
+<A NAME="TI2604"></A><p>If <b>Undo</b> is called repeatedly, it continues
+to undo changes to a maximum of 50 changes. The script can check
+whether there are changes that can be undone (meaning the maximum
+depth has not been reached) by calling the <b>CanUndo</b> function:<p><PRE> IF rte_1.CanUndo() THEN<br>   rte_1.Undo()<br>ELSE<br>   MessageBox("Stop", "Nothing to undo.")<br>END IF</PRE></p>
+<A NAME="TI2605"></A><h2>Text for the control</h2>
+<A NAME="TI2606"></A><p>In the Window painter, you do not enter text in the control.
+Instead, in your application you can programmatically insert text
+or let the user enter text using the editing tools.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Setting a default font</span> <A NAME="TI2607"></A>The Font tab page in the Properties view for a RichTextEdit
+control lets you set default font characteristics for the control.
+When the control first displays at runtime, and you include the
+toolbar with a RichTextEdit control, the toolbar indicates the default
+font characteristics that you selected on the Font tab page at design
+time. Although the application user can change fonts at runtime,
+or you can use PowerScript to change the font style, you can set
+the default font at design time only. </p>
+<A NAME="TI2608"></A><h4>Inserting text</h4>
+<p><b>From a file</b>   If you have prepared a text file for your application, you
+can insert it with the <b>InsertDocument</b> function.
+The file can be rich text or ASCII:</p>
+<A NAME="TI2609"></A><p><p><PRE> li_rtn = rte_1.InsertDocument  &amp;<br>   ("c:\mydir\contacts.rtf", FALSE, FileTypeRichText!)</PRE></p>
+<A NAME="TI2610"></A><p>The boolean <i>clearflag</i> argument lets you
+specify whether to insert the file into existing text or replace
+it. If you want to include headers and footers from a document that
+you insert, you must replace the existing text by setting the <i>clearflag</i> argument
+to <b>TRUE</b>. (The <b>InsertFile</b> command
+on the runtime pop-up menu is equivalent to the <b>InsertDocument</b> function
+with the <i>clearflag</i> argument set to <b>FALSE</b>.)</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>DisplayOnly property must be set to false</span> <A NAME="TI2611"></A>You cannot insert a document into a rich text control when
+the control's DisplayOnly property is set to true. If you
+try to do this, PowerBuilder displays a runtime error message.</p>
+<p><b>From a database</b>   If you have saved rich text as a string in a database, you can
+use a DataStore to retrieve the text.</p>
+<A NAME="TI2612"></A><p>After retrieving data, paste the string into the RichTextEdit
+control:<p><PRE> ls_desc = dw_1.Object.prod_desc.Primary[1]<br>rte_1.PasteRTF(ls_desc)</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Rich text and the clipboard</span> <A NAME="TI2613"></A>The <b>CopyRTF</b> and <b>PasteRTF</b> functions
+let you get rich text <i>with formatting instructions </i>and
+store it in a string. If you use the clipboard by means of the <b>Copy</b>, <b>Cut</b>,
+and <b>Paste</b> functions, you get the text only&#8212;the
+formatting is lost.</p>
+<A NAME="TI2614"></A><h4>Example of saving rich text in a database</h4>
+<A NAME="TI2615"></A><p>Suppose you have a database table that records tech support
+calls. Various fields record each call's date, support
+engineer, and customer. Another field stores notes about the call.
+You can let the user record notes with bold and italic formatting
+for emphasis by storing rich text instead of plain text.</p>
+<A NAME="TI2616"></A><p>The window for editing call information includes these controls:<A NAME="TI2617"></A>
+<ul>
+<li class=fi>A DataWindow control that
+retrieves all the data and displays everything except the call notes</li>
+<li class=ds>A RichTextEdit control that displays the call notes</li>
+<li class=ds>A button for updating the database
+</li>
+</ul>
+</p>
+<p><b>RowFocusChanged event</b>   As row focus changes, the notes for the current row are pasted
+into the RichTextEdit control. The RowFocusChanged event has this
+script:<p><PRE> string ls_richtext<br> <br>// Get the string from the call_notes column<br>ls_richtext = dw_1.Object.call_notes[currentrow]<br> <br>// Prevent flicker<br>rte_1.SetRedraw(FALSE) <br> <br>// Replace the old text with text for the current row<br>rte_1.SelectTextAll()<br>rte_1.Clear()<br>rte_1.PasteRTF(ls_richtext)<br>rte_1.SetRedraw(TRUE)</PRE></p>
+<p><b>LoseFocus event</b>   When the user makes changes, the changes are transferred to
+the DataWindow control. It is assumed that the user will click on
+the button or the DataWindow control when the user is through editing,
+triggering the LoseFocus event, which has this script:<p><PRE> string ls_richtext<br>long l_currow<br>GraphicObject l_control<br> <br>// Check whether RichTextEdit still has focus<br>// If so, don't transfer the text<br>l_control = GetFocus()<br> <br>IF TypeOf(l_control) = RichTextEdit! THEN RETURN 0<br> <br>// Prevent flicker<br>rte_1.SetRedraw(FALSE) <br> <br>// Store all the text in string ls_richtext<br>ls_richtext = rte_1.CopyRTF()<br> <br>// Assign the rich text to the call_notes column<br>// in the current row<br>l_currow = dw_1.GetRow()<br>dw_1.Object.call_notes[l_currow] = ls_richtext<br>rte_1.SetRedraw(TRUE)</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>LoseFocus and the toolbars</span> <A NAME="TI2618"></A>A LoseFocus event occurs for the RichTextEdit control even
+when the user clicks a RichTextEdit toolbar. Technically, this is
+because the toolbars are in their own windows. However, the RichTextEdit
+control still has focus, which you can check with the <b>GetFocus</b> function.</p>
+<A NAME="TI2619"></A><h4>Saving rich text in a file</h4>
+<A NAME="TI2620"></A><p>You can save the rich text in the control, with the input
+field definitions, with the <b>SaveDocument</b> function.
+You have the choice of rich text format (RTF) or ASCII:</p>
+<A NAME="TI2621"></A><p><p><PRE> rte_1.SaveDocument("c:\...\contacts.rtf", &amp;<br>   FileTypeRichText!)</PRE></p>
+<A NAME="TI2622"></A><p><b>SaveDocument</b> does not save the data in
+the input fields. It saves the document template.</p>
+<p><b>Does the file exist?</b>   If the file exists, calling <b>SaveDocument</b> triggers
+the FileExists event. In the event script, you might ask users if
+they want to overwrite the file.</p>
+<A NAME="TI2623"></A><p>To cancel the saving process, specify a return code of 1 in
+the event script.</p>
+<p><b>Are there changes that need saving?</b>   The Modified property indicates whether any changes have been
+made to the contents of the control. It indicates that the contents
+are in an unsaved state. When the first change occurs, PowerBuilder
+triggers the Modified event and sets the Modified property to <b>TRUE</b>.
+Calling SaveDocument sets Modified to <b>FALSE</b>,
+indicating that the document is clean.</p>
+<A NAME="TI2624"></A><p>Opening a file triggers the Modified event and sets the property
+because the control's contents changed. Usually, though,
+what you really want to know is whether the contents of the control
+still correspond to the contents of the file. Therefore, in the
+script that opens the file, you can set the Modified property to <b>FALSE</b> yourself.
+Then when the user begins editing, the Modified event is triggered
+again and the property is reset to <b>TRUE</b>.</p>
+<A NAME="TI2625"></A><h3>Opening and saving files: an example</h3>
+<A NAME="TI2626"></A><p>This example consists of several scripts that handle opening
+and saving files. Users can open existing files and save changes.
+They can also save the contents to another file. If users save the
+file they opened, saving proceeds without interrupting the user.
+If users save to a file name that exists, but is not the file they
+opened, they are asked whether to overwrite the file:</p>
+<br><img src="images/dartsave.gif">
+<A NAME="TI2627"></A><p>The example includes instance variable declarations, scripts,
+functions, and events.</p>
+<A NAME="TI2628"></A><h4>Instance variable declarations</h4>
+<p><b>ib_saveas</b>   A flag for the FileExists event. When <b>FALSE</b>,
+the user is saving to the file that was opened, so overwriting is
+expected:<p><PRE> boolean ib_saveas=FALSE</PRE></p>
+<p><b>is_filename</b>   The current file name for the contents, initially set to "Untitled":<p><PRE> string is_filename</PRE></p>
+<A NAME="TI2629"></A><h4>Open Document script</h4>
+<A NAME="TI2630"></A><p>This script opens a file chosen by the user. Since opening
+a file triggers the Modified event and sets the Modified property,
+the script resets Modified to <b>FALSE</b>. The Checked
+property of the Modified check box is set to <b>FALSE</b> too:<p><PRE> integer li_answer, li_result<br>string ls_name, ls_path<br> <br>li_answer = GetFileOpenName("Open File", ls_path, &amp;<br>   ls_name, "rtf", &amp;<br>   "Rich Text(*.RTF),*.RTF, Text files(*.TXT),*.TXT")<br> <br>IF li_answer = 1 THEN<br>   // User did not cancel<br>   li_result = rte_1.InsertDocument(ls_path, TRUE)<br> <br>   IF li_result = 1 THEN  // Document open successful<br>      // Save and display file name<br>      is_filename = ls_path<br>      st_filename.Text = is_filename<br> <br>      // Save and display modified status   <br>      rte_1.Modified = FALSE<br> <br>      cbx_modified.Checked = rte_1.Modified   <br>   ELSE</PRE><PRE>       MessageBox("Error", "File not opened.")   <br>   END IF<br> <br>   END IF<br>RETURN 0</PRE></p>
+<A NAME="TI2631"></A><h4>Scripts that save the document</h4>
+<A NAME="TI2632"></A><p>The user might choose to save the document to the same name
+or to a new name. These scripts could be assigned to menu items
+as well as buttons. The Save button script checks whether the instance
+variable <i>is_filename</i> holds a valid
+name. If so, it passes that file name to the <b>of_save</b> function.
+If not, it triggers the SaveAs button's script instead:<p><PRE> integer li_result<br>string ls_name<br> <br>// If not associated with file, get file name<br>IF is_filename = "Untitled" THEN<br>   cb_saveas.EVENT Clicked()<br> <br>ELSE<br>   li_result = Parent.of_save(is_filename)<br>END IF<br>RETURN 0</PRE></p>
+<A NAME="TI2633"></A><p>The SaveAs script sets the instance variable <i>ib_saveas</i> so
+that the FileExists event, if triggered, knows to ask about overwriting
+the file. It calls <b>of_getfilename</b> to
+prompt for a file name before passing that file name to the <b>of_save</b> function.<p><PRE> integer li_result<br>string ls_name<br> <br>ib_saveas = TRUE<br> <br>ls_name = Parent.of_getfilename()<br>// If the user canceled or an error occurred, abort<br>IF ls_name = "" THEN RETURN -1<br> <br>li_result = Parent.of_save(ls_name)<br> <br>ib_saveas = FALSE<br>RETURN 0</PRE></p>
+<A NAME="TI2634"></A><h4>Functions for saving and getting a file name</h4>
+<p><b>of_save function</b>   This function accepts a file name argument and saves the document.
+It updates the file name instance variable with the new name and sets
+the check box to correspond with the Modified property, which is automatically
+set to <b>FALSE</b> after you call <b>SaveDocument</b> successfully:</p>
+<A NAME="TI2635"></A><p><p><PRE> integer li_result<br> <br>MessageBox("File name", as_name)<br> <br>// Don't need a file type because the extension<br>// will trigger the correct type of save<br>li_result = rte_1.SaveDocument(as_name)<br> <br>IF li_result = -1 THEN<br>   MessageBox("Warning", "File not saved.")<br>   RETURN -1<br>ELSE<br>   // File saved successfully<br>   is_filename = as_name<br>   st_filename.Text = is_filename<br>   cbx_modified.Checked = rte_1.Modified<br>   RETURN 1<br>END IF</PRE></p>
+<p><b>of_getfilename function</b>   The function prompts the user for a name and returns the file
+name the user selects. It is called when a file name has not yet been
+specified or when the user chooses Save As. It returns a file name:<p><PRE> integer li_answer<br>string ls_name, ls_path<br> <br>li_answer = GetFileSaveName("Document Name", ls_path, &amp;<br>   ls_name, "rtf", &amp;<br>   "Rich Text(*.RTF),*.RTF,Text files(*.TXT),*.TXT")<br> <br>IF li_answer = 1 THEN<br>   // Return specified file name<br>   RETURN ls_path<br>ELSE<br>   RETURN ""<br>END IF</PRE></p>
+<A NAME="TI2636"></A><h4>Events for saving and closing</h4>
+<p><b>FileExists event</b>   When the user has selected a file name and the file already exists,
+this script warns the user and allows the save to be canceled. The
+event occurs when <b>SaveDocument</b> tries to save
+a file and it already exists. The script checks whether <i>ib_saveas</i> is <b>TRUE</b> and,
+if so, asks if the user wants to proceed with overwriting the existing
+file:</p>
+<A NAME="TI2637"></A><p><p><PRE> integer li_answer<br> <br>// If user asked to Save to same file,<br>// don't prompt for overwriting<br>IF ib_saveas = FALSE THEN RETURN 0<br> <br>li_answer = MessageBox("FileExists", &amp;<br>   filename + " already exists. Overwrite?", &amp;<br>   Exclamation!, YesNo!)<br> <br>// Returning a non-zero value cancels save<br>IF li_answer = 2 THEN RETURN 1</PRE></p>
+<p><b>Modified event</b>   This script sets a check box so the user can see that changes have
+not been saved. The Modified property is set automatically when
+the event occurs. The event is triggered when the first change is
+made to the contents of the control:<p><PRE> cbx_modified.Checked = TRUE</PRE></p>
+<p><b>CloseQuery event</b>   This script for the window's CloseQuery event checks whether
+the control has unsaved changes and asks whether to save the document
+before the window closes:<p><PRE> integer li_answer<br> <br>// Are there unsaved changes? No, then return.<br>IF rte_1.Modified = FALSE THEN RETURN 0<br> <br>// Ask user whether to save<br>li_answer = MessageBox("Document not saved", &amp;<br>   "Do you want to save " + is_filename + "?", &amp;<br>   Exclamation!, YesNo! )<br> <br>IF li_answer = 1 THEN<br>   // User says save. Trigger Save button script.<br>   cb_save.EVENT Clicked()<br>END IF<br>RETURN 0</PRE></p>
+<A NAME="TI2638"></A><h2>Using an ActiveX spell checking control</h2>
+<A NAME="TI2639"></A><p>ActiveX controls
+can be used to spell check text in a RichTextEdit control. The supported
+ActiveX spell checking controls include VSSpell from ComponentOne
+and WSpell from Wintertree Software.</p>
+<A NAME="TI2640"></A><p>You can use the SelectedStartPos and SelectedTextLength properties
+of the RichTextEdit control to highlight the current position of
+a misspelled word in a text string that you are parsing with a supported
+ActiveX spell checking control. The following procedure uses an
+ActiveX control to spell check the entire text of the current band
+of a RichTextEdit control.</p>
+<A NAME="TI2641"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To spell check selected text in a RichTextEdit
+control:</p>
+<ol><li class=fi><p>On a window with a RichTextEdit control,
+select Insert&gt;Control&gt;OLE from the window menu.</p></li>
+<li class=ds><p>Click the Insert Control tab of the Insert Object
+dialog box, select the installed ActiveX spell checking control,
+and click OK.</p></li>
+<li class=ds><p>Click inside the window in the Window painter
+to insert the ActiveX control.</p><p>By default, the name of the inserted control is ole_<i>n</i>,
+where <i>n </i>= 1 when there are no other
+OLE controls on the window.</p></li>
+<li class=ds><p>Add a menu item to a menu that you associate with
+the current window and change its Text label to <FONT FACE="Courier New">Check
+Spelling</FONT>.</p></li>
+<li class=ds><p>Add the following code the the Clicked event of
+the menu item, where <i>windowName</i> is the name
+of the window containing the RichTextEdit and ActiveX controls:</p><p><p><PRE> string ls_selected</PRE><PRE> //get the current band context, and leave select mode</PRE><PRE> <i>windowName</i>.rte_1.selecttext(0,0,0,0)</PRE><PRE> <i>windowName</i>.rte_1.SelectTextAll()</PRE><PRE> ls_selected = <i>windowName</i>.rte_1.SelectedText()</PRE><PRE> <i>windowName</i>.rte_1.SelectedTextLength = 0</PRE><PRE> //assign the string content to the ActiveX control</PRE><PRE> <i>windowName</i>.ole_1.object.text = ls_selected</PRE><PRE> <i>windowName</i>.ole_1.object.start()</PRE></p></li>
+<li class=ds><p>Select the ActiveX control in the Window painter
+and select ReplaceWord from the event list for the control.</p></li>
+<li class=ds><p>Add the following code to the ReplaceWord event
+script:</p><p><p><PRE> string str</PRE><PRE> str = this.object.MisspelledWord</PRE><PRE> rte_1.SelectedStartPos = this.object.WordOffset </PRE><PRE> rte_1.SelectedTextLength  = Len(str) </PRE><PRE> rte_1.ReplaceText(this.object.ReplacementWord)</PRE><PRE> messagebox("misspelled word", "replaced")</PRE></p><p>The next time you run the application, you can click the Check
+Spelling menu item to spell check the entire contents of the current
+band of the RichTextEdit control.</p></li></ol>
+<br><A NAME="BIIBFIJB"></A><h2>Formatting of rich text</h2>
+<A NAME="TI2642"></A><p>In a RichText control, there are several user-addressable
+objects:<A NAME="TI2643"></A>
+<ul>
+<li class=fi>The whole document</li>
+<li class=ds>Selected text and paragraphs</li>
+<li class=ds>Input fields</li>
+<li class=ds>Pictures
+</li>
+</ul>
+</p>
+<A NAME="TI2644"></A><p>The user can make selections, use the toolbars, and display
+the property sheets for these objects.</p>
+<A NAME="TI2645"></A><p>Input fields get values either because the user or you specify
+a value or because you have called <b>DataSource</b> to
+associate the control with a DataWindow object or DataStore.</p>
+<A NAME="TI2646"></A><h2>Input fields</h2>
+<A NAME="TI2647"></A><p>An input field is a named value. You name it and you determine
+what it means by setting its value. The value is associated with
+the input field name. You can have several fields with the same
+name and they all display the same value. If the user edits one
+of them, they all change.</p>
+<A NAME="TI2648"></A><p>In this sample text, an input field for the customer's
+name is repeated throughout:<A NAME="TI2649"></A>
+<ul>
+<li class=fi>Hello {customer}!</li>
+<li class=ds>We know that you, {customer},
+will be excited about our new deal. Please call soon, {customer},
+and save money now.
+</li>
+</ul>
+</p>
+<A NAME="TI2650"></A><p>In a script, you can set the value of the customer field:<p><PRE> rte_1.InputFieldChangeData("customer", "Mary")</PRE></p>
+<A NAME="TI2651"></A><p>Then the text would look like this:<A NAME="TI2652"></A>
+<ul>
+<li class=fi>Hello Mary!</li>
+<li class=ds>We know that you, Mary, will be excited about our
+new deal. Please call soon, Mary, and save money now.
+</li>
+</ul>
+</p>
+<A NAME="TI2653"></A><p>The user can also set the value. There are two methods:</p>
+<A NAME="TI2654"></A><p><A NAME="TI2655"></A>
+<ul>
+<li class=fi>Selecting it and typing
+a new value</li>
+<li class=ds>Displaying the Input Field property sheet and editing
+the Data Value text box
+</li>
+</ul>
+</p>
+<p><b>Inserting input fields in a script</b>   The <b>InputFieldInsert</b> function inserts a
+field at the insertion point:</p>
+<A NAME="TI2656"></A><p><p><PRE> rtn = rte_1.InputFieldInsert("datafield")</PRE></p>
+<A NAME="TI2657"></A><p>In a rich text editing application, you might want the user
+to insert input fields. The user needs a way to specify the input
+field name.</p>
+<A NAME="TI2658"></A><p>In this example, the user selects a name from a ListBox containing
+possible input field names. The script inserts an input field at
+the insertion point using the selected name:</p>
+<A NAME="TI2659"></A><p><p><PRE> string ls_field<br>integer rtn<br> <br>ls_field = lb_fields.SelectedItem()<br>IF ls_field &lt;&gt; "" THEN<br>   rtn = rte_1.InputFieldInsert( ls_field )<br>   IF rtn = -1 THEN<br>   MessageBox("Error", "Cannot insert field.")<br>   END IF<br>ELSE<br>   MessageBox("No Selection", &amp;<br>      "Please select an input field name.")<br>END IF</PRE></p>
+<A NAME="TI2660"></A><h4>Input fields for dates and page numbers</h4>
+<A NAME="TI2661"></A><p>To display a date or a page number in a printed document,
+you define an input field and set the input field's value.</p>
+<A NAME="TI2662"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To include today's date in the opening
+of a letter, you might:</p>
+<ol><li class=fi><p>Create an input field in the text. Name
+it anything you want.</p></li>
+<li class=ds><p>In the script that opens the window or some other
+script, set the value of the input field to the current date.</p></li></ol>
+<br><A NAME="TI2663"></A><p>For example, if the body of the letter included an input field
+called <b>TODAY</b>, you would write a script like
+the following to set it:</p>
+<A NAME="TI2664"></A><p><p><PRE> integer li_rtn<br>li_rtn = rte_1.InputFieldChangeData( "today", &amp;<br>   String(Today()) )</PRE></p>
+<A NAME="TI2665"></A><p>For information about setting page number
+values when printing, see <A HREF="apptechp93.htm#X-REF354211599">"Preview and printing"</A>.</p>
+<A NAME="TI2666"></A><h2>Using database data</h2>
+<A NAME="TI2667"></A><p>You can make a connection between a RichTextEdit control and
+a DataWindow control or DataStore object. When an input field in
+the RichTextEdit control has the same name as a column or computed
+column in the DataWindow object, it displays the associated data.</p>
+<A NAME="TI2668"></A><p>Whether or not the RichTextEdit control has a data source,
+there is always only <i>one copy</i> of the rich text
+content. While editing, you might visualize the RichTextEdit contents
+as a template into which row after row of data can be inserted.
+While scrolling from row to row, you might think of many instances of
+the document in which the text is fixed but the input field data
+changes.</p>
+<A NAME="TI2669"></A><p>To share data between a DataWindow object or DataStore, use
+the <b>DataSource</b> function:<p><PRE> rte_1.DataSource(ds_empdata)</PRE></p>
+<A NAME="TI2670"></A><h4>Example of sharing data</h4>
+<A NAME="TI2671"></A><p>If the DataWindow object associated with the DataStore <b>ds_empdata</b> has
+the four columns <b>emp_id</b>, <b>emp_lname</b>, <b>emp_fname</b>,
+and <b>state</b>, the RichTextEdit content might include
+text and input fields like this:</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Sample letter with columns from the employee table</span> <A NAME="TI2672"></A>ID: {<b>emp_id</b>}</p>
+<A NAME="TI2673"></A>Dear {<b>emp_fname</b>} {<b>emp_lname</b>}:</p>
+<A NAME="TI2674"></A>We are opening a new plant in Mexico. If you would like to
+transfer from {<b>state</b>} to
+Mexico, the company will cover all expenses.</p>
+<A NAME="TI2675"></A><h4>Navigating rows and pages</h4>
+<A NAME="TI2676"></A><p>For the RichTextEdit control, navigation keys let the user
+move among the pages of the document. However, you must provide
+scrolling controls so that the user can move from row to row.</p>
+<A NAME="TI2677"></A><p>You should provide Prior Row and Next Row buttons. The scripts
+for the buttons are simple. For Next Row:<p><PRE> rte_1.ScrollNextRow()</PRE></p>
+<A NAME="TI2678"></A><p>For Prior Row:<p><PRE> rte_1.ScrollPriorRow()</PRE></p>
+<A NAME="TI2679"></A><p>If you also provide page buttons, then when the user is on
+the last page of the document for one row, scrolling to the next
+page moves to the first page for the next row:<p><PRE> rte_1.ScrollNextPage()</PRE></p>
+<A NAME="TI2680"></A><h2>Cursor position in the RichTextEdit control</h2>
+<A NAME="TI2681"></A><p>Functions provide several ways to find out what is selected
+and to select text in the RichTextEdit control.</p>
+<A NAME="TI2682"></A><h4>Where is the insertion point or what is selected?</h4>
+<A NAME="TI2683"></A><p>The text always contains an insertion point and it can contain
+a selection, which is shown as highlighted text. When there is a
+selection, the position of the insertion point can be at the start
+or the end of the selection, depending on how the selection is made.
+If the user drags from beginning to end, the insertion point is
+at the end. If the user drags from end to beginning, the insertion
+point is at the beginning.</p>
+<A NAME="TI2684"></A><p>The Position function provides information about the selection
+and the insertion point.</p>
+<A NAME="TI2685"></A><p>For more information, see Position in the <i>PowerScript
+Reference</i>
+.</p>
+<A NAME="TI2686"></A><h4>Changing the cursor image</h4>
+<A NAME="TI2687"></A><p>The Pointer page of the Rich Text Object property sheet has
+a list box with stock pointers that can be used to indicate cursor
+position in a RichTextEdit control or RichText DataWindow. Users
+can change the cursor image at runtime by selecting one of these
+pointers and clicking OK in the Rich Text Object property sheet. </p>
+<A NAME="TI2688"></A><h4>Selecting text programmatically</h4>
+<A NAME="TI2689"></A><p>There are several functions that select portions of the text
+relative to the position of the insertion point:<A NAME="TI2690"></A>
+<ul>
+<li class=fi><b>SelectTextWord</b></li>
+<li class=ds><b>SelectTextLine</b></li>
+<li class=ds><b>SelectTextAll</b>
+</li>
+</ul>
+</p>
+<A NAME="TI2691"></A><p>A more general text selection function is <b>SelectText</b>.
+You specify the line and character number of the start and end of
+the selection.</p>
+<p><b>Passing values to SelectText</b>   Because values obtained with Position provide more information
+than simply a selection range, you cannot pass the values directly
+to <b>SelectText</b>. In particular, zero is not a valid
+character position when selecting text, although it is meaningful
+in describing the selection.</p>
+<A NAME="TI2692"></A><p>For more information, see Position in the <i>PowerScript
+Reference</i>
+. </p>
+<A NAME="TI2693"></A><p>For an example of selecting words one by one
+for the purposes of spell checking, see the <b>SelectTextWord</b> function
+in the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI2694"></A><h4>Tab order, focus, and the selection</h4>
+<p><b>Tab order</b>   For a window or user object, you include the RichTextEdit
+control in the tab order of controls. However, after the user tabs
+to the RichTextEdit control, pressing the tab key
+inserts tabs into the text. The user cannot tab out to other controls.
+Keep this in mind when you design the tab order for a window.</p>
+<p><b>Focus and the selection</b>   When the user tabs to the RichTextEdit control, the control
+gets focus and the current insertion point or selection is maintained.
+If the user clicks the RichTextEdit control to set focus, the insertion
+point moves to the place the user clicks.</p>
+<p><b>LoseFocus event</b>   When the user clicks on a RichTextEdit toolbar, a LoseFocus
+event occurs. However, the RichTextEdit control still has focus. You
+can check whether the control has lost focus with the <b>GetFocus</b> function.</p>
+<A NAME="X-REF354211599"></A><h2>Preview and printing</h2>
+<A NAME="TI2695"></A><p>The user can preview the layout and print the contents of
+the RichTextEdit control. In preview mode, users
+see a view of the document reduced so that it fits inside the control.
+However, you must set the print margins and page size before you
+display the control in preview mode.</p>
+<A NAME="TI2696"></A><p>There are two ways to enter preview mode:</p>
+<A NAME="TI2697"></A><p><A NAME="TI2698"></A>
+<ul>
+<li class=fi>The user can press ctrl+f2 to
+switch between editing and preview mode</li>
+<li class=ds>You can call the <b>Preview</b> function
+in a script:<p><PRE> rte_1.Preview(TRUE)</PRE>
+</li>
+</ul>
+</p>
+<A NAME="TI2699"></A><h4>Adjusting the print margins</h4>
+<A NAME="TI2700"></A><p>If you set page
+margins at design time, or enable headers and footers for a rich text
+control, application users can adjust the margins of  the control
+at runtime. Users can do this by opening the property sheet for
+the RichTextEdit control to the Print Specifications tab and modifying
+the left, right, top, or bottom margins, or by triggering an event
+that changes the margins in PowerScript code. Adjusting the margins
+in the Rich Text Object dialog box also affects the display of the
+RichTextEdit control content in print preview mode.</p>
+<A NAME="TI2701"></A><p>If you do not set page margins at design time or leave them
+at 0, any changes the user makes to the margins at runtime are visible
+in print preview mode only.</p>
+<br><img src="images/dartprt.gif">
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Setting page size and orientation</span> <A NAME="TI2702"></A>You cannot set the default page size and page orientation
+at design time. However, users can set these properties at runtime
+from the Print Specifications tab of the Rich Text Object dialog
+box. This dialog box is available from the standard view only. You
+must also enable the pop-up menu on a RichTextEdit control to enable
+application users to display this dialog box. </p>
+<A NAME="TI2703"></A><h4>Printing</h4>
+<A NAME="TI2704"></A><p>If the RichTextEdit is using DataWindow object data, you can
+limit the number of rows printed by setting the Print.Page.Range
+property for the DataWindow control. Its value is a string that
+lists the page numbers that you want to print. A dash indicates
+a range.</p>
+<p><b>Example of a page range</b>   Suppose your RichTextEdit control has a data source in the
+control <b>dw_source</b>. Your rich text
+document is three pages and you want to print the information for
+rows 2 and 5. You can set the page range property before you print:<p><PRE> dw_source.Object.DataWindow.Print.Page.Range = &amp;<br>   "4-6,13-15"</PRE></p>
+<A NAME="TI2705"></A><p>You can also filter or discard rows so that they are not printed.</p>
+<A NAME="TI2706"></A><p>For more information, see the <b>SetFilter</b>, <b>Filter</b>, <b>RowsMove</b>,
+and <b>RowsDiscard</b> functions in the <i>PowerScript
+Reference</i>
+ and the Print DataWindow object property in
+the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI2707"></A><h4>Setting the page number</h4>
+<A NAME="TI2708"></A><p>To print page numbers, you can use an input field in the header
+or footer. Although
+the page number field can be a string or numeric expression, when you
+insert the page number field in a header or footer, you must use
+it as a string expression only. For example, if you use <FONT FACE="Courier New">page()*2</FONT> for
+an input field in the header or footer, the control or report is
+likely to display an incorrect result for the value of the numeric
+expression. However, the following string expression should display
+the correct page number and page count: <p><PRE> 'Page ' + page() + ' of ' + pageCount())</PRE></p>
+<A NAME="TI2709"></A><h4>Inserting footer text programmatically</h4>
+<A NAME="TI2710"></A><p>This sample code sets the insertion point in the footer and
+inserts two blank lines, text, and two input fields:<p><PRE> rte_1.SelectText(1, 1, 0, 0, Footer!)<br>rte_1.ReplaceText("~r~n~r~nRow ")<br>rte_1.InputFieldInsert("row")<br>rte_1.ReplaceText(" Page ")<br>rte_1.InputFieldInsert("page")<br>rte_1.SetAlignment(Center!)</PRE></p>
+

@@ -1,0 +1,281 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Analyzing trace information using profiling tools</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp258.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp260.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABGFCCJ"></A><h1>Analyzing trace information using profiling tools</h1>
+<A NAME="TI9563"></A><p>After you have created a trace file, the easiest way to analyze
+it is to use the profiling tools provided on the Tool tab of the
+New dialog box. There are three tools:<A NAME="TI9564"></A>
+<ul>
+<li class=fi>The Profiling Class View shows information about the objects
+that were used in the application</li>
+<li class=ds>The Profiling Routine View shows information about
+all the routines (functions and events) that were used in the application</li>
+<li class=ds>The Profiling Trace View shows the elapsed time
+taken by each activity in chronological order
+</li>
+</ul>
+</p>
+<A NAME="TI9565"></A><h4>Using the profiling tools as a model</h4>
+<A NAME="TI9566"></A><p>Even if you want to develop your own analysis
+tools, using the profiling tools is a good way to learn about these
+models and about profiling in PowerBuilder. When you are ready to
+develop your own tools, see <A HREF="pbugp260.htm#CAICHJFH">"Analyzing trace information
+programmatically"</A> for an overview of the approaches you
+can take.</p>
+<A NAME="TI9567"></A><h2>Profiling Class View</h2>
+<A NAME="TI9568"></A><p>The Class view uses a TreeView control to display statistics
+for PowerBuilder objects, their functions, and their events. It
+displays statistics only for those objects that were active while
+tracing was enabled. The Class view has three tabs:<A NAME="TI9569"></A>
+<ul>
+<li class=fi><b>Numbers</b>   Shows statistics only</li>
+<li class=ds><b>Graph</b>   Shows statistics in a bar graph</li>
+<li class=ds><b>Source</b>   Shows statistics and source code for those routines that originated
+in PowerScript source
+</li>
+</ul>
+</p>
+<A NAME="TI9570"></A><p>For each object, the Class view shows all the routines called
+from each class with the number of times each routine was called
+(hit) as well as timing information for each call. The following
+illustration shows part of a Class view. Embedded <ACRONYM title = "sequel" >SQL</ACRONYM> commands are shown as being called
+from a pseudo class called <ACRONYM title = "e sequel" >ESQL</ACRONYM>.</p>
+<br><img src="images/runtp01.gif">
+<A NAME="TI9571"></A><p>The Class view includes both PowerBuilder system-level objects
+(such as DataWindow and SystemFunction) and user-defined classes
+(such as windows and user objects). Each top-level node is a PowerBuilder
+class. As you expand the TreeView control, each node represents
+a routine and each subnode represents a called routine.</p>
+<A NAME="TI9572"></A><p>The Class view uses the call graph model to show cumulative
+statistics for objects, routines, and called routines. The information
+displayed on the right side of the display differs depending on
+the current node on the left.</p>
+<A NAME="TI9573"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-3: Statistics displayed in the Profiling Class View by node</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9574"></A>Current node</th>
+<th  rowspan="1"  ><A NAME="TI9575"></A>Statistics displayed</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9576"></A>Application</td>
+<td  rowspan="1"  ><A NAME="TI9577"></A>Statistics for each object</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9578"></A>Object</td>
+<td  rowspan="1"  ><A NAME="TI9579"></A>Cumulative statistics for the object
+and detailed statistics for the object's routines</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9580"></A>Routine</td>
+<td  rowspan="1"  ><A NAME="TI9581"></A>Cumulative statistics for the routine
+and detailed statistics for called routines</td>
+</tr>
+</table>
+<A NAME="TI9582"></A><p>You can sort items on the right by clicking the heading.</p>
+<A NAME="TI9583"></A><h4>Class view metrics</h4>
+<A NAME="TI9584"></A><p>The Class view displays five metrics. The profiling tool accesses
+these metrics from instances of the ProfileCall and ProfileRoutine
+objects. The time scale you specified in the Preferences dialog
+box determines how times are displayed.</p>
+<A NAME="TI9585"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-4: Metrics in the Profiling Class View</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9586"></A>Metric</th>
+<th  rowspan="1"  ><A NAME="TI9587"></A>What it means</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9588"></A>Hits</td>
+<td  rowspan="1"  ><A NAME="TI9589"></A>The number of times a routine executed
+in a particular context.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9590"></A>Self</td>
+<td  rowspan="1"  ><A NAME="TI9591"></A>The time spent in the routine or line
+itself. If the routine or line was executed more than once, this
+is the total time spent in the routine or line itself; it does not
+include time spent in routines called by this routine.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9592"></A>%Self</td>
+<td  rowspan="1"  ><A NAME="TI9593"></A>Self as a percentage of the total time
+the calling routine was active.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9594"></A>Self+Called</td>
+<td  rowspan="1"  ><A NAME="TI9595"></A>The time spent in the routine or line
+and in routines or lines called from the routine or line. If the
+routine or line was executed more than once, this is the total time
+spent in the routine or line and in called routines or lines.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9596"></A>%Self+Called</td>
+<td  rowspan="1"  ><A NAME="TI9597"></A>Self+Called as a percentage
+of the total time that tracing was enabled.</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About percentages</span> <A NAME="TI9598"></A>The percentages captured in the trace file are based on the
+total time tracing was enabled. Because an application can be idle
+(while displaying a MessageBox, for example), percentage metrics
+are most meaningful when you control tracing programmatically, which
+can help to minimize idle time. Percentages are least meaningful
+when you create a trace file for a complete application.</p>
+<A NAME="TI9599"></A><h2>Profiling Routine View</h2>
+<A NAME="TI9600"></A><p>The Routine view displays statistics for a routine, its calling
+routines, and its called routines. It uses multiple DataWindow objects
+to display information for a routine:<A NAME="TI9601"></A>
+<ul>
+<li class=fi><b>Called routines</b>   The top DataWindow lists functions and events called by the
+current routine.</li>
+<li class=ds><b>Current routine</b>   The middle DataWindow and the DataWindow on the right highlight
+the current routine and show detailed statistics.</li>
+<li class=ds><b>Calling routines</b>   The bottom DataWindow lists functions and events that call
+the routine displayed in the middle DataWindow.
+</li>
+</ul>
+</p>
+<A NAME="TI9602"></A><p>The Routine view has two tabs:<A NAME="TI9603"></A>
+<ul>
+<li class=fi><b>Detail</b>   Shows statistics only</li>
+<li class=ds><b>Source</b>   Shows statistics and source code for those routines that originated
+in PowerScript source
+</li>
+</ul>
+</p>
+<A NAME="TI9604"></A><p>The Routine view uses the call graph model to show the call
+chain and cumulative statistics for routines and called routines. </p>
+<br><img src="images/runtp02.gif">
+<A NAME="TI9605"></A><p>You can specify the current routine by clicking in the various
+DataWindows.</p>
+<A NAME="TI9606"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-5: Specifying the current routine in
+the Profiling Routine View</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9607"></A>To do this</th>
+<th  rowspan="1"  ><A NAME="TI9608"></A>Click here</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9609"></A>Establish a new current routine in the
+current routine DataWindow </td>
+<td  rowspan="1"  ><A NAME="TI9610"></A>On the routine. The profiling tool updates
+the top and bottom DataWindows with information on called and calling
+routines.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9611"></A>Select a calling routine as the new routine </td>
+<td  rowspan="1"  ><A NAME="TI9612"></A>On the routine in the top DataWindow.
+The profiling tool makes it the current routine in the middle DataWindow.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9613"></A>Select a called routine as the new routine </td>
+<td  rowspan="1"  ><A NAME="TI9614"></A>On the routine in the bottom DataWindow.
+The profiling tool makes it the current routine in the middle DataWindow.</td>
+</tr>
+</table>
+<A NAME="TI9615"></A><p>You can sort items by clicking the column headings.</p>
+<A NAME="TI9616"></A><h4>Routine view metrics</h4>
+<A NAME="TI9617"></A><p>The Routine view displays nine metrics. The profiling tool
+accesses these metrics from instances of the ProfileCall and ProfileRoutine
+objects. The time scale you specified in the Preferences dialog
+box determines how times are displayed.</p>
+<A NAME="TI9618"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-6: Metrics in the Profiling Routine View</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9619"></A>Metric</th>
+<th  rowspan="1"  ><A NAME="TI9620"></A>What it means</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9621"></A>Hits (Called on Detail tab)</td>
+<td  rowspan="1"  ><A NAME="TI9622"></A>The number of times a routine executed
+in a particular context.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9623"></A>Self</td>
+<td  rowspan="1"  ><A NAME="TI9624"></A>The time spent in the routine or line
+itself. If the routine or line was executed more than once, this
+is the total time spent in the routine or line itself; it does not
+include time spent in routines called by this routine.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9625"></A>%Self</td>
+<td  rowspan="1"  ><A NAME="TI9626"></A>Self as a percentage of the total time
+the calling routine was active.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9627"></A>Self Min</td>
+<td  rowspan="1"  ><A NAME="TI9628"></A>The shortest time spent in the routine
+or line itself. If the routine or line was executed only once, this
+is the same as AbsoluteSelfTime.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9629"></A>Self Max</td>
+<td  rowspan="1"  ><A NAME="TI9630"></A>The longest time spent in the routine
+or line itself. If the routine or line was executed only once, this
+is the same as AbsoluteSelfTime.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9631"></A>Self+Called</td>
+<td  rowspan="1"  ><A NAME="TI9632"></A>The time spent in the routine or line
+and in routines or lines called from the routine or line. If the
+routine or line was executed more than once, this is the total time
+spent in the routine or line and in called routines or lines.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9633"></A>%Self+Called</td>
+<td  rowspan="1"  ><A NAME="TI9634"></A>Self+Called as a percentage
+of the total time that tracing was enabled.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9635"></A>Self+Called Min</td>
+<td  rowspan="1"  ><A NAME="TI9636"></A>The shortest time spent in the routine
+or line and in called routines or lines. If the routine or line
+was executed only once, this is the same as AbsoluteTotalTime.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9637"></A>Self+Called Max</td>
+<td  rowspan="1"  ><A NAME="TI9638"></A>The longest time spent in the routine
+or line and in called routines or lines. If the routine or line
+was executed only once, this is the same as AbsoluteTotalTime.</td>
+</tr>
+</table>
+<A NAME="TI9639"></A><h2>Profiling Trace View</h2>
+<A NAME="TI9640"></A><p>The Trace view uses a TreeView control to display the events
+and functions in the trace file. The initial display shows top-level
+routines. Each node expands to show the sequence of routine execution.
+The fully expanded TreeView shows the complete sequence of executed
+instructions for the trace file.</p>
+<A NAME="TI9641"></A><p>The Trace view uses the trace tree model to show the sequence
+of execution. It includes statistics and (for those routines that
+originated in PowerScript source) source code.You can use the Trace
+View Options section of the Preferences dialog box to control the
+display:<A NAME="TI9642"></A>
+<ul>
+<li class=fi><b>System routines</b>   This option controls whether the Trace view includes information
+for lines that execute PowerBuilder system routines.</li>
+<li class=ds><b>Line information</b>   This option controls whether the Trace view includes line
+numbers.
+</li>
+</ul>
+</p>
+<A NAME="TI9643"></A><p>The following screen shows a Trace view with several nodes
+expanded. The number to the right of each item is the execution
+time for that item.</p>
+<br><img src="images/runtp03.gif">
+<A NAME="TI9644"></A><h4>Trace view metrics</h4>
+<A NAME="TI9645"></A><p>The Trace view displays two metrics. The profiling tool accesses
+these metrics from instances of the TraceTree and TraceTreeNode
+objects.</p>
+<A NAME="TI9646"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-7: Metrics in the Profiling Trace View</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9647"></A>Entry</th>
+<th  rowspan="1"  ><A NAME="TI9648"></A>What it means</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9649"></A>Routine or line number</td>
+<td  rowspan="1"  ><A NAME="TI9650"></A>The routine or line number that was executed.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9651"></A>Execution time</td>
+<td  rowspan="1"  ><A NAME="TI9652"></A>Total execution time for the Tree view
+entry. This is total time from the start of the entry to the end
+of the entry. For example, if you call the <b>MessageBox</b> function,
+this value reflects the elapsed time from when the message box was
+opened until the user provided some kind of response.</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About preferences</span> <A NAME="TI9653"></A>The specifications you make in the Preferences dialog box
+control whether the Trace view displays system functions and line
+numbers.</p>
+<A NAME="TI9654"></A><h2>Setting call aggregation preferences</h2>
+<A NAME="TI9655"></A><p>You can control how the profiling tools display information
+using the Preferences dialog box. To open it, select Options&gt;Preferences
+from any profiling view's menu bar. </p>
+<A NAME="TI9656"></A><p>In both Class and Routine views, you can choose how functions
+and events that are called more than once are displayed. Select
+the Aggregate Calls check box if you want the view to display a
+single line for each called function or event that represents a
+sum of all the times it was called. If you do not select the check box,
+the view displays statistics for each call on a separate line.For
+example, if aggregation is enabled and a function calls another
+function five times, you see one entry with five hits; with no aggregation,
+you see five separate entries for the same function.Internally,
+the profiling tool controls aggregation by using the AggregateDuplicateRoutineCalls
+boolean argument to the <b>OutgoingCallList</b> and <b>IncomingCallList</b> functions
+on the ProfileRoutine object.</p>
+

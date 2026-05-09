@@ -1,0 +1,200 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About the PowerBuilder extended attribute system tables</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp40.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp42.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDBDCC"></A><h1>About the PowerBuilder extended attribute system tables</h1>
+<A NAME="TI1343"></A><p>PowerBuilder uses a collection of five system tables (formerly
+known as the Powersoft repository) to store extended attribute information
+(such as display formats, validation rules, and font information)
+about tables and columns in your database. You can also define extended
+attributes when you create or modify a table in PowerBuilder.</p>
+<A NAME="TI1344"></A><p>This section tells you how to:<A NAME="TI1345"></A>
+<ul>
+<li class=fi>Make sure the PowerBuilder extended attribute system tables
+are created with the proper access rights when you log in to your
+database for the first time </li>
+<li class=ds>Display and open a PowerBuilder extended attribute
+system table</li>
+<li class=ds>Understand the kind of information stored in the PowerBuilder extended attribute
+system tables</li>
+<li class=ds>Control extended attribute system table access
+</li>
+</ul>
+</p>
+<A NAME="TI1346"></A><h2>Logging in to your database for the first time</h2>
+<A NAME="TI1347"></A><p>By default, PowerBuilder creates the extended attribute system
+tables the first time you connect to a database.</p>
+<A NAME="TI1348"></A><p>To ensure that PowerBuilder creates the extended attribute system
+tables with the proper access rights to make them available to all
+users, the first person to connect to the database with PowerBuilder must
+log in with the proper authority.</p>
+<A NAME="TI1349"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To ensure proper creation of the PowerBuilder extended
+attribute system tables:</p>
+<ol><li class=fi><p>Make sure the first person to connect to
+the database with PowerBuilder has sufficient authority to create
+tables and grant permissions to PUBLIC.</p><p>This means that the first person to connect to the database
+should log in as the database owner, database administrator, system
+user, system administrator, or system owner, as specified by your
+DBMS.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Creating the extended attribute system tables when
+using the DirectConnect interface</span> <A NAME="TI1350"></A>When you are using the DirectConnect interface, the PowerBuilder extended attribute
+system tables are <i>not</i> created automatically
+the first time you connect to a database. You must run the <i>DB2SYSPB.SQL</i> script
+to create the system tables, as described in <A HREF="connpbp34.htm#X-REF354461628">"Using the DB2SYSPB.SQL
+script"</A>. </p>
+<A NAME="TI1351"></A><h2>Displaying the PowerBuilder extended attribute system
+tables</h2>
+<A NAME="TI1352"></A><p>PowerBuilder updates the extended attribute system tables automatically whenever
+you change the information for a table or column. The PowerBuilder extended
+attribute system tables are different from the system tables provided by
+your DBMS.</p>
+<A NAME="TI1353"></A><p>You can display and open PowerBuilder extended attribute system
+tables in the Database painter just like other tables.</p>
+<A NAME="TI1354"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display the PowerBuilder extended attribute system
+tables:</p>
+<ol><li class=fi><p>In the Database painter, highlight Tables
+in the list of database objects for the active connection and select
+Show System Tables from the pop-up menu.</p><br><img src="images/cn6st.gif"><br>
+</li>
+<li class=ds><p>The PowerBuilder extended attribute system tables
+and DBMS system tables display in the tables list, as follows:<A NAME="TI1355"></A>
+<ul>
+<li class=fi><b>PowerBuilder system
+tables</b>   The five system tables are: <b>pbcatcol</b>, <b>pbcatedt</b>, <b>pbcatfmt</b>, <b>pbcattbl</b>,
+and <b>pbcatvld</b>.</li>
+<li class=ds><b>DBMS system tables</b>   The system tables supplied by the DBMS usually have a DBMS-specific
+prefix (such as <i>sys</i> or <i>dbo</i>).<br><img src="images/cn6std.gif">
+
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>Display the contents of a PowerBuilder system table
+in the Object Layout, Object Details, and/or Columns views.</p><p>For instructions, see the <i>User's
+Guide</i>
+.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Do not edit the extended attribute system tables</span> <A NAME="TI1356"></A>Do not change the values in the PowerBuilder extended attribute
+system tables.</p>
+</li></ol>
+<br><A NAME="TI1357"></A><h2>Contents of the extended attribute system tables</h2>
+<A NAME="TI1358"></A><p>PowerBuilder stores five types of extended attribute information
+in the system tables as described in <A HREF="connpbp41.htm#BABIABJH">Table 7-1</A>. </p>
+<A NAME="BABIABJH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 7-1: Extended attribute system tables</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1359"></A>System table</th>
+<th  rowspan="1"  ><A NAME="TI1360"></A>Information about</th>
+<th  rowspan="1"  ><A NAME="TI1361"></A>Attributes</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1362"></A><b>pbcatcol</b></td>
+<td  rowspan="1"  ><A NAME="TI1363"></A>Columns</td>
+<td  rowspan="1"  ><A NAME="TI1364"></A>Names, comments, headers, labels, case,
+initial value, and justification</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1365"></A><b>pbcatedt</b></td>
+<td  rowspan="1"  ><A NAME="TI1366"></A>Edit styles</td>
+<td  rowspan="1"  ><A NAME="TI1367"></A>Edit style names and definitions</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1368"></A><b>pbcatfmt</b></td>
+<td  rowspan="1"  ><A NAME="TI1369"></A>Display formats</td>
+<td  rowspan="1"  ><A NAME="TI1370"></A>Display format names and definitions</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1371"></A><b>pbcattbl</b></td>
+<td  rowspan="1"  ><A NAME="TI1372"></A>Tables</td>
+<td  rowspan="1"  ><A NAME="TI1373"></A>Name, owner, default fonts (for data, headings
+and labels), and comments</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1374"></A><b>pbcatvld</b></td>
+<td  rowspan="1"  ><A NAME="TI1375"></A>Validation rules</td>
+<td  rowspan="1"  ><A NAME="TI1376"></A>Validation rule names and definitions</td>
+</tr>
+</table>
+<A NAME="TI1377"></A><p>For more about the PowerBuilder system tables, see the Appendix
+in the <i>User's Guide</i>
+.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Prefixes in system table names</span> <A NAME="TI1378"></A>For some databases, PowerBuilder precedes the name of the system
+table with a default DBMS-specific prefix. For example, the names
+of PowerBuilder system tables have the prefix <b>DBO</b> in
+a <ACRONYM title = "sequel" >SQL</ACRONYM> Server database (such
+as <b>DBO.pbcatcol</b>), or <b>SYSTEM</b> in
+an ORACLE database (such as <b>SYSTEM.pbcatfmt</b>).</p>
+<A NAME="TI1379"></A>The preceding table gives the base name of each system table
+without the DBMS-specific prefix.</p>
+<A NAME="TI1380"></A><h2>Controlling system table access</h2>
+<A NAME="TI1381"></A><p>To control access to the PowerBuilder system tables at your
+site, you can specify that PowerBuilder not create or update the system
+tables or that the system tables be accessible only to certain users
+or groups.</p>
+<A NAME="TI1382"></A><p>You can control system table access by doing any of the following:<A NAME="TI1383"></A>
+<ul>
+<li class=fi><b>Setting Use Extended
+Attributes</b>   Set the Use Extended Attributes database preference in the
+Database Preferences property sheet in the Database painter.</li>
+<li class=ds><b>Setting Read Only</b>   Set the Read Only database preference in the Database Preferences
+property sheet in the Database painter.</li>
+<li class=ds><b>Granting permissions on the system
+tables</b>   Grant explicit permissions on the system tables to users or
+groups at your site.
+</li>
+</ul>
+</p>
+<A NAME="TI1384"></A><h3>Setting Use Extended Attributes or Read Only to
+control access</h3>
+<A NAME="TI1385"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To control system table access by setting Use
+Extended Attributes or Read Only:</p>
+<ol><li class=fi><p>Select Design&gt;Options from the
+menu bar.</p><p>The Database Preferences dialog box displays. If necessary,
+click the General tab to display the General property page.</p><br><img src="images/cn6share.gif"><br>
+</li>
+<li class=ds><p>Set values for Use Extended Attributes or Read
+Only as follows:</p><A NAME="TI1386"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI1387"></A>Preference</th>
+<th  rowspan="1"  ><A NAME="TI1388"></A>What you do</th>
+<th  rowspan="1"  ><A NAME="TI1389"></A>Effect</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1390"></A>Use Extended Attributes</td>
+<td  rowspan="1"  ><A NAME="TI1391"></A>Clear the check box</td>
+<td  rowspan="1"  ><A NAME="TI1392"></A>Does not create the PowerBuilder system
+tables if they do not exist. Instead, the painter uses the appropriate
+default values for extended attributes (such as headers, labels,
+and text color).<A NAME="TI1393"></A><p>If the PowerBuilder system tables already exist, PowerBuilder does
+not use them when you create a new DataWindow object.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1394"></A>Read Only</td>
+<td  rowspan="1"  ><A NAME="TI1395"></A>Select the check box</td>
+<td  rowspan="1"  ><A NAME="TI1396"></A>If the PowerBuilder system tables already
+exist, PowerBuilder uses them when you create a new DataWindow object, <i>but
+does not update them</i>.<A NAME="TI1397"></A><p>You <i>cannot</i> modify (update) information
+in the system tables or any other database tables in the DataWindow painter when the
+Read Only check box is selected.</p></td>
+</tr>
+</table>
+</li>
+<li class=ds><p>Do one of the following:<A NAME="TI1398"></A>
+<ul>
+<li class=fi>Click Apply to apply the preference settings to
+the current connection and all future connections without closing
+the Database Preferences property sheet.</li>
+<li class=ds>Click OK to apply the preference settings to the
+current connection and all future connections and close the Database
+Preferences property sheet.
+</li>
+</ul>
+
+                        </p><p>PowerBuilder saves your preference settings in the registry.</p></li></ol>
+<br><A NAME="TI1399"></A><h3>Granting permissions on system tables to control
+access</h3>
+<A NAME="TI1400"></A><p>If your DBMS supports <ACRONYM title = "sequel" >SQL</ACRONYM> <b>GRANT</b> and <b>REVOKE</b> statements,
+you can control access to the PowerBuilder system tables. The default
+authorization for each repository table is:</p>
+<A NAME="TI1401"></A><p><p><PRE>GRANT SELECT, UPDATE, INSERT, DELETE ON <i>table</i> TO PUBLIC</PRE></p>
+</p>
+<A NAME="TI1402"></A><p>After the system tables are created, you can (for example)
+control access to them by granting <b>SELECT</b> authority
+to end users and <b>SELECT</b>, <b>UPDATE</b>, <b>INSERT</b>,
+and <b>DELETE</b> authority to developers. This technique
+offers security and flexibility that is enforced by the DBMS itself.</p>
+

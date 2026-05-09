@@ -1,0 +1,20 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Debugging the client</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp192.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp194.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABDEHHFA"></A><h1>Debugging the client</h1>
+<A NAME="TI6130"></A><p>The <b>createJavaVM</b> method of the JavaVM class
+takes a boolean value as a second argument. If this second argument
+is "true", execution information, including class loads, are logged
+to the file <i>vm.out</i> in the directory where the application
+resides:<p><PRE> // global variable: JavaVM g_jvm<br>string classpath<br>boolean isdebug<br> <br>classpath = "d:\tests\ejbsample;"<br>isdebug = true<br>g_jvm.createJavaVM(classpath, isdebug)</PRE></p>
+<A NAME="TI6131"></A><A NAME="TI6132"></A><p>This part presents tools and techniques for developing Web
+applications with PowerBuilder.</p>
+

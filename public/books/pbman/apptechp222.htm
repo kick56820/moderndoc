@@ -1,0 +1,64 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the secure PowerBuilder window plug-in</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp221.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp223.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCCBEBI"></A><h1>Using the secure PowerBuilder window plug-in</h1>
+<A NAME="TI6717"></A><h4>How to use it</h4>
+<A NAME="TI6718"></A><p>You follow the same basic steps to develop and deploy applications
+using the secure PowerBuilder window plug-in as you do when using
+the standard PowerBuilder window plug-in. (These steps are described
+in <A HREF="apptechp223.htm#BFCBFDAG">"Developing and deploying
+a PowerBuilder window plug-in application"</A>.)</p>
+<A NAME="TI6719"></A><p>The only difference is that the secure PowerBuilder window
+plug-in uses a special version of the standard window plug-in DLL.
+The secure version of the window plug-in is <i>NPPBS105.DLL</i>.</p>
+<A NAME="TI6720"></A><h4>Restricted functionality</h4>
+<A NAME="TI6721"></A><p>Using the secure PowerBuilder window plug-in severely restricts
+the PowerBuilder application running on the client workstation,
+denying access to the client system except for printing. For this
+reason, using the secure window plug-in might not be appropriate
+in all situations.</p>
+<A NAME="TI6722"></A><p>The types of activities listed in <A HREF="apptechp222.htm#CHDFDDEI">Table 33-3</A> are restricted when you use the secure
+PowerBuilder window plug-in.</p>
+<A NAME="CHDFDDEI"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-3: Secure window plug-in restrictions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6723"></A>Activity</th>
+<th  rowspan="1"  ><A NAME="TI6724"></A>Restriction</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6725"></A>External functions</td>
+<td  rowspan="1"  ><A NAME="TI6726"></A>Calling an external function causes an
+execution error</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6727"></A>Certain PowerScript functions</td>
+<td  rowspan="1"  ><A NAME="TI6728"></A>Calling a restricted PowerScript function
+causes an execution error</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6729"></A>Database connection</td>
+<td  rowspan="1"  ><A NAME="TI6730"></A>Calling PowerScript functions that result
+in database access causes an execution error</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6731"></A>Internet access</td>
+<td  rowspan="1"  ><A NAME="TI6732"></A>Applications that use the secure PowerBuilder
+window plug-in can establish an Internet connection only to the current
+Web server</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6733"></A>E-mail</td>
+<td  rowspan="1"  ><A NAME="TI6734"></A>Calling PowerScript Mail functions causes
+an execution error</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6735"></A>OLE</td>
+<td  rowspan="1"  ><A NAME="TI6736"></A>Calling PowerScript OLE functions causes
+an execution error</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6737"></A>Dynamic Data Exchange (DDE)</td>
+<td  rowspan="1"  ><A NAME="TI6738"></A>Calling PowerScript DDE functions causes
+an execution error</td>
+</tr>
+</table>
+

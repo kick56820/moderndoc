@@ -1,0 +1,40 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Referencing entities in descendants</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp38.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp40.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAICGGHI"></A><h1>Referencing entities in descendants</h1>
+<A NAME="TI817"></A><p>When you declare a variable whose datatype is a kind of object,
+such as a window, you can use the variable to reference any entity
+defined in the object, but not in one of its descendants. Consider
+the following code:<p><PRE> w_customer mycust<br> <br>Open(mycust)<br>// The following statement is legal if<br>// w_customer window has a st_name control.<br>mycust.st_name.text = "Joe"</PRE></p>
+<A NAME="TI818"></A><p><i>mycust</i> is declared as a variable of type <b>w_customer</b> (<i>mycust</i> is
+a <b>w_customer</b> window). If <b>w_customer</b> contains
+a StaticText control named <b>st_name</b>,
+then the last statement shown above is legal.</p>
+<A NAME="TI819"></A><p>However, consider the following case:<p><PRE> window newwin<br>string winname = "w_customer"<br>Open(newwin, winname)<br>// Illegal because objects of type Window<br>// do not have a StaticText control st_name<br>newwin.st_name.text = "Joe"</PRE></p>
+<A NAME="TI820"></A><p>Here, <i>newwin</i> is defined as a variable
+of type window. PowerBuilder rejects the above code because the
+compiler uses what is called <strong>strong type checking</strong>:
+the PowerBuilder compiler does not allow you to reference any entity
+for an object that is not explicitly part of the variable's
+compile-time datatype.</p>
+<A NAME="TI821"></A><p>Because objects of type window do not contain a <b>st_name</b> control,
+the statement is not allowed. You would need to do one of the following:<A NAME="TI822"></A>
+<ul>
+<li class=fi>Change the declaration of <i>newwin</i> to
+be a <b>w_customer</b> (or an ancestor window
+that also contains a <b>st_name</b> control),
+such as:<p><PRE> w_customer newwin<br>string winname = "w_customer"<br> <br>Open(newwin, winname)<br>// Legal now<br>newwin.st_name.text = "Joe"</PRE></li>
+<li class=ds>Define another variable, of type <b>w_customer</b>,
+and assign it to <i>newwin</i>, such as:<p><PRE> window newwin<br>w_customer custwin<br>stringwinname = "w_customer"<br> <br>Open(newwin, winname)<br>custwin = newwin<br>// Legal now<br>custwin.st_name.text = "Joe"</PRE>
+</li>
+</ul>
+</p>
+

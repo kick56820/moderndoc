@@ -1,0 +1,118 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Providing online Help for developers </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp61.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp63.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299522441"></A><h1>Providing online Help for developers </h1>
+<A NAME="TI1464"></A><h4>Two ways to provide Help</h4>
+<A NAME="TI1465"></A><p>There are two ways to integrate online Help for your user-defined
+functions, user events, and user objects into the PowerBuilder development
+environment: </p>
+<A NAME="TI1466"></A><p><A NAME="TI1467"></A>
+<ul>
+<li class=fi><b>The User
+button</b>   In the PowerBuilder main Help window, the User button is hard-coded
+to launch a file named <i>PBUSR105.HLP</i>:<br><img src="images/uihlp01.gif">
+</li>
+<li class=ds><b>Context-sensitive Help</b>   For user-defined functions, context-sensitive help can be
+displayed when you select the function name in the Script view (or
+place the cursor in the function name) and press Shift + F1.
+</li>
+</ul>
+</p>
+<A NAME="CEGDDEHH"></A><h4>How context-sensitive Help
+for user-defined functions works</h4>
+<A NAME="TI1468"></A><p>When you select the name of a function or place the cursor
+in the function name in the Script view and press Shift + F1:</p>
+<A NAME="TI1469"></A><p><A NAME="TI1470"></A>
+<ol>
+</li>
+<li class=ds>PowerBuilder looks
+for the standard prefix (the default is <b>uf_</b>)
+in the function name.</li>
+<li class=ds>If the standard prefix is found, PowerBuilder looks
+for the Help topic in the Help file containing your user-defined
+function Help topics (instead of looking in <i>PBUSR105.HLP</i>,
+its own main Help file). The default file name for Help on user-defined
+functions is <i>PBUSR105.HLP</i>.<br>
+PowerBuilder determines the name of the Help file to look
+in by reading the <i>UserHelpFile</i> variable in <i>PB.INI</i>.
+For information on changing the value of this variable, see <A HREF="apptechp62.htm#CEGGIHAA">"Advanced procedures"</A>.<br></li>
+<li class=ds>If PowerBuilder finds the variable, it looks in
+the specified Help file for the name of the selected function. If
+there is no <i>UserHelpFile</i> variable in <i>PB.INI</i>,
+PowerBuilder looks for the keyword in the <i>PBUSR105.HLP</i> file in
+the PowerBuilder <i>Help</i> directory.
+</li>
+</ol>
+</p>
+<A NAME="TI1471"></A><h4>Simplest approach</h4>
+<A NAME="TI1472"></A><p>If you work within the PowerBuilder defaults, you must: </p>
+<A NAME="TI1473"></A><p><A NAME="TI1474"></A>
+<ul>
+<li class=fi>Compile all of your
+online Help for your user-defined functions, user events, and user
+objects into a single file named <i>PBUSR105.HLP</i><br>
+You can optionally provide a contents file, which must be
+named <i>PBUSR105.CNT</i>.<br></li>
+<li class=ds>Prefix the name of each user-defined function you
+create with <b>uf_</b> (for example, <b>uf_calculate</b>)
+</li>
+</ul>
+</p>
+<A NAME="TI1475"></A><h4>Basic procedures</h4>
+<A NAME="TI1476"></A><p>Here are details on how to build online Help into the PowerBuilder environment.</p>
+<A NAME="TI1477"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To launch online Help for PowerBuilder developers
+from the User button:</p>
+<ol><li class=fi><p>Create your online Help file using Microsoft
+Word and the Microsoft Help Workshop or other Help authoring tool. </p></li>
+<li class=ds><p>Rename the <i>PBUSR105.HLP</i> and <i>PBUSR105.CNT</i> files
+that were installed with PowerBuilder. Be sure to rename the original <i>PBUSR105.CNT</i> file
+even if you do not provide your own contents file.</p></li>
+<li class=ds><p>Save the compiled Help file and optional contents
+file in your PowerBuilder <i>Help</i> directory. Make
+sure your Help file is named <i>PBUSR105.HLP</i> and
+your contents file is named <i>PBUSR105.CNT</i>.</p><p>Your Help file will display when you click the User button.</p></li></ol>
+<br><A NAME="TI1478"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create context-sensitive Help for user-defined
+functions:</p>
+<ol><li class=fi><p>When you create a user-defined function,
+give the name of the function a standard prefix. The default prefix
+is <b>uf_</b> (for example, <b>uf_calculate</b>).</p></li>
+<li class=ds><p>For each user-defined function Help topic, assign
+a search keyword (a K footnote entry) identical to the function
+name.</p><p>For example, in the Help topic for the user-defined function <b>uf_CutBait</b>, create
+a keyword footnote <b>uf_CutBait</b>. PowerBuilder
+uses the keyword to locate the correct topic to display in the Help
+window.</p></li>
+<li class=ds><p>Compile the Help file and save it in the PowerBuilder <i>Help</i> directory.</p></li></ol>
+<br><A NAME="CEGGIHAA"></A><h4>Advanced procedures</h4>
+<A NAME="TI1479"></A><p>You can specify a different file name for context-sensitive
+Help by changing the value of the <i>UserHelpFile</i> variable
+in your <i>PB.INI</i> file. To use the variable, your
+Help file must be in the PowerBuilder Help directory.</p>
+<A NAME="CEGBHIJG"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a different
+file name for context-sensitive Help:</p>
+<ol><li class=fi><p>Open your <i>PB.INI</i> file
+in a text editor.</p></li>
+<li class=ds><p>In the [PB] section, add a <i>UserHelpFile</i> variable,
+specifying the name of the Help file that contains your context-sensitive
+topics. The format of the variable is:</p><p><p><PRE><b>UserHelpFile </b>= <i>helpfile.hlp</i></PRE></p>
+</p><p>Specify only the file name. A full path name designation will
+not be recognized.</p></li></ol>
+<br><A NAME="TI1480"></A><p>You can prefix your user-defined functions with a standard
+prefix other than the default <b>uf_</b> prefix.
+You define the prefix you want to use by entering the <i>UserHelpPrefix</i> variable
+in your <i>PB.INI</i> file.</p>
+<A NAME="TI1481"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use a different prefix for user-defined functions:</p>
+<ol><li class=fi><p>Open your <i>PB.INI</i> file
+in a text editor.</p></li>
+<li class=ds><p>In the [PB] section, add a <i>UserHelpPrefix</i> variable,
+specifying the value of your prefix. Use this format:</p><p><p><PRE><b>UserHelpPrefix </b>=<i> yourprefix_</i></PRE></p>
+</p><p>The prefix you provide must end with the underscore character.</p></li></ol>
+<br>

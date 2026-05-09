@@ -1,0 +1,132 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About user objects </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp124.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp126.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF298822768"></A><h1>About user objects </h1>
+<A NAME="TI3698"></A><p>Applications often have features in common. For example, you
+might often reuse features like the following:<A NAME="TI3699"></A>
+<ul>
+<li class=fi>A processing package that calculates commissions
+or performs statistical analysis</li>
+<li class=ds>A Close button that performs a certain set of operations
+and then closes the window</li>
+<li class=ds>DataWindow controls that perform standard error
+checking</li>
+<li class=ds>A list that includes all departments</li>
+<li class=ds>A predefined file viewer that you plug into a window
+</li>
+</ul>
+</p>
+<A NAME="TI3700"></A><p>If you find yourself using the same application feature repeatedly,
+you should define a user object: you define the user object once
+in the User Object painter and use it as many times as you need.</p>
+<A NAME="TI3701"></A><p>There are two main types of user objects: class and visual.
+Class user objects are also called nonvisual objects.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Examples of user objects</span> <A NAME="TI3702"></A>The PowerBuilder Code Examples contain many interesting user
+objects in <i>PBEXAMUO.PBL</i>. Take a look at them
+to get an appreciation for the power of user objects.</p>
+<A NAME="TI3703"></A><h2>Class user objects</h2>
+<A NAME="TI3704"></A><p>A class user object lets you reuse a set of business rules
+or other processing that acts as a unit but has no visual component.
+For example, you might define a class that calculates sales commissions
+or performs statistical analysis. Whenever you need to do
+this type of processing, you instantiate the user object in a script
+and call its functions.</p>
+<A NAME="TI3705"></A><p>You build class user objects in the User Object painter, specifying
+instance variables and object-level functions. Then you create an
+instance of the class user object in your application, thereby making
+its processing available.</p>
+<A NAME="TI3706"></A><p>There are two kinds of class user objects:<A NAME="TI3707"></A>
+<ul>
+<li class=fi>Custom class</li>
+<li class=ds>Standard class
+</li>
+</ul>
+</p>
+<A NAME="TI3708"></A><h4>Custom class user objects</h4>
+<A NAME="TI3709"></A><p>Custom class user objects are objects of your own design that
+encapsulate properties and functions not visible to the user. They
+are not derived from PowerBuilder objects. You define them to create
+units of processing that have no visual component.</p>
+<A NAME="TI3710"></A><p>For example, to calculate commissions in an application, you
+can define an <b>n_CalculateCommission</b> custom
+class user object that contains properties and user-defined functions
+that do the processing to calculate commissions.</p>
+<A NAME="TI3711"></A><p>Whenever you need to use this processing, you create an instance
+of the user object in a script, which then has access to the logic
+in the user object.</p>
+<A NAME="TI3712"></A><p>When you build components that you will deploy to a transaction
+server, you use custom class user objects. For more information,
+see <i>Application Techniques</i>
+.</p>
+<A NAME="TI3713"></A><h4>Standard class user objects</h4>
+<A NAME="TI3714"></A><p>A standard class user object inherits its definition from
+one built-in, nonvisual PowerBuilder object, such as the Transaction
+object or Error object. You modify the definition to make the object
+specific to your application, and optionally add instance variables
+and functions to enhance the behavior of the built-in object. Once
+you define a standard class user object, you can go to the Application
+painter and specify that you want to use it instead of the corresponding
+built-in system object in your application.</p>
+<A NAME="TI3715"></A><p>One important use of a standard class user object is employing
+one inherited from the built-in Transaction object to do database
+remote procedure calls from within an application.</p>
+<A NAME="TI3716"></A><h2>Visual
+user objects</h2>
+<A NAME="TI3717"></A><p>A visual user object is a reusable control or set of controls
+that has a certain behavior. You define it in the User Object painter,
+where you place controls in the user object and write scripts for
+those controls. Then you can place the user object in windows you
+build in your applications as often as needed.</p>
+<A NAME="TI3718"></A><p>There are three types of visual user objects:<A NAME="TI3719"></A>
+<ul>
+<li class=fi><b>Custom visual</b>   Most useful if you frequently group controls together in a
+window and always use the controls to perform the same processing.</li>
+<li class=ds><b>External visual</b>   Useful when you have a custom DLL.</li>
+<li class=ds><b>Standard visual</b>   Most useful if you frequently use a PowerBuilder control to
+perform the same processing.
+</li>
+</ul>
+</p>
+<A NAME="TI3720"></A><h4>Custom visual user objects</h4>
+<A NAME="TI3721"></A><p>Custom visual user objects are objects that have several controls
+that function as a unit. You can think of a custom visual user object
+as a window that is a single unit and is used as a control.</p>
+<A NAME="TI3722"></A><p>Assume you frequently use a group of buttons, each of which
+performs standard processing. If you build a custom user object
+that contains all the buttons, you can place the buttons in the
+window as a unit when you place the user object in a window.</p>
+<A NAME="CAHCEGGH"></A><h4>External visual user objects</h4>
+<A NAME="TI3723"></A><p>External visual user objects contain controls from objects
+in the underlying windowing system that were created outside PowerBuilder.
+You can use a custom DLL in PowerBuilder to create an external user
+object.</p>
+<A NAME="TI3724"></A><p>You must know what classes the DLL supports, the messages
+or events the DLL responds to, and the style bits that you can set
+in the DLL.</p>
+<A NAME="TI3725"></A><h4>Standard visual user objects</h4>
+<A NAME="TI3726"></A><p>A standard visual user object inherits its definition from
+one standard PowerBuilder control. You modify the definition to
+make the control specific to your applications.</p>
+<A NAME="TI3727"></A><p>Assume you frequently use a CommandButton named Close to display
+a message box and then close the parent window. If you build a standard
+visual user object that derives from a CommandButton to perform
+this processing, you can use the user object whenever you want to
+display a message box and then close a window.</p>
+<A NAME="TI3728"></A><h2>Building user objects</h2>
+<A NAME="TI3729"></A><p>You can build a user object from scratch, or you can create
+a user object that inherits its style, events, functions, structures,
+variables, and scripts from an existing user object.</p>
+<A NAME="TI3730"></A><p>For information on building a user object
+from scratch, see <A HREF="pbugp127.htm#X-REF298822780">"Building a new user
+object "</A>. To find out more about creating
+a user object based on an existing PowerBuilder object, see <A HREF="pbugp128.htm#X-REF351802496">"Using inheritance
+to build user objects "</A>.</p>
+

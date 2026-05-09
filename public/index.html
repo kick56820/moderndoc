@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PowerBuilder 10.5 Docs</title>
+  <link rel="stylesheet" href="/styles.css?v=20260509-11">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>PowerBuilder 10.5 Docs</h1>
+      <p>Local HelpDeco full-text reference with WinHelp-style index.</p>
+    </div>
+    <div class="top-actions">
+      <button id="favoriteToggle" class="ghost" type="button" disabled>☆ Favorite</button>
+      <button id="themeToggle" class="ghost" type="button">Dark mode</button>
+    </div>
+    <label class="global-search">
+      <span>Full-text search across Reference and HTML Books</span>
+      <input id="globalSearch" placeholder="DataWindow / deployment / AcceptText" autocomplete="off">
+    </label>
+  </header>
+
+  <div class="app">
+    <aside class="sidebar">
+      <section class="quick-panel">
+        <details open>
+          <summary>Recent</summary>
+          <div id="recentList" class="quick-list empty">No recent pages</div>
+        </details>
+        <details>
+          <summary>Favorites</summary>
+          <div id="favoriteList" class="quick-list empty">No favorites yet</div>
+        </details>
+      </section>
+
+      <div class="tabs">
+        <button class="tab active" data-mode="contents">Contents</button>
+        <button class="tab" data-mode="index">Index</button>
+        <button class="tab" data-mode="search">Search</button>
+        <button class="tab" data-mode="books">HTML Books</button>
+      </div>
+
+      <section id="contentsMode" class="panel">
+        <div id="contentsStatus" class="status">Loading contents...</div>
+        <div id="contentsList" class="contents-list" role="tree"></div>
+      </section>
+
+      <section id="indexMode" class="panel hidden">
+        <label class="field">
+          <span>Type an index keyword</span>
+          <input id="indexInput" placeholder="decimal" autocomplete="off">
+        </label>
+        <div id="indexStatus" class="status">Loading index...</div>
+        <div id="indexList" class="index-list" role="listbox" tabindex="0"></div>
+        <button id="openIndex" class="primary">Show</button>
+      </section>
+
+      <section id="searchMode" class="panel hidden">
+        <label class="field">
+          <span>Search source</span>
+          <select id="searchSource">
+            <option value="all">All sources</option>
+            <option value="reference">Reference only</option>
+            <option value="html-books">HTML Books only</option>
+          </select>
+        </label>
+        <div id="results" class="results"></div>
+      </section>
+
+      <section id="booksMode" class="panel hidden">
+        <div id="bookStatus" class="status">Loading HTML Books...</div>
+        <div id="bookContentsList" class="contents-list" role="tree"></div>
+      </section>
+    </aside>
+
+    <main class="reader">
+      <article id="topic" class="topic reader-pane">
+        <div class="empty-state">
+          <h2>Select a contents or index item to start reading</h2>
+          <p>Try: PowerScript Reference, decimal, DataWindow, AcceptText.</p>
+        </div>
+      </article>
+      <iframe id="bookFrame" class="book-frame reader-pane hidden" title="PowerBuilder HTML Books"></iframe>
+    </main>
+  </div>
+
+  <script src="/app.js?v=20260509-11"></script>
+</body>
+</html>

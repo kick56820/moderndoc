@@ -1,0 +1,74 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Modifying graph properties</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp33.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp35.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF377543562"></A><h1>Modifying graph properties</h1>
+<A NAME="TI1050"></A><p>When you define a graph in the DataWindow painter, you specify
+its behavior and appearance. For example, you might define a graph
+as a column graph with a certain title, divide its Value axis into
+four major divisions, and so on. Each of these entries corresponds
+to a property of a graph. For example, all graphs have a property
+GraphType, which specifies the type of graph.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>When dynamically changing the graph type</span> <A NAME="TI1051"></A>If you change the graph type, be sure also to change the other
+properties as needed to properly define the new graph.</p>
+<A NAME="TI1052"></A><p>You can change these graph properties at execution time by
+assigning values to the graph's properties in code.</p>
+<A NAME="TI1053"></A><h4>Property expressions</h4>
+<p><b>PowerBuilder</b>   You can modify properties using property expressions. For example,
+to change the type of the graph gr_emp to Column, you could
+code:<p><PRE> dw_empinfo.Object.gr_emp.GraphType = ColGraph!</PRE></p>
+<A NAME="TI1054"></A><p>To change the title of the graph at execution time, you could
+code:<p><PRE> dw_empinfo.Object.gr_emp.Title = "New title"</PRE></p>
+<A NAME="TI1055"></A><h4>Modify method</h4>
+<A NAME="TI1056"></A><p>In any environment , you can use the Modify method to reference
+parts of a graph.</p>
+<p><b>Example for PowerBuilder</b>   For example, to change the title of graph gr_emp in
+DataWindow control dw_empinfo, you could code:<p><PRE> dw_empinfo.<i>Modify</i>("gr_emp.Title = 'New title'")</PRE></p>
+<p><b>Example for Web ActiveX</b>   This example changes the label text for the Value axis of
+graph gr_emp in the DataWindow control dw_empinfo:<p><PRE> dw_empinfo.<i>Modify</i>("gr_emp.Values.Label = 'New label'");</PRE></p>
+<A NAME="TI1057"></A><p>For a complete list of graph properties, see
+the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI1058"></A><h2>How parts of a graph are represented</h2>
+<A NAME="TI1059"></A><p>Graphs consist of parts: a title, a legend, and axes. Each
+of these parts has a set of display properties. These display properties
+are themselves stored as properties in a subobject (structure) of
+Graph called <i>grDispAttr</i>.</p>
+<A NAME="TI1060"></A><p>For example, graphs have a Title property, which specifies
+the text for the title. Graphs also have a property TitleDispAttr,
+of type grDispAttr, which itself contains properties that specify
+all the characteristics of the title text, such as the font, size,
+whether the text is italicized, and so on.</p>
+<A NAME="TI1061"></A><p>Similarly, graphs have axes, each of which also has a set
+of properties. These properties are stored in a subobject (structure)
+of Graph called <i>grAxis</i>. For example, graphs
+have a property Values, of type grAxis, which specifies the properties
+of the Value axis, such as whether to use autoscaling of values,
+the number of major and minor divisions, the axis label, and so
+on.</p>
+<A NAME="TI1062"></A><p>Here is a representation of the properties of a graph:<p><PRE> Graph</PRE><PRE>         int Height</PRE><PRE>         int Depth</PRE><PRE>         grGraphType GraphType</PRE><PRE>         boolean Border</PRE><PRE>         string Title</PRE><PRE>         ...</PRE><PRE> grDispAttr TitleDispAttr, LegendDispAttr, PieDispAttr</PRE><PRE>         string FaceName</PRE><PRE>         int TextSize</PRE><PRE>         boolean Italic</PRE><PRE>         ...</PRE><PRE> grAxis Values, Category, Series</PRE><PRE>         boolean AutoScale</PRE><PRE>         int MajorDivisions</PRE><PRE>         int MinorDivisions</PRE><PRE>         string Label</PRE><PRE>         ...</PRE></p>
+<A NAME="TI1063"></A><h2>Referencing parts of a graph</h2>
+<A NAME="TI1064"></A><p>You use dot notation or the Describe and Modify methods to
+reference the display properties of the various parts of a graph.
+For example, one of the properties of a graph's title is
+whether the text is italicized or not. That information is stored
+in the boolean Italic property in the TitleDispAttr property of
+the graph.</p>
+<A NAME="TI1065"></A><p>This example changes the label text for the Value axis of
+graph gr_emp in the DataWindow control dw_empinfo:<p><PRE> dw_empinfo.Object.gr_emp.Values.Label="New label"</PRE></p>
+<A NAME="TI1066"></A><p>For a complete list of graph properties, see
+the <i>DataWindow Reference.</i>
+</p>
+<A NAME="TI1067"></A><p>You can use the PowerBuilder Browser to examine
+the properties of a DataWindow object that contains a graph. For
+more information, see the <i>PowerBuilder User's
+Guide</i>
+.</p>
+

@@ -1,0 +1,179 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About the Component Object Model</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp168.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp170.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CEGCBBFE"></A><h1>About the Component Object Model</h1>
+<A NAME="TI5556"></A><p>The Microsoft Component Object Model (COM) defines a standard
+way for software components to supply services to each other. Any
+PowerBuilder custom class user object can be used as a COM object
+by providing it with a runtime environment, a registry entry, and
+optionally a type library. Clients built with COM-compliant tools
+such as PowerBuilder and Visual Basic can make use of the business
+logic in the COM object by creating an instance of the object and
+calling the methods exposed in its interface. Depending on the interfaces
+it supports, the COM object may also be available to Java and C++ clients.</p>
+<A NAME="TI5557"></A><p>COM+ enhances
+COM by handling more resource management tasks and providing thread
+pooling, object pooling, and just-in-time object activation.</p>
+<A NAME="BABDEHDJ"></A><h2>About PowerBuilder COM servers</h2>
+<A NAME="TI5558"></A><p>PowerBuilder creates a single PowerBuilder COM server that
+contains a PowerBuilder COM object for every custom class user object
+you select when you build the project. </p>
+<A NAME="TI5559"></A><p>COM specifies how objects are created and destroyed, how their
+interfaces are exposed, and how their methods are invoked. PowerBuilder
+COM servers follow the COM specification; this means that from a
+client perspective, the fact that a PowerBuilder COM object interacts
+with a custom class user object (through the PowerBuilder virtual
+machine) is transparent.</p>
+<A NAME="BABBDBIH"></A><h2>Comparing automation servers and PowerBuilder COM servers</h2>
+<A NAME="TI5560"></A><p>PowerBuilder provides two ways to generate COM objects: in
+PowerBuilder COM servers or automation servers. Both are accessible
+from wizards and from the Project painter. PowerBuilder COM servers
+offer many more features than automation servers.</p>
+<p><b>PowerBuilder COM servers</b>    PowerBuilder COM servers can contain more than one custom
+class user object. After you code the user objects, you use the Project
+painter to generate a single self-registering DLL for all the objects.
+You can also deploy the server directly to COM+ if it is
+running on the build computer, or create a COM+ package.
+PowerBuilder COM objects in a COM server can share runtime sessions,
+and references can be passed between objects created from the same
+COM client. </p>
+<A NAME="TI5561"></A><p>The COM server also contains an embedded PowerBuilder dynamic
+library (PBD) file that contains compiled versions of all the custom
+class user objects you selected and any dependent objects, as well
+as registry and type library information.</p>
+<p><b>Automation servers</b>   Automation servers built from a PowerBuilder custom class
+user object contain only one object. After you code the user object,
+you build a runtime library from the PBL that contains it, and then
+use the Project painter to create a registry file and optional type
+library file. When you deploy the automation server, you customize
+the registry file for the user's computer and then run
+the file to register the automation server.</p>
+<A NAME="TI5562"></A><p>You deploy the PowerBuilder virtual machine with an automation
+server or a PowerBuilder COM server, along with any other PowerBuilder
+runtime files the server requires.</p>
+<A NAME="TI5563"></A><h4>Dispatch, dual, and custom interfaces</h4>
+<A NAME="TI5564"></A><p>Automation servers use a dispatch interface (also called dispinterface)
+that allows users to invoke methods on the server using the <b>Invoke</b> method
+of a standard COM interface called IDispatch. </p>
+<A NAME="TI5565"></A><p>COM servers can use custom or dual interfaces, which provide
+better performance than dispatch-based interfaces. A custom interface
+provides access to methods on the server through a virtual table
+(also called VTBL or vtable) that contains pointers to methods in
+the server's interface. A dual interface enables the client
+to invoke methods using <b>IDispatch::Invoke</b> or
+a virtual table.</p>
+<A NAME="TI5566"></A><p>For more information, see <A HREF="apptechp175.htm#CEGEBFIG">"Choosing a custom or dual
+interface"</A>.</p>
+<A NAME="TI5567"></A><h4>Summary of differences between servers</h4>
+<A NAME="TI5568"></A><p><A HREF="apptechp169.htm#CEGEJFEH">Table 27-1</A> summarizes
+the differences between PowerBuilder automation servers and PowerBuilder
+COM servers using dual or custom interfaces:</p>
+<A NAME="CEGEJFEH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 27-1: Comparison of automation servers
+and COM servers</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5569"></A>Feature</th>
+<th  rowspan="1"  ><A NAME="TI5570"></A>Automation server (dispatch interface)</th>
+<th  rowspan="1"  ><A NAME="TI5571"></A>COM server (dual interface)</th>
+<th  rowspan="1"  ><A NAME="TI5572"></A>COM server (custom interface)</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5573"></A>In-process server support</td>
+<td  rowspan="1"  ><A NAME="TI5574"></A>Yes*</td>
+<td  rowspan="1"  ><A NAME="TI5575"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5576"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5577"></A>Generated IDL files</td>
+<td  rowspan="1"  ><A NAME="TI5578"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5579"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5580"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5581"></A>C++ client support</td>
+<td  rowspan="1"  ><A NAME="TI5582"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5583"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5584"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5585"></A>Java client support</td>
+<td  rowspan="1"  ><A NAME="TI5586"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5587"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5588"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5589"></A>PowerBuilder client support</td>
+<td  rowspan="1"  ><A NAME="TI5590"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5591"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5592"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5593"></A>Visual Basic 4 client support</td>
+<td  rowspan="1"  ><A NAME="TI5594"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5595"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5596"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5597"></A>Visual Basic 5 custom interface support</td>
+<td  rowspan="1"  ><A NAME="TI5598"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5599"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5600"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5601"></A>Support for PowerBuilder structures as
+instance variables and method argument types</td>
+<td  rowspan="1"  ><A NAME="TI5602"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5603"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5604"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5605"></A>Support for all C language datatypes</td>
+<td  rowspan="1"  ><A NAME="TI5606"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5607"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5608"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5609"></A>Support for an embedded type library</td>
+<td  rowspan="1"  ><A NAME="TI5610"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5611"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5612"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5613"></A>Self-registering servers</td>
+<td  rowspan="1"  ><A NAME="TI5614"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5615"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5616"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5617"></A>Support for DCOM #</td>
+<td  rowspan="1"  ><A NAME="TI5618"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5619"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5620"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5621"></A>Support for <ABBR title = "e a server" >EAServer</ABBR> </td>
+<td  rowspan="1"  ><A NAME="TI5622"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5623"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5624"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5625"></A>Support for COM+ </td>
+<td  rowspan="1"  ><A NAME="TI5626"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5627"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5628"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5629"></A>Requires separate proxy/stub DLLs </td>
+<td  rowspan="1"  ><A NAME="TI5630"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5631"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5632"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5633"></A>Requires PowerBuilder runtime DLLs (minimally <i>PBVM105.DLL</i> and
+its dependencies)</td>
+<td  rowspan="1"  ><A NAME="TI5634"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5635"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5636"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5637"></A>Requires deployment of application runtime
+libraries built in Library painter</td>
+<td  rowspan="1"  ><A NAME="TI5638"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5639"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5640"></A>No</td>
+</tr>
+</table>
+<A NAME="TI5641"></A><p>*    In-process server is the PowerBuilder
+execution DLL (PBVM105.DLL)</p>
+<A NAME="TI5642"></A><p>#    Requires use of surrogate host
+to house the PowerBuilder execution DLL</p>
+

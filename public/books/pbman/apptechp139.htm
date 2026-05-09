@@ -1,0 +1,243 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Working with shared and service components</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp138.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp140.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJBEHGG"></A><h1>Working with shared and service components</h1>
+<A NAME="TI4478"></A><p>When you create an <ABBR title = "e a server" >EAServer</ABBR> component
+in PowerBuilder, the wizard offers you a choice of creating a standard,
+shared, or service component. </p>
+<A NAME="TI4479"></A><h2>About shared components </h2>
+<A NAME="CCJDGHFC"></A><h4>How <ABBR title = "e a server" >EAServer</ABBR> manages program variable
+space</h4>
+<A NAME="TI4480"></A><p>The <ABBR title = "e a server" >EAServer</ABBR> architecture
+is component-oriented. Each component maintains its own state. When
+a single client instantiates several PowerBuilder objects on the
+server, <ABBR title = "e a server" >EAServer</ABBR> maintains program
+variable space for the objects separately. Each PowerBuilder user
+object running in <ABBR title = "e a server" >EAServer</ABBR> has
+its own copy of the global and shared variables. The PowerBuilder
+objects share no common state. They can communicate only through
+methods, <ABBR title = "e a server" >EAServer</ABBR> shared components,
+server files, and databases.</p>
+<A NAME="TI4481"></A><p>To allow clients to share state information, <ABBR title = "e a server" >EAServer</ABBR> provides support for <strong>shared
+components</strong>. Shared components allow multiple clients
+to share the same component instance. </p>
+<A NAME="TI4482"></A><p>Marking a component as shared in a PowerBuilder wizard is
+equivalent to marking it as shared on the Instances page of the
+Component Properties dialog box in EAServer Manager. Only a single
+instance of the component can be instantiated in <ABBR title = "e a server" >EAServer</ABBR>. </p>
+<A NAME="TI4483"></A><p>Clients (and other server components) access a shared component
+as if it were any other kind of component.</p>
+<A NAME="TI4484"></A><h4>Benefits of using <ABBR title = "e a server" >EAServer</ABBR> shared components</h4>
+<A NAME="TI4485"></A><p>Shared components allow you to:<A NAME="TI4486"></A>
+<ul>
+<li class=fi>Provide convenient access to common data that would otherwise
+need to be retrieved separately by each client connection</li>
+<li class=ds>Reduce the number of database accesses, allowing
+the database server to be available for other processing
+</li>
+</ul>
+</p>
+<A NAME="TI4487"></A><h4><ABBR title = "e a server" >EAServer</ABBR> shared components
+versus PowerBuilder shared objects</h4>
+<A NAME="TI4488"></A><p><ABBR title = "e a server" >EAServer</ABBR> shared components
+offer many of the same benefits as PowerBuilder shared objects.
+PowerBuilder components that you deploy to <ABBR title = "e a server" >EAServer</ABBR> can
+act as clients to <ABBR title = "e a server" >EAServer</ABBR> shared
+components, as well as to PowerBuilder shared objects. <ABBR title = "e a server" >EAServer</ABBR> shared components can also
+be accessed by components and clients that are not implemented in
+PowerBuilder.</p>
+<A NAME="TI4489"></A><p>However, <ABBR title = "e a server" >EAServer</ABBR> does not
+treat PowerBuilder shared objects as if they were <ABBR title = "e a server" >EAServer</ABBR> shared components. Therefore,
+the functions used to manipulate PowerBuilder shared objects (<b>SharedObjectRegister</b>, <b>SharedObjectGet</b>,
+and so forth) do not work with <ABBR title = "e a server" >EAServer</ABBR> shared
+components. If you try to call one of these functions inside a PowerBuilder
+component running in <ABBR title = "e a server" >EAServer</ABBR>,
+the request will fail.</p>
+<A NAME="TI4490"></A><h2>About service components</h2>
+<A NAME="TI4491"></A><p>A service component performs background processing for <ABBR title = "e a server" >EAServer</ABBR> clients and other <ABBR title = "e a server" >EAServer</ABBR> components. <ABBR title = "e a server" >EAServer</ABBR> loads service components
+at server start-up time. </p>
+<A NAME="TI4492"></A><p>When you mark a component as a service component in one of
+the PowerBuilder wizards, PowerBuilder installs the component as
+a service in <ABBR title = "e a server" >EAServer</ABBR> at deployment
+time. This is equivalent to adding the component to the list of
+services for the server by modifying its com.sybase.<ABBR title = "e a server" >EAServer</ABBR>.server.services property.</p>
+<A NAME="TI4493"></A><h4>Shared or not shared</h4>
+<A NAME="TI4494"></A><p>When you create a service component, the wizard marks the
+component as shared. If you want more than one instance of a service
+component, you can change that setting in the Project painter. Select
+the number of instances you want in the Create Instances spin control
+on the Components page of the <ABBR title = "e a server" >EAServer</ABBR> Component
+Generator property sheet in the Project painter. Notice that when
+you change the number of instances to a number greater than one, the
+Concurrency and Automatic Demarcation/Deactivation are
+checked. This is to ensure that the component does not encounter
+threading issues in <ABBR title = "e a server" >EAServer</ABBR>.
+For more information, see <A HREF="apptechp139.htm#CEGDECFJ">"Threading issues and component
+types"</A>.</p>
+<A NAME="TI4495"></A><h4>Functions for service components</h4>
+<A NAME="TI4496"></A><p>The PowerBuilder wizards include three additional functions
+for a service component. These functions are defined in the CTSServices::GenericServices interface
+and allow you to control the behavior of background processes associated
+with the service:<A NAME="TI4497"></A>
+<ul>
+<li class=fi><b>Start</b>   <ABBR title = "e a server" >EAServer</ABBR> calls the <b>Start</b> function
+after the service component has been loaded. You can add logic to
+this function to perform start-up initialization for the service.</li>
+<li class=ds><b>Run</b>   <ABBR title = "e a server" >EAServer</ABBR> calls the <b>Run</b> function
+after the first invocation of the <b>Start</b> function
+returns. The <b>Run</b> function allows you to perform
+repetitive tasks as a background process. The <b>Run</b> function
+must periodically suspend its own execution by calling the <b>JagSleep</b> C
+function. The <b>JagSleep</b> function frees the CPU
+to perform other tasks. To use the <b>JagSleep</b> function,
+declare an external function for <b>JagSleep</b> in
+PowerBuilder. Here is the syntax to use for the function declaration:<p><PRE> subroutine JagSleep (Long seconds) LIBRARY<br>   "libjdispatch.dll"</PRE></li>
+<li class=ds><b>Stop</b>   This function allows you to stop the execution of the background process
+coded in the <b>Run</b> function. You can implement
+a service-manager client for your service that calls <b>Stop</b>, <b>Start</b>,
+and <b>Run</b> so that the service can be restarted
+without restarting <ABBR title = "e a server" >EAServer</ABBR>. The
+script for the <b>Stop</b> function can also clean up
+any resources that were allocated in the <b>Start</b> function.
+</li>
+</ul>
+</p>
+<A NAME="CEGDECFJ"></A><h2>Threading issues and component types</h2>
+<A NAME="TI4498"></A><p>Each instance of a PowerBuilder component executes in its
+own session, and each session can support only one thread of execution.
+Therefore a single PowerBuilder component instance cannot simultaneously
+execute multiple client requests. However, multiple instances of
+the same component can each execute a separate client request. When
+you create a component, PowerBuilder sets default values for several
+properties that affect the way threads are handled in <ABBR title = "e a server" >EAServer</ABBR>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the Thread Manager</span> <A NAME="TI4499"></A>You can also use the <ABBR title = "e a server" >EAServer</ABBR> Thread
+Manager to develop more robust services. See <A HREF="apptechp139.htm#CEGCHDCA">"Using the <ABBR title = "e a server" >EAServer</ABBR> Thread Manager"</A>.</p>
+<A NAME="CEGJIFAH"></A><h4>Concurrency property</h4>
+<A NAME="TI4500"></A><p>The Concurrency property determines
+whether multiple instances of a component can be created to handle
+multiple client requests. Checking the Concurrency check box in
+the wizard or the Project painter sets the com.sybase.jaguar.component.thread.safe
+property to <b>TRUE</b>.</p>
+<p><b>Standard components</b>   For standard components, you can improve performance by allowing
+multiple instances of a component to handle client requests. The
+default setting for the concurrency property for standard components
+is checked, but you can change the setting if you want only one instance
+of a given component.</p>
+<p><b>Shared components</b>   For shared components, only one instance of the component
+should be active at any time and therefore only one thread can be executed.
+The Concurrency check box is disabled and not checked for shared components.</p>
+<p><b>Service components</b>   Although service components are usually treated as shared
+components, you can choose to create more than one instance of a service
+component to improve performance and scalability. There are three options
+on the Components page that interact for service components: Concurrency,
+Automatic Demarcation/Deactivation, and Create Instances
+(the Create Instances option can be changed only for service components). </p>
+<A NAME="TI4501"></A><p>When you change the Create Instances option to 2 or more,
+the Concurrency check box and the Automatic Demarcation/Deactivation
+check box become checked. Multiple instances of the service component
+can be created if necessary, and are deactivated after each method
+call. If you clear the Automatic Demarcation/Deactivation
+check box, so that you need to explicitly deactivate component instances,
+the Create Instances check box is reset to 1 and the Concurrency
+check box is cleared. </p>
+<A NAME="TI4502"></A><h4>bind.thread, sharing, and tx_vote properties</h4>
+<A NAME="TI4503"></A><p>There are three other component properties that affect the
+handling of threads in <ABBR title = "e a server" >EAServer</ABBR>:
+sharing, tx_vote, and bind.thread. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Bind Object property not used</span> <A NAME="TI4504"></A>An additional
+property, bind.object, enables client threads to execute in a single instance
+but also supports creation of multiple instances. This property <i>cannot</i> be
+used for PowerBuilder components and is always set to <b>FALSE</b>.</p>
+<A NAME="TI4505"></A><p>When the <i>bind.thread</i> property is set
+to <b>TRUE</b>, a method on a component instance must
+execute on the same thread that created the instance. This property
+must be set to <b>TRUE</b> if you are using live editing
+to build your component. It should be set to <b>FALSE</b> for
+components that are deployed to UNIX servers to improve scalability.</p>
+<A NAME="TI4506"></A><p>The <i>sharing</i> property identifies whether
+or not the component is shared. It is set to <b>FALSE</b> when
+you select Standard in the wizard and to <b>TRUE</b> when
+you select Shared or Service. The only way this property can be
+changed in PowerBuilder is by changing the Create Instances setting
+on the Components tab page for service components in the Project
+painter. If either the sharing or thread.safe property is set to <b>TRUE</b>,
+the other must be set to <b>FALSE</b>.</p>
+<A NAME="TI4507"></A><p>A component that can remain active between consecutive method
+invocations is called a stateful component. A component that is
+deactivated after each method call and that supports instance pooling
+is said to be a stateless component. Typically, an application built
+with stateless components offers the greatest scalability. The tx_vote
+property determines whether the component is deactivated after every
+method call. It is set to <b>FALSE</b> (stateless) if
+you check the Automatic demarcation/deactivation check
+box in the wizard or select more than one instance on the Component
+page in the Project painter; otherwise it is set to <b>TRUE</b> (stateful).
+You can have only one instance of a stateful service object.</p>
+<A NAME="TI4508"></A><p><A HREF="apptechp139.htm#CEGHGDDI">Table 24-1</A> summarizes
+the default setting for each type of component and shows which can
+be changed.</p>
+<A NAME="CEGHGDDI"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 24-1: Thread-handling properties</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4509"></A>Component </th>
+<th  rowspan="1"  ><A NAME="TI4510"></A>bind.thread</th>
+<th  rowspan="1"  ><A NAME="TI4511"></A>sharing</th>
+<th  rowspan="1"  ><A NAME="TI4512"></A>thread.safe</th>
+<th  rowspan="1"  ><A NAME="TI4513"></A>tx_vote</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4514"></A>Standard</td>
+<td  rowspan="1"  ><A NAME="TI4515"></A><b>FALSE</b>, mutable</td>
+<td  rowspan="1"  ><A NAME="TI4516"></A><b>FALSE</b>, immutable</td>
+<td  rowspan="1"  ><A NAME="TI4517"></A><b>TRUE</b>, mutable</td>
+<td  rowspan="1"  ><A NAME="TI4518"></A><b>FALSE</b>, mutable</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4519"></A>Shared</td>
+<td  rowspan="1"  ><A NAME="TI4520"></A><b>FALSE</b>, mutable</td>
+<td  rowspan="1"  ><A NAME="TI4521"></A><b>TRUE</b>, immutable</td>
+<td  rowspan="1"  ><A NAME="TI4522"></A><b>FALSE</b>, immutable</td>
+<td  rowspan="1"  ><A NAME="TI4523"></A><b>FALSE</b>, mutable</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4524"></A>Service (single instance)</td>
+<td  rowspan="1"  ><A NAME="TI4525"></A><b>FALSE</b>, mutable</td>
+<td  rowspan="1"  ><A NAME="TI4526"></A><b>TRUE</b>, immutable</td>
+<td  rowspan="1"  ><A NAME="TI4527"></A><b>FALSE</b>, mutable</td>
+<td  rowspan="1"  ><A NAME="TI4528"></A><b>FALSE</b>, mutable</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4529"></A>Service (multiple instances)</td>
+<td  rowspan="1"  ><A NAME="TI4530"></A><b>FALSE</b>, mutable</td>
+<td  rowspan="1"  ><A NAME="TI4531"></A><b>FALSE</b>, immutable</td>
+<td  rowspan="1"  ><A NAME="TI4532"></A><b>TRUE</b>, mutable</td>
+<td  rowspan="1"  ><A NAME="TI4533"></A><b>FALSE</b>, mutable<A NAME="TI4534"></A><p>If changed to <b>TRUE</b>, number of instances
+is set to 1, sharing to <b>TRUE</b>, and thread.safe
+to <b>FALSE</b>.</p></td>
+</tr>
+</table>
+<A NAME="TI4535"></A><p>If you deploy a service component for which bind.thread, thread.safe,
+and sharing are set to <b>TRUE</b>, <ABBR title = "e a server" >EAServer</ABBR> disables the thread.safe
+property automatically at runtime.</p>
+<A NAME="CEGCHDCA"></A><h2>Using the EAServer Thread Manager</h2>
+<A NAME="TI4536"></A><p>The Thread Manager is a built-in <ABBR title = "e a server" >EAServer</ABBR> component
+that allows you to run <ABBR title = "e a server" >EAServer</ABBR> component
+instances in threads that execute independently of client method
+invocations. You can use threads spawned by the Thread Manager to perform
+any processing that must occur asynchronously with respect to user interaction. </p>
+<A NAME="TI4537"></A><p>For example, you might have a component method that begins
+a lengthy file indexing operation. The method could call the Thread
+Manager to start the processing in a new thread, then return immediately.</p>
+<A NAME="TI4538"></A><p>Since each instance of a PowerBuilder component executes in
+its own session, and each session can support only one thread of
+execution, you cannot develop a service that can be stopped or refreshed
+without using the Thread Manager. In the service's <b>start</b> or <b>run</b> method,
+spawn threads that do the service's processing. In the
+service's <b>stop</b> method, call the Thread
+Manager <b>stop</b> method to halt the threads.</p>
+<A NAME="TI4539"></A><p>For a more complete description of the Thread Manager, see
+the <i>EAServer Programmer's Guide</i>
+.</p>
+

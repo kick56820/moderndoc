@@ -1,0 +1,111 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About building PowerBuilder targets</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp262.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp264.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF356973841"></A><h1>About building PowerBuilder targets</h1>
+<A NAME="TI9813"></A><p>You can build many types of targets with PowerBuilder. For
+traditional client/server applications, you need to create
+an executable version of your target that you can deploy to users' machines.
+If you are building a distributed application with PowerBuilder,
+you typically build a client executable file and a server component
+that you can deploy to a transaction server. For some types of distributed
+applications, you need to build proxy objects. </p>
+<A NAME="TI9814"></A><h4>Using the Project painter</h4>
+<A NAME="TI9815"></A><p>You use the Project painter to create and maintain PowerBuilder
+projects that build all these different objects. The Project painter
+allows you to streamline the generation of the files your target
+needs and to rebuild easily when you make changes. There is a wizard
+to help you set up each project type.</p>
+<A NAME="TI9816"></A><p><A HREF="pbugp263.htm#CACJIDDA">Table 34-1</A> lists
+the types of projects you can create and what you can build using
+the project.</p>
+<A NAME="CACJIDDA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 34-1: PowerScript target project types</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9817"></A>Project</th>
+<th  rowspan="1"  ><A NAME="TI9818"></A>What it builds</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9819"></A>Application</td>
+<td  rowspan="1"  ><A NAME="TI9820"></A>An executable file and optional dynamic
+libraries.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9821"></A>Automation Server</td>
+<td  rowspan="1"  ><A NAME="TI9822"></A>An automation server (formerly called
+an OLE automation server) based on a custom class user object that
+can be used with COM-enabled clients. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9823"></A>COM/COM+ Component</td>
+<td  rowspan="1"  ><A NAME="TI9824"></A>A COM server based on one or more custom
+class user objects that can be deployed to COM+ and/or
+used with COM-enabled clients.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9825"></A><ACRONYM title = "E A Server" >EAServer</ACRONYM> Component</td>
+<td  rowspan="1"  ><A NAME="TI9826"></A>One or more <ACRONYM title = "E A Server" >EAServer</ACRONYM> components
+based on custom class user objects that are deployed to <ACRONYM title = "E A Server" >EAServer</ACRONYM> and can be used with
+any <ACRONYM title = "E A Server" >EAServer</ACRONYM> client or component.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9827"></A><ACRONYM title = "E A Server" >EAServer</ACRONYM> Proxy</td>
+<td  rowspan="1"  ><A NAME="TI9828"></A>One or more proxy objects (stubs) that
+can be used by a PowerBuilder client to access functions in <ACRONYM title = "E A Server" >EAServer</ACRONYM> components. The <ACRONYM title = "E A Server" >EAServer</ACRONYM> components can be built
+with PowerBuilder or another development tool.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9829"></A>EJB Client Proxy</td>
+<td  rowspan="1"  ><A NAME="TI9830"></A>One or more proxy objects (stubs) that
+can be used by a PowerBuilder client to access functions in an EJB component
+on an application server.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9831"></A>Web DW Container</td>
+<td  rowspan="1"  ><A NAME="TI9832"></A>An <ACRONYM title = "E A Server" >EAServer</ACRONYM> component
+that contains your DataWindow definitions and is deployed to <ACRONYM title = "E A Server" >EAServer</ACRONYM>. It uses the interface of
+the generic Web DataWindow server component.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9833"></A>Web Service Proxy</td>
+<td  rowspan="1"  ><A NAME="TI9834"></A>A proxy object that can be used by a
+PowerBuilder client to invoke a Web service defined in a WSDL (Web
+Services Description Language) file.</td>
+</tr>
+</table>
+<A NAME="TI9835"></A><p>For how to create a new project, see <A HREF="pbugp264.htm#CHDBGAGJ">"Creating a project"</A>.</p>
+<A NAME="TI9836"></A><h4>Building executable files</h4>
+<A NAME="TI9837"></A><p>If you are building an executable file, there are two basic
+ways to package the application:<A NAME="TI9838"></A>
+<ul>
+<li class=fi>As one standalone executable file that contains all the objects
+in the application</li>
+<li class=ds>As an executable file and one or more dynamic libraries
+that contain objects that are linked at runtime
+</li>
+</ul>
+</p>
+<A NAME="TI9839"></A><p>Read the chapter on packaging your application for deployment
+in <i>Application Techniques</i>
+ to get an understanding
+of the best way for you to package the application. Then follow
+the procedures in <A HREF="pbugp265.htm#CHDCGGEE">"Defining an executable application
+project"</A> to implement your strategy.</p>
+<A NAME="TI9840"></A><h4>Building other types of targets</h4>
+<A NAME="TI9841"></A><p>For an overview of how you use the Project painter to build
+different types of components, see <A HREF="pbugp270.htm#CHDDIHCE">"Building components and
+proxies"</A>.</p>
+<A NAME="TI9842"></A><h4>Providing other resources</h4>
+<A NAME="TI9843"></A><p>You might need to provide additional resources that your target
+uses, such as bitmaps and icons. There are two ways to provide resources: <A NAME="TI9844"></A>
+<ul>
+<li class=fi>Distribute them separately</li>
+<li class=ds>Include them in a PowerBuilder resource file (PBR)
+and build an executable, a dynamic library, or a component using
+the resource file
+</li>
+</ul>
+</p>
+<A NAME="TI9845"></A><p>For more information, see <A HREF="pbugp267.htm#X-REF302356230">"Distributing resources "</A>.</p>
+<A NAME="TI9846"></A><h4>Building the workspace</h4>
+<A NAME="TI9847"></A><p>You can build and deploy all the targets in your workspace
+using buttons on the PowerBar, pop-up menus in the System Tree,
+or a command line. For more information, see <A HREF="pbugp11.htm#CEGJEBBB">"Building workspaces"</A>.</p>
+

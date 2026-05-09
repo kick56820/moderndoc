@@ -1,0 +1,76 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining queries </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp164.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp166.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CFHECFDH"></A><h1>Defining queries </h1>
+<A NAME="TI5154"></A><p>A query is a <ACRONYM title = "sequel" >SQL</ACRONYM> <b>SELECT</b> statement
+created in the Query painter and saved with a name so that it can be
+used repeatedly as the data source for a DataWindow object.</p>
+<A NAME="TI5155"></A><p>Queries save time, because you specify all the data requirements
+just once. For example, you can specify the columns, which rows
+to retrieve, and the sorting order in a query. Whenever you want
+to create a DataWindow object using that data, simply specify the query
+as the data source.</p>
+<A NAME="TI5156"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a query:</p>
+<ol><li class=fi><p>Select File&gt;New from the menu
+bar.</p></li>
+<li class=ds><p>In the New dialog box, select the Database tab.</p></li>
+<li class=ds><p>Select the Query icon and click OK.</p></li>
+<li class=ds><p>Select tables in the Select Tables dialog box
+and click Open.</p><p>You can select columns, define sorting and grouping criteria,
+define computed columns, and so on, exactly as you do when creating
+a DataWindow object using the <ACRONYM title = "sequel" >SQL</ACRONYM> Select
+data source.</p></li></ol>
+<br><A NAME="TI5157"></A><p>For more about defining the <b>SELECT</b> statement,
+see <A HREF="pbugp159.htm#CFHDDDHF">"Using <ACRONYM title = "sequel" >SQL</ACRONYM> Select"</A>.</p>
+<A NAME="TI5158"></A><h2>Previewing the query</h2>
+<A NAME="TI5159"></A><p>While creating a query, you can preview it to make sure it
+is retrieving the correct rows and columns.</p>
+<A NAME="TI5160"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To preview a query:</p>
+<ol><li class=fi><p>Select Design&gt;Preview from the
+menu bar.</p><p>PowerBuilder retrieves the rows satisfying the currently defined
+query in a grid-style DataWindow object.</p></li>
+<li class=ds><p>Manipulate the retrieved data as you do in the
+Database painter in the Output view.</p><p>You can sort and filter the data, but you cannot insert or
+delete a row or apply changes to the database. For more about manipulating
+data, see <A HREF="pbugp131.htm#BFCDFDFD">Chapter 16, "Managing the Database."</A></p></li>
+<li class=ds><p>When you have finished previewing the query, click
+the Close button in the PainterBar to return to the Query painter.</p></li></ol>
+<br><A NAME="TI5161"></A><h2>Saving the query</h2>
+<A NAME="TI5162"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To save a query:</p>
+<ol><li class=fi><p>Select File&gt;Save Query from the
+menu bar.</p><p>If you have previously saved the query, PowerBuilder saves the
+new version in the same library and returns you to the Query painter.
+If you have not previously saved the query, PowerBuilder displays
+the Save Query dialog box.</p></li>
+<li class=ds><p>Enter a name for the query in the Queries box
+(see <A HREF="pbugp165.htm#BFCBDAHA">"Naming the query"</A>).</p></li>
+<li class=ds><p>(Optional) Enter comments to describe the query.</p><p>These comments display in the Library painter. It is a good
+idea to use comments to remind yourself and others of the purpose
+of the query.</p></li>
+<li class=ds><p>Specify the library in which to save the query,
+and click OK.</p></li></ol>
+<br><A NAME="BFCBDAHA"></A><h4>Naming the query</h4>
+<A NAME="TI5163"></A><p>The query name can be any valid PowerBuilder identifier up to
+40 characters. When you name queries, use a unique
+name to identify each one. A common convention is to use a two-part
+name: a standard prefix that identifies the object as a query (such
+as <b>q_</b>) and a unique suffix. For example, you might
+name a query that displays employee data <b>q_emp_data</b>.
+For information about PowerBuilder identifiers, see the <i>PowerScript
+Reference.</i>
+</p>
+<A NAME="TI5164"></A><h2>Modifying a query</h2>
+<A NAME="TI5165"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify a query:</p>
+<ol><li class=fi><p>Select File&gt;Open from the menu bar.</p></li>
+<li class=ds><p>Select the Queries object type and then the query you
+want to modify, and click OK.</p></li>
+<li class=ds><p>Modify the query as needed.</p></li></ol>
+<br>

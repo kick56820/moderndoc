@@ -1,0 +1,96 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Looking at an application's structure</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp44.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp46.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIBEBAI"></A><h1>Looking at an application's structure</h1>
+<A NAME="TI1359"></A><p>If you are working with an application that references one
+or more objects in an application-level script, you can look at
+the application's structure in the Browser. </p>
+<A NAME="TI1360"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display the application's structure:</p>
+<ol><li class=fi><p>Click the Browser button on the PowerBar.</p></li>
+<li class=ds><p>In the Browser, select the Uses tab page and select
+Expand All from the Application object's pop-up menu.</p><p>PowerBuilder expands the display to show all the global objects
+that are referenced in a script for the Application object. You
+can expand the display further as needed.</p></li></ol>
+<br><A NAME="X-REF342889869"></A><h2>Which objects are displayed</h2>
+<A NAME="TI1361"></A><p>The Browser's Uses tab page shows global objects
+that are referenced in your application. It shows the same types
+of objects that you can see in the Library painter. It does not
+show entities that are defined within other objects, such as controls
+and object-level functions.</p>
+<br><img src="images/ap4.gif">
+<A NAME="TI1362"></A><h3>Which references are displayed</h3>
+<A NAME="TI1363"></A><p>The Browser displays the following types of references when
+the Application object is expanded.</p>
+<A NAME="TI1364"></A><h4>Objects referenced in painters</h4>
+<A NAME="TI1365"></A><p>These are examples of objects referenced in painters:<A NAME="TI1366"></A>
+<ul>
+<li class=fi>If a menu is associated with a window in the Window
+painter, the menu displays when the window is expanded.</li>
+<li class=ds>If a DataWindow object is associated with a DataWindow
+control in the Window painter, the DataWindow object displays when
+the window is expanded.</li>
+<li class=ds>If a window contains a custom user object that includes
+another user object, the custom user object displays when the window
+is expanded, and the other user object displays when the custom
+user object is expanded.
+</li>
+</ul>
+</p>
+<A NAME="TI1367"></A><h4>Objects directly referenced in scripts</h4>
+<A NAME="TI1368"></A><p>These are examples of objects referenced in scripts:</p>
+<A NAME="TI1369"></A><p><A NAME="TI1370"></A>
+<ul>
+<li class=fi>If a window script
+contains the following statement, <b>w_continue</b> displays when
+the window is expanded:<p><PRE> Open(w_continue)</PRE><br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Which referenced windows display in the Browser</span> <A NAME="TI1371"></A>Windows are considered referenced only when they are opened
+from within a script. A use of another window's property
+or instance variable will not cause the Browser to display the other
+window as a reference of the window containing the script.
+<br>
+</li>
+<li class=ds>If a menu item script refers to the global function <b>f_calc</b>, <b>f_calc</b> displays when
+the menu is expanded:<p><PRE> f_calc(EnteredValue)</PRE></li>
+<li class=ds>If a window uses a pop-up menu through the following
+statements, <b>m_new</b> displays when the
+window is expanded:<p><PRE> m_new   mymenu</PRE><PRE> mymenu = create m_new</PRE><PRE> mymenu.m_file.PopMenu(PointerX(), PointerY())</PRE>
+</li>
+</ul>
+</p>
+<A NAME="TI1372"></A><h3>Which references are not displayed</h3>
+<A NAME="TI1373"></A><p>The Browser does not display the following types of references.</p>
+<A NAME="TI1374"></A><h4>Objects referenced through instance variables
+or properties</h4>
+<A NAME="TI1375"></A><p>These are examples of objects referenced through instance
+variables or properties:<A NAME="TI1376"></A>
+<ul>
+<li class=fi>If <b>w_go</b> has
+this statement (and no other statement referencing <b>w_emp</b>), <b>w_emp</b> does
+not display as a reference for <b>w_go</b>:<p><PRE> w_emp.Title = "Managers"</PRE>
+</li>
+</ul>
+</p>
+<A NAME="TI1377"></A><h4>Objects referenced dynamically through string
+variables</h4>
+<A NAME="TI1378"></A><p>These are examples of objects referenced dynamically through
+string variables:<A NAME="TI1379"></A>
+<ul>
+<li class=fi>If a window script has the
+following statements, the window <b>w_go</b> does
+not display when the window is expanded. The window <b>w_go</b> is
+named only in a string:<p><PRE> window   mywin</PRE><PRE> string   winname = "w_go"</PRE><PRE> Open(mywin,winname)</PRE></li>
+<li class=ds>If the DataWindow object <b>d_emp</b> is
+associated with a DataWindow control dynamically through the following
+statement, <b>d_emp</b> does not display when
+the window containing the DataWindow control is expanded:<p><PRE> dw_info.DataObject = "d_emp"</PRE>
+</li>
+</ul>
+</p>
+

@@ -1,0 +1,232 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating an HTML page</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp230.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp232.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BIIBCFIB"></A><h1>Creating an HTML page</h1>
+<A NAME="TI7057"></A><p>After creating and building the PowerBuilder PBDs for your
+PowerBuilder window ActiveX application, you need to create the
+HTML page that displays it.</p>
+<A NAME="TI7058"></A><p>To include a PowerBuilder window on a Web page, you use the
+Object element. Element attributes specify the class ID for the
+PowerBuilder window ActiveX, the space allocated for the window,
+the name of the PBD, the name of the child window in the PBD, the
+library list, and the version of PowerBuilder.</p>
+<A NAME="TI7059"></A><p>A sample Object element might be:<p><PRE> &lt;OBJECT NAME="PBRX1" WIDTH=225 HEIGHT=83</PRE><PRE> CLASSID="CLSID:AAAA1304-A5A5-1000-8000-080009AC61A9"&gt;</PRE><PRE> &lt;PARAM NAME="_Version" VALUE="65536"&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM NAME="_ExtentX" VALUE="5962"&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM NAME="_ExtentY" VALUE="2164"&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM NAME="_StockProps" VALUE="0"&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM NAME="PBWindow" VALUE="w_helloworld"&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM NAME="LibList" VALUE="http://www.company.com/rknnt.pbd;"&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM NAME="PBApplication" VALUE="hello"&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM NAME="PBVersion" VALUE="100"&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;/OBJECT&gt;</PRE></p>
+<A NAME="TI7060"></A><h2>Attributes of the Object element</h2>
+<A NAME="TI7061"></A><p>The Object element is part of the HTML specification for ActiveX
+controls. It defines several standard attributes, and PowerBuilder
+defines additional attributes.</p>
+<A NAME="TI7062"></A><h4>HTML attributes</h4>
+<A NAME="TI7063"></A><p>HTML attributes specify the class ID, the name, and the space
+reserved for the PowerBuilder window ActiveX on the Web page.</p>
+<A NAME="TI7064"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 34-2: HTML attributes of Object element</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7065"></A>HTML attribute</th>
+<th  rowspan="1"  ><A NAME="TI7066"></A>Value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7067"></A>NAME</td>
+<td  rowspan="1"  ><A NAME="TI7068"></A>Name of the object when referenced in
+code or when submitted as part of a form.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7069"></A>CLASSID</td>
+<td  rowspan="1"  ><A NAME="TI7070"></A>The class ID of the registered ActiveX
+control.<A NAME="TI7071"></A><p>The syntax is:   <p><PRE>CLSID:<i>class_id</i></PRE></p>
+</p><A NAME="TI7072"></A><p>To find the class ID value of the registered ActiveX control, you
+can use the PowerBuilder Browser's OLE tab. Expand the
+OLE Custom Controls item, then expand the PowerBuilder Window Control
+or Secure Window Control item. The class ID is the value of the
+GUID item of the Class Information branch.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7073"></A>CODEBASE</td>
+<td  rowspan="1"  ><A NAME="TI7074"></A>A URL identifying the location of the
+OCX or CAB file to be downloaded if the client machine does not
+contain the PowerBuilder window ActiveX.<A NAME="TI7075"></A><p>The client machine must still have the PowerBuilder virtual machine
+and any other required DLLs on the system path.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7076"></A>WIDTH</td>
+<td  rowspan="1"  ><A NAME="TI7077"></A>The width of the viewing window in pixels.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7078"></A>HEIGHT</td>
+<td  rowspan="1"  ><A NAME="TI7079"></A>The height of the viewing window in pixels.</td>
+</tr>
+</table>
+<A NAME="TI7080"></A><p>The WIDTH and HEIGHT attributes define the maximum width and
+height of the child window. If the child window is resizable, the
+user can make it smaller than the specified size, but not larger.</p>
+<A NAME="TI7081"></A><h4>Param elements</h4>
+<A NAME="TI7082"></A><p>To specify properties for the PowerBuilder window ActiveX,
+include Param elements. Param elements let you identify the window
+object that starts your application, the Application object, additional
+libraries, and additional parameters to pass to the PowerBuilder
+window ActiveX. <A HREF="apptechp231.htm#BABEHEAG">Table 34-3</A> lists
+the PowerBuilder-specific Param elements.</p>
+<A NAME="BABEHEAG"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 34-3: PowerBuilder window ActiveX Param
+elements</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7083"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI7084"></A>Value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7085"></A>PBWINDOW</td>
+<td  rowspan="1"  ><A NAME="TI7086"></A>The class name of the child window in
+the PBD.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7087"></A>LIBLIST</td>
+<td  rowspan="1"  ><A NAME="TI7088"></A>A list of PowerBuilder dynamic libraries
+(PBD files) required by the application. Separate multiple entries with
+a semicolon.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7089"></A>PBAPPLICATION <br>(optional)</td>
+<td  rowspan="1"  ><A NAME="TI7090"></A>The PowerBuilder Application object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7091"></A>PBVERSION </td>
+<td  rowspan="1"  ><A NAME="TI7092"></A>The version of the PowerBuilder DLLs
+(for example, 105).</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7093"></A>DISPLAYERRORS <br>(optional)</td>
+<td  rowspan="1"  ><A NAME="TI7094"></A>Boolean indicating whether to display
+execution errors.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7095"></A>COMMANDPARM <br>(optional)</td>
+<td  rowspan="1"  ><A NAME="TI7096"></A>A string you want to pass to your window.
+To access this string from within your window, call the <b>CommandParm</b> function.</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Coding the Object element</span> <A NAME="TI7097"></A>To minimize coding errors, use an ActiveX-aware HTML editor
+(such as the Web targets HTML editor, the ActiveX Control Pad, or
+Front Page) when coding an Object element and its parameters.</p>
+<A NAME="TI7098"></A><h2>Basic page</h2>
+<A NAME="TI7099"></A><p>This sample page includes the PowerBuilder window ActiveX:</p>
+<br><img src="images/intrx010.gif">
+<A NAME="TI7100"></A><p>Here is the HTML code that produces this page (note the use
+of the Object element to specify the PowerBuilder window ActiveX):</p>
+<A NAME="TI7101"></A><p><p><PRE> &lt;HTML&gt;</PRE><PRE> &lt;HEAD&gt;</PRE><PRE> &lt;TITLE&gt;Employee List&lt;/TITLE&gt;</PRE><PRE> &lt;/HEAD&gt;</PRE><PRE> &lt;BODY&gt;</PRE><PRE> &lt;H1&gt;PowerBuilder window ActiveX&lt;/H1&gt;</PRE><PRE> &lt;P&gt;</PRE><PRE> &lt;OBJECT ID="PBRX1" NAME="PBRX1" WIDTH=357 HEIGHT=269</PRE><PRE> CLASSID="CLSID:AAAA1304-A5A5-1000-8000-080009AC61A9"&gt;</PRE><PRE> &lt;PARAM NAME="_Version" VALUE="65536"&gt;</PRE><PRE> &lt;PARAM NAME="_ExtentX" VALUE="9440"&gt;</PRE><PRE> &lt;PARAM NAME="_ExtentY" VALUE="7112"&gt;</PRE><PRE> &lt;PARAM NAME="_StockProps" VALUE="0"&gt;</PRE><PRE> &lt;PARAM NAME="PBWindow" VALUE="w_emplist"&gt;</PRE><PRE> &lt;PARAM NAME="LibList" VALUE="http://www.company.com/rknnt.pbd;"&gt;</PRE><PRE> &lt;PARAM NAME="PBApplication" VALUE="rknnt"&gt;</PRE><PRE> &lt;PARAM NAME="PBVersion" VALUE="105"&gt;</PRE><PRE> &lt;/OBJECT&gt;</PRE><PRE> &lt;/BODY&gt;</PRE><PRE> &lt;/HTML&gt;</PRE></p>
+<A NAME="TI7102"></A><h2>Client-side scripting</h2>
+<A NAME="TI7103"></A><p>You can interact with the window displayed in a PowerBuilder
+window ActiveX by adding JavaScript or VBScript to the HTML page.
+You can:<A NAME="TI7104"></A>
+<ul>
+<li class=fi>Code event handlers that respond
+to events that occur in the window</li>
+<li class=ds>Call PowerScript functions to obtain pointer information,
+print, set redraw, or set a timer</li>
+<li class=ds>Call the <b>InvokePBFunction</b> function
+to invoke a user-defined window function</li>
+<li class=ds>Call the <b>TriggerPBEvent</b> function
+to trigger a user event on the window
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Viewing ActiveX properties, events, and functions</span> <A NAME="TI7105"></A>When the window ActiveX is registered on your
+machine, you can use the PowerBuilder Browser's OLE tab
+to see the list of window ActiveX properties, events, and functions.</p>
+<A NAME="TI7106"></A><h4>Coding event handlers</h4>
+<A NAME="TI7107"></A><p>Your HTML page can contain JavaScript or VBScript event handlers
+for the PowerBuilder window ActiveX.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Coding example assumptions</span> <A NAME="TI7108"></A>The following code examples assume that the HTML page includes
+a Form, named buttonForm, which contains several Input elements:
+passedFlags, passedXPos, and passedYPos.</p>
+<A NAME="TI7109"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To code JavaScript event handlers for the PowerBuilder
+window ActiveX:</p>
+<ol><li class=fi><p>Insert the PowerBuilder window ActiveX
+into the HTML page, specifying all necessary properties:</p><p><p><PRE> &lt;OBJECT NAME="PBRX1" WIDTH=225 HEIGHT=83</PRE><PRE> CLASSID="CLSID:AAAA1304-A5A5-1000-8000-080009AC61A9"&gt;</PRE><PRE> &lt;PARAM NAME="_Version" VALUE="65536"&gt;</PRE><PRE> &lt;PARAM NAME="_ExtentX" VALUE="5962"&gt;</PRE><PRE> &lt;PARAM NAME="_ExtentY" VALUE="2164"&gt;</PRE><PRE> &lt;PARAM NAME="_StockProps" VALUE="0"&gt;</PRE><PRE> &lt;PARAM NAME="PBWindow" VALUE="w_helloworld"&gt;</PRE><PRE> &lt;PARAM NAME="LibList" VALUE="http://www.company.com/rknnt.pbd;"&gt;</PRE><PRE> &lt;PARAM NAME="PBApplication" VALUE="rknnt"&gt;</PRE><PRE> &lt;PARAM NAME="PBVersion" VALUE="105"&gt;</PRE><PRE> &lt;/OBJECT&gt;</PRE></p></li>
+<li class=ds><p>Within the heading of the HTML page, code a function
+to be called when the event occurs. </p><p>The following sample function simply displays the arguments
+to the Clicked event. <p><PRE> function wasClicked(flags, xpos, ypos) {</PRE><PRE>    document.buttonForm.passedFlags.value = flags;</PRE><PRE>    document.buttonForm.passedXPos.value = xpos;</PRE><PRE>    document.buttonForm.passedYPos.value = ypos;</PRE><PRE> }</PRE></p></li>
+<li class=ds><p>Within the body of the HTML page, code an event
+handler that calls the function when the event occurs:</p><p><p><PRE> &lt;SCRIPT LANGUAGE="JavaScript" FOR="PBRX1" Event="Clicked(flags, xpos, ypos)"&gt;</PRE><PRE> &lt;!--</PRE><PRE> wasClicked(flags, xpos, ypos);</PRE><PRE> --&gt;</PRE><PRE> &lt;/SCRIPT&gt;</PRE></p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Coding style</span> <A NAME="TI7110"></A>Alternatively, you can omit the function call, placing all
+code within the event handler, as shown next.</p>
+</li></ol>
+<br><A NAME="TI7111"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To code VBScript event handlers for the PowerBuilder
+window ActiveX:</p>
+<ol><li class=fi><p>Insert the PowerBuilder window ActiveX
+into the HTML page, specifying all necessary properties:</p><p><p><PRE> &lt;OBJECT NAME="PBRX1" WIDTH=225 HEIGHT=83</PRE><PRE> CLASSID="CLSID:AAAA1304-A5A5-1000-8000-080009AC61A9"&gt;</PRE><PRE> &lt;PARAM NAME="_Version" VALUE="65536"&gt;</PRE><PRE> &lt;PARAM NAME="_ExtentX" VALUE="5962"&gt;</PRE><PRE> &lt;PARAM NAME="_ExtentY" VALUE="2164"&gt;</PRE><PRE> &lt;PARAM NAME="_StockProps" VALUE="0"&gt;</PRE><PRE> &lt;PARAM NAME="PBWindow" VALUE="w_helloworld"&gt;</PRE><PRE> &lt;PARAM NAME="LibList" VALUE="http://www.company.com/rknnt.pbd;"&gt;</PRE><PRE> &lt;PARAM NAME="PBApplication" VALUE="rknnt"&gt;</PRE><PRE> &lt;PARAM NAME="PBVersion" VALUE="105"&gt;</PRE><PRE> &lt;/OBJECT&gt;</PRE></p></li>
+<li class=ds><p>Within the body of the HTML page, code an event
+handler that processes the event. </p><p>This sample function simply displays the arguments to the
+Clicked event:<p><PRE> &lt;SCRIPT LANGUAGE="VBScript"&gt;</PRE><PRE> &lt;!--</PRE><PRE> Sub PBRX1_Clicked(flags, xpos, ypos)</PRE><PRE>    document.buttonForm.passedFlags.value = flags</PRE><PRE>    document.buttonForm.passedXPos.value = xpos</PRE><PRE>    document.buttonForm.passedYPos.value = ypos</PRE><PRE> end sub</PRE><PRE> --&gt;</PRE><PRE> &lt;/SCRIPT&gt;</PRE></p></li></ol>
+<br><A NAME="TI7112"></A><h4>Calling PowerScript functions</h4>
+<A NAME="TI7113"></A><p>The PowerBuilder window ActiveX allows you to call certain
+PowerScript functions on the window displayed in the Active control:<A NAME="TI7114"></A>
+<ul>
+<li class=fi><b>PointerX</b>   Returns the distance from the left edge of the window to the pointer.</li>
+<li class=ds><b>PointerY</b>   Returns the distance from the top of the window to the pointer.</li>
+<li class=ds><b>Print</b>   Prints the window.</li>
+<li class=ds><b>SetRedraw</b>   Turns on or off automatic redrawing of the window after every
+change.</li>
+<li class=ds><b>Timer</b>   Causes the window's Timer event to occur repeatedly
+at the specified interval.
+</li>
+</ul>
+</p>
+<A NAME="TI7115"></A><p>For more information on these functions, see
+the <i>PowerScript Reference.</i>
+</p>
+<A NAME="TI7116"></A><p>As with all ActiveX controls, the PowerBuilder window ActiveX
+provides an <b>AboutBox</b> function, which you can
+call to see information about the control.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Coding example assumptions</span> <A NAME="TI7117"></A>The following coding examples assume that you have written
+scripts to be invoked by the PowerBuilder window's Timer
+event.</p>
+<A NAME="TI7118"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use JavaScript to call a PowerScript function:</p>
+<ol><li class=fi><p>Code a function to call the PowerScript
+function. </p><p>This example calls the PowerScript <b>Timer</b> function:<p><PRE> &lt;SCRIPT LANGUAGE="JavaScript"&gt;</PRE><PRE> &lt;!--</PRE><PRE> var cumSeconds = 0;</PRE><PRE> function setPBTimer( f ) {</PRE><PRE> var li_return</PRE><PRE> var li_interval</PRE><PRE> li_interval = parseInt(f.timerInterval.value);</PRE><PRE> li_return = PBRX1.Timer(li_interval);</PRE><PRE> if (li_return != 1) {</PRE><PRE>    alert("Set Timer failed");</PRE><PRE> }</PRE><PRE> }</PRE><PRE> //--&gt;</PRE><PRE> /SCRIPT</PRE></p></li>
+<li class=ds><p>Code a function, anchor, or button that calls
+the function. </p><p>This example uses a button on a form to call the function
+defined above, which resets the timer interval:<p><PRE> &lt;FORM NAME="clockForm"&gt;</PRE><PRE> &lt;P&gt;Timer Interval:</PRE><PRE> &lt;INPUT TYPE=Text NAME="timerInterval" Size="5"&gt;</PRE><PRE> &lt;P&gt;&lt;INPUT TYPE=BUTTON VALUE="Set Timer"</PRE><PRE> ONCLICK="setPBTimer(this.form)"&gt;</PRE><PRE> &lt;/FORM&gt;</PRE></p></li></ol>
+<br><A NAME="TI7119"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use VBScript to call a PowerScript function:</p>
+<ol><li class=fi><p>Code a function to call the PowerScript
+function. This example calls the PowerScript <b>Timer</b> function:</p><p><p><PRE> &lt;SCRIPT LANGUAGE="VBScript"&gt;</PRE><PRE> &lt;!--</PRE><PRE> dim cumSeconds</PRE><PRE> cumSeconds = 0</PRE><PRE> Sub pbSetTime()</PRE><PRE>   dim li_return</PRE><PRE>   dim li_interval</PRE><PRE>   li_interval = clockForm.timerInterval.value</PRE><PRE>   li_return = pbrx1.Timer(li_interval)</PRE><PRE>   if li_return  1 THEN</PRE><PRE>     msgBox "Set Timer failed"</PRE><PRE>   end if</PRE><PRE>   end sub</PRE><PRE> //--&gt;</PRE><PRE> &lt;/SCRIPT&gt;</PRE></p></li>
+<li class=ds><p>Code a function, anchor, or button that calls
+the function. </p><p>This example uses a button on a form to call the function
+defined above, which resets the timer interval:<p><PRE> &lt;FORM NAME="clockForm"&gt;</PRE><PRE> &lt;P&gt;Timer Interval: </PRE><PRE> &lt;INPUT TYPE=Text NAME="timerInterval" Size="5"&gt;</PRE><PRE> &lt;HR&gt;</PRE><PRE> &lt;P&gt;Mirror of PB Time: </PRE><PRE> &lt;INPUT TYPE=Text NAME="pbTime" Size="8"&gt;</PRE><PRE> &lt;HR&gt;</PRE><PRE> &lt;P&gt;INPUT TYPE=BUTTON VALUE="Set Timer" onClick="call pbSetTime()"&gt;</PRE><PRE> &lt;/FORM&gt;</PRE></p></li></ol>
+<br><A NAME="TI7120"></A><h4>Calling user-defined functions</h4>
+<A NAME="TI7121"></A><p>The PowerBuilder window ActiveX provides the <b>InvokePBFunction</b> function, which
+you can use to call a user-defined window function.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>VBScript and JavaScript differ</span> <A NAME="TI7122"></A>If your user-defined functions contain arguments and you are
+using JavaScript, you must use SetArgElement to specify the arguments;
+you cannot specify the arguments explicitly in the <b>InvokePBFunction</b> function.</p>
+<A NAME="TI7123"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To code JavaScript that invokes a user-defined
+function:</p>
+<ol><li class=fi><p>Define window functions as needed.</p><p>The following example assumes that in the PowerBuilder window,
+you have defined the function <b>of_arg</b> that
+takes a string as a parameter.</p></li>
+<li class=ds><p>Code a JavaScript function that calls the <b>InvokePBFunction</b> function, specifying
+the user-defined function to invoke. </p><p>This example initializes arguments and calls the <b>of_args</b> window
+function:<p><PRE> function invokeFunc(f) {</PRE><PRE>   var retcd;</PRE><PRE>   var rc;</PRE><PRE>   var numargs;</PRE><PRE>   var theFunc;</PRE><PRE>   var theArg;</PRE><PRE>   retcd = 0;</PRE><PRE>   numargs = 1;</PRE><PRE>   theArg = f.textToPB.value;</PRE><PRE>   PBRX1.SetArgElement(1, theArg);</PRE><PRE>   theFunc = "of_args";</PRE><PRE>   retcd = PBRX1.InvokePBFunction(theFunc, numargs);</PRE><PRE>   rc = parseInt(PBRX1.GetLastReturn());</PRE><PRE>   if (rc != 1) {</PRE><PRE>     alert("Error. Empty string.");</PRE><PRE>   }</PRE><PRE>   PBRX1.ResetArgElements();</PRE><PRE> }</PRE></p></li>
+<li class=ds><p>Code a function, anchor, or form button that invokes
+your JavaScript function. For example:</p><p><p><PRE> &lt;FORM&gt;</PRE><PRE> &lt;P&gt;Copy this text to PowerBuilder:</PRE><PRE> &lt;INPUT TYPE=Text NAME="textToPB" SIZE="20"&gt;</PRE><PRE> &lt;P&gt;&lt;INPUT TYPE=BUTTON VALUE="Invoke Func"</PRE><PRE> ONCLICK="invokeFunc(this.Form)"&gt;</PRE><PRE> &lt;/FORM&gt;</PRE></p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Defining arguments in JavaScript</span> <A NAME="TI7124"></A>When coding in JavaScript, define function and event arguments
+by calling the <b>SetArgElement</b> function.</p>
+<A NAME="TI7125"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To code VBScript that invokes a user-defined function:</p>
+<ol><li class=fi><p>Define window functions as needed.</p><p>The following example assumes that in the PowerBuilder window
+you have defined the function <b>of_arg</b> that
+takes a string as a parameter.</p></li>
+<li class=ds><p>Code a VBScript function that calls the <b>InvokePBFunction</b> function, specifying
+the user-defined function to invoke. </p><p>This example initializes arguments and calls the <b>of_args</b> window
+function:<p><PRE> Sub invokeFunction()</PRE><PRE>   Dim retcd</PRE><PRE>   Dim myForm</PRE><PRE>   Dim args(1)</PRE><PRE>   Dim rc</PRE><PRE>   Dim numargs</PRE><PRE>   Dim theFunc</PRE><PRE>   Dim rcfromfunc</PRE><PRE>   retcd = 0</PRE><PRE>   numargs = 1</PRE><PRE>   rc = 0</PRE><PRE>   theFunc = "of_args"</PRE><PRE>   Set myForm = Document.buttonForm</PRE><PRE>   args(0) = buttonForm.textToPB.value</PRE><PRE>   retcd = PBRX1.InvokePBFunction(theFunc, <br>    numargs, args)</PRE><PRE>   rc = PBRX1.GetLastReturn()</PRE><PRE>   if rc  1 then</PRE><PRE>     msgbox "Error. Empty string."</PRE><PRE>   end if</PRE><PRE>   PBRX1.ResetArgElements()</PRE><PRE> end sub</PRE></p></li>
+<li class=ds><p>Code a function, anchor, or form button whose
+click invokes your VBScript function. For example:</p><p><p><PRE> &lt;FORM NAME="buttonForm"&gt;</PRE><PRE> &lt;P&gt;&lt;INPUT TYPE=Text NAME="textToPB" SIZE="20"&gt;</PRE><PRE> &lt;P&gt;&lt;INPUT TYPE=BUTTON VALUE="Invoke Function" ONCLICK="call invokeFunction()"&gt;</PRE><PRE> &lt;/FORM&gt;</PRE></p></li></ol>
+<br><A NAME="TI7126"></A><h4>Calling user events</h4>
+<A NAME="TI7127"></A><p>The PowerBuilder window ActiveX provides the <b>TriggerPBEvent</b> function, which
+you can use to call a user event on the window.</p>
+<A NAME="TI7128"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To code JavaScript that triggers a user event:</p>
+<ol><li class=fi><p>Define user events on the window as needed.</p><p>The following example assumes that in the PowerBuilder window
+you have defined the user event ue_args that takes a string
+as an argument.</p></li>
+<li class=ds><p>Code a function to call the user event. This example
+initializes arguments and calls the ue_args window event:</p><p><p><PRE> function triggerEvent(f) {</PRE><PRE>   var retcd;</PRE><PRE>   var rc;</PRE><PRE>   var numargs;</PRE><PRE>   var theEvent;</PRE><PRE>   var theArg;</PRE><PRE>   retcd = 0;</PRE><PRE>   numargs = 1;</PRE><PRE>   theArg = f.textToPB.value;</PRE><PRE>   PBRX1.SetArgElement(1, theArg);</PRE><PRE>   theEvent = "ue_args";</PRE><PRE>   retcd = PBRX1.TriggerPBEvent(theEvent, numargs);</PRE><PRE>   rc = parseInt(PBRX1.GetLastReturn());</PRE><PRE>   if (rc != 1) {</PRE><PRE>     alert("Error. Empty string.");</PRE><PRE>   }</PRE><PRE>   PBRX1.ResetArgElements();</PRE><PRE> }</PRE></p></li>
+<li class=ds><p>Code a function, anchor, or form button that calls
+the <b>TriggerPBEvent</b> function. For example:</p><p><p><PRE> &lt;FORM&gt;</PRE><PRE> &lt;P&gt;&lt;INPUT TYPE=Text NAME="textToPB" SIZE="20"&gt;</PRE><PRE> &lt;P&gt;&lt;INPUT TYPE=BUTTON VALUE="Trigger Event"</PRE><PRE> ONCLICK="triggerEvent(this.Form)"&gt;</PRE><PRE> &lt;/FORM&gt;</PRE></p></li></ol>
+<br><A NAME="TI7129"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To code VBScript that triggers a user event:</p>
+<ol><li class=fi><p>Define user events on the window, as needed.</p><p>The following example assumes that in the PowerBuilder window
+you have defined the user event ue_args that takes a string
+as an argument.</p></li>
+<li class=ds><p>Code a function to call the user event. This example
+initializes arguments and calls the ue_args window function:</p><p><p><PRE> Sub TrigEvent( )</PRE><PRE>   Dim retcd</PRE><PRE>   Dim myForm</PRE><PRE>   Dim args(1)</PRE><PRE>   Dim rc</PRE><PRE>   Dim numargs</PRE><PRE>   Dim theEvent</PRE><PRE>   retcd = 0</PRE><PRE>   numargs = 1</PRE><PRE>   rc = 0</PRE><PRE>   theEvent = "ue_args"</PRE><PRE>   Set myForm = Document.buttonForm</PRE><PRE>   args(0) = buttonForm.textToPB.value</PRE><PRE>   retcd = PBRX1.TriggerPBEvent(theEvent,</PRE><PRE>              numargs, args)</PRE><PRE>   rc = PBRX1.GetLastReturn()</PRE><PRE>   if rc  1 then</PRE><PRE>     msgbox "Error. Empty string."</PRE><PRE>   end if</PRE><PRE>   PBRX1.ResetArgElements()</PRE><PRE> end sub</PRE></p></li>
+<li class=ds><p>Code a function, anchor, or form button whose
+click invokes your VBScript function. For example:</p><p><p><PRE> &lt;FORM NAME="buttonForm"&gt;</PRE><PRE> &lt;P&gt;&lt;INPUT TYPE=Text NAME="textToPB" SIZE="20"&gt;</PRE><PRE> &lt;P&gt;&lt;INPUT TYPE=BUTTON VALUE="Trigger Event" ONCLICK="call TrigEvent()"&gt;</PRE><PRE> &lt;/FORM&gt;</PRE></p></li></ol>
+<br>

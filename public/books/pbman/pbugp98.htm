@@ -1,0 +1,184 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Naming controls </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp97.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp99.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF298661128"></A><h1>Naming controls </h1>
+<A NAME="TI2566"></A><p>When you place a control in a window, PowerBuilder assigns
+it a unique name. The name is the concatenation of the default prefix
+for the control name and the lowest 1- to 4-digit number that makes
+the name unique.</p>
+<A NAME="TI2567"></A><p>For example, assume the prefix for ListBoxes is <b>lb_</b> and
+you add a ListBox to the window:</p>
+<A NAME="TI2568"></A><p><A NAME="TI2569"></A>
+<ul>
+<li class=fi>If the names <b>lb_1</b>, <b>lb_2</b>,
+and <b>lb_3</b> are currently used, the default
+name is <b>lb_4</b></li>
+<li class=ds>If <b>lb_1</b> and <b>lb_3</b> are
+currently used but <b>lb_2</b> is not, the
+default name is <b>lb_2</b>
+</li>
+</ul>
+</p>
+<A NAME="TI2570"></A><h2>About the default prefixes</h2>
+<A NAME="TI2571"></A><p>Each type of control has a default prefix for its name. <A HREF="pbugp98.htm#CIHFAEIB">Table 12-1</A> lists the initial default
+prefix for each control (note that there is no prefix for a window).</p>
+<A NAME="CIHFAEIB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 12-1: Default prefixes for window control
+names</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2572"></A>Control</th>
+<th  rowspan="1"  ><A NAME="TI2573"></A>Prefix</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2574"></A>Animation</td>
+<td  rowspan="1"  ><A NAME="TI2575"></A>am_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2576"></A>CheckBox</td>
+<td  rowspan="1"  ><A NAME="TI2577"></A>cbx_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2578"></A>CommandButton</td>
+<td  rowspan="1"  ><A NAME="TI2579"></A>cb_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2580"></A>DataWindow</td>
+<td  rowspan="1"  ><A NAME="TI2581"></A>dw_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2582"></A>DatePicker</td>
+<td  rowspan="1"  ><A NAME="TI2583"></A>dp_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2584"></A>DropDownListBox</td>
+<td  rowspan="1"  ><A NAME="TI2585"></A>ddlb_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2586"></A>DropDownPictureListBox</td>
+<td  rowspan="1"  ><A NAME="TI2587"></A>ddplb_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2588"></A>EditMask</td>
+<td  rowspan="1"  ><A NAME="TI2589"></A>em_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2590"></A>Graph</td>
+<td  rowspan="1"  ><A NAME="TI2591"></A>gr_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2592"></A>GroupBox</td>
+<td  rowspan="1"  ><A NAME="TI2593"></A>gb_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2594"></A>HProgressBar</td>
+<td  rowspan="1"  ><A NAME="TI2595"></A>hpb_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2596"></A>HScrollBar</td>
+<td  rowspan="1"  ><A NAME="TI2597"></A>hsb_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2598"></A>HTrackBar</td>
+<td  rowspan="1"  ><A NAME="TI2599"></A>htb_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2600"></A>InkEdit</td>
+<td  rowspan="1"  ><A NAME="TI2601"></A>ie_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2602"></A>InkPicture</td>
+<td  rowspan="1"  ><A NAME="TI2603"></A>ip_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2604"></A>Line</td>
+<td  rowspan="1"  ><A NAME="TI2605"></A>ln_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2606"></A>ListBox</td>
+<td  rowspan="1"  ><A NAME="TI2607"></A>lb_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2608"></A>ListView</td>
+<td  rowspan="1"  ><A NAME="TI2609"></A>lv_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2610"></A>MonthCalendar</td>
+<td  rowspan="1"  ><A NAME="TI2611"></A>mc_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2612"></A>MultiLineEdit</td>
+<td  rowspan="1"  ><A NAME="TI2613"></A>mle_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2614"></A>OLE 2.0</td>
+<td  rowspan="1"  ><A NAME="TI2615"></A>ole_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2616"></A>Oval</td>
+<td  rowspan="1"  ><A NAME="TI2617"></A>ov_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2618"></A>Picture</td>
+<td  rowspan="1"  ><A NAME="TI2619"></A>p_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2620"></A>PictureHyperLink</td>
+<td  rowspan="1"  ><A NAME="TI2621"></A>phl_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2622"></A>PictureButton</td>
+<td  rowspan="1"  ><A NAME="TI2623"></A>pb_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2624"></A>PictureListBox</td>
+<td  rowspan="1"  ><A NAME="TI2625"></A>plb_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2626"></A>RadioButton</td>
+<td  rowspan="1"  ><A NAME="TI2627"></A>rb_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2628"></A>Rectangle</td>
+<td  rowspan="1"  ><A NAME="TI2629"></A>r_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2630"></A>RichTextEdit</td>
+<td  rowspan="1"  ><A NAME="TI2631"></A>rte_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2632"></A>RoundRectangle</td>
+<td  rowspan="1"  ><A NAME="TI2633"></A>rr_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2634"></A>SingleLineEdit</td>
+<td  rowspan="1"  ><A NAME="TI2635"></A>sle_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2636"></A>StaticText</td>
+<td  rowspan="1"  ><A NAME="TI2637"></A>st_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2638"></A>StaticHyperLink</td>
+<td  rowspan="1"  ><A NAME="TI2639"></A>shl_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2640"></A>Tab</td>
+<td  rowspan="1"  ><A NAME="TI2641"></A>tab_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2642"></A>TreeView</td>
+<td  rowspan="1"  ><A NAME="TI2643"></A>tv_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2644"></A>User Object</td>
+<td  rowspan="1"  ><A NAME="TI2645"></A>uo_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2646"></A>VProgressBar</td>
+<td  rowspan="1"  ><A NAME="TI2647"></A>vpb_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2648"></A>VScrollBar</td>
+<td  rowspan="1"  ><A NAME="TI2649"></A>vsb_</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2650"></A>VTrackBar</td>
+<td  rowspan="1"  ><A NAME="TI2651"></A>vtb_</td>
+</tr>
+</table>
+<A NAME="TI2652"></A><h3>Changing the default prefixes</h3>
+<A NAME="TI2653"></A><p>You can change the default prefixes for controls in the Window
+painter's Options dialog box. Select Design&gt;Options
+from the menu bar to open the Options dialog box. The changes you
+make are saved in the PowerBuilder initialization file. For more
+about the PowerBuilder initialization file, see <A HREF="pbugp22.htm#X-REF304001355">"How the PowerBuilder
+environment is managed"</A>.</p>
+<A NAME="TI2654"></A><h2>Changing
+the name</h2>
+<A NAME="TI2655"></A><p>You should change the default suffix to a suffix that is meaningful
+in your application. For example, if you have command buttons that
+update and retrieve database information, you might call them <b>cb_update</b> and <b>cb_retrieve</b>. If
+you have many controls on a window, using intuitive names makes
+it easier for you and others to write and understand scripts for
+these controls.</p>
+<A NAME="TI2656"></A><p>Using application-based names instead of sequential numbers
+also minimizes the likelihood that you will have name conflicts
+when you use inheritance to create windows.</p>
+<A NAME="TI2657"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change a control's name:</p>
+<ol><li class=fi><p>Select the control to display the control's
+properties in the Properties view.</p></li>
+<li class=ds><p>On the General tab page, select the application-specific
+suffix (for example, the <FONT FACE="Courier New">1 </FONT>in
+the <FONT FACE="Courier New">cb_1 </FONT>command
+button name) and type a more meaningful one. </p><p>You can use any valid PowerBuilder identifier with up to 40
+characters. For information about PowerBuilder identifiers, see
+the <i>PowerScript Reference.</i>
+</p></li></ol>
+<br>

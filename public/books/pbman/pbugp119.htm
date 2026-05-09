@@ -1,0 +1,262 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining the appearance and behavior of menu items</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp118.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp120.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CACDIAEFD"></A><h1>Defining the appearance and behavior of menu items</h1>
+<A NAME="TI3335"></A><p>By setting menu properties, you can customize the display
+of menus in applications that you create with PowerBuilder. You
+use the Menu painter to change the appearance and behavior of your
+menu and menu items by choosing different settings in the tab pages
+in the Properties view. For a list of all menu item properties,
+see <i>Objects and Controls</i>
+.</p>
+<A NAME="BGEFJDHB"></A><h2>Setting General properties for menu items</h2>
+<A NAME="TI3336"></A><p>This section describes the properties you can set when you
+select a menu item and then select the General tab page in the Properties
+view.</p>
+<A NAME="TI3337"></A><h4>Creating MicroHelp and tags</h4>
+<A NAME="TI3338"></A><p>MicroHelp is a brief text description of the menu item that
+displays on the status bar at the bottom of a Multiple Document
+Interface (MDI) application window. Type the text you want to display
+in the MicroHelp box. For examples of MicroHelp text, select an
+item from a menu in PowerBuilder and look at the text that displays
+in the status bar. </p>
+<A NAME="TI3339"></A><p>A tag is a text string that you can associate with an object
+and use in any way you want.</p>
+<A NAME="TI3340"></A><p>For information about defining MicroHelp text
+and tag properties, see the chapter on building MDI applications
+in <i>Application Techniques</i>
+.</p>
+<A NAME="CACBIIAH"></A><h4>Setting the appearance
+of a menu item</h4>
+<A NAME="TI3341"></A><p>On the General tab page in the Properties view, you can also
+specify how a menu item appears at runtime.</p>
+<A NAME="TI3342"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 14-3: Setting display properties for menu items</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3343"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI3344"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3345"></A>Visible</td>
+<td  rowspan="1"  ><A NAME="TI3346"></A>Whether the menu item is visible. An
+invisible menu item still displays in the WYSIWYG and Tree Menu
+views, but at runtime, it will not display. In WYSIWYG Menu view,
+an invisible item has faded and dotted text.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3347"></A>Enabled</td>
+<td  rowspan="1"  ><A NAME="TI3348"></A>Whether the menu item can be selected.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3349"></A>Checked</td>
+<td  rowspan="1"  ><A NAME="TI3350"></A>Whether the menu item displays with a
+check mark next to it.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3351"></A>Default</td>
+<td  rowspan="1"  ><A NAME="TI3352"></A>Whether the menu item text is bold. In
+a pop-up menu, Default indicates what action occurs if the user
+double-clicks instead of right-clicks on an item. In dragging, Default
+indicates what happens when an item is dragged with the left mouse
+button instead of the right mouse button.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3353"></A>ShiftToRight</td>
+<td  rowspan="1"  ><A NAME="TI3354"></A>Whether the menu item shifts to the right
+(or down for a drop-down or cascading menu) when you add
+menu items in a menu that is inherited from this menu. Selecting
+this property allows you to insert menu items in descendent menus,
+instead of being able to add them only to the end.<A NAME="TI3355"></A><p>For more information, see <A HREF="pbugp122.htm#CACBECAH">"Inserting menu items
+in a descendent menu"</A>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3356"></A>MergeOption</td>
+<td  rowspan="1"  ><A NAME="TI3357"></A>The way menus are modified when an OLE
+object is activated. Options are: File, Edit, Window, Help, Merge,
+Exclude.<A NAME="TI3358"></A><p>For more information, see the chapter about
+using OLE in an application in <i>Application Techniques.</i>
+</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3359"></A>MenuItemType</td>
+<td  rowspan="1"  ><A NAME="TI3360"></A>Whether the menu item you are creating
+is Normal, About, Exit, or Help type.</td>
+</tr>
+</table>
+<A NAME="TI3361"></A><p>The settings you specify here determine how the menu items
+display by default. You can change the values of the properties
+in scripts at runtime.</p>
+<A NAME="CFHDCCGH"></A><h4>Assigning
+accelerator and shortcut keys</h4>
+<A NAME="TI3362"></A><p>Every menu item should have an accelerator key, also called
+a mnemonic access key, which allows users to select the item from
+the keyboard by pressing Alt+<i>key</i> when
+the menu is displayed. Accelerator keys display with an underline
+in the menu item text.</p>
+<A NAME="TI3363"></A><p>You can also define shortcut keys, which are combinations
+of keys that a user can press to select a menu item whether or not
+the menu is displayed.</p>
+<A NAME="TI3364"></A><p>For example, in the following menu all menu items have accelerator
+keys: the accelerator key is N for New, O for Open, and so on. New,
+Open, Close, and Print each have shortcut keys: the Ctrl key in
+combination with another key or keys.</p>
+<br><img src="images/menu11.gif">
+<A NAME="TI3365"></A><p>You should adopt conventions for using accelerator and shortcut
+keys in your applications. All menu items should have accelerator
+keys, and commonly used menu items should have shortcut keys. </p>
+<A NAME="TI3366"></A><p>If you specify the same shortcut for more than one MenuItem,
+the command that occurs later in the menu hierarchy is executed.</p>
+<A NAME="TI3367"></A><p>Some shortcut key combinations, such as Ctrl+C, Ctrl+V,
+and Ctrl+X, are commonly used by many applications. Avoid
+using these combinations when you assign shortcut keys for your
+application. </p>
+<A NAME="TI3368"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To assign an accelerator key:</p>
+<ol><li class=fi><p>Type an ampersand (&amp;) before the
+letter in the menu item text that you want to designate as the accelerator
+key.</p><p>For example, &amp;File designates the F in File as an
+accelerator key and Ma&amp;ximize designates the x in Maximize
+as an accelerator key.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Displaying an ampersand in the text</span> <A NAME="TI3369"></A>If you want an ampersand to display in the menu text, type
+two ampersands. For example, <FONT FACE="Courier New">Fish&amp;&amp;Chips</FONT> displays
+as Fish&amp;Chips with no accelerator key. To display Fish&amp;Chips
+as the menu text with the C underlined as the accelerator, type <FONT FACE="Courier New">Fish&amp;&amp;&amp;Chips</FONT>.</p>
+</li></ol>
+<br><A NAME="TI3370"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To assign a shortcut key:</p>
+<ol><li class=fi><p>Select the menu item to which you want
+to assign a shortcut key.</p></li>
+<li class=ds><p>Select the General tab in the Properties view.</p></li>
+<li class=ds><p>Select a key from the Shortcut Key drop-down list.</p><br><img src="images/menu22.gif"><br>
+</li>
+<li class=ds><p>Select Shortcut Alt, Shortcut Ctrl, and/or
+Shortcut Shift to create a key combination.</p><p>PowerBuilder displays the shortcut key next to the menu item
+name.</p></li></ol>
+<br><A NAME="BGEHBCAC"></A><h2>Setting menu style properties for contemporary menus</h2>
+<A NAME="TI3371"></A><p>Menus with a contemporary style have a three-dimensional menu
+appearance and can include bitmap and menu title bands. The following
+figure shows a contemporary style menu:</p>
+<br><img src="images/ctmpmenu.gif">
+<A NAME="TI3372"></A><p>After you select the contemporary style, you can modify other
+menu style properties on the top-level menu object and on all lower-level
+menu items. Since it is important to maintain a consistent look
+across each menu and toolbar, very few style properties are modifiable
+at the menu item level.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you select the traditional menu style</span> <A NAME="TI3373"></A>If you select <FONT FACE="Courier New">traditionalmenu!</FONT> for
+the top-level menu object, you cannot modify any of the menu style
+properties.</p>
+<A NAME="TI3374"></A><p>You can modify menu style properties only at design time.
+After you select the contemporary menu style for a top-level
+menu object, you can select values for other style properties to
+manipulate a menu's visual appearance. The following properties
+are modifiable for the top-level menu object only; you
+cannot modify them for individual menu items:</p>
+<A NAME="TI3375"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI3376"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI3377"></A>Datatype</th>
+<th  rowspan="1"  ><A NAME="TI3378"></A>Use to assign</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3379"></A>MenuStyle</td>
+<td  rowspan="1"  ><A NAME="TI3380"></A>Enumerated</td>
+<td  rowspan="1"  ><A NAME="TI3381"></A>Overall menu style. Values are: contemporarymenu!
+and traditionalmenu!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3382"></A>MenuTextColor</td>
+<td  rowspan="1"  ><A NAME="TI3383"></A>Long</td>
+<td  rowspan="1"  ><A NAME="TI3384"></A>Menu text color. (Default is the Windows menu
+text color.)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3385"></A>MenuBackColor</td>
+<td  rowspan="1"  ><A NAME="TI3386"></A>Long</td>
+<td  rowspan="1"  ><A NAME="TI3387"></A>Background color of the menu.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3388"></A>MenuHighlightColor</td>
+<td  rowspan="1"  ><A NAME="TI3389"></A>Long</td>
+<td  rowspan="1"  ><A NAME="TI3390"></A>Menu highlight color. (Default is the
+default Windows highlight color.)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3391"></A>FaceName</td>
+<td  rowspan="1"  ><A NAME="TI3392"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI3393"></A>Font face name.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3394"></A>TextSize</td>
+<td  rowspan="1"  ><A NAME="TI3395"></A>Integer</td>
+<td  rowspan="1"  ><A NAME="TI3396"></A>Font character size in points for menu
+items. (Does not apply to the main menu bar which has a fixed height.)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3397"></A>Bold</td>
+<td  rowspan="1"  ><A NAME="TI3398"></A>Boolean</td>
+<td  rowspan="1"  ><A NAME="TI3399"></A>Bold font.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3400"></A>Italic</td>
+<td  rowspan="1"  ><A NAME="TI3401"></A>Boolean</td>
+<td  rowspan="1"  ><A NAME="TI3402"></A>Italic font.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3403"></A>Underline</td>
+<td  rowspan="1"  ><A NAME="TI3404"></A>Boolean</td>
+<td  rowspan="1"  ><A NAME="TI3405"></A>Underline font.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3406"></A>TitleBackColor</td>
+<td  rowspan="1"  ><A NAME="TI3407"></A>Long</td>
+<td  rowspan="1"  ><A NAME="TI3408"></A>Background color of the title panel.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3409"></A>BitmapBackColor</td>
+<td  rowspan="1"  ><A NAME="TI3410"></A>Long</td>
+<td  rowspan="1"  ><A NAME="TI3411"></A>Background color of the bitmap band of
+the menu. (Default is silver.)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3412"></A>MenuBitmaps</td>
+<td  rowspan="1"  ><A NAME="TI3413"></A>Boolean</td>
+<td  rowspan="1"  ><A NAME="TI3414"></A>Bitmap band for the menu. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3415"></A>BitmapGradient</td>
+<td  rowspan="1"  ><A NAME="TI3416"></A>Boolean</td>
+<td  rowspan="1"  ><A NAME="TI3417"></A>Background of the bitmap band to a gradient
+style.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3418"></A>MenuTitles</td>
+<td  rowspan="1"  ><A NAME="TI3419"></A>Boolean</td>
+<td  rowspan="1"  ><A NAME="TI3420"></A>Menu title band.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3421"></A>TitleGradient</td>
+<td  rowspan="1"  ><A NAME="TI3422"></A>Boolean</td>
+<td  rowspan="1"  ><A NAME="TI3423"></A>Background gradient style for the title panel.</td>
+</tr>
+</table>
+<A NAME="TI3424"></A><h2>Setting menu item style properties</h2>
+<A NAME="TI3425"></A><p>Menu items have style properties that you set at design time.
+You cannot use these style properties with a traditional style menu.
+Unlike the style properties on the Menu object that display on the
+Appearance tab of the Properties view, the fields where you set
+these properties are located on the General tab of the Properties
+view for each menu item.</p>
+<A NAME="TI3426"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI3427"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI3428"></A>Datatype</th>
+<th  rowspan="1"  ><A NAME="TI3429"></A>Use to assign</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3430"></A>MenuAnimation</td>
+<td  rowspan="1"  ><A NAME="TI3431"></A>Boolean</td>
+<td  rowspan="1"  ><A NAME="TI3432"></A>Visual sizing cue to the menu item bitmap when
+the associated menu item is selected. This property is ignored if
+the MenuImage property is not assigned. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3433"></A>MenuImage</td>
+<td  rowspan="1"  ><A NAME="TI3434"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI3435"></A>Bitmap image to be used with the menu item.
+This property is ignored if the MenuBitmaps property for the menu
+object is not selected or is set to <b>false</b>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3436"></A>MenuTitleText</td>
+<td  rowspan="1"  ><A NAME="TI3437"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI3438"></A>Label for menu item that has a cascading submenu.
+The label text is set vertically in a column to the left of the
+submenu items and the bitmaps for submenu items, if any. If the vertical
+label text is longer than the height of all the submenu items, the
+label text is cut from the end. This property is ignored if the MenuTitles
+property for the menu object is not selected.</td>
+</tr>
+</table>
+<A NAME="TI3439"></A><p>You select or enter values for the menu item style properties
+on the General tab of the Properties view for each menu item. You
+can make selections for the MenuAnimation and MenuImage properties
+only if the MenuBitmaps check box for the current menu object is
+selected. The MenuBitmaps check box is selected by default for the
+contemporary menu style.</p>
+<A NAME="TI3440"></A><p>You can enter text for the MenuTitleText property only if
+the MenuTitles check box for the current menu object is selected.</p>
+

@@ -1,0 +1,110 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+TreeView DataWindow samples</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp234.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp236.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CEGIEHIC"></A><h1>TreeView DataWindow samples</h1>
+<A NAME="TI8154"></A><p>This section provides you with two samples that demonstrate
+use of the TreeView DataWindow. </p>
+<A NAME="TI8155"></A><h4>What the samples do</h4>
+<A NAME="TI8156"></A><p>The two TreeView DataWindow samples are:<A NAME="TI8157"></A>
+<ul>
+<li class=fi>Data
+Explorer<br>
+The Data Explorer uses a TreeView DataWindow to display sales-related data
+in a Windows Explorer-like interface and allows users to update
+the data.<br></li>
+<li class=ds>Data Linker<br>
+The Data Linker uses a TreeView DataWindow on the left for
+data navigation, linked to four DataWindows on the right for updating
+the data. The Data Linker demonstrates populating a TreeView DataWindow
+with data and linking each TreeView level to a separate DataWindow.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI8158"></A><h4>Tables and database</h4>
+<A NAME="TI8159"></A><p>Both samples use the <b>employee</b>, <b>sales_order</b>, <b>sales_order_items</b>, <b>customer</b>,
+and <b>product</b> tables in the EAS Demo DB database.</p>
+<A NAME="TI8160"></A><h4>TreeView DataWindows</h4>
+<A NAME="TI8161"></A><p>The TreeView DataWindows are <i>d_sales_report</i> and <i>d_sales_report2</i>.
+Each TreeView DataWindow has three TreeView levels:<A NAME="TI8162"></A>
+<ul>
+<li class=fi>The first level (level 1) is the sales representative's
+name.<br>
+You create the first level using the TreeView DataWindow wizard.<br></li>
+<li class=ds>The second level (level 2) is the name of the customer's
+company.<br>
+You create the second level using the Rows&gt;Create
+TreeView Level menu item in the DataWindow painter.<br></li>
+<li class=ds>The third level (level 3) is the sales order ID.<br>
+You also create the third level using the Rows&gt;Create
+TreeView Level menu item in the DataWindow painter.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI8163"></A><h2>Data Explorer sample</h2>
+<A NAME="TI8164"></A><h4>What the Data Explorer does</h4>
+<A NAME="TI8165"></A><p>Clicking on each TreeView level displays details in a DataWindow
+on the right. For example, if you click a name in the TreeView DataWindow
+on the left, detailed customer data displays in the DataWindow on
+the right.</p>
+<br><img src="images/tvdataex.gif">
+<A NAME="TI8166"></A><h4>Using the Data Explorer</h4>
+<A NAME="TI8167"></A><p>You can click on any TreeView level in the Data Explorer.
+If you click a company name in the TreeView DataWindow on the left
+(for example, Able Inc., under Catherine Pickett), order information
+displays on the right. </p>
+<br><img src="images/clconame.gif">
+<A NAME="TI8168"></A><p>If you click an order ID in the TreeView DataWindow on the
+left (for example, order ID 2400, under Bilhome Industries, under
+Alison Clark), the customer order information displays on the right.</p>
+<br><img src="images/dataxord.gif">
+<A NAME="TI8169"></A><h4>Data Explorer TreeView DataWindow</h4>
+<A NAME="TI8170"></A><p>Here is the TreeView DataWindow used in the Data Explorer.</p>
+<br><img src="images/dwsales1.gif">
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>One TreeView DataWindow</span> <A NAME="TI8171"></A>The Data Explorer uses one TreeView DataWindow, but DataWindows
+that are not TreeView DataWindows also support the Data Explorer's
+functionality. </p>
+<A NAME="TI8172"></A><h4>Data Explorer code</h4>
+<A NAME="TI8173"></A><p>The code in the Clicked event uses <b>GetBandAtPointer</b> to
+determine which DataWindow to display. Clicking on some editable
+items in the detail DataWindow opens a window in which you can manipulate
+the data.</p>
+<A NAME="TI8174"></A><p>The PopMenu menu object has two menu items that call the <b>CollapseAll</b> and <b>ExpandAll</b> methods
+to collapse or expand all the nodes in the TreeView.</p>
+<A NAME="TI8175"></A><h2>Data Linker sample</h2>
+<A NAME="TI8176"></A><h4>What the Data Linker does</h4>
+<A NAME="TI8177"></A><p>When you first run the Data Linker, no data displays on the
+right side of the window.</p>
+<br><img src="images/tvlink.gif">
+<A NAME="TI8178"></A><h4>Using the Data Linker</h4>
+<A NAME="TI8179"></A><p>To use the Data Linker, you first expand an employee name
+and a company's data in the TreeView DataWindow. </p>
+<br><img src="images/expand.gif">
+<A NAME="TI8180"></A><p>Expanding the TreeView displays the company names, the orders
+for the company you select, and in the detail band, the icon and
+name for each item in the order. </p>
+<A NAME="TI8181"></A><p>You can click on each of the TreeView levels in order, and
+then click in the detail band to display the details in the four
+DataWindows on the right. </p>
+<A NAME="TI8182"></A><p>For example, if you click first on Catherine Pickett, then
+on Avon Inc., then on 2073, and last on Baseball Cap, the data in
+each of the related DataWindows displays on the right. You can also
+update the data in each of the DataWindows.</p>
+<br><img src="images/tvlinkex.gif">
+<A NAME="TI8183"></A><h4>Data Linker TreeView DataWindow</h4>
+<A NAME="TI8184"></A><p>Here is the TreeView DataWindow used in the Data Linker sample.</p>
+<br><img src="images/dwsales2.gif">
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>One TreeView DataWindow</span> <A NAME="TI8185"></A>The Data Linker uses one TreeView DataWindow, but other DataWindows
+that are not TreeView DataWindows also support the Data Linker's
+functionality. </p>
+<A NAME="TI8186"></A><h4>Data Linker code</h4>
+<A NAME="TI8187"></A><p>The code in the Clicked event uses <b>GetBandAtPointer</b> to
+determine which DataWindow to display. </p>
+

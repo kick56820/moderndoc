@@ -1,0 +1,67 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Sorting rows </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp202.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp204.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCDHDGD"></A><h1>Sorting rows </h1>
+<A NAME="TI6660"></A><p>You can use an <b>ORDER BY</b> clause in the <ACRONYM title = "sequel" >SQL</ACRONYM> <b>SELECT</b> statement
+for the DataWindow object to sort the data that is retrieved from the database.
+If you do this, the DBMS itself does the sorting and the rows are
+brought into PowerBuilder already sorted. </p>
+<A NAME="TI6661"></A><p>However, you might want to sort the rows after they are retrieved.
+For example, you might want to:<A NAME="TI6662"></A>
+<ul>
+<li class=fi>Offload the processing from
+the DBMS</li>
+<li class=ds>Sort on an expression, which might not be allowed
+in the <b>SELECT</b> statement but is allowed in PowerBuilder
+</li>
+</ul>
+</p>
+<A NAME="TI6663"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To sort the rows:</p>
+<ol><li class=fi><p>Select Rows&gt;Sort from the menu
+bar.</p><br><img src="images/db0021.gif"><br>
+</li>
+<li class=ds><p>Drag to the Columns box the columns on which you
+want to sort the rows, and specify whether you want to sort in ascending
+or descending order.</p><p>The order of the columns determines the precedence of the
+sort. To reorder the columns, drag them up or down in the list.
+To delete a column from the sort columns list, drag the column outside
+the dialog box.</p></li>
+<li class=ds><p>You can also specify expressions to sort on: for
+example, if you have two columns, Revenues and Expenses, you can
+sort on the expression <i>Revenues &#8211; Expenses</i>.</p><p>To specify an expression to sort on, double-click a column
+name in the Columns box, modify the expression in the Modify Expression
+dialog box, and click OK.</p><p>You return to the Specify Sort Columns dialog box with the
+expression displayed.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you change your mind </span> <A NAME="TI6664"></A>You can remove a column or expression from the sorting specification
+by simply dragging it and releasing it outside the Columns box.</p>
+</li>
+<li class=ds><p>Click OK when you have specified all the sort
+columns and expressions.</p></li></ol>
+<br><A NAME="TI6665"></A><h2>Suppressing repeating values</h2>
+<A NAME="TI6666"></A><p>When you sort on a column, there might be several rows with
+the same value in one column. You can choose to suppress the repeating
+values in that column.</p>
+<A NAME="TI6667"></A><p>When you suppress a repeating value, the value displays at
+the start of each new page and, if you are using groups, each time
+a value changes in a higher group.</p>
+<A NAME="TI6668"></A><p>For example, if you have sorted employees by department ID,
+you can suppress all but the first occurrence of each department
+ID in the DataWindow object:</p>
+<br><img src="images/filt04.gif">
+<A NAME="TI6669"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To suppress repeating values:</p>
+<ol><li class=fi><p>Select Rows&gt;Suppress Repeating
+Values from the menu bar.</p><p>The Specify Repeating Value Suppression List dialog box displays:</p><br><img src="images/filt05.gif"><br>
+</li>
+<li class=ds><p>Drag the columns whose repeated values you want
+to suppress from the Source Data box to the Suppression List box,
+and click OK.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you change your mind</span> <A NAME="TI6670"></A>You can remove a column from the suppression list simply by
+dragging it and releasing it outside the Suppression List box.</p>
+</li></ol>
+<br>

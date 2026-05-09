@@ -1,0 +1,39 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+PBDOM object hierarchy</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp77.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp79.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABFGABI"></A><h1>PBDOM object hierarchy</h1>
+<A NAME="TI2128"></A><p>The following figure shows the PBDOM object hierarchy:</p>
+<A NAME="CACIGCAH"></A><caption><b>Figure 14-1: The PBDOM object hierarchy</b></captionls>
+<br><img src="images/domhier1.gif">
+<A NAME="TI2129"></A><h4>PBDOM_OBJECT and its descendants</h4>
+<A NAME="TI2130"></A><p>The base class for PBDOM objects
+that represent XML nodes, PBDOM_OBJECT, inherits from the
+PowerBuilder NonVisualObject class. Each of the node types is represented
+by a PBDOM class whose methods you use to access objects in a PBDOM
+node tree. PBDOM_OBJECT and its descendants are described
+in <A HREF="apptechp79.htm#BABDHIIH">"PBDOM node objects"</A>. You
+can also find some information about XML node types in the chapter
+on exporting and importing XML data in the <i>PowerBuilder
+User's Guide</i>
+.</p>
+<A NAME="TI2131"></A><h4>PBDOM_BUILDER</h4>
+<A NAME="TI2132"></A><p>The PBDOM_BUILDER class also inherits from NonVisualObject.
+It serves as a factory class that creates a PBDOM_DOCUMENT
+from various XML input sources including a string, a file, and a
+DataStore.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Building a PBDOM_DOCUMENT from scratch</span> <A NAME="TI2133"></A>To build a PBDOM_DOCUMENT without a source that contains
+existing XML, use the PBDOM_DOCUMENT <b>NewDocument</b> methods.</p>
+<A NAME="TI2134"></A><h4>PBDOM_EXCEPTION</h4>
+<A NAME="TI2135"></A><p>The PBDOM_EXCEPTION class inherits from the PowerBuilder
+Exception class. It extends the Exception class with a method that
+returns a predefined exception code when an exception is raised
+in a PBDOM application. For more information about this class, see <A HREF="apptechp82.htm#CDEGGEDA">"Handling PBDOM exceptions"</A>.</p>
+

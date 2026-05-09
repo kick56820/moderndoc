@@ -1,0 +1,114 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining the ADO.NET interface</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp25.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp27.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABDEHGIN"></A><h1>Defining the ADO.NET interface</h1>
+<A NAME="TI620"></A><h4>Using the ADO.NET Database Profile Setup</h4>
+<A NAME="TI621"></A><p>To define a connection using the ADO.NET interface, you must
+create a database profile by supplying values for at least the basic
+connection parameters in the Database Profile Setup &#8211; ADO.NET
+dialog box. You can then select this profile at any time to connect
+to your data in PowerBuilder. </p>
+<A NAME="TI622"></A><p>For information on how to define a database profile, see <A HREF="connpbp6.htm#X-REF289075262">"Using database profiles"</A>. </p>
+<A NAME="TI623"></A><h4>Specifying connection parameters</h4>
+<A NAME="TI624"></A><p>You must supply a value for the Namespace and DataSource connection parameters
+and for the User ID and Password. When you use the System.Data.OleDb
+namespace, you must also select a data provider from the list of
+installed data providers in the Provider drop-down list. </p>
+<A NAME="TI625"></A><p>The Data Source value varies depending on the type of data
+source connection you are making. For example: <A NAME="TI626"></A>
+<ul>
+<li class=fi>If you are using Microsoft's OLE DB Provider
+for SQL Server, you select SQLOLEDB as the Provider value and enter
+the actual server name as the Data Source value. In the case of
+Microsoft SQL Server, you must also use the Extended Properties
+field to provide the database name (for example, Database=Pubs)
+since you can have multiple instances of a database. </li>
+<li class=ds>If you are using the DataDirect OLE DB Provider
+to connect to an Oracle8<i>i</i> database, you select Sybase.Oracle8ADOProvider
+as the Provider value and enter the actual data source name (which
+you should have previously defined using the DataDirect OLE DB Administrator)
+as the Data Source value. 
+</li>
+</ul>
+</p>
+<A NAME="TI627"></A><h4>Using the Data Link API with OLE DB</h4>
+<A NAME="TI628"></A><p>The Data Link option allows you to access Microsoft's
+Data Link API, which allows you to define a file or use an existing
+file that contains your OLE DB connection information. A Data Link
+file is identified with the suffix .<i>udl</i>. </p>
+<A NAME="TI629"></A><p>To launch this option, select the File Name check box on the
+Connection page and double-click the button next to the File Name
+box. (You can also launch the Data Link API in the Database painter
+by double-clicking the Manage Data Links utility included with the
+OLE DB interface in the list of Installed Database Interfaces.) </p>
+<A NAME="TI630"></A><p>For more information on using the Data Link
+API, see <A HREF="http://msdn.microsoft.com/data">Microsoft's Universal Data Access Web site</A>
+.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using a Data Link file versus setting the database
+parameters</span> <A NAME="TI631"></A>If you use a Data Link file to connect to your data source,
+all other database-specific settings you make in the ADO.NET
+Database Profile Setup dialog box are ignored.</p>
+<A NAME="TI632"></A><h2>Getting identity column values</h2>
+<A NAME="TI633"></A><p>You can use the standard <FONT FACE="Courier New">select @@identity</FONT> syntax
+to obtain the value of an identity column. You can also use an alternative
+syntax, such as <FONT FACE="Courier New">select scope_identity()</FONT>,
+by adding sections to a .NET configuration file for your application.</p>
+<A NAME="TI634"></A><h4>Setting up a dbConfiguration section in a configuration
+file</h4>
+<A NAME="TI635"></A><p>The following example shows the general structure of a configuration
+file with a database configuration section and one custom configuration
+section:<p><PRE> &lt;configuration&gt;<br>   &lt;configSections&gt;<br>     &lt;sectionGroup name="dbConfiguration"&gt;<br>        &lt;section name="<i>mycustomconfig</i>"          type="Sybase.PowerBuilder.Db.DbConfiguration,<br>         Sybase.PowerBuilder.Db"<br>        /&gt;<br>      &lt;/sectionGroup&gt;<br>   &lt;/configSections&gt;<br> <br>   &lt;dbConfiguration&gt;<br>      &lt;<i>mycustomconfig</i> dbParm="<i>optional_value</i>"<br>       getIdentity="<i>optional_syntax</i>" <br>      /&gt;<br>   &lt;/dbConfiguration&gt;<br>&lt;/configuration&gt;</PRE></p>
+<A NAME="TI636"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a database configuration section to a .NET
+configuration file:</p>
+<ol><li class=fi><p>In the &lt;configElements&gt; section
+of the configuration file, add a &lt;sectionGroup&gt; element
+with the name "dbConfiguration". This name is case
+sensitive.</p><p>&lt;configSections&gt; must appear at the beginning
+of the configuration file, before the &lt;runtime&gt; section
+if any.</p></li>
+<li class=ds><p>In the dbConfiguration &lt;sectionGroup&gt; element,
+add one of more &lt;section&gt; elements.</p><p>For each section, specify a name of your choice and a type.
+The type is the strong name of the assembly used to parse this section
+of the configuration file. </p></li>
+<li class=ds><p>Close the &lt;section&gt; and &lt;configSections&gt; elements
+and add a &lt;dbConfiguration&gt; element.</p></li>
+<li class=ds><p>For each section you defined in step 2, add a
+new element to the &lt;dbConfiguration&gt; section.</p><p>For example, if you defined a section called <FONT FACE="Courier New">config1</FONT>,
+add a <FONT FACE="Courier New">config1</FONT> element. Each
+element has two attributes: dbParm and getIdentity. You can set
+either or both of these attributes. </p><p>The dbParm value sets the value of the DBParm parameter
+of the transaction object. It has a maximum length of 1000 characters.
+If you set a value for a parameter in the configuration file, any
+value that you set in code or in the Database Profile Setup dialog
+box is overridden. </p><p>The getIdentity value specifies the syntax used to retrieve
+the value of an identity column. It has a maximum length of 100
+characters. If you do not specify a value for getIdentity, the <FONT FACE="Courier New">select @@identity</FONT> syntax
+is used.</p></li></ol>
+<br><A NAME="CHDEBEJG"></A><h4>Sample configuration file</h4>
+<A NAME="TI637"></A><p>This sample configuration file for PowerBuilder 10.5 is called pb105.exe.config.
+It contains three custom configurations. The &lt;myconfig&gt; element
+sets both the dbParm and getIdentity attributes. &lt;myconfig1&gt; sets getIdentity
+only, and &lt;myconfig2&gt; sets dbParm only. The &lt;runtime&gt; section
+is in the configuration file that ships with PowerBuilder.<p><PRE> &lt;configuration&gt;<br>   &lt;configSections&gt;<br>     &lt;sectionGroup name="dbConfiguration"&gt;<br>        &lt;section name="myconfig"          type="Sybase.PowerBuilder.Db.DbConfiguration,<br>         Sybase.PowerBuilder.Db"<br>        /&gt;<br>        &lt;section name="myconfig1"<br>         type="Sybase.PowerBuilder.Db.DbConfiguration,<br>         Sybase.PowerBuilder.Db"<br>        /&gt;<br>        &lt;section name="myconfig2"<br>         type="Sybase.PowerBuilder.Db.DbConfiguration,<br>         Sybase.PowerBuilder.Db"<br>        /&gt;<br>      &lt;/sectionGroup&gt;<br>   &lt;/configSections&gt;<br></PRE><PRE>    &lt;runtime&gt;<br>      &lt;assemblyBinding xmlns=<br>       "urn:schemas-microsoft-com:asm.v1"&gt;<br>        &lt;dependentAssembly&gt;<br>          &lt;assemblyIdentity name=<br>            "Sybase.PowerBuilder.Db"/&gt;<br>          &lt;codeBase href="file:///C:/Program Files/<br>           Sybase/PowerBuilder 10.5/<br>           Sybase.PowerBuilder.Db.dll"/&gt;<br>        &lt;/dependentAssembly&gt;<br>        &lt;dependentAssembly&gt;<br>          &lt;assemblyIdentity name=<br>            "Sybase.PowerBuilder.WebService.WSDL"/&gt;<br>          &lt;codeBase href="file:///C:/Program Files/<br>           Sybase/PowerBuilder 10.5/<br>            Sybase.PowerBuilder.WebService.WSDL.dll"/&gt;<br>         &lt;/dependentAssembly&gt;<br>         &lt;dependentAssembly&gt;<br>           &lt;assemblyIdentity name=<br>            "Sybase.PowerBuilder.WebService.Runtime"/&gt;<br>           &lt;codeBase href="file:///C:/Program Files/<br>             Sybase/PowerBuilder 10.5/<br>             Sybase.PowerBuilder.WebService.<br>             Runtime.dll"/&gt;<br>         &lt;/dependentAssembly&gt;<br>         &lt;probing privatePath="TmpWebService" /&gt;<br>      &lt;/assemblyBinding&gt;<br>   &lt;/runtime&gt;<br></PRE><PRE>    &lt;dbConfiguration&gt;<br>      &lt;myconfig dbParm="disablebind=1"<br>       getIdentity="select scope_identity()" <br>      /&gt;<br>      &lt;myconfig1 getIdentity="select scope_identity()"<br>      /&gt;<br>      &lt;myconfig2 dbParm=<br>       "Namespace='Oracle.DataAccess.Client',<br>       DataSource='ora10gen',DisableBind=1,<br>       NCharBind=1,ADORelease='10.1.0.301'" <br>      /&gt;<br>   &lt;/dbConfiguration&gt;<br>&lt;/configuration&gt;</PRE></p>
+<A NAME="TI638"></A><h4>Specifying the custom configuration to be used</h4>
+<A NAME="TI639"></A><p>On the System tab page in the Database Profile Setup dialog
+box for ADO.NET or in code, specify the name of the custom configuration
+section you want to use as the value of the DbConfigSection parameter.
+For example:<p><PRE> Sqlca.DBParm="DbConfigSection='myconfig'"</PRE></p>
+<A NAME="TI640"></A><p>If you set any parameters in the profile or in code that are
+also set in the configuration file, the value specified in the configuration
+file takes precedence.</p>
+<A NAME="TI641"></A><p>The configuration file must be present in the same directory
+as the executable file and must have the same name with the extension
+.<i>config</i>.</p>
+<A NAME="TI642"></A><A NAME="TI643"></A><p>This part describes how to set up and define database connections
+accessed through one of the native database interfaces.</p>
+

@@ -1,0 +1,543 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Working with tables</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp135.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp137.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDHHHB"></A><h1>Working with tables</h1>
+<A NAME="TI4078"></A><p>When you open the Database painter, the Object view lists all tables
+in the current database that you have access to (including tables
+that were not created using PowerBuilder). You can create a new table
+or alter an existing table. You can also modify table properties
+and work with indexes and keys.</p>
+<A NAME="TI4079"></A><h2>Creating a new table from scratch</h2>
+<A NAME="TI4080"></A><p>In PowerBuilder, you can create a new table in any database
+to which PowerBuilder is connected. </p>
+<A NAME="TI4081"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a table in the current database:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI4082"></A>
+<ul>
+<li class=fi>Click
+the Create Table button.</li>
+<li class=ds>Right-click in the Columns view and select New Table
+from the pop-up menu.</li>
+<li class=ds>Right-click Tables in the Objects view and select
+New Table from the pop-up menu. </li>
+<li class=ds>Select Insert&gt;Table from the Object menu.
+</li>
+</ul>
+
+                      </p><p>The new table template displays in the Columns view. What
+you see in the view is DBMS-dependent.You use this template to specify
+each column in the table. The insertion point is in the Column Name
+box for the first column. </p></li>
+<li class=ds><p>Enter the required information for this column.</p><p>For what to enter in each field, see <A HREF="pbugp136.htm#BABJBHDJ">"Specifying column definitions"</A>.</p><p>As you enter information, use the Tab key to move from place
+to place in the column definition. After defining the last item
+in the column definition, press the Tab key to display the work
+area for the next column.</p></li>
+<li class=ds><p>Repeat step 2 for each additional column in your
+table.</p></li>
+<li class=ds><p>(Optional) Select Object&gt;Pending <ACRONYM title = "sequel" >SQL </ACRONYM>from the menu bar or select Pending <ACRONYM title = "sequel" >SQL</ACRONYM> from the pop-up menu to see the
+pending <ACRONYM title = "sequel" >SQL</ACRONYM> syntax.</p><p>If you have not already named the table, you must provide
+a name in the dialog box that displays. To hide the <ACRONYM title = "sequel" >SQL</ACRONYM> syntax and return to the table columns,
+select Object&gt;Pending Syntax from the menu bar.</p></li>
+<li class=ds><p>Click the Save button or select Save from the
+File or pop-up menu, then enter a name for the table in the Create
+New Table dialog box.</p><p>PowerBuilder submits the pending <ACRONYM title = "sequel" >SQL</ACRONYM> syntax
+statements it generated to the DBMS, and the table is created. The
+new table is displayed in the Object Layout view. </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About saving the table</span> <A NAME="TI4083"></A>If you make changes after you save the table and before you
+close it, you see the pending changes when you select Pending <ACRONYM title = "sequel" >SQL</ACRONYM> again. When you click Save again, PowerBuilder submits
+a <b>DROP TABLE</b> statement to the DBMS, recreates
+the table, and applies all changes that are pending. Clicking Save
+many times can be time consuming when you are working with large
+tables, so you might want to save only when you have finished. </p>
+</li>
+<li class=ds><p>Specify extended attributes for the columns.</p><p>For what to enter in each field, see <A HREF="pbugp136.htm#BABBHCBH">"Specifying column extended
+attributes"</A>.</p></li></ol>
+<br><A NAME="TI4084"></A><h2>Creating a new table from an existing table</h2>
+<A NAME="TI4085"></A><p>You can create a new table that is similar to an existing
+table very quickly by using the Save Table As menu option.</p>
+<A NAME="TI4086"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new table from an existing table:</p>
+<ol><li class=fi><p>Open the existing table in the Columns
+view by dragging and dropping it or selecting Alter Table from the
+pop-up menu. </p></li>
+<li class=ds><p>Right-click in the Columns view and select Save
+Table As from the pop-up menu.</p></li>
+<li class=ds><p>Enter a name for the new table and then the owner's
+name, and click OK.</p><p>The new table appears in the Object Layout view and the Columns
+view.</p></li>
+<li class=ds><p>Make whatever changes you want to the table definition.</p></li>
+<li class=ds><p>Save the table.</p></li>
+<li class=ds><p>Make changes to the table's properties
+in the Object Details view.</p><p>For more information about modifying table
+properties, see <A HREF="pbugp136.htm#BABCEFEE">"Specifying table and column
+properties"</A>.</p></li></ol>
+<br><A NAME="BABJBHDJ"></A><h2>Specifying column definitions</h2>
+<A NAME="TI4087"></A><p>When you create a new table, you must specify a definition
+for each column. The fields that display for each column in the
+Columns view depend on your DBMS. You might not see all of the following
+fields, and the values that you can enter are dependent on the DBMS. </p>
+<A NAME="TI4088"></A><p>For more information, see your DBMS documentation.</p>
+<A NAME="TI4089"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 16-5: Defining columns in the Columns view in the Database painter</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4090"></A>Field</th>
+<th  rowspan="1"  ><A NAME="TI4091"></A>What you
+enter</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4092"></A>Column Name</td>
+<td  rowspan="1"  ><A NAME="TI4093"></A>(Required) The name by which the column
+will be identified.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4094"></A>Data Type</td>
+<td  rowspan="1"  ><A NAME="TI4095"></A>(Required) Select a datatype from the
+drop-down list. All datatypes supported by the current DBMS are
+displayed in the list.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4096"></A>Width</td>
+<td  rowspan="1"  ><A NAME="TI4097"></A>For datatypes with variable widths, the
+number of characters in the field.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4098"></A>Dec</td>
+<td  rowspan="1"  ><A NAME="TI4099"></A>For numeric datatypes, the number of
+decimal places to display.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4100"></A>Null</td>
+<td  rowspan="1"  ><A NAME="TI4101"></A>Select Yes or No from the Null drop-down
+list to specify whether <b>NULLs</b> are allowed in
+the column. Specifying No means the column cannot have null values;
+users must supply a value. No is the default in a new table.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4102"></A>Default</td>
+<td  rowspan="1"  ><A NAME="TI4103"></A>The value that will be placed in a column
+in a row that you insert into a DataWindow object. The drop-down list has
+built-in choices, but you can type any other value. For an explanation
+of the built-in choices, see your DBMS documentation.</td>
+</tr>
+</table>
+<A NAME="BABCEFEE"></A><h2>Specifying table and column properties</h2>
+<A NAME="TI4104"></A><p>After you create and save a table, you can specify the properties
+of the table and of any or its columns. Table properties include
+the fonts used for headers, labels, and data, and a comment that
+you can associate with the table. Column properties include the
+text used for headers and labels, display formats, validation rules,
+and edit styles used for data (also known as a column's extended
+attributes), and a comment you can associate with the column. </p>
+<A NAME="TI4105"></A><h3>Specifying table properties</h3>
+<A NAME="TI4106"></A><p>In addition to adding a comment to associate with the table,
+you can choose the fonts that will be used to display information
+from the table in a DataWindow object. You can specify
+the font, point size, color, and style.</p>
+<A NAME="TI4107"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify table properties:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI4108"></A>
+<ul>
+<li class=fi>Highlight
+the table in either the Objects view or the Object Layout view and
+select Properties from the Object or pop-up menu.</li>
+<li class=ds>Click the Properties button.</li>
+<li class=ds>Drag and drop the table to the Object Details view.
+</li>
+</ul>
+
+                        </p><p>The properties for the table display in the Object Details
+view.</p></li>
+<li class=ds><p>Select a tab and specify properties:</p><A NAME="TI4109"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI4110"></A>Select this tab</th>
+<th  rowspan="1"  ><A NAME="TI4111"></A>To modify this property</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4112"></A>General</td>
+<td  rowspan="1"  ><A NAME="TI4113"></A>Comments associated with the table</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4114"></A>Data Font</td>
+<td  rowspan="1"  ><A NAME="TI4115"></A>Font for data retrieved from the database
+and displayed in the Results view by clicking a Data Manipulation
+button</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4116"></A>Heading Font</td>
+<td  rowspan="1"  ><A NAME="TI4117"></A>Font for column identifiers used in grid,
+tabular, and n-up DataWindow objects displayed in the Results view by clicking
+a Data Manipulation button</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4118"></A>Label Font</td>
+<td  rowspan="1"  ><A NAME="TI4119"></A>Font for column identifiers used in freeform DataWindow objects displayed
+in the Results view by clicking a Data Manipulation button</td>
+</tr>
+</table>
+</li>
+<li class=ds><p>Right-click on the Object Details view and select
+Save Changes from the pop-up menu. </p><p>Any changes you made in the Object Details view are immediately
+saved to the table definition. </p></li></ol>
+<br><A NAME="BABBHCBH"></A><h3>Specifying column extended attributes</h3>
+<A NAME="TI4120"></A><p>In addition to adding a comment to associate with a column,
+you can specify extended attributes for each column. An extended
+attribute is information specific to PowerBuilder that enhances the
+definition of the column. </p>
+<A NAME="TI4121"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify extended attributes:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI4122"></A>
+<ul>
+<li class=fi>Highlight
+the column in either the Objects view or the Object Layout view
+and select Properties from the Object or pop-up menu.</li>
+<li class=ds>Click the Properties button.</li>
+<li class=ds>Drag and drop the column to the Object Details view.
+</li>
+</ul>
+
+                        </p></li>
+<li class=ds><p>Select a tab and specify extended attribute values:</p><A NAME="TI4123"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI4124"></A>Select this tab</th>
+<th  rowspan="1"  ><A NAME="TI4125"></A>To modify these extended
+attributes</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4126"></A>General</td>
+<td  rowspan="1"  ><A NAME="TI4127"></A>Column comments.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4128"></A>Headers</td>
+<td  rowspan="1"  ><A NAME="TI4129"></A>Label text used in free-form DataWindow objects.<A NAME="TI4130"></A><p>Header text used in tabular, grid, or n-up DataWindow objects.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4131"></A>Display </td>
+<td  rowspan="1"  ><A NAME="TI4132"></A>How the data is formatted in a DataWindow object as
+well as display height, width, and position. For example, you can
+associate a display format with a Revenue column so that its data
+displays with a leading dollar sign and negative numbers display
+in parentheses.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4133"></A>Validation </td>
+<td  rowspan="1"  ><A NAME="TI4134"></A>Criteria that a value must pass to be
+accepted in a DataWindow object. For example, you can associate a validation
+rule with a Salary column so that you can enter a value only within
+a particular range.<A NAME="TI4135"></A><p>The initial value for the column. You can select a value from
+the drop-down list. The initial value must be the same datatype
+as the column, must pass validation, and can be <b>NULL</b> only
+if <b>NULL</b> is allowed for the column.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4136"></A>Edit Style</td>
+<td  rowspan="1"  ><A NAME="TI4137"></A>How the column is presented in a DataWindow object.
+For example, you can display column values as radio buttons or in
+a drop-down list.</td>
+</tr>
+</table>
+</li>
+<li class=ds><p>Right-click on the Column property sheet and select
+Save Changes from the pop-up menu. </p><p>Any changes you made in the property sheet are immediately
+saved to the table definition. </p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Overriding definitions</span> <A NAME="TI4138"></A>In the DataWindow painter, you can override the extended attributes
+specified in the Database painter for a particular DataWindow object.</p>
+<A NAME="TI4139"></A><h4>How the information is stored</h4>
+<A NAME="TI4140"></A><p>Extended attributes are stored in the PowerBuilder system tables
+in the database. PowerBuilder uses the information to display, present,
+and validate data in the Database painter and in DataWindow objects. When you
+create a view in the Database painter, the extended attributes of the
+table columns used in the view are used by default.</p>
+<A NAME="BDCFDBIC"></A><h4>About display formats, edit
+styles, and validation rules</h4>
+<A NAME="TI4141"></A><p>In the Database painter, you create display formats, edit styles,
+and validation rules. Whatever you create is then available for
+use with columns in tables in the database. You can see all the
+display formats, edit styles, and validation rules defined for the
+database in the Extended Attributes view. </p>
+<A NAME="TI4142"></A><p>For more information about defining, maintaining,
+and using these extended attributes, see <A HREF="pbugp188.htm#CAIDCCJB">Chapter 22, "Displaying and Validating
+Data ."</A></p>
+<A NAME="BDCBGAGJ"></A><h4>About headings and labels</h4>
+<A NAME="TI4143"></A><p>By default, PowerBuilder uses the column names as labels and
+headings, replacing any underscore characters with spaces and capitalizing
+each word in the name. For example, the default heading for the
+column <b>Dept_name</b> is <FONT FACE="Courier New">Dept Name</FONT>.
+To define multiple-line headings, press Ctrl+Enter to begin
+a new line.</p>
+<A NAME="BABDFJCI"></A><h3>Specifying additional properties for character columns</h3>
+<A NAME="TI4144"></A><p>You can also set two additional properties for character columns
+on the Display property page: Case and Picture.</p>
+<A NAME="BDCGAAII"></A><h4>Specifying the displayed
+case</h4>
+<A NAME="TI4145"></A><p>You can specify whether PowerBuilder converts the case of characters
+for a column in a DataWindow object.</p>
+<A NAME="TI4146"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify how character data should be displayed:</p>
+<ol><li class=fi><p>On the Display property page, select a
+value in the Case drop-down list:</p><A NAME="TI4147"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI4148"></A>Value</th>
+<th  rowspan="1"  ><A NAME="TI4149"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4150"></A>Any</td>
+<td  rowspan="1"  ><A NAME="TI4151"></A>Characters are displayed as they are
+entered</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4152"></A>UPPER</td>
+<td  rowspan="1"  ><A NAME="TI4153"></A>Characters are converted to uppercase</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4154"></A>lower</td>
+<td  rowspan="1"  ><A NAME="TI4155"></A>Characters are converted to lowercase</td>
+</tr>
+</table>
+</li></ol>
+<br><A NAME="BDCBGEHE"></A><h4>Specifying a column as
+a picture</h4>
+<A NAME="TI4156"></A><p>You can specify that a character column can contain names
+of picture files.</p>
+<A NAME="TI4157"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify that column values are names of picture
+files:</p>
+<ol><li class=fi><p>On the Display property page, select the
+Picture check box.</p><p>When the Picture check box is selected, PowerBuilder expects
+to find picture file names in the column and displays the contents
+of the picture file&#8212;not the name of the file&#8212;in
+reports and DataWindow objects.</p><p>Because PowerBuilder cannot determine the size of the image
+until runtime, it sets both display height and display width to
+0 when you select the Picture check box.</p></li>
+<li class=ds><p>Enter the size and the justification for the picture
+(optional).</p></li></ol>
+<br><A NAME="TI4158"></A><h2>Altering a table </h2>
+<A NAME="TI4159"></A><p>After a table is created, how you can alter the table depends
+on your DBMS.</p>
+<A NAME="TI4160"></A><p>You can always:<A NAME="TI4161"></A>
+<ul>
+<li class=fi>Add
+or modify PowerBuilder-specific extended attributes for columns</li>
+<li class=ds>Delete an index and create a new index
+</li>
+</ul>
+</p>
+<A NAME="TI4162"></A><p>You can never:<A NAME="TI4163"></A>
+<ul>
+<li class=fi>Insert
+a column between two existing columns</li>
+<li class=ds>Prohibit null values for an appended column</li>
+<li class=ds>Alter an existing index
+</li>
+</ul>
+</p>
+<A NAME="TI4164"></A><p>Some DBMSs let you do the following, but others do not: <A NAME="TI4165"></A>
+<ul>
+<li class=fi>Append columns that allow null values<b></b> </li>
+<li class=ds>Increase or decrease the number of characters allowed
+for data in an existing column </li>
+<li class=ds>Allow null values</li>
+<li class=ds>Prohibit null values in a column that allowed null
+values 
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Database painter is DBMS aware</span> <A NAME="TI4166"></A>The Database painter grays out or notifies you about actions that
+your DBMS prohibits.</p>
+<A NAME="TI4167"></A><p>For complete information about what you can
+and cannot do when you modify a table in your DBMS, see your DBMS
+documentation.</p>
+<A NAME="TI4168"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To alter a table:</p>
+<ol><li class=fi><p>Highlight the table and select Alter Table
+from the pop-up menu. </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Opening multiple instances of tables</span> <A NAME="TI4169"></A>You can open another instance of a table by selecting Columns
+from the View menu. Doing this is helpful when you want to use the Database painter's
+cut, copy, and paste features to cut or copy and paste between tables.</p>
+<p>The table definition displays in the Columns view (this screen
+shows the Employee table).</p><br><img src="images/dbalter.gif"><br>
+</li>
+<li class=ds><p>Make the changes you want in the Columns view
+or in the Object Details view.</p></li>
+<li class=ds><p>Select Save Table or Save Changes.</p><p>PowerBuilder submits the pending <ACRONYM title = "sequel" >SQL</ACRONYM> syntax
+statements it generated to the DBMS, and the table is modified.</p></li></ol>
+<br><A NAME="TI4170"></A><h2>Cutting, copying, and pasting columns </h2>
+<A NAME="TI4171"></A><p>In the Database painter, you can use the Cut, Copy, and Paste buttons
+in the PainterBar (or Cut, Copy, and Paste from the Edit or pop-up
+menu) to cut, copy, and paste one column at a time within a table
+or between tables.</p>
+<A NAME="TI4172"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To cut or copy a column within a table:</p>
+<ol><li class=fi><p>Put the insertion point anywhere in the
+column you want to cut or copy.</p></li>
+<li class=ds><p>Click the Cut or Copy button in the PainterBar.</p></li></ol>
+<br><A NAME="TI4173"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To paste a column within a table:</p>
+<ol><li class=fi><p>Put the insertion point in the column you
+want to paste to.</p><p>If you are changing an existing table, put the insertion point
+in the last column of the table. If you try to insert a column between
+two columns, you get an error message. To an existing table, you
+can only append a column. If you are defining a new table, you can
+paste a column anywhere.</p></li>
+<li class=ds><p>Click the Paste button in the PainterBar.</p></li></ol>
+<br><A NAME="TI4174"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To paste a column to a different table:</p>
+<ol><li class=fi><p>Open another instance of the Columns view
+and use Alter Table to display an existing table or click New to
+create a new table.</p></li>
+<li class=ds><p>Put the insertion point in the column you want
+to paste to.</p></li>
+<li class=ds><p>Click the Paste button in the PainterBar.</p></li></ol>
+<br><A NAME="TI4175"></A><h2>Closing a table</h2>
+<A NAME="TI4176"></A><p>You can remove a table from a view by selecting Close or Reset
+View from its pop-up menu. This action only removes the table from
+the Database painter view. It does not drop (remove) the table from the
+database.</p>
+<A NAME="TI4177"></A><h2>Dropping a table</h2>
+<A NAME="TI4178"></A><p>Dropping removes the table from the database.</p>
+<A NAME="TI4179"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To drop a table:</p>
+<ol><li class=fi><p>Select Drop Table from the table's
+pop-up menu or select Object&gt;Delete from the menu bar.</p></li>
+<li class=ds><p>Click Yes.</p></li></ol>
+<br><A NAME="BDCGBDBC"></A><h4>Deleting orphaned table
+information</h4>
+<A NAME="TI4180"></A><p>If you drop a table outside PowerBuilder, information remains
+in the system tables about the table, including extended attributes
+for the columns.</p>
+<A NAME="TI4181"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete orphaned table information from the
+extended attribute system tables:</p>
+<ol><li class=fi><p>Select Design&gt;Synch Extended Attributes
+from the menu bar and click Yes.</p><p>If you try to delete orphaned table information and there
+is none, a message tells you that synchronization is not necessary.</p></li></ol>
+<br><A NAME="CCJBIEJH"></A><h2>Viewing pending SQL changes </h2>
+<A NAME="TI4182"></A><p>As you create or alter a table definition, you can view the
+pending <ACRONYM title = "sequel" >SQL</ACRONYM> syntax changes that
+will be made when you save the table definition.</p>
+<A NAME="TI4183"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To view pending <ACRONYM title = "sequel" >SQL</ACRONYM> syntax
+changes:</p>
+<ol><li class=fi><p>Right-click the table definition in the
+Columns view and select Pending Syntax from the pop-up menu. </p><p>PowerBuilder displays the pending changes to the table definition
+in <ACRONYM title = "sequel" >SQL</ACRONYM> syntax:</p><br><img src="images/dbpend.gif"><br>
+<p>The <ACRONYM title = "sequel" >SQL</ACRONYM> statements execute
+only when you save the table definition or reset the view and then
+tell PowerBuilder to save changes.</p></li></ol>
+<br><A NAME="BDCJABHF"></A><h4>Copying, saving, and printing pending <ACRONYM title = "sequel" >SQL</ACRONYM> changes</h4>
+<A NAME="TI4184"></A><p>When you are viewing pending <ACRONYM title = "sequel" >SQL</ACRONYM> changes,
+you can:<A NAME="TI4185"></A>
+<ul>
+<li class=fi>Copy pending changes
+to the clipboard</li>
+<li class=ds>Save pending changes to a file</li>
+<li class=ds>Print pending changes
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>To copy, save, or print only part of the <ACRONYM title = "sequel" >SQL</ACRONYM> syntax</span> <A NAME="TI4186"></A>Select the part of the <ACRONYM title = "sequel" >SQL</ACRONYM> syntax
+you want before you copy, save, or print.</p>
+<A NAME="TI4187"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To copy the <ACRONYM title = "sequel" >SQL</ACRONYM> syntax
+to the clipboard:</p>
+<ol><li class=fi><p>In the Pending Syntax view, click the Copy
+button or select Copy from the pop-up menu.</p></li></ol>
+<br><A NAME="TI4188"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To save <ACRONYM title = "sequel" >SQL</ACRONYM> syntax
+for execution at a later time:</p>
+<ol><li class=fi><p>In the Pending Syntax view, Select File&gt;Save
+As.</p><p>The Save Syntax to File dialog box displays.</p></li>
+<li class=ds><p>Navigate to the folder where you want to save <ACRONYM title = "sequel" >SQL</ACRONYM>, name the file, and then click
+the Save button.</p></li></ol>
+<br><A NAME="TI4189"></A><p>At a later time, you can import the <ACRONYM title = "sequel" >SQL</ACRONYM> file
+into the Database painter and execute it.</p>
+<A NAME="TI4190"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To print pending table changes:</p>
+<ol><li class=fi><p>While viewing the pending <ACRONYM title = "sequel" >SQL</ACRONYM> syntax, click the Print button
+or select Print from the File menu.</p></li></ol>
+<br><A NAME="TI4191"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display columns in the Columns view:</p>
+<ol><li class=fi><p>Select Object&gt;Pending Syntax from
+the menu bar.</p></li></ol>
+<br><A NAME="TI4192"></A><h2>Printing the table definition</h2>
+<A NAME="TI4193"></A><p>You can print a report of the table's definition
+at any time, whether or not the table has been saved. The Table
+Definition Report contains information about the table and each
+column in the table, including the extended attributes for each
+column.</p>
+<A NAME="TI4194"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To print the table definition:</p>
+<ol><li class=fi><p>Select Print or Print Definition from the File
+or pop-up menu or click the Print button.</p></li></ol>
+<br><A NAME="TI4195"></A><h2>Exporting table syntax</h2>
+<A NAME="TI4196"></A><p>You can export the syntax for a table to the log. This feature
+is useful when you want to create a backup definition of the table
+before you alter it or when you want to create the same table in
+another DBMS.</p>
+<A NAME="TI4197"></A><p>To export to another DBMS, you must have the PowerBuilder interface
+for that DBMS.</p>
+<A NAME="TI4198"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To export the syntax of an existing table to a
+log:</p>
+<ol><li class=fi><p>Select the table in the Objects or Object
+Layout view.</p></li>
+<li class=ds><p>Select Export Syntax from the Object menu or the pop-up
+menu.</p><p>If you selected a table and have more than one DBMS interface
+installed, the DBMS dialog box displays. If you selected a view, PowerBuilder immediately
+exports the syntax to the log.</p></li>
+<li class=ds><p>Select the DBMS to which you want to export the
+syntax.</p></li>
+<li class=ds><p>If you selected ODBC, specify a data source in
+the Data Sources dialog box.</p></li>
+<li class=ds><p>Supply any information you are prompted for.</p><p>PowerBuilder exports the syntax to the log. Extended attribute information
+(such as validation rules used) for the selected table is also exported.
+The syntax is in the format required by the DBMS you selected.</p><p>For more information about the log, see <A HREF="pbugp134.htm#BABGECDE">"Logging your work"</A>.</p></li></ol>
+<br><A NAME="CCJCBFAD"></A><h2>About system tables</h2>
+<A NAME="TI4199"></A><p>Two kinds of system tables exist in the database:<A NAME="TI4200"></A>
+<ul>
+<li class=fi>System tables provided by
+your DBMS (for more information, see your DBMS documentation) </li>
+<li class=ds>PowerBuilder extended attribute system tables
+</li>
+</ul>
+</p>
+<A NAME="BDCFAGDD"></A><h4>About PowerBuilder system
+tables</h4>
+<A NAME="TI4201"></A><p>PowerBuilder stores extended attribute information you provide
+when you create or modify a table (such as the text to use for labels
+and headings for the columns, validation rules, display formats,
+and edit styles) in system tables. These system tables contain information
+about database tables and columns. Extended attribute information
+extends database definitions. </p>
+<A NAME="TI4202"></A><p>In the <b>Employee</b> table, for example, one
+column name is <b>Emp_lname</b>. A label and
+a heading for the column are defined for PowerBuilder to use in DataWindow objects.
+The column label is defined as <FONT FACE="Courier New">Last Name:</FONT>.
+The column heading is defined as <FONT FACE="Courier New">Last Name</FONT>.
+The label and heading are stored in the <b>PBCatCol</b> table
+in the extended attribute system tables.</p>
+<A NAME="TI4203"></A><p>The extended attribute system tables are maintained by PowerBuilder and
+only PowerBuilder users can enter information into them. <A HREF="pbugp136.htm#BDCIEJHC">Table 16-6</A> lists the extended
+attribute system tables. For more information, see <A HREF="pbugp271.htm#CCJEBFGB">Appendix A, "The Extended
+Attribute System Tables"</A></p>
+<A NAME="BDCIEJHC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 16-6: Extended attribute system tables</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4204"></A>This
+system table</th>
+<th  rowspan="1"  ><A NAME="TI4205"></A>Stores this extended attribute
+information</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4206"></A><b>PBCatCol</b></td>
+<td  rowspan="1"  ><A NAME="TI4207"></A>Column data such as name, header and
+label for reports and DataWindow objects, and header and label positions</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4208"></A><b>PBCatEdt</b></td>
+<td  rowspan="1"  ><A NAME="TI4209"></A>Edit style names and definitions</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4210"></A><b>PBCatFmt</b></td>
+<td  rowspan="1"  ><A NAME="TI4211"></A>Display format names and definitions</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4212"></A><b>PBCatTbl</b></td>
+<td  rowspan="1"  ><A NAME="TI4213"></A>Table data such as name, fonts, and comments</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4214"></A><b>PBCatVld</b></td>
+<td  rowspan="1"  ><A NAME="TI4215"></A>Validation rule names and definitions</td>
+</tr>
+</table>
+<A NAME="TI4216"></A><h4>Opening and displaying system tables</h4>
+<A NAME="TI4217"></A><p>You can open system tables like other tables in the Database painter.</p>
+<A NAME="TI4218"></A><p>By default, PowerBuilder shows only user-created tables in the
+Objects view. If you highlight Tables and select Show System Tables
+from the pop-up menu, PowerBuilder also displays system tables.</p>
+<A NAME="BABJHEDK"></A><h2>Creating and editing Sybase Adaptive Server temporary tables</h2>
+<A NAME="TI4219"></A><p>You can create and edit temporary tables in the Database painter, SQL Select painter,
+or DataWindow painter when you use the PowerBuilder ASE or SYC native driver
+to connect to an ASE database. Temporary tables persist for the duration
+of a database connection, residing in a special database called "<b>tempdb</b>".</p>
+<A NAME="TI4220"></A><p>You add a temporary table to the <b>tempdb</b> database
+by assigning a name that starts with the # character when
+you create a new table in a painter. (Temporary tables must start
+with the # character.)</p>
+<A NAME="TI4221"></A><h4>Working with temporary tables</h4>
+<A NAME="TI4222"></A><p>After you create a temporary table, you can create indexes
+and a primary key for the table from the pop-up menu for the table
+in the Object Layout view. If you define a unique index or primary
+key, you can perform insert, update, and delete operations in DataWindow objects. </p>
+<A NAME="TI4223"></A><p>Selecting Edit Data from the pop-up menu of a temporary table
+retrieves data that you store in that table. You can also select
+Drop Table, Add to Layout, Export Syntax, and properties from the
+pop-up menu in the Objects view.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Standard catalog query limitations</span> <A NAME="TI4224"></A>When you click Refresh from the pop-up menu for the Tables
+node in the Database painter or the Objects view of the DataWindow painter, the
+list of tables displays temporary tables even though they exist
+only in the <b>tempdb</b> database. However, once
+you refresh table definitions from the database, the Objects view
+can no longer list the index or primary key information of the temporary
+tables, and the Layout view can no longer display that information graphically.</p>
+<A NAME="TI4225"></A><p>You can create DataWindow objects that access temporary tables
+in a PowerBuilder runtime application, but your application must
+first explicitly create the temporary tables, along with the appropriate
+keys and indexes, using the same database transaction object used
+by the DataWindow. </p>
+<A NAME="TI4226"></A><p>You can use the <b>EXECUTE</b> <b>IMMEDIATE</b> PowerScript
+syntax to create temporary tables at runtime:<p><PRE> string s1, s2, s3, s4<br>s1 = 'create table dbo.#temptab1 (id int not null, ' &amp;<br>      + 'lname char(20) not null) '<br>s2 = 'alter table dbo.#temptab1 add constraint idkey' &amp;<br>      + ' primary key clustered (id) '<br>s3 = 'create nonclustered index nameidx on ' &amp;<br>      + 'dbo.#temptab1 (lname ) '<br>s4 = 'insert into #temptab1 select emp_id, ' &amp;<br>      + 'emp_lname from qadb_emp'<br>execute immediate :s1 using sqlca;<br>if sqlca.sqlcode = 0 then<br>   execute immediate :s2 using sqlca;<br>   execute immediate :s3 using sqlca;<br>   execute immediate :s4 using sqlca;<br>else<br>   messagebox("Create error", sqlca.sqlerrtext)<br>end if </PRE></p>
+

@@ -1,0 +1,251 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the JDBC Driver Manager Trace</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp51.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp53.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABCDCDJ"></A><h1>Using the JDBC Driver Manager Trace</h1>
+<A NAME="TI1745"></A><p>This section describes how to use the JDBC Driver Manager
+Trace tool.</p>
+<A NAME="BABDHFCA"></A><h2>About JDBC Driver Manager Trace</h2>
+<A NAME="TI1746"></A><p>You can use the JDBC Driver Manager Trace tool to trace a
+connection to any database that you access in PowerBuilder through
+the JDBC interface.</p>
+<A NAME="TI1747"></A><p>Unlike the Database Trace tool, the JDBC Driver Manager Trace
+tool <i>cannot</i> trace connections through one of
+the native database interfaces.</p>
+<A NAME="TI1748"></A><h4>What this tool does</h4>
+<A NAME="TI1749"></A><p>JDBC Driver Manager Trace logs errors and informational messages originating
+from the Driver object currently loaded (such as Sybase's
+jConnect JDBC driver) when PowerBuilder connects to a database through
+the JDBC interface. It writes this information to a default log
+file named <i>JDBC.LOG</i> or to a log file that you
+specify. The amount of trace output varies depending on the JDBC
+driver being used.</p>
+<A NAME="TI1750"></A><h4>What both tools do</h4>
+<A NAME="TI1751"></A><p>The information from JDBC Driver Manager Trace, like Database
+Trace, can help you:<A NAME="TI1752"></A>
+<ul>
+<li class=fi>Understand what PowerBuilder is
+doing <i>internally</i> while connected to a database
+through the JDBC interface</li>
+<li class=ds>Identify and resolve problems with your JDBC connection</li>
+<li class=ds>Provide useful information to Technical Support
+if you call them for help with your database connection
+</li>
+</ul>
+</p>
+<A NAME="TI1753"></A><h4>When to use this tool</h4>
+<A NAME="TI1754"></A><p>Use JDBC Driver Manager Trace <i>instead</i> of
+the Database Trace tool if you want more detailed information about
+the JDBC driver. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Performance considerations</span> <A NAME="TI1755"></A>Turning on JDBC Driver Manager Trace can slow your performance
+while working in PowerBuilder. Therefore, use JDBC Driver Manager
+Trace for debugging purposes only and keep it turned off when you
+are not debugging.</p>
+<A NAME="TI1756"></A><h4>JDBC.LOG file</h4>
+<A NAME="TI1757"></A><p>PowerBuilder writes JDBC Driver Manager Trace output to a default
+log file named <i>JDBC.LOG</i> or to a log file that
+you specify. The default location of <i>JDBC.LOG</i> is
+a temp directory.</p>
+<A NAME="TI1758"></A><h2>Starting JDBC Driver Manager Trace</h2>
+<A NAME="TI1759"></A><p>By default, JDBC Driver Manager Trace is turned off in PowerBuilder.
+You can start it in order to trace your JDBC connection in two ways:<A NAME="TI1760"></A>
+<ul>
+<li class=fi>Edit your database profile in the PowerBuilder development
+environment</li>
+<li class=ds>Edit a script in a PowerBuilder application
+</li>
+</ul>
+</p>
+<A NAME="BABBECCB"></A><h3>Starting JDBC Driver Manager Trace in the development environment</h3>
+<A NAME="TI1761"></A><p>To start JDBC Driver Manager Trace in the PowerBuilder development environment,
+edit the database profile for the connection you want to trace,
+as described in the following procedure.</p>
+<A NAME="TI1762"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To start JDBC Driver Manager Trace by editing
+the database profile:</p>
+<ol><li class=fi><p>Open the Database Profile Setup - JDBC
+dialog box for the JDB connection you want to trace.</p></li>
+<li class=ds><p>On the Options tab, select the Trace JDBC Calls
+check box.</p></li>
+<li class=ds><p>(Optional) To specify a log file where you want PowerBuilder to
+write the output of JDBC Driver Manager Trace, type the path name
+in the Trace File box, or click
+Browse to display the path name of an existing log file in the Trace
+File box.</p><p>By default, if the Trace JDBC Calls check box is selected
+and no alternative trace file is specified, PowerBuilder sends JDBC
+Driver Manager Trace output to the default <i>JDBC.LOG</i> file.</p><br><img src="images/jdbc.gif"><br>
+</li>
+<li class=ds><p>Click OK or Apply.</p><p>The Database Profiles dialog box displays with the name of
+the edited profile highlighted. PowerBuilder saves your settings in
+the database profile entry in the registry.</p><p>For example, here are the DBMS and DBParm string values of
+a database profile entry for a database named Employee. The settings
+that start JDBC Driver Manager Trace (corresponding to the TraceFile
+DBParm parameter) are emphasized.<p><PRE> DBMS     "TRACE JDBC"</PRE><PRE> DbParm   "Driver='com.sybase.jdbc.SybDriver',<br>          URL='jdbc:sybase:Tds:199.93.178.151:<br>          5007/tsdata',TraceFile=<br>           'c:\temp\jdbc.log'"</PRE></p></li>
+<li class=ds><p>Click Connect in the Database Profiles dialog
+box to connect to the database</p><p><i>or</i></p><p>Right-click on the connected database and select Re-connect
+from the drop-down menu in the Database Profiles dialog box.</p><p>PowerBuilder connects to the database, starts tracing the JDBC connection,
+and writes output to the log file you specified.</p></li></ol>
+<br><A NAME="TI1763"></A><h3>Starting JDBC Driver Manager Trace in a PowerBuilder application</h3>
+<A NAME="TI1764"></A><p>To start JDBC Driver Manager Trace in a PowerBuilder application,
+you must specify the TraceFile DBParm parameter in the appropriate
+script. For example, you might include it in the script that opens
+the application.</p>
+<A NAME="TI1765"></A><p>You can specify the TraceFile parameter in a PowerBuilder script
+by:<A NAME="TI1766"></A>
+<ul>
+<li class=fi>(<i>Recommended</i>) Copying
+the PowerScript TraceFile DBParm syntax from the Preview tab in
+the Database Profile Setup dialog box into your script</li>
+<li class=ds>Coding PowerScript to set a value for the DBParm
+property of the Transaction object</li>
+<li class=ds>Reading the DBParm values from an external text
+file
+</li>
+</ul>
+</p>
+<A NAME="TI1767"></A><p>For more about using Transaction objects to
+communicate with a database in a PowerBuilder application, see <i>Application
+Techniques</i>
+.</p>
+<A NAME="TI1768"></A><h4>About the TraceFile DBParm parameter</h4>
+<A NAME="TI1769"></A><p>TraceFile controls the operation of JDBC Driver Manager Trace
+for any JDBC-compatible driver you are using in PowerBuilder.</p>
+<A NAME="TI1770"></A><h4>Copying TraceFile syntax from the Preview tab</h4>
+<A NAME="TI1771"></A><p>The easiest way to start JDBC Driver Manager Trace in a PowerBuilder application
+script is to copy the PowerScript TraceFile DBParm syntax from the
+Preview tab in the Database Profile Setup - JDBC dialog box into
+your script, modifying the default Transaction object name (<ACRONYM title = "sequel C A" >SQLCA</ACRONYM>) if necessary.</p>
+<A NAME="TI1772"></A><p>As you complete the Database Profile Setup dialog box in the
+development environment, PowerBuilder generates the correct connection
+syntax on the Preview tab. Therefore, copying the syntax directly
+from the Preview tab into your script ensures that it is accurate.</p>
+<A NAME="TI1773"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To copy TraceFile syntax from the Preview tab
+into your script:</p>
+<ol><li class=fi><p>On the Options tab in the Database Profile
+Setup - JDBC dialog box for your connection, select the Trace JDBC
+Calls check box and (optionally) specify a log file in the Trace
+File box to start JDBC Driver Manager Trace.</p><p>For instructions, see <A HREF="connpbp52.htm#BABBECCB">"Starting JDBC Driver Manager
+Trace in the development environment"</A>.</p></li>
+<li class=ds><p>Click Apply to save your changes to the Options
+tab without closing the dialog box.</p></li>
+<li class=ds><p>Click the Preview tab.</p><p>The correct PowerScript syntax for JDBC Driver Manager Trace
+and other selected options displays in the Database Connection Syntax
+box.</p><p>The following example shows the PowerScript syntax that starts
+JDBC Driver Manager Trace and sends output to the file <i>C:\TEMP\JDBC.LOG</i>.</p><p><p><PRE> // Profile Employee<br><i>SQLCA.DBMS = "TRACE JDBC"</i><br>SQLCA.DBParm = "Driver='com.sybase.jdbc.SybDriver',<br>URL='jdbc:sybase:Tds:199.93.178.151:5007/tsdata',<br><i>TraceFile='c:\temp\jdbc.log'</i>"</PRE></p></li>
+<li class=ds><p>Select the DBParm line and any other syntax you
+want to copy to your script and click Copy.</p><p>PowerBuilder copies the selected text to the clipboard.</p></li>
+<li class=ds><p>Paste the selected text from the Preview tab into
+your script, modifying the default Transaction object name (<ACRONYM title = "sequel C A" >SQLC</ACRONYM>A) if necessary.</p></li></ol>
+<br><A NAME="TI1774"></A><h4>Coding PowerScript to set a value for the DBParm
+property</h4>
+<A NAME="TI1775"></A><p>Another way to start JDBC Driver Manager Trace in a PowerBuilder application
+script is to include the TraceFile parameter as a value for the DBParm
+property of the Transaction object.</p>
+<A NAME="TI1776"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To start JDBC Driver Manager Trace by setting
+the DBParm property:</p>
+<ol><li class=fi><p>In your application script, include the
+TraceFile parameter to start the trace and specify a nondefault
+trace file.</p><p>For example, this statement starts JDBC Driver Manager Trace
+in your application and sends output to a file named <i>MYTRACE.LOG</i>.
+(This example assumes you are using the default Transaction object <ACRONYM title = "sequel C A" >SQLCA</ACRONYM>, but you can also define
+your own Transaction object.)<p><PRE> SQLCA.DBParm = "Driver='com.sybase.jdbc.SybDriver',<br>URL='jdbc:sybase:Tds:199.93.178.151:5007/tsdata',<br><i>TraceFile='c:\MYTRACE.LOG</i>'"</PRE></p></li></ol>
+<br><A NAME="TI1777"></A><h4>Reading the DBParm value from an external text
+file</h4>
+<A NAME="TI1778"></A><p>As an alternative to setting the DBParm property in your PowerBuilder application
+script, you can use the PowerScript ProfileString function to read DBParm
+values from a specified section of an external text file, such as
+an application-specific initialization file.</p>
+<A NAME="TI1779"></A><p>This assumes that the DBParm value read from your initialization
+file includes the TraceFile parameter to start JDBC Driver Manager
+Trace, as shown in the preceding example.</p>
+<A NAME="TI1780"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To start JDBC Driver Manager Trace by reading
+DBParm values from an external text file:</p>
+<ol><li class=fi><p>Use the following PowerScript syntax to
+specify the <b>ProfileString</b> function with the DBParm
+property:</p><p><p><PRE><b>SQLCA.dbParm = </b><b><i></i><i></i>ProfileString</b>(<i>file</i>, <i>section</i>, <i>variable</i>,<br><i>   default_value</i>)</PRE></p>
+</p><p>For example, the following statement in a PowerBuilder script
+reads the DBParm values from the [Database] section
+of the <i>APP.INI</i> file:<p><PRE> SQLCA.dbParm =</PRE><PRE>    ProfileString("APP.INI","Database","DBParm","")</PRE></p></li></ol>
+<br><A NAME="TI1781"></A><h2>Stopping JDBC Driver Manager Trace</h2>
+<A NAME="TI1782"></A><p>Once you start tracing a JDBC connection with JDBC Driver
+Manager Trace, PowerBuilder continues sending trace output to the
+log file until you stop tracing.</p>
+<A NAME="TI1783"></A><h3>Stopping JDBC Driver Manager Trace in the development
+environment</h3>
+<A NAME="TI1784"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To stop JDBC Driver Manager Trace by editing a
+database profile:</p>
+<ol><li class=fi><p>Open the Database Profile Setup - JDBC
+dialog box for the connection you are tracing.</p><p>For instructions, see <A HREF="connpbp52.htm#BABBECCB">"Starting JDBC Driver Manager
+Trace in the development environment"</A>.</p></li>
+<li class=ds><p>On the Options tab, clear the Trace JDBC Calls
+check box.</p><p>If you supplied the path name of a log file in the Trace File
+box, you can leave it specified in case you want to restart tracing
+later.</p></li>
+<li class=ds><p>Click OK in the Database Profile Setup - JDBC
+dialog box.</p><p>The Database Profiles dialog box displays, with the name of
+the edited profile highlighted.</p></li>
+<li class=ds><p>Click Connect in the Database Profiles dialog
+box</p><p><i>or</i></p><p>Right click on the connected database and select Re-connect
+from the drop-down menu in the Database Profiles dialog box.</p><p>PowerBuilder connects to the database and stops tracing the
+connection.</p></li></ol>
+<br><A NAME="TI1785"></A><h3>Stopping JDBC Driver Manager Trace in a PowerBuilder application</h3>
+<A NAME="TI1786"></A><p>To stop JDBC Driver Manager Trace in a PowerBuilder application
+script, you must delete the TraceFile parameter. You can do this
+by:<A NAME="TI1787"></A>
+<ul>
+<li class=fi>Editing the value of
+the DBParm property of the Transaction object</li>
+<li class=ds>Reading the DBParm values from an external text
+file
+</li>
+</ul>
+</p>
+<A NAME="TI1788"></A><h4>Editing the DBParm property</h4>
+<A NAME="TI1789"></A><p>One way to change the TraceFile parameter in a PowerBuilder script
+is to edit the DBParm property of the Transaction object.</p>
+<A NAME="TI1790"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To stop JDBC Driver Manager Trace by editing the
+DBParm property:</p>
+<ol><li class=fi><p>In your application script, edit the DBParm
+property of the Transaction object to delete the TraceFile parameter.</p><p>For example, the following statement starts JDBC Driver Manager
+Trace in your application and sends the output to a file named <i>MYTRACE.LOG</i>. (This
+example assumes you are using the default Transaction object <ACRONYM title = "sequel C A" >SQLCA</ACRONYM>, but you can also define
+your own Transaction object.)<p><PRE> SQLCA.DBParm = "Driver='com.sybase.jdbc.SybDriver',<br>URL='jdbc:sybase:Tds:199.93.178.151:5007/tsdata',<br><i>TraceFile='c:\MYTRACE.LOG</i>'"</PRE></p><p>Here is how the same statement should look after you edit
+it to stop JDBC Driver Manager Trace. <p><PRE> SQLCA.DBParm = "Driver='com.sybase.jdbc.SybDriver',<br>URL='jdbc:sybase:Tds:199.93.178.151:5007/tsdata'"</PRE></p></li></ol>
+<br><A NAME="TI1791"></A><h4>Reading DBParm values</h4>
+<A NAME="TI1792"></A><p>As an alternative to editing the DBParm property in your PowerBuilder application
+script, you can use the PowerScript <b>ProfileString</b> function
+to read DBParm values from a specified section of an external text
+file, such as an application-specific initialization file, or you
+can use <b>RegistryGet</b> to obtain values from a registry
+key.</p>
+<A NAME="TI1793"></A><p>This assumes that the DBParm is no longer read from your initialization
+file or registry key, as shown in the preceding example. You must
+disconnect and reconnect for this to take effect.</p>
+<A NAME="TI1794"></A><h2>Viewing the JDBC Driver Manager Trace log</h2>
+<A NAME="TI1795"></A><p>You can display the contents of the JDBC Driver Manager Trace
+log file anytime during a PowerBuilder session.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Location of JDBC.LOG</span> <A NAME="TI1796"></A>For information about where to find the default <i>JDBC.LOG</i> file,
+see <A HREF="connpbp52.htm#BABDHFCA">"About JDBC Driver Manager
+Trace"</A>.</p>
+<A NAME="TI1797"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To view the contents of the log file:</p>
+<ol><li class=fi><p>Open <i>JDBC.LOG</i> or the
+log file you specified in one of the following ways:</p><p><A NAME="TI1798"></A>
+<ul>
+<li class=fi>Use the File Editor
+in PowerBuilder. (For instructions, see the <i>User's Guide</i>
+.)</li>
+<li class=ds>Use any text editor outside PowerBuilder.
+</li>
+</ul>
+</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Leaving the log file open</span> <A NAME="TI1799"></A>If you leave the log file open as you work in PowerBuilder,
+JDBC Driver Manager Trace <i>does not update the log</i>.</p>
+<A NAME="TI1800"></A><A NAME="TI1801"></A><p>This part describes how to make database connections
+for transactional components. </p>
+

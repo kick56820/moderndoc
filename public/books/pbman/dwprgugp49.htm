@@ -1,0 +1,348 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Instantiating and configuring the server component</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp48.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp50.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABCBGAH"></A><h1>Instantiating and configuring the server component</h1>
+<A NAME="TI2065"></A><p>If you are not using the Web DataWindow DTC or the Web Target
+object model, you can write code to create an instance of the Web
+DataWindow server component, and you can call its methods to create
+a Web DataWindow application.</p>
+<A NAME="TI2066"></A><p>For information on the types of Web DataWindow server components,
+see <A HREF="dwprgugp38.htm#BABCAFDD">"The Web DataWindow server
+component and client control"</A>. For
+information on the Web Target object model and its 4GL extensions,
+see <i>Working with Web and JSP Targets</i>
+.</p>
+<A NAME="TI2067"></A><h4>Two sets of methods</h4>
+<A NAME="TI2068"></A><p>Two
+sets of methods are available on the generic Web DataWindow server component:<A NAME="TI2069"></A>
+<ul>
+<li class=fi>Methods that are available for other DataWindow
+controls</li>
+<li class=ds>Methods used to configure the component and generate
+HTML 
+</li>
+</ul>
+</p>
+<A NAME="TI2070"></A><h4>DataWindow control methods</h4>
+<A NAME="TI2071"></A><p>DataWindow control methods supported by the generic server
+component include sorting, filtering, validation, and get and set
+methods. When you call one of these methods on the server component,
+the server reloads the page in the browser.</p>
+<A NAME="TI2072"></A><p>Methods with more than one syntax have a different form for
+each syntax to overcome restrictions on the use of overloading.
+For example, the ClearValues method takes a string as an argument
+and the ClearValuesByColNum method takes a number. </p>
+<A NAME="TI2073"></A><p>For a complete list of supported DataWindow control methods,
+see the <i>DataWindow Reference</i>
+ or the online
+Help. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Examining server component methods</span> <A NAME="TI2074"></A>You can view the generic <ABBR title = "e a server" >EAServer</ABBR> component
+methods on the Components page of the System Tree or in <ABBR title = "e a server" >EAServer</ABBR> Manager. You can examine
+the methods in the COM server component in an OLE viewer (look for PowerBuilder.HTMLDataWindow
+in the Programmable Objects list on the OLE tab of the PowerBuilder
+Browser, or in the Automation Objects list in the Microsoft OLE/COM
+Object Viewer).</p>
+<A NAME="TI2075"></A><h4>Configuration and generation methods</h4>
+<A NAME="TI2076"></A><p>Other methods are available to set up the component, retrieve
+data, establish persistent values needed by your Web page, and generate
+HTML. </p>
+<A NAME="TI2077"></A><p>If you use a custom server component, there are additional
+configuration tasks. For more information, see <A HREF="dwprgugp50.htm#BEIEHDDG">"Using a custom server component"</A>. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Mixed case method names</span> <A NAME="TI2078"></A>The methods of the generic <ABBR title = "e a server" >EAServer</ABBR> server
+component use mixed case names and all the examples in this section
+use mixed case. If you write your own server component, the methods
+of the component you generate are all lowercase. (You can use the
+sample <i>PBDWRMT.PBL</i> as a starting point if you want
+the methods described here.) The generic COM component method names
+are also all lowercase.</p>
+<A NAME="TI2079"></A><h4>Coding steps</h4>
+<A NAME="TI2080"></A><p>In your server-side script, you will code these tasks:<A NAME="TI2081"></A>
+<ol>
+</li>
+<li class=ds>Instantiate the component.</li>
+<li class=ds>Load the DataWindow object.</li>
+<li class=ds>Control what HTML is generated (for example, by
+specifying what functionality to include and what browser to target).</li>
+<li class=ds>Specify the database connection and retrieve data.</li>
+<li class=ds>Pass page-specific data to the reloaded page.</li>
+<li class=ds>Pass user action information to the server component.</li>
+<li class=ds>Insert the generated HTML in the page template.
+</li>
+</ol>
+</p>
+<A NAME="TI2082"></A><p>Sample code for some of these tasks follows. For detailed
+information about the methods used in the examples, see the <i>DataWindow
+Reference</i>
+ or the online Help.</p>
+<A NAME="BEIIGDFI"></A><h2>Instantiating the component</h2>
+<p><b>JSP targets</b>   If you are not using the <i>jspobject105.jar</i> object
+model, you instantiate a Web DataWindow component in the following
+manner:<p><PRE> &lt;%@ page contentType="text/html; charset=UTF-8" %&gt;</PRE><PRE> &lt;%@ page import="org.omg.CORBA.ORB" %&gt;</PRE><PRE> &lt;%@ page import="org.omg.CosNaming.NamingContext" %&gt;</PRE><PRE> &lt;%@ page import=          "org.omg.CosNaming.NamingContextHelper" %&gt;</PRE><PRE> &lt;%@ page import="org.omg.CosNaming.NameComponent" %&gt;&lt;%@ page import="DataWindow.*" %&gt;</PRE><PRE> </PRE><PRE> String dwGenerator = "DataWindow/HTMLGenerator105";</PRE><PRE> HTMLGenerator105 dwGen = null;</PRE><PRE> </PRE><PRE> java.util.Properties props =new java.util.Properties();</PRE><PRE> props.put("org.omg.CORBA.ORBClass",<br>   "com.sybase.CORBA.ORB");</PRE><PRE> props.put("com.sybase.CORBA.NameServiceURL",    "iiop://testmachine:9000");</PRE><PRE> ORB orb = ORB.init((String[])null, props);</PRE><PRE> try {</PRE><PRE>       NamingContext cntx = NamingContextHelper.narrow       (orb.resolve_initial_references("NameService"));</PRE><PRE>          NameComponent[] name = {new        NameComponent(dwGenerator,"")};</PRE><PRE>          SessionManager.Factory factory =        SessionManager.FactoryHelper.narrow<br>         (cntx.resolve(name));</PRE><PRE>       dwGen =         HTMLGenerator105Helper.narrow(factory.create<br>          ("jagadmin",""));</PRE><PRE> } catch(org.omg.CORBA.ORBPackage.InvalidName ie) {</PRE><PRE>         out.print("Error: " + ie.getMessage()); </PRE><PRE> } catch (org.omg.CosNaming.NamingContextPackage.NotFound ne) {</PRE><PRE>         out.print("Error: " + ne.getMessage()); </PRE><PRE> } catch </PRE><PRE> (org.omg.CosNaming.NamingContextPackage.CannotProceed     ce) {</PRE><PRE>         out.print("Error: " + ce.getMessage()); </PRE><PRE> } catch </PRE><PRE> (org.omg.CosNaming.NamingContextPackage.InvalidName     ie1) {</PRE><PRE>         out.print("Error: " + ie1.getMessage()); }</PRE></p>
+<p><b>ASP targets</b>   You can access the registered COM component using its Program
+ID. For example, if you use the generic component: <p><PRE>     dwGen = Server.CreateObject(<br>        "PowerBuilder.HTMLDataWindow")</PRE></p>
+<A NAME="BABJJDCG"></A><h2>Loading the DataWindow object</h2>
+<p><b>SetDWObject</b>   The next step is to specify
+the PBD or PBL file that contains the DataWindow object and the
+name of the DataWindow object. You do not need to specify the location
+of the file, but it must be available on the component server in
+a directory on the server's path (or on the system path
+if the <ABBR title = "e a server" >EAServer</ABBR> component is running
+as a service or if you are using COM+): <p><PRE>  retVal = dwGen.SetDWObject ("htgenex.pbl",</PRE><PRE>         "d_tabular_dept");</PRE></p>
+<A NAME="TI2083"></A><p>You can test the return value for and write an error message
+to the HTML page in a JSP target with the following code: <p><PRE>     if (retVal != 1){</PRE><PRE>         out.print ("SetDWObject failed " + </PRE><PRE>             retVal + "&lt;BR&gt;");</PRE><PRE>  }</PRE></p>
+<A NAME="TI2084"></A><p>You could use similar code in an ASP target:<p><PRE>     if (retVal != 1){</PRE><PRE>         Response.Write("SetDWObject failed " + </PRE><PRE>             retVal + "&lt;BR&gt;");</PRE><PRE> }</PRE></p>
+<A NAME="TI2085"></A><p>You can also specify a:<A NAME="TI2086"></A>
+<ul>
+<li class=fi>Source definition
+(SRD) file containing the source for a DataWindow object. You can
+export a DataWindow definition to an SRD file in the Library painter or
+System Tree.</li>
+<li class=ds>Powersoft report (PSR) file containing a DataWindow
+object plus data. You can save a PSR file from the DataWindow painter.</li>
+<li class=ds>DataWindow Container component on <ABBR title = "e a server" >EAServer</ABBR> containing multiple DataWindow
+object definitions
+</li>
+</ul>
+.</p>
+<A NAME="TI2087"></A><p>For SRD and PSR files, specify an empty string for the DataWindow
+name:<p><PRE> dwServer.SetDWObject("myreport.psr", "" );</PRE></p>
+<A NAME="TI2088"></A><p>For DataWindow Container components, use the the SetDWObjectEx
+method:<p><PRE> dwServer.SetDWObjectEx ("d_emp");</PRE></p>
+<A NAME="BABCBBAI"></A><h2>Controlling what is generated </h2>
+<A NAME="TI2089"></A><h4>Disabling features of the client control</h4>
+<p><b>SetWeight</b>   Although the server component generates a considerable amount of
+HTML or XHTML and JavaScript for the Web DataWindow client control, it
+is still no more than an average image file. However, to reduce
+the size of the control on the client, you can instruct the component
+to leave out code for features you are not using. You can tell the
+component to omit code for:<A NAME="TI2090"></A>
+<ul>
+<li class=fi>Updating data</li>
+<li class=ds>Validating newly entered data</li>
+<li class=ds>Client-side events</li>
+<li class=ds>Allowing client-side scripts to call methods of
+the client control</li>
+<li class=ds>Applying display formats to newly entered data
+</li>
+</ul>
+</p>
+<A NAME="TI2091"></A><p>You can disable any of these on the Web Generation property
+page in the DataWindow painter or with the SetWeight method. False
+for a particular argument means no code for that feature is generated. </p>
+<A NAME="TI2092"></A><p>This statement enables all features:<p><PRE> dwGen.SetWeight(true, true, true, true, true);</PRE></p>
+<A NAME="TI2093"></A><p>If updating of data is false, no validation or display formatting
+code is generated either. In this statement, it does not matter
+what the second and fifth arguments are, because the first argument
+for updating data is false:<p><PRE> dwGen.SetWeight(false, false, true, true, false);</PRE></p>
+<A NAME="TI2094"></A><p>This statement turns off the client-side scripting capability:<p><PRE> dwGen.SetWeight(true, true, true, false, true);</PRE></p>
+<A NAME="TI2095"></A><p>Updating data and display formatting add the most code to
+the client-side control. Date processing also generates additional
+code. For the smallest client control, turn on only the features
+you need and make sure your DataWindow object does not have any
+date columns.</p>
+<A NAME="TI2096"></A><h4>Naming the client control</h4>
+<p><b>SetHTMLObjectName</b>   You need to provide a name for the Web DataWindow client control.
+The name is used for page parameters and client-side events. If there
+is more than one Web DataWindow client control on the Web page,
+each needs a unique name.</p>
+<A NAME="TI2097"></A><p>This code uses the same name for the server component variable
+and the client control:<p><PRE>     dwGen.SetHTMLObjectName ("dw_1");</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>XML Web DataWindow</span> <A NAME="TI2098"></A>If you are using an XML Web DataWindow with a custom XHTML
+template, the object name in the template must match the name of
+the client control (dw_1 in the example).</p>
+<A NAME="TI2099"></A><h4>Optimizing HTML for a browser</h4>
+<p><b>SetBrowser </b>   The Web DataWindow can generate HTML optimized for particular
+browsers and versions. In particular, it can generate code for Microsoft
+and Netscape browsers. The browser might be different
+each time the server component is instantiated by a different client,
+so this information cannot be preset in the DataWindow painter.
+You can tell it what browser and version to target in the server-side
+script. In the painter, you can set the HTML Version property to
+specify what level of HTML to generate if the browser is not recognized. </p>
+<A NAME="TI2100"></A><p>For information on what HTML features the DataWindow uses
+for different browsers, see the <i>DataWindow Reference</i>
+ or
+the HTMLGen.property topic in online Help.</p>
+<A NAME="TI2101"></A><p>At runtime, the HTTP header sent from the client browser to
+the Web server contains the User-Agent or HTTP_USER_AGENT
+value, which the server component can use to identify the client
+browser.</p>
+<A NAME="TI2102"></A><p>In JSP, you call the getHeader method of the request object
+to get the User-Agent value:<p><PRE> String browser=(String)request.getHeader("User-Agent");</PRE><PRE> dwGen.SetBrowser(browser);</PRE></p>
+<A NAME="TI2103"></A><p>In ASP, you can use the ServerVariables method of the Request
+object to get the HTTP_USER_AGENT value:<p><PRE> var clientbrowser =</PRE><PRE>    Request.ServerVariables("HTTP_USER_AGENT");</PRE><PRE> dwGen.SetBrowser(clientbrowser);</PRE></p>
+<A NAME="BABCJGCI"></A><h2>Specifying the database connection and retrieving data</h2>
+<A NAME="TI2104"></A><h4>Specifying connection information</h4>
+<p><b>SetTrans</b>   You provide connection information for the server component
+with the SetTrans method. The arguments you specify depend on the
+type of connection. For an ODBC connection to Adaptive Server Anywhere,
+you specify all the connection information in the dbParm argument.</p>
+<A NAME="TI2105"></A><p>In <ABBR title = "e a server" >EAServer</ABBR>, you must also
+set up a connection cache for the component, described in <A HREF="dwprgugp42.htm#BEIJCFJJ">"Creating a connection cache
+on <ABBR title = "e a server" >EAServer</ABBR> "</A>.</p>
+<A NAME="TI2106"></A><p>The data source must be defined on the server machine. It
+must be a system DSN on <ABBR title = "e a server" >EAServer</ABBR> if
+the component is running as a service, and it must always be a system
+DSN on COM+. This statement connects to the EAS Demo DB sample
+database:<p><PRE> dwGen.SetTrans("ODBC","ConnectString='DSN=EAS Demo DB V105;UID=dba;PWD=sql'",        "", "", "", "", "");</PRE></p>
+<A NAME="TI2107"></A><p>If you are using the XML Web DataWindow, it is best to call
+the SetPageSize method to limit the number of rows per page:<p><PRE> dwGen.SetPageSize(2);</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using Adaptive Server Enterprise</span> <A NAME="TI2108"></A>PowerBuilder and <ABBR title = "e a server" >EAServer</ABBR> use
+slightly different versions of the CT-Lib software to connect to
+Adaptive Server Enterprise via Open Client. In the PowerBuilder
+development environment, you use the SYC native database interface
+to connect to the database, but you must use SYJ as the first argument to
+SetTrans to connect to ASE in <ABBR title = "e a server" >EAServer</ABBR>. </p>
+<A NAME="TI2109"></A><h4>Retrieving data</h4>
+<p><b>Retrieve</b>   To tell the server component to retrieve data when the DataWindow object
+does not have retrieval arguments, you call the Retrieve method:<p><PRE>     retVal = dwGen.Retrieve();</PRE></p>
+<A NAME="TI2110"></A><p>This ASP code calls Retrieve and, if the return value reports
+an error, calls GetLastErrorString for the error message text:<p><PRE>     retVal = dwGen.Retrieve();</PRE><PRE> if (retVal &lt; 0 )</PRE><PRE>     {</PRE><PRE>         Response.Write("Error on Retrieve: " + retVal +</PRE><PRE>                 "&lt;BR&gt;");</PRE><PRE>         Response.Write(dwGen.GetLastErrorString() +</PRE><PRE>                 "&lt;BR&gt;")</PRE><PRE>     }</PRE></p>
+<A NAME="TI2111"></A><h4>Specifying retrieval arguments</h4>
+<p><b>RetrieveEx</b>   If the DataWindow
+object expects retrieval arguments, call RetrieveEx:<p><PRE> dwGen.RetrieveEx("60000");</PRE></p>
+<A NAME="TI2112"></A><p>Typically, the retrieval arguments are not constants. They
+are page parameters passed to the page from another page where the
+user filled in a form or clicked a hyperlink. If the DataWindow
+expects more than one retrieval argument, the arguments must be
+passed in a single string. The arguments in the string must be separated
+by newline characters (\n), and individual values cannot
+contain newline characters as part of the value. Array values must
+be separated by tab characters (\t).</p>
+<A NAME="TI2113"></A><p>This example form prompts the user for a salary:<p><PRE> &lt;FORM ACTION="salaryrpt.jsp" NAME="log" METHOD="POST"&gt;</PRE><PRE> &lt;p&gt;Please enter a salary ceiling:&lt;/p&gt;</PRE><PRE> &lt;P&gt;&lt;INPUT TYPE="text"     NAME="salary" SIZE="15"&gt;&lt;/p&gt;</PRE><PRE> &lt;p&gt;&lt;Center&gt;</PRE><PRE> &lt;INPUT TYPE="Submit" VALUE="Register"&gt;</PRE><PRE> &lt;/Center&gt;&lt;/p&gt;</PRE><PRE> &lt;/FORM&gt;</PRE></p>
+<A NAME="TI2114"></A><p>Code in server-side script in salaryrpt.jsp can then call
+the RetrieveEx method for the server component using the salary
+value passed as a page parameter:<p><PRE> String Salary =(String)request.getParameter("salary");</PRE><PRE> dwGen.RetrieveEx(Salary);</PRE></p>
+<A NAME="TI2115"></A><p>Getting the retrieval argument from another page works the
+first time the page is loaded. The retrieval arguments have to be
+page parameters each time the page is reloaded. To specify page
+parameters for the reloaded page, you use the SetSelfLink method,
+described next.</p>
+<A NAME="BABDECHH"></A><h2>Passing page-specific data to the reloaded page</h2>
+<A NAME="TI2116"></A><h4>Using self link information</h4>
+<A NAME="TI2117"></A><p>The first time the client browser requests the page template,
+it can pass page-specific information using GET or POST, and the
+page can use those values in the server-side scripts. However, when
+the page is reloaded because of user interactions with the Web DataWindow,
+that information is not passed to the page automatically. </p>
+<A NAME="TI2118"></A><p>To make the information available, you specify a <i>selflinkargs</i> string
+with values that become page parameters in the reloaded page. Typically,
+you would use self-link parameters to keep available:<A NAME="TI2119"></A>
+<ul>
+<li class=fi>Login information from another page</li>
+<li class=ds>The DataWindow object name</li>
+<li class=ds>Retrieval arguments for the DataWindow object
+</li>
+</ul>
+</p>
+<A NAME="TI2120"></A><p>To provide these values when the page is reloaded, you use
+the SetSelfLink method, which takes as arguments the URL of the
+page template as well as the selflinkargs string.</p>
+<A NAME="TI2121"></A><h4>Getting the URL for the page</h4>
+<A NAME="TI2122"></A><p>To reload the page correctly in response to user actions,
+the server component needs to know the URL of the page template.
+You can get this information from the name property of the document
+object header or the SCRIPT_NAME server variable.</p>
+<A NAME="TI2123"></A><p>In JSP, you must parse the return value from a request.getRequestURI
+call:<p><PRE> String URI = request.getRequestURI();</PRE><PRE> String [] myArray = URI.split ("/");</PRE><PRE> String pageName = myArray [myArray.length-1];</PRE></p>
+<A NAME="TI2124"></A><p>In ASP, use the ServerVariables method of the Request object:<p><PRE> var pageName =Request.ServerVariables( "SCRIPT_NAME" );</PRE></p>
+<A NAME="TI2125"></A><h4>Building a self-link argument string</h4>
+<A NAME="TI2126"></A><p>Self-link arguments become page parameters in the reloaded
+page. Your script typically looks at an existing page parameter
+and re-creates it using a self-link argument. The syntax for specifying
+a self-link argument string is:<p><PRE><i>pageparam1</i>='<i>expr1</i>'|<i>pageparam2</i>='<i>expr2</i>'...|<i>pageparam</i><i>n</i>='<i>expr</i><i>n</i>'</PRE></p>
+</p>
+<A NAME="TI2127"></A><p>The string can contain one or more page parameter and expression
+pairs separated by pipes ( | ). Each expression is a DataWindow
+expression that evaluates to a string. Usually you specify constant
+string values that are already values of page parameters rather
+than expressions. </p>
+<A NAME="TI2128"></A><p>The expression is enclosed in quotes, and if the value is
+a constant, it must also be enclosed in quotes. For example, if
+a page parameter has the value <i>Johnson</i>, the
+value of the expression must be enclosed in two sets of quote marks: <FONT FACE="Courier New">'"Johnson"'</FONT></p>
+<A NAME="TI2129"></A><p>To get the value from the current Logname parameter, which
+is already defined for the page, you build the expression using
+the Logname page parameter. The single quotes and inner double quotes
+are embedded in the expression. The current value is inserted between
+the quotes:<p><PRE> String logname = (String)    request.getParameter("Logname");</PRE><PRE> String linkargs = </PRE><PRE>         "logname='\"" + logname + "\"'";</PRE></p>
+<A NAME="TI2130"></A><p>An expression does not need the inner quotes:<p><PRE> String linkargs = "date='String(Today())'";</PRE></p>
+<A NAME="TI2131"></A><h4>Passing the URL and argument string to SetSelfLink</h4>
+<p><b>SetSelfLink</b>   Use the URL and the link arguments string as arguments to
+the SetSelfLink method:<p><PRE> dwGen.SetSelfLink(pageName, linkargs);</PRE></p>
+<A NAME="TI2132"></A><h4>Retrieval arguments as self-link values</h4>
+<A NAME="TI2133"></A><p>The first time the page is loaded, the retrieval argument
+might be:<A NAME="TI2134"></A>
+<ul>
+<li class=fi>A page parameter passed from another
+page. The user might have clicked a URL that included the value
+or filled in a form that posted the value.</li>
+<li class=ds>A new value calculated in the current script.
+</li>
+</ul>
+</p>
+<A NAME="TI2135"></A><p>If the value is a page parameter, then you can re-create the
+page parameter using SetSelfLink. If the value is from some other
+source, you need to write code that gets the value from the source
+(which might be a page parameter) the first time the page is loaded
+and from a page parameter when it is reloaded.</p>
+<A NAME="TI2136"></A><h4>Examples</h4>
+<A NAME="TI2137"></A><p>These JSP examples show code that works with the types of
+values listed above. They illustrate how to get each type of value
+and use it in both RetrieveEx and SetSelfLink method calls. </p>
+<p><b>Value from another page</b>   If the user entered a product ID in a form to get detailed
+information on the product, the product ID is passed to the product report
+template as a page parameter. The page parameter should always exist because
+it comes from the calling page, but the code provides a default
+value anyway:<p><PRE> String prod_id;</PRE><PRE> prod_id=(String) request.getParameter("ProdID"); </PRE><PRE> if (prod_id == null){</PRE><PRE>    prod_id = "1";</PRE><PRE> }</PRE><PRE> dwGen.RetrieveEx(prod_id);</PRE><PRE> dwGen.SetSelfLink(        "ProdID=" + "'\"" + prod_id + "\"'");</PRE></p>
+<p><b>Multiple values</b>   In this example, a Web page with a form prompts the user for a
+user name and a product category and the level of detail the user
+wants to see. The code uses the product category as a retrieval
+argument for the Web DataWindow. The script selects a DataWindow
+object based on the level of detail. All three values are carried
+over each time the page is reloaded:<p><PRE> // Get product category as a retrieval arg</PRE><PRE> String retrievearg, username, rptlevel, dw;</PRE><PRE> retrievearg =     (String)request.getParameter("category");</PRE><PRE> if (retrievearg == null) {</PRE><PRE> retrievearg = "all";</PRE><PRE> }</PRE><PRE> int rtn = dwGen.RetrieveEx(retrievearg);</PRE><PRE> if (rtn &lt; 0) {</PRE><PRE>     ... // Check for error</PRE><PRE> }</PRE><PRE> // Get the user name</PRE><PRE> username =(String)request.getParameter("username");</PRE><PRE> if (username     != null){</PRE><PRE> out.print("&lt;P&gt;Dear " + username + "&lt;/P&gt;");</PRE><PRE> }</PRE><PRE> out.print("&lt;P&gt;Here is the report you<br>    requested.&lt;/P&gt;");</PRE><PRE> </PRE><PRE> // Choose DW based on detail level requested</PRE><PRE> rptlevel=(String)request.getParameter("reportlevel");</PRE><PRE> if (rptlevel == "detail"){</PRE><PRE>     dw = "d_product_detail";</PRE><PRE> } else if (rptlevel == "summary"){</PRE><PRE>     dw = "d_product_summary";</PRE><PRE> } else {</PRE><PRE>     dw = (String) request.getParameter("dw");</PRE><PRE>     if (dw == null} {</PRE><PRE>     out.print ("&lt;P&gt;Error selecting report");</PRE><PRE>     //handle error or halt processing ...</PRE><PRE> }</PRE><PRE> dwGen.SetDWObject("productrpt.pbd", dw);</PRE><PRE> </PRE><PRE> // Tell the server component to recreate the </PRE><PRE> // page parameters generated for the browser</PRE><PRE> String linkargs = "username='\"" + username + "\"'"</PRE><PRE>  + "|category= '\"" + retrievearg + "\"'"</PRE><PRE>  + "|dw= '\"" + dw + "\"'";</PRE><PRE> </PRE><PRE> dwGen.SetSelfLink( pageName, linkargs );</PRE></p>
+<A NAME="TI2138"></A><h2>Passing user actions to the server component</h2>
+<p><b>SetAction</b>   When the user clicks a DataWindow button, action information
+is passed back to the page server as context and action page parameters.
+Your server-side script needs to access those page parameters and
+call SetAction so the server component can apply the action to the
+generated HTML. </p>
+<A NAME="TI2139"></A><p>The names of the parameters use the object name specified
+in the SetHTMLObjectName method, for example: dw_1_action
+and dw_1_context. You can also specify the object
+name on the Web Generation tab page in the DataWindow painter.</p>
+<A NAME="TI2140"></A><p>You can include buttons for scrolling to other pages of data
+and for retrieving and updating data and inserting and deleting
+rows. When these button actions occur, the change is sent back to
+the server component and the change is made in the DataWindow buffer.
+If the user clicks an update button, the update method is called
+in the component without any other scripting needed. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>No need to call methods</span> <A NAME="TI2141"></A>You can call server component methods directly for retrieving
+data, updating, inserting and deleting rows, and so forth. However,
+remember that button clicks invoke the actions. You do not need
+to call the methods too.</p>
+<A NAME="TI2142"></A><p>This JSP code checks whether parameters have been defined
+(meaning that the page is a reloaded page) and if so, calls SetAction
+to send the action information to the server component:<p><PRE> int retVal;</PRE><PRE> String dw_1_action =(String)request.GetParameter     ("dw_1_action");</PRE><PRE> String dw_1_context = (String)request.GetParameter     ("dw_1_context");</PRE><PRE> if (dw_1_context == null){</PRE><PRE>     dw_1_context = " ";</PRE><PRE> }</PRE><PRE> // Check if we need to perform the action</PRE><PRE> if (dw_1_action!=null){</PRE><PRE>   retVal = dwGen.<i>SetAction</i>(dw_1_action, dw_1_context);</PRE><PRE>   if (retVal &lt; 0 ) {</PRE><PRE>     out.print("Error on SetAction: "            + retVal + "&lt;BR&gt;");</PRE><PRE>     out.print(dwGen.GetLastErrorString()+ "&lt;BR&gt;");</PRE><PRE>   }</PRE><PRE> }</PRE></p>
+<A NAME="TI2143"></A><h2>Inserting the generated HTML or XHTML into the page</h2>
+<p><b>Generate</b>   After the server script has done all the setup, it calls the
+Generate function, which returns the generated HTML as a string. </p>
+<A NAME="TI2144"></A><p>In JSP, use out.print to insert code in the page template:<p><PRE> out.print( dwGen.Generate() );</PRE></p>
+<A NAME="TI2145"></A><p>In ASP, use Response.Write to insert the code in the page
+template:<p><PRE> Response.Write( dwGen.Generate() );</PRE></p>
+<p><b>GenerateXHTML and GenerateXMLWeb</b>   In JSP targets, you return the Web DataWindow in XHTML with
+the GenerateXHTML command:<p><PRE> out.print( dwGen.GenerateXHTML() );</PRE></p>
+<A NAME="TI2146"></A><p>The GenerateXMLWeb method generates the content, layout, style,
+and client-side functionality of the DataWindow separately
+in XML, XSLT, CSS, and JS files. It returns the browser-specific
+XSLT transformation script that uses the generated files to render
+the DataWindow in XHTML on the client side:<p><PRE> out.print( dwGen.GenerateXMLWeb() );</PRE></p>
+

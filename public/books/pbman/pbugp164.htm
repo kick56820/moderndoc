@@ -1,0 +1,93 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Generating and saving a DataWindow object </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp163.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp165.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CFHBFDDF"></A><h1>Generating and saving a DataWindow object </h1>
+<A NAME="TI5129"></A><p>When you have finished interacting with the wizard, PowerBuilder generates the DataWindow object and
+opens the DataWindow painter.</p>
+<A NAME="TI5130"></A><p>When generating the DataWindow object, PowerBuilder might use information
+from a set of tables called the extended attribute system tables.
+If this information is available, PowerBuilder uses it.</p>
+<A NAME="TI5131"></A><h2>About the extended attribute system tables and DataWindow objects</h2>
+<A NAME="TI5132"></A><p>The extended attribute system tables are a set of tables maintained
+by the Database painter. They contain information about database tables
+and columns. Extended attribute information extends database definitions
+by recording information that is relevant to using database data
+in screens and reports.</p>
+<A NAME="TI5133"></A><p>For example, labels and headings you defined for columns in
+the Database painter are used in the generated DataWindow object. Similarly,
+if you associated an edit style with a column in the Database painter,
+that edit style is automatically used for the column in the DataWindow object.</p>
+<A NAME="TI5134"></A><p>When generating a DataWindow object, PowerBuilder uses the following information
+from the extended attribute system tables:</p>
+<A NAME="TI5135"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI5136"></A>For</th>
+<th  rowspan="1"  ><A NAME="TI5137"></A>PowerBuilder uses</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5138"></A>Tables</td>
+<td  rowspan="1"  ><A NAME="TI5139"></A>Fonts specified for labels, headings,
+and data</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5140"></A>Columns</td>
+<td  rowspan="1"  ><A NAME="TI5141"></A>Text specified for labels and headings<br>Display
+formats<br>Validation rules<br>Edit styles</td>
+</tr>
+</table>
+<A NAME="TI5142"></A><p>If there is no extended attribute information for the database
+tables and columns you are using, you can set the text for headings
+and labels, the fonts, and the display formats in the DataWindow painter.
+The difference is that you have to do this individually for every DataWindow object that
+you create using the data.</p>
+<A NAME="TI5143"></A><p>If you want to change something that came from the extended
+attribute system tables, you can change it in the DataWindow painter. The
+changes you make in the DataWindow painter apply only to the DataWindow object you
+are working on.</p>
+<A NAME="TI5144"></A><p>The advantage of using the extended attribute system tables
+is that it saves time and ensures consistency. You only have to
+specify the information once, in the database. Since PowerBuilder uses
+the information whenever anyone creates a new DataWindow object with the
+data, it is more likely that the appearance and labels of data items
+will be consistent.</p>
+<A NAME="TI5145"></A><p>For more information about the extended attribute
+system tables, see <A HREF="pbugp131.htm#BFCDFDFD">Chapter 16, "Managing the Database,"</A> and <A HREF="pbugp271.htm#CCJEBFGB">Appendix A, "The Extended
+Attribute System Tables"</A></p>
+<A NAME="TI5146"></A><h2>Saving the DataWindow object</h2>
+<A NAME="TI5147"></A><p>When you have created a DataWindow object, you should save it. The
+first time you save it you give it a name. As you work, you should
+save your DataWindow object frequently so that you do not lose changes.</p>
+<A NAME="TI5148"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To save the DataWindow object:</p>
+<ol><li class=fi><p>Select File&gt;Save from the menu
+bar.</p><p>If you have previously saved the DataWindow object, PowerBuilder saves the
+new version in the same library and returns you to the DataWindow painter.</p><p>If you have not previously saved the DataWindow object, PowerBuilder displays
+the Save DataWindow dialog box.</p></li>
+<li class=ds><p>(Optional) Enter comments in the Comments box
+to describe the DataWindow object.</p></li>
+<li class=ds><p>Enter a name for the DataWindow object in the DataWindows
+box.</p></li>
+<li class=ds><p>Specify the library in which the DataWindow object is
+to be saved and click OK.</p></li></ol>
+<br><A NAME="TI5149"></A><h3>Naming the DataWindow object</h3>
+<A NAME="TI5150"></A><p>The DataWindow object name can be any valid PowerBuilder identifier
+up to 40 contiguous characters. A common
+convention is to prefix the name of the DataWindow object with <b>d_</b>.</p>
+<A NAME="TI5151"></A><p>For information about PowerBuilder identifiers,
+see the <i>PowerScript Reference.</i>
+</p>
+<A NAME="TI5152"></A><h2>Modifying an existing DataWindow object</h2>
+<A NAME="TI5153"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify an existing DataWindow object:</p>
+<ol><li class=fi><p>Select File&gt;Open from the menu
+bar.</p><p>The Open dialog displays.</p></li>
+<li class=ds><p>Select the object type and the library.</p><p>PowerBuilder lists the DataWindow objects in the current library.</p></li>
+<li class=ds><p>Select the object you want.</p><p>PowerBuilder opens the DataWindow painter and displays the DataWindow object.
+You can also open a DataWindow object by double-clicking it in the System
+Tree, or, if it has been placed in a window or visual user object,
+selecting Modify DataWindow from the control's pop-up
+menu.</p><p>To learn how you can modify an existing DataWindow object,
+see <A HREF="pbugp167.htm#CAICGCGD">Chapter 19, "Enhancing DataWindow Objects ."</A></p></li></ol>
+<br>

@@ -1,0 +1,58 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About window instances </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp35.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp37.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF343489009"></A><h1>About window instances </h1>
+<A NAME="TI759"></A><p>When you build an application, you may want to display several
+windows that are identical in structure but have different data
+values.</p>
+<A NAME="TI760"></A><p>For example, you may have a <b>w_employee</b> window
+and want to display information for two or more employees at the
+same time by opening multiple copies (instances) of the <b>w_employee</b> window.</p>
+<A NAME="TI761"></A><p>You can do that, but you need to understand how PowerBuilder
+stores window definitions.</p>
+<A NAME="TI762"></A><h4>How PowerBuilder stores window definitions</h4>
+<A NAME="TI763"></A><p>When you save a window, PowerBuilder actually generates two
+entities in the library:</p>
+<A NAME="TI764"></A><p><A NAME="TI765"></A>
+<ul>
+<li class=fi><b>A new
+datatype</b>   The name of the datatype is the same as the name of the window.<br>
+For example, when you save a window named <b>w_employee</b>, PowerBuilder
+internally creates a datatype named <b>w_employee</b>.<br></li>
+<li class=ds><b>A new global variable of the new datatype</b>   The name of the global variable is the same as the name of
+the window.<br>
+For example, when you save the <b>w_employee</b> window,
+you are also implicitly defining a global variable named <i>w_employee</i> of
+type <b>w_employee</b>.<br><br>
+It is as if you had made the following declaration:<br><A NAME="TI766"></A><caption><b>Figure 6-1: Variable declaration</b></captionls>
+<br><img src="images/mgwin01.gif">
+
+</li>
+</ul>
+</p>
+<A NAME="TI767"></A><p>By duplicating the name of the datatype and variable, PowerBuilder
+allows new users to access windows easily through their variables
+while ignoring the concept of datatype.</p>
+<A NAME="TI768"></A><h4>What happens when you open a window</h4>
+<A NAME="TI769"></A><p>To open a window, you use the <b>Open</b> function,
+such as:<p><PRE> Open(w_employee)</PRE></p>
+<A NAME="TI770"></A><p>This actually creates an instance of the datatype <b>w_employee</b> and
+assigns it a reference to the global variable, also named <i>w_employee</i>.</p>
+<A NAME="TI771"></A><p>As you have probably noticed, when you open a window that
+is already open, PowerBuilder simply activates the existing window;
+it does not open a new window. For example, consider this script
+for a CommandButton's Clicked event:<p><PRE> Open(w_employee)</PRE></p>
+<A NAME="TI772"></A><p>No matter how many times this button is clicked, there is
+still only one window <b>w_employee</b>.
+It is pointed to by the global variable <i>w_employee</i>.</p>
+<A NAME="TI773"></A><p>To open multiple instances of a window, you declare variables
+of the window's type.</p>
+

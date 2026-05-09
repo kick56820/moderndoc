@@ -1,0 +1,60 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Naming the DataWindow controls in a form style</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp258.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp260.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAICGIJD"></A><h1>Naming the DataWindow controls in a form style</h1>
+<A NAME="TI7680"></A><p>Each form style you define contains one or more central DataWindow
+controls that are based on DataWindow controls in one of the built-in
+InfoMaker form styles.</p>
+<A NAME="TI7681"></A><p>The best way to understand the behavior of these DataWindow
+controls is to build forms in InfoMaker using each of the built-in
+styles. Then, when you want to build a form style, choose the DataWindow
+controls from the built-in style that matches the type of presentation
+you want in your form style.</p>
+<A NAME="TI7682"></A><p>For example, to create a basic freeform data entry form, base
+it on <b>dw_freeform</b>, the DataWindow
+control found in <b>w_pbstyle_freeform</b>.</p>
+<A NAME="TI7683"></A><p>When building your form style, you must assign one of the
+following names to the central DataWindow controls:</p>
+<A NAME="TI7684"></A><p><A NAME="TI7685"></A>
+<ul>
+<li class=fi><b>dw_freeform</b></li>
+<li class=ds><b>dw_grid</b></li>
+<li class=ds><b>dw_master_12many</b></li>
+<li class=ds><b>dw_detail_12many</b></li>
+<li class=ds><b>dw_master_many21</b></li>
+<li class=ds><b>dw_detail_many21</b>
+</li>
+</ul>
+</p>
+<p><b>Valid combinations</b>   You must use one of the four combinations of DataWindow controls
+in <A HREF="apptechp259.htm#BGBDABBF">Table 39-1</A>in a
+form style.</p>
+<A NAME="BGBDABBF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 39-1: PowerBuilder DataWindow controls</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7686"></A>Use these DataWindow control names</th>
+<th  rowspan="1"  ><A NAME="TI7687"></A>To base your form style on this built-in style</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7688"></A><b>dw_freeform</b> <i>only</i></td>
+<td  rowspan="1"  ><A NAME="TI7689"></A>Freeform.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7690"></A><b>dw_grid</b> <i>and</i> <b>dw_freeform</b></td>
+<td  rowspan="1"  ><A NAME="TI7691"></A>Grid.<A NAME="TI7692"></A><p><b>dw_grid</b> is the central DataWindow
+control; <b>dw_freeform</b> shares the result
+set and serves as the background, allowing users to place computed fields
+anywhere in the form.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7693"></A><b>dw_master_12many</b> <i>and</i> <b>dw_detail_12many</b></td>
+<td  rowspan="1"  ><A NAME="TI7694"></A>Master Detail/One-To-Many.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7695"></A><b>dw_master_many21</b> <i>and</i> <b>dw_detail_many21</b></td>
+<td  rowspan="1"  ><A NAME="TI7696"></A>Master Detail/Many-To-One.</td>
+</tr>
+</table>
+

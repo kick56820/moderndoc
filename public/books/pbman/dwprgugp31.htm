@@ -1,0 +1,153 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Sharing information </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp30.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp32.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF350671456"></A><h1>Sharing information </h1>
+<A NAME="TI983"></A><p>The ShareData method allows you to share a result set among
+two different DataStores or DataWindow controls. When you share
+information, you remove the need to retrieve the same data multiple
+times.</p>
+<A NAME="TI984"></A><p>The ShareData method shares data retrieved by one DataWindow
+control or DataStore (called the primary DataWindow) with another
+DataWindow control or DataStore (the secondary DataWindow).</p>
+<A NAME="TI985"></A><h4>Result set descriptions must match</h4>
+<A NAME="TI986"></A><p>When you share data, the result set descriptions for the DataWindow
+objects must be the same. However, the SELECT statements can be
+different. For example, you could use the ShareData method to share
+data between DataWindow objects that have the following SELECT statements
+(because the result set descriptions are the same):<p><PRE> SELECT dept_id from dept</PRE><PRE> </PRE><PRE> SELECT dept_id from dept where dept_id = 200</PRE><PRE> </PRE><PRE> SELECT dept_id from employee</PRE></p>
+<A NAME="TI987"></A><p>You can also share data between two DataWindow objects where
+the source of one is a database and the source of the other is external.
+As long as the lists of columns and their datatypes match, you can
+share the data.</p>
+<A NAME="TI988"></A><h4>What is shared?</h4>
+<A NAME="TI989"></A><p>When you use the ShareData method, the following information
+is shared:</p>
+<A NAME="TI990"></A><p><A NAME="TI991"></A>
+<ul>
+<li class=fi>Primary buffer</li>
+<li class=ds>Delete buffer</li>
+<li class=ds>Filter buffer</li>
+<li class=ds>Sort order
+</li>
+</ul>
+</p>
+<A NAME="TI992"></A><p>ShareData does not share the formatting characteristics of
+the DataWindow objects. That means you can use ShareData to apply
+different presentations to the same result set.</p>
+<A NAME="TI993"></A><h4>When you alter the result set</h4>
+<A NAME="TI994"></A><p>If you perform an operation that affects the result set for
+either the primary or the secondary DataWindow, the change affects
+both of the objects sharing the data. Operations that alter the
+buffers or the sort order of the secondary DataWindows are rerouted
+to the primary DataWindow. For example, if you call the Update method
+for the secondary DataWindow, the update operation is applied to
+the primary DataWindow also.</p>
+<A NAME="TI995"></A><h4>Turning off sharing data</h4>
+<A NAME="TI996"></A><p>To turn off the sharing of data, you use the ShareDataOff
+method. When you call ShareDataOff for a primary DataWindow, any
+secondary DataWindows are disassociated and no longer contain data.
+When you call ShareDataOff for a secondary DataWindow, that DataWindow
+no longer contains data, but the primary DataWindow and other secondary
+DataWindows are not affected.</p>
+<A NAME="TI997"></A><p>In most cases you do not need to turn off sharing, because
+the sharing of data is turned off automatically when a window is
+closed and any DataWindow controls (or DataStores) associated with
+the window are destroyed.</p>
+<A NAME="TI998"></A><h4>Crosstabs</h4>
+<A NAME="TI999"></A><p>You cannot share data with a DataWindow object that has the
+Crosstab presentation style.</p>
+<A NAME="TI1000"></A><h2>Example: printing data from a DataStore</h2>
+<A NAME="TI1001"></A><p>Suppose you have a window called w_employees that
+allows users to retrieve, update, and print employee data retrieved
+from the database:</p>
+<br><img src="images/dspic7.gif">
+<A NAME="TI1002"></A><p>The DataWindow object displayed in the DataWindow control
+is suitable for online display but not for printing. In this case,
+you could define a second DataWindow object for printing that has
+the same result set description as the object used for display and
+assign the second object to a DataStore. You could then share data
+between the DataStore and the DataWindow control. Whenever the user
+asked to print the data in the window, you could print the contents
+of the DataStore.</p>
+<A NAME="TI1003"></A><h4>When the window or form opens</h4>
+<A NAME="TI1004"></A><p>The code you write begins by establishing the hand pointer
+as the current row indicator for the dw_employees DataWindow
+control. Then the script sets the transaction object for dw_employees
+and issues a Retrieve method to retrieve some data. After retrieving
+data, the script creates a DataStore using the instance variable
+or data member ids_datastore, and assigns the DataWindow object
+d_employees to the DataStore. The final statement of the
+script shares the result set for the dw_employees DataWindow
+control with the DataStore.</p>
+<A NAME="TI1005"></A><p>This code is for the window's Open event:<p><PRE> dw_employees.SetRowFocusIndicator(Hand!)</PRE><PRE> dw_employees.SetTransObject(SQLCA)</PRE><PRE> dw_employees.Retrieve()</PRE><PRE> </PRE><PRE> ids_datastore = CREATE datastore</PRE><PRE> ids_datastore.DataObject = "d_employees"</PRE><PRE> dw_employees.ShareData(ids_datastore)</PRE></p>
+<A NAME="TI1006"></A><h4>Code for the Update button</h4>
+<A NAME="TI1007"></A><p>Code for the cb_update button applies the update
+operation to the dw_employees DataWindow control.</p>
+<A NAME="TI1008"></A><p>This code is for the Update button's Clicked event:<p><PRE> IF dw_employees.Update() = 1 THEN</PRE><PRE>         COMMIT using SQLCA;</PRE><PRE>         MessageBox("Save","Save succeeded")</PRE><PRE> ELSE</PRE><PRE>         ROLLBACK using SQLCA;</PRE><PRE>         MessageBox("Save","Save failed")</PRE><PRE> END IF</PRE></p>
+<A NAME="TI1009"></A><h4>Code for the Print button</h4>
+<A NAME="TI1010"></A><p>The Clicked event of the cb_print button prints the
+contents of ids_datastore. Because the DataWindow object
+for the DataStore is d_employees, the printed output uses
+the presentation specified for this object.</p>
+<A NAME="TI1011"></A><p>This code is for the Print button's Clicked event:<p><PRE> ids_datastore.Print()</PRE></p>
+<A NAME="TI1012"></A><h4>When the window or form closes</h4>
+<A NAME="TI1013"></A><p>When the window closes, the DataStore gets destroyed.</p>
+<A NAME="TI1014"></A><p>This code is for the window's Close event:<p><PRE> destroy ids_datastore</PRE></p>
+<A NAME="TI1015"></A><h2>Example: using two DataStores to process data</h2>
+<A NAME="TI1016"></A><p>Suppose you have a window called w_multi_view
+that shows multiple views of the same result set. When the Employee
+List radio button is selected, the window shows a list of employees
+retrieved from the database:</p>
+<br><img src="images/dspic8.gif">
+<A NAME="TI1017"></A><p>When the Employee Salary Information radio button is selected,
+the window displays a graph that shows employee salary information
+by department:</p>
+<br><img src="images/dspic9.gif">
+<A NAME="TI1018"></A><p>This window has one DataWindow control called dw_display.
+It uses two DataStores to process data retrieved from the database.
+The first DataStore (ids_emp_list) shares its
+result set with the second DataStore (ids_emp_graph). The
+DataWindow objects associated with the two DataStores have the same result
+set description.</p>
+<A NAME="TI1019"></A><h4>When the window or form opens</h4>
+<A NAME="TI1020"></A><p>When the window or form opens, the application sets the mouse
+pointer to the hourglass shape. Then the code creates the two DataStores
+and sets the DataWindow objects for the DataStores. Next the code
+sets the transaction object for ids_emp_list and
+issues a Retrieve method to retrieve some data. </p>
+<A NAME="TI1021"></A><p>After retrieving data, the code shares the result set for
+ids_emp_list with ids_emp_graph.
+The final statement triggers the Clicked event for the Employee
+List radio button.</p>
+<A NAME="TI1022"></A><p>This code is for the window's Open event:<p><PRE> SetPointer(HourGlass!)</PRE><PRE> ids_emp_list = Create DataStore</PRE><PRE> ids_emp_graph = Create DataStore</PRE><PRE> </PRE><PRE> ids_emp_list.DataObject = "d_emp_list"</PRE><PRE> ids_emp_graph.DataObject = "d_emp_graph"</PRE><PRE> </PRE><PRE> ids_emp_list.SetTransObject(sqlca)</PRE><PRE> ids_emp_list.Retrieve()</PRE><PRE> ids_emp_list.ShareData(ids_emp_graph)</PRE><PRE> rb_emp_list.EVENT Clicked()</PRE></p>
+<A NAME="TI1023"></A><h4>Code for the Employee List radio button</h4>
+<A NAME="TI1024"></A><p>The code for the Employee List radio button (called rb_emp_list)
+sets the DataWindow object for the DataWindow control to be the
+same as the DataWindow object for ids_emp_list.
+Then the script displays the data by sharing the result set for
+the ids_emp_list DataStore with the DataWindow control.</p>
+<A NAME="TI1025"></A><p>This code is for the Employee List radio button's
+Clicked event:<p><PRE> dw_display.DataObject = ids_emp_list.DataObject</PRE><PRE> ids_emp_list.ShareData(dw_display)</PRE></p>
+<A NAME="TI1026"></A><h4>Code for the Employee Salary Information radio button</h4>
+<A NAME="TI1027"></A><p>The code for the Employee Salary Information radio button
+(called rb_graph) is similar to the code for the List radio
+button. It sets the DataWindow object for the DataWindow control
+to be the same as the DataWindow object for ids_emp_graph.
+Then it displays the data by sharing the result set for the ids_emp_graph
+DataStore with the DataWindow control.</p>
+<A NAME="TI1028"></A><p>This code is for the Employee Salary Information radio button's
+Clicked event:<p><PRE> dw_display.DataObject = ids_emp_graph.DataObject</PRE><PRE> ids_emp_graph.ShareData(dw_display)</PRE></p>
+<A NAME="TI1029"></A><h4>When the window or form closes</h4>
+<A NAME="TI1030"></A><p>When the window closes, the DataStores get destroyed.</p>
+<A NAME="TI1031"></A><p>This code is for the window's Close event:<p><PRE> Destroy ids_emp_list</PRE><PRE> Destroy ids_emp_graph</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Use garbage collection</span> <A NAME="TI1032"></A>Do not destroy the objects if they might still be in use by
+another process&#8212;rely on garbage collection instead. </p>
+

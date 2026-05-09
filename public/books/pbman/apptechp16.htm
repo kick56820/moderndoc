@@ -1,0 +1,53 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Return values from ancestor scripts</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp15.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp17.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIDCHAE"></A><h1>Return values from ancestor scripts</h1>
+<A NAME="TI261"></A><p>If you want to perform some processing in an event in a descendent
+object, but that processing depends on the return value of the ancestor
+event script, you can use a local variable called <i>AncestorReturnValue</i> that
+is automatically declared and assigned the return value of the ancestor
+event.</p>
+<A NAME="TI262"></A><p>The first time the compiler encounters a <b>CALL</b> statement
+that calls the ancestor event of a script, the compiler implicitly
+generates code that declares the <i>AncestorReturnValue</i> variable
+and assigns to it the return value of the ancestor event. </p>
+<A NAME="TI263"></A><p>The datatype of the <i>AncestorReturnValue</i> variable
+is always the same as the datatype defined for the return value
+of the event. The arguments passed to the call come from the arguments
+that are passed to the event in the descendent object.</p>
+<A NAME="TI264"></A><h4>Extending event scripts</h4>
+<A NAME="TI265"></A><p>The <i>AncestorReturnValue</i> variable is always
+available in extended event scripts. When you extend an event script,
+PowerBuilder generates the following syntax and inserts it at the
+beginning of the event script:<p><PRE>CALL SUPER::<i>event_name</i></PRE></p>
+</p>
+<A NAME="TI266"></A><p>You see the statement only if you export the syntax of the
+object. </p>
+<A NAME="TI267"></A><h4>Overriding event scripts</h4>
+<A NAME="TI268"></A><p>The <i>AncestorReturnValue</i> variable is available
+only when you override an event script after you call the ancestor
+event using the <b>CALL</b> syntax explicitly:</p>
+<A NAME="TI269"></A><p><p><PRE>CALL SUPER::<i>event_name</i></PRE></p>
+<i>or</i><p><PRE>CALL <i>ancestor_name</i>::<i>event_name</i></PRE></p>
+</p>
+<A NAME="TI270"></A><p>The compiler does not differentiate between the keyword <b>SUPER</b> and
+the name of the ancestor. The keyword is replaced with the name
+of the ancestor before the script is compiled.</p>
+<A NAME="TI271"></A><p>The <i>AncestorReturnValue</i> variable is declared
+and a value assigned only when you use the <b>CALL</b> event
+syntax. It is not declared if you use the new event syntax:<p><PRE><i>ancestor_name</i>::EVENT <i>event_name</i> ( )</PRE></p>
+</p>
+<A NAME="TI272"></A><h4>Example</h4>
+<A NAME="TI273"></A><p>You can put code like the following in an extended event script:<p><PRE> IF AncestorReturnValue = 1 THEN<br>  // execute some code<br>ELSE<br>  // execute some other code<br>END IF</PRE></p>
+<A NAME="TI274"></A><p>You can use the same code in a script that overrides its ancestor
+event script, but you must insert a <b>CALL</b> statement
+before you use the <i>AncestorReturnValue</i> variable:<p><PRE> // execute code that does some preliminary processing<br>CALL SUPER::ue_myevent<br>IF AncestorReturnValue = 1 THEN<br>...</PRE></p>
+

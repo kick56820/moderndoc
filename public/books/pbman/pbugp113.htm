@@ -1,0 +1,68 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Working with inherited objects </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp112.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp114.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF351781939"></A><h1>Working with inherited objects </h1>
+<A NAME="TI3136"></A><p>This section describes:</p>
+<A NAME="TI3137"></A><p><A NAME="TI3138"></A>
+<ul>
+<li class=fi>Working in a descendent
+object</li>
+<li class=ds>Working in an ancestor object</li>
+<li class=ds>Resetting properties in a descendant
+</li>
+</ul>
+</p>
+<A NAME="TI3139"></A><h4>Working in a descendent object</h4>
+<A NAME="TI3140"></A><p>You can change descendent objects to meet specialized needs.
+For example, you can:</p>
+<A NAME="TI3141"></A><p><A NAME="TI3142"></A>
+<ul>
+<li class=fi>Change properties
+of the descendent object</li>
+<li class=ds>Change properties of inherited controls in the object</li>
+<li class=ds>Add controls to a descendent window or user object</li>
+<li class=ds>Add menu items to a menu
+</li>
+</ul>
+</p>
+<A NAME="TI3143"></A><p>You cannot copy a control on a descendent window or visual
+user object if the control inherits from the ancestor object, because
+the resulting inheritance hierarchy cannot be maintained consistently.
+You <i>can</i> copy a control on a descendent object
+if the control does <i>not</i> inherit from the object's
+ancestor.</p>
+<A NAME="TI3144"></A><p>For specifics about what you can do in inherited
+windows, user objects, and menus, see <A HREF="pbugp84.htm#CAIDEADB">Chapter 11, "Working with Windows,"</A> <A HREF="pbugp124.htm#BCADFDDI">Chapter 15, "Working with User Objects ,"</A> and <A HREF="pbugp115.htm#CFHCHJCB">Chapter 14, "Working with Menus and Toolbars."</A></p>
+<A NAME="TI3145"></A><h4>Working in an ancestor object</h4>
+<A NAME="TI3146"></A><p>When you use inheritance to build an object, the descendant
+is dependent on the definition of the ancestor. Therefore you should
+not delete the ancestor without deleting the descendants. You should also be
+careful when you change the definition of an ancestor object. You
+may want to regenerate descendent objects if you do any of the following:</p>
+<A NAME="TI3147"></A><p><A NAME="TI3148"></A>
+<ul>
+<li class=fi>Delete or change the
+name of an instance variable in the ancestor</li>
+<li class=ds>Modify a user-defined function in the ancestor</li>
+<li class=ds>Delete a user event in an ancestor</li>
+<li class=ds>Rename or delete a control in an ancestor
+</li>
+</ul>
+</p>
+<A NAME="TI3149"></A><p>When you regenerate the descendants, the compiler will flag
+any references it cannot resolve so you can fix them. For information
+about regenerating objects, see <A HREF="pbugp48.htm#CAICGJAJ">Chapter 6, "Working with Libraries."</A></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About local changes</span> <A NAME="TI3150"></A>If you change a property in an ancestor object, the property
+also changes in all descendants&#8212;<i>if</i> you
+have not already changed that property in a descendant, in which
+case the property in the descendant stays the same. In other words,
+local changes always override inherited properties.</p>
+

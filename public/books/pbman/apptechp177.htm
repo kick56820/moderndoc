@@ -1,0 +1,49 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Deploying a PowerBuilder COM server</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp176.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp178.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CEGDFIJA"></A><h1>Deploying a PowerBuilder COM server</h1>
+<A NAME="TI5820"></A><p>Once you have generated a PowerBuilder COM server, you can
+use COM-enabled client applications to create the PowerBuilder
+COM objects and access their methods. You can use the server with
+any COM-enabled application or deploy it as a package to COM+.</p>
+<A NAME="TI5821"></A><h2>Using a PowerBuilder COM server with a COM-enabled
+application</h2>
+<A NAME="TI5822"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use a PowerBuilder COM server with a COM-enabled
+application:</p>
+<ol><li class=fi><p>Deploy the PowerBuilder COM server to the user's
+computer.</p></li>
+<li class=ds><p>Deploy the PowerBuilder virtual machine (<i>PBVM105.DLL</i>)
+and any other required modules (such as <i>PBCOMRT105.DLL</i>,<i> PBDWE105.DLL</i>,
+or any required database software) to the computer containing the
+PowerBuilder COM server.</p></li>
+<li class=ds><p>Register the PowerBuilder COM server on the user's
+computer.</p></li>
+<li class=ds><p>Write a client application that calls PB object functions
+in the PowerBuilder COM server.</p><p>See <A HREF="apptechp178.htm#CHDDBCEE">"Accessing PowerBuilder COM
+servers from clients"</A>.</p></li></ol>
+<br><p><b>Registering PowerBuilder COM servers</b>   When you deploy a PowerBuilder COM server, you need to add
+information to the registry to enable COM to create instances of
+the server's objects. PowerBuilder COM servers are self-registering&#8212;you
+do not need to create a separate registration file. To register
+a PowerBuilder COM server, use the <b>REGSVR32</b> utility.
+For example:</p>
+<A NAME="TI5823"></A><p><p><PRE> regsvr32.exe <i>path_to_server</i>\mycomserver.dll</PRE></p>
+<A NAME="TI5824"></A><p>If you want to access the server from a remote client, you
+need to make an additional change to the registry and you may need
+to configure the client for remote access to the server. For more
+information, see <A HREF="apptechp178.htm#BABCAFDC">"Using PowerBuilder COM servers
+and objects with DCOM"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Registering automatically for testing</span> <A NAME="TI5825"></A>For testing purposes, you can check the box on the General
+property page that registers the server on the development computer
+automatically when it has been generated. To avoid making unnecessary
+registry entries on your computer, check this box only when you
+are ready to test the PowerBuilder COM server.</p>
+

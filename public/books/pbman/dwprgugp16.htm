@@ -1,0 +1,93 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using nested reports</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp15.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp17.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF361620553"></A><h1>Using nested reports</h1>
+<A NAME="TI654"></A><p>When designing a DataWindow object for a report, you can choose
+to nest other reports (which are also DataWindow objects) within
+it. The basic steps for using nested reports in an application are
+the same ones you follow for the other report types. There are,
+however, some additional topics concerning nested reports that you
+should know about.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Availability</span> <A NAME="TI655"></A>Composite, TreeView, and nested reports are not available
+in the Web DataWindow.</p>
+<A NAME="TI656"></A><p>To learn about designing nested reports, see
+the <i>PowerBuilder User's Guide</i>
+.</p>
+<A NAME="TI657"></A><h4>Printing multiple updatable DataWindows on a page</h4>
+<A NAME="TI658"></A><p>An advantage of composite reports is that you can print multiple
+reports on a page. A limitation of composite reports is that they
+are not updatable, so you cannot <i>directly</i> print
+several updatable DataWindows on one page. However, there is an <i>indirect</i> way
+to do that, as follows.</p>
+<A NAME="TI659"></A><p>You can use the GetChild method on named nested reports in
+a composite report to get a reference to a nested report. After
+getting the reference to the nested report, you can address the
+nested report during execution like other DataWindows.</p>
+<A NAME="TI660"></A><p>Using this technique, you can call the ShareData method to
+share data between multiple updatable DataWindow controls and the
+nested reports in your composite report. This allows you to print
+multiple updatable DataWindows on a page through the composite report.</p>
+<A NAME="TI661"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To print multiple DataWindows on a page using
+a composite DataWindow:</p>
+<ol><li class=fi><p>Build a window or form that contains DataWindow
+controls with the updatable DataWindow objects.</p></li>
+<li class=ds><p>Define a composite report that has reports corresponding
+to each of the DataWindows in the window or form that you want to
+print. Be sure to name each of the nested reports in the composite
+report.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Naming the nested report</span> <A NAME="TI662"></A>To use GetChild on a nested report, the nested report must
+have a name. To name a nested report in the DataWindow painter,
+double-click it in the workspace and enter a name in the Name box
+on the General property page.</p>
+</li>
+<li class=ds><p>Add the composite report to the window or form
+(it can be hidden).</p></li>
+<li class=ds><p>In your application, do the following:</p><A NAME="TI663"></A><ol><li class=fi><p>Retrieve data into the updatable
+DataWindow controls.</p></li>
+<li class=ds><p>Use GetChild to get a reference to the nested
+reports in the composite report.</p></li>
+<li class=ds><p>Use ShareData to share data between the updatable
+DataWindow objects and the nested reports.</p></li>
+<li class=ds><p>When appropriate, print the composite report.</p><p>The report contains the information from the updatable DataWindow objects.</p></li></ol>
+<br></li></ol>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Re-retrieving data</span> <A NAME="TI664"></A>Each time you retrieve data into the composite report, all
+references (handles) to nested reports become invalid, and data
+sharing with the nested reports is terminated. Therefore, be sure
+to call GetChild and ShareData each time after retrieving data.</p>
+<br><A NAME="TI665"></A><h4>Creating and destroying nested reports during execution</h4>
+<A NAME="TI666"></A><p>You can create and destroy nested reports in a DataWindow
+object dynamically during execution using the same technique you
+use to create and destroy other controls in a DataWindow object.</p>
+<p><b>Creating nested reports</b>   To create a nested report, use the CREATE keyword with the
+Modify method. Supply the appropriate values for the nested report's
+properties.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Viewing syntax for creating a nested report</span> <A NAME="TI667"></A>The easiest way to see the syntax for creating a nested report
+dynamically is to export the syntax of an existing DataWindow object
+that contains a nested report. The export file contains the syntax
+you need.</p>
+<A NAME="TI668"></A>For more information about exporting syntax
+in the Library painter, see the <i>PowerBuilder User's
+Guide</i>
+.</p>
+<A NAME="TI669"></A><p>When creating a nested report, you need to re-retrieve data
+to see the report. In a composite report, you can either retrieve
+data for the whole report or use GetChild to get a reference to
+the new nested report and retrieve its data directly. For nested
+reports in other reports, you need to retrieve data for the base
+report.</p>
+<p><b>Destroying nested reports</b>   To destroy a nested report, use the DESTROY keyword with the
+Modify method. The nested report disappears immediately.</p>
+<A NAME="TI670"></A><p>For more about creating and destroying controls
+in a DataWindow object or report, see <A HREF="dwprgugp19.htm#BIIBCCDA">Chapter 3, "Dynamically Changing DataWindow
+Objects ."</A></p>
+<A NAME="TI671"></A><p>For a list of properties of nested reports,
+see the <i>DataWindow Reference</i>
+.</p>
+

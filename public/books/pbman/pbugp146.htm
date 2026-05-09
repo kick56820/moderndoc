@@ -1,0 +1,126 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About data pipelines </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp145.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp147.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BCDBICBC"></A><h1>About data pipelines </h1>
+<A NAME="TI4462"></A><p>The Data Pipeline painter gives you the ability to reproduce
+data quickly within a database, across databases, or even across
+DBMSs. To do that, you create a data pipeline which, when executed,
+pipes the data as specified in the definition of the data pipeline.</p>
+<A NAME="TI4463"></A><h4>What you can do</h4>
+<A NAME="TI4464"></A><p>With the Data Pipeline painter, you can perform some tasks
+that would otherwise be very time consuming. For example, you can:<A NAME="TI4465"></A>
+<ul>
+<li class=fi>Pipe data (and extended attributes)
+from one or more tables to a table in the same DBMS or a different
+DBMS</li>
+<li class=ds>Pipe an entire database, a table at a time, to another
+DBMS (and if needed, pipe the database's extended attribute
+system tables)</li>
+<li class=ds>Create a table with the same design as an existing
+table but with no data</li>
+<li class=ds>Pipe corporate data from a database server to an Adaptive Server Anywhere database
+on your computer so you can work on the data and report on it without
+needing access to the network</li>
+<li class=ds>Upload local data that changes daily to a corporate
+database</li>
+<li class=ds>Create a new table when a change (such as allowing
+or disallowing <b>NULLs</b> or changing primary key
+or index assignments) is disallowed in the Database painter
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Piping data in applications</span> <A NAME="TI4466"></A>You can also create applications that pipe data. For more
+information, see <i>Application Techniques</i>
+.</p>
+<A NAME="TI4467"></A><h4>Source and destination databases</h4>
+<A NAME="TI4468"></A><p>You can use the Data Pipeline painter to pipe data from one
+or more tables in a source database to one table in a destination
+database.</p>
+<A NAME="TI4469"></A><p>You can pipe all data or selected data in one or more tables.
+For example, you can pipe a few columns of data from one table or
+data selected from a multitable join. You can also pipe from a view
+or a stored procedure result set to a table.</p>
+<A NAME="TI4470"></A><p>When you pipe data, the data in the source database remains
+in the source database and is reproduced in a new or existing table
+in the destination database.</p>
+<A NAME="TI4471"></A><p>Although the source and destination can be the same database,
+they are usually different ones, and they can even have different
+DBMSs. For example, you can pipe data from an Adaptive Server Enterprise
+database to an Adaptive Server Anywhere database on your computer.</p>
+<A NAME="TI4472"></A><h2>Defining a data pipeline</h2>
+<A NAME="TI4473"></A><p>When you use the Data Pipeline painter to create a pipeline,
+you define the:<A NAME="TI4474"></A>
+<ul>
+<li class=fi>Source database</li>
+<li class=ds>Destination database</li>
+<li class=ds>Source of data</li>
+<li class=ds>Pipeline operation</li>
+<li class=ds>Destination table
+</li>
+</ul>
+</p>
+<A NAME="TI4475"></A><p>After you create a pipeline, you can execute it immediately.
+If you want, you can also save it as a named object to use and reuse. Saving a pipeline enables you to pipe
+the data that might have changed since the last pipeline execution or
+to pipe the data to other databases later.</p>
+<A NAME="TI4476"></A><h4>Datatype support</h4>
+<A NAME="TI4477"></A><p>Each DBMS supports certain datatypes. When you pipe data from
+one DBMS to another, PowerBuilder makes a best guess at the appropriate
+destination datatypes. You can correct PowerBuilder's best
+guess in your pipeline definition as needed.</p>
+<A NAME="TI4478"></A><p>The Data Pipeline painter supports the piping of columns of
+any datatype, including columns with blob data. For information
+about piping a column that has a blob datatype, see <A HREF="pbugp148.htm#BCDBIHGG">"Piping blob data"</A>.</p>
+<A NAME="TI4479"></A><h2>Piping extended attributes</h2>
+<A NAME="TI4480"></A><p>The first time PowerBuilder connects to a database, it creates
+five system tables called the extended attribute system tables.
+These system tables initially contain default extended attribute
+information for tables and columns. In PowerBuilder, you can create
+extended attribute definitions such as column headers and labels,
+edit styles, display formats, and validation rules.</p>
+<A NAME="TI4481"></A><p>For more information about the extended attribute
+system tables, see <A HREF="pbugp271.htm#CCJEBFGB">Appendix A, "The Extended
+Attribute System Tables"</A></p>
+<A NAME="TI4482"></A><h4>Piping extended attributes automatically</h4>
+<A NAME="TI4483"></A><p>When you pipe data, you can specify that you want to pipe
+the extended attributes associated with the columns you are piping.
+You do this by selecting the Extended Attributes check box in the
+Data Pipeline painter workspace:</p>
+<br><img src="images/pipes030.gif">
+<A NAME="TI4484"></A><p>When the Extended Attributes check box is selected, the extended
+attributes associated with the source database's selected
+columns automatically go into the extended attribute system tables
+of the destination database, with one exception. When you pipe a
+column that has an edit style, display format, or validation rule
+associated with it, the style, rule, or format is not piped if one with
+the same name exists in the extended attribute system tables of
+the destination database. In this situation, the column uses the
+style, rule, or format already present in the destination database.</p>
+<A NAME="TI4485"></A><p>For example, for the <b>Phone</b> column in
+the <b>Employee</b> table, the display format with
+the name <b>Phone_format</b> would be piped
+unless a display format with the name <b>Phone_format</b> already
+exists in the destination database. If such a display format exists,
+the <b>Phone</b> column would use the <b>Phone_format</b> display
+format in the destination database.</p>
+<A NAME="TI4486"></A><h4>Piping the extended attribute system tables</h4>
+<A NAME="TI4487"></A><p>Selecting the Extended Attributes check box never results
+in the piping of named display formats, edit styles, and validation
+rules that are stored in the extended attribute system tables but
+are not associated with columns in tables you are piping. If you
+want such extended attribute definitions from one database to exist
+in another database, you can pipe the appropriate extended attribute
+system table or a selected row or rows from the table.</p>
+<A NAME="TI4488"></A><h4>Piping an entire database</h4>
+<A NAME="TI4489"></A><p>If you want to reproduce an entire database, you can pipe
+all database tables and extended attribute system tables, one table
+at a time.</p>
+

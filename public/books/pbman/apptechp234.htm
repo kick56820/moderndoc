@@ -1,0 +1,74 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Setting up users' workstations</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp233.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp235.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BIIEAJHC"></A><h1>Setting up users' workstations</h1>
+<A NAME="TI7174"></A><p>Users who need to view a Web page that includes a PowerBuilder
+window ActiveX require supporting software installed on their client
+workstations and a connection to the Web server.</p>
+<A NAME="TI7175"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 34-6: Client requirements to view PowerBuilder window ActiveX</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7176"></A>Component</th>
+<th  rowspan="1"  ><A NAME="TI7177"></A>Details</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7178"></A>An Internet or intranet connection</td>
+<td  rowspan="1"  ><A NAME="TI7179"></A>Available within your corporation or
+from an Internet service provider.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7180"></A>A Web browser that supports ActiveX</td>
+<td  rowspan="1"  ><A NAME="TI7181"></A>Available from the browser vendor, for
+example Microsoft Internet Explorer.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7182"></A>PowerBuilder runtime DLLs</td>
+<td  rowspan="1"  ><A NAME="TI7183"></A>Install the runtime files as described
+in <A HREF="apptechp273.htm#BGBEBIEA">"PowerBuilder runtime files"</A>.<A NAME="TI7184"></A><p>The PowerBuilder runtime DLLs belong in the application directory
+or in a directory on the system path. The PowerBuilder window ActiveX <i>must
+be able to access</i> the PowerBuilder virtual machine (and
+any other required runtime DLLs). To accomplish this, you can add
+the directory for the PowerBuilder runtime DLLs to the system path,
+or you can place the runtime DLLs in the <i>Windows\System32</i> directory.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7185"></A>PowerBuilder window ActiveX module</td>
+<td  rowspan="1"  ><A NAME="TI7186"></A>Copy the file <i>PBRX105.OCX</i> to
+the client workstation and register it. Alternatively, you can add
+the CODEBASE attribute to the Object element, which causes the browser
+to download and register it when the page is loaded.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7187"></A>Other files</td>
+<td  rowspan="1"  ><A NAME="TI7188"></A>If you did not include image resources
+in the PBDs, copy them to the paths specified in the object properties
+if they are not there already.<A NAME="TI7189"></A><p>If the PowerBuilder window ActiveX application connects to
+a database, set up client software for the DBMS. For how to connect
+to a DBMS from the client machine, see <i>Connecting to Your
+Database</i>
+.</p></td>
+</tr>
+</table>
+<A NAME="TI7190"></A><h2>Viewing the Web page and PowerBuilder window ActiveX application</h2>
+<A NAME="TI7191"></A><p>When the required software is installed, the user can view
+the Web page with the PowerBuilder window ActiveX application.</p>
+<A NAME="TI7192"></A><p>When the user navigates to the URL of the Web page:<A NAME="TI7193"></A>
+<ul>
+<li class=fi>The text on the page displays
+with a reserved space for the PowerBuilder window</li>
+<li class=ds>The client downloads the PBDs from the server</li>
+<li class=ds>The browser displays the child window within the
+Web page</li>
+<li class=ds>The user interacts with controls in the window and
+scripts for events execute</li>
+<li class=ds>The user navigates away from the page, which closes
+the window and causes the PowerBuilder DLLs or shared libraries
+to be unloaded from memory
+</li>
+</ul>
+</p>
+<A NAME="TI7194"></A><A NAME="TI7195"></A><p>This part describes techniques for handling internationalization,
+printing, accessibility requirements, and the Windows registry.
+It explains how to build styles and actions for use in InfoMaker.</p>
+

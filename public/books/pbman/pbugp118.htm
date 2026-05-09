@@ -1,0 +1,302 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Building a new menu </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp117.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp119.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CACDIAEFC"></A><h1>Building a new menu </h1>
+<A NAME="TI3269"></A><p>This section describes how to build menus that are not based
+on existing menus. To create a new menu using inheritance, see <A HREF="pbugp122.htm#CACDIAEFG">"Using inheritance to build
+a menu "</A>. </p>
+<A NAME="TI3270"></A><h2>Creating a new menu</h2>
+<A NAME="TI3271"></A><p>You build a new menu by creating a new Menu object and then
+working on it in the Menu painter. </p>
+<A NAME="TI3272"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new menu:</p>
+<ol><li class=fi><p>Click the New button in the PowerBar.</p></li>
+<li class=ds><p>On the PB Object tab page, select Menu.</p></li>
+<li class=ds><p>Click OK.</p></li></ol>
+<A NAME="TI3273"></A><p>The Menu painter opens and displays the Tree Menu view and
+the WYSIWYG view for defining the menu, and the General and Appearance
+tab pages for setting menu and toolbar properties. For information
+about menu and toolbar properties, see <A HREF="pbugp119.htm#CACDIAEFD">"Defining the appearance
+and behavior of menu items"</A>.</p>
+<A NAME="TI3274"></A><p>Because you are creating a new menu and have not added menu
+items yet, the only content in the Tree Menu view and the WYSIWYG
+view is an untitled top-level tree view item in the TreeMenu view.</p>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Font size of the menu bar and menu text</span> <A NAME="TI3275"></A>You can change the value of the TextSize property for submenu
+items, but not for the main menu bar. The main menu bar has a fixed
+height that you cannot change.</p>
+<A NAME="CACDIGBC"></A><h2>Working with menu items</h2>
+<A NAME="TI3276"></A><p>A menu consists of at least one menu item on the menu bar
+and menu items in a drop-down menu. You can add menu items in three
+places:</p>
+<A NAME="TI3277"></A><p><A NAME="TI3278"></A>
+<ul>
+<li class=fi>To the menu bar</li>
+<li class=ds>To a drop-down menu</li>
+<li class=ds>To a cascading menu
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the pop-up menu</span> <A NAME="TI3279"></A>The procedures in this section use the Insert and Edit menus
+on the PowerBuilder main menu to insert and edit menu items. You
+can also use the equivalent items on the selected object's
+pop-up menu. </p>
+<A NAME="X-REF351879757"></A><h3>How menu items are named</h3>
+<A NAME="TI3280"></A><p>When you add a menu item, PowerBuilder gives it a default
+name, which displays in the Name box in the Properties view. This
+is the name by which you refer to a menu item in a script.</p>
+<A NAME="TI3281"></A><h4>About the default menu item names</h4>
+<A NAME="TI3282"></A><p>The default name is a concatenation of the default prefix
+for menus, <b>m_</b>, and the valid PowerBuilder
+characters and symbols in the text you typed for the menu item.
+If there are no valid characters or symbols in the text you typed
+for the menu item, PowerBuilder creates a unique name <b>m_</b><i>n</i>,
+where <i>n </i>is the lowest number that can be combined
+with the prefix to create a unique name.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Prefix might be different</span> <A NAME="TI3283"></A>The default prefix is different if it has been changed in
+the Design&gt;Options dialog box. </p>
+<A NAME="TI3284"></A><p>The complete menu item name (prefix and suffix) can be up
+to 40 characters. If the prefix and suffix exceed this size, PowerBuilder
+uses only the first 40 characters without displaying a warning message.</p>
+<A NAME="TI3285"></A><h4>Duplicate menu item names</h4>
+<A NAME="TI3286"></A><p>Menu items in the Tree Menu view and WYSIWYG Menu view can
+have the same names, but they cannot have the same name in the Properties
+view. If you try to add a menu item using the same name as an existing
+menu item, PowerBuilder displays a dialog box that suggests a unique
+name for the menu item. For example, you might already
+have an Options item on the Edit menu with the default name <b>m_options</b>.
+If you add an Options item to another menu, PowerBuilder cannot
+give it the name <b>m_options</b>.</p>
+<A NAME="TI3287"></A><h4>Menu item names are locked by default</h4>
+<A NAME="TI3288"></A><p>After you add a menu item, the name that PowerBuilder assigns
+to the menu item is locked. Even if you later change the text
+that displays for the menu item, PowerBuilder does not rename the
+menu item. This allows you to change the text that displays in a
+menu without having to revise all your scripts that reference the
+menu item. (Remember, you reference a menu item through the name
+that PowerBuilder assigns to it.)</p>
+<A NAME="TI3289"></A><p>To rename a menu item after changing the text that displays
+for it, you can unlock the name.</p>
+<A NAME="TI3290"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To have PowerBuilder rename a menu item:</p>
+<ol><li class=fi><p>On the General property page in the Properties
+view, clear the Lock Name check box.</p></li>
+<li class=ds><p>Change the text that displays for the menu item.</p></li></ol>
+<br><A NAME="CACCDBGC"></A><h3>Inserting menu items</h3>
+<A NAME="TI3291"></A><p>There are three choices on the Insert menu: Menu Item, Menu
+Item At End, and Submenu Item. Use the first two to insert menu
+items in the same menu as the selected item, and use Insert&gt;Submenu
+Item to create a new drop-down or cascading menu for the selected
+item. </p>
+<A NAME="TI3292"></A><p>For example, suppose you have created a <b>File</b> menu
+on the menu bar with two menu items: <b>Open</b> and <b>Exit</b>.
+Here are the results of some insert operations:<A NAME="TI3293"></A>
+<ul>
+<li class=fi>Select <b>File</b> and
+select Insert&gt;Menu Item At End<br>
+A new item is added to the menu bar after the <b>File</b> menu.<br></li>
+<li class=ds>Select <b>Open</b> and select Insert&gt;Menu
+Item<br>
+A new item is added to the <b>File</b> menu
+above <b>Open</b>.<br></li>
+<li class=ds>Select <b>Open</b> and select Insert&gt;Menu
+Item At End<br>
+A new item is added to the <b>File</b> menu
+after <b>Exit</b>.<br></li>
+<li class=ds>Select <b>Open</b> and select Insert&gt;Submenu
+Item<br>
+A new cascading menu is added to the <b>Open</b> menu
+item.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI3294"></A><h4>Getting the menu started</h4>
+<A NAME="TI3295"></A><p>The first thing you do with a new menu is add the first item
+to the menu bar. After doing so, you can continue adding new items
+to the menu bar or to the menu bar item you just created. As you
+work, the changes you make display in both the WYSIWYG and Tree
+Menu views.</p>
+<A NAME="TI3296"></A><p>The first procedure in this section describes how to add a
+single first item to the menu bar. Use this procedure if you want
+to add the menu bar item and then work on its drop-down menu. Use
+the second procedure to add multiple items to the menu bar quickly.</p>
+<A NAME="TI3297"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To
+insert the first menu bar item in a new menu:</p>
+<ol><li class=fi><p>Select the first menu item, and then select
+Insert&gt;Submenu Item from the PowerBuilder menu bar.</p><p>PowerBuilder displays an empty box on the menu bar in the
+WYSIWYG Menu view and as a sub-item in the Tree Menu view.</p></li>
+<li class=ds><p>Type the text you want for the menu item and press
+Enter.</p></li></ol>
+<br><A NAME="TI3298"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To
+insert multiple menu bar items in a new menu:</p>
+<ol><li class=fi><p>Select Insert&gt;Submenu Item.</p><p>PowerBuilder displays an empty box on the menu bar in the
+WYSIWYG Menu view and as a submenu item in the Tree Menu view.</p></li>
+<li class=ds><p>Type the text you want for the menu item and press
+Tab.</p><p>PowerBuilder displays a new empty box on the menu bar in the WYSIWYG
+Menu view and as a submenu item in the Tree Menu view.</p></li>
+<li class=ds><p>Repeat step 2 until you have added all the menu
+bar items you need.</p></li>
+<li class=ds><p>Press Enter to save the last menu bar item.</p></li></ol>
+<br><A NAME="TI3299"></A><h4>Adding additional menu items</h4>
+<A NAME="TI3300"></A><p>After you have created the first menu bar item, you can add
+more items to the menu bar or start building drop-down and cascading
+menus.</p>
+<A NAME="TI3301"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To insert additional menu items on the menu bar:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI3302"></A>
+<ul>
+<li class=fi>With
+any menu bar item selected, select Insert&gt;Menu Item At
+End to add an item to the end of the menu bar.</li>
+<li class=ds>Select a menu bar item and select Insert&gt;Menu
+Item to add a menu bar item before the selected menu bar item.
+</li>
+</ul>
+
+                          </p></li>
+<li class=ds><p>Type the text you want for the menu bar item,
+and then press Enter.</p></li></ol>
+<br><A NAME="TI3303"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a drop-down menu to an item on the menu
+bar:</p>
+<ol><li class=fi><p>Select the item in the menu bar for which
+you want to create a drop-down menu.</p></li>
+<li class=ds><p>Select Insert&gt;Submenu Item.</p><p>PowerBuilder displays an empty box.</p></li>
+<li class=ds><p>Type the text you want for the menu item, and
+then press Tab.</p></li>
+<li class=ds><p>Repeat Step 3 until you have added all the items
+you want on the drop-down menu.</p></li>
+<li class=ds><p>Press Enter to save the last drop-down menu item.</p></li></ol>
+<br><A NAME="TI3304"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a cascading menu to an item in a drop-down
+menu:</p>
+<ol><li class=fi><p>Select the item in a drop-down menu for
+which you want to create a cascading menu.</p></li>
+<li class=ds><p>Select Insert&gt;Submenu Item.</p><p>PowerBuilder displays an empty box.</p></li>
+<li class=ds><p>Type the text you want for the menu item, and
+then press Tab.</p></li>
+<li class=ds><p>Repeat step 3 until you have added all the items
+you want on the cascading menu.</p></li>
+<li class=ds><p>Press Enter to save the last cascading menu item. </p></li></ol>
+<br><A NAME="TI3305"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add an item to the end of any menu:</p>
+<ol><li class=fi><p>Select any item on the menu.</p></li>
+<li class=ds><p>Select Insert&gt;Menu Item At End.</p><p>PowerBuilder displays an empty box.</p></li>
+<li class=ds><p>Type the text you want for the second menu item
+in the box and press Enter.</p></li></ol>
+<br><A NAME="TI3306"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To insert an item in any existing menu:</p>
+<ol><li class=fi><p>Select the item that should follow the
+new menu item.</p></li>
+<li class=ds><p>Select Insert&gt;Menu Item.</p><p>An empty box displays above the item you selected.</p></li>
+<li class=ds><p>Type the text you want for the menu item and press
+Enter.</p></li></ol>
+<br><A NAME="TI3307"></A><h3>Creating separation
+lines in menus</h3>
+<A NAME="TI3308"></A><p>You should separate groups of related menu items with lines.</p>
+<A NAME="TI3309"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a line between items on a menu:</p>
+<ol><li class=fi><p>Insert a new menu item where you want the
+separation line to display.</p></li>
+<li class=ds><p>Type a single dash (-) as the menu item text and
+press Enter.</p><p>A separation line displays.</p><br><img src="images/menu38.gif"><br>
+</li></ol>
+<br><A NAME="CACDFGBA"></A><h3>Duplicating menu items</h3>
+<A NAME="TI3310"></A><p>You might save time creating new menu items if you duplicate
+existing menu items. A duplicate menu item has the same properties
+and script as the original menu item. You might be able to modify
+a long script slightly to make it work for your duplicate menu item.</p>
+<A NAME="TI3311"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To duplicate a menu item or a submenu item:</p>
+<ol><li class=fi><p>Select the menu item or the submenu item
+to duplicate.</p></li>
+<li class=ds><p>Select Edit&gt;Duplicate or press Ctrl+T.</p><p>The duplicate item displays at the same level of the menu,
+following the item you selected. The name of the duplicate menu
+item is unique.</p></li>
+<li class=ds><p>Change the text of the duplicate menu item.</p></li>
+<li class=ds><p>Modify the properties and script associated with
+the duplicate item as needed.</p></li></ol>
+<br><A NAME="TI3312"></A><h3>Changing menu item text</h3>
+<A NAME="TI3313"></A><p>It is often necessary to change the text of a menu item, and
+if you duplicate a menu item, you need to change the text of the
+duplicate item.</p>
+<A NAME="TI3314"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the text of a menu item:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI3315"></A>
+<ul>
+<li class=fi>Click
+the item to select it, then click it again.</li>
+<li class=ds>Select the item and select Edit&gt;Menu Item
+Text.</li>
+<li class=ds>Select the item and open the general page in the
+Properties view.
+</li>
+</ul>
+
+                        </p></li>
+<li class=ds><p>Type the new text for the menu item in the box
+in the WYSIWYG Menu or Tree Menu view or in the Text box in the
+Properties view.</p></li></ol>
+<br><A NAME="TI3316"></A><h3>Selecting menu items</h3>
+<A NAME="TI3317"></A><p>You can select multiple menu items to move them, delete them,
+or change their common properties.</p>
+<A NAME="TI3318"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select multiple individual menu items:</p>
+<ol><li class=fi><p>Press Ctrl and select each item you want.</p></li></ol>
+<br><A NAME="TI3319"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select a range of menu items at the same level
+in the menu:</p>
+<ol><li class=fi><p>Select the first item, press Shift, and
+select the last item.</p></li></ol>
+<br><A NAME="TI3320"></A><h3>Navigating in the menu</h3>
+<A NAME="TI3321"></A><p>As you work in a menu, you can move to another menu item by
+selecting it. You can also use the Right Arrow, Left Arrow, Up Arrow,
+and Down Arrow keys on the keyboard to navigate.</p>
+<A NAME="TI3322"></A><h3>Moving menu items</h3>
+<A NAME="TI3323"></A><p>The easiest way to change the order of items in the menu bar
+or in a drop-down or cascading menu is to drag the item you want
+to move and drop it where you want it to be. You can drag items
+at the same level in a menu structure or to another level. For example,
+you can drag an item in the menu bar to a drop-down menu
+or an item in a cascading menu to the menu bar.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>WYSIWYG Menu and Tree Menu views</span> <A NAME="TI3324"></A>You can use drag and drop within each view. You can also drag
+from one view and drop in another. </p>
+<A NAME="TI3325"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To move a menu item or submenu item using drag
+and drop:</p>
+<ol><li class=fi><p>Select the item.</p></li>
+<li class=ds><p>Press and hold the left mouse button and drag
+the item to a new location.</p><p>A feedback line appears at the new location to indicate where
+to drop the item.</p></li>
+<li class=ds><p>Release the mouse button to drop the menu item.</p><p>The menu item displays in the new location.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Dragging to copy</span> <A NAME="TI3326"></A>To copy a menu item by dragging it, press and hold the Ctrl
+key while you drag and drop the item. A copied menu item has the
+same properties and scripts as the original menu item.</p>
+<A NAME="TI3327"></A>You can also copy or move a menu item by selecting the item
+and using the Cut, Copy, and Paste items on the Edit menu or the
+pop-up menu.</p>
+<A NAME="TI3328"></A><h3>Deleting menu items</h3>
+<A NAME="TI3329"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete a menu item:</p>
+<ol><li class=fi><p>Select the menu item you want to delete.</p></li>
+<li class=ds><p>Click the Delete button in the PainterBar or select
+Edit&gt;Delete from the menu bar.</p></li></ol>
+<br><A NAME="TI3330"></A><h2>Saving the menu</h2>
+<A NAME="TI3331"></A><p>You can save the menu you are working on at any time. When
+you save a menu, PowerBuilder saves the compiled menu items and
+scripts in the library you specify.</p>
+<A NAME="TI3332"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To save a menu:</p>
+<ol><li class=fi><p>Select File&gt;Save from the menu
+bar.</p><p>If you have previously saved the menu, PowerBuilder saves
+the new version in the same library and returns you to the Menu
+painter. If you have not previously saved the menu, PowerBuilder
+displays the Save Menu dialog box.</p></li>
+<li class=ds><p>Name the menu in the Menus box (see <A HREF="pbugp118.htm#CFHDIEEH">"Naming the menu"</A>). </p></li>
+<li class=ds><p>Write comments to describe the menu.</p><p>These comments display in the Select Menu dialog box and in
+the Library painter. It is a good idea to use comments so you and
+others can easily remember the purpose of the menu later.</p></li>
+<li class=ds><p>Specify the library in which to save the menu
+and click OK.</p></li></ol>
+<br><A NAME="CFHDIEEH"></A><h4>Naming the menu</h4>
+<A NAME="TI3333"></A><p>The menu name can be any valid PowerBuilder identifier of
+up to 40 characters. For information about PowerBuilder identifiers,
+see the <i>PowerScript
+Reference</i>
+. </p>
+<A NAME="TI3334"></A><p>A common convention is to use <b>m_</b> as
+a standard prefix, and a suffix that helps you identify the particular
+menu. For example, you might name a menu used in a sales application <b>m_sales</b>.</p>
+

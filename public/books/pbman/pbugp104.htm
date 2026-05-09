@@ -1,0 +1,47 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Specifying accessibility of controls </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp103.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp105.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF343931404"></A><h1>Specifying accessibility of controls </h1>
+<A NAME="TI2718"></A><p>Controls have two boolean properties that affect accessibility
+of the control: </p>
+<A NAME="TI2719"></A><p><A NAME="TI2720"></A>
+<ul>
+<li class=fi>Visible</li>
+<li class=ds>Enabled
+</li>
+</ul>
+</p>
+<A NAME="TI2721"></A><h2>Using the Visible property</h2>
+<A NAME="TI2722"></A><p>If the Visible property of a control is selected, the control
+displays in the window. If you want a control to be initially invisible,
+be sure the Visible property is not selected in the General tab
+page in the control's Properties view. </p>
+<A NAME="TI2723"></A><p>Hidden controls do not display by default in the Window painter's
+Layout view.</p>
+<A NAME="TI2724"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display hidden controls in the Layout view:</p>
+<ol><li class=fi><p>Select Design&gt;Show Invisibles
+from the menu bar.</p></li></ol>
+<br><A NAME="TI2725"></A><p>To display a control at runtime, assign the value <b>true</b> to
+the Visible property:<p><PRE><i>controlname</i>.Visible = TRUE</PRE></p>
+</p>
+<A NAME="TI2726"></A><h2>Using the Enabled property</h2>
+<A NAME="TI2727"></A><p>If the Enabled property is selected, the control is active.
+For example, an enabled CommandButton can be clicked, a disabled
+CommandButton cannot.</p>
+<A NAME="TI2728"></A><p>If you want a control to display but be inactive, be sure
+the Enabled property is not selected in the General tab page in
+the control's Properties view. For example, a CommandButton
+might be active only after the user has selected an option. In this
+case, display the CommandButton initially disabled so that it appears
+grayed out. Then, when the user selects the option, enable the CommandButton
+in a script:<p><PRE><i>CommandButtonName</i>.Enabled = TRUE</PRE></p>
+</p>
+

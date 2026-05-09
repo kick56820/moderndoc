@@ -1,0 +1,35 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Connecting to a COM server</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp180.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp182.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDCIFHF"></A><h1>Connecting to a COM server</h1>
+<A NAME="TI5883"></A><p>To access a method associated with a component in the COM
+server, the PowerBuilder client connects to the component using
+its programmatic identifier (ProgID) or its class identifier (CLSID). </p>
+<A NAME="TI5884"></A><p>You can use a tool such as OLEVIEW or the OLE tab in the PowerBuilder Browser
+to view the Program ID or CLSID and methods of registered PowerBuilder
+COM objects. </p>
+<A NAME="TI5885"></A><p>To establish a connection to the COM server, you need to execute
+the PowerScript statements required to perform these operations:<A NAME="TI5886"></A>
+<ol>
+</li>
+<li class=ds>Declare a variable of type
+OLEObject and use the <b>Create</b> statement to instantiate
+it.</li>
+<li class=ds>Connect to the object using its Program ID or CLSID.</li>
+<li class=ds>Check that the connection was established.
+</li>
+</ol>
+</p>
+<p><b>Example</b>   The following script instantiates the <b>EmpObj</b> OLEObject
+object, connects to the PowerBuilder COM object <b>PBcom.Employee</b>,
+and checks for errors:</p>
+<A NAME="TI5887"></A><p><p><PRE> OLEObject EmpObj<br>Integer li_rc<br>EmpObj = CREATE OLEObject<br>li_rc = EmpObj.ConnectToNewObject("PBcom.employee")<br>IF li_rc &lt; 0 THEN<br>    DESTROY EmpObj<br>MessageBox("Connecting to COM Object Failed",  &amp;<br>   "Error: " + String(li_rc))<br>Return<br>END IF</PRE></p>
+

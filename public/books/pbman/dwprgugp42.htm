@@ -1,0 +1,85 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Setting up database connections</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp41.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp43.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BEIDIGBH"></A><h1>Setting up database connections</h1>
+<A NAME="TI1684"></A><p>When you use the Web DataWindow, it is the Web DataWindow
+server component that interacts with the database, so you need to
+set up database connections on the server where the component is
+running. </p>
+<A NAME="TI1685"></A><h4>What database connectivity software to use</h4>
+<A NAME="TI1686"></A><p>If you are using <ABBR title = "e a server" >EAServer</ABBR> as
+the component server, you can use several types of connectivity
+software, including ODBC, Open Client, JDBC, and OCI. You need to
+set up a connection cache for the data source you are using. See <A HREF="dwprgugp42.htm#BEIJCFJJ">"Creating a connection cache
+on <ABBR title = "e a server" >EAServer</ABBR> "</A>.</p>
+<A NAME="TI1687"></A><p>If you are using COM+ as the component server, you
+must use ODBC to take advantage of connection pooling and transaction
+management features. The data source for your DataWindow objects
+must be configured as a system DSN on COM+ because it runs
+as a service.</p>
+<A NAME="TI1688"></A><p>When you are defining DataWindow objects, you can use the
+types of connectivity software documented in <i>Connecting
+to Your Database</i>
+. To simplify setting up database connections
+on the server, use the same type of connection in the DataWindow
+painter that will be used when the DataWindow is deployed. For example,
+if you plan to use the DataWindow object in <ABBR title = "e a server" >EAServer</ABBR> with
+an Open Client connection, use Open Client in the DataWindow painter
+too.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using Adaptive Server Enterprise</span> <A NAME="TI1689"></A>PowerBuilder and <ABBR title = "e a server" >EAServer</ABBR> use
+slightly different versions of the CT-Lib software to connect to
+Adaptive Server Enterprise through Open Client. In the PowerBuilder
+development environment you use the SYC native database interface
+to connect to the database, but to connect to an Adaptive Server Enterprise
+database in <ABBR title = "e a server" >EAServer</ABBR> you must
+use the SYJ database interface. </p>
+<A NAME="BEIJCFJJ"></A><h4>Creating a connection cache
+on <ABBR title = "e a server" >EAServer</ABBR> </h4>
+<A NAME="TI1690"></A><p>To use the HTMLGenerator90 component (or your own custom component) in <ABBR title = "e a server" >EAServer</ABBR>, you need to define a connection
+cache for the database it will use.</p>
+<A NAME="TI1691"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create an <ABBR title = "e a server" >EAServer</ABBR> connection
+cache:</p>
+<ol><li class=fi><p>Start <ABBR title = "e a server" >EAServer</ABBR> and <ABBR title = "e a server" >EAServer</ABBR> Manager. </p><p>Instructions are in the <i>EAServer Getting Started</i>
+ book
+for your platform. </p></li>
+<li class=ds><p>Define the connection type you want, using the
+appropriate database configuration software. </p><p>For an ODBC connection on Windows, for example, open the ODBC control
+panel and define a Data Source Name (DSN) for the database. If you
+installed Adaptive Server Anywhere 9.x, you can use the predefined user
+DSN to connect to the ASA Sample database for testing purposes.
+If <ABBR title = "e a server" >EAServer</ABBR> is running as a service,
+you must use a system DSN, not a user DSN. On UNIX, see your driver
+documentation.</p></li>
+<li class=ds><p>In <ABBR title = "e a server" >EAServer</ABBR> Manager's
+left pane, right-click the Connection Caches node under the server
+name and select Install Connection Cache.</p></li>
+<li class=ds><p>In the dialog box, select Create and Install a
+New Connection Cache.</p></li>
+<li class=ds><p>Enter a name for the cache and click OK. (You
+cannot change this name.)</p></li>
+<li class=ds><p>In the Connection Cache Properties dialog box,
+specify database connection information on the General tab and the
+driver you want to use on the Driver tab. </p><p><i>For ODBC on Windows</i>: for Database Connection:Server
+Name on the General tab, specify the DSN you defined in step 1.
+You do not need to specify a user name or password if they are specified
+as part of the DSN. </p><p>On the Driver tab, click the ODBC radio button and specify
+ODBC32.dll for the Driver Class or File. </p><p><i>For other connection types</i>: see the <i>EAServer
+Getting Started</i>
+ book for your platform.</p></li>
+<li class=ds><p>Select the Enable Cache-by-Name Access check box
+on the Cache tab.</p></li>
+<li class=ds><p>Click Refresh on the General tab (the Refresh
+button is available only on the Connection Cache Properties dialog
+box accessed from the server node).</p></li>
+<li class=ds><p>To test the connection, click Ping. </p></li></ol>
+<br><A NAME="TI1692"></A><p>For more detailed information about setting up connection
+caches, see the <ABBR title = "e a server" >EAServer</ABBR> documentation.</p>
+

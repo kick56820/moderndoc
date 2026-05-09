@@ -1,0 +1,109 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+OLE controls in a window </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp106.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp108.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF348494755"></A><h1>OLE controls in a window </h1>
+<A NAME="TI3058"></A><p>You can add OLE objects and ActiveX controls to a window or
+user object. To do so, you use one of the PowerBuilder OLE controls,
+which acts as an OLE container. This section explains how you select
+the control you want by choosing whether it holds an OLE object
+(also called an insertable object) or an ActiveX control:<A NAME="TI3059"></A>
+<ul>
+<li class=fi>An <strong>insertable
+OLE object</strong> is a document associated with a server application.
+The object can be activated and the server provides commands and
+toolbars for modifying the object.</li>
+<li class=ds>An <strong>ActiveX control</strong> or <strong>OLE
+custom control</strong> is itself a server that processes user
+actions according to scripts you program in PowerBuilder. You can
+write scripts for ActiveX control events and for events of the PowerBuilder
+container. Those scripts call functions and set properties that
+belong to the ActiveX control. When appropriate, the ActiveX control can
+present its own visual interface for user interaction.
+</li>
+</ul>
+</p>
+<A NAME="TI3060"></A><p>ActiveX controls range from simple visual displays (such as
+a meter or a gauge) to single activities that are customizable (spellchecking
+words or phrases) to working environments (image acquisition with
+annotation and editing).</p>
+<A NAME="TI3061"></A><h4>OLE control container features</h4>
+<A NAME="TI3062"></A><p>All OLE control containers support a set of required interfaces.
+PowerBuilder provides some additional support:<A NAME="TI3063"></A>
+<ul>
+<li class=fi><b>Extended control</b>   An OLE control can determine and modify its location at runtime
+using its extended control properties. PowerBuilder supports the
+X (Left), Y (Top), Width, and Height properties, all of which are
+measured in PowerBuilder units. The control writer can access these properties
+using the IDispatch-based interface returned from the <b>GetExtendedControl</b> method
+on the IOleControlSite interface.</li>
+<li class=ds><b>Window as OLE container</b>   PowerBuilder implements the IOleContainer class at the window
+level, so that all OLE controls on a window are siblings and can
+obtain information about each other. The control writer can access
+this information using the OLE <b>EnumObjects</b> method.
+Information about siblings is useful when the controls are part
+of a suite of controls. Unlike other controls, the OLE controls
+on a window are stored in a flat hierarchy. <br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>OLE objects and controls only</span> <A NAME="TI3064"></A>Only OLE objects and controls are visible to this object enumerator.
+You cannot use this technique to manipulate other controls on the
+window. 
+<br>
+</li>
+<li class=ds><b>Message reflection</b>   If a control container does not support message reflection,
+a reflector window is created when an OLE control sends a message
+to its parent. The reflector window reflects the message back to the
+control so that the control can process the message itself. If the container
+supports message reflection, the need for a reflector window, and
+the associated runtime overhead, is eliminated. PowerBuilder OLE control
+containers perform message reflection for a specific set of messages.
+</li>
+</ul>
+</p>
+<A NAME="TI3065"></A><h4>Defining the control</h4>
+<A NAME="TI3066"></A><p>This procedure describes how to create an OLE control and
+select its contents.</p>
+<A NAME="TI3067"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To place an OLE control in a window or user object:</p>
+<ol><li class=fi><p>Open the window or user object that will
+contain the OLE control.</p></li>
+<li class=ds><p>Select Insert&gt;Control&gt;OLE from
+the menu bar.</p><p>PowerBuilder displays the Insert Object dialog box. There
+are three tabs to choose from. </p></li>
+<li class=ds><p>Choose a server application or a specific object
+for the control (which embeds or links an object in the control),
+select a custom control, or leave the control empty for now: </p><p><A NAME="TI3068"></A>
+<ul>
+<li class=fi><i>To create
+and embed a new object</i>, click the Create New tab. After
+you have chosen a server application, click OK.</li>
+<li class=ds><i>To choose an existing object for the control</i>,
+click the Create From File tab. After you have specified the file,
+click OK.</li>
+<li class=ds><i>To insert a custom control </i>(ActiveX
+control), click the Insert Control tab. After you have chosen an
+ActiveX control, click OK.</li>
+<li class=ds><i>To leave the control empty</i>,
+click Cancel.<br>
+If you click Cancel, the control becomes an OLE control rather
+than an OLE custom control, and you can choose to link or embed
+an OLE object in it at any time; you cannot insert an ActiveX control
+later.<br>
+</li>
+</ul>
+</p></li>
+<li class=ds><p>Click where you want the control.</p><p>If you inserted an object, PowerBuilder opens the server application
+so you can view and edit the object. ActiveX controls cannot be
+opened.</p></li></ol>
+<br><A NAME="TI3069"></A><p>If you want to insert an object that belongs
+to an OLE server application that is not in the list, see the server
+documentation to find out how to install it.</p>
+<A NAME="TI3070"></A><p>For more information about using the Insert
+Object dialog box, see the section on inserting OLE objects in DataWindow
+objects in the <i>PowerBuilder User's Guide</i>
+.</p>
+

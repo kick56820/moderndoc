@@ -1,0 +1,146 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Working with database components</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp131.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp133.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCCAEFF"></A><h1>Working with database components</h1>
+<A NAME="TI3957"></A><p>A database is an electronic storage place for data. Databases
+are designed to ensure that data is valid and consistent and that
+it can be accessed, modified, and shared.</p>
+<A NAME="TI3958"></A><p>A database management system (DBMS) governs the activities
+of a database and enforces rules that ensure data integrity. A <i>relational</i> DBMS stores
+and organizes data in tables.</p>
+<A NAME="BDCHBAJE"></A><h4>How you work with databases
+in PowerBuilder</h4>
+<A NAME="TI3959"></A><p>You can use PowerBuilder to work with the following database
+components:<A NAME="TI3960"></A>
+<ul>
+<li class=fi>Tables and columns</li>
+<li class=ds>Keys</li>
+<li class=ds>Indexes</li>
+<li class=ds>Database views</li>
+<li class=ds>Extended attributes</li>
+<li class=ds>Additional database components
+</li>
+</ul>
+</p>
+<A NAME="BDCEDBID"></A><h4>Tables and columns</h4>
+<A NAME="TI3961"></A><p>A database usually has many tables, each of which contains
+rows and columns of data. Each row in a table has the same columns,
+but a column's value for a particular row could be empty
+or <b>NULL</b> if the column's definition allows
+it. </p>
+<A NAME="TI3962"></A><p>Tables often have relationships with other tables. For example,
+in the <b>EAS Demo DB</b> included with PowerBuilder,
+the <b>Department</b> table has a <b>Dept_id</b> column,
+and the <b>Employee</b> table also has a <b>Dept_id</b> column
+that identifies the department in which the employee works. When
+you work with the <b>Department</b> table and the <b>Employee</b> table,
+the relationship between them is specified by a join of the two
+tables.</p>
+<A NAME="BDCHHDBF"></A><h4>Keys</h4>
+<A NAME="TI3963"></A><p>Relational databases use keys to ensure database integrity. </p>
+<p><b>Primary keys</b>   A primary key is a column or set of columns that uniquely identifies
+each row in a table. For example, two employees may have the same first
+and last names, but they have unique ID numbers. The <b>Emp_id</b> column
+in the Employee table is the primary key column.</p>
+<p><b>Foreign keys</b>   A foreign key is a column or set of columns that contains primary
+key values from another table. For example, the <b>Dept_id</b> column
+is the primary key column in the <b>Department</b> table
+and a foreign key in the <b>Employee</b> table.</p>
+<p><b>Key icons</b>   In PowerBuilder, columns defined as keys are displayed with
+key icons that use different shapes and colors for primary and foreign. PowerBuilder automatically
+joins tables that have a primary/foreign key relationship,
+with the join on the key columns. </p>
+<A NAME="TI3964"></A><p>In the following illustration there is a join on the <b>dept_id</b> column,
+which is a primary key for the <b>department</b> table
+and a foreign key for the <b>employee</b> table:</p>
+<br><img src="images/db0001.gif">
+<A NAME="TI3965"></A><p>For more information, see <A HREF="pbugp137.htm#CCJDECFJ">"Working with keys"</A>.</p>
+<A NAME="BDCDJHDF"></A><h4>Indexes</h4>
+<A NAME="TI3966"></A><p>An index is a column or set of columns you identify to improve
+database performance when searching for data specified by the index.
+You index a column that contains information you will need frequently.
+Primary and foreign keys are special examples of indexes.</p>
+<A NAME="TI3967"></A><p>You specify a column or set of columns with unique values
+as a unique index, represented by an icon with a single key.</p>
+<A NAME="TI3968"></A><p>You specify a column or set of columns that has values that
+are not unique as a duplicate index, represented by an icon with
+two file cabinets.</p>
+<A NAME="TI3969"></A><p>For more information, see <A HREF="pbugp138.htm#BFCDAGAJ">"Working with indexes"</A>.</p>
+<A NAME="BDCJFFDF"></A><h4>Database views</h4>
+<A NAME="TI3970"></A><p>If you often select data from the same tables and columns,
+you can create a database view of the tables. You give the database
+view a name, and each time you refer to it the associated <b>SELECT</b> command
+executes to find the data. </p>
+<A NAME="TI3971"></A><p>Database views are listed in the Objects view of the Database painter and
+can be displayed in the Object Layout view, but a database view
+does not physically exist in the database in the same way that a
+table does. Only its definition is stored in the database, and the
+view is re-created whenever the definition is used. </p>
+<A NAME="TI3972"></A><p>Database administrators often create database views for security
+purposes. For example, a database view of an Employee table that
+is available to users who are not in Human Resources might show
+all columns except Salary.</p>
+<A NAME="TI3973"></A><p>For more information, see <A HREF="pbugp139.htm#CCJCAHJF">"Working with database views "</A>.</p>
+<A NAME="BDCHGEHI"></A><h4>Extended attributes</h4>
+<A NAME="TI3974"></A><p>Extended attributes enable you to store information about
+a table's columns in special system tables. Unlike tables,
+keys, indexes, and database views (which are DBMS-specific), extended
+attributes are PowerBuilder-specific. The most powerful extended attributes
+determine the edit style, display format, and validation rules for
+the column. </p>
+<A NAME="TI3975"></A><p>For more information about extended attributes,
+see <A HREF="pbugp136.htm#BABBHCBH">"Specifying column extended
+attributes"</A>. For
+more information about the extended attribute system tables, see <A HREF="pbugp271.htm#CCJEBFGB">Appendix A, "The Extended
+Attribute System Tables"</A></p>
+<A NAME="BDCIJEAC"></A><h4>Additional database components</h4>
+<A NAME="TI3976"></A><p>Depending on the database to which you are connected and on
+your user privileges, you may be able to view or work with a variety
+of additional database components through PowerBuilder. These components
+might include:<A NAME="TI3977"></A>
+<ul>
+<li class=fi>Driver information</li>
+<li class=ds>Groups</li>
+<li class=ds>Metadata types</li>
+<li class=ds>Procedures and functions</li>
+<li class=ds>Users</li>
+<li class=ds>Logins</li>
+<li class=ds>Triggers</li>
+<li class=ds>Events</li>
+<li class=ds>Web services
+</li>
+</ul>
+</p>
+<A NAME="TI3978"></A><p>For example, driver information is relevant to ODBC connections.
+It lists all the ODBC options associated with the ODBC driver, allowing
+you to determine how the ODBC interface will behave for a given
+connection. Login information is listed for Adaptive Server Enterprise
+database connections. Information about groups and users is listed
+for several of the databases and allows you to add new users and
+groups and maintain passwords for existing users.</p>
+<A NAME="TI3979"></A><p>You can drag most items in these folders to the Object Details
+view to display their properties. You can also drag procedures,
+functions, triggers, and events to the ISQL view.</p>
+<A NAME="TI3980"></A><p>Trigger information is listed for Adaptive Server Enterprise
+and SQL Anywhere tables. A trigger is a special form of stored procedure
+that is associated with a specific database table. Triggers fire
+automatically whenever someone inserts, updates or deletes rows
+of the associated table. Triggers can call procedures and fire other
+triggers, but they have no parameters and cannot be invoked by a <b>CALL</b> statement.
+You use triggers when referential integrity and other declarative
+constraints are insufficient.</p>
+<A NAME="TI3981"></A><p>Events can be used in a SQL Anywhere database to automate
+database administration tasks, such as sending a message when disk
+space is low. Event handlers are activated when a provided trigger
+condition is met. If any events are defined for a SQL Anywhere connection,
+they display in the Events folder for the connection in the Objects
+view. </p>
+

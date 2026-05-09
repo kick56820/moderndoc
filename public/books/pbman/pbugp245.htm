@@ -1,0 +1,349 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the RichText presentation style </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp244.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp246.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDIGEE"></A><h1>Using the RichText presentation style </h1>
+<A NAME="TI8592"></A><p>The RichText presentation style allows you to combine input
+fields that represent database columns with formatted text. This
+presentation style is useful for display-only reports, especially
+mail-merge documents. However, if you want to use the RichText DataWindow object for
+data entry, you can specify validation rules and display formats
+for the input fields.</p>
+<A NAME="TI8593"></A><p>In the Design view, you see the text along with placeholders
+called input fields:<p><PRE> {FNAME} {LNAME}<br>{COMPANY_NAME}<br>{ADDRESS}<br>{CITY}, {STATE} {ZIP}<br> <br>Dear {FNAME}:<br>. . .</PRE></p>
+<A NAME="TI8594"></A><p>In the Preview view, the text is the same, but PowerBuilder replaces
+the input fields with values from the database:<p><PRE> Beth Reiser<br>AMF Corp.<br>1033 Whippany Road<br>New York, NY 10154<br> <br>Dear Beth:<br>. . .</PRE></p>
+<A NAME="TI8595"></A><h4>Document template</h4>
+<A NAME="TI8596"></A><p>The formatted text acts like a document template. There is
+only one copy of the text. As the user scrolls from row to row,
+the data for the current row is inserted in the input fields and
+the user sees the document with the current data. If the user edits
+the text, the changes show up in every row of data.</p>
+<A NAME="TI8597"></A><h4>Input fields</h4>
+<A NAME="TI8598"></A><p>In the RichText presentation style, an input field is associated
+with a column or computed field. It gets its value from the retrieved
+data or from the computed field's expression.</p>
+<A NAME="TI8599"></A><p>If an input field is not a computed field and its name does
+not match a column, there is no way to specify data for the input
+field.</p>
+<A NAME="TI8600"></A><p>There can be more than one copy of an input field in the rich
+text. In the sample above, there are two instances of the field <b>FNAME</b>.
+Each instance of the field displays the same data.</p>
+<A NAME="TI8601"></A><h4>Unavailable settings</h4>
+<A NAME="TI8602"></A><p>Not all the settings available in other DataWindow styles
+are available. You cannot apply code tables and edit styles, such
+as a DropDownDataWindow or EditMask, to input fields. You cannot
+use slide left and slide up settings to reposition input fields
+automatically. However, you can set the LineRemove property at runtime
+to achieve a similar effect.</p>
+<A NAME="TI8603"></A><h2>Creating the DataWindow object</h2>
+<A NAME="TI8604"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a RichText DataWindow object:</p>
+<ol><li class=fi><p>In the New dialog box, select RichText
+from the DataWindow tab and click OK.</p></li>
+<li class=ds><p>Select data for the DataWindow object as you do for any DataWindow object.</p><p>If you want data to be retrieved into the Preview view automatically,
+select the Retrieve on Preview check box. For more information,
+see <A HREF="pbugp156.htm#CFHCIDFC">"Building a DataWindow object "</A>.</p></li>
+<li class=ds><p>Specify settings for the DataWindow object on the Specify
+RichText Settings screen, click Next, and then click Finish.</p><br><img src="images/rt01.gif"><br>
+</li></ol>
+<br><A NAME="TI8605"></A><h4>Available settings</h4>
+<A NAME="TI8606"></A><p><A HREF="pbugp245.htm#CHDEGICF">Table 30-1</A> describes the types
+of settings you can make for the RichText DataWindow object in the wizard.</p>
+<A NAME="CHDEGICF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 30-1: Wizard settings for RichText DataWindow objects</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8607"></A>You can specify</th>
+<th  rowspan="1"  ><A NAME="TI8608"></A>With these settings</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8609"></A>Tools available to the user</td>
+<td  rowspan="1"  ><A NAME="TI8610"></A>Rich text bars: Tool, Status, Ruler, and
+PopUp Menu</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8611"></A>Whether there will be a header and footer
+for the printed DataWindow object</td>
+<td  rowspan="1"  ><A NAME="TI8612"></A>Header/Footer</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8613"></A>Whether users are prevented from
+editing input fields and text</td>
+<td  rowspan="1"  ><A NAME="TI8614"></A>Display Only</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8615"></A>Colors for the whole background and the background
+of input fields</td>
+<td  rowspan="1"  ><A NAME="TI8616"></A>Background Color: General and Input Field</td>
+</tr>
+</table>
+<A NAME="TI8617"></A><h4>Editing the content</h4>
+<A NAME="TI8618"></A><p>After you click Finish in the wizard, you see input fields
+with their labels in the detail band in the Design view:</p>
+<br><img src="images/rt02.gif">
+<A NAME="TI8619"></A><p>You can:<A NAME="TI8620"></A>
+<ul>
+<li class=fi>Begin editing text in the
+detail, header, or footer bands, building a report around the input
+fields. You can delete, move, copy, and paste text and input fields
+as needed.</li>
+<li class=ds>Include a rich text file you have already prepared.
+If you include a rich text file created in PowerBuilder that contains
+input fields, those names should match the columns selected in the DataWindow object.<br>
+For information about creating rich text files,
+see <i>Application Techniques</i>
+.<br></li>
+<li class=ds>Add computed fields that will appear as input fields
+in the report and whose values come from the computed field expression.
+</li>
+</ul>
+</p>
+<A NAME="TI8621"></A><p>This sample shows how you might rearrange the input fields
+in a sales letter:</p>
+<br><img src="images/rt03.gif">
+<A NAME="TI8622"></A><h4>Editing text</h4>
+<A NAME="TI8623"></A><p>You can add text by typing directly in the Design view. You
+do not have to create text objects as you do for other DataWindow object styles.
+The DataWindow painter's StyleBar lets you apply formatting
+to selected text. The RichText toolbars are <i>not</i> available
+in the painter. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Preview mode and editing text</span> <A NAME="TI8624"></A>You cannot edit text in the Preview view, but you can edit
+it when you preview the DataWindow object by selecting File&gt;Run/Preview
+from the menu bar. It may seem convenient to edit text in Preview
+mode because the toolbars are available. However, <i>any
+changes you make to the text when previewing are temporary</i>.
+They are discarded as soon as you return to the Design view.</p>
+<A NAME="TI8625"></A><h4>Inserting a file</h4>
+<A NAME="TI8626"></A><p>If you have a rich text file, you can include it in the DataWindow object.
+In the Design view, you can insert text from a file into the detail,
+header, or footer band.</p>
+<A NAME="TI8627"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To insert a file:</p>
+<ol><li class=fi><p>Click in the text in any band to set the
+insertion point for the file.</p></li>
+<li class=ds><p>Right-click in the Design view and select Insert
+File from the pop-up menu.</p></li>
+<li class=ds><p>In the file selection dialog box, select the file
+you want to insert.</p></li></ol>
+<br><A NAME="TI8628"></A><p>Only the body of the file is used. If the file has a header
+or footer, it is ignored.</p>
+<A NAME="TI8629"></A><h4>Headers and footers</h4>
+<A NAME="TI8630"></A><p>You decide whether your RichText DataWindow object has a header and
+footer by checking Header/Footer in the wizard or Rich
+Text Object dialog box (described in <A HREF="pbugp245.htm#CCJDHBIG">"Formatting for RichText
+objects within the DataWindow object"</A>). The
+decision to include a header and footer must be made at design time;
+it cannot be changed at runtime.</p>
+<A NAME="TI8631"></A><p>To display a page number or a date in the header or footer,
+you can insert the predefined computed fields <i>Page n of
+n</i> or <i>Today()</i>. You do not need to
+write scripts to set the values of these fields for each page, as
+you do for the RichTextEdit control.</p>
+<A NAME="CCJDHBIG"></A><h2>Formatting for RichText objects within the DataWindow object</h2>
+<A NAME="TI8632"></A><p>Each type of object in a RichText DataWindow object has its own dialog
+box. When you select Properties from the pop-up menu, the dialog
+box you get depends on what is selected.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Properties and Control List views</span> <A NAME="TI8633"></A>The Properties and Control List views are not available for
+RichText DataWindow objects. The painter uses the same property sheets
+as are available to users when they run the DataWindow object, and controls
+in RichText DataWindow objects cannot be manipulated in the same way as
+in other DataWindow objects.</p>
+<A NAME="TI8634"></A><p>Most of the objects in a RichText DataWindow object correspond to
+familiar objects like bitmaps, columns, and computed fields. You
+can also specify formatting for a temporary <i>selected text
+object</i>. In a RichText DataWindow object, the objects are:<A NAME="TI8635"></A>
+<ul>
+<li class=fi>The whole document</li>
+<li class=ds>Selected text and paragraphs</li>
+<li class=ds>Input fields (associated with columns or computed
+fields)</li>
+<li class=ds>Pictures
+</li>
+</ul>
+</p>
+<A NAME="TI8636"></A><p>This section describes how to select each type of object and
+access its dialog box. The user can access the property sheets too
+if you enable the Popup Menu option on the Rich Text Object's
+General dialog box.</p>
+<A NAME="TI8637"></A><h3>The whole RichText object</h3>
+<A NAME="TI8638"></A><p>Settings for the whole RichText DataWindow object include the values
+you specified in the wizard, as well as:<A NAME="TI8639"></A>
+<ul>
+<li class=fi>Whether pictures are displayed
+or represented by empty frames</li>
+<li class=ds>Whether newly entered text will wrap within the
+display</li>
+<li class=ds>Whether various nonprinting characters, such as
+tabs, returns, and spaces, are visible</li>
+<li class=ds>Standard DataWindow object settings such as units of measurement
+and the pointer</li>
+<li class=ds>Print specifications
+</li>
+</ul>
+</p>
+<A NAME="TI8640"></A><p>Use the following procedure to change settings:</p>
+<A NAME="TI8641"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set values for the RichText DataWindow object:</p>
+<ol><li class=fi><p>Make sure nothing is selected in the Design
+view by clicking to set the insertion point.</p></li>
+<li class=ds><p>Right-click in the Design view and select Properties
+from the pop-up menu.</p></li>
+<li class=ds><p>Click Help to get more information about a specific
+setting.</p></li></ol>
+<br><A NAME="TI8642"></A><h3>Selected text and paragraphs</h3>
+<A NAME="TI8643"></A><p>You can specify detailed font formatting for selected text.
+The selected text can be one character or many paragraphs.</p>
+<A NAME="TI8644"></A><p>If an input field is part of the selection, the font settings
+apply to it, too. A picture that is part of the selection ignores
+settings for the selected text object.</p>
+<A NAME="TI8645"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify formatting for selected text:</p>
+<ol><li class=fi><p>Select the text you want to format.</p></li>
+<li class=ds><p>Right-click in the Design view and select Properties
+from the pop-up menu.</p><p>The Selected Text Object dialog box displays. You can set:<A NAME="TI8646"></A>
+<ul>
+<li class=fi><b>Paragraph alignment</b>   The alignment setting on the Selected Text page applies to
+all paragraphs in the selection.</li>
+<li class=ds><b>Font formatting</b>   Settings on the Font page apply to text in the selection,
+including input fields.
+</li>
+</ul>
+</p></li></ol>
+<br><A NAME="TI8647"></A><h4>Paragraphs</h4>
+<A NAME="TI8648"></A><p>There are also settings for selected paragraphs. You can display
+the Paragraph dialog box by pressing Ctrl+Shift+S.
+The user can double-click the ruler bar or press the key combination
+to display the same dialog box.</p>
+<A NAME="TI8649"></A><h4>Default font</h4>
+<A NAME="TI8650"></A><p>The user can change the default font by double-clicking on
+the toolbar or pressing Ctrl+Shift+D. You cannot
+change the default font in the painter.</p>
+<A NAME="TI8651"></A><h3>Input fields</h3>
+<A NAME="TI8652"></A><p>An input field can be either a column or a computed field.
+Before you retrieve data, its value is shown as two question marks
+(??).</p>
+<A NAME="TI8653"></A><p>The text can include many copies of a named input field. The
+same data will appear in each instance of the input field.</p>
+<A NAME="TI8654"></A><h4>Column input fields</h4>
+<A NAME="TI8655"></A><p>The columns you select for the DataWindow object become input fields
+in the rich text. Because the input field's name matches
+the column name, PowerBuilder displays the column's data
+in the input field.</p>
+<A NAME="TI8656"></A><p>If an input field exists in the text, you can copy and paste
+it to create another copy. If you need to recreate a column input
+field that you deleted, use this procedure.</p>
+<A NAME="TI8657"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To insert a column input field in the text:</p>
+<ol><li class=fi><p>Select Insert&gt;Control&gt;Column
+from the menu bar.</p></li>
+<li class=ds><p>Click in the text where you want the column input
+field to appear.</p><p>PowerBuilder displays a list of the columns selected for the DataWindow object.</p></li>
+<li class=ds><p>Select a column for the input field.</p></li></ol>
+<br><A NAME="TI8658"></A><h4>Properties for input fields</h4>
+<A NAME="TI8659"></A><p>You select an input field by clicking inside it. A computed
+input field is selected when the whole field is highlighted.</p>
+<A NAME="TI8660"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set properties for an input field:</p>
+<ol><li class=fi><p>Click in the input field in Design view.</p></li>
+<li class=ds><p>Display the pop-up menu and select Properties.</p></li>
+<li class=ds><p>On the Font page, specify text formatting.</p></li>
+<li class=ds><p>On the Format page, specify a display format.</p></li>
+<li class=ds><p>On the Validation page, specify a validation rule
+for the column.</p></li></ol>
+<br><A NAME="TI8661"></A><p>If there are multiple copies of an input field, the validation
+and format settings apply to all the copies. Background color on
+the Font page applies to all input fields. Other settings on the
+Font page apply to individual instances.</p>
+<A NAME="TI8662"></A><p>The user cannot change the format or validation rule. At runtime,
+these pages are not available in the dialog box.</p>
+<p><b>Computed field input fields</b>   When you display the dialog box for a computed field, the
+settings are a little different. You can specify the input field name
+and its expression on the Compute page and there is no validation.</p>
+<p><b>Data Value in preview</b>   For both columns and computed fields, you see a value in the
+Data Value box when you preview the DataWindow object. The user sees a
+value in the Data Value box when the current row has a value. For columns,
+users can change the value.</p>
+<A NAME="TI8663"></A><h4>Computed fields</h4>
+<A NAME="TI8664"></A><p>Computed fields have an expression that specifies the value
+of the computed field. In rich text, they are represented as input
+fields, too. You specify a name and an expression. The data value
+comes from evaluating the expression and cannot be edited.</p>
+<A NAME="TI8665"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a computed field:</p>
+<ol><li class=fi><p>Select Insert&gt;Control&gt;Computed
+Field.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Predefined computed fields</span> <A NAME="TI8666"></A>You can also select one of the predefined computed fields
+at the bottom of the menu. PowerBuilder provides several predefined
+computed fields, but in a RichText DataWindow object, only the page number
+(<i>Page n of n</i>) and today's date (<i>Today()</i>)
+are available.</p>
+</li>
+<li class=ds><p>Click in the text where you want the computed
+field to appear.</p><p>If you do not select a predefined computed field, PowerBuilder displays the
+dialog box for the computed field:</p><br><img src="images/rt04.gif"><br>
+</li>
+<li class=ds><p>On the Compute page, name the computed field and
+specify its expression.</p></li>
+<li class=ds><p>(Optional) On the Font page, specify text formatting.</p></li>
+<li class=ds><p>(Optional) On the Format page, specify a display
+format.</p></li></ol>
+<br><A NAME="TI8667"></A><p>If there are multiple copies of a computed field input field,
+the expression and format settings apply to all the copies. Font
+settings apply to individual instances. For more about computed
+field expressions and display formats, see <A HREF="pbugp167.htm#CAICGCGD">Chapter 19, "Enhancing DataWindow Objects ."</A></p>
+<A NAME="TI8668"></A><h3>Pictures</h3>
+<A NAME="TI8669"></A><h4>Inserting a picture</h4>
+<A NAME="TI8670"></A><p>You can include bitmaps (<i>BMP</i>, <i>GIF</i>, <i>JPG</i>, <i>RLE</i>,
+or <i>WMF</i> files) in a RichText DataWindow.</p>
+<A NAME="TI8671"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To insert a picture in the rich text:</p>
+<ol><li class=fi><p>Select Insert&gt;Control&gt;Picture
+from the menu bar.</p></li>
+<li class=ds><p>Click in the text where you want the picture to
+appear.</p><p>PowerBuilder displays the Select Picture dialog box.</p></li>
+<li class=ds><p>Select the file containing the picture.</p></li></ol>
+<br><A NAME="TI8672"></A><h4>Specifying picture size</h4>
+<A NAME="TI8673"></A><p>A picture is selected when you can see a dashed outline in
+Design or Preview view. When the picture is part of a text selection,
+it displays with inverted colors.</p>
+<A NAME="TI8674"></A><p>You can change the size of a picture as a percentage of the
+original picture size. The allowable range for a size percent change
+is between 10 and 250 percent.</p>
+<A NAME="TI8675"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify size settings for the picture:</p>
+<ol><li class=fi><p>Click on the picture in the Design or Preview
+view so you see its dashed-outline frame.</p></li>
+<li class=ds><p>Right-click in the Design or Preview view and
+select Properties from the pop-up menu.</p><p>The Rich Text - Picture Object dialog box displays.</p></li>
+<li class=ds><p>Change the percent of the original picture size
+in the Width and Height text boxes.</p><p>The picture expands or contracts according to the size percentage
+you selected.</p></li></ol>
+<br><A NAME="TI8676"></A><h2>Previewing and printing</h2>
+<A NAME="TI8677"></A><p>To see what the RichText DataWindow object looks like with data,
+you can preview it in the Preview view or in preview mode. </p>
+<A NAME="TI8678"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To preview the DataWindow object in preview mode:</p>
+<ol><li class=fi><p>Select File&gt;Run/Preview
+from the menu bar, or click the Run/Preview button on the
+PowerBar.</p></li>
+<li class=ds><p>Select Rows&gt;Retrieve from the menu bar.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Retrieve on Preview</span> <A NAME="TI8679"></A>If the RichText definition specifies Retrieve on Preview,
+data is retrieved automatically when you open the Preview view or
+preview the DataWindow object in preview mode.</p>
+</li></ol>
+<br><A NAME="TI8680"></A><h4>Changes in preview </h4>
+<p><b>Data</b>   While previewing the DataWindow object in preview mode, or when focus
+is in the Preview view, you can use the scroll buttons in the Preview toolbar
+to move from row to row, and you can change data in the input fields. If
+you choose the Save Changes button on the toolbar, you will update
+the data in the database.</p>
+<p><b>Text</b>   Any changes you make to the rich text in the Preview view <i>will
+not be reflected</i> in the Design view. Any changes that
+you want to keep must be made in the Design view, not in preview.</p>
+<A NAME="TI8681"></A><p>If the Display Only setting is checked, you cannot change
+text or data in the Preview view.</p>
+<A NAME="TI8682"></A><h4>Print Preview</h4>
+<A NAME="TI8683"></A><p>Print Preview displays a reduced view of one row of data as
+it would appear when printed.</p>
+<A NAME="TI8684"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To see the DataWindow object in Print Preview:</p>
+<ol><li class=fi><p>Click in the Preview view to make it the
+current view.</p></li>
+<li class=ds><p>Select File&gt;Print Preview.</p></li></ol>
+<br><A NAME="TI8685"></A><p>In Print Preview, you can test different margin settings and
+scroll through the pages of the document.</p>
+<A NAME="TI8686"></A><p>You <i>cannot</i> scroll to view other rows
+of data.</p>
+<A NAME="TI8687"></A><p>Any changes you make to settings in Print Preview are discarded
+when you return to the Design view.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Setting margins</span> <A NAME="TI8688"></A>To specify permanent margin settings for the RichText DataWindow object, use
+the Print Specifications page of the Rich Text Object dialog box.</p>
+

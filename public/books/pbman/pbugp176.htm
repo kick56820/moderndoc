@@ -1,0 +1,230 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Reorganizing controls in a DataWindow object </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp175.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp177.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAICEAHF"></A><h1>Reorganizing controls in a DataWindow object </h1>
+<A NAME="TI5850"></A><p>This section describes the activities that help you change
+the layout and appearance of the controls in a DataWindow object. </p>
+<A NAME="BFCCIEEB"></A><h2>Displaying boundaries for controls in a DataWindow object</h2>
+<A NAME="TI5851"></A><p>When reorganizing controls in the Design view, it is sometimes
+helpful to see how large all the controls are. That way you can
+easily check for overlapping controls and make sure that the spacing
+around controls is what you want.</p>
+<A NAME="TI5852"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display control boundaries in a DataWindow object:</p>
+<ol><li class=fi><p>Select Design&gt;Options from the
+menu bar.</p><p>The DataWindow Options dialog box displays. </p></li>
+<li class=ds><p>Select the Show Edges check box.</p><p>PowerBuilder displays the boundaries of each control in the DataWindow object.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Boundaries display only in the Design view</span> <A NAME="TI5853"></A>The boundaries displayed for controls are for use only in
+the Design view. They do not display in a running DataWindow object or
+in a printed report.</p>
+<A NAME="BFCDBFAA"></A><h2>Using the grid and the ruler in a DataWindow object</h2>
+<A NAME="TI5854"></A><p>The DataWindow painter provides a grid and a ruler to help you align
+controls.</p>
+<A NAME="TI5855"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use the grid and the ruler:</p>
+<ol><li class=fi><p>Select Design&gt;Options from the
+menu bar.</p><p>The DataWindow Options dialog box displays. The Alignment
+Grid box contains the alignment grid options.</p></li>
+<li class=ds><p>Use the options as needed:</p><A NAME="TI5856"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI5857"></A>Option</th>
+<th  rowspan="1"  ><A NAME="TI5858"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5859"></A>Snap to Grid</td>
+<td  rowspan="1"  ><A NAME="TI5860"></A>Make controls snap to a grid position
+when you place them or move them.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5861"></A>Show Grid</td>
+<td  rowspan="1"  ><A NAME="TI5862"></A>Show or hide the grid when the workspace
+displays.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5863"></A>X</td>
+<td  rowspan="1"  ><A NAME="TI5864"></A>Specify the size (width) of the grid
+cells.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5865"></A>Y</td>
+<td  rowspan="1"  ><A NAME="TI5866"></A>Specify the size (height) of the grid
+cells.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5867"></A>Show Ruler</td>
+<td  rowspan="1"  ><A NAME="TI5868"></A>Show a ruler. The ruler uses the units
+of measurement specified in the Style dialog box. See <A HREF="pbugp171.htm#CAIBHFBD">"Changing the DataWindow object style"</A>.</td>
+</tr>
+</table>
+</li></ol>
+<br><A NAME="TI5869"></A><p>Your choices for the grid and the ruler are saved and used
+the next time you start PowerBuilder.</p>
+<A NAME="BFCBCEGC"></A><h2>Deleting controls in a DataWindow object</h2>
+<A NAME="TI5870"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete controls in a DataWindow object:</p>
+<ol><li class=fi><p>Select the controls you want to delete.</p></li>
+<li class=ds><p>Select Edit&gt;Delete from the menu bar or
+press the Delete key.</p></li></ol>
+<br><A NAME="BFCCDGIF"></A><h2>Moving controls in a DataWindow object</h2>
+<A NAME="TI5871"></A><h4>In all presentation styles except Grid</h4>
+<A NAME="TI5872"></A><p>In all presentation styles except Grid, you can move all the
+controls (such as headings, labels, columns, graphs, and drawing
+controls) anywhere you want.</p>
+<A NAME="TI5873"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To move controls in a DataWindow object:</p>
+<ol><li class=fi><p>Select the controls you want to move.</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI5874"></A>
+<ul>
+<li class=fi>Drag the controls with the mouse.</li>
+<li class=ds>Press an arrow key to move the controls in one direction.
+</li>
+</ul>
+</p></li></ol>
+<br><A NAME="TI5875"></A><h4>In grid DataWindow objects</h4>
+<A NAME="TI5876"></A><p>You can reorder columns in a grid DataWindow object at runtime.</p>
+<A NAME="TI5877"></A><p>See <A HREF="pbugp169.htm#CAIBFGFD">"Working in a grid DataWindow object"</A>.</p>
+<A NAME="BFCCEEJH"></A><h2>Copying controls in a DataWindow object</h2>
+<A NAME="TI5878"></A><p>You can copy controls within a DataWindow object and to other DataWindow objects.
+All properties of the controls are copied.</p>
+<A NAME="TI5879"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To copy a control in a DataWindow object:</p>
+<ol><li class=fi><p>Select the control.</p></li>
+<li class=ds><p>Select Edit&gt;Copy from the menu bar.</p><p>The control is copied to a private PowerBuilder clipboard.</p></li>
+<li class=ds><p>Copy (paste) the control to the same DataWindow object or
+to another one:<A NAME="TI5880"></A>
+<ul>
+<li class=fi>To copy the
+control within the same DataWindow object, select Edit&gt;Paste from
+the menu bar.</li>
+<li class=ds>To copy the control to another DataWindow object, open
+the desired DataWindow object and paste the control.
+</li>
+</ul>
+
+                      </p><p>PowerBuilder pastes the control at the same location as in the
+source DataWindow object. If you are pasting into the same DataWindow object, you
+should move the pasted control so it does not cover the original control. PowerBuilder displays
+a message box if the control you are pasting is not valid in the
+destination DataWindow object.</p></li></ol>
+<br><A NAME="BFCDEDAD"></A><h2>Resizing controls in a DataWindow object</h2>
+<A NAME="TI5881"></A><p>You can resize a control using the mouse or the keyboard. You
+can also resize multiple controls to the same size using the Layout
+drop-down toolbar on PainterBar2.</p>
+<A NAME="TI5882"></A><h4>Using the mouse</h4>
+<A NAME="TI5883"></A><p>To resize a control using the mouse, select it, then grab
+an edge and drag it with the mouse.</p>
+<A NAME="TI5884"></A><h4>Using the keyboard</h4>
+<A NAME="TI5885"></A><p>To resize a control using the keyboard, select it and then
+do the following:</p>
+<A NAME="TI5886"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI5887"></A>To make the control</th>
+<th  rowspan="1"  ><A NAME="TI5888"></A>Press</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5889"></A>Wider</td>
+<td  rowspan="1"  ><A NAME="TI5890"></A>Shift+Right Arrow</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5891"></A>Narrower</td>
+<td  rowspan="1"  ><A NAME="TI5892"></A>Shift+Left Arrow</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5893"></A>Taller</td>
+<td  rowspan="1"  ><A NAME="TI5894"></A>Shift+Down Arrow</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5895"></A>Shorter</td>
+<td  rowspan="1"  ><A NAME="TI5896"></A>Shift+Up Arrow</td>
+</tr>
+</table>
+<A NAME="TI5897"></A><h4>In grid DataWindow objects</h4>
+<A NAME="TI5898"></A><p>You can resize columns in grid DataWindow objects.</p>
+<A NAME="TI5899"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To resize a column in a grid DataWindow object:</p>
+<ol><li class=fi><p>Position the mouse pointer at a column
+boundary.</p><p>The pointer changes to a two-headed arrow.</p></li>
+<li class=ds><p>Press and hold the left mouse button and drag
+the mouse to move the boundary.</p></li>
+<li class=ds><p>Release the mouse button when the column is the
+correct width.</p></li></ol>
+<br><A NAME="BFCBCDED"></A><h2>Aligning controls in a DataWindow object</h2>
+<A NAME="TI5900"></A><p>Often you want to align several controls or make them all
+the same size. You can use the grid to align the controls or you
+can have PowerBuilder align them for you.</p>
+<A NAME="TI5901"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To align controls in a DataWindow object:</p>
+<ol><li class=fi><p>Select the control whose position you want
+to use to align the others.</p><p>PowerBuilder displays handles around the selected control.</p></li>
+<li class=ds><p>Extend the selection by pressing and holding the
+Ctrl key and clicking the controls you want to align with the first
+one.</p><p>All the controls have handles on them.</p></li>
+<li class=ds><p>Select Format&gt;Align from the menu bar.</p></li>
+<li class=ds><p>From the cascading menu, select the dimension
+along which you want to align the controls.</p><p>For example, to align the controls along the left side, select
+the first choice on the cascading menu. You can also use the Layout
+drop-down toolbar on PainterBar2.</p><p>PowerBuilder moves all the selected controls to align with the
+first one.</p></li></ol>
+<br><A NAME="BFCBICII"></A><h2>Equalizing the space between controls in a DataWindow object</h2>
+<A NAME="TI5902"></A><p>If you have a series of controls and the spacing is fine between
+two of them but wrong for the rest, you can easily equalize the
+spacing around all the controls.</p>
+<A NAME="TI5903"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To equalize the space between controls in a DataWindow object:</p>
+<ol><li class=fi><p>Select the two controls whose spacing is
+correct.</p><p>To do so, click one control, then press Ctrl and click the
+second control.</p></li>
+<li class=ds><p>Select the other controls whose spacing match
+that of the first two controls. To do so, press Ctrl and click each
+control.</p></li>
+<li class=ds><p>Select Format&gt;Space from the menu bar.</p></li>
+<li class=ds><p>From the cascading menu, select the dimension
+whose spacing you want to equalize.</p><p>You can also use the Layout drop-down toolbar on PainterBar2.</p></li></ol>
+<br><A NAME="BFCBEGEE"></A><h2>Equalizing the size of controls in a DataWindow object</h2>
+<A NAME="TI5904"></A><p>Suppose you have several controls in a DataWindow object and want
+their sizes to be the same. You can accomplish this manually or
+by using the Format menu.</p>
+<A NAME="TI5905"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To equalize the size of controls in a DataWindow object:</p>
+<ol><li class=fi><p>Select the control whose size is correct.</p></li>
+<li class=ds><p>Press Ctrl and click to select the other controls
+whose size should match that of the first control.</p></li>
+<li class=ds><p>Select Format&gt;Size from the menu bar.</p></li>
+<li class=ds><p>From the cascading menu, select the dimension
+whose size you want to equalize.</p><p>You can also use the Layout drop-down toolbar on PainterBar2.</p></li></ol>
+<br><A NAME="BFCDCEHJ"></A><h2>Sliding controls to remove blank space in a DataWindow object</h2>
+<A NAME="TI5906"></A><p>You can specify that you want to eliminate blank lines or
+spaces in a DataWindow object by sliding columns and other controls to
+the left or up if there is blank space. You can use this feature
+to remove blank lines in mailing labels or to remove extra spaces
+between fields (such as first and last name).</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Slide is used by default in nested reports</span> <A NAME="TI5907"></A>PowerBuilder uses slide options automatically when you nest
+a report to ensure that the reports are positioned properly.</p>
+<A NAME="TI5908"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use sliding columns or controls in a DataWindow object:</p>
+<ol><li class=fi><p>Select Properties from the control's
+pop-up menu and then select the Position tab in the Properties view.</p></li>
+<li class=ds><p>Select the Slide options you want:</p><A NAME="TI5909"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI5910"></A>Option</th>
+<th  rowspan="1"  ><A NAME="TI5911"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5912"></A>Slide Left</td>
+<td  rowspan="1"  ><A NAME="TI5913"></A>Slide the column or control to the left
+if there is nothing to the left. Be sure the control does not overlap
+the control to the left. Sliding left will not work if the controls
+overlap.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5914"></A>Slide Up - All Above</td>
+<td  rowspan="1"  ><A NAME="TI5915"></A>Slide the column or control up if there
+is nothing in the row above. The row above must be completely empty for
+the column or control to slide up.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5916"></A>Slide Up - Directly Above</td>
+<td  rowspan="1"  ><A NAME="TI5917"></A>Slide the column or control up if there
+is nothing <i>directly above it</i> in the row above.</td>
+</tr>
+</table>
+</li></ol>
+<br><A NAME="TI5918"></A><p>These options are also available on PainterBar2.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you are sliding columns up</span> <A NAME="TI5919"></A>Even blank columns have height; if you want columns to slide
+up, you need to specify as Autosize Height all columns above them
+that might be blank and that you want to slide other columns up
+through.</p>
+<A NAME="TI5920"></A><h4>Example</h4>
+<A NAME="TI5921"></A><p>In a mailing label that includes first and last names, as
+well as address information, you can use sliding to combine the
+columns appropriately.</p>
+<A NAME="TI5922"></A><p>In the following label, <b>emp_lname</b>,
+the comma, <b>state</b>, and <b>zip_code</b> are specified
+as slide left. Edges are shown to indicate the spacing between the columns.
+Notice that there is a small amount of space between controls. This space
+is necessary for Slide Left to work properly:</p>
+<br><img src="images/dwen27.gif">
+<A NAME="TI5923"></A><p>When you preview (run) the DataWindow object, the last name, comma,
+state, and zip code slide left to remove the blank space:</p>
+<br><img src="images/dwen28.gif">
+

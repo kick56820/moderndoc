@@ -1,0 +1,176 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Specifying application properties</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp41.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp43.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CABADAFAB"></A><h1>Specifying application properties</h1>
+<A NAME="TI1275"></A><p>You specify application properties in the Application painter's
+Properties view. </p>
+<A NAME="TI1276"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify application properties:</p>
+<ol><li class=fi><p>In the Application painter, if the Properties
+view is not open, select View&gt;Properties from the menu
+bar.</p><p>With the exception of the AppName property, the properties
+on the General and Toolbar tab pages can be modified in the Properties
+view and in scripts. </p><p>If you need help specifying properties in the Properties View,
+right-click on the background of the Properties view and select
+Help from the pop-up menu.</p></li>
+<li class=ds><p>Select the General or Toolbar tab page, or, on
+the General tab page, click the Additional Properties button to
+display the Application properties dialog box.</p><p>The additional properties on the Application properties dialog
+box can be modified only in this dialog box. They cannot be modified
+in scripts.</p></li>
+<li class=ds><p>Specify the properties:</p><A NAME="TI1277"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI1278"></A>To specify this</th>
+<th  rowspan="1"  ><A NAME="TI1279"></A>Use this tab page</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1280"></A>Display name</td>
+<td  rowspan="1"  ><A NAME="TI1281"></A>General tab page</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1282"></A>Application has toolbar text and toolbar
+tips</td>
+<td  rowspan="1"  ><A NAME="TI1283"></A>Toolbar tab page</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1284"></A>Default font for static text as it appears
+in windows, user objects, and DataWindow objects</td>
+<td  rowspan="1"  ><A NAME="TI1285"></A>Additional Properties (Text Font)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1286"></A>Default font for data retrieved in a
+DataWindow object</td>
+<td  rowspan="1"  ><A NAME="TI1287"></A>Additional Properties (Column Font)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1288"></A>Default font for column headers in tabular
+and grid DataWindow objects</td>
+<td  rowspan="1"  ><A NAME="TI1289"></A>Additional Properties (Header Font)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1290"></A>Default font for column labels in freeform DataWindow
+objects</td>
+<td  rowspan="1"  ><A NAME="TI1291"></A>Additional Properties (Label Font)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1292"></A>Application icon</td>
+<td  rowspan="1"  ><A NAME="TI1293"></A>Additional Properties (Icon)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1294"></A>Global objects for the application</td>
+<td  rowspan="1"  ><A NAME="TI1295"></A>Additional Properties (Variable Types)</td>
+</tr>
+</table>
+</li></ol>
+<br><A NAME="TI1296"></A><p>These sections have information about how you specify the
+following application properties in the Application painter:</p>
+<A NAME="TI1297"></A><p><A NAME="TI1298"></A>
+<ul>
+<li class=fi><A HREF="pbugp42.htm#CAIBCIIDC">"Specifying default text
+properties"</A></li>
+<li class=ds><A HREF="pbugp42.htm#CAICFHBEF">"Specifying an icon"</A></li>
+<li class=ds><A HREF="pbugp42.htm#CAIBCEIA">"Specifying default global
+objects"</A>
+</li>
+</ul>
+</p>
+<A NAME="CAIBCIIDC"></A><h2>Specifying default text properties</h2>
+<A NAME="TI1299"></A><p>You probably want to establish a standard look for the text
+in your application. There are four kinds of text whose properties
+you can specify in the Application painter: text, header, column,
+and label.</p>
+<A NAME="TI1300"></A><p>PowerBuilder provides default settings for the font, size,
+and style for each of these and a default color for text and the
+background. You can change these settings for an application in
+the Application painter and can override the settings for a window,
+user object, or DataWindow object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Properties set in the Database painter override application
+properties</span> <A NAME="TI1301"></A>If extended attributes have been set for a database column
+in the Database painter or Table painter, those font specifications
+override the fonts specified in the Application painter.</p>
+<A NAME="TI1302"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the text defaults for an application:</p>
+<ol><li class=fi><p>In the Properties view, click Additional
+Properties and select one of the following:</p><p><A NAME="TI1303"></A>
+<ul>
+<li class=fi>Text Font tab</li>
+<li class=ds>Header Font tab</li>
+<li class=ds>Column Font tab</li>
+<li class=ds>Label Font tab
+</li>
+</ul>
+</p><p>The tab you choose displays the current settings for the font,
+size, style, and color. The text in the Sample box illustrates text
+with the current settings.</p></li>
+<li class=ds><p>Review the settings and make any necessary changes:</p><p><A NAME="TI1304"></A>
+<ul>
+<li class=fi>To change the font,
+select a font from the Font list.</li>
+<li class=ds>To change the size, select a size from the Size
+list or type a valid size in the list.</li>
+<li class=ds>To change the style, select a style (Regular, Italic,
+Bold, or Bold Italic) from the Font styles list.</li>
+<li class=ds>To change font effects, select one or more from
+the Effects group box (Strikeout and Underline).</li>
+<li class=ds>To change the text color, select a color from the
+Text Color list. (You do not specify colors for data, headings,
+and labels here; instead, you do that in the DataWindow painter.)</li>
+<li class=ds>To change the background color, select a color from
+the Background list.
+</li>
+</ul>
+</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using custom colors</span> <A NAME="TI1305"></A>When specifying a text color, you can choose a custom color.
+You can define custom colors in several painters, including the
+Window painter or DataWindow painter.</p>
+</li>
+<li class=ds><p>When you have made all the changes, click OK.</p></li></ol>
+<br><A NAME="CAICFHBEF"></A><h2>Specifying an icon</h2>
+<A NAME="TI1306"></A><p>Users can minimize your application during execution. If you
+specify an icon in the application painter, the icon will display
+when the application is minimized.</p>
+<A NAME="TI1307"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To associate an icon with an application:</p>
+<ol><li class=fi><p>In the Properties view, click Additional
+Properties and select the Icon tab.</p></li>
+<li class=ds><p>Specify a file containing an icon (an ICO file).</p><p>The button displays below the Browse button.</p></li>
+<li class=ds><p>Click OK to associate the icon with the application.</p></li></ol>
+<br><A NAME="CAIBCEIA"></A><h2>Specifying default global objects</h2>
+<A NAME="TI1308"></A><p>PowerBuilder provides five built-in global objects that are
+predefined in all applications.</p>
+<A NAME="TI1309"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI1310"></A>Global object</th>
+<th  rowspan="1"  ><A NAME="TI1311"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1312"></A><ACRONYM title = "sequel c a" >SQLCA</ACRONYM></td>
+<td  rowspan="1"  ><A NAME="TI1313"></A>Transaction object, used to communicate
+with your database</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1314"></A><ACRONYM title = "sequel d a" >SQLDA</ACRONYM></td>
+<td  rowspan="1"  ><A NAME="TI1315"></A>DynamicDescriptionArea, used in dynamic <ACRONYM title = "sequel" >SQL</ACRONYM></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1316"></A><ACRONYM title = "sequel s a" >SQLSA</ACRONYM></td>
+<td  rowspan="1"  ><A NAME="TI1317"></A>DynamicStagingArea, used in dynamic <ACRONYM title = "sequel" >SQL</ACRONYM></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1318"></A>Error</td>
+<td  rowspan="1"  ><A NAME="TI1319"></A>Used to report errors during execution</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1320"></A>Message</td>
+<td  rowspan="1"  ><A NAME="TI1321"></A>Used to process messages that are not
+PowerBuilder-defined events and to pass parameters between windows</td>
+</tr>
+</table>
+<A NAME="TI1322"></A><p>You can create your own versions of these objects by creating
+a standard class user object inherited from one of the built-in
+global objects. You can add instance variables and functions to
+enhance the behavior of the global objects.</p>
+<A NAME="TI1323"></A><p>For more information, see <A HREF="pbugp124.htm#BCADFDDI">Chapter 15, "Working with User Objects ."</A></p>
+<A NAME="TI1324"></A><p>After you do this, you can tell PowerBuilder that you want
+to use your version of the object in your application as the default,
+instead of the built-in version.</p>
+<A NAME="TI1325"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the default global objects:</p>
+<ol><li class=fi><p>In the Properties view, click Additional
+Properties and select the Variable Types tab.</p><p>The Variable Types property page displays. </p></li>
+<li class=ds><p>Specify the standard class user object you defined
+in the corresponding field.</p><p>For example, if you defined a user object named <b>mytrans</b> that
+is inherited from the built-in Transaction object, type <FONT FACE="Courier New">mytrans</FONT> in
+the box corresponding to<ACRONYM title = "sequel c a" > SQLCA</ACRONYM>.</p><br><img src="images/ap9.gif"><br>
+</li>
+<li class=ds><p>Click OK.</p></li></ol>
+<br><A NAME="TI1326"></A><p>When you run your application, it will use the specified standard
+class user objects as the default objects instead of the built-in
+global objects.</p>
+

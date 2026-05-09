@@ -1,0 +1,93 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Modifying user-defined functions </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp72.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp74.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF297023212"></A><h1>Modifying user-defined functions </h1>
+<A NAME="TI2093"></A><p>You can change the definition of a user-defined function at
+any time. You change the processing performed by the function by
+modifying the statements in the Script view. You can also change
+the return type, argument list, or access level for a function.</p>
+<A NAME="TI2094"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change a function's return type, arguments,
+or access level:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI2095"></A>
+<ul>
+<li class=fi>In
+the Function painter, open the global function.</li>
+<li class=ds>Open the object that contains the object-level function
+you want to edit and select the function from the Function list.
+</li>
+</ul>
+
+                    </p></li>
+<li class=ds><p>Make the changes you want in the Prototype window.</p><p>If the Prototype window is hidden, click the toggle button
+to display it.</p></li>
+<li class=ds><p>Select File&gt;Save from the menu bar.</p></li></ol>
+<br><A NAME="TI2096"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change a function's name:</p>
+<ol><li class=fi><p>If desired, modify the function's
+return type, arguments, or access level as described in the previous
+procedure.</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI2097"></A>
+<ul>
+<li class=fi>In
+the Function painter, select File&gt;Save As from the menu
+bar and enter a name. </li>
+<li class=ds>In the Script view, enter a new name in the Function
+Name box.
+</li>
+</ul>
+
+                    </p><p>When you tab off the box, the new function name displays in
+the Function List view. </p></li></ol>
+<br><A NAME="CIHDIGHG"></A><h4>Changing the arguments</h4>
+<A NAME="TI2098"></A><p>You can change a function's arguments at any time
+using the pop-up menu in the Prototype window: </p>
+<A NAME="TI2099"></A><p><A NAME="TI2100"></A>
+<ul>
+<li class=fi><i>Add</i> an
+argument by selecting Add Parameter. Boxes for defining the new argument
+display below the last argument in the list.</li>
+<li class=ds><i>Insert</i> an argument by moving
+the pointer to the argument before which you want to insert the
+argument and selecting Insert Parameter. Boxes for defining the
+new argument display above the selected argument.</li>
+<li class=ds><i>Delete</i> an argument by selecting
+it and clicking the Delete button.
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>To change the position of an argument</span> <A NAME="TI2101"></A>To change the position of an argument, delete the argument
+and insert it as a new argument in the correct position.</p>
+<A NAME="TI2102"></A><h4>Recompiling other scripts</h4>
+<A NAME="TI2103"></A><p>Changing arguments and the return type of a function affect
+scripts and other functions that call the function. You should recompile
+any script in which the function is used. This guarantees that the
+scripts and functions work correctly during execution.</p>
+<A NAME="CDEBEGJE"></A><h4>Seeing where a function
+is used</h4>
+<A NAME="TI2104"></A><p>PowerBuilder provides browsing facilities to help you find
+where you have referenced your functions. In the System Tree or
+Library painter, select a target, library, or object and select
+Search from the pop-up menu. You can also search multiple entries
+in the Library painter:</p>
+<A NAME="TI2105"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To determine which functions and scripts call
+a user-defined function:</p>
+<ol><li class=fi><p>Open the Library painter.</p></li>
+<li class=ds><p>In a List view, select all the entries you want
+to search for references to the user-defined function.</p></li>
+<li class=ds><p>Select Entry&gt;Search from the menu bar.</p><p>The Search Library Entries dialog box displays.</p></li>
+<li class=ds><p>Specify the user-defined function as the search
+text and specify the types of components you want to search.</p></li>
+<li class=ds><p>Click OK.</p><p>PowerBuilder displays all specified components that reference
+the function in the Output window. You can double-click a listed
+component to open the appropriate painter.</p></li></ol>
+<br><A NAME="TI2106"></A><p>For more about browsing library entities,
+see <A HREF="pbugp53.htm#CHDCJEGF">"Searching targets, libraries,
+and objects"</A>.</p>
+

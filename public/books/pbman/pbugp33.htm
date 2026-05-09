@@ -1,0 +1,79 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Reverse-engineering a PowerBuilder target</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp32.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp34.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CACJJDIH"></A><h1>Reverse-engineering a PowerBuilder target</h1>
+<A NAME="TI1062"></A><p>Reverse-engineering is the process of examining and recovering
+data or source code that is then used to build or update an OOM.
+You can reverse-engineer PowerBuilder objects to obtain a diagram
+of the class structure of those objects.</p>
+<A NAME="TI1063"></A><h4>The Reverse Engineer dialog box</h4>
+<A NAME="TI1064"></A><p>After you enable the PowerDesigner plug-in, the Reverse Engineer
+menu item is added to pop-up menus for PowerScript targets. If you
+select this menu item, the Reverse Engineer dialog box prompts you
+to select PowerBuilder libraries and objects from the current target.
+After you click OK in this dialog box, the objects you select are
+abstracted as classes in a UML class diagram. <A HREF="pbugp33.htm#CACCDIBD">Figure 4-3</A> shows the Reverse
+Engineer dialog box.</p>
+<A NAME="CACCDIBD"></A><caption><b>Figure 4-3: Reverse Engineer dialog box</b></captionls>
+<br><img src="images/reveng1.gif">
+<A NAME="TI1065"></A><p>When objects in a PowerBuilder target are reverse-engineered
+for the first time, the target is linked with a generated class
+diagram and OOM file. By default, the generated OOM file name has
+the same name as the target file, but with an <i>oom</i> extension.
+For example, if the PowerBuilder target name is <i>test.pbt</i>,
+then the file<i> test.oom</i> is generated in the
+same directory as the target file. </p>
+<A NAME="TI1066"></A><p>If an OOM is already linked with the PowerBuilder target,
+you can determine how changes to PowerBuilder objects will affect
+the linked OOM when you reverse-engineer the target. The options
+you can select from are:<A NAME="TI1067"></A>
+<ul>
+<li class=fi>Merge with existing
+Object Oriented Model (default)</li>
+<li class=ds>Replace existing Object Oriented Model</li>
+<li class=ds>Replace selected packages and classes</li>
+<li class=ds>Replace selected classes
+</li>
+</ul>
+</p>
+<A NAME="TI1068"></A><p>If the target is not currently linked with an OOM, the only
+selection is:<A NAME="TI1069"></A>
+<ul>
+<li class=fi>Create a new Object Oriented
+Model
+</li>
+</ul>
+</p>
+<A NAME="TI1070"></A><h4>Changing the OOM file name</h4>
+<A NAME="TI1071"></A><p>Before you create an OOM file from a PowerBuilder target through
+reverse engineering, you can change the name of the file and its
+directory, and you can decide whether to overwrite or merge the
+contents of the OOM with an existing OOM file.</p>
+<A NAME="TI1072"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the OOM file name linked to the target</p>
+<ol><li class=fi><p>In the Reverse Engineer dialog box for
+the PowerBuilder target, click the ellipsis button next to the Object
+Oriented Model File Name field.</p><p>The Plug-in Attributes of Target dialog box displays.</p></li>
+<li class=ds><p>Modify the path and name of the oompath attribute
+and click OK.</p><p>If you select an existing file name, the Delete Existing Object
+Oriented Model File check box in the Reverse Engineer dialog box
+is not grayed.</p></li>
+<li class=ds><p>(Optional) Select a reverse-engineering option
+from the drop-down list. </p><p>If an OOM is already linked to the PowerBuilder target and
+you leave the default selection, new packages, classes, and attributes
+will be merged with existing packages, classes, and attributes in
+the linked OOM file. This means that other classes and attributes
+in the existing OOM file will not be overwritten or deleted when
+you reverse-engineer the PowerBuilder target.</p><p>Other selections allow you to merge the packages while replacing
+selected classes and their attributes; replace selected packages
+and classes without replacing nonselected packages and their classes;
+or replace the entire OOM file.</p></li>
+<li class=ds><p>Click OK to reverse-engineer the target.</p></li></ol>
+<br>

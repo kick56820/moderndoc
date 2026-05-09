@@ -1,0 +1,71 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About user-defined functions </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp70.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp72.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF297023071"></A><h1>About user-defined functions </h1>
+<A NAME="TI2011"></A><p>The PowerScript language has many built-in functions, but
+you may find that you need to code the same procedure over and over
+again. For example, you may need to perform a certain calculation
+in several places in an application or in different applications.
+In such a situation, create a user-defined function to perform the
+processing.</p>
+<A NAME="TI2012"></A><p>A user-defined function is a collection of PowerScript statements
+that perform some processing. After you define a user-defined function
+and save it in a library, any application accessing that library
+can use the function.</p>
+<A NAME="TI2013"></A><p>There are two kinds of user-defined functions, global and
+object-level functions. </p>
+<A NAME="TI2014"></A><h4>Global functions</h4>
+<A NAME="TI2015"></A><p>Global functions are not associated with any object in your
+application and are always accessible anywhere in the application.</p>
+<A NAME="TI2016"></A><p>They correspond to the PowerBuilder built-in functions that
+are not associated with an object, such as the mathematical and
+string-handling functions. You define global functions in the Function
+painter.</p>
+<A NAME="TI2017"></A><h4>Object-level functions</h4>
+<A NAME="TI2018"></A><p>Object-level functions are defined for a window, menu, user
+object, or application object. These functions are part of the object's
+definition and can always be used in scripts for the object itself.
+You can choose to make these functions accessible to other scripts
+as well.</p>
+<A NAME="TI2019"></A><p>These functions correspond to built-in functions that are
+defined for specific PowerBuilder objects such as windows or controls.
+You define object-level functions in a Script view for the object.</p>
+<A NAME="TI2020"></A><h2>Deciding which kind you want</h2>
+<A NAME="TI2021"></A><p>When you design your application, you need to decide how you
+will use the functions you will define:</p>
+<A NAME="TI2022"></A><p><A NAME="TI2023"></A>
+<ul>
+<li class=fi>If a function is general
+purpose and applies throughout an application, make it a global
+function.</li>
+<li class=ds>If a function applies only to a particular kind
+of object, make it an object-level function. You can still
+call the function from anywhere in the application, but the function
+acts only on a particular object type.<br>
+For example, suppose you want a function that returns the
+contents of a SingleLineEdit control in one window to another window.
+Make it a window-level function, defined in the window containing
+the SingleLineEdit control. Then, anywhere in your application that
+you need this value, call the window-level function.<br>
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Multiple objects can have functions with the same name</span> <A NAME="TI2024"></A>Two or more objects can have functions with the same name
+that do different things. In object-oriented terms, this is called
+polymorphism. For example, each window type can have its own <b>Initialize</b> function
+that performs processing unique to that window type. There is never
+any ambiguity about which function is being called, because you
+always specify the object's name when you call an object-level
+function.</p>
+<A NAME="TI2025"></A>Object-level functions can also be overloaded&#8212;two
+or more functions can have the same name but different argument
+lists. Global functions <i>cannot</i> be overloaded.</p>
+

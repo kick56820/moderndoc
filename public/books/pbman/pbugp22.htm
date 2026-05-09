@@ -1,0 +1,88 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+How the PowerBuilder environment is managed</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp21.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp23.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF304001355"></A><h1>How the PowerBuilder environment is managed</h1>
+<A NAME="TI697"></A><p>PowerBuilder configuration information is stored in both the
+PowerBuilder initialization file (<i>PB.INI</i>) and
+the registry. When you start PowerBuilder, it looks in the registry
+and <i>PB.INI</i> to set up your environment.</p>
+<A NAME="TI698"></A><h2>About the registry</h2>
+<A NAME="TI699"></A><p>Some PowerBuilder features require the use of the <i>PB.INI</i> file,
+but many features use the registry for getting and storing configuration
+information. Normally, you should not need to access or modify items
+in the registry directly.</p>
+<A NAME="TI700"></A><p>Information related to your preferences (such as the applications
+you have created, the way you have arranged your views in the painters,
+and the shortcut keys you have defined for PowerBuilder menu items)
+is stored in<br><i>HKEY_CURRENT_USER/Software/Sybase/PowerBuilder/10.5</i><i></i>. </p>
+<A NAME="TI701"></A><p>Installation-related information is stored in <i>HKEY_LOCAL_MACHINE/Software/Sybase/PowerBuilder/10.5</i><i></i>.</p>
+<A NAME="TI702"></A><h2>About the initialization file</h2>
+<A NAME="TI703"></A><p><i>PB.INI</i> is a text file that contains variables
+that specify your PowerBuilder preferences. These preferences include
+information such as the last workspace you used and your startup
+preferences. When you perform certain actions in PowerBuilder, PowerBuilder
+writes your preferences to <i>PB.INI</i> automatically. </p>
+<A NAME="TI704"></A><h4>Format of INI files</h4>
+<A NAME="TI705"></A><p><i>PB.INI</i> uses the Windows INI file format.
+It has three types of elements:<A NAME="TI706"></A>
+<ul>
+<li class=fi>Section names, which are enclosed in square brackets</li>
+<li class=ds>Keywords, which are the names of preference settings</li>
+<li class=ds>Values, which are numeric or text strings, assigned
+as the value of the associated keyword
+</li>
+</ul>
+</p>
+<A NAME="TI707"></A><p>A variable can be listed with no value specified, in which
+case the default is used.</p>
+<A NAME="TI708"></A><p>Some sections are always present by default, but others are
+created only when you specify different preferences. If you specify
+preferences for another painter or tool, PowerBuilder creates a
+new section for it at the end of the file.</p>
+<A NAME="TI709"></A><h4>Specifying preferences</h4>
+<A NAME="TI710"></A><p>Normally, you do not need to edit <i>PB.INI.</i> You
+can specify all your preferences by taking an action, such as resizing
+a window or opening a new application, or by selecting Design&gt;Options
+from one of the painters. If a variable does not appear by default
+in the options sheet for the painter, you can use a text editor to
+modify the variable in the appropriate section of <i>PB.INI</i>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Editing the initialization file</span> <A NAME="TI711"></A>Do not use a text editor to edit <i>PB.INI</i> or
+any preferences file accessed by Profile functions while PowerBuilder
+or your application is running. PowerBuilder caches the contents
+of initialization files in memory and overwrites your edited <i>PB.INI</i> when
+it exits, ignoring changes.</p>
+<A NAME="TI712"></A><h4>Where the initialization file is kept</h4>
+<A NAME="TI713"></A><p><i>PB.INI</i> is installed in the same directory
+as the PowerBuilder executable file.</p>
+<A NAME="TI714"></A><h4>Telling PowerBuilder where your initialization
+file is</h4>
+<A NAME="TI715"></A><p>You can keep <i>PB.INI</i> in another location
+and tell PowerBuilder where to find it by specifying the location
+in the System Options dialog box. You may want to do this if you
+use more than one version of PowerBuilder or if you are running
+PowerBuilder over a network.</p>
+<A NAME="TI716"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To record your initialization path:</p>
+<ol><li class=fi><p>Select Tools&gt;System Options from
+the menu bar.</p></li>
+<li class=ds><p>On the General tab page, enter the path of your
+initialization file in the Initialization Path text box.</p><p>PowerBuilder records the path in the Windows registry.</p></li></ol>
+<br><A NAME="TI717"></A><h4>How PowerBuilder finds the initialization file</h4>
+<A NAME="TI718"></A><p>PowerBuilder looks in the Windows Registry for a path to the
+initialization file, and then looks for the file in the directory
+where PowerBuilder is installed. If PowerBuilder cannot find <i>PB.INI</i> using
+the path in the Registry, it clears the path value.</p>
+<A NAME="TI719"></A><h4>If the initialization file is missing</h4>
+<A NAME="TI720"></A><p>If PowerBuilder does not find <i>PB.INI</i> when
+it starts up, it recreates it. However, if you want to retain any
+preferences you have set, such as database profiles, keep a backup
+copy of <i>PB.INI</i>. The recreated file has the
+default preferences.</p>
+

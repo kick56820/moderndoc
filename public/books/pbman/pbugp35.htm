@@ -1,0 +1,151 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Class diagram menu commands</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp34.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp36.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CACCEIAC"></A><h1>Class diagram menu commands</h1>
+<A NAME="TI1086"></A><h4>Main menu items</h4>
+<A NAME="TI1087"></A><p>Menu items in the OOM plug-in interface also help to integrate
+PowerDesigner with PowerBuilder. The PowerDesigner menu items do
+not display in PowerBuilder unless a class diagram painter has focus.
+The following table lists menu items that display when a class diagram
+has focus.</p>
+<A NAME="CACIAADA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 4-2: PowerDesigner menu items that
+display for a class diagram </caption>
+<tr><th  rowspan="1"  ><A NAME="TI1088"></A>Plug-in menu</th>
+<th  rowspan="1"  ><A NAME="TI1089"></A>PowerDesigner menu items added</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1090"></A>File</td>
+<td  rowspan="1"  ><A NAME="TI1091"></A>The Page Setup, Print Preview, and Print
+Selection menu items are added for a class diagram. The Print, Save,
+and Save As menu items are used by PowerBuilder objects
+or plug-in class diagrams, depending on which painter has the focus.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1092"></A>Edit</td>
+<td  rowspan="1"  ><A NAME="TI1093"></A>All items from the PowerDesigner Edit
+menu.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1094"></A>View</td>
+<td  rowspan="1"  ><A NAME="TI1095"></A>All items from PowerDesigner View menu
+except the Browser, Output, and Result List menu items. In the plug-in, the
+View&gt;Diagram&gt;New Diagram cascading menu items
+are visible but not enabled.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1096"></A>Model </td>
+<td  rowspan="1"  ><A NAME="TI1097"></A>All items from the PowerDesigner Model
+menu.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1098"></A>Symbol</td>
+<td  rowspan="1"  ><A NAME="TI1099"></A>All items from the PowerDesigner Symbol
+menu.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1100"></A>Language </td>
+<td  rowspan="1"  ><A NAME="TI1101"></A>Only the Edit Current Object Language
+and Generate PowerBuilder menu items.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1102"></A>Repository</td>
+<td  rowspan="1"  ><A NAME="TI1103"></A>All items from the PowerDesigner Repository
+menu.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1104"></A>Tools</td>
+<td  rowspan="1"  ><A NAME="TI1105"></A>The Check Model, Compare Model, Merge
+Model, Execute Commands&gt;Edit/Run Script,
+Display Preferences, General Preferences, and Model Options menu
+items. Menu items for the PowerBuilder Tools menu are not removed when
+a class diagram painter has focus.</td>
+</tr>
+</table>
+<A NAME="TI1106"></A><p>Menu items in the File, Run, Window, and Help menus remain
+the same whether a PowerBuilder object painter or a plug-in class
+diagram has focus.</p>
+<A NAME="CACJECED"></A><h4>Generating PowerBuilder objects</h4>
+<A NAME="TI1107"></A><p>You can generate a PowerBuilder target from an OOM by selecting
+Generate PowerBuilder from the OOM Language menu. The Language menu
+is visible only if a class diagram is displayed and has focus. </p>
+<A NAME="TI1108"></A><p>The Generate PowerBuilder menu item opens the PowerBuilder
+Generation dialog box, displayed in <A HREF="pbugp35.htm#CACDICDI">Figure 4-4</A>. This dialog box prompts you to select packages
+and classes to generate a PowerBuilder target. All PowerBuilder painters
+must be closed before you click OK to generate the PowerBuilder target
+from the OOM. </p>
+<A NAME="CACDICDI"></A><caption><b>Figure 4-4: PowerBuilder Generation dialog
+box</b></captionls>
+<br><img src="images/genrate1.gif">
+<A NAME="TI1109"></A><p>The PowerBuilder Generation dialog box allows you to select
+how changes to the OOM will affect an existing PowerBuilder target
+when you regenerate the target. The options are:<A NAME="TI1110"></A>
+<ul>
+<li class=fi>Replace
+selected PowerBuilder objects (default)</li>
+<li class=ds>Replace selected PowerBuilder libraries and objects</li>
+<li class=ds>Replace existing PowerBuilder target
+</li>
+</ul>
+</p>
+<A NAME="TI1111"></A><p>If the OOM is not already linked to an existing PowerBuilder
+target, you have only one option when generating the target:<A NAME="TI1112"></A>
+<ul>
+<li class=fi>Create a new PowerBuilder target
+</li>
+</ul>
+</p>
+<A NAME="TI1113"></A><p>By selecting the Check Model for PowerBuilder check box, you
+can verify the validity of the model. You can also select a check
+box to back up existing PowerBuilder libraries before the generation.
+(This check box is grayed when a PowerBuilder target is not already
+linked to the current OOM.) Existing <ACRONYM title = "pibble" >PBL</ACRONYM>s
+are saved in their original directories with the extension PB_.
+If you are generating a PowerBuilder target for the first time,
+you can select which package in the OOM should be used to generate
+the target application.</p>
+<A NAME="TI1114"></A><p>The following happens when you generate selected classes or
+packages:<A NAME="TI1115"></A>
+<ul>
+<li class=fi>Existing PowerBuilder objects are
+replaced by the code generated from the corresponding class</li>
+<li class=ds>Changes to existing PowerBuilder objects are rolled
+back if code generation is not successful</li>
+<li class=ds>The Workspace tab in the PowerBuilder System Tree
+is automatically refreshed after generation of PowerBuilder objects</li>
+<li class=ds>An incremental build is triggered to ensure the
+PB Target is in good condition
+</li>
+</ul>
+</p>
+<A NAME="TI1116"></A><h4>Pop-up menu items</h4>
+<A NAME="TI1117"></A><p>Pop-up menus for the plug-in are the same as in PowerDesigner,
+except that plug-in classes have additional pop-up menu items.</p>
+<A NAME="TI1118"></A><p>The pop-up menu for a class in an OOM class diagram has a
+PowerBuilder menu item with subitems linking the class diagram to
+a PowerBuilder target:<A NAME="TI1119"></A>
+<ul>
+<li class=fi>PowerBuilder&gt;Open
+Painter <br>
+This menu item opens the object corresponding to the selected
+class in its PowerBuilder painter. Double-clicking a class
+in the linked class diagram achieves the same result.<br></li>
+<li class=ds>PowerBuilder&gt;Find in Workspace <br>
+This menu item places focus on the corresponding PowerBuilder
+object in the Workspace tab of the System Tree.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI1120"></A><p>The pop-up menu for the Workspace entry in the PowerDesigner
+Browser view of the plug-in includes the following menu item that
+is not available in PowerDesigner:<A NAME="TI1121"></A>
+<ul>
+<li class=fi>New &gt;PowerBuilder
+Object-Oriented Model<br>
+This menu item for an OOM lets you create a new object-oriented
+model for PowerBuilder. After you create an OOM for PowerBuilder,
+you can select Generate PowerBuilder from the Language menu to generate
+a PowerBuilder target.<br>
+</li>
+</ul>
+</p>
+

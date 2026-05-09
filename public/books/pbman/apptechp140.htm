@@ -1,0 +1,162 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Providing support for instance pooling</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp139.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp141.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJCBEAD"></A><h1>Providing support for instance pooling</h1>
+<A NAME="TI4540"></A><h4>Benefits of instance pooling</h4>
+<A NAME="TI4541"></A><p><ABBR title = "e a server" >EAServer</ABBR> components can
+optionally support instance pooling. <strong>Instance pooling</strong> allows <ABBR title = "e a server" >EAServer</ABBR> clients to reuse component
+instances. By eliminating the resource drain caused by repeated
+allocation of component instances, instance pooling improves the
+overall performance of <ABBR title = "e a server" >EAServer</ABBR>. </p>
+<A NAME="TI4542"></A><h4>Specifying pooling options in the wizards</h4>
+<A NAME="TI4543"></A><p>When you create an <ABBR title = "e a server" >EAServer</ABBR> component
+using one of the PowerBuilder wizards, you have the option to specify
+one of the pooling options for the component shown in <A HREF="apptechp140.htm#CEGGJFHJ">Table 24-2</A>.</p>
+<A NAME="CEGGJFHJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 24-2: <ABBR title = "e a server" >EAServer</ABBR> component
+pooling options</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4544"></A>Pooling option</th>
+<th  rowspan="1"  ><A NAME="TI4545"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4546"></A>Supported</td>
+<td  rowspan="1"  ><A NAME="TI4547"></A>The component is <i>always</i> pooled
+after each client use. When this option is selected, the CanBePooled
+event is not triggered for the component.<A NAME="TI4548"></A><p>This option has the effect of setting the component's
+pooling property to <b>TRUE</b>. If the Automatic Demarcation/Deactivation setting
+for the component is enabled, instances are pooled after each method
+invocation. If the setting is disabled, instances are pooled when
+the component calls the <b>SetComplete</b> (or <b>SetAbort</b>) method
+of the TransactionServer context object.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4549"></A>Not supported</td>
+<td  rowspan="1"  ><A NAME="TI4550"></A>By default, the component is not pooled
+after each client use. However, you can override the default behavior
+by scripting the CanBePooled event. In the CanBePooled event, you
+can specify programmatically whether a particular component instance should
+be pooled. If you script the CanBePooled event, this event is triggered
+after each client use.<A NAME="TI4551"></A><p>This option has the effect of setting the component's
+pooling property to <b>FALSE</b>.</p></td>
+</tr>
+</table>
+<A NAME="TI4552"></A><h4>Controlling the state of a pooled instance</h4>
+<A NAME="TI4553"></A><p>When you create an <ABBR title = "e a server" >EAServer</ABBR> component
+that supports instance pooling, that component may need to reset
+its state after each client has finished using the pooled instance. </p>
+<A NAME="TI4554"></A><p>To allow you to control the state of a component, <ABBR title = "e a server" >EAServer</ABBR> triggers one or more of
+the events shown in <A HREF="apptechp140.htm#CEGCJDDH">Table 24-3</A> during the lifecycle of the component.</p>
+<A NAME="CEGCJDDH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 24-3: Component state events</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4555"></A>Event</th>
+<th  rowspan="1"  ><A NAME="TI4556"></A>PBM code</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4557"></A>Activate</td>
+<td  rowspan="1"  ><A NAME="TI4558"></A>PBM_COMPONENT_ACTIVATE</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4559"></A>CanBePooled</td>
+<td  rowspan="1"  ><A NAME="TI4560"></A>PBM_COMPONENT_CANBEPOOLED</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4561"></A>Deactivate</td>
+<td  rowspan="1"  ><A NAME="TI4562"></A>PBM_COMPONENT_DEACTIVATE</td>
+</tr>
+</table>
+<A NAME="TI4563"></A><p>When the component's pooling option is set to Supported
+(the pooling property is set to <b>TRUE</b>), you may
+need to script the Activate and Deactivate events to reset the state
+of the pooled component. This is necessary if the component maintains
+state in an instance, shared, or global variable.</p>
+<A NAME="TI4564"></A><p>When the component's pooling option is set to Not
+Supported (the pooling property is set to <b>FALSE</b>),
+you can optionally script the CanBePooled event to specify whether
+a particular component instance should be pooled. If you script the
+CanBePooled event, you may also need to script the Activate and Deactivate
+events to reset the state of the pooled component. If you do not script
+the CanBePooled event, the component instance is not pooled.</p>
+<A NAME="TI4565"></A><p>The <ABBR title = "e a server" >EAServer</ABBR> Component Target
+and Object wizards automatically include the Activate and Deactivate
+events to a custom class user object that will be deployed as an <ABBR title = "e a server" >EAServer</ABBR> component. If you want
+to script the CanBePooled event, you need to add this event yourself.
+If you do this, be sure to map the event to the correct PBM code.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Constructor and Destructor are fired once</span> <A NAME="TI4566"></A>When instance pooling is in effect, the Constructor and Destructor
+events are fired only once for the component. The Constructor and
+Destructor events are not fired each time a new client uses the
+component instance. Therefore, to reset the state of a component
+instance that is pooled, add logic to the Activate and Deactivate
+events, not the Constructor and Destructor events.</p>
+<A NAME="TI4567"></A><h4>Maximum and minimum pool sizes</h4>
+<A NAME="TI4568"></A><p>Instance pooling can decrease client response time, but can
+also increase memory usage in the server. You can configure the
+maximum and minimum pool size to constrain the memory used to maintain
+an instance pool by setting options on the Resources tab page in EAServer Manager.
+For example, a heavily used component should have higher minimum
+and maximum pool sizes than a less commonly used component. </p>
+<A NAME="TI4569"></A><p><ABBR title = "e a server" >EAServer</ABBR> does not preallocate
+instances for the pool. The pool size grows as additional instances
+are required to satisfy client requests, up to the maximum specified
+size (if a maximum size is specified). Once the minimum pool size
+is reached, the size will not shrink below this size. To release
+idle pooled instances, <ABBR title = "e a server" >EAServer</ABBR> has
+a garbage collector thread that runs periodically. Each time it
+runs, the garbage collector removes one idle instance from the pool, unless
+the minimum pool size has been reached. </p>
+<A NAME="TI4570"></A><p>If you configure a minimum pool size, configure a maximum
+size that is slightly larger. The difference between the maximum
+and minimum size provides a damping factor that prevents repeated
+instance allocation and deallocation if the actual pool size hovers
+near the minimum size.</p>
+<A NAME="TI4571"></A><p>You can set environment variables to configure the way memory
+is managed in PowerBuilder and EAServer. For more information, see <A HREF="apptechp21.htm#BCGCEECG">"Configuring memory management"</A> and the technical
+document <A HREF="http://www.sybase.com/detail?id=1027319">EAServer/PowerBuilder Memory Tuning and Troubleshooting</A>
+.</p>
+<A NAME="TI4572"></A><h4>The lifecycle of a component</h4>
+<A NAME="TI4573"></A><p>To understand how instance pooling works, you need to understand
+the lifecycle of a component instance. This is what happens during
+the component lifecycle:<A NAME="TI4574"></A>
+<ol>
+</li>
+<li class=ds>The
+component is typically instantiated on the first method invocation. When
+this occurs on a component developed in PowerBuilder, <ABBR title = "e a server" >EAServer</ABBR> creates a new PowerBuilder
+session for the component to run in. </li>
+<li class=ds>The PowerBuilder session creates the instance of
+the PowerBuilder nonvisual object that represents the <ABBR title = "e a server" >EAServer</ABBR> component. Creating the object
+causes the <strong>Constructor event</strong> to be fired.</li>
+<li class=ds>After the object has been instantiated, <ABBR title = "e a server" >EAServer</ABBR> triggers the <strong>Activate event</strong> on
+the nonvisual object to notify the object that it is about to be
+used by a new client. At this point, the component must ensure that
+its state is ready for execution.</li>
+<li class=ds><ABBR title = "e a server" >EAServer</ABBR> then
+executes the method called by the client on the component. </li>
+<li class=ds>When the component indicates that its work is complete, <ABBR title = "e a server" >EAServer</ABBR> triggers the <strong>Deactivate
+event</strong> to allow the component to clean up its state. If
+the Automatic Demarcation/Deactivation setting for the
+component is enabled, the Deactivate event is triggered automatically
+after each method invocation. If the setting is disabled, the Deactivate
+event is triggered when the component calls the <b>SetComplete</b> (or <b>SetAbort</b>)
+method of the TransactionServer context object. </li>
+<li class=ds>If you have selected the Not Supported pooling option
+(or set the component's pooling property to <b>FALSE</b>)
+and also scripted the <strong>CanBePooled event</strong>, <ABBR title = "e a server" >EAServer</ABBR> triggers this event to
+ask the component whether it is able to be pooled at this time.
+The CanBePooled event allows the component instance to selectively
+enable or refuse pooling. <br>
+The return value of the CanBePooled event determines whether
+the component instance is pooled. A return value of 1 enables pooling;
+a return value of 0 disables pooling. If the CanBePooled event has
+not been scripted, then by default the instance is not pooled.<br><br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>What happens when the pooling property is enabled</span> <A NAME="TI4575"></A>When you select the Supported pooling option (or set the component's pooling
+property to <b>TRUE</b>), component instances are <i>always</i> pooled
+and the CanBePooled event is never triggered.
+<br>
+</li>
+<li class=ds>If an instance is not pooled after deactivation, <ABBR title = "e a server" >EAServer</ABBR> triggers the <strong>Destructor
+event</strong>. Then it destroys the PowerBuilder object and terminates
+the runtime session.
+</li>
+</ol>
+</p>
+

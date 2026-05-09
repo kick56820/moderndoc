@@ -1,0 +1,85 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Setting up users' workstations</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp217.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp219.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF363985240"></A><h1>Setting up users' workstations</h1>
+<A NAME="TI6585"></A><p>After saving the PSR, creating an HTML page, and setting up
+the server, you need to make sure client workstations are set up
+to view the page containing the DataWindow plug-in.</p>
+<A NAME="TI6586"></A><p>Users who will view a Web page that includes a DataWindow
+plug-in need supporting software installed on their client workstations.
+They also need a connection to the Web server.</p>
+<A NAME="TI6587"></A><h4>Required components</h4>
+<A NAME="TI6588"></A><p>Each client workstation needs the components in <A HREF="apptechp218.htm#BABHHDCD">Table 32-5</A> to view a Web page
+containing a DataWindow plug-in.</p>
+<A NAME="BABHHDCD"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 32-5: Client requirements to view DataWindow
+plug-in</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6589"></A>Component</th>
+<th  rowspan="1"  ><A NAME="TI6590"></A>Procedure</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6591"></A>An Internet or intranet connection</td>
+<td  rowspan="1"  ><A NAME="TI6592"></A>Available within your corporation or
+from an Internet service provider.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6593"></A>A Web browser that supports Netscape
+plug-ins</td>
+<td  rowspan="1"  ><A NAME="TI6594"></A>Available from the browser vendor. Examples
+are:<A NAME="TI6595"></A>
+<ul>
+<li class=fi>Netscape Navigator Version 3.x or later.</li>
+<li class=ds>Microsoft Internet Explorer Version 3.x through
+5.5 Service Pack 1. Internet Explorer 5.5 Service Pack 2 and later
+versions do not support plug-ins.
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6596"></A>DataWindow plug-in DLL</td>
+<td  rowspan="1"  ><A NAME="TI6597"></A>If it is not there already, copy the <i>NPDWE105.DLL</i> file
+from the <i>Internet Tools\Plugins </i>directory
+to the browser's <i>Plugins</i> directory.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6598"></A>Supporting DLLs</td>
+<td  rowspan="1"  ><A NAME="TI6599"></A>If it is not there already, copy the <i>PBSHR105.DLL</i> file
+from the <i>Shared\PowerBuilder </i>directory
+to the browser's <i>Plugins</i> directory.
+If they are not already available on the client workstation, install
+the following Microsoft runtime files in the client's Windows
+system directory: <i>MSVCR71.DLL</i>, <i>MSVCP71.DLL</i>,
+and <i>ATL71.DLL</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6600"></A>Other files</td>
+<td  rowspan="1"  ><A NAME="TI6601"></A>If the original DataWindow object or
+report included bitmap objects or custom pointers from external
+files, you need to copy those files to the client workstation. The
+path on the client workstation must correspond to the path saved
+in the PSR.<A NAME="TI6602"></A><p>If the original included OLE objects or custom controls, you
+must install and register the OLE server or custom control on the
+client workstation. The path for an OLE object must be valid on
+the client.</p></td>
+</tr>
+</table>
+<A NAME="TI6603"></A><h4>Viewing the Web page and the PSR</h4>
+<A NAME="TI6604"></A><p>While viewing a PSR in the DataWindow plug-in, the user can:<A NAME="TI6605"></A>
+<ul>
+<li class=fi>Navigate through the data
+in the PSR using scroll bars</li>
+<li class=ds>Change values in rows and columns if the source
+of the PSR was an editable DataWindow object (but because there
+is no database connection, data cannot be updated in a database)</li>
+<li class=ds>Right-click on the PSR to display a pop-up menu
+for saving, printing, and navigating
+</li>
+</ul>
+</p>
+<A NAME="TI6606"></A><p>InfoMaker users who save the report from the Web page as a
+local PSR file can open that PSR file in InfoMaker to search, filter,
+and sort the data.</p>
+

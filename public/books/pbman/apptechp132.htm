@@ -1,0 +1,119 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+The Message object</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp131.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp133.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299420569"></A><h1>The Message object</h1>
+<A NAME="TI4279"></A><p>The Message object is a predefined PowerBuilder global object
+(like the default Transaction object SQLCA and the Error object)
+that is used in scripts to process Microsoft Windows events that
+are not PowerBuilder-defined events.    </p>
+<A NAME="TI4280"></A><p>When a Microsoft Windows event occurs that is not a PowerBuilder-defined event,
+PowerBuilder populates the Message object with information about
+the event.</p>
+<A NAME="TI4281"></A><h4>Other uses of the Message object</h4>
+<A NAME="TI4282"></A><p>The Message object is also used:<A NAME="TI4283"></A>
+<ul>
+<li class=fi>To communicate parameters between windows when you
+open and close them<br>
+For more information, see the descriptions
+of <b>OpenWithParm</b>, <b>OpenSheetWithParm</b>,
+and <b>CloseWithReturn</b> in the <i>PowerScript
+Reference</i>
+.<br></li>
+<li class=ds>To pass information to an event if optional parameters
+were used in <b>TriggerEvent</b> or <b>PostEvent</b><br>
+For more information, see the <i>PowerScript
+Reference</i>
+.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI4284"></A><h4>Customizing the Message object</h4>
+<A NAME="TI4285"></A><p>You can customize the global Message object used in your application
+by defining a standard class user object inherited from the built-in
+Message object. In the user object, you can add additional properties
+(instance variables) and functions. You then populate the user-defined
+properties and call the functions as needed in your application.</p>
+<A NAME="TI4286"></A><p>For more information about defining standard
+class user objects, see the <i>PowerBuilder User's
+Guide</i>
+.</p>
+<A NAME="TI4287"></A><h2>Message object properties</h2>
+<A NAME="TI4288"></A><p>The first four properties of the Message object correspond
+to the first four properties of the Microsoft Windows message structure. </p>
+<A NAME="TI4289"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 22-3: Message object properties</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4290"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI4291"></A>Datatype</th>
+<th  rowspan="1"  ><A NAME="TI4292"></A>Use</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4293"></A>Handle</td>
+<td  rowspan="1"  ><A NAME="TI4294"></A><b>Integer</b></td>
+<td  rowspan="1"  ><A NAME="TI4295"></A>The handle of the window or control.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4296"></A>Number</td>
+<td  rowspan="1"  ><A NAME="TI4297"></A><b>Integer</b></td>
+<td  rowspan="1"  ><A NAME="TI4298"></A>The number that identifies the event
+(this number comes from Windows).</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4299"></A>WordParm</td>
+<td  rowspan="1"  ><A NAME="TI4300"></A><b>UnsignedInt</b></td>
+<td  rowspan="1"  ><A NAME="TI4301"></A>The word parameter for the event (this parameter
+comes from Windows). The parameter's value and meaning
+are determined by the event.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4302"></A>LongParm</td>
+<td  rowspan="1"  ><A NAME="TI4303"></A><b>Long</b></td>
+<td  rowspan="1"  ><A NAME="TI4304"></A>The long parameter for the event (this
+number comes from Windows). The parameter's value and meaning
+are determined by the event.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4305"></A>DoubleParm</td>
+<td  rowspan="1"  ><A NAME="TI4306"></A><b>Double</b></td>
+<td  rowspan="1"  ><A NAME="TI4307"></A>A numeric or numeric variable.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4308"></A>StringParm</td>
+<td  rowspan="1"  ><A NAME="TI4309"></A><b>String</b></td>
+<td  rowspan="1"  ><A NAME="TI4310"></A>A string or string variable.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4311"></A>PowerObjectParm</td>
+<td  rowspan="1"  ><A NAME="TI4312"></A><b>PowerObject</b></td>
+<td  rowspan="1"  ><A NAME="TI4313"></A>Any PowerBuilder object type including structures.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4314"></A>Processed</td>
+<td  rowspan="1"  ><A NAME="TI4315"></A><b>Boolean</b></td>
+<td  rowspan="1"  ><A NAME="TI4316"></A>A boolean value set in the script for
+the user-defined event:<A NAME="TI4317"></A><p><A NAME="TI4318"></A>
+<ul>
+<li class=fi><b>TRUE</b>&#8212;The
+script processed the event. Do not call the default window Proc (DefWindowProc)
+after the event has been processed.</li>
+<li class=ds><b>FALSE</b>&#8212;(Default) Call
+DefWindowProc after the event has been processed.
+</li>
+</ul>
+</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4319"></A>ReturnValue</td>
+<td  rowspan="1"  ><A NAME="TI4320"></A><b>Long</b></td>
+<td  rowspan="1"  ><A NAME="TI4321"></A>The value you want returned to Windows
+when Message.Processed is <b>TRUE</b>.<A NAME="TI4322"></A><p>When Message.Processed is <b>FALSE</b>, this attribute
+is ignored.</p></td>
+</tr>
+</table>
+<A NAME="TI4323"></A><p>Use the values in the Message object in the event script that
+caused the Message object to be populated. For example, suppose
+the FileExists event contains the following script. <b>OpenWithParm</b> displays
+a response window that asks the user if it is OK to overwrite the
+file. The return value from <b>FileExists</b> determines
+whether the file is saved:<p><PRE> OpenWithParm( w_question, &amp;<br>   "The specified file already exists. " + &amp;<br>   "Do you want to overwrite it?" )<br>IF Message.StringParm = "Yes" THEN<br>   RETURN 0  // File is saved<br>ELSE<br>   RETURN -1 // Saving is canceled<br>END IF</PRE></p>
+<A NAME="TI4324"></A><p>For information on Microsoft message numbers
+and parameters, see the Microsoft Software Developer's
+Kit (SDK) documentation.</p>
+

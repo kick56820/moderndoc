@@ -1,0 +1,25 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Working with a DataStore </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp27.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp29.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF350671374"></A><h1>Working with a DataStore </h1>
+<A NAME="TI919"></A><p>To use a DataStore, you first need to create an instance of
+the DataStore object in a script and assign the DataWindow object
+to the DataStore. Then, if the DataStore is intended to retrieve
+data, you need to set the transaction object for the DataStore.
+Once these setup steps have been performed, you can retrieve data
+into the DataStore, share data with another DataStore or DataWindow control,
+or perform other processing.</p>
+<A NAME="TI920"></A><h4>Examples</h4>
+<A NAME="TI921"></A><p>The following script uses a DataStore to retrieve data from
+the database. First it instantiates the DataStore object and assigns
+a DataWindow object to the DataStore. Then it sets the transaction
+object and retrieves data into the DataStore:<p><PRE> datastore lds_datastore</PRE><PRE> lds_datastore = CREATE datastore</PRE><PRE> lds_datastore.DataObject = "d_cust_list"</PRE><PRE> lds_datastore.SetTransObject (SQLCA)</PRE><PRE> lds_datastore.Retrieve()</PRE><PRE> /* Perform some processing on the data... */</PRE></p>
+

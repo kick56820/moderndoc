@@ -1,0 +1,80 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Advanced printing techniques </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp251.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp253.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299755523"></A><h1>Advanced printing techniques </h1>
+<A NAME="TI7562"></A><p>Creating complex reports in PowerBuilder requires the use
+of additional functions but is relatively easy. You can use PowerScript
+functions to define fonts for a job, specify fonts and line spacing,
+place objects on a page, and specify exactly where you want the
+text or object to be placed.</p>
+<A NAME="TI7563"></A><h4>Defining and setting fonts</h4>
+<A NAME="TI7564"></A><p>The examples so far have used the default font for the printer.
+However, you can define as many as eight fonts for each print job
+and then switch among them during the job.</p>
+<A NAME="TI7565"></A><p>In addition, you can redefine the fonts as often as you want
+during the print job. This allows you to use as many fonts as you
+have available on your printer during a print job. Since there is
+a slight performance penalty for redefining fonts, you should define
+the fonts after the <b>PrintOpen</b> call and leave
+them unchanged for the duration of the print job.</p>
+<A NAME="TI7566"></A><p>To define a font, set an integer variable to the value returned
+by a call to the <b>PrintDefineFont</b> function and
+then use the <b>PrintSetFont</b> function to change
+the font in the job.</p>
+<p><b>Example</b>   Assume that <b>JobNum</b> is the integer print
+job number and that the current printer has a font named Helv. The
+following statements define <b>Helv18BU</b> as the
+Helv font, 18 point bold and underlined. The definition is stored
+as font 2 for <b>JobNum</b>. The company name is printed
+in font 2:<p><PRE> IntJob, Helv18BU</PRE><PRE> JobNum = PrintOpen()</PRE><PRE> Helv18BU = PrintDefineFont(JobNum,2,"Helv",250,700, &amp;</PRE><PRE>         Variable!,Swiss!,FALSE,TRUE)</PRE><PRE> PrintSetFont(JobNum,2)</PRE><PRE> Print(JobNum,"Sybase, Inc.")</PRE></p>
+<A NAME="TI7567"></A><p>For more information about <b>PrintDefineFont</b> and <b>PrintSetFont</b>,
+see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI7568"></A><h4>Setting line spacing</h4>
+<A NAME="TI7569"></A><p>PowerBuilder takes care of line spacing automatically when
+you use the <b>Print</b> function. For example, after
+you print in an 18-point font and start a new line, PowerBuilder
+adds 1.2 times the character height to the Y coordinate of the print
+cursor.</p>
+<A NAME="TI7570"></A><p>The spacing factor 1.2 is not fixed. You can use the <b>PrintSetSpacing</b> function
+to control the amount of space between lines.</p>
+<p><b>Examples</b>   This statement results in tight single-line spacing. (Depending
+on the font and the printer, the bottoms of the lowest characters
+may touch the tops of the tallest characters):</p>
+<A NAME="TI7571"></A><p><p><PRE> PrintSetSpacing(JobNum,1)</PRE></p>
+<A NAME="TI7572"></A><p>This statement causes one-and-a-half-line spacing:<p><PRE> PrintSetSpacing(JobNum,1.5)</PRE></p>
+<A NAME="TI7573"></A><p>This statement causes double spacing:<p><PRE> PrintSetSpacing(JobNum,2)</PRE></p>
+<A NAME="TI7574"></A><h4>Printing drawing objects</h4>
+<A NAME="TI7575"></A><p>You can use the following drawing objects in a print job.<A NAME="TI7576"></A>
+<ul>
+<li class=fi>Lines</li>
+<li class=ds>Rectangles</li>
+<li class=ds>Round rectangles</li>
+<li class=ds>Ovals</li>
+<li class=ds>Pictures
+</li>
+</ul>
+</p>
+<A NAME="TI7577"></A><p>When you place drawing objects in a print job, place the objects
+first and then add the text. For example, you should draw a rectangle
+inside the print area and then add lines and text inside the rectangle.
+Although the objects appear as outlines, they are actually filled
+(contain white space); if you place an object over text or another
+object, it hides the text or object.</p>
+<A NAME="TI7578"></A><p>Be careful: PowerBuilder does not check to make sure that
+you have placed all the text and objects within the print area.
+PowerBuilder simply does not print anything that is outside the
+print area.</p>
+<p><b>Example</b>   These statements draw a 1-inch by 3-inch rectangle and then
+print the company address in the rectangle. The rectangle is at
+the top of the page and centered:</p>
+<A NAME="TI7579"></A><p><p><PRE> IntJob</PRE><PRE> JobNum = PrintOpen()</PRE><PRE> PrintRect(JobNum,2500,0,3000,1000,40)</PRE><PRE> Print(JobNum,2525,"")</PRE><PRE> </PRE><PRE> Print(JobNum,2525,"25 Mountain Road")</PRE><PRE> Print(JobNum,2525,"Milton, MA 02186")</PRE><PRE> PrintClose(JobNum)</PRE></p>
+

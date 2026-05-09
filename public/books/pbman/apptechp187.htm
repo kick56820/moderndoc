@@ -1,0 +1,263 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Generating EJB proxy objects</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp186.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp188.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDFHEAA"></A><h1>Generating EJB proxy objects</h1>
+<A NAME="TI5942"></A><p>To generate EJB proxy objects, you need to create an EJB Client
+Proxy project. You can do this in the Project painter or with a
+wizard.</p>
+<A NAME="TI5943"></A><h2>Using an EJB Proxy project</h2>
+<A NAME="TI5944"></A><p>To create a new EJB Client Proxy project, select either of
+the following from the Projects page of the New dialog box:<A NAME="TI5945"></A>
+<ul>
+<li class=fi><A HREF="apptechp187.htm#BABCEEBH">EJB Client Proxy icon</A></li>
+<li class=ds><A HREF="apptechp187.htm#BABCBFCD">EJB Client Proxy Wizard
+icon</A>
+</li>
+</ul>
+ </p>
+<A NAME="BABCEEBH"></A><h4>EJB Client Proxy icon</h4>
+<A NAME="TI5946"></A><p>The EJB Client Proxy icon opens the Project painter for EJB
+proxies so you can create a project, specify options, and build
+the proxy library. </p>
+<A NAME="TI5947"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create an EJB Client Proxy project in the Project
+painter:</p>
+<ol><li class=fi><p>Double-click the EJB Client Proxy icon
+on the Projects page of the New dialog box.</p></li>
+<li class=ds><p>To specify the EJB, select Edit&gt;Select
+Objects and enter the fully qualified name of the component's
+remote interface in the text box, for example <b>com.sybase.jaguar.sample.svu.SVULogin</b> or <b>portfolio.MarketMaker</b>.</p></li>
+<li class=ds><p>Enter the path of the directory or JAR file that
+contains the EJB's stubs in the Classpath box and click
+OK. </p><p>If the stub files are in a directory and the fully qualified
+name of the EJB is <i>packagename</i>.<i>beanname</i>,
+enter the directory that contains <i>packagename</i>.</p></li>
+<li class=ds><p>To specify the PBL where the proxy objects should
+be stored, select Edit&gt;Properties and browse to the location
+of a library in the target's library list.</p><p>You can specify an optional prefix that is added to the beginning
+of each generated proxy name. Adding a prefix makes it easier to
+identify the proxies associated with a specific EJB and can be used
+to avoid conflicts between class names and PowerBuilder reserved
+words. The prefix is not added to the name of proxies that are not
+specific to this EJB, such as the proxies for exceptions, stream
+objects, and ejbhome, ejbobject, ejbmetadata, handle, and homehandle.</p></li>
+<li class=ds><p>Close the dialog box and select File&gt;Save
+to save the project.</p></li></ol>
+<br><A NAME="TI5948"></A><p>The new project lists the EJB component for which a proxy
+will be generated and specifies the name of the output library that
+will contain the generated proxy objects. </p>
+<A NAME="BABCBFCD"></A><h4>EJB Client Proxy Wizard
+icon</h4>
+<A NAME="TI5949"></A><p>The EJB Client
+Proxy Wizard helps you create the project. </p>
+<A NAME="TI5950"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create an EJB Client Proxy project using the
+wizard:</p>
+<ol><li class=fi><p>Double-click the EJB Client Proxy Wizard
+icon on the Projects page of the New dialog box and click Next on
+the first page of the wizard.</p></li>
+<li class=ds><p>Select a library in which to store the project
+object and click Next.</p></li>
+<li class=ds><p>Specify a name and optional description for the
+project and click Next.</p></li>
+<li class=ds><p>As shown, enter the fully qualified name of the
+component's remote interface in the text box, for example <FONT FACE="Courier New">cocoPortfolio.Portfolio</FONT>:</p><br><img src="images/ejbst2.gif"><br>
+<p>The component's home interface name is entered automatically
+using the standard naming convention, although the wizard lets you
+modify this name if necessary.</p></li>
+<li class=ds><p>Browse to select the JAR file that contains the
+EJB's stubs or the directory that contains the stub package. </p><p>If the stub files are in a directory and the fully qualified
+name of the EJB is <i>packagename</i>.<i>beanname</i>,
+enter the directory that contains <i>packagename</i>.</p></li>
+<li class=ds><p>Specify an optional prefix that is added to the
+beginning of each generated proxy name and click Next. </p><p>Adding a prefix makes it easier to identify the proxies associated
+with a specific EJB and can be used to avoid conflicts between class
+names and PowerBuilder reserved words. The prefix is not added to
+the name of proxies that are not specific to this EJB, such as the
+proxies for exceptions, supporting classes, and EJBHome, EJBObject,
+EJBMetaData, Handle, and HomeHandle.</p></li>
+<li class=ds><p>Browse to select an existing library and click
+Next and Finish.</p><p>The proxy objects are generated and stored in this library,
+which must be added to the target's library list.</p></li></ol>
+<br><A NAME="TI5951"></A><p>After the wizard has created the project, you can use the
+Project painter to modify your project settings.</p>
+<A NAME="TI5952"></A><h4>Building proxies</h4>
+<A NAME="TI5953"></A><p>Whether you create the EJB Proxy project using the wizard
+or the painter, the final step is to build the proxy objects. To
+do so, click the Build icon on the painter bar or select Design&gt;Deploy
+Project from the menu bar. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Proxy generation requires javap.exe </span> <A NAME="TI5954"></A>PowerBuilder uses the <i>javap.exe </i>utility
+to generate proxy objects. This executable must be in your system
+path. By default, EJB client development uses the Sun JDK 1.4 installed
+with PowerBuilder. The path and classpath required by the Java VM
+are added to the path and classpath used in the current session
+automatically. </p>
+<A NAME="TI5955"></A>If you want to use a different JDK installation, select Tools&gt;System
+Options, then click Set JDK Location on the Java page of the System
+Options dialog box. For WebSphere, the path to the IBM JDK installation
+can be used instead. </p>
+<A NAME="TI5956"></A><p>In addition to the proxies for the home and remote interfaces
+of the EJB, proxies are also generated for any Java classes referenced
+by the EJB, for ancestor classes, for any exceptions that can be
+thrown by the EJB and its supporting classes, and for the following
+interfaces:</p>
+<A NAME="TI5957"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI5958"></A>Object</th>
+<th  rowspan="1"  ><A NAME="TI5959"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5960"></A>EJBHome</td>
+<td  rowspan="1"  ><A NAME="TI5961"></A>Proxy for the <b>javax.ejb.EJBHome</b> interface,
+the base class for all EJB home interfaces.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5962"></A>EJBMetaData</td>
+<td  rowspan="1"  ><A NAME="TI5963"></A>Proxy for the <b>javax.ejb.EJBMetaData</b> interface.
+Allows a client to obtain the EJB's home interface and
+the class objects for its home and remote interfaces and primary
+key class (for entity beans), and to determine whether the bean
+is a session or stateless session object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5964"></A>EJBObject</td>
+<td  rowspan="1"  ><A NAME="TI5965"></A>Proxy for the <b>javax.ejb.EJBObject</b> interface,
+the base class for all EJB remote interfaces.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5966"></A>Handle</td>
+<td  rowspan="1"  ><A NAME="TI5967"></A>Proxy for the <b>javax.ejb.Handle</b> interface.
+Used to provide a robust persistent reference to an EJB.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5968"></A>HomeHandle</td>
+<td  rowspan="1"  ><A NAME="TI5969"></A>Proxy for the <b>javax.ejb.HomeHandle</b> interface.
+Used to provide a robust persistent reference to a home object.</td>
+</tr>
+</table>
+<A NAME="TI5970"></A><p>For more information about these interfaces, see the documentation
+for the <A HREF="http://java.sun.com/j2ee/sdk_1.3/techdocs/api/index.html">javax.ejb package</A>
+.</p>
+<A NAME="TI5971"></A><p>The project also generates a structure that stores the mapping
+of Java classes to proxy names. This structure is used internally
+and should not be modified.</p>
+<A NAME="TI5972"></A><h2>Using the <b>ejb2pb105</b> tool</h2>
+<A NAME="TI5973"></A><p>You can also use the <b>ejb2pb105</b> command-line
+tool to generate proxies. The tool generates:<A NAME="TI5974"></A>
+<ul>
+<li class=fi>Proxies
+(.<i>srx</i> files) for the home and remote interfaces
+of the EJB you specify and for the classes on which the EJB depends.</li>
+<li class=ds>A PowerBuilder structure object named <i>ejbname_</i><i>ejb_pb_mapping.srs</i>, where <i>ejbname</i> is
+the name of the EJB. This structure hosts the mapping table between
+the Java class name and the PowerBuilder proxy name.</li>
+<li class=ds>A text file called <i>ejbproxies.txt</i> or,
+if errors occur, <i>ejbproxies.err.</i>
+</li>
+</ul>
+</p>
+<A NAME="TI5975"></A><p>These files are generated in the directory in which you invoke
+the command. The syntax is:<p><PRE>ejb2pb105 [ -classpath <i>pathlist </i>] <i>EJBName</i> [<i>EJBHomeName</i>][<i> prefix </i>]</PRE></p>
+</p>
+<A NAME="TI5976"></A><p>If the <i>pathlist</i> argument contains spaces,
+for example <i>D:\Program Files</i>,
+the <i>pathlist</i> must be enclosed in quotes. <i>EJBName</i> is
+the fully qualified remote interface class name. If you use the
+standard naming convention for the home interface, then including
+an argument for the fully qualified home interface name, <i>EJBHomeName</i>,
+is optional. If you specify the optional <i>prefix</i>,
+it is added to the beginning of the generated proxy name. </p>
+<A NAME="TI5977"></A><p>For example, the following statements generate proxies for
+the Portfolio class in the package cocoPortfolio on <ABBR title = "e a server" >EAServer</ABBR>. The proxies for the home
+and remote interfaces of the Portfolio class have the prefix <i>pf_</i>,
+and the generated files are written to the directory <i>D:\work\proxies</i>:<p><PRE> cd D:\work\proxies<br>ejb2pb105 -classpath "D:\Program Files\Sybase\EAServer\html\classes" cocoPortfolio.Portfolio pf_</PRE></p>
+<A NAME="TI5978"></A><p>The home and remote classes for the EJB and any dependent
+classes must be in the class path that you specify.</p>
+<A NAME="TI5979"></A><p>After generating the proxies, you import them into your target
+by selecting the library that contains the client, selecting Import
+from its pop-up menu, and selecting the .<i>srx</i> files
+from the dialog box that displays. The order in which you import
+.<i>srx</i> files is significant&#8212;you cannot
+import proxies that depend on other classes until you have imported
+the proxies for the dependent classes.</p>
+<A NAME="TI5980"></A><h2>Viewing the generated proxies</h2>
+<A NAME="TI5981"></A><p>The generated proxies display in the System Tree. You can
+expand the proxy nodes to display the signatures of the methods
+on the home and remote interfaces for the EJB component, as well
+as on all the other objects for which proxies were generated.</p>
+<A NAME="TI5982"></A><p></p>
+<br><img src="images/ejbprox1.gif">
+<A NAME="TI5983"></A><h4>Conflicts with reserved words</h4>
+<A NAME="TI5984"></A><p>If the name of a component method conflicts with a PowerBuilder
+reserved word, the string <FONT FACE="Courier New">_j</FONT> is
+appended to the method name in the proxy so that the methods can
+be imported into PowerBuilder. For example, the Java Iterator class
+has a <b>Next</b> method, which conflicts with the PowerBuilder
+reserved word <b>NEXT</b>. In the proxy, the method
+is named <b>next_j</b>.</p>
+<A NAME="TI5985"></A><h2>Datatype mappings</h2>
+<A NAME="TI5986"></A><p>The EJB Proxy generator maps datatypes between Java and PowerBuilder
+as shown in the following table:</p>
+<A NAME="TI5987"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI5988"></A>Java type</th>
+<th  rowspan="1"  ><A NAME="TI5989"></A>PowerBuilder type</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5990"></A><b>short</b> </td>
+<td  rowspan="1"  ><A NAME="TI5991"></A><b>Integer</b> </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5992"></A><b>int</b></td>
+<td  rowspan="1"  ><A NAME="TI5993"></A><b>Long</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5994"></A><b>long</b></td>
+<td  rowspan="1"  ><A NAME="TI5995"></A><b>LongLong</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5996"></A><b>float</b></td>
+<td  rowspan="1"  ><A NAME="TI5997"></A><b>Real</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5998"></A><b>double</b></td>
+<td  rowspan="1"  ><A NAME="TI5999"></A><b>Double</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6000"></A><b>byte</b></td>
+<td  rowspan="1"  ><A NAME="TI6001"></A><b>Int</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6002"></A><b>char</b> (16-bit unsigned)</td>
+<td  rowspan="1"  ><A NAME="TI6003"></A><b>Char</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6004"></A><b>java.lang.String</b></td>
+<td  rowspan="1"  ><A NAME="TI6005"></A><b>String</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6006"></A><b>boolean</b></td>
+<td  rowspan="1"  ><A NAME="TI6007"></A><b>Boolean</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6008"></A><b>java.util.Date</b></td>
+<td  rowspan="1"  ><A NAME="TI6009"></A><b>Datetime</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6010"></A>Array of primitive type</td>
+<td  rowspan="1"  ><A NAME="TI6011"></A>Parameters: Array of primitive type <br>Return
+values: <b>Any</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6012"></A>Array of <b>java.lang.String</b> or <b>java.util.Date</b> objects</td>
+<td  rowspan="1"  ><A NAME="TI6013"></A>Parameters: Array of <b>String</b> or <b>DateTime</b><b></b><br>Return
+values: <b>Any</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6014"></A>Array of arrays</td>
+<td  rowspan="1"  ><A NAME="TI6015"></A><b>Any</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6016"></A>Java class arguments or return values</td>
+<td  rowspan="1"  ><A NAME="TI6017"></A>PowerBuilder proxies of Java classes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6018"></A>Other</td>
+<td  rowspan="1"  ><A NAME="TI6019"></A><b>Any</b></td>
+</tr>
+</table>
+<A NAME="TI6020"></A><h4>Different precision for double</h4>
+<A NAME="TI6021"></A><p>A PowerBuilder double has 15 digits of precision (1.79769313486231E+308) and
+a Java double has 17 digits (1.7976931348623157e+308).
+For EJB client applications, the precision of a double is limited
+to the PowerBuilder range (2.2250738585073E-308 to 1.79769313486231E+308).</p>
+<A NAME="BABHIBJF"></A><h4>Arrays of arrays</h4>
+<A NAME="TI6022"></A><p>Unlike Java, PowerBuilder does not support unbounded multidimensional arrays.
+If a Java method takes an array of arrays as a parameter, the corresponding
+PowerBuilder proxy method takes a parameter of type<b> Any</b>.
+To call the method in PowerBuilder, declare a PowerBuilder array
+with the same dimensions as the Java array, and pass the array as
+the parameter.</p>
+

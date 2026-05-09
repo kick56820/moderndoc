@@ -1,0 +1,68 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using point and click</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp88.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp90.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF377543587"></A><h1>Using point and click</h1>
+<A NAME="TI2519"></A><p>Users can click graphs during execution. PowerScript provides
+a function called <b>ObjectAtPointer</b> that stores
+information about what was clicked. You can use this function in
+a number of ways in Clicked scripts. For example, you can provide
+the user with the ability to point and click on a data value in
+a graph and see information about the value in a message box. This
+section shows you how.</p>
+<A NAME="TI2520"></A><h4>Clicked events and graphs</h4>
+<A NAME="TI2521"></A><p>To cause actions when a user clicks a graph, you write a Clicked
+script for the graph control. The control must be enabled. Otherwise,
+the Clicked event does not occur.</p>
+<A NAME="TI2522"></A><h4>Using ObjectAtPointer</h4>
+<A NAME="TI2523"></A><p><b>ObjectAtPointer</b> has the following syntax.<p><PRE><i>graphName</i>.<b>ObjectAtPointer</b> ( <i>seriesNumber, dataNumber</i> )</PRE></p>
+</p>
+<A NAME="TI2524"></A><p>You should call <b>ObjectAtPointer</b> in the
+first statement of a Clicked script.</p>
+<A NAME="TI2525"></A><p>When called, <b>ObjectAtPointer</b> does three
+things:<A NAME="TI2526"></A>
+<ul>
+<li class=fi>It returns the kind
+of object clicked on as a grObjectType enumerated value. For example,
+if the user clicks on a data point, <b>ObjectAtPointer</b> returns
+TypeData!. If the user clicks on the graph's title, <b>ObjectAtPointer</b> returns
+TypeTitle!.<br>
+For a complete list of the enumerated values of grObjectType,
+open the Browser and click the Enumerated tab.<br></li>
+<li class=ds>It stores the number of the series the pointer was
+over in the variable <i>seriesNumber</i>, which is
+an argument passed by reference.</li>
+<li class=ds>It stores the number of the data point in the variable <i>dataNumber</i>,
+also an argument passed by reference.
+</li>
+</ul>
+</p>
+<A NAME="TI2527"></A><p>After you have the series and data point numbers, you can
+use other graph functions to get or provide information. For example,
+you might want to report to the user the value of the clicked data
+point.</p>
+<A NAME="TI2528"></A><h4>Example</h4>
+<A NAME="TI2529"></A><p>Assume there is a graph <b>gr_sale</b> in
+a window. The following script for its Clicked event displays a
+message box:<A NAME="TI2530"></A>
+<ul>
+<li class=fi>If the user
+clicks on a series (that is, if <b>ObjectAtPointer</b> returns TypeSeries!),
+the message box shows the name of the series clicked on. The script
+uses the function SeriesName to get the series name, given the series
+number stored by <b>ObjectAtPointer</b>.</li>
+<li class=ds>If the user clicks on a data point (that is, if <b>ObjectAtPointer</b> returns TypeData!),
+the message box lists the name of the series and the value clicked
+on. The script uses <b>GetData</b> to get the data's
+value, given the data's series and data point number:<p><PRE> int SeriesNum, DataNum<br>double Value<br>grObjectType ObjectType<br>string SeriesName, ValueAsString<br> <br>// The following function stores the series number<br>// clicked on in SeriesNum and stores the number<br>// of the data point clicked on in DataNum.<br>ObjectType = &amp;<br>            gr_sale.<i>ObjectAtPointer</i> (SeriesNum, DataNum)<br> <br>IF ObjectType = TypeSeries! THEN<br>            SeriesName = gr_sale.<i>SeriesName</i> (SeriesNum)<br>            MessageBox("Graph", &amp;<br>                "You clicked on the series " + SeriesName)<br> <br>ELSEIF ObjectType = TypeData! THEN<br>            Value = gr_sale. <i>GetData</i> (SeriesNum, DataNum)<br>            ValueAsString = String(Value)<br>            MessageBox("Graph", &amp;<br>                gr_sale. <i>SeriesName</i> (SeriesNum) + &amp;<br>                " value is " + ValueAsString)<br>END IF</PRE>
+</li>
+</ul>
+</p>
+

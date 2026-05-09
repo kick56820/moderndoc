@@ -1,0 +1,48 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Controlling access for instance variables </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp13.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp15.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF354974741"></A><h1>Controlling access for instance variables </h1>
+<A NAME="TI227"></A><p>Instance variables have access settings that provide control
+over how other objects' scripts access them.</p>
+<A NAME="TI228"></A><p>You can specify that a variable is:</p>
+<A NAME="TI229"></A><p><A NAME="TI230"></A>
+<ul>
+<li class=fi><b>Public</b>   Accessible to any other object</li>
+<li class=ds><b>Protected</b>   Accessible only in scripts for the object and its descendants</li>
+<li class=ds><b>Private</b>   Accessible in scripts for the object only
+</li>
+</ul>
+</p>
+<A NAME="TI231"></A><p>For example:<p><PRE> public integer ii_currentvalue<br>CONSTANT public integer WARPFACTOR = 1.2<br>protected string is_starship<br> <br>// Private values used in internal calculations<br>private integer ii_maxrpm<br>private integer ii_minrpm</PRE></p>
+<A NAME="TI232"></A><p>You can further qualify access to public and protected variables
+with the modifiers <b>PRIVATEREAD</b>, <b>PRIVATEWRITE</b>, <b>PROTECTEDREAD</b>,
+or <b>PROTECTEDWRITE</b>:<p><PRE> public privatewrite ii_averagerpm</PRE></p>
+<A NAME="TI233"></A><h4>Private variables for encapsulation</h4>
+<A NAME="TI234"></A><p>One use of access settings is to keep other scripts from changing
+a variable when they should not. You can use <b>PRIVATE</b> or <b>PUBLIC
+PRIVATEWRITE</b> to keep the variable from being changed directly.
+You might write public functions to provide validation before changing
+the variable.</p>
+<A NAME="TI235"></A><p>Private variables allow you to encapsulate an object's
+functionality. This technique means that an object's data
+and code are part of the object itself and the object determines
+the interface it presents to other objects.</p>
+<A NAME="TI236"></A><p>If you generate a component, such as an <ABBR title = "e a server" >EAServer</ABBR> or
+COM component, from a custom class user object, you can choose to
+expose its instance variables in the component's interface,
+but private and protected instance variables are never exposed.</p>
+<A NAME="TI237"></A><h4>For more information</h4>
+<A NAME="TI238"></A><p>For more about access settings, see the chapter about declarations
+in the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI239"></A><p>For more about encapsulation, see <A HREF="apptechp7.htm#BFCDBEJG">Chapter 2, "Selected Object-Oriented Programming
+Topics."</A></p>
+

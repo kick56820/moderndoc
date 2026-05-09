@@ -1,0 +1,194 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using inherited scripts </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp113.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp115.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF343932951"></A><h1>Using inherited scripts </h1>
+<A NAME="TI3151"></A><p>In the hierarchy formed by ancestors and descendants, each
+descendant inherits its event scripts from its immediate ancestor.
+If an inherited event does not have a script, you can write a script
+for the event in the descendant. If the inherited event does have
+a script, the ancestor script will execute in the descendant unless
+you extend the script or override it. You can:</p>
+<A NAME="TI3152"></A><p><A NAME="TI3153"></A>
+<ul>
+<li class=fi>Extend the ancestor
+script&#8212;build a script that executes <i>after</i> the
+ancestor script</li>
+<li class=ds>Override the ancestor script&#8212;build a script
+that executes <i>instead</i> of the ancestor script
+</li>
+</ul>
+</p>
+<A NAME="TI3154"></A><p>You cannot delete or modify an ancestor script from within
+a descendant.</p>
+<A NAME="TI3155"></A><h4>Extending or overriding a script</h4>
+<A NAME="TI3156"></A><p>The Extend Ancestor Script item on the Edit menu or the pop-up
+menu in the Script view determines whether the script is extended
+or overridden. If the menu item is selected (a check mark displays
+next to it), the ancestor script is extended. If there is no check
+mark, the ancestor script is overridden.</p>
+<A NAME="TI3157"></A><p>When there is no script for the descendant, the Extend Ancestor
+Script menu item is selected and disabled. You cannot clear the
+menu item unless you add a script to the descendant. When you have
+added a script, the menu item is enabled and you can choose to override
+the ancestor script by clearing the menu item, or to extend it by
+leaving the menu item selected.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you delete the script in the descendant</span> <A NAME="TI3158"></A>If, after adding a script to the descendant and clearing the
+Extend Ancestor Script menu item, you delete the script, the menu
+item returns to its default state: selected and disabled. A message
+displays in the status bar warning you that this has occurred. If
+you then add a new script, the menu item is reenabled. You must
+remember to clear the Extend Ancestor Script menu item if you want to
+override the ancestor script.</p>
+<A NAME="TI3159"></A><h4>Executing code before the ancestor script</h4>
+<A NAME="TI3160"></A><p>To write a script that executes <i>before</i> the
+ancestor script, first override the ancestor script and then in
+the descendent script explicitly call the ancestor script at the
+appropriate place. For more information, see <A HREF="pbugp114.htm#CDECIFGC">"Calling an ancestor script"</A>.</p>
+<A NAME="TI3161"></A><h4>Getting the return value of the ancestor script</h4>
+<A NAME="TI3162"></A><p>To get the return value of an ancestor script, you can use
+the AncestorReturnValue variable. This variable is always available
+in descendent scripts that extend an ancestor script. It is also
+available if you override the ancestor script and use the CALL syntax
+to call the ancestor event script. For more information, see <i>Application
+Techniques</i>
+.</p>
+<A NAME="TI3163"></A><h2>Viewing inherited scripts</h2>
+<A NAME="TI3164"></A><p>If an inherited object or control has a script defined only
+in an ancestor, no script displays in the Script view. </p>
+<A NAME="TI3165"></A><h4>Script icons in the second drop-down list</h4>
+<A NAME="TI3166"></A><p>The second drop-down list in the Script view indicates which
+events have scripts written for an ancestor as follows: <A NAME="TI3167"></A>
+<ul>
+<li class=fi>If the event has a script in an ancestor only, the
+script icon next to the event name in the second drop-down list
+is displayed in color.</li>
+<li class=ds>If the event has a script in an ancestor as well
+as in the object you are working with, the script icon is displayed
+half in color.
+</li>
+</ul>
+</p>
+<A NAME="TI3168"></A><h4>Script icons in the third drop-down list</h4>
+<A NAME="TI3169"></A><p>The third drop-down list in the Script view shows the current
+object followed by each of its ancestors in ascending order. The
+icons next to object names indicate whether the object has a script
+for the event selected in the second drop-down list as follows:<A NAME="TI3170"></A>
+<ul>
+<li class=fi>If an object is the highest
+class in the hierarchy to have a script, a transparent script icon
+displays next to its name. No icon displays next to the names of
+any of its ancestors.</li>
+<li class=ds>If an object does not have a script for the event
+but it has an ancestor that has a script for the event, the script
+icon next to its name is displayed in color.</li>
+<li class=ds>If an object has a script for the event, and it
+has an ancestor that also has a script for the event, the script
+icon next to its name is displayed half in color.
+</li>
+</ul>
+</p>
+<A NAME="TI3171"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To view an ancestor script:</p>
+<ol><li class=fi><p>In the Script view for an inherited object,
+select the object itself or a control in the first drop-down list,
+and the event whose script you want to see in the second drop-down
+list.</p><p>The Script view does not display the script for the ancestor.
+No script displays.</p></li>
+<li class=ds><p>In the third drop-down list in the Script view,
+select an ancestor object that has a script for the selected event.</p><p>The Script view displays any script defined in the ancestor
+object.</p></li>
+<li class=ds><p>To climb the inheritance hierarchy, in the third
+drop-down list, select the script for the grandparent of the current
+object, great-grandparent, and so on until you display the scripts
+you want.</p><p>The Script view displays the scripts for each of the ancestor
+objects. You can traverse the entire inheritance hierarchy using
+the third drop-down list.</p></li></ol>
+<br><A NAME="TI3172"></A><h2>Extending a script</h2>
+<A NAME="TI3173"></A><p>When you extend an ancestor script for an event, PowerBuilder
+executes the ancestor script, <i>then</i> executes
+the script for the descendant when the event is triggered.</p>
+<A NAME="TI3174"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To extend an ancestor script:</p>
+<ol><li class=fi><p>In the first drop-down list in the Script
+view, select the object or a control, and in the second drop-down
+list, select the event for which you want to extend the script.</p></li>
+<li class=ds><p>Make sure that Extend Ancestor Script on the Edit
+menu or the pop-up menu in the Script view is selected.</p><p>Extending
+the ancestor script is the default.</p></li>
+<li class=ds><p>In the Script view, enter the appropriate statements.</p><p>You can call the script for any event in any ancestor as well
+as call any user-defined functions that have been defined for the
+ancestor. For information about calling an ancestor script or function,
+see <A HREF="pbugp114.htm#CDECIFGC">"Calling an ancestor script"</A> and <A HREF="pbugp114.htm#CDEEBGDC">"Calling
+an ancestor function"</A>.</p></li></ol>
+<br><A NAME="TI3175"></A><h4>Example of extending a script</h4>
+<A NAME="TI3176"></A><p>If the ancestor script for the Clicked event in a button beeps
+when the user clicks the button without selecting an item in a list,
+you might extend the script in the descendant to display a message
+box in addition to beeping.</p>
+<A NAME="TI3177"></A><h2>Overriding
+a script</h2>
+<A NAME="TI3178"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To override an ancestor script:</p>
+<ol><li class=fi><p>In the first drop-down list in the Script
+view, select the object or a control, and in the second drop-down
+list, select the event for which you want to override the script.</p></li>
+<li class=ds><p>Code a script for the event in the descendant.</p><p>You can call the script for any event in any ancestor as well
+as call any user-defined functions that have been defined for the
+ancestor.</p><p>For information about calling an ancestor
+script or function, see <A HREF="pbugp114.htm#CDECIFGC">"Calling an ancestor script"</A> and <A HREF="pbugp114.htm#CDEEBGDC">"Calling
+an ancestor function"</A>.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Override but not execute</span> <A NAME="TI3179"></A>To override a script for the ancestor but not execute a script
+in the descendant, enter only a comment in the Script view.</p>
+</li>
+<li class=ds><p>Select Extend Ancestor Script on the Edit menu
+or the pop-up menu to clear the check mark.</p><p>Clearing the Extend Ancestor Script item means that you are
+overriding the script.</p></li></ol>
+<br><A NAME="TI3180"></A><p>At runtime, PowerBuilder executes the descendent script when
+the event is triggered. The ancestor script is not executed.</p>
+<A NAME="TI3181"></A><h4>Example of overriding a script</h4>
+<A NAME="TI3182"></A><p>If the script for the Open event in the ancestor window displays
+employee files and you want to display customer files in the descendent
+window, select Override Ancestor Script and create a new script
+for the Open event in the descendant to display customer files.</p>
+<A NAME="CDECIFGC"></A><h2>Calling an ancestor script</h2>
+<A NAME="TI3183"></A><p>When you write a script for a descendent object or control,
+you can call scripts written for any ancestor. You can refer by
+name to any ancestor of the descendent object in a script, not just
+the immediate ancestor (parent). To reference
+the immediate ancestor (parent), you can use the <b>Super</b> reserved word.</p>
+<A NAME="TI3184"></A><p>For more information about calling scripts
+for an event in an ancestor window, user object, or menu, and about
+the <b>Super</b> reserved word, see the <i>PowerScript Reference</i>
+. </p>
+<A NAME="CDEEBGDC"></A><h2>Calling an ancestor function</h2>
+<A NAME="TI3185"></A><p>When you write a script for a descendent window, user object,
+or menu, you can call user-defined functions that have been defined
+for any of its ancestors. To call the first function up the inheritance
+hierarchy, just call the function as usual:<p><PRE><i>function</i> (<i> arguments</i> )</PRE></p>
+</p>
+<A NAME="TI3186"></A><p>If there are several versions of the function up the inheritance
+hierarchy and you do not want to call the first one up, you need
+to specify the name of the object defining the function you want:<p><PRE><i>ancestorobject</i>::<i>function</i> ( <i>arguments</i> )</PRE></p>
+</p>
+<A NAME="TI3187"></A><p>This syntax works only in scripts for the descendent object
+itself, not in scripts for controls or user objects in the descendent
+object or in menu item scripts. To call a specific version of an
+ancestor user-defined function in a script for a control, user object,
+or menu item in a descendent object, do the following:<A NAME="TI3188"></A>
+<ol>
+</li>
+<li class=ds>Define an object-level user-defined
+function in the descendent object that calls the ancestor function.</li>
+<li class=ds>Call the function you just defined in the descendent
+script.
+</li>
+</ol>
+</p>
+<A NAME="TI3189"></A><p>For more information about calling an ancestor
+function, see the <i>PowerScript Reference</i>
+.</p>
+

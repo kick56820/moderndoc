@@ -1,0 +1,259 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+More about user objects and the registry </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp118.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp120.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF349038083"></A><h1>More about user objects and the registry </h1>
+<A NAME="TI3813"></A><p>The registry stores information required by a program for
+it to access a registered object. The information is stored in the
+registration database. To update the registry, the Registry Editor
+reads registry update files (<i>REG</i>) and inserts
+the information in the database.</p>
+<A NAME="TI3814"></A><h2>What are all the identifiers for?</h2>
+<A NAME="TI3815"></A><h4>GUIDs and CLSIDs</h4>
+<A NAME="TI3816"></A><p>A globally unique identifier (GUID) is a 128-bit integer that
+is virtually guaranteed to be unique. You can generate your own
+using the PowerBuilder.Application <b>GenerateGUID</b> function.
+The formula is based on the time of day, the date, and a unique
+number contained in your network card. If you do not have a network
+card, you can request GUIDs from Microsoft in sets of 256.</p>
+<A NAME="TI3817"></A><p>GUIDs are used as class identifiers (CLSID) to uniquely identify
+each object and type library. The CLSID enables a program to be
+sure of the interface that it is interacting with.</p>
+<A NAME="TI3818"></A><h4>ProgIDs</h4>
+<A NAME="TI3819"></A><p>Programmatic identifiers (ProgID) are unique only in the local
+environment. They may contain up to 39 characters, must not contain
+any punctuation (except for the period), and must not start with
+a digit. They have two forms:<A NAME="TI3820"></A>
+<ul>
+<li class=fi><b>Version-independent</b>   Does not include a version number<p><PRE><i>applicationname</i>.<i>objectname</i></PRE></p>
+<br>
+For example, <b>MyApp.Application</b> or <b>MyApp.AnalysisUserObject</b><br></li>
+<li class=ds><b>Version-dependent</b>   Includes a version number<p><PRE><i>applicationname.objectname.versionnumber</i></PRE></p>
+<br>
+For example, <b>MyApp.Application.1</b> or <b>MyApp.AnalysisUserObject.1</b><br>
+</li>
+</ul>
+</p>
+<A NAME="TI3821"></A><p>You should establish consistent naming conventions for your
+applications and objects so that others can see the relationships
+among your objects.</p>
+<A NAME="TI3822"></A><p>Other programmers use the ProgID to connect to objects that
+you register. If they specify the version-independent ID, the registry
+redirects them to the current version.</p>
+<A NAME="TI3823"></A><p>When you use the PowerBuilder.Application function <b>GenerateRegFile</b>,
+you supply a version-independent ProgID and PowerBuilder constructs
+the version-dependent entry using the version number you specify.</p>
+<A NAME="TI3824"></A><h2>Where information about your object is stored</h2>
+<A NAME="TI3825"></A><p>Information about a registered object is stored in the registry
+in three or four places. There is a section for a:<A NAME="TI3826"></A>
+<ul>
+<li class=fi>CLSID</li>
+<li class=ds>Version-dependent ProgID</li>
+<li class=ds>Version-independent ProgID</li>
+<li class=ds>Type Library (optional)
+</li>
+</ul>
+</p>
+<A NAME="TI3827"></A><p>All this cross-referencing ensures that an object's
+information can be found no matter what the program starts with.</p>
+<A NAME="TI3828"></A><h4>Keys and their subtrees</h4>
+<A NAME="TI3829"></A><p>The PowerBuilder.Application functions update the tree <i>HKEY_CLASSES_ROOT</i>.
+The other keys in the registry reflect this information for a particular
+context.</p>
+<A NAME="TI3830"></A><h4>Subkeys</h4>
+<A NAME="TI3831"></A><p>Information for each entry is stored in subkeys, which are
+a level below the entry subkey. Some subkeys have values, such as
+a file name. Others have meaning just because they are there, such
+as NotInsertable.</p>
+<A NAME="TI3832"></A><p>Each entry and its associated subkeys is described below.</p>
+<A NAME="TI3833"></A><h4>ProgID</h4>
+<A NAME="TI3834"></A><p>The list of registered ProgIDs appears in the registry under
+this key:<p><PRE> My Computer\HKEY_LOCAL_MACHINE\SOFTWARE\CLASSES</PRE></p>
+<A NAME="TI3835"></A><p>Both version-dependent and version-independent ProgIDs appear.
+The ProgID is a cross-reference to the object's CLSID.</p>
+<A NAME="TI3836"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 20-2: ProgID subkeys</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3837"></A>Subkey</th>
+<th  rowspan="1"  ><A NAME="TI3838"></A>Value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3839"></A><i>\CLASSES\ProgID</i></td>
+<td  rowspan="1"  ><A NAME="TI3840"></A>Description of object</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3841"></A><i>\CLASSES\ProgID\CLSID</i></td>
+<td  rowspan="1"  ><A NAME="TI3842"></A>The object's CLSID</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3843"></A><i>\CLASSES\ProgID\CurVer</i> (for
+the version-independent entry only)</td>
+<td  rowspan="1"  ><A NAME="TI3844"></A>The version-dependent ProgID</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3845"></A><i>\CLASSES\ProgID\NotInsertable</i></td>
+<td  rowspan="1"  ><A NAME="TI3846"></A>Empty string</td>
+</tr>
+</table>
+<A NAME="TI3847"></A><h4>CLSID</h4>
+<A NAME="TI3848"></A><p>Under the <i>CLASSES</i> key is a subkey <i>CLSID</i> that
+lists all the registered CLSIDs. Each CLSID records all the information
+about the registered object:<p><PRE> My Computer\HKEY_LOCAL_MACHINE\SOFTWARE\CLASSES\CLSID</PRE></p>
+<A NAME="TI3849"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 20-3: CLSID subkey contents</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3850"></A>Subkey</th>
+<th  rowspan="1"  ><A NAME="TI3851"></A>Value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3852"></A><i>\CLASSES\CLSID\{guid}</i></td>
+<td  rowspan="1"  ><A NAME="TI3853"></A>The GUID for the object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3854"></A><i>\CLASSES\CLSID\{guid}\InProcServer32</i></td>
+<td  rowspan="1"  ><A NAME="TI3855"></A>The path and file name for the PowerBuilder
+runtime <i>DLL</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3856"></A><i>\CLASSES\CLSID\{guid}\NotInsertable</i></td>
+<td  rowspan="1"  ><A NAME="TI3857"></A>""</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3858"></A><i>\CLASSES\CLSID\{guid}\PowerBuilder</i></td>
+<td  rowspan="1"  ><A NAME="TI3859"></A>Not set. Subkeys store information about
+the object's environment (see below).</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3860"></A><i>\CLASSES\CLSID\{guid}\Programmable</i></td>
+<td  rowspan="1"  ><A NAME="TI3861"></A>""</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3862"></A><i>\CLASSES\CLSID\{guid}\ProgID</i></td>
+<td  rowspan="1"  ><A NAME="TI3863"></A>The ProgID you specified with the current
+version number.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3864"></A><i>\CLASSES\CLSID\{guid}\TypeLib</i></td>
+<td  rowspan="1"  ><A NAME="TI3865"></A>The CLSID for the type library.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3866"></A><i>\CLASSES\CLSID\{guid}\<br>VersionIndependentProgID</i></td>
+<td  rowspan="1"  ><A NAME="TI3867"></A>The ProgID you specified without a version
+number.</td>
+</tr>
+</table>
+<A NAME="TI3868"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 20-4: PowerBuilder subkey contents</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3869"></A>PowerBuilder subkey under \CLASSES\CLSID</th>
+<th  rowspan="1"  ><A NAME="TI3870"></A>Value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3871"></A><i>{guid}\PowerBuilder\BinaryType</i></td>
+<td  rowspan="1"  ><A NAME="TI3872"></A>The type of code in the library, either compiled
+machine code (MCODE) or Pcode</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3873"></A><i>{guid}\PowerBuilder\LibraryList</i></td>
+<td  rowspan="1"  ><A NAME="TI3874"></A>The name of the library that contains the
+object</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3875"></A><i>{guid}\PowerBuilder\ClassName</i></td>
+<td  rowspan="1"  ><A NAME="TI3876"></A>The object's name in the library</td>
+</tr>
+</table>
+<A NAME="TI3877"></A><h4>TypeLib</h4>
+<A NAME="TI3878"></A><p>Under the <i>CLASSES</i> key is another subkey
+for <i>TypeLib</i>.<p><PRE> My Computer\HKEY_LOCAL_MACHINE\SOFTWARE\CLASSES</PRE><PRE>    TypeLib</PRE></p>
+<A NAME="TI3879"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 20-5: TypeLib subkey contents</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3880"></A>Subkey</th>
+<th  rowspan="1"  ><A NAME="TI3881"></A>Value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3882"></A><i>\CLASSES\TypeLib\{guid}</i></td>
+<td  rowspan="1"  ><A NAME="TI3883"></A>The GUID for the type library.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3884"></A><i>\CLASSES\TypeLib\{guid}\VersionNum</i></td>
+<td  rowspan="1"  ><A NAME="TI3885"></A>The version number of the type library.<A NAME="TI3886"></A><p>A tree of subkeys is below the version number, allowing entries
+for type libraries in several languages.</p><A NAME="TI3887"></A><p><i>VersionNum\LanguageID\Win32</i> specifies
+the path and name of type library file for 32-bit Windows operating
+systems.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3888"></A><i>\CLASSES\TypeLib\{guid}\FLAGS</i></td>
+<td  rowspan="1"  ><A NAME="TI3889"></A>0</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3890"></A><i>\CLASSES\TypeLib\{guid}\HELPDIR</i></td>
+<td  rowspan="1"  ><A NAME="TI3891"></A>The directory where a Help file is located.</td>
+</tr>
+</table>
+<A NAME="X-REF350573144"></A><h2>Creating registry information</h2>
+<A NAME="TI3892"></A><p>A client application uses the registry to find the information
+required to access your user object. The registry includes information
+about where to find the files for the PowerBuilder runtime environment
+and the libraries. It can also contain a pointer to a type library
+file that documents the properties and methods of the object. When
+the type library is registered, it lets the user examine the object in
+an OLE browser. (Instance variables of the object appear as properties
+in the OLE browser.)</p>
+<A NAME="TI3893"></A><p>PowerBuilder.Application provides facilities for generating
+the necessary registry information. To add your object to the registry,
+you need a registry update file, which contains information to be
+added to the system's registration database. The type library
+is optional&#8212;you need it if you want others to be able to
+inspect your object's properties and methods in an OLE
+browser.</p>
+<A NAME="TI3894"></A><p>To use these functions, you must run a client application
+that connects to PowerBuilder.Application. (You can run the client
+application in the development environment.)</p>
+<A NAME="TI3895"></A><p>Functions for generating registry information include:<A NAME="TI3896"></A>
+<ul>
+<li class=fi><b>GenerateGUID</b>   Gets a valid globally unique identifier to serve as the CLSID
+of your object and its type library</li>
+<li class=ds><b>GenerateRegFile</b>   Uses the properties of PowerBuilder.Application and other
+values to generate a registry update file that the Registry Editor (<i>REGEDT32.EXE</i>)
+can use</li>
+<li class=ds><b>GenerateTypeLib</b>   Uses the information in the object to generate a type library
+and updates the registry file with information about the type library
+</li>
+</ul>
+</p>
+<A NAME="TI3897"></A><p>You can use these functions yourself, as shown in the example
+below, or you can use an installation application that provides
+tools for creating registry information, such as InstallShield.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Deploying and the registry</span> <A NAME="TI3898"></A>The registry file that you create on your computer can be
+used to register your object on your own computer. The path information
+for files (the object library and the type library) is specific
+to your machine and is probably not applicable to other machines.
+To deploy your object, you need to modify the registry update files
+according to the directories the user specifies for installation,
+or call functions for modifying the registry itself.</p>
+<A NAME="TI3899"></A>See <A HREF="apptechp120.htm#X-REF350582958">"Deploying an application
+that uses the automation server "</A>.</p>
+<A NAME="TI3900"></A><h4>Sample script for generating registry information</h4>
+<A NAME="TI3901"></A><p>This script takes information from several SingleLineEdit
+controls and a CheckBox and builds a registry update file and a
+type library. The script hard-codes version information,
+but you can use edit boxes to obtain version information too.</p>
+<A NAME="TI3902"></A><p>The SingleLineEdits and CheckBox used in the following example
+are shown in <A HREF="apptechp119.htm#CHDEEAAG">Table 20-6</A>.</p>
+<A NAME="CHDEEAAG"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 20-6: SingleLineEdits and CheckBox
+examples</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3903"></A>Object for input</th>
+<th  rowspan="1"  ><A NAME="TI3904"></A>Data provided</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3905"></A>sle_object</td>
+<td  rowspan="1"  ><A NAME="TI3906"></A>The name of the object in the PowerBuilder
+library</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3907"></A>sle_progid</td>
+<td  rowspan="1"  ><A NAME="TI3908"></A>A programmatic identifier you supply</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3909"></A>sle_desc</td>
+<td  rowspan="1"  ><A NAME="TI3910"></A>A description of your object, which is
+displayed in the registry</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3911"></A>sle_regfile</td>
+<td  rowspan="1"  ><A NAME="TI3912"></A>The name of the registry update file
+you want to generate</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3913"></A>sle_typelibfile</td>
+<td  rowspan="1"  ><A NAME="TI3914"></A>The name of the type library file you
+want to generate</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3915"></A>sle_library</td>
+<td  rowspan="1"  ><A NAME="TI3916"></A>The name of the PowerBuilder library
+containing the object</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3917"></A>cbx_machinecode</td>
+<td  rowspan="1"  ><A NAME="TI3918"></A>Whether the library uses compiled code
+or Pcode</td>
+</tr>
+</table>
+<A NAME="TI3919"></A><p>This program generates a registry update file and type library.<p><PRE> oleObject ole_pb</PRE><PRE> string ls_reg_guid, ls_tlb_guid</PRE><PRE> long ll_result, ll_res2</PRE><PRE> </PRE><PRE> // Connect to the PowerBuilder.Application server</PRE><PRE> ole_pb = CREATE oleObject</PRE><PRE> ll_result = ole_pb.ConnectToNewObject &amp;</PRE><PRE>    ("PowerBuilder.Application")</PRE><PRE> IF ll_result &lt; 0 THEN</PRE><PRE>    MessageBox( "Can't Connect", &amp;</PRE><PRE>       "Error connection to PowerBuilder.Application")</PRE><PRE>    RETURN</PRE><PRE> END IF</PRE><PRE> </PRE><PRE> // Set properties for the server session, which</PRE><PRE> // will become the values for the registered object</PRE><PRE> ole_pb.LibraryList = sle_library.Text</PRE><PRE> ole_pb.MachineCode = cbx_machinecode.Checked</PRE><PRE> </PRE><PRE> // Get GUIDs for the object and type library</PRE><PRE> ll_result = ole_pb.GenerateGUID( REF ls_reg_guid)</PRE><PRE> ll_res2 = ole_pb.GenerateGUID( REF ls_tlb_guid)</PRE><br><PRE> IF ll_result &lt; 0 THEN</PRE><PRE>    MessageBox( "Can't Get GUID", &amp;</PRE><PRE>       "Generating GUID for Reg file failed.")</PRE><PRE>    RETURN</PRE><PRE> ELSEIF ll_res2 &lt; 0 THEN</PRE><PRE>    MessageBox( "Can't Get GUID", &amp;</PRE><PRE>       "Generating GUID for TypeLib file failed.")</PRE><PRE>    RETURN</PRE><PRE> END IF</PRE><PRE> </PRE><PRE> // Use info from user to generate registry update file</PRE><PRE> // Arguments for GenerateRegFile:</PRE><PRE> //    valid GUID</PRE><PRE> //    Name of uo in PB library</PRE><PRE> //    ProgID as in registry</PRE><PRE> //    Major version, Minor version</PRE><PRE> //    Description</PRE><PRE> //    Name of reg file</PRE><PRE> ll_result = ole_pb.GenerateRegFile( &amp;</PRE><PRE>    ls_reg_guid, &amp;</PRE><PRE>    sle_object.Text, &amp;</PRE><PRE>    sle_progid.Text, &amp;</PRE><PRE>    1, 0, &amp;</PRE><PRE>    sle_desc.Text, &amp;</PRE><PRE>    sle_RegFile.Text )</PRE><br><PRE> IF ll_result &lt; 0 THEN</PRE><PRE>    MessageBox("Can't generate RegFile", &amp;</PRE><PRE>       "result code is " + String(ll_result) )</PRE><PRE>    RETURN</PRE><PRE> END IF</PRE><PRE> </PRE><PRE> // Use information that matches the registry update</PRE><PRE> // file to generate the type library</PRE><PRE> // Arguments for GenerateTypeLib:</PRE><PRE> //</PRE><PRE> //       GUID in Reg file</PRE><PRE> //       Name of uo in PB library</PRE><PRE> //       Prog ID as in Reg file</PRE><PRE> //       Locale, Major version, Minor version</PRE><PRE> //       Description</PRE><PRE> //       Help context, Help file</PRE><PRE> //       GUID for TypeLib</PRE><PRE> //       Name of typelib file</PRE><PRE> //       Name of reg file</PRE><PRE> ll_result = ole_pb.GenerateTypeLib( &amp;</PRE><PRE>    ls_reg_guid, &amp;</PRE><PRE>    sle_object.Text, &amp;</PRE><PRE>    sle_progid.Text, &amp;</PRE><PRE>    0, 1, 0, &amp;</PRE><PRE>    sle_desc.Text, &amp;</PRE><PRE>    0, "", &amp;</PRE><PRE>    ls_tlb_guid, &amp;</PRE><PRE>    sle_typelibfile.text, &amp;</PRE><PRE>    sle_regfile.text)</PRE><br><PRE> IF ll_result &lt; 0 THEN</PRE><PRE>    MessageBox("Can't generate TypeLib File", &amp;</PRE><PRE>       "result code is " + String(ll_result) )</PRE><PRE>    RETURN</PRE><PRE> END IF</PRE></p>
+

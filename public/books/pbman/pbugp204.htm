@@ -1,0 +1,345 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Grouping rows </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp203.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp205.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCCEGIH"></A><h1>Grouping rows </h1>
+<A NAME="TI6671"></A><p>You can group related rows together and, optionally, calculate
+statistics for each group separately. For example, you might want
+to group employee information by department and get total salaries
+for each department.</p>
+<A NAME="TI6672"></A><h4>How groups are defined</h4>
+<A NAME="TI6673"></A><p>Each group is defined by one or more DataWindow object columns. Each
+time the value in a grouping column changes, a break occurs and
+a new section begins.</p>
+<A NAME="TI6674"></A><p>For each group, you can:<A NAME="TI6675"></A>
+<ul>
+<li class=fi>Display
+the rows in each section</li>
+<li class=ds>Specify the information you want to display at the
+beginning and end of each section</li>
+<li class=ds>Specify page breaks after each break in the data</li>
+<li class=ds>Reset the page number after each break
+</li>
+</ul>
+</p>
+<A NAME="TI6676"></A><h4>Grouping example</h4>
+<A NAME="TI6677"></A><p>The following DataWindow object retrieves employee information. It
+has one group defined, <b>Dept_ID</b>, so
+it groups rows into sections according to the value in the <b>Dept_ID</b> column.
+In addition, it displays:<A NAME="TI6678"></A>
+<ul>
+<li class=fi>Department
+ID before the first row for that department</li>
+<li class=ds>Totals and averages for salary and salary plus benefits
+(a computed column) for each department</li>
+<li class=ds>Grand totals for the company at the end
+</li>
+</ul>
+</p>
+<A NAME="TI6679"></A><p>The following screenshot shows the DataWindow object.</p>
+<br><img src="images/filt06.gif">
+<A NAME="TI6680"></A><h4>How to do it</h4>
+<A NAME="TI6681"></A><p>You can create a grouped DataWindow object in three  ways:<A NAME="TI6682"></A>
+<ul>
+<li class=fi>Use the Group presentation style to create a grouped DataWindow object from
+scratch (<A HREF="pbugp204.htm#BFCCGFFF">"Using the Group presentation
+style"</A>).</li>
+<li class=ds>Take an existing tabular DataWindow object and define grouping (<A HREF="pbugp204.htm#BFCDHDBE">"Defining groups in an existing DataWindow object"</A>).</li>
+<li class=ds>Use the TreeView presentation style (<A HREF="pbugp227.htm#BAZCFDAI">Chapter 28, "Working with TreeViews"</A>).
+</li>
+</ul>
+</p>
+<A NAME="TI6683"></A><h4>Making the DataWindow control large enough</h4>
+<A NAME="TI6684"></A><p>If a DataWindow object has grouped rows, each page contains all group headers
+(including zero-height headers) at the top of the page. Your DataWindow
+control must be large enough to accommodate all the group headers
+that display on each page of the report. </p>
+<A NAME="TI6685"></A><p>The last row of a group displays on the same page as that
+row's group trailer and each applicable higher-level group
+trailer. If the DataWindow object has a summary band, it displays on the
+same page as the last row of the report. If the control is not large
+enough, you might see anomalies when scrolling through the DataWindow object,
+particularly in the last row of the report, which needs room to
+display the report's header band, all group headers, all
+group trailers, the summary band, and the footer band.</p>
+<A NAME="TI6686"></A><p>If you cannot increase the height of the DataWindow control
+so that it has room for all the headers and trailers, you can change
+the design of the DataWindow object so that they require less space.</p>
+<A NAME="TI6687"></A><h4>Scrolling through a grouped DataWindow</h4>
+<A NAME="TI6688"></A><p>When you scroll through a grouped DataWindow object, you might see
+the group header repeated where you do not expect it. This is because
+the data is paginated in a fixed layout based on the size of the
+DataWindow control. You can scroll to a point that shows the bottom
+half of one page and the top of the next. When you use the arrow
+keys to page through the data, you scroll one row at a time.</p>
+<A NAME="BFCCGFFF"></A><h2>Using the Group presentation style</h2>
+<A NAME="TI6689"></A><p>One of the DataWindow object presentation styles, Group, is a shortcut
+to creating a grouped DataWindow object. It generates a tabular DataWindow object that
+has one group level and some other grouping properties defined. You
+can then further customize the DataWindow object.</p>
+<A NAME="TI6690"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a basic grouped DataWindow object using the
+Group presentation style:</p>
+<ol><li class=fi><p>Select File&gt;New from the menu
+bar.</p><p>The New dialog box displays.</p></li>
+<li class=ds><p>Choose the DataWindow tab page and the Group presentation
+style, and click OK.</p></li>
+<li class=ds><p>Choose a data source and define the data.</p><p>You are prompted to define the grouping column(s).</p></li>
+<li class=ds><p>Drag the column(s) you want to group on from the
+Source Data box to the Columns box. </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Multiple columns and multiple group levels</span> <A NAME="TI6691"></A>You can specify more than one column, but all columns apply
+to group level one. You can define one group level at this point.
+Later you can define additional group levels.</p>
+<p>In the following example, grouping will be by department,
+as specified by the <b>dept_id</b> column:</p><br><img src="images/filt07.gif"><br>
+<p>If you want to use an expression, you can define it when you
+have completed the wizard. See <A HREF="pbugp204.htm#BHABICFF">"Using an expression for
+a group"</A>.</p></li>
+<li class=ds><p>Click Next.</p><p>PowerBuilder suggests a header based on your data source. For
+example, if your data comes from the <b>Employee</b> table, PowerBuilder uses
+the name Employee in the suggested header.</p></li>
+<li class=ds><p>Specify the Page Header text.</p></li>
+<li class=ds><p>If you want a page break each time a grouping
+value changes, select the New Page On Group Break box.</p></li>
+<li class=ds><p>If you want page numbering to restart at 1 each
+time a grouping value changes, select the Reset Page Number On Group
+Break box <i>and</i> the New Page On Group Break box.</p></li>
+<li class=ds><p>Click Next.</p></li>
+<li class=ds><p>Select Color and Border settings and click Next.</p></li>
+<li class=ds><p>Review your specification and click Finish.</p><p>The DataWindow object displays with the basic grouping properties
+set.</p></li></ol>
+<br><A NAME="TI6692"></A><p>This is an example of a Group style DataWindow object:</p>
+<br><img src="images/filt09.gif">
+<A NAME="TI6693"></A><h4>What PowerBuilder does</h4>
+<A NAME="TI6694"></A><p>As a result of your specifications, PowerBuilder generates a
+tabular DataWindow object and:<A NAME="TI6695"></A>
+<ul>
+<li class=fi>Creates group header and trailer
+bands</li>
+<li class=ds>Places the column you chose as the grouping column
+in the group header band</li>
+<li class=ds>Sorts the rows by the grouping column</li>
+<li class=ds>Places the page header and the date (as a computed
+field) in the header band</li>
+<li class=ds>Places the page number and page count (as computed
+fields) in the footer band</li>
+<li class=ds>Creates sum-computed fields for all numeric columns
+(the fields are placed in the group trailer and summary bands)
+</li>
+</ul>
+</p>
+<A NAME="TI6696"></A><p>Here is the preceding DataWindow object in the Preview view:</p>
+<br><img src="images/filt10.gif">
+<A NAME="BHABICFF"></A><h4>Using an expression for
+a group</h4>
+<A NAME="TI6697"></A><p>If you want to use an expression for one or more column names
+in a group, you can enter an expression as the Group Definition
+on the General page in the Properties view after you have finished
+using the Group wizard. </p>
+<A NAME="TI6698"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use an expression for a group:</p>
+<ol><li class=fi><p>Open the Properties view and select the
+group header band in the Design view.</p></li>
+<li class=ds><p>Double-click the ellipsis button next to the Group
+Definition box on the General page in the Properties view to open
+the Specify Group Columns dialog box.</p></li>
+<li class=ds><p>In the Columns box, double-click the column that
+you want to use in an expression. </p><p>The Modify Expression dialog box opens. You can specify more
+than one grouping item expression for a group. A break occurs whenever
+the value concatenated from each column/expression changes.</p></li></ol>
+<br><A NAME="TI6699"></A><h4>What you can do</h4>
+<A NAME="TI6700"></A><p>You can use any of the techniques available in a tabular DataWindow object to modify
+and enhance the grouped DataWindow object, such as moving controls, specifying
+display formats, and so on. In particular, see <A HREF="pbugp204.htm#BFCDHDBE">"Defining groups in an existing DataWindow object"</A> to learn more
+about the bands in a grouped DataWindow object and how to add features
+especially suited for grouped DataWindow objects (for example, add a second
+group level, define additional summary statistics, and so on).</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>DataWindow Object is not updatable by default </span> <A NAME="TI6701"></A>When you generate a DataWindow object using the Group presentation
+style, PowerBuilder makes it not updatable by default. If you want
+to be able to update the database through the grouped DataWindow object,
+you must modify its update characteristics. For more information,
+see <A HREF="pbugp179.htm#BHBJIJJE">Chapter 21, "Controlling Updates in DataWindow Objects."</A></p>
+<A NAME="BFCDHDBE"></A><h2>Defining groups in an existing DataWindow object</h2>
+<A NAME="TI6702"></A><p>Instead of using the Group presentation style to create a
+grouped DataWindow object from scratch, you can take an existing tabular DataWindow object and define
+groups in it.</p>
+<A NAME="TI6703"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add grouping to an existing DataWindow object:</p>
+<ol><li class=fi><p>Start with a tabular DataWindow object that retrieves
+all the columns you need.</p></li>
+<li class=ds><p>Specify the grouping columns.</p></li>
+<li class=ds><p>Sort the rows.</p></li>
+<li class=ds><p>(Optional) Rearrange the DataWindow object.</p></li>
+<li class=ds><p>(Optional) Add summary statistics.</p></li>
+<li class=ds><p>(Optional) Sort the groups.</p></li></ol>
+<br><A NAME="TI6704"></A><p>Steps 2 through 6 are described next.</p>
+<A NAME="TI6705"></A><h3>Specifying the grouping columns</h3>
+<A NAME="TI6706"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the grouping columns:</p>
+<ol><li class=fi><p>In the DataWindow painter, Select Rows&gt;Create
+Group from the menu bar.</p><p>The Specify Group Columns dialog box displays.</p></li>
+<li class=ds><p>Specify the group columns, as described in <A HREF="pbugp204.htm#BFCCGFFF">"Using the Group presentation
+style"</A>. </p></li>
+<li class=ds><p>Set the Reset Page Count and New Page on Group
+Break properties on the General page in the Properties view.</p></li></ol>
+<br><A NAME="TI6707"></A><h4>Creating subgroups</h4>
+<A NAME="TI6708"></A><p>After defining your first group, you can define subgroups,
+which are groups within the group you just defined.</p>
+<A NAME="TI6709"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define subgroups:</p>
+<ol><li class=fi><p>Select Rows&gt;Create Group from
+the menu bar and specify the column/expression for the
+subgroup.</p></li>
+<li class=ds><p>Repeat step 1 to define additional subgroups if
+you want.</p><p>You can specify as many levels of grouping as you need.</p></li></ol>
+<br><A NAME="TI6710"></A><h4>How groups are identified</h4>
+<A NAME="TI6711"></A><p>PowerBuilder assigns each group a number (or level) when you
+create the group. The first group you specify becomes group 1, the
+primary group. The second group becomes group 2, a subgroup within
+group 1, and so on. </p>
+<A NAME="TI6712"></A><p>For example, suppose you define two groups. The first group
+uses the <b>dept_id</b> column and the second
+group uses the <b>status</b> column.</p>
+<A NAME="TI6713"></A><p>The rows are grouped first by department (group 1). Within
+department, rows are grouped by status (group 2). If you specify
+page breaks for the groups, a page break will occur when any of
+these values changes. </p>
+<A NAME="TI6714"></A><p>You use the group's number to identify it when defining
+summary statistics for the group. This is described in <A HREF="pbugp204.htm#BFCDIFCH">"Adding summary statistics"</A>.</p>
+<A NAME="TI6715"></A><h3>Sorting the rows</h3>
+<A NAME="TI6716"></A><p>PowerBuilder does not sort the data when it creates a group.
+Therefore, if the data source is not sorted, you must sort the data
+by the same columns (or expressions) specified for the groups. </p>
+<A NAME="TI6717"></A><p>For example, if you are grouping by <b>dept_id</b> then <b>status</b>,
+select Rows&gt;Sort from the menu bar and specify <b>dept_id</b> and
+then <b>status</b> as sorting columns:</p>
+<br><img src="images/filt14.gif">
+<A NAME="TI6718"></A><p>You can also sort on additional rows. For example, if you
+want to sort by employee ID within each group, specify <b>emp_id</b> as
+the third sorting column.</p>
+<A NAME="TI6719"></A><p>For more information about sorting, see <A HREF="pbugp203.htm#BFCDHDGD">"Sorting rows "</A>.</p>
+<A NAME="TI6720"></A><h3>Rearranging the DataWindow object</h3>
+<A NAME="TI6721"></A><p>When you create a group, PowerBuilder creates two new bands
+for each group:<A NAME="TI6722"></A>
+<ul>
+<li class=fi>A group header band</li>
+<li class=ds>A group trailer band
+</li>
+</ul>
+</p>
+<A NAME="TI6723"></A><p>The bar identifying the band contains:</p>
+<A NAME="TI6724"></A><p><A NAME="TI6725"></A>
+<ul>
+<li class=fi>The number of the group</li>
+<li class=ds>The name of the band</li>
+<li class=ds>The name of each column that defines the group</li>
+<li class=ds>An arrow pointing to the band
+</li>
+</ul>
+</p>
+<br><img src="images/filt15.gif">
+<A NAME="TI6726"></A><p>You can include any control in the DataWindow object (such as columns,
+text, and computed fields) in the header and trailer bands of a
+group.</p>
+<A NAME="TI6727"></A><h4>Using the group header band</h4>
+<A NAME="TI6728"></A><p>The contents of the group header band display at the top of
+each page and after each break in the data. </p>
+<A NAME="TI6729"></A><p>Typically, you use this band to identify each group. You might
+move the grouping column from the detail band to the group header
+band, since it now serves to identify one group rather than each
+row.</p>
+<A NAME="TI6730"></A><p>For example, if you group the rows by department and include
+the department in the group header, the department will display
+before the first line of data each time the department changes. </p>
+<A NAME="TI6731"></A><p>At runtime, you see this:</p>
+<br><img src="images/filt17.gif">
+<A NAME="TI6732"></A><h4>Suppressing group headers</h4>
+<A NAME="TI6733"></A><p>If you do not want a group header to display at the top of
+each page when you print or display a report, select the Suppress
+Group Header check box on the General property page for the header.
+If none of the headers are suppressed, they all display at the top
+of each page. When a page break coincides with a group break, the
+group header and any group headers that follow it display even if
+the Suppress Group Header property is set, but higher level headers
+are suppressed if the property is set for those headers.</p>
+<A NAME="TI6734"></A><p>For example, suppose a report has three groups: division,
+sales region, and sales manager. If all three group headers are
+suppressed, and a sales region group break coincides with a page
+break, the division header is suppressed but the sales region and
+sales manager headers display.</p>
+<A NAME="TI6735"></A><h4>Using the group trailer band</h4>
+<A NAME="TI6736"></A><p>The contents of the group trailer display after the last row
+for each value that causes a break.</p>
+<A NAME="TI6737"></A><p>In the group trailer band, you specify the information you
+want displayed after the last line of identical data for each value
+in the group. Typically, you include summary statistics here, as
+described next.</p>
+<A NAME="BFCDIFCH"></A><h3>Adding summary statistics</h3>
+<A NAME="TI6738"></A><p>One of the advantages of creating a grouped DataWindow object is
+that you can have PowerBuilder calculate statistics for each group.
+To do that, you place computed fields that reference the group.
+Typically, you place these computed fields in the group's
+trailer band.</p>
+<A NAME="TI6739"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a summary statistic:</p>
+<ol><li class=fi><p>Select Insert&gt;Control&gt;Computed
+Field from the menu bar.</p></li>
+<li class=ds><p>Click in the Design view where you want the statistic.</p><p>The Modify Expression dialog box displays.</p></li>
+<li class=ds><p>Specify the expression that defines the computed
+field (see below).</p></li>
+<li class=ds><p>Click OK.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>A shortcut to sum values </span> <A NAME="TI6740"></A>If you want to sum a numeric column, select the column in
+Design view and click the Sum button in the Controls drop-down toolbar. PowerBuilder automatically
+places a computed field in the appropriate band.</p>
+<A NAME="TI6741"></A><h4>Specifying the expression</h4>
+<A NAME="TI6742"></A><p>Typically, you use aggregate and other functions in your summary
+statistic. PowerBuilder lists functions you can use in the Functions
+box in the Modify Expression dialog box. When you are defining a
+computed field in a group header or trailer band, PowerBuilder automatically
+lists forms of the functions that reference the group:</p>
+<br><img src="images/filt19.gif">
+<A NAME="TI6743"></A><p>You can paste these templates into the expression, then replace
+the #x that is pasted in as the function argument with
+the appropriate column or expression.</p>
+<A NAME="TI6744"></A><p>For example, to count the employees in each department (group
+1), specify this expression in the group trailer band:<p><PRE> Count( Emp_Id for group 1 )</PRE></p>
+<A NAME="TI6745"></A><p>To get the average salary of employees in a department, specify:<p><PRE> Avg( Salary for group 1 )</PRE></p>
+<A NAME="TI6746"></A><p>To get the total salary of employees in a department, specify:<p><PRE> Sum( Salary for group 1 )</PRE></p>
+<br><img src="images/filt20.gif">
+<A NAME="TI6747"></A><p>At runtime, you see this:</p>
+<br><img src="images/filt21.gif">
+<A NAME="TI6748"></A><h3>Sorting the groups</h3>
+<A NAME="TI6749"></A><p>You can sort the groups in a DataWindow object. For example, in a DataWindow object showing
+employee information grouped by department, you might want to sort
+the departments (the groups) by total salary.</p>
+<A NAME="TI6750"></A><p>Typically, this involves aggregate functions, as described
+in <A HREF="pbugp204.htm#BFCDIFCH">"Adding summary statistics"</A>.
+In the department salary example, you would sort the groups using
+the aggregate function <b>Sum</b> to calculate total
+salary in each department.</p>
+<A NAME="TI6751"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To sort the groups:</p>
+<ol><li class=fi><p>Place the mouse pointer on the group header
+bar (not inside the band) until the pointer becomes a double-headed
+arrow.</p></li>
+<li class=ds><p>Click.</p><p>The General property page for the group displays in the Properties
+view.</p></li>
+<li class=ds><p>Click the button next to the Group Sort box.</p><br><img src="images/filt21a.gif"><br>
+<p>The Specify Sort Columns dialog box displays.</p></li>
+<li class=ds><p>Drag the column you want to sort the groups by
+from the Source Data box into the Columns box. </p><p>If you chose a numeric column, PowerBuilder uses the <b>Sum</b> function
+in the expression; if you chose a non-numeric column, PowerBuilder uses
+the Count function.</p><p>For example, if you chose the <b>Salary</b> column, PowerBuilder specifies
+that the groups will be sorted by the expression <FONT FACE="Courier New">sum(salary
+for group 1)</FONT>:</p><br><img src="images/filt22.gif"><br>
+</li>
+<li class=ds><p>Select ascending or descending sort as appropriate.</p></li>
+<li class=ds><p>If you want to modify the expression to sort on,
+double-click the column in the Columns box.</p><p>The Modify Expression dialog box displays.</p></li>
+<li class=ds><p>Specify the expression to sort on. </p><p>For example, to sort the department group (the first group
+level) on average salary, specify <FONT FACE="Courier New">avg(salary for
+group 1</FONT>).</p></li>
+<li class=ds><p>Click OK.</p><p>You return to the Specify Sort Columns dialog box with the
+expression displayed.</p></li>
+<li class=ds><p>Click OK again. </p><p>At runtime, the groups will be sorted on the expression you
+specified.</p></li></ol>
+<br>

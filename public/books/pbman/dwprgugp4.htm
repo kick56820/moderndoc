@@ -1,0 +1,147 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Choosing a DataWindow technology</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp3.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp5.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDBACBI"></A><h1>Choosing a DataWindow technology</h1>
+<A NAME="TI106"></A><p>Since DataWindow technology can be used in different environments,
+it might not be obvious what approach you should take to implement
+your data-enabled application. This section describes the
+DataWindow technologies available for three basic application architectures
+and the requirements for each DataWindow solution. See <i>Building Internet
+and Enterprise Applications</i>
+ for more discussion of application
+architectures.</p>
+<A NAME="TI107"></A><p>The basic architectures are:<A NAME="TI108"></A>
+<ul>
+<li class=fi><b>Client/server</b>   A program running on a client workstation accesses a database
+running on a server. The user interface and business logic reside together
+on the client computer.</li>
+<li class=ds><b>Distributed application</b>   The user interface on the client computer calls components
+on a middle-tier server, which execute business logic and access
+the database server.</li>
+<li class=ds><b>Web application</b>   A client Web browser sends requests for HTML or JSP documents
+to a Web server. The Web server passes control to a page or application
+server, where server-side scripts can access components on a transaction
+server that can connect to databases on a database server.
+</li>
+</ul>
+</p>
+<A NAME="TI109"></A><h2>Solutions for client/server and distributed
+applications </h2>
+<A NAME="TI110"></A><p>The PowerBuilder DataWindow was initially developed for use
+in client/server applications.</p>
+<A NAME="TI111"></A><p>You can implement the PowerBuilder DataWindow as a control
+that displays a DataWindow object or as a DataStore that supports
+data retrieval and update without displaying the data. A complete
+set of events and methods programmed in PowerScript provides control
+over all aspects of the DataWindow, including data retrieval, display,
+validation, and update.</p>
+<A NAME="TI112"></A><p>You can also deploy the PowerBuilder DataWindow as a component
+for use in distributed applications.</p>
+<A NAME="TI113"></A><p>For more information, see <A HREF="dwprgugp5.htm#CAIDADAJ">"PowerBuilder DataWindow
+control"</A>.</p>
+<A NAME="TI114"></A><h2>Solutions for Web applications</h2>
+<A NAME="TI115"></A><p>You can use these DataWindow technologies in Web applications:<A NAME="TI116"></A>
+<ul>
+<li class=fi>Web DataWindow and the Web DataWindow DTC</li>
+<li class=ds>Sybase DataWindow Web control for ActiveX</li>
+<li class=ds>DataWindow plug-in
+</li>
+</ul>
+</p>
+<A NAME="TI117"></A><h3>Web DataWindow</h3>
+<A NAME="TI118"></A><p>The Web DataWindow is a thin-client DataWindow implementation
+for Web applications. It provides most of the data manipulation,
+presentation, and scripting capabilities of the PowerBuilder DataWindow
+without requiring any PowerBuilder DLLs on the client.</p>
+<A NAME="TI119"></A><h4>Functionality </h4>
+<A NAME="TI120"></A><p>The Web DataWindow supports a subset of the PowerBuilder DataWindow events
+and methods, including dynamic modification of the DataWindow object.
+The user can modify and update data. Composite, Graph, OLE, TreeView,
+and RichText presentation styles and controls are not supported.</p>
+<A NAME="TI121"></A><h4>Client requirements</h4>
+<A NAME="TI122"></A><p>The HTML Web DataWindow works in most browsers, but the appearance
+of the generated HTML is usually best in Internet Explorer. Generated
+HTML can be dynamically optimized for Netscape or Internet Explorer,
+or scaled back to handle older browsers. The XML Web DataWindow
+and the XHTML Web DataWindow require the lastest browser technology.
+For information about supported browsers, see <A HREF="dwprgugp39.htm#CEGJGJAF">"Browser requirements for
+the XML Web DataWindow"</A>.</p>
+<A NAME="TI123"></A><h4>Server requirements</h4>
+<A NAME="TI124"></A><p>A component server and a dynamic page server work together
+to generate a client control with data and include it in a Web page.
+Each time the user requests a new page of data, updates data, or
+inserts or deletes rows, the server gets a request to generate a
+new page. Depending on how state is managed, the component might
+retrieve data each time it is called, causing added load on the server.</p>
+<A NAME="TI125"></A><h4>Development tools</h4>
+<A NAME="TI126"></A><p>The Web Target interface in PowerBuilder provides the Web DataWindow DTC that
+you can use to develop Web DataWindows without hand coding. You can
+also write your own server-side scripts to create Web DataWindows
+using the component server's API. You can write the scripts
+for interpretation by a specific page server type (Active Server
+Pages or JavaServer Pages). For Web site targets, you can use the
+Web Target object model to write server scripts that are type-neutral&#8212;the
+scripts can be deployed to Active Server Pages.</p>
+<A NAME="TI127"></A><p>When you use the Web DataWindow DTC on a 4GL Web page, server-side events
+are available and page variables can enhance the dynamic capabilities of
+your Web application. You cannot hand code a Web DataWindow on a
+4GL Web page.</p>
+<A NAME="TI128"></A><p>For information about the Web DataWindow, see <A HREF="dwprgugp37.htm#BABCBIEG">Chapter 6, "Using the Web DataWindow."</A> For information
+about the Web DataWindow DTC, see <i>Working with Web and
+JSP Targets</i>
+.</p>
+<A NAME="TI129"></A><h3>Sybase DataWindow Web control for ActiveX</h3>
+<A NAME="TI130"></A><p>The Sybase DataWindow Web control for ActiveX is an interactive DataWindow
+control for use with Internet Explorer that implements all features
+of the PowerBuilder DataWindow except rich text.</p>
+<A NAME="TI131"></A><h4>Functionality</h4>
+<A NAME="TI132"></A><p>The Web ActiveX is fully programmable and supports DataWindow
+events, methods, and dynamic modification of the DataWindow object.
+The user can modify and update data. The RichText presentation style
+is not supported.</p>
+<A NAME="TI133"></A><h4>Client requirements</h4>
+<A NAME="TI134"></A><p>The control uses ActiveX technology and works in Microsoft
+Internet Explorer only.</p>
+<A NAME="TI135"></A><p>The user must download the CAB file for the component, which
+is less than two megabytes in size. Database connection through
+JDBC occurs from the client, which must be configured with the connection
+software. The software can be downloaded from the Web server.</p>
+<A NAME="TI136"></A><p>DataWindow behavior that would compromise security of the
+client, such as the SaveAs functionality, is disabled.</p>
+<A NAME="TI137"></A><h4>Server requirements</h4>
+<A NAME="TI138"></A><p>The JDBC database connection can access databases on a remote
+server.</p>
+<A NAME="TI139"></A><h4>Development tools</h4>
+<A NAME="TI140"></A><p>You can use the Web Target tools for working with ActiveX
+components to develop your Web application. </p>
+<A NAME="TI141"></A><p>For information, see <A HREF="dwprgugp52.htm#CHDCDHDG">Chapter 8, "Using the DataWindow Web Control
+for ActiveX."</A></p>
+<A NAME="TI142"></A><h3>DataWindow plug-in</h3>
+<A NAME="TI143"></A><p>The DataWindow plug-in is a browser plug-in that displays
+Powersoft reports (PSRs).</p>
+<A NAME="TI144"></A><h4>Functionality </h4>
+<A NAME="TI145"></A><p>A PSR is a static DataWindow; it cannot be modified and the
+data does not stay current. However, a PSR is a compact representation
+of the DataWindow definition and data and can be downloaded efficiently.
+It is an efficient means of viewing batch-produced reports.</p>
+<A NAME="TI146"></A><p>The user cannot modify or update the data.</p>
+<A NAME="TI147"></A><h4>Client requirements</h4>
+<A NAME="TI148"></A><p>The plug-in executable must be installed in the browser plug-in
+directory. It cannot be downloaded and installed automatically.
+The plug-in works in Netscape browsers. Internet Explorer browsers
+prior to version 5.5 also support the plug-in.</p>
+<A NAME="TI149"></A><p>DataWindow behavior that would compromise security of the
+client, such as SaveAs, is <i>not</i> disabled.</p>
+<A NAME="TI150"></A><h4>Development tools</h4>
+<A NAME="TI151"></A><p>You can use PowerBuilder or InfoMaker to create PSRs. </p>
+<A NAME="TI152"></A><p>For more information about the plug-in architecture, see <i>Application Techniques</i>
+.</p>
+

@@ -1,0 +1,95 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Implementing an existing interface</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp143.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp145.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDIHFAJ"></A><h1>Implementing an existing interface</h1>
+<A NAME="TI4808"></A><p>You can create PowerBuilder implementations of existing interfaces
+using the <ABBR title = "e a server" >EAServer</ABBR> Component Wizard
+on the Target or PB Object tab in the New dialog box. A typical
+use of this feature is to create an implementation of a standard API,
+such as the protocols for online banking and securities trading
+that are provided as CORBA IDL templates with Financial Fusion.</p>
+<A NAME="TI4809"></A><h4>Selecting an interface</h4>
+<A NAME="TI4810"></A><p>On the Specify Interface Implementation page in the wizard,
+select Implement an Existing <ABBR title = "e a server" >EAServer</ABBR> Remote
+Interface, then select the <ABBR title = "e a server" >EAServer</ABBR> profile
+for the server that contains the IDL interface you want to implement.
+You can select only one interface from the list that displays when
+you expand the list of packages in the wizard.</p>
+<A NAME="TI4811"></A><p>For PowerBuilder components, the interface name is usually
+the same as the component name, but the list of interfaces does
+not map directly to the list of components on the server. The list
+includes all IDL modules of type interface. In <ABBR title = "e a server" >EAServer</ABBR> Manager, you can see these
+modules in the right pane when you click a package name in the IDL
+folder in the left pane.</p>
+<A NAME="TI4812"></A><h4>Setting options in the wizard</h4>
+<A NAME="TI4813"></A><p>Once you have selected the interface to implement, you can
+enter the <ABBR title = "e a server" >EAServer</ABBR> name for the
+component. The name of the PowerBuilder custom class user object
+cannot be changed&#8212;it is always the same as the name of
+the remote interface. You can set most other options, such as package
+name, instance pooling, and so forth, as if you were creating a
+new interface. </p>
+<A NAME="TI4814"></A><p>If you are building a PowerBuilder implementation of a standard
+API, you will usually use the component name of the remote component,
+but you should not use the same package name. </p>
+<A NAME="TI4815"></A><p>Since the interface of the remote component cannot be changed,
+options that would change method signatures, such as supporting <b>NULL</b> values
+for arguments, cannot be set in the wizard.</p>
+<A NAME="TI4816"></A><h4>Editing the user object in the painter</h4>
+<A NAME="TI4817"></A><p>In the custom class user object created by the wizard, public
+attributes of the remote interface are represented as public instance
+variables, and public methods as public functions. The scripts for
+functions contain return statements so that they do not produce
+compilation errors, but you need to provide a script to implement
+each function. If the remote interface includes other dependencies,
+such as structures, the wizard creates them in the same PBL as the
+user object. </p>
+<A NAME="TI4818"></A><p>You can edit the user object just as you would any other custom
+class user object&#8212;the User Object painter does not impose
+any restrictions. However, you should not make any changes that
+affect its interface. You should not delete any instance variables
+and functions that correspond to attributes and methods in the existing
+interface or change their mode from public to private or protected.
+Functions cannot be overloaded and the return value or arguments cannot
+be <b>NULL</b> values. </p>
+<A NAME="TI4819"></A><h4>Deploying the component to <ABBR title = "e a server" >EAServer</ABBR></h4>
+<A NAME="TI4820"></A><p>The project created by the wizard contains information about
+the interface from which the wizard built the component. When you
+run the project, PowerBuilder checks that:<A NAME="TI4821"></A>
+<ul>
+<li class=fi>All
+public attributes and methods in the existing IDL interface are
+defined as public instance variables and functions in the user object.</li>
+<li class=ds>No methods defined in the IDL interface are overloaded
+in the user object.
+</li>
+</ul>
+</p>
+<A NAME="TI4822"></A><p>If one of these checks fails, the component is deployed but
+a warning displays in the Project painter and the Output window.</p>
+<A NAME="TI4823"></A><h4>Using a different project</h4>
+<A NAME="TI4824"></A><p>These checks are performed only if the component is deployed
+using the project that was created when the component was created.
+If you create a new project or add the component to another project,
+no checks are performed when you run the project.</p>
+<A NAME="TI4825"></A><p>When you deploy using the project created with the component,
+the new implementation always uses the existing IDL on the server.
+You should be cautious if you use a different project, because you
+will be able to deploy the component to the original package and
+overwrite the existing IDL without seeing any warnings about changes
+in the interface.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Generating proxies</span> <A NAME="TI4826"></A>When you generate a proxy for an object that implements an
+existing interface and uses the existing IDL on the server, the
+proxy is based on the existing IDL. As a result, if you select the
+Prepend <ABBR title = "e a server" >EAServer</ABBR> Package Name
+to Object Name option, the name prepended to the object name will
+be the name of the IDL module, not the new package name.</p>
+

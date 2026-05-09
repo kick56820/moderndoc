@@ -1,0 +1,67 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Invoking another server component's methods</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp144.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp146.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDGHGI"></A><h1>Invoking another server component's methods</h1>
+<A NAME="TI4827"></A><p><ABBR title = "e a server" >EAServer</ABBR> allows the methods
+of one server component to call methods of another server component.
+The other server component does not need to be another PowerBuilder
+component; it can be implemented in any language supported by <ABBR title = "e a server" >EAServer</ABBR>.</p>
+<A NAME="TI4828"></A><h4>Accessing a component in the current server</h4>
+<A NAME="TI4829"></A><p>To access methods of another <ABBR title = "e a server" >EAServer</ABBR> component
+in the current server, you can use the Connection object to communicate
+with the component, just as you would from a PowerBuilder client.
+Alternatively, you can use the transaction service context object
+that PowerBuilder provides called <strong>TransactionServer</strong>. The
+TransactionServer interface provides a method called <b>CreateInstance</b> that allows
+you to access other components that are available locally. <b>CreateInstance</b> uses
+the same user and password information that applies to the component
+from which it is called.</p>
+<A NAME="TI4830"></A><p>Before you can use the transaction context service, declare
+a variable of type TransactionServer and call the <b>GetContextService</b> function
+to create an instance of the service. You must use a proxy object
+for your intercomponent calls. Without a proxy object, the TransactionServer
+object cannot obtain the correct method names of the component you
+are calling. For information on creating a proxy object for EAServer
+components, see <A HREF="apptechp154.htm#CCJDFHEA">"Generating <ABBR title = "e a server" >EAServer</ABBR> proxy objects"</A>.</p>
+<p><b>Example</b>   In the Activate event for a component, you can call <b>GetContextService</b> to
+instantiate the TransactionServer service: <p><PRE> // Instance variable:<br>// TransactionServer ts<br> <br>Integer rc<br>rc = this.GetContextService("TransactionServer", ts)<br>IF rc &lt;&gt; 1 THEN<br>   // handle the error<br>END IF</PRE></p>
+<A NAME="TI4831"></A><p>In one of the component methods, you can then call <b>CreateInstance</b> to instantiate
+the second component and call one of its methods. Your application should
+include a proxy for the second component: <p><PRE> // Instance variable for the second component:<br>// nvo_comp2 mycomp2 <br>Integer rc<br>rc = ts.CreateInstance(mycomp2, "mypackage/nvo_comp2")<br>IF rc &lt;&gt; 0 THEN<br>   // handle the error<br>ELSE<br>   mycomp2.method1()<br>END IF</PRE></p>
+<A NAME="TI4832"></A><h4>Accessing a component in a different server</h4>
+<A NAME="TI4833"></A><p>The procedure for accessing a server component on a different
+server is essentially the same as the procedure for accessing a
+server component from a PowerBuilder client. To access an <ABBR title = "e a server" >EAServer</ABBR> component on a different
+server, create a Connection object, set properties for the Connection
+object, and call <b>ConnectToServer</b>.</p>
+<A NAME="CEGGABIG"></A><h4>Accessing an EJB component</h4>
+<A NAME="TI4834"></A><p>A PowerBuilder component can access an EJB component using
+the <b>Lookup</b> method of either the Connection or
+TransactionServer objects. The <b>Lookup</b> method
+on the TransactionServer object has an optional third argument you
+can use to specify the name of the home interface. You use this
+argument only if the home interface name does not follow typical
+naming conventions.</p>
+<p><b>Example</b>   This script instantiates the Cart component and invokes several component
+methods. In this example, the second argument to the <b>Lookup</b> method
+specifies the component name as well as the <ABBR title = "e a server" >EAServer</ABBR> package
+name:<p><PRE> //Instance variable:<br>//Connection myconnect<br> <br>CartHome MyCartHome // EJB's home interface<br>Cart MyShoppingCart // EJB's remote interface<br>TransactionServer ts<br>long ll_result<br> <br>This.GetContextService("TransactionServer", ts)<br> <br>//Get the home interface<br>ll_result = &amp;<br>ts.Lookup(MyCartHome, "Shopping/Cart")<br> <br></PRE><PRE> //Get a reference to Cart component's business logic<br>MyShoppingCart = MyCartHome.Create()<br> <br>//Use the shopping cart<br>MyShoppingCart.AddItem(66)<br>MyShoppingCart.Purchase()</PRE></p>
+<A NAME="TI4835"></A><p>For information about accessing EJB components from PowerBuilder
+clients, see <A HREF="apptechp155.htm#CIHEGIAI">"Invoking an EJB component
+method"</A>.</p>
+<A NAME="TI4836"></A><h4>Component-demarcated transactions</h4>
+<A NAME="TI4837"></A><p><ABBR title = "e a server" >EAServer</ABBR> components marked
+as OTS style can create, control, and obtain information about <ABBR title = "e a server" >EAServer</ABBR> transactions using functions
+of the CORBACurrent context service object. The CORBACurrent object
+provides most of the methods defined for the CORBA Current interface. </p>
+<A NAME="TI4838"></A><p>For more information, see <A HREF="apptechp157.htm#BABJIAFE">"Client- and component-demarcated
+transactions"</A>.</p>
+

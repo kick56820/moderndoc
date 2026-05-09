@@ -1,0 +1,125 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Java support</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp274.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp276.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BAJBFFIA"></A><h1>Java support</h1>
+<A NAME="TI8253"></A><p>You must deploy the PowerBuilder <i>pbjvm105.dll </i>file
+with any applications or components that use the Java Runtime Environment
+(JRE), and there must be a JRE installed on the target computer.
+The JRE is required for JSP targets, EJB clients, JDBC connections,
+and saving as PDF using XSL-FO. You can copy the JRE installed with
+PowerBuilder to the same directory as the PowerBuilder runtime files
+on the target computer, or use an existing JRE whose location is defined
+in the user's system PATH environment variable. </p>
+<A NAME="TI8254"></A><h4>Locating the Java VM</h4>
+<A NAME="TI8255"></A><p>When a PowerBuilder application requires a Java VM, the PowerBuilder runtime
+searches for the<i> jvm.dll</i> file in a subdirectory
+of the directory where <i>pbjvm105.dll</i> is installed
+on the user's computer. The<i> jvm.dll </i>file
+is installed in the <i>JRE\bin\client</i> directory
+of JDK 1.4 installations, and in the <i>JRE\bin\classic</i> directory
+in JDK 1.2 and 1.3 installations. </p>
+<A NAME="TI8256"></A><p>PowerBuilder adds the location of <i>jvm.dll</i> to
+the beginning of the path currently being used by the PowerBuilder
+application. This path is a copy of the path defined in the user's
+PATH system environment variable. PowerBuilder does <i>not</i> modify
+the environment variable maintained in the Windows registry. </p>
+<A NAME="TI8257"></A><p>To locate the <i>jvm.dll</i>, PowerBuilder first
+determines where <i>pbjvm105.dll</i> is installed.
+Suppose <i>pbjvm105.dll</i> is installed in <i>C:\Sybase\Shared\PowerBuilder</i>.
+Then PowerBuilder uses this search procedure to add the location
+of the <i>jvm.dll</i> to the path currently in use:<A NAME="TI8258"></A>
+<ol>
+</li>
+<li class=ds>Search for the directory structure <i>JRE\bin\client</i> (for
+JDK 1.4) in <i>C:\Sybase\Shared\PowerBuilder\</i> and,
+if found, add it to the beginning of the path.</li>
+<li class=ds>If not found, search for the directory structure <i>JDK14\JRE\bin\client</i> in <i>C:\Sybase\Shared\PowerBuilder\</i> and,
+if found, add it to the beginning of the path.</li>
+<li class=ds>If not found, search for the directory structure <i>JRE\bin\classic</i> (for
+JDK 1.2 or 1.3) in <i>C:\Sybase\Shared\PowerBuilder\</i> and,
+if found, add it to the beginning of the path.
+</li>
+</ol>
+</p>
+<A NAME="TI8259"></A><p>If none of these directory structures is found, PowerBuilder
+uses the first<i> jvm.dll</i> whose location is defined
+in the user's PATH environment variable. If no <i>jvm.dll</i> is
+found, the Java VM does not start.</p>
+<A NAME="TI8260"></A><h4>The runtime Java VM classpath</h4>
+<A NAME="TI8261"></A><p>When PowerBuilder starts a Java VM, the Java VM uses internal
+path and class path information to ensure that required Java classes
+are always available. At runtime, the Java VM uses a class path
+constructed by concatenating these paths:<A NAME="TI8262"></A>
+<ul>
+<li class=fi>The
+system JAVA_HOME environment variable.</li>
+<li class=ds>A class path added programmatically when the Java
+VM is started. For example, EJB client applications can pass a class
+path to the <b>CreateJavaVM</b> method.</li>
+<li class=ds>The PowerBuilder runtime static registry class path.
+This is a path built into the <i>pbjvm105.dll</i> file<i></i> that
+corresponds to the path in the Windows Registry that is used when
+you are developing an application in PowerBuilder. It contains classes
+required at runtime for features that use a Java VM.</li>
+<li class=ds>The system CLASSPATH environment variable.</li>
+<li class=ds>The current directory.
+</li>
+</ul>
+</p>
+<A NAME="TI8263"></A><h4>Overriding the runtime static registry classpath</h4>
+<A NAME="TI8264"></A><p>If necessary, you can override the JVM settings and properties
+defined for runtime use in the static registry. PowerBuilder uses
+the following algorithm to locate configuration information:<A NAME="TI8265"></A>
+<ol>
+</li>
+<li class=ds>When the first request is made
+for a JVM, PowerBuilder looks for registry entries for the configuration
+information and properties to be passed to the function that creates
+the JVM.</li>
+<li class=ds>If PowerBuilder finds a registry entry for the configuration
+information, it uses it instead of the static registry. If it does
+not find a registry entry, it uses the static registry.</li>
+<li class=ds>If PowerBuilder finds a registry entry for custom
+properties to be passed to the JVM, it uses those instead of the
+static registry. If it does not find a registry entry, it uses the
+static registry entries.
+</li>
+</ol>
+To override the
+default settings, create a new key named <i>PBRTConfig</i> in
+the <i>HKEY_LOCAL_MACHINE\Software\Sybase\PowerBuilder\10.5\Java</i> key, then
+add either or both of the following subkeys: <i>PBJVMconfig</i> and <i>PBJVMprops</i>.</p>
+<A NAME="TI8266"></A><p>To duplicate the static registry entries, add the same string
+values to these subkeys that you see in the PBIDEConfig key, that
+is:</p>
+<A NAME="TI8267"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI8268"></A>Subkey</th>
+<th  rowspan="1"  ><A NAME="TI8269"></A>String value name</th>
+<th  rowspan="1"  ><A NAME="TI8270"></A>String value data</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8271"></A><i>PBJVMconfig</i></td>
+<td  rowspan="1"  ><A NAME="TI8272"></A>Count</td>
+<td  rowspan="1"  ><A NAME="TI8273"></A>1</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8274"></A></td>
+<td  rowspan="1"  ><A NAME="TI8275"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI8276"></A>-verbose:jni,class</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8277"></A><i>PBJVMprops</i> </td>
+<td  rowspan="1"  ><A NAME="TI8278"></A>java.compiler</td>
+<td  rowspan="1"  ><A NAME="TI8279"></A>NONE</td>
+</tr>
+</table>
+<A NAME="TI8280"></A><p>You can override either the configuration or properties entries
+or both. If you make incorrect entries, PowerBuilder attempts to
+recover by defaulting to the static registry. However, you should
+be cautious about making any changes since you can cause incorrect
+behavior in the JVM if you do not configure it correctly.</p>
+

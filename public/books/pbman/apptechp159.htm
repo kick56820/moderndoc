@@ -1,0 +1,185 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Handling errors </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp158.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp160.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJBBGBC"></A><h1>Handling errors </h1>
+<A NAME="TI5314"></A><p>PowerBuilder
+provides three layers of error handling that can be used by clients
+connecting to <ABBR title = "e a server" >EAServer</ABBR>:<A NAME="TI5315"></A>
+<ul>
+<li class=fi>A mechanism, using try/catch/finally
+blocks, for handling exceptions thrown by components running in <ABBR title = "e a server" >EAServer</ABBR> <br>
+All system and runtime errors are converted into objects that
+descend from the type RuntimeError. <br></li>
+<li class=ds>The Error event on the Connection and JaguarORB
+objects to handle errors that occur in the context of an <ABBR title = "e a server" >EAServer</ABBR> connection</li>
+<li class=ds>The SystemError event on the Application object
+to handle errors that have not been trapped by any other mechanism
+</li>
+</ul>
+</p>
+<A NAME="TI5316"></A><p>PowerBuilder records information about errors in a built-in
+Error structure. This structure
+is used by the Error and SystemError events.</p>
+<A NAME="TI5317"></A><h4>What the client can do</h4>
+<A NAME="TI5318"></A><p>A client application can handle communications errors in a
+number of ways. For example, if a client connects to a server and
+tries to invoke a method for an object that does not exist, the
+client can disconnect from the server, connect to a different server,
+and retry the operation. Alternatively, the client can display a
+message to the user and give the user the opportunity to control
+what happens next.</p>
+<A NAME="TI5319"></A><p>When an error occurs, if the client connects to a new server
+to retry the operation, it must instantiate the remote object on
+the new server before invoking a method of the remote object.</p>
+<A NAME="TI5320"></A><h4>Where errors are handled</h4>
+<A NAME="TI5321"></A><p>This is the sequence in which PowerBuilder executes error-handling
+code in an <ABBR title = "e a server" >EAServer</ABBR> client:<A NAME="TI5322"></A>
+<ol>
+</li>
+<li class=ds>If an error occurs in the context
+of the Connection or JaguarORB object, and the Error event of that
+object has a script associated with it, PowerBuilder executes the
+event script, if any. </li>
+<li class=ds>If any one of the following is true, any active
+exception handler for a RuntimeError or its descendants is invoked:<A NAME="TI5323"></A>
+<ul>
+<li class=fi>The Error event is not scripted</li>
+<li class=ds>The action argument of the Error event is set to
+ExceptionFail!</li>
+<li class=ds>The error does not occur in the context of the Connection
+or JaguarORB object
+</li>
+</ul>
+</li>
+<li class=ds>If no exception handler exists, or if the existing
+exception handlers do not handle the exception, the SystemError
+event on the Application object is executed. If the SystemError
+event has no script, an application error occurs and the application
+is terminated.
+</li>
+</ol>
+</p>
+<A NAME="TI5324"></A><h4>System exception handler </h4>
+<A NAME="TI5325"></A><p>PowerBuilder
+has a system exception handler that tries to catch fatal system errors.
+It helps prevent the server from terminating because of problems
+with individual client connections. Whenever a fatal error occurs
+in a client connection, PowerBuilder tries to terminate the client
+connection without bringing down the server or interfering with
+other client connections. Once the problem has been detected, the
+system exception handler triggers a SystemError event in the Application
+object, just as it would for any other runtime error on the client.</p>
+<A NAME="TI5326"></A><h4>Context-sensitive error handling</h4>
+<A NAME="TI5327"></A><p>Using the try/catch mechanism lets you handle errors
+where they occur, making it less likely that an error thrown by
+a component results in a fatal error in the client application.
+Scripting the Error event of the Connection object is less precise
+and, unless the action argument of the Error event is set to <b>ExceptionFail!</b>,
+bypasses any try/catch exception handlers. </p>
+<A NAME="TI5328"></A><p>You should therefore leave the Error event unscripted and
+add try/catch blocks to your code to achieve the most effective
+error handling. You can use the <b>GetMessage</b> function
+to retrieve the exception's error message. </p>
+<A NAME="TI5329"></A><p>For more information about exceptions, see <A HREF="apptechp20.htm#BABDCHCF">"Exception handling in PowerBuilder"</A>.</p>
+<A NAME="TI5330"></A><p>Because your error-handling code might not trap all the errors
+that occur, you should always script the SystemError event of the
+Application object.</p>
+<A NAME="TI5331"></A><h2>Handling CORBA exceptions</h2>
+<A NAME="TI5332"></A><p>CORBA provides a standard way for components to indicate errors
+or warnings. CORBA supports two types of exceptions:<A NAME="TI5333"></A>
+<ul>
+<li class=fi>System exceptions</li>
+<li class=ds>User-defined exceptions
+</li>
+</ul>
+</p>
+<A NAME="TI5334"></A><p>A <strong>system exception</strong> is one of a standard
+set of errors raised by the server. These exceptions are defined
+in the CORBA specification.</p>
+<A NAME="TI5335"></A><p>A <strong>user-defined exception</strong> is an error
+or warning defined in the component's IDL. A user exception
+is a new datatype that describes a set of data elements that are
+returned to the client when the exception is raised. </p>
+<A NAME="TI5336"></A><h4>System exceptions</h4>
+<A NAME="TI5337"></A><p>In PowerBuilder, CORBA system exceptions are mapped to a set
+of objects that inherit from the RuntimeError object. To see a list
+of these exceptions, select CORBASystemException on the System tab
+in the PowerBuilder Browser, select ShowHierarchy from the pop-up
+menu, and expand the Treeview item. </p>
+<A NAME="TI5338"></A><p>The names of the CORBASystemException objects in PowerBuilder
+map to the names of CORBA system exceptions as defined in the CORBA/IIOP Specification
+with underscore characters omitted. For example, the PowerBuilder
+CORBACommFailure exception maps to the CORBA_COMM_FAILURE
+exception. For detailed information about CORBA exceptions, see
+the CORBA/IIOP Specification, which can be downloaded from
+the <A HREF="www.omg.org">OMG Web site</A>
+.</p>
+<A NAME="TI5339"></A><p>You might want to provide error handling for the following
+exceptions when you invoke methods on a component:<p><PRE> TRY<br>... // invoke methods<br>CATCH (corbacommfailure cf)<br>... // A component aborted the EAServer transaction,<br>    // or the transaction timed out. Retry the<br>    // transaction if desired.<br>CATCH (corbatransactionrolledback tr)<br>... // possibly retry the transaction<br>CATCH (corbaobjectnotexist one)<br>... // Received when trying to instantiate<br>    // a component that does not exist. Also <br>    // received when invoking a method if the <br>    // object reference has expired<br>    // (this can happen if the component<br>    // is stateful and is configured with<br>    // a finite Instance Timeout property).<br>    // Create a new proxy instance if desired.}<br>CATCH (corbanopermission np)<br>... // tell the user they are not authorized<br>CATCH (corbasystemexception se)<br>... // report the error but don't bother retrying<br>FINALLY<br>    // put cleanup code here<br>END TRY</PRE></p>
+<A NAME="TI5340"></A><h4>User-defined exceptions</h4>
+<A NAME="TI5341"></A><p>User-defined exceptions are mapped to the CORBAUserException
+object, which inherits from the Exception object. PowerBuilder clients
+can handle exceptions thrown by any component type. </p>
+<A NAME="TI5342"></A><p>If an <ABBR title = "e a server" >EAServer</ABBR> component
+has a method on it that is defined to throw an exception, that method
+on the PowerBuilder proxy object is also declared to throw a user-defined
+exception. The definition of the user-defined exception is created
+when you create the component proxy. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>CORBA does not support exception hierarchies</span> <A NAME="TI5343"></A>Exception hierarchies are not supported in the CORBA IDL.
+As a result, when you generate proxies for a server component that
+has an inherited exception, the generated proxies all inherit directly
+from CORBAUserException.</p>
+<A NAME="TI5344"></A><p>All <b>Create</b>, <b>Remove</b>,
+and <b>FindByPrimaryKey</b> methods on EJB components throw
+the EJB CreateException, RemoveException, and FinderException exceptions.
+These exceptions are represented by IDL exceptions with the same name
+in the CtsComponents package in <ABBR title = "e a server" >EAServer</ABBR>. </p>
+<A NAME="TI5345"></A><h2>Scripting the Error event </h2>
+<A NAME="TI5346"></A><h4>What you do</h4>
+<A NAME="TI5347"></A><p>To handle errors in the Error event of the Connection object,
+you create a user object that customizes the definition of the object.
+Once you have created the custom Connection object, you can refer
+to it anywhere in your scripts where you use a Connection object. If you
+use the JaguarORB event, you can script its Error event in the same
+way.</p>
+<A NAME="TI5348"></A><p>The Connection Object wizard creates a custom Connection object
+for you. See <A HREF="apptechp153.htm#CCJBIIFI">"Using the wizard to create
+a Connection object"</A>.</p>
+<A NAME="TI5349"></A><h4>Arguments to the Error event</h4>
+<A NAME="TI5350"></A><p>The Error event of the custom Connection object has several
+arguments that provide information about the condition that caused
+the error. For example, these arguments provide the error number
+and error text, as well as the name of the object that caused the
+error and the full text of the script where the error occurred.</p>
+<A NAME="TI5351"></A><p>In addition to the arguments that provide error information,
+the Error event has an argument that lets you specify what action
+to take. To specify the action, you assign one of four enumerated
+values (<b>ExceptionFail!</b>, <b>ExceptionRetry!</b>, <b>ExceptionIgnore!</b>,
+or <b>ExceptionSubstituteReturnValue!</b>) to the
+Action argument of the Error event.</p>
+<A NAME="TI5352"></A><h4>Example</h4>
+<A NAME="TI5353"></A><p>In this example, the Error event script informs the user of
+the condition that caused the communications error and gives the
+user the opportunity to control what happens next. Depending on
+the user's input, the client application fails, retries
+the operation, or ignores the error and continues processing:<p><PRE> int li_choice<br>li_choice = MessageBox("Connection error " + &amp;<br>    string(ErrorNumber), ErrorText, &amp;<br>    Question!,AbortRetryIgnore!)</PRE><PRE> CHOOSE CASE li_choice<br>    CASE 1<br>        Action = ExceptionFail!<br>    CASE 2<br>        Action = ExceptionRetry!<br>    CASE 3<br>        Action = ExceptionIgnore!<br>END CHOOSE</PRE></p>
+<A NAME="TI5354"></A><h2>Scripting the SystemError event </h2>
+<A NAME="TI5355"></A><h4>What you do</h4>
+<A NAME="TI5356"></A><p>In the SystemError event of the Application object, you can
+write a script to tell PowerBuilder to halt application execution
+or ignore the error.</p>
+<A NAME="TI5357"></A><h4>Example</h4>
+<A NAME="TI5358"></A><p>In this example, the SystemError event script displays a message
+informing the user of the condition that caused the communications
+error and gives the user the opportunity to control what happens
+next. Depending on the user's input, the client application
+halts execution or ignores the error and continues processing:<p><PRE> string ls_logline = "SYSTEM ERROR: "<br>ls_logline += String(error.number) + " " + error.text<br>ls_logline += " occurred at line " + &amp;<br>        String(error.line) + " "<br>ls_logline += " in event " + error.objectevent<br>ls_logline += " of object " + error.object<br> <br>if Messagebox("System Error", ls_logline + &amp;<br>    "~r~n~r~nDo you want to stop the program?", &amp;<br>    Question!, YesNo!) = 1 then<br>    HALT CLOSE<br>end if</PRE></p>
+

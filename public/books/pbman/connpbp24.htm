@@ -1,0 +1,119 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About the PowerBuilder ADO.NET database interface</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp23.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp25.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDCHEDCN"></A><h1>About the PowerBuilder ADO.NET database interface</h1>
+<A NAME="TI566"></A><p>You can use the PowerBuilder ADO.NET database interface to connect
+to a data source such as Adaptive Server&#174; Enterprise, Oracle,
+and Microsoft SQL Server, as well as to data sources exposed through
+OLE DB and XML, in much the same way as you use the PowerBuilder ODBC
+and OLE DB database interfaces.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Performance</span> <A NAME="TI567"></A>You might experience better performance if you use a native
+database interface. The primary purpose of the ADO.NET interface
+is to support shared connections with other database constructs
+such as the .NET DataGrid in Sybase DataWindow .NET.</p>
+<A NAME="TI568"></A><h2>Components of an ADO.NET connection</h2>
+<A NAME="TI569"></A><p>When you access a database using ADO.NET in PowerBuilder, your connection
+goes through several layers before reaching the database. It is important
+to understand that each layer represents a separate component of
+the connection, and that components might come from different vendors. </p>
+<A NAME="TI570"></A><p>The PowerBuilder ADO.NET interface consists of a driver (<i>pbado105.dll</i>)
+and a server (either <i>Sybase.PowerBuilder.Db.dll</i> or <i>Sybase.PowerBuilder.DbExt.dll</i>).
+Both the driver and server DLLs must be deployed with an application
+that connects to a database using ADO.NET. For Oracle 10<i>g</i> or
+Adaptive Server 15 or later, use <i>Sybase.PowerBuilder.DbExt.dll</i>. For
+earlier versions and other DBMSs, use <i>Sybase.PowerBuilder.Db.dll</i>.</p>
+<A NAME="TI571"></A><p>The PowerBuilder database interface for ADO.NET supports the
+ADO.NET data providers listed in <A HREF="connpbp24.htm#CHDFAIAJ">Table 5-1</A>.</p>
+<A NAME="CHDFAIAJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 5-1: Supported ADO.NET data providers</caption>
+<tr><th  rowspan="1"  ><A NAME="TI572"></A>Data Provider</th>
+<th  rowspan="1"  ><A NAME="TI573"></A>Namespace</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI574"></A>.NET Framework Data Provider for OLE
+DB</td>
+<td  rowspan="1"  ><A NAME="TI575"></A>System.Data.OleDb</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI576"></A>.NET Framework Data Provider for SQL
+Server</td>
+<td  rowspan="1"  ><A NAME="TI577"></A>System.Data.SqlClient</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI578"></A>Oracle Data Provider for .NET (ODP.NET)</td>
+<td  rowspan="1"  ><A NAME="TI579"></A>Oracle.DataAccess.Client</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI580"></A>Sybase ADO.NET Data Provider for Adaptive
+Server Enterprise (ASE)</td>
+<td  rowspan="1"  ><A NAME="TI581"></A>Sybase.Data.AseClient</td>
+</tr>
+</table>
+<A NAME="TI582"></A><p>Additional .NET Framework data providers may be supported
+in future releases. Please see the release bulletin for the latest
+information.</p>
+<A NAME="TI583"></A><p><A HREF="connpbp24.htm#BABBJFGEN">Figure 5-1</A> shows
+the general components of an ADO.NET connection using the OLE DB
+.NET Framework data provider. </p>
+<A NAME="BABBJFGEN"></A><caption><b>Figure 5-1: Components of an ADO.NET
+OLE DB connection</b></captionls>
+<br><img src="images/cnw4ado.gif">
+<A NAME="TI584"></A><p><A HREF="connpbp24.htm#CHDJAIHA">Figure 5-2</A> shows
+the general components of an ADO.NET connection using a native ADO.NET
+data provider. </p>
+<A NAME="CHDJAIHA"></A><caption><b>Figure 5-2: Components of a native ADO.NET
+connection</b></captionls>
+<br><img src="images/cnw4ado2.gif">
+<A NAME="TI585"></A><h2>OLE DB data providers</h2>
+<A NAME="TI586"></A><p>When you use the .NET Framework data provider for OLE DB,
+you connect to a database through an OLE DB data provider, such
+as Microsoft's SQLOLEDB or MSDAORA or a data provider from
+another vendor.</p>
+<A NAME="TI587"></A><p>The .NET Framework Data Provider for OLE DB does not work
+with the MSDASQL provider for ODBC, and it does not support OLE
+DB version 2.5 interfaces. </p>
+<A NAME="TI588"></A><p>You can use any OLE DB data provider that supports the OLE
+DB interfaces listed in <A HREF="connpbp24.htm#CHDEBGFD">Table 5-2</A> with the OLE DB .NET Framework data
+provider. For more information about supported providers, see the
+topic on .NET Framework data providers in the Microsoft <i>.NET
+Framework Developer's Guide</i>
+. </p>
+<A NAME="TI589"></A><p>The PowerBuilder ADO.NET interface supports connection to Adaptive Server
+Anywhere, Adaptive Server Enterprise, Microsoft SQL Server, Oracle, Informix,
+and Microsoft Access with the OLE DB .NET Framework data provider. </p>
+<A NAME="TI590"></A><p>After you install the data provider, you might need to define
+a data source for it. To define a data source for one of the OLE
+DB data providers shipped with PowerBuilder, use the DataDirect OLE
+DB Administrator. This utility is named <b>PBadmin</b> and
+can be found in <i>Sybase\Shared\DataDirect</i>.</p>
+<A NAME="CHDEBGFD"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 5-2: Required interface support for OLE DB data providers</caption>
+<tr><th  rowspan="1"  ><A NAME="TI591"></A>OLE DB object</th>
+<th  rowspan="1"  ><A NAME="TI592"></A>Required interfaces</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI593"></A>OLE DB Services</td>
+<td  rowspan="1"  ><A NAME="TI594"></A>IDataInitialize </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI595"></A>DataSource</td>
+<td  rowspan="1"  ><A NAME="TI596"></A>IDBInitializeIDBCreateSessionIDBPropertiesIPersist</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI597"></A>Session </td>
+<td  rowspan="1"  ><A NAME="TI598"></A>ISessionPropertiesIOpenRowset</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI599"></A>Command </td>
+<td  rowspan="1"  ><A NAME="TI600"></A>ICommandTextICommandProperties</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI601"></A>MultipleResults</td>
+<td  rowspan="1"  ><A NAME="TI602"></A>IMultipleResults</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI603"></A>RowSet </td>
+<td  rowspan="1"  ><A NAME="TI604"></A>IRowsetIAccessorIColumnsInfoIRowsetInfo
+(only required if DBTYPE_HCHAPTER is supported) </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI605"></A>Error</td>
+<td  rowspan="1"  ><A NAME="TI606"></A>IErrorInfoIErrorRecords</td>
+</tr>
+</table>
+

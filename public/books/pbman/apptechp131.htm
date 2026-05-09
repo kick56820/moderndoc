@@ -1,0 +1,71 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Sending Windows messages</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp130.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp132.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF369572790"></A><h1>Sending Windows messages</h1>
+<A NAME="TI4259"></A><p>To send Windows messages to a window that you created in PowerBuilder
+or to an external window (such as a window you created using an
+external function), use the <b>Post</b> or <b>Send</b> function.
+To trigger a PowerBuilder event, use the EVENT syntax or the <b>TriggerEvent</b> or <b>PostEvent</b> function.</p>
+<A NAME="TI4260"></A><h4>Using Post and Send</h4>
+<A NAME="TI4261"></A><p>You usually use the <b>Post</b> and <b>Send</b> functions
+to trigger Windows events that are not PowerBuilder-defined events.
+You can include these functions in a script for the window in which
+the event will be triggered or in any script in the application.
+         </p>
+<A NAME="TI4262"></A><p><b>Post</b> is asynchronous: the message is posted
+to the message queue for the window or control. <b>Send</b> is
+synchronous: the window or control receives the message immediately.</p>
+<A NAME="TI4263"></A><p>As of PowerBuilder 6.0, all events posted by PowerBuilder
+are processed by a separate queue from the Windows system queue.
+PowerBuilder posted messages are processed before Windows posted
+messages. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Obtaining the window's handle</span> <A NAME="TI4264"></A>To obtain the handle of the window, use the <b>Handle</b> function.
+To combine two integers to form the <b>Long</b> value
+of the message, use the <b>Long</b> function. <b>Handle</b> and <b>Long</b> are
+utility functions, which are discussed later in this chapter.</p>
+<A NAME="TI4265"></A><h4>Triggering PowerBuilder events</h4>
+<A NAME="TI4266"></A><p>To trigger a PowerBuilder event, you can use the techniques
+listed in <A HREF="apptechp131.htm#CACBEFEH">Table 22-2</A>.</p>
+<A NAME="CACBEFEH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 22-2: Triggering PowerBuilder events</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4267"></A>Technique</th>
+<th  rowspan="1"  ><A NAME="TI4268"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4269"></A><b>TriggerEvent</b> function</td>
+<td  rowspan="1"  ><A NAME="TI4270"></A>A synchronous function that triggers
+the event immediately in the window or control</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4271"></A><b>PostEvent</b> function</td>
+<td  rowspan="1"  ><A NAME="TI4272"></A>An asynchronous function: the event is
+posted to the event queue for the window or control</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4273"></A>Event call syntax</td>
+<td  rowspan="1"  ><A NAME="TI4274"></A>A method of calling events directly for
+a control using dot notation</td>
+</tr>
+</table>
+<A NAME="TI4275"></A><p>All three methods bypass the messaging queue and are easier
+to code than the <b>Send</b> and <b>Post</b> functions.           </p>
+<p><b>Example</b>   All three statements shown below click the CommandButton <b>cb_OK</b> and
+are in scripts for the window that contains <b>cb_OK</b>.</p>
+<A NAME="TI4276"></A><p>The <b>Send</b> function uses the <b>Handle</b> utility
+function to obtain the handle of the window that contains <b>cb_OK</b>,
+then uses the <b>Long</b> function to combine the handle
+of <b>cb_OK</b> with 0 (<b>BN_CLICK</b>)
+to form a <b>Long</b> that identifies the object and
+the event:<p><PRE> Send(Handle(Parent),273,0,Long(Handle(cb_OK),0))</PRE><PRE> cb_OK.TriggerEvent(Clicked!)</PRE><PRE> cb_OK.EVENT Clicked()</PRE></p>
+<A NAME="TI4277"></A><p>The <b>TriggerEvent</b> function identifies the
+object in which the event will be triggered and then uses the enumerated
+datatype <b>Clicked!</b> to specify the clicked event.</p>
+<A NAME="TI4278"></A><p>The dot notation uses the <b>EVENT</b> keyword
+to trigger the Clicked event. <b>TRIGGER</b> is the
+default when you call an event. If you were posting the clicked event,
+you would use the <b>POST</b> keyword:<p><PRE> Cb_OK.EVENT POST Clicked()</PRE></p>
+

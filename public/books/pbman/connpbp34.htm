@@ -1,0 +1,119 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating the extended attribute system tables in DB2 databases</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp33.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp35.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDFDBI"></A><h1>Creating the extended attribute system tables in DB2 databases</h1>
+<A NAME="TI1214"></A><p>This section describes how PowerBuilder creates the extended
+attribute system tables in your DB2 database to store extended attribute
+information. It then explains how to use the <i>DB2SYSPB.SQL</i> script
+to create the extended attribute system tables outside PowerBuilder.</p>
+<A NAME="TI1215"></A><p>You can use the <i>DB2SYSPB.SQL</i> script if
+you are connecting to the IBM DB2 family of databases through any
+of the following database interfaces:<A NAME="TI1216"></A>
+<ul>
+<li class=fi>ODBC interface </li>
+<li class=ds>Sybase DirectConnect interface
+</li>
+</ul>
+</p>
+<A NAME="CCJBAIEI"></A><h2>Creating the extended attribute system tables</h2>
+<A NAME="TI1217"></A><p>When you create or modify a table in PowerBuilder, the information
+you provide is stored in five system tables in your database. These
+system tables contain extended attribute information such as the
+text to use for labels and column headings, validation rules, display
+formats, and edit styles. (These system tables are different from
+the system tables provided by your DB2 database.)</p>
+<A NAME="TI1218"></A><p>By default, the extended attribute system tables are created
+automatically the first time a user connects to the database using PowerBuilder.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>When you use the DirectConnect interface</span> <A NAME="TI1219"></A>When you use the DirectConnect interface, the extended attribute
+system tables are <i>not</i> created automatically.
+You must run the <i>DB2SYSPB.SQL</i> script to create
+the system tables as described in <A HREF="connpbp34.htm#X-REF354461628">"Using the DB2SYSPB.SQL
+script"</A>. </p>
+<A NAME="TI1220"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To ensure that the extended attribute system tables
+are created with the proper access rights:</p>
+<ol><li class=fi><p>Make sure the first person to connect to
+the database with PowerBuilder has sufficient authority to create
+tables and grant permissions to <b>PUBLIC</b>.</p><p>This means that the first person to connect to the database
+should log in as the database owner, database administrator, system
+user, system administrator, or system owner, as specified by your
+DBMS.</p></li></ol>
+<br><A NAME="X-REF354461628"></A><h2>Using the DB2SYSPB.SQL script</h2>
+<A NAME="TI1221"></A><h4>Why do this</h4>
+<A NAME="TI1222"></A><p>If you are a system administrator at a DB2 site, you might
+prefer to create the extended attribute system tables outside PowerBuilder for
+two reasons:<A NAME="TI1223"></A>
+<ul>
+<li class=fi>The first user to connect
+to the DB2 database using PowerBuilder might not have the proper authority
+to create tables.</li>
+<li class=ds>When PowerBuilder creates the extended attribute system
+tables, it places them in the default tablespace. This might not
+be appropriate for your needs.
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>When using the DirectConnect interface</span> <A NAME="TI1224"></A>You <i>must</i> create the extended attribute
+system tables outside PowerBuilder if you are using the DirectConnect
+interface. You need to decide which database and tablespace should
+store the system tables. You might also want to grant update privileges
+only to specific developers or groups.</p>
+<A NAME="TI1225"></A><h4>What you do</h4>
+<A NAME="TI1226"></A><p>To create the extended attribute system tables, you run the <i>DB2SYSPB.SQL</i> script
+outside PowerBuilder. This script contains <ACRONYM title = "sequel" >SQL</ACRONYM> commands
+that create and initialize the system tables with the table owner
+and tablespace you specify.</p>
+<A NAME="TI1227"></A><h4>Where to find <ACRONYM title = "D B 2 S Y S P B dot sequel" >DB2SYSPB.SQL</ACRONYM></h4>
+<A NAME="TI1228"></A><p>The <i>DB2SYSPB.SQL</i> script is in the <i>Server</i> directory
+on the PowerBuilder CD-ROM. This directory contains server-side
+installation components and is <i>not installed</i> with PowerBuilder on
+your computer. </p>
+<A NAME="TI1229"></A><p>You can access the <i>DB2SYSPB.SQL</i> script
+directly from your computer's CD-ROM drive or
+you can copy it to your computer.</p>
+<A NAME="TI1230"></A><p>Use the following procedure <i>from the database server</i> to
+create the extended attribute system tables in a DB2 database outside PowerBuilder.
+This procedure assumes you are accessing the <i>DB2SYSPB.SQL</i> script
+from the product CD in your computer's CD-ROM drive and
+the drive letter is Z.</p>
+<A NAME="TI1231"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create the extended attribute system tables
+in a DB2 database outside PowerBuilder:</p>
+<ol><li class=fi><p>Log in to the database server or gateway
+as the system administrator.</p></li>
+<li class=ds><p>Insert the PowerBuilder CD-ROM into the computer's
+CD-ROM drive.</p></li>
+<li class=ds><p>Use any text editor to modify <i>Z:\Server\DB2SYSPB.SQL</i> for
+your environment. You can do any of the following:<A NAME="TI1232"></A>
+<ul>
+<li class=fi>Change all instances of PBOwner
+to another name. <br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Specifying SYSIBM is prohibited</span> <A NAME="TI1233"></A>You cannot specify <b>SYSIBM</b> as the table
+owner. This is prohibited by DB2.
+<br>
+</li>
+<li class=ds>Change all instances of database.tablespace to the
+appropriate value.</li>
+<li class=ds>Add appropriate <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+delimiters for the tool you are using to run the script.</li>
+<li class=ds>Remove comments and blank lines if necessary. 
+</li>
+</ul>
+
+                      </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>PBCatalogOwner</span> <A NAME="TI1234"></A>If you changed PBOwner to another name in the <i>DB2SYSPB.SQL</i> script, you
+must specify the new owner name as the value for the PBCatalogOwner
+DBParm parameter in your database profile. For instructions, see
+PBCatalogOwner in the online Help. </p>
+</li>
+<li class=ds><p>Save any changes you made to the <i>DB2SYSPB.SQL</i> script.</p></li>
+<li class=ds><p>Execute the <i>DB2SYSPB.SQL</i> script
+from the database server or gateway using the <ACRONYM title = "sequel" >SQL</ACRONYM> tool
+of your choice.</p></li></ol>
+<br><A NAME="TI1235"></A><A NAME="TI1236"></A><p>This part describes how to establish, manage, and troubleshoot
+database connections. </p>
+

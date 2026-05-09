@@ -1,0 +1,84 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Accessing data in PowerBuilder</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp3.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp5.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF347903822"></A><h1>Accessing data in PowerBuilder</h1>
+<A NAME="TI111"></A><p>There are several ways to access data in the PowerBuilder development environment: <A NAME="TI112"></A>
+<ul>
+<li class=fi>Through one of the standard
+database interfaces such as ODBC, JDBC, ADO.NET, or OLE DB</li>
+<li class=ds>Through one of the native database interfaces
+</li>
+</ul>
+</p>
+<A NAME="TI113"></A><h4>Standard database interfaces</h4>
+<A NAME="TI114"></A><p>A standard database interface communicates with a database
+through a standard-compliant driver (in the case of ODBC and JDBC)
+or data provider (in the case of OLE DB and ADO.NET). The standard-compliant
+driver or data provider translates the abstract function calls defined
+by the standard's API into calls that are understood by
+a specific database. To use a standard interface, you need to install
+the standard's API and a suitable driver or data provider.
+Then, install the standard database interface you want to use to
+access your DBMS by selecting the interface in the PowerBuilder Setup
+program.</p>
+<A NAME="TI115"></A><p>PowerBuilder currently supports the following standard interfaces: <A NAME="TI116"></A>
+<ul>
+<li class=fi>Open Database Connectivity (ODBC)</li>
+<li class=ds>Java Database Connectivity (JDBC)</li>
+<li class=ds>Microsoft's Universal Data Access Component
+OLE DB</li>
+<li class=ds>Microsoft's ADO.NET
+</li>
+</ul>
+</p>
+<A NAME="TI117"></A><h4>Native database interfaces</h4>
+<A NAME="TI118"></A><p>A native database interface communicates with a database through
+a direct connection. It communicates to a database using that database's
+native API. </p>
+<A NAME="TI119"></A><p>To access data through one of the native database interfaces,
+you must first install the appropriate database software on the
+server and client workstations at your site. Then, install the native
+database interface that accesses your DBMS by selecting the interface
+in the PowerBuilder Setup program.</p>
+<A NAME="TI120"></A><p>For example, if you have the appropriate Sybase Adaptive Server&#174; Enterprise server
+and client software installed, you can access the database by installing the
+Adaptive Server Enterprise database interface.</p>
+<A NAME="BGBEBHFA"></A><h4>Loading database interface
+libraries</h4>
+<A NAME="TI121"></A><p>PowerBuilder loads the libraries used by a database interface
+when it connects to the database. PowerBuilder does <i>not</i> automatically
+free the database interface libraries when it disconnects. </p>
+<A NAME="TI122"></A><p>Although memory use is somewhat increased by this technique
+(since the loaded database interface libraries continue to be held
+in memory), the technique improves performance and eliminates problems
+associated with the freeing and subsequent reloading of libraries
+experienced by some database connections.</p>
+<A NAME="TI123"></A><p>If you want PowerBuilder to free database interface libraries
+on disconnecting from the database (as it did prior to PowerBuilder
+8), you can change its default behavior: </p>
+<A NAME="TI124"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI125"></A>To change the default behavior
+for</th>
+<th  rowspan="1"  ><A NAME="TI126"></A>Do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI127"></A>Connections in the development environment</td>
+<td  rowspan="1"  ><A NAME="TI128"></A>Select the Free Database Driver Libraries
+On Disconnect check box on the General tab of the System Options
+dialog box</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI129"></A>Runtime connections</td>
+<td  rowspan="1"  ><A NAME="TI130"></A>Set the FreeDBLibraries property of the
+Application object to <b>TRUE</b> on the General tab
+of the Properties view in the Application painter or in a script</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded><ACRONYM title = "E A Server" >EAServer</ACRONYM> components</span> <A NAME="TI131"></A>This behavior cannot be controlled when components are deployed
+to <ACRONYM title = "E A Server" >EAServer</ACRONYM>.</p>
+

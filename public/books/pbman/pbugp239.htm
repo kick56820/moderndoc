@@ -1,0 +1,254 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+The Export/Import Template view for XML</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp238.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp240.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CIHEFAEE"></A><h1>The Export/Import Template view for XML</h1>
+<A NAME="TI8249"></A><p>You define and
+edit templates for export and import in the Export/Import Template
+view for XML in the DataWindow painter. The view uses a tree view to represent
+the template. </p>
+<A NAME="TI8250"></A><p>When you create a new DataWindow object, PowerBuilder displays a default template
+in the Export/Import Template view. You can edit only one
+template at a time in the view, but you can create multiple templates
+and save them with the DataWindow object. Each template is uniquely associated
+with the DataWindow object open in the painter.</p>
+<A NAME="TI8251"></A><p>The default template has one element for each column in the DataWindow object. </p>
+<br><img src="images/extemp5.gif">
+<A NAME="TI8252"></A><h4>Creating, opening, and saving templates</h4>
+<A NAME="TI8253"></A><p>From the pop-up menu for the Export/Import Template
+view (with nothing selected), you can create new templates with
+or without default contents, open an existing template, save the
+current template, or delete the current template. You can only open
+and edit templates that are associated with the current DataWindow object.</p>
+<br><img src="images/exttemp2.gif">
+<A NAME="TI8254"></A><h4>Representing tree view items</h4>
+<A NAME="TI8255"></A><p>Each
+item in the template displays as a single tree view item with an
+image and font color that denotes its type. Elements are represented
+by a yellow icon that resembles a luggage tag. The end tags of elements
+and the markup delimiters used in an XML document do not display.</p>
+<A NAME="TI8256"></A><p><A HREF="pbugp239.htm#CIHCHEJJ">Table 29-1</A> shows
+the icons used in the Export/Import Template view.</p>
+<A NAME="CIHCHEJJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 29-1: Icons used in the Export/Import
+Template view</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8257"></A>Icon</th>
+<th  rowspan="1"  ><A NAME="TI8258"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8259"></A><br><img src="images/icoxml.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI8260"></A>XML declaration or document type declaration</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8261"></A><br><img src="images/icotag.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI8262"></A>Root or child element</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8263"></A><br><img src="images/icogrp.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI8264"></A>Group header element</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8265"></A><br><img src="images/icodw.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI8266"></A>DataWindow column reference</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8267"></A><br><img src="images/icotext.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI8268"></A>Static text control reference</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8269"></A><br><img src="images/icocmp.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI8270"></A>Computed field or DataWindow expression reference</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8271"></A><br><img src="images/icolit.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI8272"></A>Literal text</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8273"></A><br><img src="images/icocmmnt.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI8274"></A>Comment</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8275"></A><br><img src="images/icopi.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI8276"></A>Processing instruction</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8277"></A><br><img src="images/icocdata.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI8278"></A>CDATA section</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8279"></A><br><img src="images/iconest.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI8280"></A>Nested report</td>
+</tr>
+</table>
+<A NAME="CHDBIFAA"></A><h2>Creating templates</h2>
+<A NAME="TI8281"></A><p>To create a template, select the New menu item or the New
+Default menu item from the pop-up menu in the Export/Import
+Template view.</p>
+<A NAME="BABGEGBA"></A><h4>Creating new base templates</h4>
+<A NAME="TI8282"></A><p>The New menu
+item creates a template that is empty except for the XML declaration,
+the root element, and the first element of the row data section, referred
+to as the Detail Start element. The name of the root element is
+the same as the name of the DataWindow object, and the default name for
+the Detail Start element is the name of the root element with <FONT FACE="Courier New">_row</FONT> appended. </p>
+<A NAME="TI8283"></A><p>For example, if the DataWindow object is named <b>d_name</b>,
+the default template has this structure:<p><PRE> &lt;?xml version="1.0"?&gt;<br>&lt;d_name&gt;<br>   &lt;d_name_row&gt;<br>   &lt;/d_name_row&gt;<br>&lt;/d_name&gt;</PRE></p>
+<A NAME="TI8284"></A><h4>Creating new default templates</h4>
+<A NAME="TI8285"></A><p>The New Default menu item creates a template with the same
+contents as the New menu item, as well as a flat structure of child
+elements of the Detail Start element. A child element is created
+for each DataWindow column name, in the order in which the columns
+appear in the <b>SELECT</b> statement, with the exception
+of blob and computed columns. The default tag for the element is
+the column's name. </p>
+<A NAME="TI8286"></A><p>If the names of the column and the control are the same, the
+content of the child element displays with a control reference icon.
+If there is no control name that matches the column name, the content
+of the child element displays using the DataWindow expression icon. For example,
+consider a DataWindow object in which the <b>dept_id</b> column
+is used as a retrieval argument and does not display: </p>
+<br><img src="images/xdw1.gif">
+<A NAME="TI8287"></A><p>The <ACRONYM title = "sequel" >SQL</ACRONYM> syntax is:<p><PRE> SELECT "employee"."dept_id",<br>         "employee"."emp_lname",<br>         "employee"."emp_fname",<br>         "employee"."salary"  <br>   FROM "employee"  <br>   WHERE employee.dept_id = :deptnum<br>ORDER BY "employee"."emp_lname" ASC </PRE></p>
+<A NAME="TI8288"></A><p>In the default template, <b>dept_id</b> uses
+the DataWindow expression icon. All the other columns used the column control
+reference icon.</p>
+<A NAME="TI8289"></A><h2>Saving templates</h2>
+<A NAME="TI8290"></A><p>To save a new
+template, select Save from the pop-up menu in the Export/Import
+Template view, and give the template a name and optionally a comment
+that identifies its use. </p>
+<br><img src="images/tmpsav1.gif">
+<A NAME="TI8291"></A><p>The template is stored inside the DataWindow object in the <ACRONYM title = "pibble" >PBL</ACRONYM>. After saving a template with
+a DataWindow object, you can see its definition in the Source editor for
+the DataWindow object. For example, this is part of the source for a DataWindow that
+has two templates. The templates have required elements only:<p><PRE> export.xml(usetemplate="t_address"<br>   template=(comment="Employee Phone Book"<br>      name="t_phone" xml="&lt;d_emplist&gt;&lt;d_emplist_row<br>      __pbband=~"detail~"/&gt;&lt;/d_emplist&gt;")<br>   template=(comment="Employee Address Book"<br>      name="t_address" xml="&lt;d_emplist&gt;&lt;d_emplist_row<br>      __pbband=~"detail~"/&gt;&lt;/d_emplist&gt;"))</PRE></p>
+<A NAME="BABCHCGE"></A><h2>Header and Detail sections</h2>
+<A NAME="TI8292"></A><p>An XML
+template has a Header section and a Detail section, separated graphically
+by a line across the tree view. </p>
+<A NAME="TI8293"></A><p>The items in the Header section are generated only once when
+the DataWindow is exported to XML, unless the DataWindow is a group DataWindow.
+For group DataWindow objects, you can choose to generate the contents of
+the header section iteratively for each group. For more information,
+see <A HREF="pbugp241.htm#CIHICCJF">"Generating group headers"</A>.</p>
+<A NAME="TI8294"></A><p>The Detail section contains the row data, and is generated
+iteratively for each row in the DataWindow object. </p>
+<br><img src="images/exptemp3.gif">
+<A NAME="CIHBCBFI"></A><h4>The Detail Start element</h4>
+<A NAME="TI8295"></A><p>A line across the Export/Import
+Template view separates the Header section from the Detail section.
+The first element after this line, d_dept_list_row
+in the previous screenshot, is called the Detail Start element. </p>
+<A NAME="TI8296"></A><p>There can be only one Detail Start element, and it must be
+inside the document's root element. By default, the first
+child of the root element is the Detail Start element. It usually
+wraps a whole row, separating columns across rows. When the DataWindow is
+exported to XML, this element and all children and/or siblings
+after it are generated iteratively for each row. Any elements in the
+root element above the separator line are generated only once, unless
+the DataWindow is a group DataWindow and the Iterate Group Headers
+check box has been selected.</p>
+<A NAME="TI8297"></A><p>The Detail Start element can be a nested (or multiply-nested)
+child of an element from the Header section, permitting a nested
+detail. This might be useful for DataStores being packaged for submission
+to external processes, such as B2B, that require company and/or
+document information, date, or other master data preceding the detail.</p>
+<A NAME="TI8298"></A><h4>Moving the separator</h4>
+<A NAME="TI8299"></A><p>You can change the location of the separator line by selecting
+the element that you want as the Detail Start element and selecting
+Starts Detail from its pop-up menu. The separator line is redrawn
+above the new Detail Start element. When you export the data, the
+Detail Start element and the children and siblings after it are
+generated iteratively for each row.</p>
+<A NAME="TI8300"></A><p>If no Detail Start element is specified (that is, if the Starts
+Detail option has been deselected), the template has only a Header
+section. When you export the data, only one iteration of row data
+is generated.</p>
+<A NAME="TI8301"></A><h3>Header section</h3>
+<A NAME="TI8302"></A><p>The Header section can contain the items listed in <A HREF="pbugp239.htm#CIHJFGHF">Table 29-2</A>. Only the root element
+is required:</p>
+<A NAME="CIHJFGHF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 29-2: Items permitted in the Header
+section of an XML document</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8303"></A>Item</th>
+<th  rowspan="1"  ><A NAME="TI8304"></A>Details</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8305"></A>XML declaration</td>
+<td  rowspan="1"  ><A NAME="TI8306"></A>This must be the first item in the tree
+view if it exists. See <A HREF="pbugp240.htm#BABHCBFD">"XML declaration"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8307"></A>Document type declaration</td>
+<td  rowspan="1"  ><A NAME="TI8308"></A>If there is an XML declaration, the document
+type declaration must appear after the XML declaration and any optional
+processing instructions and comments, and before the root element.
+Otherwise, this must be the first item in the tree view. See <A HREF="pbugp240.htm#BABGIGJD">"Document type declaration"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8309"></A>Comments</td>
+<td  rowspan="1"  ><A NAME="TI8310"></A>See <A HREF="pbugp240.htm#BABFJJGA">"Comments"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8311"></A>Processing instructions</td>
+<td  rowspan="1"  ><A NAME="TI8312"></A>See <A HREF="pbugp240.htm#BABEBCGG">"Processing instructions"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8313"></A>Root element (start tag)</td>
+<td  rowspan="1"  ><A NAME="TI8314"></A>See <A HREF="pbugp240.htm#BABCHDIA">"Root element"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8315"></A>Group header elements</td>
+<td  rowspan="1"  ><A NAME="TI8316"></A>See <A HREF="pbugp241.htm#CIHICCJF">"Generating group headers"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8317"></A>Child elements</td>
+<td  rowspan="1"  ><A NAME="TI8318"></A>Child elements in the Header section
+cannot be iterative except in the case of group DataWindows.</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Detail section in root element</span> <A NAME="TI8319"></A>The root element displays in the Header section, but the entire
+content of the Detail section is contained in the root element.</p>
+<A NAME="TI8320"></A><h3>Detail section</h3>
+<A NAME="TI8321"></A><p>The Detail section, which holds the row data, can contain
+the items listed in <A HREF="pbugp239.htm#CIHCEFIF">Table 29-3</A>.</p>
+<A NAME="CIHCEFIF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 29-3: Items permitted in the Detail
+section of an XML document</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8322"></A>Item</th>
+<th  rowspan="1"  ><A NAME="TI8323"></A>Details</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8324"></A>Detail Start element</td>
+<td  rowspan="1"  ><A NAME="TI8325"></A>See <A HREF="pbugp239.htm#CIHBCBFI">"The Detail Start element"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8326"></A>Child or sibling elements to the Detail
+Start element</td>
+<td  rowspan="1"  ><A NAME="TI8327"></A>To add a sibling to the Detail Start
+element, add a child to its parent (the root element by default).</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8328"></A>Control references</td>
+<td  rowspan="1"  ><A NAME="TI8329"></A>These references are in text format and
+can include references to column, text, computed field, and report controls.
+See <A HREF="pbugp240.htm#CIHEFJGA">"Controls"</A>.
+Nested report controls can only be referenced as child elements.
+See <A HREF="pbugp240.htm#CIHHEIFE">"Composite and nested reports"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8330"></A>DataWindow expressions</td>
+<td  rowspan="1"  ><A NAME="TI8331"></A>See <A HREF="pbugp240.htm#BJFEIJIE">"DataWindow expressions"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8332"></A>Literal text</td>
+<td  rowspan="1"  ><A NAME="TI8333"></A>Literal text does not correspond to a
+control in the DataWindow object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8334"></A>Comments</td>
+<td  rowspan="1"  ><A NAME="TI8335"></A>See <A HREF="pbugp240.htm#BABFJJGA">"Comments"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8336"></A>Processing instructions</td>
+<td  rowspan="1"  ><A NAME="TI8337"></A>See <A HREF="pbugp240.htm#BABEBCGG">"Processing instructions"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8338"></A>CDATA sections</td>
+<td  rowspan="1"  ><A NAME="TI8339"></A>See <A HREF="pbugp240.htm#CIHCEACF">"CDATA sections"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8340"></A>Attributes</td>
+<td  rowspan="1"  ><A NAME="TI8341"></A>You can assign attributes to all element
+types. See <A HREF="pbugp240.htm#BJFIEGAA">"Attributes"</A>.</td>
+</tr>
+</table>
+

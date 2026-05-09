@@ -1,0 +1,49 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Security issues</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp173.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp175.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDDJCAC"></A><h1>Security issues</h1>
+<A NAME="TI5774"></A><p>When you develop a component for deployment to COM+,
+you can define roles that determine which users or groups of users
+are authorized to perform specific transactions. Then when you deploy
+the component, you assign roles to specific users in the COM+ Component
+Services tool. </p>
+<A NAME="TI5775"></A><h4>Enabling authorization in the Project painter or
+wizard</h4>
+<A NAME="TI5776"></A><p>When you create a COM/COM+ project using
+a wizard, you can instruct COM+ to check the security credentials
+of any client that calls the component. In the Project painter,
+you can specify checking at both the component and package level
+on the COM+ Component and COM+ Package property
+pages.</p>
+<A NAME="TI5777"></A><p>To ensure that security is enabled, add a role to the COM
+application in the Microsoft Management Console, add users to the
+role, and grant the role to the component.</p>
+<A NAME="TI5778"></A><h4>Programmatic security</h4>
+<A NAME="TI5779"></A><p>PowerBuilder provides functions on the transaction service
+object that you can use in the component to determine programmatically
+whether the caller is authorized to call a specific method. <b>IsSecurityEnabled</b> determines
+whether security is enabled for the component. <b>IsCallerInRole</b> determines
+whether the client process or server process calling a method on
+the component is in a role that is authorized to call it. </p>
+<A NAME="TI5780"></A><h4>Impersonation</h4>
+<A NAME="TI5781"></A><p><b>IsCallerInRole</b> looks at the role of the
+direct caller of the current method. If a client calls a method
+on a component, and that method accesses a database, the access
+rights to the database are determined by the security context of
+the component, not the client. PowerBuilder provides additional
+functions on the transaction service object to enable the component
+to assume the security context of the client before performing an
+operation that the client may not be authorized to perform. <b>ImpersonateClient</b> assumes
+the security context of the client, <b>IsImpersonating</b> determines
+whether the component is running in its client's security
+context, and <b>RevertToSelf</b> restores the component's
+security context.</p>
+

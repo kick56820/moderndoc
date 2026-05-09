@@ -1,0 +1,185 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Manipulating data </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp139.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp141.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJBGABA"></A><h1>Manipulating data </h1>
+<A NAME="TI4298"></A><p>As you work on the database, you often want to look at existing
+data or create some data for testing purposes. You might also want
+to test display formats, validation rules, and edit styles on real
+data.</p>
+<A NAME="TI4299"></A><p>PowerBuilder provides data manipulation for such purposes. With
+data manipulation, you can:<A NAME="TI4300"></A>
+<ul>
+<li class=fi>Retrieve
+and manipulate database information</li>
+<li class=ds>Save the contents of the database in a variety of
+formats (such as Excel, PDF, or XML)
+</li>
+</ul>
+</p>
+<A NAME="TI4301"></A><h2>Retrieving data</h2>
+<A NAME="TI4302"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To retrieve data:</p>
+<ol><li class=fi><p>In the Database painter, select the table or
+database view whose data you want to manipulate.</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI4303"></A>
+<ul>
+<li class=fi>Click
+one of the three Data Manipulation buttons (Grid, Tabular, or Freeform)
+in the PainterBar.</li>
+<li class=ds>Select Data or Edit Data from the Object or pop-up
+menu and choose one of the edit options from the cascading menu
+that displays.
+</li>
+</ul>
+
+                      </p><p>All rows are retrieved and display in the Results view. As
+the rows are being retrieved, the Retrieve button changes to a Cancel
+button. You can click the Cancel button to stop the retrieval.</p></li></ol>
+<br><A NAME="TI4304"></A><p>Exactly what you see in the Results view depends on the formatting
+style you picked. What you see is actually a DataWindow object.
+The formatting style you picked corresponds to a type of DataWindow object (grid,
+tabular, or freeform). In a grid display, you can drag the mouse
+on a column's border to resize the column.</p>
+<A NAME="TI4305"></A><p>This window is in the grid format:</p>
+<br><img src="images/dboutput.gif">
+<A NAME="TI4306"></A><p>Only a few rows of data display at a time. You can use the
+First, Prior, Next, and Last buttons or the pop-up menu to move
+from page to page.</p>
+<A NAME="TI4307"></A><h2>Modifying data</h2>
+<A NAME="TI4308"></A><p>You can add, modify, or delete rows. When you have finished
+manipulating the data, you can apply the changes to the database.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If looking at data from a view</span> <A NAME="TI4309"></A>Some views are logically updatable and others are not. Some
+DBMSs do not allow any updating of views.</p>
+<A NAME="TI4310"></A>For the rules your DBMS follows regarding
+updating of views, see your DBMS documentation.</p>
+<A NAME="TI4311"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify data:</p>
+<ol><li class=fi><p>Do one of the following: <A NAME="TI4312"></A>
+<ul>
+<li class=fi>To modify existing data, tab to a field and enter a new value.</li>
+<li class=ds>To add a row, click the Insert Row button and enter
+data in the new row.</li>
+<li class=ds>To delete a row, click the delete Row button.
+</li>
+</ul>
+
+                      </p><p>When you add or modify data, the data uses the validation
+rules, display formats, and edit styles that you or others have
+defined for the table in the Database painter.</p></li>
+<li class=ds><p>Click the Save Changes button or select Rows&gt;Update to
+apply changes to the database.</p></li></ol>
+<br><A NAME="TI4313"></A><h2>Sorting rows</h2>
+<A NAME="TI4314"></A><p>You can sort the data, but any sort criteria you define are
+for testing only and are not saved with the table or passed to the DataWindow painter.</p>
+<A NAME="TI4315"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To sort the rows:</p>
+<ol><li class=fi><p>Select Rows&gt;Sort from the menu
+bar.</p><p>The Specify Sort Columns dialog box displays.</p></li>
+<li class=ds><p>Drag the columns you want to sort on from the
+Source Data box to the Columns box:</p><br><img src="images/db0021.gif"><br>
+<p>A check box with a check mark in it displays under the Ascending
+heading to indicate that the values will be sorted in ascending
+order. To sort in descending order, clear the check box.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Precedence of sorting</span> <A NAME="TI4316"></A>The order in which the columns display in the Columns box
+determines the precedence of the sorting. For example, in the preceding
+dialog box, rows would be sorted by department ID. Within department
+ID, rows would be sorted by state.</p>
+<A NAME="TI4317"></A>To change the precedence order, drag the column names in the
+Column box into the order you want.</p>
+</li>
+<li class=ds><p>(Optional) Double-click an item in the Columns
+box to specify an expression to sort on.</p><p>The Modify Expression dialog box displays. </p></li>
+<li class=ds><p>Specify the expression.</p><p>For example, if you have two columns, <b>Revenues</b> and <b>Expenses</b>,
+you can sort on the expression <FONT FACE="Courier New">Revenues &#8211; Expenses</FONT>.</p></li>
+<li class=ds><p>Click OK to return to the Specify Sort Columns
+dialog box with the expression displayed.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you change your mind</span> <A NAME="TI4318"></A>You can remove a column or expression from the sorting specification
+by simply dragging it and releasing it outside the Columns box.</p>
+</li>
+<li class=ds><p>When you have specified all the sort columns and
+expressions, click OK.</p></li></ol>
+<br><A NAME="TI4319"></A><h2>Filtering rows</h2>
+<A NAME="TI4320"></A><p>You can limit which rows are displayed by defining a filter.</p>
+<A NAME="TI4321"></A><p>The filters you define are for testing only and are not saved
+with the table or passed to the DataWindow painter.</p>
+<A NAME="TI4322"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To filter the rows:</p>
+<ol><li class=fi><p>Select Rows&gt;Filter from the menu
+bar.</p><p>The Specify Filter dialog box displays.</p></li>
+<li class=ds><p>Enter a boolean expression that PowerBuilder will
+test against each row:</p><br><img src="images/db0022.gif"><br>
+<p>If the expression evaluates to <b>TRUE</b>, the
+row is displayed. You can paste functions, columns, and operators
+in the expression.</p></li>
+<li class=ds><p>Click OK.</p><p>PowerBuilder filters the data. Only rows meeting the filter
+criteria are displayed.</p></li></ol>
+<br><A NAME="TI4323"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To remove the filter:</p>
+<ol><li class=fi><p>Select Rows&gt;Filter from the menu
+bar.</p><p>The Specify Filter dialog box displays, showing the current
+filter.</p></li>
+<li class=ds><p>Delete the filter expression, then click OK.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Filtered rows and updates</span> <A NAME="TI4324"></A>Filtered rows are updated when you update the database.</p>
+<A NAME="TI4325"></A><h2>Viewing row information</h2>
+<A NAME="TI4326"></A><p>You can display information about the data you have retrieved.</p>
+<A NAME="TI4327"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display row information:</p>
+<ol><li class=fi><p>Select Rows&gt;Described from the
+menu bar.</p><p>The Describe Rows dialog box displays showing the number of:</p><p><A NAME="TI4328"></A>
+<ul>
+<li class=fi>Rows that have been
+deleted in the Database painter but not yet deleted from the database</li>
+<li class=ds>Rows displayed in Preview</li>
+<li class=ds>Rows that have been filtered</li>
+<li class=ds>Rows that have been modified in the Database painter but
+not yet modified in the database
+</li>
+</ul>
+</p></li></ol>
+<br><A NAME="TI4329"></A><p>All row counts are zero until you retrieve the data from the
+database or add a new row. The count changes when you modify the
+displayed data or test filter criteria.</p>
+<A NAME="TI4330"></A><h2>Importing data</h2>
+<A NAME="TI4331"></A><p>You can import data from an external source and then save
+the imported data in the database.</p>
+<A NAME="TI4332"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To import data:</p>
+<ol><li class=fi><p>Select Rows&gt;Import from the menu
+bar.</p><p>The Select Import File dialog box displays.</p></li>
+<li class=ds><p>Specify the file from which you want to import
+the data. </p><p>The types of files you can import into the Database painter are
+shown in the Files of Type drop-down list.</p></li>
+<li class=ds><p>Click Open.</p><p>PowerBuilder reads the data from the file. You can click the
+Save Changes button or select Rows&gt;Update to add the new
+rows to the database.</p></li></ol>
+<br><A NAME="TI4333"></A><h2>Printing data</h2>
+<A NAME="TI4334"></A><p>You can print the data displayed by selecting File&gt;Print
+from the menu bar. Before printing, you can also preview the output
+on the screen.</p>
+<A NAME="TI4335"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To preview printed output before printing:</p>
+<ol><li class=fi><p>Select File&gt;Print Preview from
+the menu bar.</p><p>Preview displays the data as it will print. To display rulers
+around the page borders in Print Preview, select File&gt;Print
+Preview Rulers.</p></li>
+<li class=ds><p>To change the magnification used in Print Preview,
+select File&gt;Print Preview Zoom from the menu bar.</p><p>The Zoom dialog box displays.</p></li>
+<li class=ds><p>Select the magnification you want and click OK.</p><p>Preview zooms in or out as appropriate.</p></li>
+<li class=ds><p>When you have finished looking at the print layout,
+select File&gt;Print Preview from the menu bar again.</p></li></ol>
+<br><A NAME="TI4336"></A><h2>Saving data</h2>
+<A NAME="TI4337"></A><p>You can save the displayed data in an external file.</p>
+<A NAME="TI4338"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To save the data in an external file:</p>
+<ol><li class=fi><p>Select File&gt;Save Rows As from
+the menu bar.</p><p>The Save Rows As dialog box displays.</p></li>
+<li class=ds><p>Choose a format for the file. </p><p>You can select from several formats, including Powersoft report
+(PSR), XML, and HTML. </p><p>If you want the column headers saved in the file, select a
+file format that includes headers, such as Excel With Headers. When
+you select a <i>with headers</i> format, the names
+of the database columns (not the column labels) will also be saved
+in the file.</p><p>For more information, see <A HREF="pbugp170.htm#BABFGBED">"Saving data in an external
+file"</A>. </p></li>
+<li class=ds><p>For TEXT, CSV, SQL, HTML, and DIF formats, select
+an encoding for the file.</p><p>You can select ANSI/DBCS, Unicode LE (Little-Endian),
+Unicode BE (Big-Endian), or UTF8.</p></li>
+<li class=ds><p>Name the file and save it.</p><p>PowerBuilder saves all displayed rows in the file; all columns
+in the displayed rows are saved. Filtered rows are not saved.</p></li></ol>
+<br>

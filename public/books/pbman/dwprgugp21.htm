@@ -1,0 +1,82 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Modifying a DataWindow object </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp20.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp22.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299343589"></A><h1>Modifying a DataWindow object </h1>
+<A NAME="TI812"></A><p>During execution, you can modify the appearance and behavior
+of a DataWindow object by doing one of the following:<A NAME="TI813"></A>
+<ul>
+<li class=fi>Changing the values of its
+properties</li>
+<li class=ds>Adding or deleting controls from the DataWindow
+object
+</li>
+</ul>
+</p>
+<A NAME="TI814"></A><h4>Changing property values</h4>
+<A NAME="TI815"></A><p>You can use the Modify method or a property expression to
+set property values. This lets you change settings that you ordinarily
+specify during development in the DataWindow painter. </p>
+<A NAME="TI816"></A><p>Before changing a property, you might want to get the current
+value and save it in a variable so that you can restore the original
+value later. To obtain information about the current properties
+of a DataWindow object or a control in a DataWindow object, use
+the Describe method or a property expression.</p>
+<A NAME="TI817"></A><h4>Using expressions in property values</h4>
+<A NAME="TI818"></A><p>With some DataWindow properties, you can assign a value through
+an expression that the DataWindow evaluates during execution, instead
+of having to assign a value directly. For example, the
+following statement displays a salary in red if it is less than $12,000,
+and in black otherwise:</p>
+<A NAME="TI819"></A><p><p><PRE> dw_1.Modify("salary.Color &amp;</PRE><PRE>         = '0 ~t if(salary &lt;12000,255,0)' ")</PRE></p>
+<A NAME="TI820"></A><h4>For more information</h4>
+<A NAME="TI821"></A><p>The syntax is different for expressions in
+code versus expressions specified in the DataWindow painter. For
+the correct syntax and information about which properties can be
+assigned expressions, see the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI822"></A><p>For more information about property expressions
+and DataWindow object properties and examples of using Describe
+and Modify methods, see the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI823"></A><h4>Adding and deleting controls within the DataWindow
+object</h4>
+<A NAME="TI824"></A><p>You can also use the Modify method to:<A NAME="TI825"></A>
+<ul>
+<li class=fi><i>Create</i> new objects in a DataWindow
+object<br>
+This lets you add DataWindow controls (such as text, bitmaps,
+and graphic controls) dynamically to the DataWindow object.<br><br>
+For how to get a good idea of the correct
+Create syntax, see <A HREF="dwprgugp22.htm#CAIBIAJF">"Specifying the DataWindow
+object syntax"</A>.<br></li>
+<li class=ds><i>Destroy</i> controls in a DataWindow
+object<br>
+This lets you dynamically remove controls you no longer need.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI826"></A><h4>PowerBuilder tool for easier coding of DataWindow
+syntax</h4>
+<p><b>PowerBuilder only</b>   Included with PowerBuilder is DW Syntax, a tool that makes
+it easy to build the correct syntax for property expressions, Describe, Modify,
+and SyntaxFromSQL statements. You click buttons to specify which properties
+of a DataWindow you want to use, and DW Syntax automatically builds
+the appropriate syntax, which you can copy and paste into your application
+code.</p>
+<A NAME="TI827"></A><p>To access DW Syntax, select File&gt;New and select the
+Tool tab.</p>
+<A NAME="TI828"></A><h4>Viewing DataWindow object properties in PowerBuilder </h4>
+<p><b>PowerBuilder only</b>   You can use the PowerBuilder Browser to get a list of DataWindow
+properties: on the DataWindow tab, select a DataWindow object in
+the left pane and Properties in the right pane. To see the properties
+for a control in a DataWindow object, double-click the DataWindow
+object name, then select the control.</p>
+

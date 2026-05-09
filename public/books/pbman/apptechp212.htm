@@ -1,0 +1,29 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the UDDI Inquiry API</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp211.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp213.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CEGGDDAA"></A><h1>Using the UDDI Inquiry API</h1>
+<A NAME="TI6439"></A><p>The UDDIProxy PowerBuilder extension class enables you to
+search UDDI registries for a Web service that you want to access.
+For a description of this extension class and its methods, see the <i>PowerBuilder
+Extension Reference</i>
+ or the online Help.</p>
+<A NAME="TI6440"></A><h4>Example code</h4>
+<A NAME="TI6441"></A><p>The following is example code using all the methods in the
+UDDIProxy class. It searches an IBM UDDI registry by service name
+(Weather) and business name (IBM), using the same search options
+(case sensitivity and a maximum of 5 rows returned):<p><PRE> uddiproxy proxy</PRE><PRE> int ret</PRE><PRE> proxy = create uddiproxy</PRE><PRE> ret = proxy.setinquiryurl   ("http:/www-3.ibm.com/services/uddi/inquiryapi")</PRE><PRE> ret = proxy.setoption (false, true, 0, 5)</PRE><PRE> int count, count2</PRE><PRE> string businessName[], businessDescription[]</PRE><PRE> string businessKey []</PRE><PRE> string servicename[], servicedescription[]</PRE><PRE> string servicekey [], wsdl [ ]</PRE><PRE> ret = proxy.findService("Weather",count,serviceName, &amp;<br>  serviceDescription, serviceKey, businessName, wsdl)</PRE><PRE> int i, j</PRE><PRE> FOR i = 1 TO count</PRE><PRE>    messagebox(servicename[i], &amp;<br>     servicedescription[i]+servicekey[i]+wsdl[i])</PRE><PRE> NEXT</PRE><PRE> </PRE><PRE> proxy.findbusiness("IBM", count, businessName, &amp;<br>  businessDescription, businessKey)</PRE><PRE> FOR i = 1 TO count</PRE><PRE>    messagebox(businessName[i], &amp;<br>     businessDescription[i] + businessKey[i])</PRE><PRE>   proxy.getbusinessdetail (businessKey [i], count2, &amp;<br>     servicename, servicedescription, servicekey, wsdl)</PRE><PRE>   FOR j = 1 TO count2</PRE><PRE>    messagebox(servicename[j], &amp;<br>     servicedescription[j]+servicekey[j]+wsdl[j])</PRE><PRE>   NEXT</PRE><PRE> NEXT</PRE><PRE> destroy proxy</PRE></p>
+<A NAME="TI6442"></A><h4>Troubleshooting UDDI API calls</h4>
+<A NAME="TI6443"></A><p>You can turn on logging to track down any failures on method
+calls to the UDDIProxy object. The PowerBuilder Java service class
+path must include the <i>log4j.properties</i> configuration
+file to turn on logging. The following is an example of a log configuration
+file for a UDDI search:<p><PRE> #log4j.debug=true</PRE><PRE> #log all level</PRE><PRE> #log4j.rootCategory=DEBUG, lf5</PRE><PRE> #only log com.sybase.powerbuilder.uddi</PRE><PRE> log4j.category.com.sybase.powerbuilder.uddi=DEBUG,     dest2, lf5</PRE><PRE> #dest1</PRE><PRE> #log4j.appender.dest1=org.apache.log4j.ConsoleAppender</PRE><PRE> #log4j.appender.dest1.layout=<br>    org.apache.log4j.PatternLayout</PRE><PRE> #log4j.appender.dest1.layout.ConversionPattern=<br>    %-5p: %-5r: %-5c: %l: %m%n</PRE><PRE> #dest2</PRE><PRE> log4j.appender.dest2=org.apache.log4j.FileAppender</PRE><PRE> log4j.appender.dest2.layout=<br>    org.apache.log4j.PatternLayout</PRE><PRE> log4j.appender.dest2.layout.ConversionPattern=<br>    %-5p: %l: %m%n</PRE><PRE> log4j.appender.dest2.File=c:/mylog.txt</PRE><PRE> #lf5</PRE><PRE> log4j.appender.lf5=<br>    org.apache.log4j.RollingFileAppender</PRE><PRE> log4j.appender.lf5.File=c:/mylog.lf5</PRE><PRE> log4j.appender.lf5.layout=<br>    org.apache.log4j.PatternLayout</PRE><PRE> log4j.appender.lf5.layout.ConversionPattern=<br>    [slf5s.start]%d{DATE}[slf5s.DATE]%n\<br>    %p[slf5s.PRIORITY]%n%x[slf5s.NDC]<br>    %n%t[slf5s.THREAD]%n\%c[slf5s.CATEGORY]<br>    %n%l[slf5s.LOCATION]%n%m[slf5s.MESSAGE]%n%n</PRE><PRE> log4j.appender.lf5.MaxFileSize=500KB</PRE></p>
+

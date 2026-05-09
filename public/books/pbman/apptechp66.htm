@@ -1,0 +1,354 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Working with Transaction objects</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp65.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp67.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF305419270"></A><h1>Working with Transaction objects</h1>
+<A NAME="TI1632"></A><p>PowerBuilder uses a basic concept of database transaction
+processing called <strong>logical unit of work</strong> (<strong>LUW</strong>).
+LUW is synonymous with transaction. A <strong>transaction</strong> is
+a set of one or more <ACRONYM title = "sequel" >SQL</ACRONYM> statements
+that forms an LUW. Within a transaction, all <ACRONYM title = "sequel" >SQL</ACRONYM> statements
+must succeed or fail as one logical entity.</p>
+<A NAME="TI1633"></A><p>There are four PowerScript transaction management statements:<A NAME="TI1634"></A>
+<ul>
+<li class=fi><b>COMMIT</b> </li>
+<li class=ds><b>CONNECT</b> </li>
+<li class=ds><b>DISCONNECT</b> </li>
+<li class=ds><b>ROLLBACK</b> 
+</li>
+</ul>
+</p>
+<A NAME="TI1635"></A><h2>Transaction basics</h2>
+<A NAME="TI1636"></A><h4>CONNECT and DISCONNECT</h4>
+<A NAME="TI1637"></A><p>A successful <b>CONNECT</b> starts a transaction,
+and a <b>DISCONNECT</b> terminates the transaction.
+All <ACRONYM title = "sequel" >SQL</ACRONYM> statements that execute
+between the <b>CONNECT</b> and the <b>DISCONNECT</b> occur
+within the transaction.</p>
+<A NAME="TI1638"></A><p>Before you issue a <b>CONNECT</b> statement, the
+Transaction object must exist and you must assign values to all
+Transaction object properties required to connect to your <b>DBMS</b>.</p>
+<A NAME="TI1639"></A><h4>COMMIT and ROLLBACK</h4>
+<A NAME="TI1640"></A><p>When a <b>COMMIT</b> executes, all changes to
+the database since the start of the current transaction (or since
+the last <b>COMMIT</b> or <b>ROLLBACK</b>)
+are made permanent, and a new transaction is started. When a <b>ROLLBACK</b> executes,
+all changes since the start of the current transaction are undone
+and a new transaction is started.</p>
+<A NAME="TI1641"></A><p>When a transactional component is deployed to <ABBR title = "e a server" >EAServer</ABBR> or COM+, you can use
+the TransactionServer context object to control transactions. See <A HREF="apptechp66.htm#CIHEFDFG">"Transaction server deployment"</A>.</p>
+<A NAME="TI1642"></A><h4>AutoCommit setting</h4>
+<A NAME="TI1643"></A><p>You can issue a <b>COMMIT</b> or <b>ROLLBACK</b> only
+if the AutoCommit property of the Transaction object is set to <b>False</b> (the
+default) and you have not already started a transaction using embedded <ACRONYM title = "sequel" >SQL</ACRONYM>. </p>
+<A NAME="TI1644"></A><p>For more about AutoCommit, see <A HREF="apptechp65.htm#X-REF355513727">"Description of Transaction
+object properties"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Automatic COMMIT when disconnected</span> <A NAME="TI1645"></A>When a transaction is disconnected, PowerBuilder issues a <b>COMMIT</b> statement.</p>
+<A NAME="TI1646"></A><h4>Transaction pooling</h4>
+<A NAME="TI1647"></A><p>To optimize database processing, you can code your PowerBuilder
+application to take advantage of transaction pooling.</p>
+<A NAME="TI1648"></A><p>For information, see <A HREF="apptechp66.htm#X-REF356011932">"Pooling database transactions"</A>.</p>
+<A NAME="CIHEFDFG"></A><h4>Transaction server deployment</h4>
+<A NAME="TI1649"></A><p>Components that you develop in PowerBuilder can participate
+in <ABBR title = "e a server" >EAServer</ABBR> or COM+ transactions.
+You can mark components to indicate that they will provide transaction
+support. When a component provides transaction support, the transaction
+server ensures that the component's database operations execute
+as part of a transaction and that the database changes performed
+by the participating components are all committed or rolled back.
+By defining components to use transactions, you can ensure that
+all work performed by components that participate in a transaction
+occurs as intended.</p>
+<A NAME="TI1650"></A><p>PowerBuilder provides a transaction service context object called TransactionServer
+that gives you access to the transaction state primitives that influence
+whether the transaction server commits or aborts the current transaction.
+COM+ clients can also use the OleTxnObject object to control transactions.
+If you use the TransactionServer context object and set the UseContextObject
+DBParm parameter to <b>Yes</b>, <b>COMMIT</b> and <b>ROLLBACK</b> statements
+called in the Transaction object will result in a database error. </p>
+<A NAME="TI1651"></A><p>By default, the TransactionServer context object is not used.
+Instead you can use <b>COMMIT</b> and <b>ROLLBACK</b> statements
+to manage transactions. In this case, <b>COMMIT</b> is
+interpreted as a <b>SetComplete</b> function and <b>ROLLBACK</b> is
+interpreted as a <b>SetAbort</b> function. </p>
+<A NAME="TI1652"></A><p>For information, see <A HREF="apptechp141.htm#CCJEABBG">"Providing support for transactions"</A> (for <ABBR title = "e a server" >EAServer</ABBR>)
+and <A HREF="apptechp172.htm#CCCAAADD">"Providing support for transactions"</A> (for
+COM+).</p>
+<A NAME="TI1653"></A><h2>The default Transaction object</h2>
+<A NAME="TI1654"></A><h4><ACRONYM title = "sequel c a" >SQLCA</ACRONYM></h4>
+<A NAME="TI1655"></A><p>Since most applications communicate with only one database,
+PowerBuilder provides a global default Transaction object called <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> (<ACRONYM title = "sequel" >SQL</ACRONYM> Communications
+Area).</p>
+<A NAME="TI1656"></A><p>PowerBuilder creates the Transaction object before the application's
+Open event script executes. You can use PowerScript dot notation
+to reference the Transaction object in any script in your application.</p>
+<A NAME="TI1657"></A><p>You can create additional Transaction objects as you need
+them (such as when you are using multiple database connections at
+the same time). But in most cases, <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> is
+the only Transaction object you need.</p>
+<A NAME="TI1658"></A><h4>Example</h4>
+<A NAME="TI1659"></A><p>This simple example uses the default Transaction object <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> to connect to and disconnect
+from an ODBC data source named <b>Sample</b>:<p><PRE> // Set the default Transaction object properties.</PRE><PRE> SQLCA.DBMS="ODBC"</PRE><PRE> SQLCA.DBParm="ConnectString='DSN=Sample'"</PRE><PRE> // Connect to the database.</PRE><PRE> CONNECT USING SQLCA;</PRE><PRE> IF SQLCA.SQLCode &lt; 0 THEN &amp;</PRE><PRE>    MessageBox("Connect Error", SQLCA.SQLErrText,&amp;</PRE><PRE>    Exclamation!)</PRE><PRE> ...</PRE><PRE> // Disconnect from the database.</PRE><PRE> DISCONNECT USING SQLCA;</PRE><PRE> IF SQLCA.SQLCode &lt; 0 THEN &amp;</PRE><PRE>    MessageBox("Disconnect Error", SQLCA.SQLErrText,&amp;</PRE><PRE>       Exclamation!)</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Semicolons are <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+terminators</span> <A NAME="TI1660"></A>When you use embedded <ACRONYM title = "sequel" >SQL</ACRONYM> in
+a PowerBuilder script, all <ACRONYM title = "sequel" >SQL</ACRONYM> statements must
+be terminated with a semicolon (;). You do <i>not</i> use
+a continuation character for multiline <ACRONYM title = "sequel" >SQL</ACRONYM> statements.</p>
+<A NAME="TI1661"></A><h2>Assigning values to the Transaction object</h2>
+<A NAME="TI1662"></A><p>Before you can use a default (<ACRONYM title = "sequel c a" >SQLCA</ACRONYM>)
+or nondefault (user-defined) Transaction object, you must assign
+values to the Transaction object connection properties. To assign
+the values, use PowerScript dot notation.</p>
+<A NAME="TI1663"></A><h4>Example</h4>
+<A NAME="TI1664"></A><p>The following PowerScript statements assign values to the
+properties of <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> required
+to connect to a Sybase Adaptive Server Enterprise database through
+the PowerBuilder Adaptive Server Enterprise database interface: </p>
+<A NAME="TI1665"></A><p><p><PRE> sqlca.DBMS="SYC"</PRE><PRE> sqlca.database="testdb"</PRE><PRE> sqlca.LogId="CKent"</PRE><PRE> sqlca.LogPass="superman"</PRE><PRE> sqlca.ServerName="Dill"</PRE></p>
+<A NAME="CDEDJBEB"></A><h2>Reading values from an external file</h2>
+<A NAME="TI1666"></A><h4>Using external files</h4>
+<A NAME="TI1667"></A><p>Often you want to set the Transaction object values from an
+external file. For example, you might want to retrieve values from
+your PowerBuilder initialization file when you are developing the
+application or from an application-specific initialization file
+when you distribute the application.</p>
+<A NAME="TI1668"></A><h4>ProfileString function</h4>
+<A NAME="TI1669"></A><p>You can use the PowerScript ProfileString function to retrieve
+values from a text file that is structured into sections containing
+variable assignments, like a Windows <i>INI</i> file.
+The PowerBuilder initialization file is such a file, consisting of
+several sections including <i>PB</i>, <i>Application</i>,
+and <i>Database</i>:</p>
+<A NAME="TI1670"></A><p><p><PRE> [PB]</PRE><PRE> <i>variables and their values</i></PRE><PRE> ...</PRE><PRE> [Application]</PRE><PRE> <i>variables and their values</i></PRE><PRE> ...</PRE><PRE> [Database]</PRE><PRE> <i>variables and their values</i></PRE><PRE> ...</PRE></p>
+<A NAME="TI1671"></A><p>The <b>ProfileString</b> function has this syntax:<p><PRE>ProfileString ( <i>file, section, key, default</i> )</PRE></p>
+</p>
+<A NAME="TI1672"></A><h4>Example</h4>
+<A NAME="TI1673"></A><p>This script reads values from an initialization file to set
+the Transaction object to connect to a database. Conditional code
+sets the variable <i>startupfile</i> to the appropriate
+value for each platform: </p>
+<A NAME="TI1674"></A><p><p><PRE> sqlca.DBMS = ProfileString(startupfile, "database",&amp;</PRE><PRE>    "dbms", "")</PRE><PRE> sqlca.database = ProfileString(startupfile,&amp;</PRE><PRE>    "database", "database", "")</PRE><PRE> sqlca.userid = ProfileString(startupfile, "database",&amp;</PRE><PRE>    "userid", "")</PRE><PRE> sqlca.dbpass = ProfileString(startupfile, "database",&amp;</PRE><PRE>    "dbpass", "")</PRE><PRE> sqlca.logid = ProfileString(startupfile, "database",&amp;</PRE><PRE>    "logid", "")</PRE><PRE> sqlca.logpass = ProfileString(startupfile, "database",&amp;</PRE><PRE>    "LogPassWord","")</PRE><PRE> sqlca.servername = ProfileString(startupfile,&amp;</PRE><PRE>    "database", "servername","")</PRE><PRE> sqlca.dbparm = ProfileString(startupfile, "database",&amp;</PRE><PRE>    "dbparm", "")</PRE></p>
+<A NAME="TI1675"></A><h2>Connecting to the database</h2>
+<A NAME="TI1676"></A><p>Once you establish the connection parameters by assigning
+values to the Transaction object properties, you can connect to
+the database using the <ACRONYM title = "sequel" >SQL</ACRONYM> <b>CONNECT</b> statement:<p><PRE> // Transaction object values have been set.</PRE><PRE> CONNECT;</PRE></p>
+<A NAME="TI1677"></A><p>Because <b>CONNECT</b> is a <ACRONYM title = "sequel" >SQL</ACRONYM> statement&#8212;not
+a PowerScript statement&#8212;you need to terminate it with a
+semicolon.</p>
+<A NAME="TI1678"></A><p>If you are using a Transaction object other than <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>, you <i>must</i> include
+the <b>USING TransactionObject</b> clause in the <ACRONYM title = "sequel" >SQL</ACRONYM> syntax: <p><PRE>CONNECT USING <i>TransactionObject</i>;</PRE></p>
+</p>
+<A NAME="TI1679"></A><p>For example:<p><PRE> CONNECT USING ASETrans;</PRE></p>
+<A NAME="CDECDAIH"></A><h2>Using the Preview tab to connect in a PowerBuilder application</h2>
+<A NAME="TI1680"></A><p>The Preview tab page in the Database Profile Setup dialog
+box makes it easy to generate accurate PowerScript connection syntax
+in the development environment for use in your PowerBuilder application
+script. </p>
+<A NAME="TI1681"></A><p>As you complete the Database Profile Setup dialog box, the
+correct PowerScript connection syntax for each selected option is
+generated on the Preview tab. PowerBuilder assigns the corresponding
+DBParm parameter or <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> property
+name to each option and inserts quotation marks, commas, semicolons,
+and other characters where needed. You can copy the syntax you want
+from the Preview tab directly into your script.</p>
+<A NAME="TI1682"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use the Preview tab to connect in a PowerBuilder
+application:</p>
+<ol><li class=fi><p>In the Database Profile Setup dialog box
+for your connection, supply values for basic options (on the Connection
+tab) and additional DBParm parameters and <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> properties
+(on the other tabbed pages) as required by your database interface.</p><p>For information about connection parameters
+for your interface and the values you should supply, click Help.</p></li>
+<li class=ds><p>Click Apply to save your settings without closing
+the Database Profile Setup dialog box.</p></li>
+<li class=ds><p>Click the Preview tab.</p><p>The correct PowerScript connection syntax for each selected
+option displays in the Database Connection Syntax box on the Preview
+tab.</p></li>
+<li class=ds><p>Select one or more lines of text in the Database
+Connection Syntax box and click Copy.</p><p>PowerBuilder copies the selected text to the clipboard. You
+can then paste this syntax into your script, modifying the default
+Transaction object name (<ACRONYM title = "sequel c a" >SQLCA</ACRONYM>)
+if necessary.</p></li>
+<li class=ds><p>Click OK.</p></li></ol>
+<br><A NAME="TI1683"></A><h2>Disconnecting from the database</h2>
+<A NAME="TI1684"></A><p>When your database processing is completed, you disconnect
+from the database using the <ACRONYM title = "sequel" >SQL</ACRONYM> <b>DISCONNECT</b> statement:<p><PRE> DISCONNECT;</PRE></p>
+<A NAME="TI1685"></A><p>If you are using a Transaction object other than <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>, you <i>must</i> include
+the <b>USING TransactionObject</b> clause in the <ACRONYM title = "sequel" >SQL</ACRONYM> syntax: <p><PRE>DISCONNECT USING <i>TransactionObject</i>;</PRE></p>
+</p>
+<A NAME="TI1686"></A><p>For example:<p><PRE> DISCONNECT USING ASETrans;</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Automatic COMMIT when disconnected</span> <A NAME="TI1687"></A>When a transaction is disconnected, PowerBuilder issues a <b>COMMIT</b> statement by
+default.</p>
+<A NAME="TI1688"></A><h2>Defining Transaction objects for multiple database
+connections</h2>
+<A NAME="TI1689"></A><h4>Use one Transaction object per connection</h4>
+<A NAME="TI1690"></A><p>To perform operations in multiple databases at the same time,
+you need to use multiple Transaction objects, one for each database
+connection. You must declare and create the additional Transaction
+objects before referencing them, and you must destroy these Transaction
+objects when they are no longer needed.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Caution</span> <A NAME="TI1691"></A>PowerBuilder creates and destroys <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> automatically.
+Do not attempt to create or destroy it.</p>
+<A NAME="TI1692"></A><h4>Creating the nondefault Transaction object</h4>
+<A NAME="TI1693"></A><p>To create a Transaction object other than <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>, you first declare a variable of
+type transaction:<p><PRE>transaction <i>TransactionObjectName</i></PRE></p>
+</p>
+<A NAME="TI1694"></A><p>You then instantiate the object:<p><PRE><i>TransactionObjectName</i> = CREATE transaction</PRE></p>
+</p>
+<A NAME="TI1695"></A><p>For example, to create a Transaction object named <b>DBTrans</b>,
+code:<p><PRE> transaction DBTrans</PRE><PRE> DBTrans = CREATE transaction</PRE><PRE> // You can now assign property values to DBTrans.</PRE><PRE> DBTrans.DBMS = "ODBC"</PRE><PRE> ...</PRE></p>
+<A NAME="TI1696"></A><h4>Assigning property values</h4>
+<A NAME="TI1697"></A><p>When you assign values to properties of a Transaction object
+that you declare and create in a PowerBuilder script, you <i>must</i> assign
+the values <i>one property at a time</i>, like this:</p>
+<A NAME="TI1698"></A><p><p><PRE> // This code produces correct results.</PRE><PRE> transaction ASETrans</PRE><PRE> ASETrans = CREATE TRANSACTION</PRE><PRE> ASETrans.DBMS = "Sybase"</PRE><PRE> ASETrans.Database = "Personnel"</PRE></p>
+<A NAME="TI1699"></A><p>You <i>cannot</i> assign values by setting the
+nondefault Transaction object equal to <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>,
+like this:<p><PRE> // This code produces incorrect results.</PRE><PRE> transaction ASETrans</PRE><PRE> ASETrans = CREATE TRANSACTION</PRE><PRE> ASETrans = SQLCA <i>// ERROR!</i></PRE></p>
+<A NAME="TI1700"></A><h4>Specifying the Transaction object in <ACRONYM title = "sequel" >SQL</ACRONYM> statements</h4>
+<A NAME="TI1701"></A><p>When a database statement requires a Transaction object, PowerBuilder assumes
+the Transaction object is <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> unless
+you specify otherwise. These <b>CONNECT</b> statements
+are equivalent:<p><PRE> CONNECT;</PRE><PRE> CONNECT USING SQLCA;</PRE></p>
+<A NAME="TI1702"></A><p>However, when you use a Transaction object <i>other</i> than <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>, you <i>must</i> specify
+the Transaction object in the <ACRONYM title = "sequel" >SQL</ACRONYM> statements
+in <A HREF="apptechp66.htm#CIHHFJAA">Table 12-3</A> with
+the <b>USING TransactionObject</b> clause.</p>
+<A NAME="CIHHFJAA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 12-3: <ACRONYM title = "sequel" >SQL</ACRONYM> statements
+that require USING TransactionObject</caption>
+<tr><td  rowspan="1"  ><A NAME="TI1703"></A><b>COMMIT</b></td>
+<td  rowspan="1"  ><A NAME="TI1704"></A><b>INSERT</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1705"></A><b>CONNECT</b></td>
+<td  rowspan="1"  ><A NAME="TI1706"></A><b>PREPARE</b> (dynamic <ACRONYM title = "sequel" >SQL</ACRONYM>)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1707"></A><b>DELETE</b></td>
+<td  rowspan="1"  ><A NAME="TI1708"></A><b>ROLLBACK</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1709"></A><b>DECLARE
+Cursor</b></td>
+<td  rowspan="1"  ><A NAME="TI1710"></A><b>SELECT</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1711"></A><b>DECLARE
+Procedure</b></td>
+<td  rowspan="1"  ><A NAME="TI1712"></A><b>SELECTBLOB</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1713"></A><b>DISCONNECT</b></td>
+<td  rowspan="1"  ><A NAME="TI1714"></A><b>UPDATEBLOB</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1715"></A><b>EXECUTE</b> (dynamic <ACRONYM title = "sequel" >SQL</ACRONYM>)</td>
+<td  rowspan="1"  ><A NAME="TI1716"></A><b>UPDATE</b></td>
+</tr>
+</table>
+<A NAME="TI1717"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a user-defined Transaction object in <ACRONYM title = "sequel" >SQL</ACRONYM> statements:</p>
+<ol><li class=fi><p>Add the following clause to the end of
+any of the <ACRONYM title = "sequel" >SQL</ACRONYM> statements in
+the preceding list: </p><p><p><PRE>USING <i>TransactionObject</i></PRE></p>
+</p><p>For example, this statement uses a Transaction object named <b>ASETrans</b> to connect
+to the database:<p><PRE> CONNECT USING ASETrans;</PRE></p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Always code the Transaction object</span> <A NAME="TI1718"></A>Although specifying the <b>USING TransactionObject</b> clause
+in <ACRONYM title = "sequel" >SQL</ACRONYM> statements is optional
+when you use <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> and required
+when you define your own Transaction object, it is good practice
+to code it for any Transaction object, including <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>. This avoids confusion
+and ensures that you supply <b>USING TransactionObject</b> when
+it is required.</p>
+<A NAME="TI1719"></A><h4>Example</h4>
+<A NAME="TI1720"></A><p>The following statements use the default Transaction object
+(<ACRONYM title = "sequel c a" >SQLCA</ACRONYM>) to communicate with
+an Adaptive Server Anywhere database and a nondefault Transaction object named <b>ASETrans</b> to
+communicate with an Adaptive Server Enterprise database:</p>
+<A NAME="TI1721"></A><p><p><PRE> // Set the default Transaction object properties.</PRE><PRE> SQLCA.DBMS = "ODBC"</PRE><PRE> SQLCA.DBParm = "ConnectString='DSN=Sample'"</PRE><PRE> // Connect to the Adaptive Server Anywhere database.</PRE><PRE> CONNECT USING SQLCA;</PRE><PRE> // Declare the ASE Transaction object.</PRE><PRE> transaction ASETrans</PRE><PRE> // Create the ASE Transaction object.</PRE><PRE> ASETrans = CREATE TRANSACTION</PRE><PRE> // Set the ASE Transaction object properties.</PRE><PRE> ASETrans.DBMS = "Sybase"</PRE><PRE> ASETrans.Database = "Personnel"</PRE><PRE> ASETrans.LogID = "JPL"</PRE><PRE> ASETrans.LogPass = "JPLPASS"</PRE><PRE> ASETrans.ServerName = "SERVER2"</PRE><PRE> </PRE><PRE> // Connect to the ASE database.</PRE><PRE> CONNECT USING ASETrans;</PRE><PRE> // Insert a row into the Adaptive Server Anywhere </PRE><PRE> // database.</PRE><PRE> INSERT INTO CUSTOMER</PRE><PRE> VALUES ( 'CUST789', 'BOSTON' )</PRE><PRE> USING SQLCA;</PRE><PRE> // Insert a row into the ASE database.</PRE><PRE> INSERT INTO EMPLOYEE</PRE><PRE> VALUES ( "Peter Smith", "New York" )</PRE><PRE> USING ASETrans;</PRE><PRE> </PRE><PRE> // Disconnect from the Adaptive Server Anywhere</PRE><PRE> // database.</PRE><PRE> DISCONNECT USING SQLCA;</PRE><PRE> // Disconnect from the ASE database.</PRE><PRE> DISCONNECT USING ASETrans;</PRE><PRE> // Destroy the ASE Transaction object.</PRE><PRE> DESTROY ASETrans</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using error checking</span> <A NAME="TI1722"></A>An actual script would include error checking after the <b>CONNECT</b>, <b>INSERT</b>, and <b>DISCONNECT</b> statements.</p>
+<A NAME="TI1723"></A>For details, see <A HREF="apptechp66.htm#X-REF356210949">"Error handling after
+a <ACRONYM title = "sequel" >SQL</ACRONYM> statement"</A>.</p>
+<A NAME="X-REF356210949"></A><h2>Error handling after a SQL statement</h2>
+<A NAME="TI1724"></A><h4>When to check for errors</h4>
+<A NAME="TI1725"></A><p>You should always test the success or failure code (the <ACRONYM title = "sequel code" >SQLCode</ACRONYM> property of the Transaction
+object) after issuing one of the following statements in a script:<A NAME="TI1726"></A>
+<ul>
+<li class=fi>Transaction management statement (such as <b>CONNECT</b>, <b>COMMIT</b>,
+and <b>DISCONNECT</b>)</li>
+<li class=ds>Embedded or dynamic <ACRONYM title = "sequel" >SQL</ACRONYM>
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Not in DataWindows</span> <A NAME="TI1727"></A>Do <i>not</i> do this type of error checking
+following a retrieval or update made in a DataWindow.</p>
+<A NAME="TI1728"></A>For information about handling errors in DataWindows,
+see the <i>DataWindow Programmer's Guide</i>
+. </p>
+<A NAME="TI1729"></A><h4><ACRONYM title = "sequel code" >SQLCode</ACRONYM> return values</h4>
+<A NAME="TI1730"></A><p><A HREF="apptechp66.htm#CIHIADEA">Table 12-4</A> shows
+the <ACRONYM title = "sequel code" >SQLCode</ACRONYM> return values.</p>
+<A NAME="CIHIADEA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 12-4: <ACRONYM title = "sequel code" >SQLCode</ACRONYM> return
+values</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1731"></A>Value</th>
+<th  rowspan="1"  ><A NAME="TI1732"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1733"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI1734"></A>Success</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1735"></A>100</td>
+<td  rowspan="1"  ><A NAME="TI1736"></A>Fetched row not found</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1737"></A>-1</td>
+<td  rowspan="1"  ><A NAME="TI1738"></A>Error (the statement failed)<A NAME="TI1739"></A><p>Use<ACRONYM title = "sequel er text" > SQLErrText</ACRONYM> or <ACRONYM title = "sequel d b code" >SQLDBCode</ACRONYM> to obtain the
+details.</p></td>
+</tr>
+</table>
+<A NAME="TI1740"></A><h4>Using <ACRONYM title = "sequel er text" >SQLErrText</ACRONYM> and <ACRONYM title = "sequel d b code" >SQLDBCode</ACRONYM></h4>
+<A NAME="TI1741"></A><p>The string <ACRONYM title = "sequel er text" >SQLErrText</ACRONYM> in
+the Transaction object contains the database vendor-supplied
+error message. The long named <ACRONYM title = "sequel d b code" >SQLDBCode</ACRONYM> in
+the Transaction object contains the database vendor-supplied status
+code. You can reference these variables in your script. </p>
+<p><b>Example</b>   To display a message box containing the DBMS error number
+and message if the connection fails, code the following:</p>
+<A NAME="TI1742"></A><p><p><PRE> CONNECT USING SQLCA;</PRE><PRE> IF SQLCA.SQLCode = -1 THEN</PRE><PRE>    MessageBox("SQL error " + String(SQLCA.SQLDBCode),&amp;</PRE><PRE>    SQLCA.SQLErrText )</PRE><PRE> END IF</PRE></p>
+<A NAME="X-REF356011932"></A><h2>Pooling database transactions</h2>
+<A NAME="TI1743"></A><h4>Transaction pooling</h4>
+<A NAME="TI1744"></A><p>To optimize database processing, an application can pool database transactions. <strong>Transaction
+pooling</strong> maximizes database throughput while controlling
+the number of database connections that can be open at one time. When
+you establish a transaction pool, an application can reuse connections made
+to the same data source.</p>
+<A NAME="TI1745"></A><h4>How it works</h4>
+<A NAME="TI1746"></A><p>When an application connects to a database <i>without
+using transaction pooling</i>, PowerBuilder physically terminates
+each database transaction for which a <b>DISCONNECT</b> statement
+is issued. </p>
+<A NAME="TI1747"></A><p><i>When transaction pooling is in effect</i>,
+PowerBuilder logically terminates the database connections and commits
+any database changes, but does not physically remove them. Instead,
+the database connections are kept open in the transaction pool so
+that they can be reused for other database operations.</p>
+<A NAME="TI1748"></A><h4>When to use it</h4>
+<A NAME="TI1749"></A><p>Transaction pooling can enhance the performance of an application
+that services a high volume of short transactions to the same data
+source.</p>
+<A NAME="TI1750"></A><h4>How to use it</h4>
+<A NAME="TI1751"></A><p>To establish a transaction pool, you use the <b>SetTransPool</b> function.
+You can code <b>SetTransPool</b> anywhere in your application,
+as long as it is executed before the application connects to the
+database. A logical place to execute <b>SetTransPool</b> is
+in the application Open event. </p>
+<A NAME="TI1752"></A><h4>Example</h4>
+<A NAME="TI1753"></A><p>This statement specifies that up to 16 database connections
+will be supported through this application, and that 12 connections
+will be kept open once successfully connected. When the maximum
+number of connections has been reached, each subsequent connection
+request will wait for up to 10 seconds for a connection in the pool
+to become available. After 10 seconds, the application will return
+an error:<p><PRE> myapp.<i>SetTransPool</i> (12,16,10)</PRE></p>
+<A NAME="TI1754"></A><h4>For more information</h4>
+<A NAME="TI1755"></A><p>For more information about the <b>SetTransPool</b> function,
+see the <i>PowerScript Reference</i>
+.</p>
+

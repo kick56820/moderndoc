@@ -1,0 +1,339 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Building a new user object </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp126.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp128.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF298822780"></A><h1>Building a new user object </h1>
+<A NAME="TI3741"></A><p>This section describes how to build a user object from scratch.
+You use this technique to create user objects that are not based
+on existing user objects.</p>
+<A NAME="TI3742"></A><h2>Creating a new user object</h2>
+<A NAME="TI3743"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new user object:</p>
+<ol><li class=fi><p>Open the New dialog box.</p></li>
+<li class=ds><p>On PB Object tab page, select the kind of user
+object you want to create.</p><p>The five user object choices display at the top of the tab
+page:</p><br><img src="images/uo10.gif"><br>
+</li>
+<li class=ds><p>Click OK.</p><p>What you do next depends on the type of user object you selected.
+For all user objects except Standard Class and Standard Visual,
+the User Object painter opens.</p><p>The remainder of this section describes how to build each
+type of user object.</p></li></ol>
+<br><A NAME="X-REF351800903"></A><h2>Building a custom class user object</h2>
+<A NAME="TI3744"></A><p>On the PB Object tab page of the New dialog box, if you select
+Custom Class and click OK, the User Object painter for custom class
+user objects opens.</p>
+<A NAME="TI3745"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To build the custom class user object:</p>
+<ol><li class=fi><p>Declare functions,
+structures, or variables you need for the user object.</p></li>
+<li class=ds><p>Create and compile scripts for the user object. </p><p>Custom class user objects have built-in constructor and destructor
+events.</p></li>
+<li class=ds><p>Save the user object.</p><p>See <A HREF="pbugp127.htm#BFCCCBHB">"Saving a user object"</A>.</p></li></ol>
+<br><A NAME="CHDCEHHD"></A><h4>Using AutoInstantiate</h4>
+<A NAME="TI3746"></A><p>You can create custom class user objects that are autoinstantiated,
+which provides you with the ability to define methods.</p>
+<A NAME="TI3747"></A><p>Autoinstantiated user objects do not require explicit <b>CREATE</b> or <b>DESTROY</b> statements
+when you use them. They are instantiated when you call them in a script
+and destroyed automatically.</p>
+<A NAME="TI3748"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define an autoinstantiated custom class user
+object:</p>
+<ol><li class=fi><p>In the Properties view, select the AutoInstantiate
+check box.</p></li></ol>
+<br><A NAME="TI3749"></A><p>For more information about autoinstantiation,
+see the <i>PowerScript Reference.</i>
+</p>
+<A NAME="TI3750"></A><h4>Using the <ACRONYM title = "E A Server" >EAServer</ACRONYM> Project
+property</h4>
+<A NAME="TI3751"></A><p>In the Properties view, if you specify an <ACRONYM title = "E A Server" >EAServer</ACRONYM> project that will be
+used to generate an <ACRONYM title = "E A Server" >EAServer</ACRONYM> component
+(a custom class user object with the characteristics needed for
+deployment to <ACRONYM title = "E A Server" >EAServer</ACRONYM>),
+live editing is enabled. When live editing is enabled in the User
+Object painter, PowerBuilder builds the project for an <ACRONYM title = "E A Server" >EAServer</ACRONYM> component each time
+you save the user object.</p>
+<A NAME="TI3752"></A><p>For information about <ACRONYM title = "E A Server" >EAServer</ACRONYM> components
+and live editing, see <i>Application Techniques</i>
+.</p>
+<A NAME="X-REF351800893"></A><h2>Building a standard class user object</h2>
+<A NAME="TI3753"></A><p>On the PB Object tab page of the New dialog box, if you select
+Standard Class and click OK, the Select Standard Class Type dialog
+box displays.</p>
+<A NAME="TI3754"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To build the standard class user object:</p>
+<ol><li class=fi><p>In
+the Select Standard Class Type dialog box, select the built-in system object
+that you want your user object to inherit from and click OK.</p></li>
+<li class=ds><p>Declare functions, structures, or variables you
+need for the user object.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>For a list of properties and functions</span> <A NAME="TI3755"></A>Use the Browser to list the built-in properties inherited
+from the selected system object. Use the Function List view or the
+Browser to list the functions inherited from the selected system
+object.</p>
+</li>
+<li class=ds><p>Declare any user events needed for the user object.</p><p>For information about user events, see <A HREF="pbugp130.htm#CAHCAHDE">"Communicating between a
+window and a user object "</A>.</p></li>
+<li class=ds><p>In the Script view, create and compile scripts
+for the user object. </p><p>Class user objects have built-in constructor and destructor
+events.</p></li>
+<li class=ds><p>Save the user object.</p><p>See <A HREF="pbugp127.htm#BFCCCBHB">"Saving a user object"</A>.</p></li></ol>
+<br><A NAME="X-REF298829552"></A><h2>Building a custom visual user object</h2>
+<A NAME="TI3756"></A><p>On the PB Object tab page of the New dialog box, if you select
+Custom Visual and click OK, the User Object painter for custom visual
+user objects opens. It looks like the Window painter, but the empty
+box that displays in the Layout view is the new custom visual user
+object.</p>
+<A NAME="TI3757"></A><p>Building a custom visual user object is similar to building
+a window, described in <A HREF="pbugp84.htm#CAIDEADB">Chapter 11, "Working with Windows."</A> The views available in the Window painter
+and the User Object painter for custom visual user objects are the
+same.</p>
+<A NAME="TI3758"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To build the custom visual user object:</p>
+<ol><li class=fi><p>Place the controls you want in the custom
+visual user object.</p></li>
+<li class=ds><p>Work with the custom visual user object as you
+would with a window in the Window painter:<A NAME="TI3759"></A>
+<ul>
+<li class=fi>Define the properties of the controls</li>
+<li class=ds>Declare functions, structures, or variables as necessary</li>
+<li class=ds>Declare any events needed for the user object or
+its controls<br>
+For information about user events, see <A HREF="pbugp130.htm#CAHCAHDE">"Communicating between a
+window and a user object "</A>.<br></li>
+<li class=ds>In the Script view, create and compile the scripts
+for the user object or its controls<br>
+You can write scripts for each control in a custom visual
+user object.<br><br>
+For more information on events associated
+with custom visual user objects, see <A HREF="pbugp127.htm#BCACHDFA">"Events in user objects"</A>.<br>
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>Save the user object.</p><p>See <A HREF="pbugp127.htm#BFCCCBHB">"Saving a user object"</A>.</p></li></ol>
+<br><A NAME="X-REF298829563"></A><h2>Building an external visual user object</h2>
+<A NAME="TI3760"></A><p>On the PB Object tab page of the New dialog box, if you select
+External Visual and click OK, the User Object painter for external
+visual user objects opens.</p>
+<A NAME="TI3761"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To build an external visual user object:</p>
+<ol><li class=fi><p>In the Properties view, click the
+Browse button next to the LibraryName box.</p></li>
+<li class=ds><p>In the Select Custom Control DLL dialog box, select
+the DLL that defines the user object and click OK.</p></li>
+<li class=ds><p>In the Properties view, enter the following information,
+as necessary, and click OK:<A NAME="TI3762"></A>
+<ul>
+<li class=fi>The
+class name registered in the DLL<br>
+Information about the class name is usually provided by the
+vendor of the purchased DLL.<br></li>
+<li class=ds>Text in the Text box <br>
+This will be displayed only if the object has a text style
+property.<br></li>
+<li class=ds>Display properties (border and scrollbars)</li>
+<li class=ds>Decimal values for the style bits associated with
+the class<br>
+Information about style bits is usually provided by the vendor
+of the purchased DLL. PowerBuilder will OR these values with the
+values selected in the display properties for the control.<br>
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>Declare any functions, structures, or variables
+you need to declare for the user object.</p><p>You can declare functions, structures, and variables for the
+user object in the Script view. Information about functions is usually
+provided by the vendor of the purchased DLL.</p></li>
+<li class=ds><p>Declare any needed events for the user object.</p><p>For information about user events, see <A HREF="pbugp130.htm#CAHCAHDE">"Communicating between a
+window and a user object "</A>.</p></li>
+<li class=ds><p>In the Script view, create and compile the scripts
+for the user object.</p><p>For more information on events associated
+with external visual user objects, see <A HREF="pbugp127.htm#BCACHDFA">"Events in user objects"</A>. </p></li>
+<li class=ds><p>Save the user object.</p><p>See <A HREF="pbugp127.htm#BFCCCBHB">"Saving a user object"</A>.</p></li></ol>
+<br><A NAME="BABBDCIG"></A><h2>Building a standard visual user object</h2>
+<A NAME="TI3763"></A><p>On the PB Object tab page of the New dialog box, if you select
+Standard Visual and click OK, the Select Standard Visual Type dialog
+box displays.</p>
+<A NAME="TI3764"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To build a standard visual user object:</p>
+<ol><li class=fi><p>In
+the Select Standard Visual Type dialog box, select the PowerBuilder control
+you want to use to build your standard visual user object and click OK.</p><p>The selected control displays in the workspace. Your visual
+user object will have the properties and events associated with
+the PowerBuilder control you are modifying. </p></li>
+<li class=ds><p>Work with the control as you do in the Window
+painter:<A NAME="TI3765"></A>
+<ul>
+<li class=fi>Review the default
+properties and make any necessary changes</li>
+<li class=ds>Declare functions, structures, or variables as necessary<br>
+You can declare these in the Script view.<br></li>
+<li class=ds>Declare any user events needed for the user object<br>
+For information about user events, see <A HREF="pbugp130.htm#CAHCAHDE">"Communicating between a
+window and a user object "</A>.<br></li>
+<li class=ds>Create and compile the scripts for the user object<br>
+Standard visual user objects have the same events as the PowerBuilder
+control you modified to create the object.<br>
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>Save the user object.</p><p>See <A HREF="pbugp127.htm#BFCCCBHB">"Saving a user object"</A>.</p></li></ol>
+<br><A NAME="BCACHDFA"></A><h2>Events in user objects</h2>
+<A NAME="TI3766"></A><p>When you build a user object, you can write scripts for any
+event associated with that user object. </p>
+<A NAME="TI3767"></A><h4>Events in class user objects</h4>
+<A NAME="TI3768"></A><p>Most custom class user objects have only constructor and destructor
+events. Activate and deactivate events are created for the <ACRONYM title = "E A Server" >EAServer</ACRONYM> and COM+ custom class
+user objects that you create using the wizards at the bottom of
+the PB Object page in the New dialog box. For more information,
+see <i>Application Techniques</i>
+.</p>
+<A NAME="TI3769"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 15-1: Events for custom class user objects</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3770"></A>Event</th>
+<th  rowspan="1"  ><A NAME="TI3771"></A>Occurs when</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3772"></A>Constructor</td>
+<td  rowspan="1"  ><A NAME="TI3773"></A>The user object is created</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3774"></A>Destructor</td>
+<td  rowspan="1"  ><A NAME="TI3775"></A>The user object is destroyed</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3776"></A>Activate</td>
+<td  rowspan="1"  ><A NAME="TI3777"></A>The user object is activated in an application
+server (<ACRONYM title = "E A Server" >EAServer</ACRONYM> and COM+ component
+wizards only)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3778"></A>Deactivate</td>
+<td  rowspan="1"  ><A NAME="TI3779"></A>The user object is deactivated in an
+application server (<ACRONYM title = "E A Server" >EAServer</ACRONYM> and
+COM+ component wizards only)</td>
+</tr>
+</table>
+<A NAME="TI3780"></A><p>Standard class user objects have the same events as the PowerBuilder
+system object from which they inherit.</p>
+<A NAME="BCAEBAEE"></A><h4>Events in visual user objects</h4>
+<A NAME="TI3781"></A><p>Standard visual user objects have the same events as the PowerBuilder
+control from which they inherit. Custom and external visual user
+objects have a common set of events.</p>
+<A NAME="TI3782"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 15-2: Events for custom and external visual user objects</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3783"></A>Event</th>
+<th  rowspan="1"  ><A NAME="TI3784"></A>Occurs when</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3785"></A>Constructor</td>
+<td  rowspan="1"  ><A NAME="TI3786"></A>Immediately before the Open event of
+the window and when the user object is dynamically placed in a window</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3787"></A>Destructor</td>
+<td  rowspan="1"  ><A NAME="TI3788"></A>Immediately after the Close event of
+the window and when the user object is dynamically removed from
+a window</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3789"></A>DragDrop</td>
+<td  rowspan="1"  ><A NAME="TI3790"></A>A dragged object is dropped on the user
+object</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3791"></A>DragEnter</td>
+<td  rowspan="1"  ><A NAME="TI3792"></A>A dragged object enters the user object</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3793"></A>DragLeave</td>
+<td  rowspan="1"  ><A NAME="TI3794"></A>A dragged object leaves the user object</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3795"></A>DragWithin</td>
+<td  rowspan="1"  ><A NAME="TI3796"></A>A dragged object is moved within the
+user object</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3797"></A>Help</td>
+<td  rowspan="1"  ><A NAME="TI3798"></A>A user presses the
+F1 key or clicks the context Help button [?] on the
+title bar of the window with which the menu is associated and then
+points and clicks on a menu item</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3799"></A>Other</td>
+<td  rowspan="1"  ><A NAME="TI3800"></A>A Windows message occurs that is not
+a PowerBuilder event</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3801"></A>RButtonDown</td>
+<td  rowspan="1"  ><A NAME="TI3802"></A>The right mouse button is pressed</td>
+</tr>
+</table>
+<A NAME="TI3803"></A><p>For more about drag and drop, see <i>Application
+Techniques</i>
+.</p>
+<A NAME="BFCCCBHB"></A><h2>Saving a user object</h2>
+<A NAME="TI3804"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To save a user object:</p>
+<ol><li class=fi><p>In the User Object painter, select File&gt;Save
+from the menu bar or click the Save button in the painter bar.</p><p>If you have previously saved the user object, PowerBuilder
+saves the new version in the same library and returns you to the
+User Object painter.</p><p>If you have not previously saved the user object, PowerBuilder
+displays the Save User Object dialog box.</p></li>
+<li class=ds><p>Enter a name in the User Objects box.</p><p>For naming considerations, see <A HREF="pbugp127.htm#X-REF355682616">"Naming the user object"</A>.</p></li>
+<li class=ds><p>Enter comments to describe the user object.</p><p>These display in the Select User Object dialog box and in
+the Library painter, and will document the purpose of the user object.</p></li>
+<li class=ds><p>Specify the library in which to save the user
+object.</p><p>To make a user object available to all applications, save
+it in a common library and include the library in the library search
+path for each application.</p></li>
+<li class=ds><p>Click OK to save the user object.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Validation for server components</span> <A NAME="TI3805"></A>In the User Object painter for a custom class user object,
+the Design menu has <ACRONYM title = "E A Server" >EAServer</ACRONYM> Validation
+and COM/COM+ Validation menu items. If you are saving
+an <ACRONYM title = "E A Server" >EAServer</ACRONYM> component or
+a COM/COM+ component and you check the validation
+menu item for the component to enable validation, a check displays
+next to the menu item. When you save the object, you might see some error
+messages.</p>
+<A NAME="TI3806"></A>For information about <ACRONYM title = "E A Server" >EAServer</ACRONYM> validation and COM/COM+ validation,
+see <i>Application Techniques</i>
+.</p>
+<A NAME="X-REF355682616"></A><h3>Naming the user object</h3>
+<A NAME="TI3807"></A><p>A user object name can be any valid PowerBuilder identifier
+up to 40 characters. For information about PowerBuilder identifiers,
+see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI3808"></A><h4>Naming conventions</h4>
+<A NAME="TI3809"></A><p>You should adopt naming conventions to make it easy to understand
+a user object's type and purpose. </p>
+<A NAME="TI3810"></A><p>One convention you could follow is to use <b>u_</b> as
+the prefix for visual user objects and <b>n_</b> as
+the prefix for class (nonvisual) user objects. For standard classes,
+include the standard prefix for the object or control from which
+the class inherits in the name. For external user objects, include <b>ex_</b> in
+the name, and for custom class user objects, include <b>cst_</b> in
+the name. </p>
+<A NAME="TI3811"></A><p><A HREF="pbugp127.htm#CHDGDCFF">Table 15-3</A> shows
+some examples of this convention.</p>
+<A NAME="CHDGDCFF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 15-3: Suggested naming conventions
+for user objects</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3812"></A>Type of user object</th>
+<th  rowspan="1"  ><A NAME="TI3813"></A>Format</th>
+<th  rowspan="1"  ><A NAME="TI3814"></A>Example</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3815"></A>Standard visual</td>
+<td  rowspan="1"  ><A NAME="TI3816"></A><b>u_</b><i>control_purpose</i></td>
+<td  rowspan="1"  ><A NAME="TI3817"></A><b>u_cb_close</b>,
+a CommandButton that closes a window</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3818"></A>Custom visual</td>
+<td  rowspan="1"  ><A NAME="TI3819"></A><b>u_</b><i>purpose</i></td>
+<td  rowspan="1"  ><A NAME="TI3820"></A><b>u_toolbar</b>,
+a toolbar</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3821"></A>External visual</td>
+<td  rowspan="1"  ><A NAME="TI3822"></A><b>u_ex_</b><i>purpose</i></td>
+<td  rowspan="1"  ><A NAME="TI3823"></A><b>u_ex_sound</b>,
+outputs sound</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3824"></A>Standard class</td>
+<td  rowspan="1"  ><A NAME="TI3825"></A><b>n_</b><i>systemobject_purpose</i></td>
+<td  rowspan="1"  ><A NAME="TI3826"></A><b>n_trans_test</b>,
+derived from the Transaction object and used for testing</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3827"></A>Custom class</td>
+<td  rowspan="1"  ><A NAME="TI3828"></A><b>n_cst_</b><i>purpose</i></td>
+<td  rowspan="1"  ><A NAME="TI3829"></A><b>n_cst_commission</b>,
+calculates commissions</td>
+</tr>
+</table>
+<A NAME="TI3830"></A><p>For a list of naming conventions, see <A HREF="pbugp46.htm#CCJDDGHB">"Naming conventions"</A> in <A HREF="pbugp38.htm#CAIDBGGED">Chapter 5, "Working with Targets."</A></p>
+

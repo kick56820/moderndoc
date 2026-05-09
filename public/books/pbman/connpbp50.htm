@@ -1,0 +1,71 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the SQL statement trace utility</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp49.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp51.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CJAJIACJ"></A><h1>Using the SQL statement trace utility</h1>
+<A NAME="TI1666"></A><h4>SQL statement tracing</h4>
+<A NAME="TI1667"></A><p>A separate database trace utility lets you add date and time
+entries to a log file for each SQL statement issued to the database,
+along with the syntax of the SQL statement. By default, this utility
+saves all log entries to a file named <i>PBTRSSQL.log</i> in
+the current Windows directory. You can change the log file location
+and log file name in the registry or in the Database section of
+the <i>PB.INI</i> file in the same way you change
+the trace output file name for the main database trace utility:<p><PRE> [database]</PRE><PRE> DBTraceFile=c:\myApplication\tracesql.log</PRE></p>
+<A NAME="TI1668"></A><p>The registry stirng for the log file name is SqlTraceFile.
+It is located under the HKEY_CURRENT_USER\Software\Sybase\PowerBuilder\10.5\DBTrace key.
+If the registry value is set, the setting in PB.INI is ignored.
+The default file name is used only if both the registry value and
+the PB.INI value are not set.</p>
+<A NAME="TI1669"></A><p>You start the SQL statement trace utility in PowerScript code
+by invoking the driver for the DBMS that you want to use with a
+TRS modifier. You set the driver in the DBMS property of a connection
+object. For example, for the default SQLCA connection object, if
+you wanted to use ODBC with SQL tracing, you would code the following:<p><PRE> SQLCA.DBMS="TRS ODBC"</PRE></p>
+<A NAME="TI1670"></A><p>You can start and stop the SQL statement trace utility in
+PowerScript in the same way you start and stop the main database
+utility: you can start trace logging by setting the DBParm parameter
+to "PBTrace=1" and you can stop trace
+logging by setting the parameter to "PBTrace=0".</p>
+<A NAME="TI1671"></A><p>For more information, see <A HREF="connpbp49.htm#BABCIIGB">"Starting a trace in PowerScript with
+the PBTrace parameter"</A>.</p>
+<A NAME="TI1672"></A><h4>Server-side timestamps</h4>
+<A NAME="TI1673"></A><p>Server-side timestamps can be used instead of client-side
+timestamps if the connecting PowerBuilder database driver supports
+the DBI_GET_SERVER_TIME command type.
+Currently, server-side timestamps are available for the ASE, SYC,
+SYJ, and ODBC (PBASE, PBSYC, PBSYJ, and PBODB) drivers.</p>
+<A NAME="TI1674"></A><p><i>PBTRS105.DLL</i> obtains the date and time
+from the server only once during the database connection processing.
+Each time a new timestamp needs to be generated, it determines the
+number of milliseconds that have transpired since the connection
+was established and computes the new server-side date and time by
+adding the elapsed interval to the initial connection timestamp
+obtained from the server.</p>
+<A NAME="TI1675"></A><h4>Log file headers</h4>
+<A NAME="TI1676"></A><p>Output to the log file is always appended. For ease of reading,
+the <i>PBTRS105.DLL</i> produces a banner inside the
+log file each time a new database connection is established. The
+banner lists the date and time of the database connection using
+the system clock on the client workstation. The DBParms for the
+database connection are listed immediately under the banner. If
+a server timestamp is used for subsequent entries in the log file,
+the statement "Using timestamp from DBMS server" is
+entered immediately under the DBParm listings.</p>
+<A NAME="TI1677"></A><p>When you are running an application with a database trace
+utility, one of the DBParm values should include the DisableBind
+parameter. You should set DisableBind to 1. Otherwise the syntax
+that is logged in the trace output file will contain parameter markers
+instead of human-readable values. </p>
+<A NAME="TI1678"></A><p>The following figure shows a banner from a trace file that
+uses a client-side timestamp in the banner itself, and server-side
+timestamps elsewhere:</p>
+<br><img src="images/timestamp.gif">
+

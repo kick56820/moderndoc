@@ -1,0 +1,887 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Designing DataWindow objects for the Web DataWindow</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp39.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp41.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABDJJHI"></A><h1>Designing DataWindow objects for the Web DataWindow</h1>
+<A NAME="TI1390"></A><p>The Web DataWindow supports most PowerBuilder DataWindow functionality.
+This section describes what features to use to take full advantage of
+the Web DataWindow.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Use default properties of DataWindow column edit styles</span> <A NAME="TI1391"></A>The properties of DataWindow column edit styles default to
+values that optimize their appearance&#8212;for example, radio
+buttons are left aligned. If you must change these style properties,
+the appearance of a column in the Web DataWindow might differ from
+its appearance in the DataWindow painter because the browser manages
+the rendering of HTML controls. You can adjust the appearance of
+the Web DataWindow by repositioning the control or resizing the
+column.</p>
+<A NAME="TI1392"></A><h4>Using existing DataWindow objects</h4>
+<A NAME="TI1393"></A><p>Many existing DataWindow objects work in the Web DataWindow.
+If a DataWindow object uses features that the Web DataWindow does
+not support, then the features are ignored. You can still use the
+DataWindow object if the remaining functionality is acceptable for
+your application. For example: if the DataWindow includes a graph
+control, the graph is ignored; if the DataWindow uses the Graph
+presentation style, the DataWindow object will not be useful.</p>
+<A NAME="TI1394"></A><h4>Supported and unsupported features</h4>
+<A NAME="CHDJGECA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-3: Web DataWindow supported and
+unsupported features</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1395"></A>DataWindow feature</th>
+<th  rowspan="1"  ><A NAME="TI1396"></A>Supported and unsupported
+features</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1397"></A>Presentation styles</td>
+<td  rowspan="1"  ><A NAME="TI1398"></A>All presentation styles except OLE, Graph,
+TreeView, and RichText are supported. Unsupported presentation styles
+retrieve data but display nothing. The Grid presentation style is
+rendered as an HTML table if you use the HTML format, and as a result
+absolute positioning is not supported and the display characteristics
+differ from those of XML and XHTML Web DataWindows.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1399"></A>Nested and composite reports</td>
+<td  rowspan="1"  ><A NAME="TI1400"></A>Supported for the XHTML format only. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1401"></A>Controls</td>
+<td  rowspan="1"  ><A NAME="TI1402"></A>Supported controls: Column, Computed
+Field, Graph, Text, Picture, Button, GroupBox, Rectangle.<A NAME="TI1403"></A><p>These controls are ignored: OLE Object, OLE Database Blob,
+RoundRectangle, Oval, InkPicture.</p><A NAME="TI1404"></A><p>Report controls are supported in XHTML Web DataWindows only.</p><A NAME="TI1405"></A><p>Rectangles cannot be rendered in a Label DataWindow with any
+rendering format when the layer of the Rectangle is foreground,
+unless the height of the DataWindow control is set to a fixed value.</p><A NAME="TI1406"></A><p>The following Rectangle properties are not supported: moveable,
+pointer, resizeable, slideleft, slideup, brush.hatch, pen.style</p><A NAME="TI1407"></A><p>GroupBoxes cannot be rendered in Crosstab and Grid style DataWindows.</p><A NAME="TI1408"></A><p>The following GroupBox properties are not supported: moveable,
+pointer, resizeable, slideleft, slideup, font.charset, font.width.</p><A NAME="TI1409"></A><p>Only horizontal Line controls are supported. The line's
+color property is always rendered, and the width property is rendered
+if the line is solid. Other line styles are displayed as solid lines
+with the default width. Vertical and slanted lines are ignored.</p><A NAME="TI1410"></A><p>For information on:<A NAME="TI1411"></A>
+<ul>
+<li class=fi>Expressions for computed
+fields, see <A HREF="dwprgugp40.htm#BABDEDDF">"Using expressions"</A>.</li>
+<li class=ds>Images for Picture controls, see <A HREF="dwprgugp40.htm#BABCDHIF">"Using Picture controls"</A>.</li>
+<li class=ds>Including valid HTML in a control, see <A HREF="dwprgugp40.htm#BABEEEIG">"Including HTML in a control"</A></li>
+<li class=ds>Button controls and supported actions, see <A HREF="dwprgugp40.htm#BABDHDIG">"Using Button controls "</A>.
+</li>
+</ul>
+</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1412"></A>Retrieving data</td>
+<td  rowspan="1"  ><A NAME="TI1413"></A>Up to 16 retrieval arguments are supported.
+Filtering and sorting are supported by setting properties with the
+Modify method or calling methods on the server component. Sorting
+can also be specified by using a client control method.<A NAME="TI1414"></A><p>User-specified queries using the QueryMode property are not
+supported.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1415"></A>Updating data</td>
+<td  rowspan="1"  ><A NAME="TI1416"></A>Same as the PowerBuilder DataWindow control.
+The DataWindow object must contain editable columns.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1417"></A>Edit styles</td>
+<td  rowspan="1"  ><A NAME="TI1418"></A>All edit styles are supported except
+InkEdit and EditMask, with the exception of the DDCalendar EditMask.
+If the DataWindow uses the EditMask edit style, the styles specified
+are treated as though they were specified as a display format.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1419"></A>DDCalendar EditMask property</td>
+<td  rowspan="1"  ><A NAME="TI1420"></A>The DDCalendar EditMask property option
+allows for separate selections of the calendar month, year, and
+date. This option can be set in a check box on the Edit tab of the
+DataWindow painter Properties view when a Date or DateTime column
+with the EditMask edit style is selected. It can also be set in
+code, as in this example for the <b>birth_date</b> column:<p><PRE> dwEmp.Modify("birth_date.EditMask.DDCalendar='Yes'")</PRE><A NAME="TI1421"></A><p>For more information, see <A HREF="dwprgugp40.htm#CEGFDJHJ">"Using a drop-down calendar "</A>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1422"></A>DropDownDataWindows</td>
+<td  rowspan="1"  ><A NAME="TI1423"></A>A drop-down DataWindow must be in the
+same PBL as the DataWindow in which it is used. Data for drop-down
+DataWindows is retrieved on the server. See <A HREF="dwprgugp40.htm#CEGCGHHI">"Using drop-down DataWindows"</A>. The dddw.lines
+property is not supported in Web pages because the browser controls
+how the DropDownDataWindow displays.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1424"></A>Display formats</td>
+<td  rowspan="1"  ><A NAME="TI1425"></A>Supported, including the use of color.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1426"></A>Validation rules</td>
+<td  rowspan="1"  ><A NAME="TI1427"></A>The expression might be evaluated on
+the client or the server, depending on the expression.<A NAME="TI1428"></A><p>For information, see <A HREF="dwprgugp40.htm#BABDEDDF">"Using expressions"</A>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1429"></A>Property expressions</td>
+<td  rowspan="1"  ><A NAME="TI1430"></A>Evaluated on the server.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1431"></A>Layout</td>
+<td  rowspan="1"  ><A NAME="TI1432"></A>Properties that specify autosizing of
+height and width or allow the user to resize or move controls, such
+as SlideLeft and SlideRight, are ignored.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1433"></A>Properties</td>
+<td  rowspan="1"  ><A NAME="TI1434"></A>The following properties are not supported:<A NAME="TI1435"></A>
+<ul>
+<li class=fi>EditMask.Spin DataWindow object property</li>
+<li class=ds>Sparse (Suppress Repeating Values) DataWindow object
+property</li>
+<li class=ds>RightToLeft DataWindow control property
+</li>
+</ul>
+<A NAME="TI1436"></A><p>The Limit property is not supported in multiline edit columns
+in a Web DataWindow. In JavaScript, the multiline edit column maps
+to a textarea object, and the limit property maps to a maxlength
+attribute, which the textarea object does not support.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1437"></A>Tab order</td>
+<td  rowspan="1"  ><A NAME="TI1438"></A>Supported in HTML 4 and later browsers.</td>
+</tr>
+</table>
+<A NAME="CEGFDJHJ"></A><h4>Using a drop-down calendar </h4>
+<A NAME="TI1439"></A><p>The drop-down calendar DataWindow option is available for
+use on any DataWindow column with an EditMask, and a Date, DateTime,
+or TimeStamp datatype. The DDCalendar EditMask property option allows
+for separate selections of the calendar month, year, and date. This
+option can be set in a check box on the Edit tab of the DataWindow
+painter Properties view when a column with the EditMask edit style
+is selected. It can also be set in code, as in this example for
+the <b>birth_date</b> column:<p><PRE> dw_1.Modify("birth_date.EditMask.DDCalendar='Yes'")</PRE></p>
+<A NAME="TI1440"></A><p>You can set the following properties to control the display
+of the calendar in a script or on the Other page in the Properties
+view for the column:</p>
+<A NAME="TI1441"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI1442"></A>Painter option</th>
+<th  rowspan="1"  ><A NAME="TI1443"></A>Property</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1444"></A>Drop Align Right</td>
+<td  rowspan="1"  ><A NAME="TI1445"></A>Column.Editmask.ddcal_alignright</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1446"></A>CalendarBackColor</td>
+<td  rowspan="1"  ><A NAME="TI1447"></A>Column.Editmask.ddcal_backcolor</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1448"></A>CalendarTextColor</td>
+<td  rowspan="1"  ><A NAME="TI1449"></A>Column.Editmask.ddcal_textcolor</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1450"></A>CalendarTitleBackColor</td>
+<td  rowspan="1"  ><A NAME="TI1451"></A>Column.Editmask.ddcal_titlebackcolor</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1452"></A>CalendarTitleTextColor</td>
+<td  rowspan="1"  ><A NAME="TI1453"></A>Column.Editmask.ddcal_titletextcolor</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1454"></A>CalendarTrailingTextColor</td>
+<td  rowspan="1"  ><A NAME="TI1455"></A>Column.Editmask.ddcal_trailingtextcolor</td>
+</tr>
+</table>
+<A NAME="TI1456"></A><p>To make sure that dates selected with the drop-down calendar
+option are displayed with the desired edit mask for Web DataWindows,
+you should specify that the Client Formatting option be included
+with the static JavaScript generated and deployed for the DataWindow.
+To conserve bandwidth, JavaScript for client formatting is not included
+by default. To include this script, you can select the Client Formatting
+check box on the Web Generation page of the DataWindow Properties
+view. If you do not include script for client formatting, the drop-down
+calendar will use a default edit mask to display the column data
+based on the client machine's default localization settings.</p>
+<A NAME="TI1457"></A><p>To navigate in the drop-down calendar, a user can:<A NAME="TI1458"></A>
+<ul>
+<li class=fi>Click the arrows in the top corners to move from
+month to month.</li>
+<li class=ds>Click the month to display a list of months, then
+click a month to select it.</li>
+<li class=ds>Click the year to display a spin control, then use
+the spin control's arrows to select a year.</li>
+<li class=ds>Click a date to select the date and close the calendar.</li>
+<li class=ds>Press the Esc key to close the calendar without
+changing the selection.
+</li>
+</ul>
+</p>
+<A NAME="BABGCCFE"></A><h2>Web DataWindow properties</h2>
+<A NAME="TI1459"></A><p>This section describes the XML, XHTML, and HTML DataWindow
+object properties for the Web DataWindow. You can set these properties
+in the DataWindow painter or in script.</p>
+<A NAME="TI1460"></A><p>For more detailed information about each property, see the <i>DataWindow Reference</i>
+ or
+the online Help for the property name. For information about how to
+set properties in the DataWindow painter, including shared HTML
+and XHTML properties, see <A HREF="dwprgugp40.htm#BABGBHAH">"Setting Web generation properties
+for the Web DataWindow"</A>.</p>
+<A NAME="BABCGAIA"></A><h4>XML and XHTML <br>data
+properties</h4>
+<A NAME="TI1461"></A><p><A HREF="dwprgugp40.htm#CEGHBHBB">Table 6-4</A> shows
+row data properties for the XML and XHTML Web DataWindow.</p>
+<A NAME="CEGHBHBB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-4: Row properties for the XML and
+XHTML Web DataWindow</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1462"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI1463"></A>User interface fields</th>
+<th  rowspan="1"  ><A NAME="TI1464"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1465"></A>Data.XHTML</td>
+<td  rowspan="1"  ><A NAME="TI1466"></A>Read only, so no user interface field</td>
+<td  rowspan="1"  ><A NAME="TI1467"></A>A string containing the row data content
+of the DataWindow object in XHTML format</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1468"></A>Data.XMLWeb</td>
+<td  rowspan="1"  ><A NAME="TI1469"></A>Read only, so no user interface field</td>
+<td  rowspan="1"  ><A NAME="TI1470"></A>A string containing browser-specific
+JavaScript that performs the XSLT transformation on the browser</td>
+</tr>
+</table>
+<A NAME="TI1471"></A><h4>XML Web DataWindow generation properties</h4>
+<A NAME="TI1472"></A><p><A HREF="dwprgugp40.htm#CEGDDHEJ">Table 6-5</A> lists
+properties supporting XML Web DataWindow generation.</p>
+<A NAME="CEGDDHEJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-5: Properties supporting XML Web
+DataWindow generation</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1473"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI1474"></A>User interface fields</th>
+<th  rowspan="1"  ><A NAME="TI1475"></A>Allows you to</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1476"></A>CSSGen.<i>property</i></td>
+<td  rowspan="1"  ><A NAME="TI1477"></A>Web Generation property page with CSS
+selected as the format to configure: resource base and publish path</td>
+<td  rowspan="1"  ><A NAME="TI1478"></A>Specify the physical path to which a
+generated CSS style sheet is published and the URL indicating the
+location of the style sheet where the property variable is PublishPath
+or ResourceBase.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1479"></A>JSGen.<i>property</i></td>
+<td  rowspan="1"  ><A NAME="TI1480"></A>JavaScript Generation property page with XHTML
+selected as the format to configure: resource base and publish path</td>
+<td  rowspan="1"  ><A NAME="TI1481"></A>Specify the physical path to which generated
+JavaScript (that is included in the final XHTML page) is published
+and the URL indicating the location of the generated JavaScript where
+the property variable is PublishPath or ResourceBase.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1482"></A>XMLGen.<i>property</i></td>
+<td  rowspan="1"  ><A NAME="TI1483"></A>Web Generation property page with XML
+selected as the format to configure: resource base and publish path</td>
+<td  rowspan="1"  ><A NAME="TI1484"></A>Specify the physical path to which XML
+is published and the URL referenced by the JavaScript that transforms
+the XML to XHTML where the property variable is PublishPath or ResourceBase.
+You can also specify whether XML is generated inline to the XSLT transformation
+script and whether paging is performed on the client or server.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1485"></A>XSLTGen.<i>property</i></td>
+<td  rowspan="1"  ><A NAME="TI1486"></A>Web Generation property page with XSLT
+selected as the format to configure: resource base and publish path</td>
+<td  rowspan="1"  ><A NAME="TI1487"></A>Specify the physical path to which the
+generated XSLT style sheet is published and the URL referenced by
+the JavaScript that transforms the XML to XHTML (using the generated XSLT
+stylesheet) where the property variable is PublishPath or ResourceBase.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1488"></A>XHTMLGen.Browser</td>
+<td  rowspan="1"  ><A NAME="TI1489"></A>Web Generation property page with XHTML selected
+as the format to configure: browser</td>
+<td  rowspan="1"  ><A NAME="TI1490"></A>Identify the browser in which XHTML generated
+within an XSLT style sheet is displayed.</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About PublishPath and ResourceBase</span> <A NAME="TI1491"></A>PublishPath is a string that specifies the physical path of
+the Web site folder to which PowerBuilder publishes generated CSS,
+JavaScript, XML, or XSLT. ResourceBase is a string that specifies
+the URL of the generated file.</p>
+<A NAME="TI1492"></A><h4>HTML properties</h4>
+<A NAME="TI1493"></A><p>There are four types of HTML properties you can set in the
+DataWindow painter. The first three apply to the DataWindow object
+itself. The last applies to bitmap, column, computed field, and
+text controls in the DataWindow object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Some properties are now shared but property names are
+unchanged</span> <A NAME="TI1494"></A>In previous versions of PowerBuilder, HTML properties applied
+only to the HTML Web DataWindow. Now some HTML properties are shared
+with the XML Web DataWindow and the XHTML Web DataWindow. The HTML property
+names have not changed.</p>
+<A NAME="TI1495"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-6: HTML properties you can set in the DataWindow painter</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1496"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI1497"></A>User
+interface fields</th>
+<th  rowspan="1"  ><A NAME="TI1498"></A>Allows you to</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1499"></A>HTMLDW<br>(shared)</td>
+<td  rowspan="1"  ><A NAME="TI1500"></A>Web DataWindow check box on the General
+page of the DataWindow object Property view. Selecting this check
+box sets this property to Yes. </td>
+<td  rowspan="1"  ><A NAME="TI1501"></A>View the HTML in a browser using Design&gt;HTML
+Preview (or if you plan to use the DataWindow object with a custom
+Web DataWindow server component). The generic server component automatically sets
+this property to Yes.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1502"></A>HTMLTable<i>.property<br></i>(HTML
+only)</td>
+<td  rowspan="1"  ><A NAME="TI1503"></A>All fields on the HTML Table page of
+the DataWindow object Property view.</td>
+<td  rowspan="1"  ><A NAME="TI1504"></A>Change the display characteristics of
+HTML tables, including border style and cell width and padding.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1505"></A>HTMLGen<i>.property</i><i><br></i>(shared
+by all Web DataWindow formats)</td>
+<td  rowspan="1"  ><A NAME="TI1506"></A>All fields on the Web Generation page
+and the JavaScript Generation page of the DataWindow object Property
+view. (You can also start the JavaScript Generation wizard using
+the Generate File button on the JavaScript Generation page).</td>
+<td  rowspan="1"  ><A NAME="TI1507"></A>Control the number of rows displayed
+on the page, generate HTML for a specific browser or HTML version,
+choose client-side features to incorporate into the page,
+and set up JavaScript caching to enhance performance.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1508"></A>HTML.<i>property <br></i>(shared
+by all Web DataWindow formats)</td>
+<td  rowspan="1"  ><A NAME="TI1509"></A>All fields on the HTML page of the Property view
+for a Column, Computed Field, Text, or Picture control in a DataWindow
+object.</td>
+<td  rowspan="1"  ><A NAME="TI1510"></A>Set up hyperlinks and retrieval arguments
+typically used to create master/detail Web pages, specify
+whether the content of a control should be rendered as HTML, and
+specify any HTML to be appended to a control.</td>
+</tr>
+</table>
+<A NAME="BABGBHAH"></A><h3>Setting Web generation properties for the Web DataWindow</h3>
+<A NAME="TI1511"></A><p>Each of the Web formats (and ultimately the files) that contribute
+to the generation of a Web DataWindow require configuration:<A NAME="TI1512"></A>
+<ul>
+<li class=fi>HTML</li>
+<li class=ds>XHTML</li>
+<li class=ds>CSS</li>
+<li class=ds>XML</li>
+<li class=ds>XSLT</li>
+<li class=ds>JavaScript
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>XHTML and HTML optimized for a browser</span> <A NAME="TI1513"></A>For information about generating XHTML and HTML optimized
+for a specific browser, see <A HREF="dwprgugp40.htm#CEGECDAE">"Specifying Web generation
+for a specific browser"</A></p>
+<A NAME="TI1514"></A><p>The rest of this section describes configuration of HTML,
+XHTML, CSS, XML, and XSLT. For information about JavaScript configuration,
+see <A HREF="dwprgugp40.htm#BABCBICA">"Using JavaScript caching
+for Web DataWindow methods"</A>.</p>
+<A NAME="TI1515"></A><p>To configure a particular Web format, you use the Web Generation
+page in the DataWindow object property view. The Web Generation
+page is controlled by the <i>Format to configure</i> drop-down
+list box at the top of the view that displays the Web formats for
+the Web DataWindow: </p>
+<br><img src="images/frmatsdd.gif">
+<A NAME="TI1516"></A><p>The properties that are shared by all rendering formats display
+in the view by default:</p>
+<br><img src="images/webgenpr.gif">
+<A NAME="TI1517"></A><p>The properties you can set are subject to change based on
+the format you select: </p>
+<A NAME="TI1518"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI1519"></A>Format to configure</th>
+<th  rowspan="1"  ><A NAME="TI1520"></A>Description</th>
+<th  rowspan="1"  ><A NAME="TI1521"></A>Properties</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1522"></A>HTML and XHTML<br>(shared)</td>
+<td  rowspan="1"  ><A NAME="TI1523"></A>Properties that are shared by all Web DataWindow
+rendering formats</td>
+<td  rowspan="1"  ><A NAME="TI1524"></A>Rows per page<br>Generate JavaScript<br>Client
+events<br>Client validation<br>Client computed fields<br>Client
+formatting<br>Client scriptable<br>Generate DDW Frames<br>Object
+name<br>Self link<br>Self link arguments<br>Encode
+self link arguments<br>TabIndex base<br>Paging method</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1525"></A>HTML</td>
+<td  rowspan="1"  ><A NAME="TI1526"></A>HTML-only Web DataWindow properties</td>
+<td  rowspan="1"  ><A NAME="TI1527"></A>Browser<br>HTML version</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1528"></A>XHTML</td>
+<td  rowspan="1"  ><A NAME="TI1529"></A>XHTML-only XML Web DataWindow properties</td>
+<td  rowspan="1"  ><A NAME="TI1530"></A>Browser</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1531"></A>CSS</td>
+<td  rowspan="1"  ><A NAME="TI1532"></A>XML Web DataWindow CSS properties</td>
+<td  rowspan="1"  ><A NAME="TI1533"></A>Resource base<br>Publish path<br>Session
+specific file names</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1534"></A>XML</td>
+<td  rowspan="1"  ><A NAME="TI1535"></A>XML Web DataWindow data and presentation properties</td>
+<td  rowspan="1"  ><A NAME="TI1536"></A>Resource base<br>Publish path<br>Generate
+securely inline<br>Paging method</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1537"></A>XSLT</td>
+<td  rowspan="1"  ><A NAME="TI1538"></A>XML Web DataWindow XSLT properties</td>
+<td  rowspan="1"  ><A NAME="TI1539"></A>Resource base<br>Publish path</td>
+</tr>
+</table>
+<A NAME="TI1540"></A><p>Typically you share style (CSS), layout (XSLT), and control
+definitions (JS) for use by all clients; however, if you use dynamic
+DataWindows customized for specific clients, you can force generation
+of the DataWindow presentation-related document names to
+be specific to each client. You do this by selecting the Session
+Specific CSS, XSLT and JS Filenames check box or by setting the
+CSSGen.SessionSpecific property to "yes". This
+eliminates the possibility of server-side contention for presentation
+formats when the DataWindow generation is specific to the client. </p>
+<A NAME="TI1541"></A><p>For different DataWindows with the same name in the same application,
+you can eliminate the possibility of server-side contention for
+presentation formats and data content by entering a fully qualified
+file name (rather than a path) for the publish path properties of
+those DataWindows. If you do use a file name for a publish path
+property, the file extension must correspond to the type of format you
+are configuring. For example, if you are adding a file name to the
+publish path of the XML format, the file extension must be XML.</p>
+<A NAME="BABEDAII"></A><h2>Controlling the size of generated code</h2>
+<A NAME="TI1542"></A><p>Some supported features increase the size of the generated
+code. If you do not use a feature such as display formatting, validation
+rules, or client-side scripting, you can enhance performance by
+preventing the server component from generating code for the unused
+feature. You can turn these features on or off on the Web Generation
+property page in the DataWindow painter or in a script. For more
+information, see <A HREF="dwprgugp49.htm#BABCBBAI">"Controlling what is generated "</A>.</p>
+<A NAME="TI1543"></A><p>You can also cache client-side methods in JavaScript files
+to reduce the size of the generated code and increase performance
+on both the server and the client. Without JavaScript caching, each
+time a Web DataWindow is rendered in a client browser, JavaScript
+code for DataWindow methods is generated on the server and downloaded
+to the client. When you set DataWindow properties to reference cached
+JavaScript files, the methods defined in the files are not generated
+with the HTML in any Web DataWindow pages that are sent to the page
+server (and client browser). </p>
+<A NAME="TI1544"></A><p>For more information, see <A HREF="dwprgugp40.htm#BABCBICA">"Using JavaScript caching
+for Web DataWindow methods"</A>.</p>
+<A NAME="CEGCGHHI"></A><h2>Using drop-down DataWindows</h2>
+<A NAME="TI1545"></A><p>When you tab to a column that uses the drop-down
+DataWindow edit style, you can use the arrow keys on the keyboard
+to change its value. If you click the column, the drop-down DataWindow
+displays so that you can scroll to a different value and click to
+select it.</p>
+<br><img src="images/dddw02.gif">
+<A NAME="TI1546"></A><p>You set the display properties for the column on the Edit
+page in the Properties view in the DataWindow painter. The Width
+of DropDown property sets the width of the drop-down display to
+a size that is a percentage of the width of the column. For example,
+300 sets the display width to three times the column width.</p>
+<br><img src="images/dddw01.gif">
+<A NAME="TI1547"></A><p>The default behavior uses inline frames (iFrames), which increases
+the volume of markup generated. For DataWindow objects that make
+heavy use of drop-down DataWindows, you can save bandwidth
+by generating the drop-down DataWindows in HTML select
+elements. To do so, clear the Generate DDDW Frames check box on
+the Web Generation page with the Format to Configure option set
+to HTML/XHTML or set the HTMLGen.GenerateDDDWFrames property
+to "No".</p>
+<A NAME="TI1548"></A><p>For information about the HTMLGen.GenerateDDDWFrames property,
+see the <i>DataWindow Reference</i>
+ or online Help.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Netscape and Mozilla browsers</span> <A NAME="TI1549"></A>The HTMLGen.GenerateDDDWFrames property is not supported in
+Netscape or Mozilla browsers. For information on browser support,
+see <A HREF="dwprgugp39.htm#CEGJGJAF">"Browser requirements for
+the XML Web DataWindow"</A>.</p>
+<A NAME="BABIEDHC"></A><h2>Callback and client-side paging support</h2>
+<A NAME="TI1550"></A><p>The PagingMethod property enables you to specify how paging
+requests are handled. The default setting is PostBack, which posts
+each page request back to the server. You can change the setting
+on the Web Generation page in the Properties view with the Format
+to Configure set to HTML/XHTML.</p>
+<A NAME="TI1551"></A><h4>CallBack</h4>
+<A NAME="TI1552"></A><p>CallBack paging uses
+a script callback feature to provide page navigation without posting
+the whole page back to the server. The XML data for the next requested
+page is downloaded as an XML string returned to the callback. A JavaScript
+function on the client collects the data and invokes the client-side XSLT
+processor to transform the data using the XSLT stylesheet that was downloaded
+and cached on the first request. The next page of data is displayed on
+demand. If you set the PagingMethod property to CallBack, you do
+not need to write server-side code and client-side JavaScript to
+take advantage of the script callback feature.</p>
+<A NAME="TI1553"></A><p>For the XML rendering format, the design of the Callback!
+option requires that a reusable XSLT stylesheet be generated so
+that the browser can cache it. The benefit from this requirement
+is that only the XML data for the next requested page need be returned
+by the callback. This XML data is always trivial in size (about
+a 1 to 20 ratio), resulting in significant bandwidth savings. This
+is unlike other implementations, where the entire presentation is
+always regenerated and downloaded again from every callback.The
+generated XSLT stylesheet is not reusable, and therefore cannot
+be cached by the browser, if the DataWindow layout is inconsistent
+page-to-page, or it does not contain a complete first page of data.
+ In these scenarios, the Callback! option defers to PostBack! until
+a stylesheet can be generated that is reusable, and can therefore
+be cached in the browser.</p>
+<A NAME="TI1554"></A><h4>XMLClientSide</h4>
+<A NAME="TI1555"></A><p>When the PagingMethod property is set to XMLClientSide, the
+page takes slightly longer to load on the first request because
+all the data in the result set is pulled down to the client, but
+subsequent paging requests take place entirely on the client. <b>InsertRow</b>, <b>AppendRow</b>,
+and <b>DeleteRow</b> actions take place on the client
+with no postback or callback to the server. However, any computed
+fields in the DataWindow that rely on the <b>RowCount</b> method
+are not reevaluated until the user performs an action such as an <b>Update</b> or <b>Retrieve</b> that
+forces a postback to the server.</p>
+<A NAME="TI1556"></A><p>Client-side paging is available only for the XML rendering
+format and in button actions and client JavaScript paging functions
+of the Web DataWindow client control. </p>
+<A NAME="BABCBICA"></A><h2>Using JavaScript caching for Web DataWindow methods</h2>
+<A NAME="TI1557"></A><p>You can
+use the Web Data Window JavaScript Generator wizard to create JavaScript
+files (at design time) that contain the JavaScript client-side methods. You
+can start the Web Data Window JavaScript Generator wizard by clicking the
+Generate File button in the JavaScript Generation property page
+of the DataWindow property view or from the Tool tab of the New
+dialog box. </p>
+<A NAME="TI1558"></A><h4>Shared JavaScript generation properties</h4>
+<A NAME="TI1559"></A><p>These JavaScript files (HTML/XHTML) are shared by
+all Web formats of the Web DataWindow&#8212;XML, XHTML, and HTML.</p>
+<br><img src="images/jsgenprh.gif">
+<A NAME="TI1560"></A><p>Each pass of the wizard generates only one file&#8212;which
+allows you to combine or separate classes of functions. Once you
+have generated one or more JavaScript files, you can attach them
+to a DataWindow object using the Filename drop-down lists (for Common
+Class, Date Time Management, Number Format, String Format, and User
+Class) in the JavaScript Generation property page.</p>
+<A NAME="TI1561"></A><p>Generating and associating JavaScript files with a DataWindow
+object enables the JavaScript functions to be cached and then reused
+each time the page containing the DataWindow object displays in
+the browser.</p>
+<A NAME="TI1562"></A><h4>XML and XHTML JavaScript generation properties</h4>
+<A NAME="TI1563"></A><p>To configure the JavaScript generation properties that are
+only for the XML Web DataWindow and XHTML Web DataWindow, you select
+XHTML and provide the resource base and the publish path:</p>
+<br><img src="images/jsgenprx.gif">
+<A NAME="TI1564"></A><h4>Improving server-side and client-side performance</h4>
+<A NAME="TI1565"></A><p>When you set new DataWindow properties to reference included
+JavaScript files, the methods defined in the referenced files are
+not generated with the HTML in any Web DataWindow pages that are
+sent to the page server and client browser. Using JavaScript files
+also reduces the size of the HTML page rendered in the browser. </p>
+<A NAME="TI1566"></A><p>With JavaScript caching, you improve performance on the client
+machine as long as the client browser is configured to use cached
+files. With caching enabled, the browser loads the JavaScript files
+from the Web server into its cache, and these become available for
+all the Web DataWindow pages in your application. There is no client-side
+performance gain if the browser does not find the JavaScript files
+in its cache since, in this case, it reloads the files from the
+Web server. </p>
+<A NAME="TI1567"></A><h4>Web DataWindow JavaScript Generator wizard</h4>
+<A NAME="TI1568"></A><p>With the Web DataWindow JavaScript Generator wizard, you can
+generate only one JavaScript file at a time. The wizard gives you
+the option of including all Web DataWindow methods in a single file,
+but you can also restrict the types of methods to include in each
+JavaScript file it generates every time you use the wizard. The
+different method types correspond to the following DataWindow HTML
+properties:</p>
+<A NAME="TI1569"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-7: Methods generated by JavaScript Generator wizard in cached
+files</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1570"></A>HTMLGen.property</th>
+<th  rowspan="1"  ><A NAME="TI1571"></A>Contents of cached file</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1572"></A>CommonJSFile</td>
+<td  rowspan="1"  ><A NAME="TI1573"></A>Methods used by all DataWindows.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1574"></A>DateJSFile</td>
+<td  rowspan="1"  ><A NAME="TI1575"></A>Methods used by DataWindows with date
+and time formatting.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1576"></A>NumberJSFile</td>
+<td  rowspan="1"  ><A NAME="TI1577"></A>Methods used by DataWindows with number
+formatting.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1578"></A>StringJSFile</td>
+<td  rowspan="1"  ><A NAME="TI1579"></A>Methods used by DataWindows with string
+formatting.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1580"></A>UserJSFile</td>
+<td  rowspan="1"  ><A NAME="TI1581"></A>User-defined client-side JavaScript methods&#8212;these cannot
+be generated by the Web DataWindow JavaScript Generator wizard (see <A HREF="dwprgugp40.htm#BABDFIDC">"User-defined JavaScript
+methods"</A>).</td>
+</tr>
+</table>
+<A NAME="TI1582"></A><p>All of these properties are optional. You can set each of
+the properties from the JavaScript Generation page of the DataWindow
+property view, selecting the files you generate with the wizard
+as values. The wizard registers each file it generates, making it
+available for selection from the drop-down lists in the DataWindow
+property view.</p>
+<A NAME="TI1583"></A><h4>Using the ResourceBase property</h4>
+<A NAME="TI1584"></A><p>You must deploy all cached files for your Web application
+to your Web server. You can use relative URLs or path names for
+cached JavaScript files if you specify their location in the HTMLGen.ResourceBase
+property.</p>
+<A NAME="TI1585"></A><p>You set these on the JavaScript Generation page of the DataWindow
+property view in the DataWindow painter. The ResourceBase property
+is also used to specify the location of image files.</p>
+<A NAME="TI1586"></A><p>If you do not set the HTMLGen.ResourceBase property, you must
+include the complete URL in the values of any of the HTMLGen properties
+that you set. In either case, the URLs are rendered as SRC attributes
+inside SCRIPT tags in the pages generated by the Web DataWindow
+component and sent to the client browser.</p>
+<A NAME="TI1587"></A><h4>Setting the properties in script</h4>
+<A NAME="TI1588"></A><p>You can customize the DataWindow HTML Generator component (nv_remote_datawindow
+in <i>PBDWRMT.PBL</i> that ships with PowerBuilder), setting
+the HTMLGen properties in the script for the Generate method. This example
+sets the URL location for included files and names the files for common
+and date-formatted Web DataWindow methods that you deploy to the Web
+server (and that will be downloaded to browser clients the first
+time they connect to the Web site):<p><PRE> ids_datastore.Modify &amp;<br>    ("DataWindow.HTMLGen.ResourceBase=" +&amp;<br>    "'http://www.myserver.com/JavaScripts'")<br>ids_datastore.Modify &amp;<br>    ("DataWindow.HTMLGen.CommonJSFile=" +&amp;<br>    "'dwcomn.js'")<br> <br>ids_datastore.Modify &amp;<br>    ("DataWindow.HTMLGen.DateJSFile=" +&amp;<br>    "'dwdate.js'")</PRE></p>
+<A NAME="BABDFIDC"></A><h4>User-defined JavaScript
+methods</h4>
+<A NAME="TI1589"></A><p>You can also reference a file where you store your own client-side
+JavaScript methods. To use this feature, you must assign the name
+of the file to the DataWindow HTMLGen.UserJSFile property and make
+sure the file is available to your Web server. As for the wizard-generated
+JavaScript files, you can use the HTMLGen.ResourceBase property
+to set the location for the file, or you can include the complete
+path to the file in the property value assignment.</p>
+<A NAME="TI1590"></A><p>You can make this assignment in the DataWindow painter or
+in script. The following script sets the user-defined JavaScript
+file to <i>MyMethods.JS</i>:<p><PRE> ids_datastore.Modify &amp;<br>    ("DataWindow.HTMLGen.UserJSFile=" +&amp;<br>     "'http://my_server.com/JavaScripts/MyMethods.JS'")    </PRE></p>
+<A NAME="TI1591"></A><p>This example will be rendered in the generated HTML page as:<p><PRE> &lt;SCRIPT LANGUAGE="JavaScript" SRC=<br>"http://my_server.com/JavaScripts/MyMethods.JS"&gt;<br>&lt;/SCRIPT&gt;</PRE></p>
+<A NAME="TI1592"></A><p>You can then call client-side methods stored in the <i>MyMethods.JS</i> file
+from the HTML syntax rendered for (or appended to) controls in a
+DataWindow object. For information on generating or appending HTML
+syntax to controls, see <A HREF="dwprgugp40.htm#BABBHDHG">"Rendering HTML for controls
+in an HTML Web DataWindow"</A>.</p>
+<A NAME="BABDEDDF"></A><h2>Using expressions</h2>
+<A NAME="TI1593"></A><p>In general, expressions for validation rules and computed
+fields are translated into JavaScript and evaluated in the client
+browser. For validation of data entry, the user gets immediate feedback
+on the new data. </p>
+<A NAME="TI1594"></A><p>Some expressions have to be evaluated on the server. This
+might be because the evaluation involves all the rows, rather than
+data on the current page only, or because the expression does not
+translate into JavaScript. </p>
+<A NAME="TI1595"></A><p>If an expression includes these functions, it will be evaluated
+on the server:<A NAME="TI1596"></A>
+<ul>
+<li class=fi>Aggregation functions, like
+Sum, Max, Average, First</li>
+<li class=ds>Case function</li>
+<li class=ds>External functions
+</li>
+</ul>
+</p>
+<A NAME="TI1597"></A><p>If you use an aggregation function in a computed field, the
+value is computed on the server and displayed on the client. If
+the user edits data, the value is not updated. If an action occurs
+that reloads the page, the value is computed again based on the
+changed data. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>ProfileInt and ProfileString return default values</span> <A NAME="TI1598"></A>The ProfileInt and ProfileString DataWindow expression functions
+do not examine a user's INI files if you use them in an
+expression evaluated on the client. Doing so would be a security
+violation. They always return the default value.</p>
+<A NAME="TI1599"></A><h2>Using foreign language character sets</h2>
+<A NAME="TI1600"></A><h4>For static HTML pages</h4>
+<A NAME="TI1601"></A><p>If a data source for your Web DataWindow uses foreign characters
+with accent marks, you might need to change the character set for
+the generated Web page to display the characters properly. This
+is also necessary if you expect to update the data with foreign
+character text. You can use the HTML editor to edit the &lt;META&gt; tags
+in the &lt;HEAD&gt; section of the generated page. The
+following example uses the utf8 character set instead of the default
+iso-8859-1 character set:<p><PRE> &lt;META content="text/html; charset=utf-8" http-equiv="Content-Type"&gt;</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Changing the character set in <ABBR title = "e a server" >EAServer</ABBR></span> <A NAME="TI1602"></A>You can also change the character set used by your component
+in <ABBR title = "e a server" >EAServer</ABBR> by setting the com.sybase.jaguar.component.code.set
+property for the component. By default, the component uses the server's
+codeset.</p>
+<A NAME="TI1603"></A><h4>For JSP pages</h4>
+<A NAME="TI1604"></A><p>For JSP pages, you assign the character set for the response
+object in a page directive:<p><PRE> &lt;%@ page contentType="text/html; charset=UTF-8" %&gt;</PRE></p>
+<A NAME="TI1605"></A><p>For the JSP request object, you must assign the character
+set in a server-side <b>setCharacterEncoding</b> call:<p><PRE> &lt;% request.setCharacterEncoding   (contentType="text/html; charset=UTF-8"); %&gt;</PRE></p>
+<A NAME="BABHDJDC"></A><h2>Providing links for data</h2>
+<A NAME="TI1606"></A><p>You can set properties that apply to all Web DataWindow formats
+that cause columns, text, computed fields, and Picture controls
+to be hyperlinks. In the painter, select the control and choose
+the HTML tab in the Properties view. The URL you specify must be
+valid when you deploy your application.</p>
+<A NAME="TI1607"></A><p>Rather than set link information in the painter, you can set
+the HTML properties for columns by calling methods of the server
+component. For information, see the SetColumnLink method in the <i>DataWindow
+Reference</i>
+.</p>
+<A NAME="BABBHDHG"></A><h2>Rendering HTML for controls in an HTML Web DataWindow</h2>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>For HTML Web DataWindow only</span> <A NAME="TI1608"></A>This section applies to the HTML Web DataWindow only. XML
+Web DataWindow and XHTML Web DataWindow features supersede the need
+to perform any of the following actions.</p>
+<A NAME="BABEEEIG"></A><h4>Including HTML in a control</h4>
+<A NAME="TI1609"></A><p>You can include valid HTML in some controls in a DataWindow
+object, including a text control, column, or computed field. To
+render the contents of the control as HTML when the HTML for the
+DataWindow is generated, set the control's ValueIsHTML
+property to TRUE. For example, suppose a text control's
+text property is &lt;I&gt;Name&lt;/I&gt;.
+The following table shows how the text is rendered in the generated
+HTML and displayed in a browser.</p>
+<A NAME="TI1610"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-8: Effect of ValueIsHTML property on rendered text</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1611"></A>ValueIsHTML</th>
+<th  rowspan="1"  ><A NAME="TI1612"></A>Generated HTML source</th>
+<th  rowspan="1"  ><A NAME="TI1613"></A>Output in browser</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1614"></A>TRUE</td>
+<td  rowspan="1"  ><A NAME="TI1615"></A>&lt;I&gt;Name&lt;/I&gt;</td>
+<td  rowspan="1"  ><A NAME="TI1616"></A><i>Name</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1617"></A>FALSE</td>
+<td  rowspan="1"  ><A NAME="TI1618"></A>&amp;lt;I&amp;gt;Name&amp;lt;/I&amp;gt;</td>
+<td  rowspan="1"  ><A NAME="TI1619"></A>&lt;I&gt;Name&lt;/I&gt;</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>No validation</span> <A NAME="TI1620"></A>The HTML Generator does not validate the HTML you include
+in controls in DataWindow objects. If the HTML is not valid, the
+DataWindow might not display correctly.</p>
+<A NAME="TI1621"></A><h4>Appending HTML to a control</h4>
+<A NAME="TI1622"></A><p>The AppendedHTML property enables you to append your own HTML
+to the HTML generated by the HTML Generator component. You can use
+this feature to specify attributes and event actions. The HTML you
+specify for the AppendedHTML property value is appended to generated
+syntax for the rendering of a DataWindow control before the closing
+bracket of the HTML element for that control.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>No validation</span> <A NAME="TI1623"></A>The HTML Generator does not validate the HTML you append to
+controls in DataWindow objects. If the HTML is not valid, the DataWindow
+might not display correctly. </p>
+<A NAME="TI1624"></A><p>You must also make sure not to use an event handler name that
+is already generated for a DataWindow control as a client-side event
+handler. These include:</p>
+<A NAME="TI1625"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-9: Generated event handler names</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1626"></A>DataWindow control</th>
+<th  rowspan="1"  ><A NAME="TI1627"></A>Generated event handler
+names</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1628"></A>Edit, EditMask, DropDownListBox, or DropDownDataWindow</td>
+<td  rowspan="1"  ><A NAME="TI1629"></A>onFocus, onClick, onChange, and onBlur</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1630"></A>CheckBox or RadioButton</td>
+<td  rowspan="1"  ><A NAME="TI1631"></A>onFocus, onClick, and onBlur</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1632"></A>TextBox, Picture with link, or Button</td>
+<td  rowspan="1"  ><A NAME="TI1633"></A>onClick</td>
+</tr>
+</table>
+<A NAME="TI1634"></A><h2>Using Button and Picture controls</h2>
+<A NAME="BABDHDIG"></A><h4>Using Button controls </h4>
+<A NAME="TI1635"></A><p>When a DataWindow object includes a Button control, the button
+becomes an HTML or XHTML button element in the Form element for
+the Web DataWindow client control. The button action becomes JavaScript
+code for the button's Clicked event. You do not need to
+write any code yourself.</p>
+<A NAME="TI1636"></A><p>You can use Button controls for:<A NAME="TI1637"></A>
+<ul>
+<li class=fi><b>Navigation</b>   Buttons with the PageFirst, PageLast, PageNext, and PagePrior
+actions let the user scroll to other rows in the result set.</li>
+<li class=ds><b>Getting and editing data</b>   Buttons with Retrieve, Update, InsertRow, DeleteRow, and AppendRow
+actions let the user maintain data. There must be updatable columns
+in the DataWindow object.
+</li>
+</ul>
+</p>
+<A NAME="TI1638"></A><p>These button actions are not supported and are ignored: </p>
+<A NAME="TI1639"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><td  rowspan="1"  ><A NAME="TI1640"></A>Cancel</td>
+<td  rowspan="1"  ><A NAME="TI1641"></A>QueryClear</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1642"></A>Filter</td>
+<td  rowspan="1"  ><A NAME="TI1643"></A>QueryMode</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1644"></A>Preview</td>
+<td  rowspan="1"  ><A NAME="TI1645"></A>QuerySort</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1646"></A>PreviewWithRulers</td>
+<td  rowspan="1"  ><A NAME="TI1647"></A>SaveRowsAs</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1648"></A>Print</td>
+<td  rowspan="1"  ><A NAME="TI1649"></A>Sort</td>
+</tr>
+</table>
+<A NAME="BABDHCEF"></A><h4>Setting SelfLink properties
+to enable navigation buttons</h4>
+<A NAME="TI1650"></A><p>Button actions send information back to the server, whose
+scripts apply the action to the DataWindow data. Then the Web page
+is reloaded. To complete this loop, you must set the SelfLink property
+for the DataWindow object so that the server knows what page to
+reload.</p>
+<A NAME="TI1651"></A><p>You can set this property in the DataWindow painter on the
+Web Generation tab in the DataWindow properties view, or you can
+set it in a server-side script. The value is the name of the application
+server template or file to be reloaded&#8212;generally, the name
+of the current document. If the DataWindow uses retrieval arguments,
+they must be provided in the SelfLinkArgs property.</p>
+<A NAME="TI1652"></A><p>For more information, see <A HREF="dwprgugp49.htm#BABDECHH">"Passing page-specific data
+to the reloaded page"</A> and the SetSelfLink method in
+the <i>DataWindow Reference</i>
+. For information on
+setting links on a DataWindow object (such as a button or column)
+in the PowerBuilder HTML editor, see the chapter on the Web DataWindow
+DTC in<i> Working with Web and JSP Targets</i>
+.</p>
+<A NAME="TI1653"></A><h4>GIF and JPEG images for buttons</h4>
+<A NAME="TI1654"></A><p>The picture on a button in a DataWindow object can be rendered
+in the Web browser as a JPEG, GIF, or BMP image. Use a JPEG or GIF
+image to ensure that the image will display on all browsers. PowerBuilder
+provides GIF images for commonly used buttons such as Retrieve,
+Update, PageNext, and so on. These pictures are included in the <i>DWACTION.JAR</i> file
+in the Sybase\Shared\PowerBuilder directory. </p>
+<A NAME="TI1655"></A><p>To make the images available to the Web page in the Web browser,
+you must uncompress the JAR file, deploy the image files to the
+page server, and set the HTMLGen.ResourceBase property to the directory
+where the files are located. </p>
+<A NAME="TI1656"></A><h4>Alternative to buttons: use methods of the client
+control</h4>
+<A NAME="TI1657"></A><p>If you want to use an existing DataWindow object that does
+not have Button controls, you can edit the DataWindow object and
+save a new version with Button controls. However, if you are sharing
+DataWindow objects with an existing application and it is not practical
+to edit them, your Web page can include HTML or XHTML buttons that
+call methods of the Web DataWindow client control.</p>
+<A NAME="TI1658"></A><p>There are methods of the client control that correspond to
+each of the supported button actions. For information, see <A HREF="dwprgugp45.htm#BABDAFFA">"Writing client-side scripts"</A>.</p>
+<A NAME="BABCDHIF"></A><h4>Using Picture controls</h4>
+<A NAME="TI1659"></A><p>You can use any image types the browser supports, most commonly
+JPEG or GIF. Use relative paths for ease of deployment. </p>
+<A NAME="TI1660"></A><p>To make sure the images are available to the Web page in the
+browser, place the image files in a directory on the Web server
+and then set the HTMLGen.ResourceBase property to that directory.
+You can do this in the DataWindow painter on the JavaScript Generation
+page of the DataWindow property view, or in a script:<p><PRE> dwMine.Modify("DataWindow.HTMLGen.ResourceBase=</PRE><PRE>         'C:\Sybase\MyApp\Images'")</PRE></p>
+<A NAME="TI1661"></A><p>The ResourceBase property also specifies the location of JavaScript
+include files. See <A HREF="dwprgugp40.htm#BABCBICA">"Using JavaScript caching
+for Web DataWindow methods"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Where to deploy image files</span> <A NAME="TI1662"></A>The image files need to be deployed to the Web server, not
+the component server. If these servers are on different computers,
+the files belong with the templates and Web files of the application,
+not the PBL containing the DataWindow objects. </p>
+<A NAME="CEGECDAE"></A><h2>Specifying Web generation for a specific browser</h2>
+<A NAME="TI1663"></A><h4>About browsers and HTML version</h4>
+<A NAME="TI1664"></A><p>The Web DataWindow can generate XHTML and HTML optimized for different
+browsers. You can use the Browser choice for the XHTML and HTML
+formats on the Web Generation tab of the DataWindow property sheet to
+preview what the DataWindow looks like in different browsers. You can also specify an
+HTML version that the Web generation should use if it does not recognize
+the browser. </p>
+<A NAME="TI1665"></A><p>At runtime, a server-side script should find out what browser
+the current client is using and pass that information to the server
+component. For information, see <A HREF="">"SetBrowser "</A> and the SetBrowser method in the <i>DataWindow Reference</i>
+ or
+online Help.</p>
+<A NAME="BABDABGH"></A><h4>Using absolute positioning
+in Netscape</h4>
+<A NAME="TI1666"></A><p>Netscape implements absolute positioning differently than
+Internet Explorer. To format the DataWindow with absolute positioning
+for Netscape browsers, you must set the DataWindow HTMLGen.NetscapeLayers
+property to <i>true</i>. You can do this in the DataWindow
+painter by selecting the Use Layers for Netscape check box on the
+Web Generation page of the DataWindow property view. Alternatively,
+you can use a DataWindow Modify call in the script for the Generate
+method of the HTML Generator (nv_remote_datawindow
+in <i>PBDWRMT.PBL</i> that ships with PowerBuilder). </p>
+<A NAME="TI1667"></A><p>The default DataWindow HTML Generator generates code for determining
+the browser type and version of the client browser. For Netscape
+browsers earlier than the 4.0 version, the DataWindow is formatted
+as an HTML table, whether or not the NetscapeLayers property is
+set.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Limitations in Netscape</span> <A NAME="TI1668"></A>Certain functionality in a Netscape browser using absolute
+positioning might not be identical to the functionality available
+with Internet Explorer. For example, you cannot tab between DataWindow
+columns using a Netscape browser on an NT machine, although you
+can do this using a Netscape browser on a Solaris machine.</p>
+<A NAME="TI1669"></A><h2>Previewing the DataWindow </h2>
+<A NAME="TI1670"></A><p>To see what the DataWindow will look like in a Web DataWindow
+application, you can use HTML Preview. </p>
+<A NAME="TI1671"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To get an HTML preview of a Web DataWindow:</p>
+<ol><li class=fi><p>On the General property page of the DataWindow
+property sheet, check Web DataWindow. </p><p>If you do not check Web DataWindow, the preview displays the
+data as an HTML table without buttons, validation rules, or other
+scripts.</p></li>
+<li class=ds><p>On the Web Generation page, specify a value for
+Rows per Page.</p><p>This sets the PageSize property for the DataWindow object.
+To display only one row of data, specify 1.</p></li>
+<li class=ds><p>Specify a value for Browser and one for Version
+if you want to preview the DataWindow for a specific client configuration.</p></li>
+<li class=ds><p>Select Design&gt;HTML Preview from the menu
+bar.</p><p>If the menu item is disabled, open the Preview view to enable
+it.</p></li>
+<li class=ds><p>Enter data and see whether validation rules behave
+as expected.</p></li>
+<li class=ds><p>Use your buttons to navigate to other pages.</p></li></ol>
+<br>

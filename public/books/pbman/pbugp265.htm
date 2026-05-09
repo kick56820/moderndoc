@@ -1,0 +1,169 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining an executable application project</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp264.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp266.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDCGGEE"></A><h1>Defining an executable application project</h1>
+<A NAME="TI9852"></A><p>The Project painter for executable applications allows you
+to streamline the generation of executable files and dynamic libraries.
+When you build a project object, you specify the following components
+of your application:<A NAME="TI9853"></A>
+<ul>
+<li class=fi>Executable
+file name</li>
+<li class=ds>Which of the libraries you want to distribute as
+dynamic libraries</li>
+<li class=ds>Which PowerBuilder resource files (if any) should
+be used to build the executable file and the dynamic libraries</li>
+<li class=ds>Which build options you want to use in your project</li>
+<li class=ds>Which code generation options you want to use</li>
+<li class=ds>Version information for your application
+</li>
+</ul>
+</p>
+<A NAME="TI9854"></A><p>If you do not use the Template Application Target wizard to
+create a new application project, you need to define the project
+using a Project wizard or by setting project properties in the Project
+painter. After you have created a project, you might need to update
+it later because your library list has changed or you want to change
+your compilation options.</p>
+<A NAME="TI9855"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define or modify an executable application
+project:</p>
+<ol><li class=fi><p>Select the Application project icon on
+the Project tab in the New dialog box to create a new application
+project, or select File&gt;Open to open an existing application
+project.</p><p>The Project painter workspace displays.</p><br><img src="images/exe02.gif"><br>
+</li>
+<li class=ds><p>Specify or modify options as needed.</p><p>If you opened an existing project or a project
+created using the wizard, the options already selected display in
+the workspace. For information about each option, see <A HREF="pbugp265.htm#CHDDBBDJ">"Executable application project
+options"</A>.</p></li>
+<li class=ds><p>When you have finished defining the project object,
+save the object by selecting File&gt;Save from the menu bar.</p><p>PowerBuilder saves the project as an independent object in
+the specified library. Like other objects, projects are displayed
+in the System Tree and the Library painter.</p></li></ol>
+<br><A NAME="CHDDBBDJ"></A><h4>Executable application project
+options</h4>
+<A NAME="TI9856"></A><p><A HREF="pbugp265.htm#CACIGFDE">Table 34-2</A> describes
+each of the options you can specify in the Project painter for executable
+applications. You can also specify most of these options in the Application
+Project wizard.</p>
+<A NAME="CACIGFDE"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 34-2: Options for executable application
+projects</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9857"></A>Option</th>
+<th  rowspan="1"  ><A NAME="TI9858"></A>What you specify</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9859"></A>Executable File Name</td>
+<td  rowspan="1"  ><A NAME="TI9860"></A>Specify a name for the executable. The
+name must have the extension <i>EXE</i>. If you do
+not want the executable saved to your current directory, click the
+Browse (...) button next to the box to navigate to a different directory.
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9862"></A>Resource File Name</td>
+<td  rowspan="1"  ><A NAME="TI9863"></A>(Optional) Specify a PowerBuilder resource
+file (PBR) for your executable if you dynamically reference resources
+(such as bitmaps and icons) in your scripts <i>and</i> you
+want the resources included in the executable file instead of having
+to distribute the resources separately.<A NAME="TI9864"></A><p>You can type the name of a resource file in the box or click
+the button next to the box to browse your directories for the resource file
+you want to include.</p><A NAME="TI9865"></A><p>For more about PBRs, see <A HREF="pbugp267.htm#X-REF302356230">"Distributing resources "</A>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9866"></A>Prompt for Overwrite</td>
+<td  rowspan="1"  ><A NAME="TI9867"></A>Select this if you want PowerBuilder
+to prompt you before overwriting files. PowerBuilder overwrites
+any files it creates when building your application. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9868"></A>New Visual Style Controls</td>
+<td  rowspan="1"  ><A NAME="TI9869"></A>Select this to add a manifest file to
+the application that specifies the appearance of the controls as
+an application resource. When a user runs the application on Windows
+XP with the Windows XP style for controls set in the control panel,
+all PowerBuilder windows, DataWindow controls that mirror standard
+Windows controls, and other controls, display with the new style.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9870"></A>Rebuild</td>
+<td  rowspan="1"  ><A NAME="TI9871"></A>Specify either Full or Incremental to
+indicate whether you want PowerBuilder to regenerate all objects
+in the application libraries before it creates the executable and
+dynamic libraries. If you choose Incremental, PowerBuilder regenerates
+only objects that have changed, and objects that reference any objects
+that have changed, since the last time you built your application.<A NAME="TI9872"></A><p>As a precaution, regenerate all objects before rebuilding
+your project. </p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9873"></A>Machine Code</td>
+<td  rowspan="1"  ><A NAME="TI9874"></A>Select this if you want to generate compiled
+code instead of Pcode. For more information about compiled code
+and Pcode, see <i>Application Techniques.</i>
+<A NAME="TI9875"></A><p>Selecting Machine Code enables the other code generation options in
+the Project painter. They cannot be set in the wizard.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9876"></A>Trace Information</td>
+<td  rowspan="1"  ><A NAME="TI9877"></A>Select this if you want to create a trace
+file when you run your compiled code executable. You can use the
+trace file to troubleshoot or profile your application. For more
+information on obtaining trace information, see <A HREF="pbugp268.htm#X-REF352470517">"Tracing execution"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9878"></A>Error Context Information</td>
+<td  rowspan="1"  ><A NAME="TI9879"></A>Select this if you want PowerBuilder
+to display context information (such as object, event, and script
+line number) for runtime errors.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9880"></A>Optimization</td>
+<td  rowspan="1"  ><A NAME="TI9881"></A>Select an optimization level. You can
+build your application with no optimizations, or you can optimize
+for speed or space.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9882"></A>Version</td>
+<td  rowspan="1"  ><A NAME="TI9883"></A>Specify your own values for the Company
+Name, Product Name, Description, Copyright, Product Version, and
+File Version fields associated with the executable file and with
+machine-code DLLs. These values become part of the Version resource
+associated with the executable file, and most of them display on
+the Version tab page of the Properties dialog box for the file in
+Windows Explorer.<A NAME="TI9884"></A><p>The File and Product Version numeric fields, on the left in
+the painter, are used by Microsoft Installer to determine whether
+a file needs to be updated when a product is installed. They must
+have the format: <p><PRE><i>N</i>,<i>N</i>,<i>N</i>,<i>N</i></PRE></p>
+</p><A NAME="TI9885"></A><p>The four numbers can be used to represent the major version,
+minor version, point release, and build number of your product.
+They must all be present. If your file versioning system does not
+use all these components, you can replace the unused numbers with zeroes.
+For example, <FONT FACE="Courier New">3,1,333</FONT> causes
+an error message to display when you attempt to save or build the
+project, but <FONT FACE="Courier New">3,1,333,0</FONT> does not.
+The maximum value for any of the numbers in the string is 65535.</p><A NAME="TI9886"></A><p>The File and Product Version string fields, on the right in
+the painter, can have any format. These fields display in the executable file's
+Properties dialog box.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9887"></A>PBD or DLL</td>
+<td  rowspan="1"  ><A NAME="TI9888"></A>The label for this check box depends
+on whether you are building a Pcode or machine code executable.
+Select the check box to define a library as a dynamic library to
+be distributed with your application.<A NAME="TI9889"></A><p>If you are generating Pcode, you create PBD files. If you
+are generating machine code, you create DLL files. For more about dynamic
+libraries, see <A HREF="pbugp266.htm#X-REF364216420">"Using dynamic libraries "</A>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9890"></A>Resource File Name</td>
+<td  rowspan="1"  ><A NAME="TI9891"></A>Specify a resource file for a dynamic
+library if it uses resources (such as bitmaps and icons) and you
+want the resources included in the dynamic library instead of having
+to distribute the resources separately. The file name cannot be
+specified in the wizard.</td>
+</tr>
+</table>
+<A NAME="TI9892"></A><h4>Location of temporary files</h4>
+<A NAME="TI9893"></A><p>The machine code generation process puts temporary files in
+a temporary directory, such as the <i>TEMP</i> directory.
+You can specify a different location in the [PB] section
+of your PowerBuilder initialization file with the CODEGENTEMP variable.
+You might want to do this if you have limited space on your local
+system.</p>
+<A NAME="TI9894"></A><p>For example:<p><PRE> CODEGENTEMP=e:\pbtempdir</PRE></p>
+

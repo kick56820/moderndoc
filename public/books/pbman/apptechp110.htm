@@ -1,0 +1,256 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Programmable OLE Objects </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp109.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp111.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF307046708"></A><h1>Programmable OLE Objects </h1>
+<A NAME="TI3258"></A><p>You do not need to place an OLE control on a window to manipulate
+an OLE object in a script. If the object does not need to be visible
+in your PowerBuilder application, you can create an OLE object independent
+of a control, connect to the server application, and call functions
+and set properties for that object. The server application executes
+the functions and changes the object's properties, which
+changes the OLE object.</p>
+<A NAME="TI3259"></A><p>For some applications, you can specify whether the application
+is visible. If it is visible, the user can activate the application
+and manipulate the object using the commands and tools of the server
+application.</p>
+<A NAME="TI3260"></A><h2>OLEObject object type</h2>
+<A NAME="TI3261"></A><p>PowerBuilder's OLEObject object type is designed
+for automation. OLEObject is a dynamic object type, which means
+that the compiler will accept any property names, function names,
+and parameter lists for the object. PowerBuilder does not have to
+know whether the properties and functions are valid. This allows
+you to call methods and set properties for the object that are known
+to the server application that created the object. If the functions
+or properties do not exist during execution, you will get runtime
+errors.</p>
+<A NAME="TI3262"></A><p>Using an OLEObject variable involves these steps:</p>
+<A NAME="TI3263"></A><p><A NAME="TI3264"></A>
+<ol>
+</li>
+<li class=ds>Declare the variable and instantiate it.</li>
+<li class=ds>Connect to the OLE object.</li>
+<li class=ds>Manipulate the object as appropriate using the OLE
+server's properties and functions.</li>
+<li class=ds>Disconnect from the OLE object and destroy the variable.
+</li>
+</ol>
+</p>
+<A NAME="TI3265"></A><p>These steps are described next.</p>
+<A NAME="TI3266"></A><h4>Declaring an OLEObject variable</h4>
+<A NAME="TI3267"></A><p>You need to declare an OLEObject variable and allocate memory
+for it:<p><PRE> OLEObject myoleobject<br>myoleobject = CREATE OLEObject</PRE></p>
+<A NAME="TI3268"></A><p>The Object property of the OLE container controls (OLEControl
+or OLECustomControl) has a datatype of <b>OLEObject</b>.</p>
+<A NAME="TI3269"></A><h4>Connecting to the server</h4>
+<A NAME="TI3270"></A><p>You establish a connection between the OLEObject object and
+an OLE server with one of the <b>ConnectToObject</b> functions.
+Connecting to an object starts the appropriate server:</p>
+<A NAME="TI3271"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-4: ConnectToObject
+functions </caption>
+<tr><th  rowspan="1"  ><A NAME="TI3272"></A>When you want to</th>
+<th  rowspan="1"  ><A NAME="TI3273"></A>Choose this function</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3274"></A>Create a new object for an OLE server
+that you specify. Its purpose is similar to <b>InsertClass</b> for
+a control.</td>
+<td  rowspan="1"  ><A NAME="TI3275"></A><b>ConnectToNewObject</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3276"></A>Create a new OLE object in the specified
+remote server application if security on the server allows it and
+associate the new object with a PowerBuilder OLEObject variable.</td>
+<td  rowspan="1"  ><A NAME="TI3277"></A><b>ConnectToNewRemoteObject</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3278"></A>Open an existing OLE object from a file.
+If you do not specify an OLE class, PowerBuilder uses the file's
+extension to determine what server to start.</td>
+<td  rowspan="1"  ><A NAME="TI3279"></A><b>ConnectToObject</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3280"></A>Associate an OLE object with a PowerBuilder OLEObject
+variable and start the remote server application.</td>
+<td  rowspan="1"  ><A NAME="TI3281"></A><b>ConnectToRemoteObject</b></td>
+</tr>
+</table>
+<A NAME="TI3282"></A><p>After you establish a connection, you can use the server's
+command set for automation to manipulate the object (see <A HREF="apptechp111.htm#X-REF348432491">"OLE objects in scripts "</A>).</p>
+<A NAME="TI3283"></A><p>You do not need to include application qualifiers for the
+commands. You already specified those qualifiers as the application's
+class when you connected to the server. For example, the following
+commands create an OLEObject variable, connect to Microsoft Word 's
+OLE interface (word.application), open a document and display information
+about it, insert some text, save the edited document, and shut down
+the server:<p><PRE> OLEObject o1<br>string s1<br>o1 = CREATE oleobject<br> <br>o1.ConnectToNewObject("word.application")<br>o1.documents.open("c:\temp\temp.doc")<br> <br>// Make the object visible and display the <br>// MS Word user name and file name<br>o1.Application.Visible = True<br>s1 = o1.UserName<br>MessageBox("MS Word User Name", s1)<br>s1 = o1.ActiveDocument.Name<br>MessageBox("MS Word Document Name", s1)<br> <br>//Insert some text in a new paragraph<br>o1.Selection.TypeParagraph()<br>o1.Selection.typetext("Insert this text")<br>o1.Selection.TypeParagraph() <br> <br>// Insert text at the first bookmark<br>o1.ActiveDocument.Bookmarks[1].Select<br>o1.Selection.typetext("Hail!")<br> <br>// Insert text at the bookmark named End<br>o1.ActiveDocument.Bookmarks.item("End").Select<br>o1.Selection.typetext("Farewell!")<br> <br>// Save the document and shut down the server<br>o1.ActiveDocument.Save()<br>o1.quit()<br>RETURN</PRE></p>
+<A NAME="TI3284"></A><p>For earlier versions of Microsoft Word, use word.basic instead
+of word.application. The following commands connect to the Microsoft
+Word 7.0 OLE interface (word.basic), open a document, go to a bookmark
+location, and insert the specified text:<p><PRE> myoleobject.ConnectToNewObject("word.basic")<br>myoleobject.fileopen("c:\temp\letter1.doc")<br>myoleobject.editgoto("NameAddress")<br>myoleobject.Insert("Text to insert")</PRE></p>
+<A NAME="TI3285"></A><p>Do <i>not</i> include word.application or word.basic
+(the class in <b>ConnectToNewObject</b>) as a qualifier:<p><PRE> // Incorrect command qualifier<br>myoleobject.word.basic.editgoto("NameAddress")</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Microsoft Word 7.0 implementation </span> <A NAME="TI3286"></A>For an OLEObject variable, word.basic is the class name of
+Word 7.0 as a server application. For an object in a control, you
+must use the qualifier application.wordbasic to tell Word how to
+traverse its object hierarchy and access its wordbasic object. </p>
+<A NAME="TI3287"></A><h4>Shutting down and disconnecting from the server</h4>
+<A NAME="TI3288"></A><p>After your application has finished with the automation, you
+might need to tell the server explicitly to shut down. You can also
+disconnect from the server and release the memory for the object:</p>
+<A NAME="TI3289"></A><p><p><PRE> myoleobject.Quit() <br>rtncode = myoleobject.DisconnectObject()<br>DESTROY myoleobject</PRE></p>
+<A NAME="TI3290"></A><p>You can rely on garbage collection to destroy the OLEObject
+variable. Destroying the variable automatically disconnects from
+the server. </p>
+<A NAME="TI3291"></A><p>It is preferable to use garbage collection to destroy objects,
+but if you want to release the memory used by the variable immediately
+and you know that it is not being used by another part of the application,
+you can explicitly disconnect and destroy the OLEObject variable,
+as shown in the code above.</p>
+<A NAME="TI3292"></A><p>For more information, see <A HREF="apptechp21.htm#CAICHCGE">"Garbage collection and memory
+management"</A>.</p>
+<A NAME="TI3293"></A><h2>Assignments among OLEControl, OLECustomControl,
+and OLEObject datatypes</h2>
+<A NAME="TI3294"></A><p>You cannot assign an OLE control (object type OLEControl)
+or ActiveX control (object type OLECustomControl) to an OLEObject.</p>
+<A NAME="TI3295"></A><p>If the vendor of the control exposes a programmatic identifier
+(in the form <i>vendor.application</i>), you can specify
+this identifier in the <b>ConnectToNewObject</b> function
+to connect to the programmable interface without the visual control. For
+an ActiveX control with events, this technique makes the events unavailable.
+ActiveX controls are not meant to be used this way and would not be
+useful in most cases.</p>
+<A NAME="TI3296"></A><p>You can assign the Object property of an OLE control to an
+OLEObject variable or use it as an OLEObject in a function. </p>
+<A NAME="TI3297"></A><p>For example, if you have an OLEControl <b>ole_1</b> and
+an OLECustomControl <b>ole_2</b> in a window
+and you have declared this variable:<p><PRE> OLEObject oleobj_automate</PRE></p>
+<A NAME="TI3298"></A><p>then you can make these assignments:<p><PRE> oleobj_automate = ole_1.Object<br>oleobj_automate = ole_2.Object</PRE></p>
+<A NAME="TI3299"></A><p>You cannot assign an OLEObject to the Object property of an
+OLE control because it is read-only. You cannot make this assignment:<p><PRE> ole_1.Object = oleobj_automate //Error!</PRE></p>
+<A NAME="TI3300"></A><h4>Events for OLEObjects</h4>
+<A NAME="TI3301"></A><p>You can implement events for an OLEObject by creating a user
+object that is a descendant of OLEObject. The <b>SetAutomationPointer</b> PowerScript
+function assigns an OLE automation pointer to the descendant so
+that it can use OLE automation.</p>
+<A NAME="TI3302"></A><p>Suppose <b>oleobjectchild</b> is a descendant
+of OLEObject that implements events such as the ExternalException
+and Error events. The following code creates an OLEObject and an
+instance of <b>oleobjectchild</b>, which is a user
+object that is a descendant of OLEObject, connects to Excel, then
+assigns the automation pointer to the <b>oleobjectchild</b>:<p><PRE> OLEObject ole1<br>oleobjectchild  oleChild<br> <br>ole1 = CREATE OLEObject<br>ole1.ConnectToNewObject( "Excel.Application")<br> <br>oleChild = CREATE oleobjectchild<br>oleChild.SetAutomationPointer( ole1 )</PRE></p>
+<A NAME="TI3303"></A><p>You can now use <b>olechild</b> for automation.</p>
+<A NAME="TI3304"></A><h2>Automation scenario</h2>
+<A NAME="TI3305"></A><p>The steps involved in automation can be included in a single
+script or be the actions of several controls in a window. If you
+want the user to participate in the automation, you might:<A NAME="TI3306"></A>
+<ul>
+<li class=fi>Declare an OLE object as an instance variable of a window</li>
+<li class=ds>Instantiate the variable and connect to the server
+in the window's Open event</li>
+<li class=ds>Send commands to the server in response to the user's
+choices and specifications in lists or edit boxes</li>
+<li class=ds>Disconnect and destroy the object in the window's
+Close event
+</li>
+</ul>
+</p>
+<A NAME="TI3307"></A><p>If the automation does not involve the user, all the work
+can be done in a single script.</p>
+<A NAME="TI3308"></A><h3>Example: generating form letters using OLE</h3>
+<A NAME="TI3309"></A><p>This example takes names and addresses from a DataWindow object
+and letter body from a MultiLineEdit and creates and prints letters
+in Microsoft Word using VBA scripting.</p>
+<A NAME="TI3310"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set up the form letter example:</p>
+<ol><li class=fi><p>Create a Word document called <i>CONTACT.DOC</i> with
+four bookmarks and save the file in your PowerBuilder directory.</p><p>These are the bookmarks:<A NAME="TI3311"></A>
+<ul>
+<li class=fi>name1 &#8211; for
+the name in the return address</li>
+<li class=ds>name2 &#8211; for the name in the salutation</li>
+<li class=ds>address1 &#8211; for the street, city, state,
+and zip in the return address</li>
+<li class=ds>body &#8211; for the body of the letter
+</li>
+</ul>
+</p><p>The letter should have the following content:<p><PRE> Multimedia Promotions, Inc.<br>1234 Technology Drive<br>Westboro, Massachusetts<br>January 12, 2003<br> <br>[bookmark name1]<br>[bookmark address1]<br> <br>Dear [bookmark name2]:<br>[bookmark body]<br> <br>Sincerely,<br><i>Harry Mogul<br></i>President</PRE></p><p>You could enhance the letter with a company and a signature
+logo. The important items are the names and placement of the bookmarks.</p></li>
+<li class=ds><p>In PowerBuilder, define a DataWindow object called <b>d_maillist</b> that
+has the following columns:</p><p><A NAME="TI3312"></A>
+<ul>
+<li class=fi>id</li>
+<li class=ds>first_name</li>
+<li class=ds>last_name</li>
+<li class=ds>street</li>
+<li class=ds>city</li>
+<li class=ds>state</li>
+<li class=ds>zip
+</li>
+</ul>
+</p><p>You can turn on Prompt for Criteria in the DataWindow object
+so the user can specify the customers who will receive the letters.</p></li>
+<li class=ds><p>Define a window that includes a DataWindow control
+called <b>dw_mail</b>, a MultiLineEdit called <b>mle_body</b>,
+and a CommandButton or PictureButton:</p><br><img src="images/oleap03.gif"><br>
+</li>
+<li class=ds><p>Assign the DataWindow object <b>d_maillist</b> to
+the DataWindow control <b>dw_mail</b>.</p></li>
+<li class=ds><p>Write a script for the window's Open
+event that connects to the database and retrieves data for the DataWindow
+object. The following code connects to an Adaptive Server Anywhere database. (When
+the window is part of a larger application, the connection is typically
+done by the application Open script.)</p><p><p><PRE> /**************************************************<br>Set up the Transaction object from the INI file<br>**************************************************/<br>SQLCA.DBMS=ProfileString("myapp.ini", &amp;<br>   "Database", "DBMS", " ")<br> <br>SQLCA.DbParm=ProfileString("myapp.ini", &amp;<br>   "Database", "DbParm", " ")<br>/**************************************************<br>Connect to the database and test whether the <br>connect succeeded<br>**************************************************/<br>CONNECT USING SQLCA;<br>IF SQLCA.SQLCode &lt;&gt; 0 THEN<br>   MessageBox("Connect Failed", "Cannot connect" &amp;<br>      + "to database. " + SQLCA.SQLErrText)<br>   RETURN<br>END IF<br>/**************************************************<br>Set the Transaction object for the DataWindow control and retrieve data<br>**************************************************/<br>dw_mail.SetTransObject(SQLCA)<br>dw_mail.Retrieve()</PRE></p></li>
+<li class=ds><p>Write the script for the Generate Letters button
+(the script is shown below). </p><p>The script does all the work, performing the following tasks:<A NAME="TI3313"></A>
+<ul>
+<li class=fi>Creates the OLEObject variable</li>
+<li class=ds>Connects to the server (word.application)</li>
+<li class=ds>For each row in the DataWindow object, generates
+a letter<br>
+To do so, it uses VBA statements to perform the tasks in <A HREF="apptechp110.htm#CEGGCGFF">Table 19-5</A>.<br><A NAME="CEGGCGFF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-5: Script tasks</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3314"></A>VBA statements</th>
+<th  rowspan="1"  ><A NAME="TI3315"></A>Task</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3316"></A><b>open</b></td>
+<td  rowspan="1"  ><A NAME="TI3317"></A>Opens the document with the bookmarks</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3318"></A><b>goto</b> and <b>typetext</b></td>
+<td  rowspan="1"  ><A NAME="TI3319"></A>Extracts the name and address information
+from a row in the DataWindow object and inserts it into the appropriate
+places in the letter</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3320"></A><b>goto</b> and <b>typetext</b></td>
+<td  rowspan="1"  ><A NAME="TI3321"></A>Inserts the text the user types in <b>mle_body</b> into the
+letter</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3322"></A><b>printout</b></td>
+<td  rowspan="1"  ><A NAME="TI3323"></A>Prints the letter</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3324"></A><b>close</b></td>
+<td  rowspan="1"  ><A NAME="TI3325"></A>Closes the letter document without saving
+it</td>
+</tr>
+</table>
+</li>
+<li class=ds>Disconnects from the server</li>
+<li class=ds>Destroys the OLEObject variable
+</li>
+</ul>
+</p></li>
+<li class=ds><p>Write a script for the Close button. All it needs
+is one command:</p><p><p><PRE> Close(Parent)</PRE></p></li></ol>
+<br><A NAME="TI3326"></A><h4>Script for generating form letters</h4>
+<A NAME="TI3327"></A><p>The following script generates and prints the form letters:<p><PRE> OLEObject contact_ltr<br>integer result, n<br>string ls_name, ls_addr<br>/***************************************************<br>Allocate memory for the OLEObject variable<br>***************************************************/<br>contact_ltr = CREATE oleObject<br>/***************************************************<br>Connect to the server and check for errors<br>***************************************************/<br>result = &amp;<br>   contact_ltr.ConnectToNewObject("word.application")<br>IF result &lt;&gt; 0 THEN<br>   DESTROY contact_ltr<br>   MessageBox("OLE Error", &amp;<br>      "Unable to connect to Microsoft Word. " &amp;<br>      + "Code: " &amp;<br>      + String(result))<br>      RETURN<br>END IF<br>/***************************************************<br>For each row in the DataWindow, send customer<br>data to Word and print a letter<br>***************************************************/<br>FOR n = 1 to dw_mail.RowCount()<br>/************************************************<br>   Open the document that has been prepared with<br>   bookmarks<br>************************************************/<br>   contact_ltr.documents.open("c:\pbdocs\contact.doc")<br>/************************************************<br>   Build a string of the first and last name and<br>   insert it into Word at the name1 and name2<br>   bookmarks<br>************************************************/<br>   ls_name = dw_mail.GetItemString(n, "first_name")&amp;<br>   + " " + dw_mail.GetItemString(n, "last_name")<br>   contact_ltr.Selection.goto("name1")<br>   contact_ltr.Selection.typetext(ls_name)<br>   contact_ltr.Selection.goto("name2")<br>   contact_ltr.Selection.typetext(ls_name)<br>/************************************************<br>   Build a string of the address and insert it into<br>   Word at the address1 bookmark<br>************************************************/<br>   ls_addr = dw_mail.GetItemString(n, "street") &amp;<br>      + "~r~n" &amp;<br>      + dw_mail.GetItemString(n, "city") &amp;<br>      + ", " &amp;<br>      + dw_mail.GetItemString(n, "state") &amp;<br>      + " " &amp;<br>      + dw_mail.GetItemString(n, "zip")<br>   contact_ltr.Selection.goto("address1")<br>   contact_ltr.Selection.typetext(ls_addr)<br>/************************************************<br>   Insert the letter text at the body bookmark<br>***********************************************/<br>   contact_ltr.Selection.goto("body")<br>   contact_ltr.Selection.typetext(mle_body.Text)<br>/************************************************<br>   Print the letter<br>************************************************/<br>   contact_ltr.Application.printout()<br>/************************************************<br>   Close the document without saving<br>************************************************/<br>   contact_ltr.Documents.close<br>   contact_ltr.quit()<br>NEXT<br>/***************************************************<br>Disconnect from the server and release the memory for the OLEObject variable<br>***************************************************/<br>contact_ltr.DisconnectObject()<br>DESTROY contact_ltr</PRE></p>
+<A NAME="TI3328"></A><h4>Running the example</h4>
+<A NAME="TI3329"></A><p>To run the example, write a script for the Application object
+that opens the window or use the Run/Preview button on
+the PowerBar.</p>
+<A NAME="TI3330"></A><p>When the application opens the window, the user can specify
+retrieval criteria to select the customers who will receive letters.
+After entering text in the MultiLineEdit for the letter body, the
+user can click on the Generate Letters button to print letters for
+the listed customers.</p>
+

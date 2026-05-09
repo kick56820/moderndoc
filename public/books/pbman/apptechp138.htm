@@ -1,0 +1,105 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About building an EAServer component</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp137.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp139.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDFECC"></A><h1>About building an EAServer component</h1>
+<A NAME="TI4460"></A><p>PowerBuilder
+provides tools for developing custom class (nonvisual) user objects
+and deploying them as <ABBR title = "e a server" >EAServer</ABBR> components. You
+can deploy these components to an <ABBR title = "e a server" >EAServer</ABBR> host
+running on the Windows, Sun Solaris, Hewlett-Packard HP-UX, and
+IBM AIX operating systems. See <A HREF="apptechp150.htm#CCJCFEBI">"Deploying a component to <ABBR title = "e a server" >EAServer</ABBR>"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Limitations on UNIX</span> <A NAME="TI4461"></A>If you plan to deploy components to a UNIX server, you should
+be aware that the PowerBuilder runtime libraries on UNIX platforms
+do not support graphical operations or calls to the Windows application
+programming interface. </p>
+<A NAME="TI4462"></A><h2>About using the wizards</h2>
+<A NAME="TI4463"></A><p>PowerBuilder
+provides several wizards to facilitate the development and deployment
+of <ABBR title = "e a server" >EAServer</ABBR> components:<A NAME="TI4464"></A>
+<ul>
+<li class=fi><b>Target wizard </b>   Creates a new application, a new custom class user object,
+and a new project</li>
+<li class=ds><b>Object wizard</b>    Creates a new custom class user object in an existing application
+and a new project</li>
+<li class=ds><b>Project wizard</b>   Creates a project you use to generate an <ABBR title = "e a server" >EAServer</ABBR> component from an existing
+custom class user object
+</li>
+</ul>
+</p>
+<A NAME="TI4465"></A><h2>About the development process</h2>
+<A NAME="TI4466"></A><h4>Steps for building <ABBR title = "e a server" >EAServer</ABBR> components</h4>
+<A NAME="TI4467"></A><p>To build and deploy an <ABBR title = "e a server" >EAServer</ABBR> component
+from a custom class user object, complete the following steps:<A NAME="TI4468"></A>
+<ol>
+</li>
+<li class=ds>Use the <ABBR title = "e a server" >EAServer</ABBR> Component
+Target Wizard to create a new user object in a new application.
+Alternatively, if you are working in an existing application, you
+can use the <ABBR title = "e a server" >EAServer</ABBR> Component
+Object wizard to create the object. These wizards also allow you
+to enter information exposing the new user object as a Web service.</li>
+<li class=ds>Add functions, events, and instance variables to
+the generated user object in the User Object painter.</li>
+<li class=ds>Test and debug the object.</li>
+<li class=ds>Deploy the object to <ABBR title = "e a server" >EAServer</ABBR>.
+</li>
+</ol>
+</p>
+<A NAME="TI4469"></A><p>To test or deploy an <ABBR title = "e a server" >EAServer</ABBR> component
+that you developed in PowerBuilder, create a project object and
+build the project. You can create a project object from the Target,
+Object, or Project wizard.</p>
+<A NAME="TI4470"></A><p>To deploy a component, open the project in the Project painter,
+optionally modify the project settings, and build the project. When
+you do this, the <ABBR title = "e a server" >EAServer</ABBR> component
+generator deploys the component interface and the PowerBuilder implementation
+of that interface to the target server.</p>
+<A NAME="TI4471"></A><p>For testing purposes, you can use <strong>live editing</strong> to
+build the project automatically from the User Object painter. This
+removes the need to build the project from the Project painter.
+When live editing is enabled in the User Object painter, PowerBuilder
+builds the project for an <ABBR title = "e a server" >EAServer</ABBR> component
+each time you save the user object. For more information on live
+editing, see <A HREF="apptechp148.htm#CHDDHCCJ">"Testing and debugging the
+component"</A>.</p>
+<A NAME="TI4472"></A><h4>To-Do List</h4>
+<A NAME="TI4473"></A><p>When you create a new user object by using the <ABBR title = "e a server" >EAServer</ABBR> Target or Object wizard,
+you can optionally create a To-Do List. If you check the Generate To-Do
+List box on the last page of the wizard, the wizard adds tasks to
+the To-Do List to remind you to complete all phases of
+development.</p>
+<A NAME="BGECFEAA"></A><h2>Creating an application server profile </h2>
+<A NAME="TI4474"></A><p>An application server profile is a named set of parameters
+stored in your system registry that defines a connection to a particular <ABBR title = "e a server" >EAServer</ABBR> or third-party application
+server host. Before you use a wizard to create a component, you should
+create a profile for the server where the component will be deployed.</p>
+<A NAME="TI4475"></A><p>The Application Server Profiles dialog box lists your defined
+profiles. You create, edit, delete, and test <ABBR title = "e a server" >EAServer</ABBR> profiles
+from this dialog box.</p>
+<br><img src="images/jagprof.gif">
+<A NAME="TI4476"></A><p>The Profile Name in the Edit Application Server Profile dialog
+box cannot be edited. This is because the name is stored in the
+project object along with the other properties of the profile. If
+the profile name cannot be found in the registry when the project
+is deployed, the description in the project object is used.</p>
+<A NAME="TI4477"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create an application server  profile:</p>
+<ol><li class=fi><p>Click the Application Server Profile button
+in the PowerBar.</p><p>The Application Server Profiles dialog box displays, listing
+your configured profiles. </p></li>
+<li class=ds><p>Select Add.</p><p>The Edit Application Server Profile dialog box displays. </p></li>
+<li class=ds><p>Type the profile name, server name, port number,
+login name, and password (if required).</p></li>
+<li class=ds><p>(Optional) Select Test to verify the connection.</p></li>
+<li class=ds><p>Click OK to save your changes and close the dialog
+box. </p><p>The Application Server Profiles dialog box displays, with
+the new profile name listed. The Application Server profile values
+are saved in the registry in <i>HKEY_CURRENT_USER/Software/Sybase/PowerBuilder/105/ JaguarServerProfiles</i>.</p></li></ol>
+<br>

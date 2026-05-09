@@ -1,0 +1,60 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Performing some final housekeeping </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp100.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp102.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF304004493"></A><h1>Performing some final housekeeping </h1>
+<A NAME="TI2944"></A><p>When your application has finished processing pipelines, you
+need to make sure it takes care of a few cleanup chores. These chores
+basically involve releasing the resources you obtained at the beginning
+to support pipeline execution. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Garbage collection</span> <A NAME="TI2945"></A>You should avoid using the <b>DESTROY</b> statement
+to clean up resources unless you are sure that the objects you are
+destroying are not used elsewhere. PowerBuilder's garbage
+collection mechanism automatically removes unreferenced objects.
+For more information, see <A HREF="apptechp21.htm#CAICHCGE">"Garbage collection and memory
+management"</A>.</p>
+<A NAME="TI2946"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To clean up when you have finished using pipelines:</p>
+<ol><li class=fi><p>Destroy the instance that you created of
+your supporting user object. </p><p>To do this, code the <b>DESTROY</b> statement
+in an appropriate script and specify the name of the variable that
+contains that user-object instance.</p></li>
+<li class=ds><p>Disconnect from the pipeline's source
+and destination databases. </p><p>To do this, code two <b>DISCONNECT</b> statements
+in an appropriate script. In one, specify the name of the variable
+that contains your source transaction-object instance.
+In the other, specify the name of the variable that contains your
+destination transaction-object instance.</p><p>Then test the result of each <b>DISCONNECT</b> statement.</p></li>
+<li class=ds><p>Destroy your source transaction-object instance
+and your destination transaction-object instance.</p><p>To do this, code two <b>DESTROY</b> statements
+in an appropriate script. In one, specify the name of the variable
+that contains your source transaction-object instance.
+In the other, specify the name of the variable that contains your
+destination transaction-object instance.</p></li></ol>
+<br><A NAME="TI2947"></A><p>For more information on coding the <b>DESTROY</b> and <b>DISCONNECT</b> statements, see
+the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI2948"></A><h4>Example</h4>
+<A NAME="TI2949"></A><p>The following code in the Close event of the <b>w_sales_extract</b> window
+takes care of these cleanup chores.</p>
+<p><b>Destroying the user-object instance</b>   At the beginning of the Close event script, code the following
+statement to destroy the instance of the user object <b>u_sales_pipe_logistics</b> (which
+is stored in the <i>iuo_pipe_logistics</i> variable):<p><PRE> DESTROY iuo_pipe_logistics</PRE></p>
+<p><b>Disconnecting from the source database</b>   Next, code these statements to disconnect from the source
+database, test the result of the disconnection, and destroy the
+source transaction-object instance (which is stored in the <i>itrans_source</i> variable):<p><PRE> DISCONNECT USING itrans_source;</PRE><PRE> </PRE><PRE>    // Check result of DISCONNECT statement.</PRE><PRE> IF itrans_source.SQLCode = -1 THEN</PRE><PRE>    Beep (1)</PRE><PRE>    MessageBox("Database Connection Error", &amp;</PRE><PRE>    "Problem when disconnecting from the source " &amp;</PRE><PRE>    + "database. Please call technical support. " &amp;</PRE><PRE>    + "~n~r~n~rDetails follow: " + &amp; </PRE><PRE>    String(itrans_source.SQLDBCode) + " " + &amp; </PRE><PRE>    itrans_source.SQLErrText, Exclamation!)</PRE><PRE> END IF</PRE><PRE> </PRE><PRE> DESTROY itrans_source</PRE></p>
+<p><b>Disconnecting from the destination database</b>   Finally, code these statements to disconnect from the destination
+database, test the result of the disconnection, and destroy their
+destination transaction-object instance (which is stored in the <i>itrans_destination</i> variable):<p><PRE> DISCONNECT USING itrans_destination;</PRE><PRE> </PRE><PRE>    // Check result of DISCONNECT statement.</PRE><PRE> IF itrans_destination.SQLCode = -1 THEN</PRE><PRE>    Beep (1)</PRE><PRE>    MessageBox("Database Connection Error", &amp; </PRE><PRE>    "Problem when disconnecting from " + &amp; </PRE><PRE>    "the destination (Sales) database. " + &amp; </PRE><PRE>    "Please call technical support." + &amp; </PRE><PRE>    "~n~r~n~rDetails follow: " + &amp; </PRE><PRE>    String(itrans_destination.SQLDBCode) + " " + &amp;</PRE><PRE>       itrans_destination.SQLErrText, Exclamation!)</PRE><PRE> END IF</PRE><PRE> </PRE><PRE> DESTROY itrans_destination</PRE></p>
+<A NAME="TI2950"></A><A NAME="TI2951"></A><p>This part presents a collection of techniques you can
+use to implement program access features in the applications you
+develop with PowerBuilder. It includes using DDE in an application,
+using OLE in an application, building a mail-enabled application,
+and adding other processing extensions.</p>
+

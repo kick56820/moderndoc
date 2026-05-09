@@ -1,0 +1,94 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining structures </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp80.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp82.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BEGDDFHI"></A><h1>Defining structures </h1>
+<A NAME="TI2195"></A><p>Although you define object-level structures in the painter
+for a specific object and global structures in the Structure painter,
+in both cases you define the structure in a Structure view. The
+following sections describe each of the steps you take to define
+a new structure:<A NAME="TI2196"></A>
+<ol>
+</li>
+<li class=ds>Open a Structure
+view.</li>
+<li class=ds>For object-level structures, name the structure.</li>
+<li class=ds>Define the variables that make up the structure.</li>
+<li class=ds>Save the structure.
+</li>
+</ol>
+</p>
+<A NAME="TI2197"></A><h4>Opening a Structure view</h4>
+<A NAME="TI2198"></A><p>How you open the Structure view depends on whether you are
+defining an object-level structure or a global structure. </p>
+<A NAME="TI2199"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define an object-level structure:</p>
+<ol><li class=fi><p>Open the object for which you want to declare
+the structure.</p><p>You can declare structures for windows, menus, user objects,
+or applications. </p></li>
+<li class=ds><p>Select Insert&gt;Structure from the menu
+bar.</p><p>A Structure view opens.</p><br><img src="images/st01.gif"><br>
+</li></ol>
+<br><A NAME="TI2200"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a global structure:</p>
+<ol><li class=fi><p>Select Structure from the Objects tab in
+the New dialog box.</p><p>The Structure painter opens. It has one view, the Structure
+view. In the Structure painter, there is no Structure Name text
+box in the Structure view.</p></li></ol>
+<br><A NAME="BCGCAFGG"></A><h4>Naming the structure</h4>
+<A NAME="TI2201"></A><p>If you are defining an object-level structure, you name it
+in the Structure Name box in the Structure view. If you are defining
+a global structure, you name it when you save the structure.</p>
+<A NAME="TI2202"></A><p>Structure names can have up to 40 characters. For information
+about valid characters, see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI2203"></A><p>You might want to adopt a naming convention for structures
+so that you can recognize them easily. A common convention is to
+preface all global structure names with <b>s_</b> and
+all object-level structure names with <b>str_</b>.</p>
+<A NAME="TI2204"></A><h4>Defining the variables</h4>
+<A NAME="TI2205"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define the variables that compose the structure:</p>
+<ol><li class=fi><p>Enter the datatype of a variable that you
+want to include in the structure.</p><p>The default for the first variable is string; the default
+for subsequent variables is the datatype of the previous variable.
+You can specify any PowerBuilder datatype, including the standard
+data types such as <b>integer</b> and <b>string</b>,
+as well as objects and controls such as Window or MultiLineEdit.</p><p>You can also specify any object types that you have defined.
+For example, if you are using a window named <b>w_calculator</b> that
+you have defined and you want the structure to include the window,
+type <FONT FACE="Courier New">w_calculator</FONT> as
+the datatype. (You cannot select <b>w_calculator</b> from
+the list, since the list shows only built-in data types.) </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>A structure as a variable</span> <A NAME="TI2206"></A>A variable in a structure can itself be a structure. Specify
+the structure's name as the variable's datatype.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Specifying decimal places</span> <A NAME="TI2207"></A>If you select decimal as the datatype, the default number
+of decimal places is 2. You can also select decimal{2} or
+decimal{4} to specify 2 or 4 decimal places explicitly.</p>
+</li>
+<li class=ds><p>Enter the name of the variable.</p></li>
+<li class=ds><p>Repeat until you have entered all the variables.</p></li></ol>
+<br><A NAME="TI2208"></A><h4>Saving the structure</h4>
+<A NAME="TI2209"></A><p>How you save the structure depends on whether it is an object-level
+structure or a global structure. </p>
+<A NAME="TI2210"></A><p>The names of object-level structures are added to the Structure
+List view and display in the title bar of the Structure view as
+soon as you tab off the Structure Name box. As you add variables
+to the structure, the changes are saved automatically. When you
+save the object that contains the structure, the structure is saved
+as part of the object in the library where the object resides.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Comments and object-level structures</span> <A NAME="TI2211"></A>You cannot enter comments for an object-level structure, because
+it is not a PowerBuilder object.</p>
+<A NAME="TI2212"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To name and save a global structure:</p>
+<ol><li class=fi><p>Select File&gt;Save from the menu
+bar, or close the Structure painter.</p><p>The Save Structure dialog box displays.</p></li>
+<li class=ds><p>Name the structure.</p><p>See <A HREF="pbugp81.htm#BCGCAFGG">"Naming the structure"</A>.</p></li>
+<li class=ds><p>(Optional) Add comments to describe your structure.</p></li>
+<li class=ds><p>Choose the library in which to save the structure.</p></li>
+<li class=ds><p>Click OK.</p><p>PowerBuilder stores the structure in the specified library.
+You can view the structure as an independent entry in the Library
+painter.</p></li></ol>
+<br>

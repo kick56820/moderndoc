@@ -1,0 +1,118 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Connecting to a database</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp36.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp38.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJBAGDB"></A><h1>Connecting to a database</h1>
+<A NAME="TI1271"></A><p>To establish or change a database connection in PowerBuilder,
+use a database profile. You can select the database profile for
+the database you want to access in the Database Profiles dialog
+box. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the Database painter to select a database profile</span> <A NAME="TI1272"></A>You can also select the database profile for the database
+you want to access from the Database painter's Objects
+view. However, this method requires more system resources than using
+the Database Profiles dialog box. </p>
+<A NAME="TI1273"></A><h2>Selecting a database profile</h2>
+<A NAME="TI1274"></A><p>You can select a database profile from the Database Profiles
+dialog box.</p>
+<A NAME="TI1275"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To connect to a database using the Database Profiles
+dialog box:</p>
+<ol><li class=fi><p>Click the Database Profile button in the
+PowerBar</p><p><i>or</i></p><p>Select Tools&gt;Database Profile from the menu
+bar.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Database Profile button</span> <A NAME="TI1276"></A>If your PowerBar does not include the Database Profile button,
+use the customize feature to add the button to the PowerBar. Having
+the Database Profile button on your PowerBar is useful if you frequently
+switch connections between different databases. For instructions
+on customizing toolbars, see the <i>User's Guide</i>
+.</p>
+<p>The Database Profiles dialog box displays, listing your installed
+database interfaces. </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Where the interface list comes from</span> <A NAME="TI1277"></A>When you run the Setup program, it updates the Vendors list
+in the registry with the interfaces you install. The Database Profiles
+dialog box displays the same interfaces that appear in the Vendors
+list.</p>
+</li>
+<li class=ds><p>Click the plus sign (+) to the left of
+the interface you are using</p><p><i>or</i></p><p>Double-click the name.</p><p>The list expands to display the database profiles defined
+for your interface.</p></li>
+<li class=ds><p>Select the name of the database profile you want
+to access and click Connect</p><p><i>or</i></p><p>Display the pop-up menu for a database profile and select
+Connect.</p><p>PowerBuilder connects to the specified database and returns
+you to the painter workspace.</p></li></ol>
+<br><A NAME="TI1278"></A><h4>Database painter Objects view</h4>
+<A NAME="TI1279"></A><p>You can select a database profile from the Database painter
+Objects view. </p>
+<A NAME="TI1280"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To connect to a database using the Database painter:</p>
+<ol><li class=fi><p>Click the Database painter button in the
+PowerBar.</p><p>The Database painter displays. The Objects view lists your
+installed database interfaces. </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Where the interface list comes from</span> <A NAME="TI1281"></A>When you run the Setup program, it updates the Vendors list
+in the registry with the interfaces you install. The Database painter
+Objects view displays the same interfaces that appear in the Vendors
+list.</p>
+</li>
+<li class=ds><p>Click the plus sign (+) to the left of
+the interface you are using</p><p><i>or</i></p><p>Double-click the name.</p><p>The list expands to display the database profiles defined
+for your interface.</p></li>
+<li class=ds><p>Select the name of the database profile you want
+to access and click the Connect button</p><p><i>or</i></p><p>Display the pop-up menu for a database profile and select
+Connect.</p></li></ol>
+<br><A NAME="TI1282"></A><h2>What happens when you connect</h2>
+<A NAME="TI1283"></A><h4>Connection parameters</h4>
+<A NAME="TI1284"></A><p>When you connect to a database by selecting its database profile, PowerBuilder writes
+the profile name and its connection parameters to the registry key <i>HKEY_CURRENT_USER\Software\Sybase\PowerBuilder\10.5\<br>DatabaseProfiles\PowerBuilder</i>.</p>
+<A NAME="TI1285"></A><p>Each time you connect to a different database, PowerBuilder overwrites
+the "most-recently used" profile name in the registry
+with the name for the new database connection.</p>
+<A NAME="TI1286"></A><h4>What you get connected to</h4>
+<A NAME="TI1287"></A><p>When you open a painter that accesses the database, you are
+connected to the database you used last. PowerBuilder determines which
+database this is by reading the registry.</p>
+<A NAME="TI1288"></A><h2>Specifying passwords in database profiles</h2>
+<A NAME="TI1289"></A><p>As shown in the completed Database Profile Setup dialog box
+for Employees, your password does <i>not</i> display
+when you specify it in the Database Profile Setup dialog box.</p>
+<A NAME="TI1290"></A><p>However, when PowerBuilder stores the values for this profile
+in the registry, the actual password <i>does</i> display,
+albeit in encrypted form, in the DatabasePassword or LogPassword
+field. </p>
+<A NAME="TI1291"></A><h4>Suppressing display in the profile registry entry</h4>
+<A NAME="TI1292"></A><p>To suppress password display in the profile registry entry,
+do the following when you create a database profile.</p>
+<A NAME="TI1293"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To suppress password display in the profile registry
+entry:</p>
+<ol><li class=fi><p>Select the Prompt For Database Information
+check box on the Connection tab in the Database Profile Setup dialog
+box.</p><p>This tells PowerBuilder to prompt for any missing information
+when you select this profile to connect to the database.</p></li>
+<li class=ds><p>Leave the Password box blank. Instead, specify
+the password in the dialog box that displays to prompt you for additional
+information when you connect to the database.</p></li></ol>
+<br><A NAME="TI1294"></A><h4>What happens</h4>
+<A NAME="TI1295"></A><p>When you specify the password in response to a prompt instead
+of in the Database Profile Setup dialog box, the password does not
+display in the registry entry for this profile.</p>
+<A NAME="TI1296"></A><p>For example, if you do not supply a password in the Database
+Profile Setup - Adaptive Server Enterprise dialog box when creating
+a database profile, the Client Library Login dialog box displays
+to prompt you for the missing information.</p>
+<A NAME="TI1297"></A><h2>Using the Preview tab to connect in a PowerBuilder
+application</h2>
+<A NAME="TI1298"></A><p>To access a database in a PowerBuilder application, you must
+specify the required connection parameters as properties of the
+Transaction object (<ACRONYM title = "sequel C A" >SQLCA</ACRONYM> by
+default) in the appropriate script. For example, you might specify the
+connection parameters in the script that opens the application.</p>
+<A NAME="TI1299"></A><p>In PowerBuilder, the Preview tab in the Database Profile Setup
+dialog box makes it easy to generate accurate PowerScript connection
+syntax in the development environment for use in your PowerBuilder
+application script. </p>
+<A NAME="TI1300"></A><p>For instructions on using the Preview tab
+to help you connect in a PowerBuilder application, see the section
+on using Transaction objects in <i>Application Techniques</i>
+.</p>
+

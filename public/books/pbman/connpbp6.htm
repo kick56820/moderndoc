@@ -1,0 +1,151 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using database profiles</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp5.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp7.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF289075262"></A><h1>Using database profiles</h1>
+<A NAME="TI134"></A><h4>What is a database profile?</h4>
+<A NAME="TI135"></A><p>A <strong>database profile</strong> is a named set of
+parameters stored in your system registry that defines a connection
+to a particular database in the PowerBuilder development environment.
+You must create a database profile for each data connection. </p>
+<A NAME="TI136"></A><h4>What you can do</h4>
+<A NAME="TI137"></A><p>Using database profiles is the easiest way to manage data
+connections in the PowerBuilder development environment. For example,
+you can: <A NAME="TI138"></A>
+<ul>
+<li class=fi>Select a database
+profile to connect to or switch between databases</li>
+<li class=ds>Edit a database profile to customize a connection</li>
+<li class=ds>Delete a database profile if you no longer need
+to access that data</li>
+<li class=ds>Import and export database profiles to share connection
+parameters quickly
+</li>
+</ul>
+</p>
+<A NAME="TI139"></A><h4>For more information</h4>
+<A NAME="TI140"></A><p>For instructions on using database profiles, see <A HREF="connpbp35.htm#CCJDAIDF">Chapter 7, "Managing Database Connections."</A></p>
+<A NAME="X-REF298585259"></A><h2>About creating database profiles</h2>
+<A NAME="TI141"></A><p>You work with two dialog boxes when you create a database
+profile in PowerBuilder: the Database Profiles dialog box and the
+interface-specific Database Profile Setup dialog box.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the Database painter to create database profiles</span> <A NAME="TI142"></A>You can also create database profiles from the Database painter's
+Objects view. </p>
+<A NAME="TI143"></A><h4>Database Profiles dialog box</h4>
+<A NAME="TI144"></A><p>The Database Profiles dialog box uses an easy-to-navigate
+tree control format to display your installed database interfaces
+and defined database profiles. You can create, edit, and delete
+database profiles from this dialog box.</p>
+<br><img src="images/cn1pr.gif">
+<A NAME="TI145"></A><p>When you run the PowerBuilder Setup program, it updates the
+Vendors list in the PowerBuilder&#174; section in the HKEY_LOCAL_MACHINE
+registry key with the interfaces you install. The Database Profiles
+dialog box displays the same interfaces that appear in the Vendors
+list.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Where the Vendors list is stored</span> <A NAME="TI146"></A>The <i>Sybase\PowerBuilder\10.5\Vendors</i> key
+in <i>HKEY_LOCAL_MACHINE\SOFTWARE</i> is
+used for InfoMaker as well as PowerBuilder. </p>
+<A NAME="TI147"></A><p>For detailed instructions on using the Database
+Profiles dialog box to connect to a database and manage your profiles,
+see <A HREF="connpbp35.htm#CCJDAIDF">Chapter 7, "Managing Database Connections."</A></p>
+<A NAME="TI148"></A><h4>Database Profile Setup dialog box</h4>
+<A NAME="TI149"></A><p>Each database interface has its own Database Profile Setup
+dialog box where you can set interface-specific connection parameters.
+For example, if you install the O90 interface and then select it
+and click New in the Database Profiles dialog box, the Database
+Profile Setup - Oracle 9<i>i</i> dialog box displays, containing
+settings for those connection options that apply to this interface.</p>
+<A NAME="TI150"></A><p></p>
+<br><img src="images/cn1ora2.gif">
+<A NAME="TI151"></A><p>The Database Profile Setup dialog box groups similar connection
+parameters on the same tab page and lets you easily set their values
+by using check boxes, drop-down lists, and text boxes. Basic (required)
+connection parameters are on the Connection tab page, and additional
+connection options (DBParm parameters and <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> properties) are
+on the other tab pages.</p>
+<A NAME="TI152"></A><p>As you complete the Database Profile Setup dialog box in PowerBuilder,
+the correct PowerScript connection syntax for each selected option
+is generated on the Preview tab. You can copy the syntax you want
+from the Preview tab into a PowerBuilder application script. </p>
+<A NAME="TI153"></A><h4>Supplying sufficient information in the Database
+Profile Setup dialog box</h4>
+<A NAME="TI154"></A><p>For some database interfaces, you might not need to supply
+values for all boxes in the Database Profile Setup dialog box. If
+you supply the profile name and click OK, PowerBuilder displays a
+series of dialog boxes to prompt you for additional information
+when you connect to the database. </p>
+<A NAME="TI155"></A><p>This information can include:<A NAME="TI156"></A>
+<ul>
+<li class=fi>User ID or login ID</li>
+<li class=ds>Password or login password</li>
+<li class=ds>Database name</li>
+<li class=ds>Server name
+</li>
+</ul>
+</p>
+<A NAME="TI157"></A><p>For some databases, supplying only the profile name does not
+give PowerBuilder enough information to prompt you for additional
+connection values. For these interfaces, you must supply values
+for all applicable boxes in the Database Profile Setup dialog box.</p>
+<A NAME="TI158"></A><p>For information about the values you should
+supply for your connection, click Help in the Database Profile Setup
+dialog box for your interface.</p>
+<A NAME="BGECFEAA"></A><h2>Creating a database profile </h2>
+<A NAME="TI159"></A><p>To create a new database profile for a database interface,
+you must complete the Database Profile Setup dialog box for the
+interface you are using to access the database.</p>
+<A NAME="TI160"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a database profile for a database interface:</p>
+<ol><li class=fi><p>Click the Database Profile button in the
+PowerBar.</p><p>The Database Profiles dialog box displays, listing your installed
+database interfaces. To see a list of database profiles defined
+for a particular interface, click the plus sign to the left of the
+interface name or double-click the interface name to expand the
+list.</p></li>
+<li class=ds><p>Highlight an interface name and click New.</p><p>The Database Profile Setup dialog box for the selected interface
+displays. For example, if you select the SYC interface, the Database
+Profile Setup - Adaptive Server Enterprise dialog box displays.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Client software and interface must be installed</span> <A NAME="TI161"></A>To display the Database Profile Setup dialog box for your
+interface, the required client software and native database interface
+must be properly installed and configured. For specific instructions
+for your database interface, see the chapter on using the interface.</p>
+</li>
+<li class=ds><p>On the Connection tab page, type the profile name
+and supply values for any other basic parameters your interface
+requires to connect.</p><p>For information about the basic connection
+parameters for your interface and the values you should supply,
+click Help.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About the DBMS identifier</span> <A NAME="TI162"></A>You do <i>not</i> need to specify the DBMS identifier
+in a database profile. When you create a new profile for any installed
+database interface, PowerBuilder generates the correct DBMS connection
+syntax for you.</p>
+</li>
+<li class=ds><p>(Optional) On the other tab pages, supply values
+for any additional connection options (DBParm parameters and <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> properties) to take advantage
+of DBMS-specific features that your interface supports.</p><p>For information about the additional connection
+parameters for your interface and the values you should supply,
+click Help.</p></li>
+<li class=ds><p>(Optional) Click the Preview tab if you want to
+see the PowerScript connection syntax that PowerBuilder generates
+for each selected option.</p><p>You can copy the PowerScript connection syntax from the Preview
+tab directly into a PowerBuilder application script.</p><p>For instructions on using the Preview tab
+to help you connect in a PowerBuilder application, see the section
+on using Transaction objects in <i>Application Techniques</i>
+.</p></li>
+<li class=ds><p>Click OK to save your changes and close the Database
+Profile Setup dialog box. (To save your changes on a particular
+tab page <i>without</i> closing the dialog box, click
+Apply.)</p><p>The Database Profiles dialog box displays, with the new profile
+name highlighted under the appropriate interface. The database profile
+values are saved in the system registry in <i>HKEY_CURRENT_USER\Software\Sybase\PowerBuilder\10.5\<br>DatabaseProfiles\PowerBuilder</i>. </p>
+<p>You can look at the registry entry or export the profile as
+described in <A HREF="connpbp40.htm#CADDEJBJ">"Importing
+and exporting database profiles" on page 121</A> to
+see the settings you made. The NewLogic parameter is set to True
+by default. This setting specifies that the password is encrypted
+using Unicode encoding.</p></li></ol>
+<br>

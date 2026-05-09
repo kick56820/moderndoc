@@ -1,0 +1,50 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Distributed application architecture</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp134.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp136.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABBEBBI"></A><h1>Distributed application architecture</h1>
+<A NAME="TI4419"></A><p>Distributed application development, also called multitier
+development, offers a natural way to separate the user interface
+components of an application from the business logic that the application
+requires. By centralizing business logic on a middle-tier server,
+you can reduce the workload on the client and control access to
+sensitive information.</p>
+<A NAME="TI4420"></A><p>In a distributed application, the client and server work together
+to perform tasks for the business user. The client handles all interactions
+with the user while the middle-tier server provides background services
+to the client. Typically, the middle-tier server performs most of
+the processing and database access. To invoke the services of the
+server, the client calls a method (or function) associated with
+a component (or object) that resides on the server. </p>
+<A NAME="TI4421"></A><h4>Partitioned applications</h4>
+<A NAME="TI4422"></A><p>Client-side logic for enterprise applications must be as small
+and efficient as possible to conserve network bandwidth. To accomplish
+this goal, applications are partitioned into three parts: presentation,
+business logic, and database access. The database resides on the
+bottom tier of the enterprise system to maintain and secure the
+organization's information assets. The business logic resides
+in the middle tier or server. The presentation is on the user's
+desktop, or top tier, or is dynamically downloaded to the user's
+desktop.</p>
+<A NAME="TI4423"></A><p>The server is then responsible for executing and securing
+the vast majority of a corporation's business logic. This
+makes it a critical component in the network-centric architecture.
+The client communicates with the server, calling middle-tier components
+that perform business logic. </p>
+<A NAME="BABHHBFE"></A><h4>Web application architecture</h4>
+<A NAME="TI4424"></A><p>A Web application is a variation of the distributed architecture
+where the client is hosted in a Web browser. PowerBuilder provides
+several technologies for building Web applications, including Web
+targets and the Web DataWindow, both of which provide a thin client
+solution. The architecture of your application varies depending
+on which technologies you decide to use.</p>
+<A NAME="TI4425"></A><p>For more information, see <A HREF="apptechp194.htm#CAICDIBB">Chapter 30, "Web Application Development with
+PowerBuilder."</A></p>
+

@@ -1,0 +1,54 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+OLE support in PowerBuilder</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp105.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp107.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF307127663"></A><h1>OLE support in PowerBuilder</h1>
+<A NAME="TI3046"></A><p>OLE, originally an acronym for Object Linking and Embedding,
+is a facility that allows Windows programs to share data and program functionality.
+PowerBuilder OLE controls are <strong>containers</strong> that
+can call upon OLE <strong>server</strong> applications to
+display and manipulate OLE objects.</p>
+<A NAME="TI3047"></A><h4>OLE control</h4>
+<A NAME="TI3048"></A><p>The OLE control in the Window painter allows you to link or
+embed components from several applications in a window. For most
+servers, you can also control the server application using functions
+and properties defined by that server.</p>
+<A NAME="TI3049"></A><p>In PowerBuilder, the OLE control is a container for an OLE
+object. The user can activate the control and edit the object using
+functionality supplied by the server application. You can also automate
+OLE interactions by programmatically activating the object and sending commands
+to the server. OLE servers might be either DLLs or separate <i>EXE</i> files.
+They could be running on a different computer.</p>
+<A NAME="TI3050"></A><p>You can use PowerScript automation on an OLE control that
+is visible in a window, or use it invisibly on an object whose reference
+is stored in an OLEObject variable. The <b>OLEObject</b> datatype
+lets you create an OLE object without having an OLE container visible
+in a window.</p>
+<A NAME="TI3051"></A><h4>OLECustomControl</h4>
+<A NAME="TI3052"></A><p>A second control, OLECustomControl, is a container for an
+ActiveX control (also called an OLE custom control or OCX control).
+ActiveX controls are DLLs (sometimes with the extension <i>OCX</i>)
+that always run in the same process as the application that contains
+them. </p>
+<A NAME="TI3053"></A><h4>Managing OLE objects</h4>
+<A NAME="TI3054"></A><p>You can manage OLE objects by storing them in variables and
+saving them in files. There are two object types for this purpose:
+OLEStorage and OLEStream. Most applications will not require these
+objects, but if you need to do something complicated (such as combining
+several OLE objects into a single data structure), you can use these
+objects and their associated functions.</p>
+<A NAME="TI3055"></A><h4>Other areas of OLE support</h4>
+<A NAME="TI3056"></A><p>For information about OLE objects in a DataWindow
+object, see the <i>PowerBuilder User's Guide</i>
+.</p>
+<A NAME="TI3057"></A><p>For information about PowerBuilder as a COM
+or OLE server, see <A HREF="apptechp167.htm#CHDDHCED">Chapter 27, "Building a COM or COM+ Component,"</A> and <A HREF="apptechp114.htm#BFCBECHA">Chapter 20, "PowerBuilder Runtime Automation
+Server."</A></p>
+

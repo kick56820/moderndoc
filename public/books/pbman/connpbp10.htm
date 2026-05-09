@@ -1,0 +1,53 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Preparing ODBC data sources</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp9.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp11.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJCCDFI"></A><h1>Preparing ODBC data sources</h1>
+<A NAME="TI270"></A><p>The first step in connecting to an ODBC data source is preparing
+the data source. This ensures that you are able to connect to the
+data source and use your data in PowerBuilder.</p>
+<A NAME="TI271"></A><p>You prepare to use a data source <i>outside</i> PowerBuilder <i>before</i> you
+start the product, define the data source, and connect to it. The
+requirements differ for each data source, but in general, preparing
+to use a data source involves the following steps.</p>
+<A NAME="TI272"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To prepare to use an ODBC data source with PowerBuilder:</p>
+<ol><li class=fi><p>If network software is required to access
+the data source, make sure it is properly installed and configured
+at your site and on the client workstation.</p></li>
+<li class=ds><p>If database software is required, make sure it
+is properly installed and configured on your computer or network
+server.</p></li>
+<li class=ds><p>Make sure the required data files are present
+on your computer or network server.</p></li>
+<li class=ds><p>Make sure the names of tables and columns you
+want to access follow standard SQL naming conventions.</p><p>Avoid using blank spaces or database-specific reserved words
+in table and column names. Be aware of the case-sensitivity options
+of the DBMS. It is safest to use all uppercase characters when naming
+tables and columns that you want to access in PowerBuilder. </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Backquote character not allowed as a delimiter</span> <A NAME="TI273"></A>The online Help supplied for the DataDirect ODBC drivers indicates
+that you can use the backquote (`) character, also known
+as the <i>grave</i> character, as a delimiter for
+table and column names that do not follow standard SQL naming conventions.
+However, PowerBuilder does <i>not</i> currently allow
+use of the backquote character as a delimiter for table and column
+names. </p>
+</li>
+<li class=ds><p>If your database requires it, make sure the tables
+you want to access have unique indexes.</p></li>
+<li class=ds><p>Install both of the following using the PowerBuilder Setup
+program:<A NAME="TI274"></A>
+<ul>
+<li class=fi>The ODBC driver
+that accesses your data source</li>
+<li class=ds>The ODBC interface 
+</li>
+</ul>
+
+                    </p></li></ol>
+<br>

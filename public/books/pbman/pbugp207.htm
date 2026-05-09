@@ -1,0 +1,246 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Modifying properties conditionally at runtime</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp206.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp208.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCBIDDG"></A><h1>Modifying properties conditionally at runtime</h1>
+<A NAME="TI6785"></A><p><A HREF="pbugp206.htm#BEIDJEGA">"Modifying properties at
+runtime"</A> described
+how you can use conditional expressions that are evaluated at runtime
+to highlight information in a DataWindow object. This section presents
+a procedure for modifying properties at runtime and some examples.</p>
+<A NAME="TI6786"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify properties conditionally at runtime:</p>
+<ol><li class=fi><p>Position the pointer on the control, band,
+or DataWindow object background whose properties you want to modify at
+runtime.</p></li>
+<li class=ds><p>Select Properties from the pop-up menu, then select
+the page that contains the property you want to modify at runtime.</p></li>
+<li class=ds><p>Click the button next to the property you want
+to change.</p></li>
+<li class=ds><p>Scroll the list of functions in the Functions
+box until you see the <b>IF</b> function, and then select
+it:</p><br><img src="images/cond010.gif"><br>
+</li>
+<li class=ds><p>Replace the <i>b</i> (boolean) with
+your condition (for example, salary&gt;40000). </p><p>You can select columns and functions and use the buttons to
+add the symbols shown on them.</p></li>
+<li class=ds><p>Replace the <i>t</i> (true) with
+the value to use for the property if the condition is true.</p><p>Values to use for properties are usually numbers. They are
+different for each property. For more information about property
+values that can be set on the Expressions page, see <A HREF="pbugp208.htm#CAIEAIJC">"Supplying property values"</A>.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Set Font.Weight property to 700 for bold</span> <A NAME="TI6787"></A>Font properties such as Italic, Strikethrough, and Underline
+take a boolean value, but to specify a value for bold, you use the
+Font.Weight property, which takes a range of values. For values
+and an example, see <A HREF="pbugp208.htm#CAIDCBID">"Font.Weight"</A>.</p>
+<p>For complete information about what the valid values are for
+all properties of controls in the DataWindow object, see the discussion
+of DataWindow object properties in the <i>DataWindow Reference</i>
+ or
+online Help.</p></li>
+<li class=ds><p>Replace the <i>f</i> (false) with
+the value to use for the property if the condition is false.</p></li>
+<li class=ds><p>Click OK.</p></li></ol>
+<br><A NAME="TI6788"></A><p>For examples, see <A HREF="pbugp207.htm#CAIDBHIJ">"Example 1: creating a gray
+bar effect"</A>, <A HREF="pbugp207.htm#CAIDJGDA">"Example 2: rotating controls"</A>, <A HREF="pbugp207.htm#CAIDGJAE">"Example 3: highlighting
+rows of data"</A>, and <A HREF="pbugp207.htm#CAICCAFD">"Example 4: changing the
+size and location of controls"</A>.</p>
+<A NAME="CAIDBHIJ"></A><h2>Example 1: creating a gray bar effect</h2>
+<A NAME="TI6789"></A><p>The following DataWindow object shows alternate rows with a light
+gray bar. The gray bars make it easier to track data values across
+the row:</p>
+<br><img src="images/cond030.gif">
+<A NAME="TI6790"></A><p>To create the gray bar effect:<A NAME="TI6791"></A>
+<ol>
+</li>
+<li class=ds>Add a rectangle control to the detail band and size it so
+that it surrounds the controls you want highlighted.<br>
+To make sure that you have selected the detail band, select
+the Position tab in the Properties view and select Band from the
+Layer drop-down list. <br></li>
+<li class=ds>To make it easier to see what you are doing in the
+Design view, select the General tab and set the Brush Color to White
+and the Pen Color to Black. A narrow black line forms a boundary
+around the rectangle.</li>
+<li class=ds>Select Send to Back from the rectangle's
+pop-up menu.</li>
+<li class=ds>To hide the border of the rectangle, set the Pen
+Style to No Visible Line.</li>
+<li class=ds>Click the button next to the Brush Color property
+on the General page. </li>
+<li class=ds>In the Modify Expression dialog box, enter the following
+expression for the Brush.Color property:<p><PRE> If(mod(getrow(),2 )=1, rgb(255, 255, 255 ), rgb(240, 240, 240 ))</PRE><br>
+The <b>mod</b> function takes the row number (<FONT FACE="Courier New">getrow()</FONT>),
+divides it by <FONT FACE="Courier New">2</FONT>, then returns
+the remainder. The remainder can be either 0 or 1. If the row number
+is odd, <b>mod</b> returns 1; if the row number is even, <b>mod</b> returns
+0.<br><br>
+The expression <FONT FACE="Courier New">mod(getrow(),2)=1</FONT> distinguishes
+odd rows from even rows.<br><br>
+The <b>rgb</b> function specifies maximum amounts
+of red, green, and blue: <FONT FACE="Courier New">rgb (255, 255, 255)</FONT>.
+Specifying 255 for red, green, and blue results in the color white. <br><br>
+If the row number is odd (the condition evaluates as true),
+the rectangle displays as white. If the row number is even (the
+condition evaluates as false), the rectangle displays as light gray
+(<FONT FACE="Courier New">rgb (240, 240, 240)</FONT>).<br>
+</li>
+</ol>
+</p>
+<A NAME="CAIDJGDA"></A><h2>Example 2: rotating controls</h2>
+<A NAME="TI6792"></A><p>The following DataWindow object shows the column headers for Health Insurance,
+Life Insurance, and Day Care rotated 45 degrees.</p>
+<br><img src="images/cond035.gif">
+<A NAME="TI6793"></A><p>To rotate each of these three text controls:<A NAME="TI6794"></A>
+<ol>
+</li>
+<li class=ds>Select one of the controls, then use Ctrl + click
+to select the other two controls.<br>
+The Properties view changes to show the properties that are
+common to all selected controls.<br></li>
+<li class=ds>On the Font page in the Properties view, click the
+button next to the Escapement property.</li>
+<li class=ds>Enter the number 450 in the Modify Expression dialog
+box and click OK.<br>
+The value entered for font escapement is in tenths of degrees,
+so the number 450 means 45 degrees. You do not have to specify a
+condition. Typically, you do not specify a condition for control
+rotation.<br><br>
+The rotation of the controls does not change in the Design
+view.<br></li>
+<li class=ds>To see the change, close and reopen the Preview
+view.
+</li>
+</ol>
+</p>
+<A NAME="CAIDGJAE"></A><h2>Example 3: highlighting rows of data</h2>
+<A NAME="TI6795"></A><p>The following DataWindow object is an employee phone list for a company
+in Massachusetts. Out-of-state (not in Massachusetts) employees
+are shown in bold and preceded by two asterisks (**):</p>
+<br><img src="images/dwen17.gif">
+<A NAME="TI6796"></A><p>This DataWindow object uses newspaper columns. To
+understand how to create this DataWindow object without highlighting data,
+see <A HREF="pbugp171.htm#BFCDJAJF">"Printing with newspaper-style
+columns"</A>.</p>
+<A NAME="TI6797"></A><p>In the Design view, the detail band includes four controls:
+the employee last name, a comma, the employee first name, and the
+phone number:</p>
+<br><img src="images/cond045.gif">
+<A NAME="TI6798"></A><p>To make these controls display in bold with two asterisks
+if the employee is not from Massachusetts:<A NAME="TI6799"></A>
+<ol>
+</li>
+<li class=ds>Select one of the controls, then use Ctrl + Click
+to select the other three controls.<br>
+The Properties view changes to show the properties that are
+common to all selected controls.<br></li>
+<li class=ds>On the Font page in the Properties view, click the
+button next to the Bold property.</li>
+<li class=ds>Enter the following expression in the Modify Expression
+dialog box and click OK:<p><PRE> If(state = 'MA', 400, 700)</PRE><br>
+The expression states that if the value of the <b>state</b> column
+is MA, use 400 as the font weight. This means employees from Massachusetts
+display in the normal font. For any state except MA, use 700 as
+the font weight. This means all other employees display in bold
+font.<br><br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Logic that relies on the <b>state</b> column</span> <A NAME="TI6800"></A>To use logic that relies on the <b>state</b> column,
+you need to include the column in the data source. You can add the
+column after creating the DataWindow object by modifying the data source.
+Notice that the <b>state</b> column does not actually
+appear anywhere in the DataWindow object. Values must be available but
+do not need to be included in the DataWindow object.
+<br>
+</li>
+<li class=ds>To insert two asterisks (**) in
+front of the employee name if the employee is not from Massachusetts,
+add a text control to the left of the employee name with the two
+asterisks in bold.</li>
+<li class=ds>With the text control selected, click the button
+next to its Visible property on the General page in the Properties
+view.</li>
+<li class=ds>In the Modify Expression dialog box that displays,
+enter the following expression and click OK:<p><PRE> If(state = 'MA', 0, 1)</PRE><br>
+This expression says that if the state of the employee is
+MA (the true condition), the Visible property of the ** control
+is off (indicated by 0). If the state of the employee is not MA
+(the false condition), the Visible property of the ** control
+is on (indicated by 1). The asterisks are visible next to that employee's
+name.<br><br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Tip</span> <A NAME="TI6801"></A>You can use underlines, italics, strikethrough, borders, and
+colors to highlight information.
+<br>
+
+</li>
+</ol>
+</p>
+<A NAME="CAICCAFD"></A><h2>Example 4: changing the size and location of controls</h2>
+<A NAME="TI6802"></A><p>The following DataWindow object shows <b>city</b> and <b>state</b> columns
+enclosed in a rectangle and underlined. The columns change location
+if the current row contains data for a customer from the state of
+New York. The rectangle and the line change both location and size.</p>
+<br><img src="images/cond055.gif">
+<A NAME="TI6803"></A><p>This example shows how to move the rectangle and line. The
+process for columns is similar.</p>
+<A NAME="TI6804"></A><p>In the Design view, the rectangle and line display in one
+location, with a single set of dimensions. The expressions you specify
+are used only in Preview view and at runtime and all have the following
+syntax:<p><PRE>If ( state='NY', <i>true value, false value </i>)</PRE></p>
+</p>
+<A NAME="TI6805"></A><p>The <i>false value</i> is the same as the value
+in Design view. All of the values used in this example are in PowerBuilder
+Units (PBUs), the default unit of measure used for the DataWindow object. </p>
+<A NAME="TI6806"></A><p>To change properties of the rectangle and the line for rows
+with the <b>state</b> column equal to New York:<A NAME="TI6807"></A>
+<ol>
+</li>
+<li class=ds>Select the rectangle, display
+the Position page in the Properties view, and specify expressions
+for the following properties:<A NAME="TI6808"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI6809"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI6810"></A>Expression</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6811"></A>X</td>
+<td  rowspan="1"  ><A NAME="TI6812"></A><FONT FACE="Courier New">if (state = 'NY',
+2890, 1865)</FONT></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6813"></A>Width</td>
+<td  rowspan="1"  ><A NAME="TI6814"></A><FONT FACE="Courier New">if (state = 'NY',
+500, 1000)</FONT></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6815"></A>Height</td>
+<td  rowspan="1"  ><A NAME="TI6816"></A><FONT FACE="Courier New">if (state = 'NY',
+160, 120)</FONT></td>
+</tr>
+</table>
+</li>
+<li class=ds>Select the line, display the Position page in the
+Properties view, and specify expressions for the following properties:<A NAME="TI6817"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI6818"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI6819"></A>Expression</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6820"></A>X1</td>
+<td  rowspan="1"  ><A NAME="TI6821"></A><FONT FACE="Courier New">if (state = 'NY',
+2890, 1865)</FONT></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6822"></A>Y1</td>
+<td  rowspan="1"  ><A NAME="TI6823"></A><FONT FACE="Courier New">if (state = 'NY',
+168, 132)</FONT></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6824"></A>X2</td>
+<td  rowspan="1"  ><A NAME="TI6825"></A><FONT FACE="Courier New">if (state = 'NY',
+3400, 2865)</FONT></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6826"></A>Y2</td>
+<td  rowspan="1"  ><A NAME="TI6827"></A><FONT FACE="Courier New">if (state = 'NY',
+168, 132)</FONT></td>
+</tr>
+</table>
+</li>
+<li class=ds>On the General page for the line, specify this expression
+for Pen Width:<p><PRE> if (state = 'NY', 10, 4)</PRE><br>
+At runtime, the rectangle is taller and narrower, and the
+line is shorter and has a wider pen width.<br>
+</li>
+</ol>
+</p>
+

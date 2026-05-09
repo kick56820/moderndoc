@@ -1,0 +1,61 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining the OLE DB interface</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp20.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp22.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABDEHGI"></A><h1>Defining the OLE DB interface</h1>
+<A NAME="TI536"></A><h4>Using the OLE DB Database Profile Setup</h4>
+<A NAME="TI537"></A><p>To define a connection through the OLE DB interface, you must
+create a database profile by supplying values for at least the basic
+connection parameters in the Database Profile Setup &#8211; OLE
+DB dialog box. You can then select this profile anytime to connect
+to your data in the development environment. </p>
+<A NAME="TI538"></A><p>For information on how to define a database profile, see <A HREF="connpbp6.htm#X-REF289075262">"Using database profiles"</A>. </p>
+<A NAME="TI539"></A><h4>Specifying connection parameters</h4>
+<A NAME="TI540"></A><p>You must supply values for the Provider and Data Source connection parameters.
+Select a data provider from the list of installed data providers
+in the Provider drop-down list. The Data Source value varies depending
+on the type of data source connection you are making. For example: <A NAME="TI541"></A>
+<ul>
+<li class=fi>If you are using Microsoft's OLE DB Provider
+for ODBC to connect to the <ACRONYM title = "E A S" >EAS</ACRONYM> Demo
+DB, you select <ACRONYM title = "M S D A sequel" >MSDASQL</ACRONYM> as
+the Provider value and enter the actual ODBC data source name (in
+this case <ACRONYM title = "E A S" >EAS</ACRONYM> Demo DB) as the
+Data Source value. </li>
+<li class=ds>If you are using Microsoft's OLE DB Provider
+for <ACRONYM title = "sequel" >SQL</ACRONYM> Server, you select <ACRONYM title = "sequel OLE D B" >SQLOLEDB</ACRONYM> as the Provider
+value and enter the actual server name as the Data Source value.
+You must also use the Extended Properties field to provide the database
+name (for example, Database=Pubs) since you can have multiple
+instances of a database.</li>
+<li class=ds>If you are using the PB OLE DB Provider to connect
+to an Oracle8<i>i</i> database, you select Sybase.Oracle8ADOProvider
+as the Provider value and enter the actual data source name (which
+you should have previously defined using the DataDirect OLE DB Administrator)
+as the Data Source value. 
+</li>
+</ul>
+</p>
+<A NAME="TI542"></A><h4>Using the Data Link API</h4>
+<A NAME="TI543"></A><p>The Data Link option allows you to access Microsoft's
+Data Link API, which allows you to define a file or use an existing
+file that contains your OLE DB connection information. A Data Link
+file is identified with the suffix .<i>udl</i>. If you
+use a Data Link file to connect to your data source, all other settings
+you make in the OLE DB Database Profile Setup dialog box are ignored.</p>
+<A NAME="TI544"></A><p>To launch this option, select the File Name check box on the
+Connection tab and double-click on the button next to the File Name
+box. (You can also launch the Data Link API in the Database painter
+by double-clicking on the Manage Data Links utility included with
+the OLE DB interface in the list of Installed Database Interfaces.) </p>
+<A NAME="TI545"></A><p>For more information on using the Data Link
+API, see <A HREF="http://msdn.microsoft.com/data">Microsoft's Universal Data Access Web site</A>
+.</p>
+

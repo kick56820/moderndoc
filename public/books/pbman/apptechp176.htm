@@ -1,0 +1,44 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+How the PowerBuilder COM object executes</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp175.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp177.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CEGBJGHI"></A><h1>How the PowerBuilder COM object executes</h1>
+<A NAME="TI5813"></A><p>To establish an instance of a PowerBuilder COM object, the
+PowerBuilder virtual machine (<i>PBVM105.DLL</i>)
+loads the custom class object from the PBD embedded in the COM server
+DLL and creates the proper session and instance information. When
+a client invokes a PowerBuilder COM object method, the method calls
+back into the PowerBuilder virtual machine to execute the appropriate
+PowerScript code.</p>
+<A NAME="TI5814"></A><p>PowerBuilder COM servers use the COM single-threaded apartment
+(STA) model. Runtime sessions can be shared by objects created on
+the same thread. When a client requests an instance of a PowerBuilder
+COM object, the PowerBuilder COM server establishes a runtime session
+and creates an instance of the custom class user object within that
+runtime session. When the server receives a new request for an instance
+of a COM object from the same thread, it instantiates the object
+using the existing runtime session.</p>
+<A NAME="TI5815"></A><p>In all cases, separate clients use distinct PowerBuilder virtual
+machine sessions.</p>
+<A NAME="TI5816"></A><h2>Memory allocation</h2>
+<A NAME="TI5817"></A><p>The first time any client requests an instance of a PowerBuilder
+COM object from a PowerBuilder COM server, the server loads the
+PowerBuilder virtual machine, allocates a block of memory, and starts
+a runtime session. About 4MB of memory is allocated for the PowerBuilder
+virtual machine, cached memory, and the runtime session. </p>
+<A NAME="TI5818"></A><p>Subsequent requests do not require any additional memory allocation
+if the objects can share the same runtime session.</p>
+<A NAME="TI5819"></A><p>If a subsequent request requires a PowerBuilder COM object
+to be created in a different COM apartment (usually because the
+request was made from a different client or thread), the object
+is instantiated in a new runtime session. Each new session requires
+only about 200K of memory; it shares the instance of the PowerBuilder
+virtual machine and the cached memory.</p>
+

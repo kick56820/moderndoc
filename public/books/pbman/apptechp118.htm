@@ -1,0 +1,75 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating and using a named server </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp117.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp119.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF350572988"></A><h1>Creating and using a named server </h1>
+<A NAME="TI3797"></A><p>Using your own named server involves these steps:<A NAME="TI3798"></A>
+<ol>
+</li>
+<li class=ds>Define the objects you will access.</li>
+<li class=ds>Build the runtime libraries for those objects.</li>
+<li class=ds>Register your server in the registry.</li>
+<li class=ds>Write code in the client that connects to your server,
+creates objects, and accesses their methods and properties.
+</li>
+</ol>
+</p>
+<A NAME="TI3799"></A><h4>Creating the user objects you will access</h4>
+<A NAME="TI3800"></A><p>Defining user objects for use in a named server is the same
+as for PowerBuilder.Application.</p>
+<A NAME="TI3801"></A><p>For information, see <A HREF="apptechp117.htm#X-REF350595498">"Creating the user
+objects you will access"</A>.</p>
+<A NAME="TI3802"></A><h4>Building runtime libraries</h4>
+<A NAME="TI3803"></A><p>Building runtime libraries for use in a named server is the
+same as for PowerBuilder.Application.</p>
+<A NAME="TI3804"></A><p>For information, see <A HREF="apptechp117.htm#X-REF350595547">"Building runtime libraries"</A>.</p>
+<A NAME="TI3805"></A><h4>Registering the server</h4>
+<A NAME="TI3806"></A><p>You can use the Automation Server project wizard to register
+your server, as described in <A HREF="apptechp116.htm#X-REF350582645">"Registering the object"</A>.</p>
+<A NAME="TI3807"></A><p>To register your server rather than a single user object,
+select PowerBuilder.Application as the component. Proceed as described
+in <A HREF="apptechp116.htm#X-REF350582645">"Registering the object"</A> and
+install the registry update file in the registry. You do not need
+to create a type library file for a named server.</p>
+<A NAME="TI3808"></A><h4>Writing client code that accesses the server
+and user objects</h4>
+<A NAME="TI3809"></A><p>A client application that wants to establish a session with
+your named server needs code to:<A NAME="TI3810"></A>
+<ul>
+<li class=fi>Connect to the server</li>
+<li class=ds>Instantiate objects</li>
+<li class=ds>Access those objects
+</li>
+</ul>
+</p>
+<A NAME="TI3811"></A><p>The following steps with code examples illustrate how to do
+it. The examples are client code for PowerBuilder. All the steps
+of the process should be accompanied by error checking because there
+are any number of reasons why server sessions can fail.<A NAME="TI3812"></A>
+<ol>
+</li>
+<li class=ds>Declare one OLEObject variable
+for your server. Declare additional OLEObject variables for each
+object you will create:<p><PRE> OLEObject ole_server, ole_analyze</PRE><br>
+If you want to handle errors in the OLEObject ExternalException
+and Error events, use a user object inherited from OLEObject instead.<br></li>
+<li class=ds>Start the automation server and check that the connection
+was established. A status of 0 indicates success:<p><PRE> ole_server = CREATE OLEObject</PRE><PRE> li_status = ole_server.ConnectToNewObject &amp;<br>   ("MyCompany.MyServer")</PRE><PRE> IF li_status &lt; 0 THEN</PRE><PRE>    MessageBox("No Server", &amp;</PRE><PRE>       "Can't connect to the server.")</PRE><PRE>    RETURN</PRE><PRE> END IF</PRE></li>
+<li class=ds>Create the first object you want to use and check
+for success. Specify the object's name as defined in the
+library:<p><PRE> ole_analyze = &amp;</PRE><PRE>    ole_server.CreateObject("uo_analyze")</PRE><PRE> IF IsNull(ole_analyze) THEN</PRE><PRE>    MessageBox("No Object", &amp;</PRE><PRE>       "Cannot create object uo_analyze.")</PRE><PRE>    RETURN</PRE><PRE> END IF</PRE></li>
+<li class=ds>Access functions or properties of the object using
+automation syntax. (These properties and methods are hypothetical.)<p><PRE> ld_avg = ole_analyze.uof_average()</PRE><PRE> ole_analyze.Projection = TRUE</PRE><PRE> li_status = ole_analyze.uof_RTFReport(REF ls_rpt)</PRE></li>
+<li class=ds>Disconnect from the server and destroy the objects
+when you are done. (Exiting your application also accomplishes this.)<p><PRE> DESTROY ole_analyze</PRE><PRE> ole_server.DisconnectObject()</PRE><PRE> DESTROY ole_server</PRE>
+</li>
+</ol>
+</p>
+

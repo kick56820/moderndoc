@@ -1,0 +1,122 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Managing TreeView pictures</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp48.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp50.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJCJHBG"></A><h1>Managing TreeView pictures</h1>
+<A NAME="TI1173"></A><p>PowerBuilder stores TreeView images in three image lists:</p>
+<A NAME="TI1174"></A><p><A NAME="TI1175"></A>
+<ul>
+<li class=fi>Picture list (called
+the <i>regular picture list</i> here)</li>
+<li class=ds>State picture list</li>
+<li class=ds>Overlay picture list
+</li>
+</ul>
+</p>
+<A NAME="TI1176"></A><p>You add pictures to these lists and associate them with items
+in the TreeView.</p>
+<A NAME="TI1177"></A><h2>Pictures for items</h2>
+<A NAME="TI1178"></A><p>There are several ways to use pictures in a TreeView. You
+associate a picture in one of the picture lists with an item by
+setting one of the item's picture properties, described
+in <A HREF="apptechp49.htm#CJGICJDF">Table 8-6</A>.</p>
+<A NAME="CJGICJDF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 8-6: TreeView picture properties</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1179"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI1180"></A>Purpose</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1181"></A>PictureIndex</td>
+<td  rowspan="1"  ><A NAME="TI1182"></A>The primary picture associated with the
+item is displayed just to the left of the item's label.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1183"></A>StatePictureIndex</td>
+<td  rowspan="1"  ><A NAME="TI1184"></A>A state picture is displayed to the left
+of the regular picture. The item moves to the right to make room
+for the state picture. If the Checkboxes property is <b>TRUE</b>,
+the state picture is replaced by a pair of check boxes.<A NAME="TI1185"></A><p>Because a state picture takes up room, items without state pictures
+will not align with items that have pictures. So that all items
+have a state picture and stay aligned, you could use a blank state
+picture for items that do not have a state to be displayed.</p><A NAME="TI1186"></A><p>A use for state pictures might be to display a check mark beside
+items the user has chosen.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1187"></A>OverlayPictureIndex</td>
+<td  rowspan="1"  ><A NAME="TI1188"></A>An overlay picture is displayed on top
+of an item's regular picture.<A NAME="TI1189"></A><p>You set up the overlay picture list in a script by designating a
+picture in the regular picture list for the overlay picture list. </p><A NAME="TI1190"></A><p>An overlay picture is the same size as a regular picture,
+but it often uses a small portion of the image space so that it
+only partially covers the regular picture. A typical use of overlay pictures
+is the arrow marking shortcut items in the Windows Explorer.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1191"></A>SelectedPictureIndex</td>
+<td  rowspan="1"  ><A NAME="TI1192"></A>A picture from the regular picture list
+that is displayed instead of the regular picture when the item is
+the current item. When the user selects another item, the first
+item gets its regular picture and the new item displays its selected picture.<A NAME="TI1193"></A><p>If you do not want a different picture when an item is current,
+set SelectedPictureIndex to the same value as PictureIndex.</p></td>
+</tr>
+</table>
+<p><b>How to set pictures</b>   You can change the pictures for all items at a particular level
+with the <b>SetLevelPictures</b> function, or you can
+set the picture properties for an individual item.</p>
+<p><b>If you do not want pictures</b>   Your TreeView does not have to use pictures for items. If
+an item's picture indexes are 0, no pictures are displayed.
+However, the TreeView always leaves room for the regular picture.
+You can set the PictureWidth property to 0 to eliminate that space:</p>
+<A NAME="TI1194"></A><p><p><PRE> tv_2.DeletePictures()<br>tv_2.PictureWidth = 0</PRE></p>
+<A NAME="TI1195"></A><h2>Setting up picture lists</h2>
+<A NAME="TI1196"></A><p>You can add pictures to the regular and state picture lists
+in the painter or during execution. During execution, you can assign
+pictures in the regular picture list to the overlay list.</p>
+<A NAME="TI1197"></A><h4>Mask color</h4>
+<A NAME="TI1198"></A><p>The mask color is a color used in the picture that becomes
+transparent when the picture is displayed. Usually you should pick
+the picture's background color so that the picture blends
+with the color of the TreeView. </p>
+<A NAME="TI1199"></A><p>Before you add a picture, in the painter or in a script, you
+can set the mask color to a color appropriate for that picture.
+This statement sets the mask color to white, which is right for
+a picture with a white background:<p><PRE> tv_1.PictureMaskColor = RGB(255, 255, 255)</PRE></p>
+<A NAME="TI1200"></A><p>Each picture can have its own mask color. A picture uses the
+color that is in effect when the picture is inserted. To change
+a picture's mask color, you have to delete the picture
+and add it again.</p>
+<A NAME="TI1201"></A><h4>Image size</h4>
+<A NAME="TI1202"></A><p>In the painter you can change the image size at any time by
+setting the Height and Width properties on each picture tab. All
+the pictures in the list are scaled to the specified size.</p>
+<A NAME="TI1203"></A><p>During execution, you can change the image size for a picture
+list only when that list is empty. The <b>DeletePictures</b> and <b>DeleteStatePictures</b> functions
+let you clear the lists.</p>
+<A NAME="TI1204"></A><h4>Example</h4>
+<A NAME="TI1205"></A><p>This sample code illustrates how to change properties and
+add pictures to the regular picture list during execution. Use similar
+code for state pictures:<p><PRE> tv_list.DeletePictures()<br>tv_list.PictureHeight = 32<br>tv_list.PictureWidth = 32<br> <br>tv_list.PictureMaskColor = RGB(255,255,255)<br>tv_list.AddPicture("c:\apps_pb\kelly.bmp")<br>tv_list.PictureMaskColor = RGB(255,0,0)<br>tv_list.AddPicture("Custom078!")<br>tv_list.PictureMaskColor = RGB(128,128,128)<br>tv_list.AddPicture("Custom044!")</PRE></p>
+<A NAME="TI1206"></A><h4>Deleting pictures and how it affects existing items</h4>
+<A NAME="TI1207"></A><p>Deleting pictures from the picture lists can have an unintended
+effect on item pictures being displayed. When you delete pictures,
+the remaining pictures in the list are shifted to remove gaps in
+the list. The remaining pictures get a different index value. This
+means items that use these indexes get new images.</p>
+<A NAME="TI1208"></A><p>Deleting pictures from the regular picture list also affects
+the overlay list, since the overlay list is not a separate list
+but points to the regular pictures.</p>
+<A NAME="TI1209"></A><p>To avoid unintentional changes to item pictures, it is best
+to avoid deleting pictures after you have begun using picture indexes
+for items.</p>
+<A NAME="TI1210"></A><h2>Using overlay pictures</h2>
+<A NAME="TI1211"></A><p>The pictures in the overlay list come from the regular picture
+list. First you must add pictures to the regular list, either in
+the painter or during execution. Then during execution you specify
+pictures for the overlay picture list. After that you can assign
+an overlay picture to items, individually or with the <b>SetLevelPictures</b> function.</p>
+<A NAME="TI1212"></A><p>This code adds a picture to the regular picture list and then
+assigns it to the overlay list:<p><PRE> integer idx</PRE><PRE> idx = tv_1.AddPicture("Custom085!")</PRE><PRE> IF tv_1.SetOverlayPicture(1, idx) &lt;&gt; 1 THEN</PRE><PRE>    sle_get.Text = "Setting overlay picture failed"</PRE><PRE> END IF</PRE></p>
+<A NAME="TI1213"></A><p>This code for the Clicked event turns the overlay picture
+on or off each time the user clicks an item:<p><PRE> treeviewitem tvi</PRE><PRE> This.GetItem(handle, tvi)</PRE><PRE> IF tvi.OverlayPictureIndex = 0 THEN</PRE><PRE>    tvi.OverlayPictureIndex = 1</PRE><PRE> ELSE</PRE><PRE>    tvi.OverlayPictureIndex = 0</PRE><PRE> END IF</PRE><PRE> This.SetItem(handle, tvi)</PRE></p>
+

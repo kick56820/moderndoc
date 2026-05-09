@@ -1,0 +1,556 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Adaptive Server Enterprise</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp30.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp32.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF353247486"></A><h1>Adaptive Server Enterprise</h1>
+<A NAME="TI912"></A><p>This section describes how to use the Adaptive Server Enterprise
+database interfaces in PowerBuilder.</p>
+<br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Client Library API</span> <A NAME="TI913"></A>The Adaptive Server database interfaces use the Open Client&#153; CT-Library (CT-Lib)
+application programming interface (API) to access the database.
+<br>
+<A NAME="TI914"></A>When you connect to an Adaptive Server database, PowerBuilder makes
+the required calls to the API. Therefore, you do not need to know
+anything about CT-Lib to use the database interface.
+<br>
+<A NAME="TI915"></A><h2>Supported versions for Adaptive Server</h2>
+<A NAME="TI916"></A><p>You can access Adaptive Server versions 11.x, 12.x, and 15.x
+using the SYC Adaptive Server database interface. Use
+of this interface to access other Open Server&#153; programs
+is not supported. The SYC database interface uses a DLL named <i>PBSYC105.DLL</i> to
+access the database through the Open Client CT-Lib API.</p>
+<A NAME="TI917"></A><p>You can also access Adaptive Server version 15.x using the
+ASE Adaptive Server database interface. Use
+of this interface to access other Open Server&#153; programs
+is not supported. The Adaptive Server database interface uses a
+DLL named <i>PBASE105.DLL</i> to access the database
+through the Open Client CT-Lib API. To use this interface, the Adaptive
+Server 15 client must be installed on the client computer. The ASE
+interface supports large indentifiers with up to 128 characters.</p>
+<br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>When deploying a PowerBuilder custom class user object
+in <ACRONYM title = "E A Server" >EAServer</ACRONYM></span> <A NAME="TI918"></A><ACRONYM title = "E A Server" >EAServer</ACRONYM> uses a slightly
+different version of the CT-Lib software. Therefore, at runtime
+you need to use the SYJ database interface rather than ASE or SYC to
+connect to an Adaptive Server database. The SYJ Database Profile
+Setup dialog box provides a convenient way to set the appropriate
+connection parameters and then copy the syntax from the Preview
+tab into the script for your Transaction object. The SYJ database
+interface uses a DLL named <i>PBSYJ105.DLL</i>.
+<br>
+<A NAME="TI919"></A>You cannot use the SYJ interface, however, to connect to the
+database in the PowerBuilder development environment. Therefore,
+during the development phase (before the component has been deployed
+to <ACRONYM title = "E A Server" >EAServer</ACRONYM>), you must use ASE
+or SYC to connect to the database. 
+<br>
+<A NAME="TI920"></A><h2>Supported Adaptive Server datatypes</h2>
+<A NAME="TI921"></A><p>The Adaptive Server interface supports the Sybase datatypes
+listed in <A HREF="connpbp31.htm#BABFAEDF">Table 6-4</A> in DataWindow objects and
+embedded <ACRONYM title = "sequel" >SQL</ACRONYM>.</p>
+<A NAME="BABFAEDF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-4: Supported datatypes for Adaptive
+Server Enterprise</caption>
+<tr><td  rowspan="1"  ><A NAME="TI922"></A>Binary</td>
+<td  rowspan="1"  ><A NAME="TI923"></A>NVarChar </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI924"></A>BigInt (15.x
+and later)</td>
+<td  rowspan="1"  ><A NAME="TI925"></A>Real</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI926"></A>Bit</td>
+<td  rowspan="1"  ><A NAME="TI927"></A>SmallDateTime</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI928"></A>Char (see <A HREF="connpbp31.htm#BABJIBAF">"Column-length limits"</A>)</td>
+<td  rowspan="1"  ><A NAME="TI929"></A>SmallInt</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI930"></A>DateTime</td>
+<td  rowspan="1"  ><A NAME="TI931"></A>SmallMoney</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI932"></A>Decimal</td>
+<td  rowspan="1"  ><A NAME="TI933"></A>Text</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI934"></A>Double precision</td>
+<td  rowspan="1"  ><A NAME="TI935"></A>Timestamp</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI936"></A>Float</td>
+<td  rowspan="1"  ><A NAME="TI937"></A>TinyInt</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI938"></A>Identity</td>
+<td  rowspan="1"  ><A NAME="TI939"></A>UniChar</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI940"></A>Image</td>
+<td  rowspan="1"  ><A NAME="TI941"></A>UniText (15.x and later)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI942"></A>Int</td>
+<td  rowspan="1"  ><A NAME="TI943"></A>UniVarChar</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI944"></A>Money</td>
+<td  rowspan="1"  ><A NAME="TI945"></A>VarBinary</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI946"></A>NChar </td>
+<td  rowspan="1"  ><A NAME="TI947"></A>VarChar</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI948"></A>Numeric</td>
+<td  rowspan="1"  ><A NAME="TI949"></A></td>
+</tr>
+</table>
+<A NAME="TI950"></A><p>In Adaptive Server 15.0 and later, PowerBuilder supports unsigned
+as well as signed <b>BigInt</b>, <b>Int</b>,
+and <b>SmallInt</b> datatypes.</p>
+<A NAME="TI951"></A><h4>Accessing Unicode data</h4>
+<A NAME="TI952"></A><p>PowerBuilder can connect, save, and retrieve data in both ANSI/DBCS
+and Unicode databases. When character data or command text is sent
+to the database, PowerBuilder sends a DBCS string if the UTF8 database
+parameter is set to 0 (the default). If UTF8 is set to 1, PowerBuilder sends
+a UTF-8 string. The
+database server must be configured correctly to accept UTF-8 strings.
+See the description of the UTF8 database parameter in the online
+Help for more information.</p>
+<A NAME="TI953"></A><p>The character set used by an Adaptive Server database server
+applies to all databases on that server. The <b>NCHAR</b> and <b>NVARCHAR</b> datatypes
+can store UTF-8 data if the server character set is UTF-8. The Unicode
+datatypes <b>UNICHAR</b> and <b>UNIVARCHAR</b> were
+introduced in Adaptive Server 12.5 to support Unicode data. Columns
+with these datatypes can store <i>only</i> Unicode data.
+Any data saved into such a column must be converted to Unicode explicitly.
+This conversion must be handled by the database server or client.</p>
+<A NAME="TI954"></A><p>In Adaptive Server 12.5.1 and later, additional support for
+Unicode data has been added. For more information, see the documentation
+for your version of Adaptive Server.</p>
+<A NAME="BABJIBAF"></A><h4>Column-length limits</h4>
+<A NAME="TI955"></A><p>Adaptive Server 12.0 and earlier have a column-length limit
+of 255 bytes. Adaptive Server 12.5.x and later support wider columns
+for <b>Char</b>, <b>VarChar</b>, <b>Binary</b>,
+and <b>VarBinary</b> datatypes, depending on the logical
+page size and the locking scheme used by the server. </p>
+<A NAME="TI956"></A><p>In PowerBuilder, you can use these wider columns for <b>Char</b> and <b>VarChar</b> datatypes
+with Adaptive Server 12.5.x when the following conditions apply:<A NAME="TI957"></A>
+<ul>
+<li class=fi>The Release database parameter is set to 12.5 or
+higher.</li>
+<li class=ds>You are accessing the database using Open Client
+12.5.x or later.
+</li>
+</ul>
+</p>
+<A NAME="TI958"></A><p>The database must be configured to use a larger page size
+to take full advantage of the widest limits. </p>
+<A NAME="TI959"></A><p>For detailed information about wide columns and configuration
+issues, see the Adaptive Server documentation on the <A HREF="http://manuals.sybase.com:80/onlinebooks/group-as">Sybase Product Manuals Web site</A>
+. For more information about
+the Release database parameter, see the online Help. </p>
+<A NAME="TI960"></A><p>When you retrieve or update columns, PowerBuilder converts
+data appropriately between the Adaptive Server datatype and the
+PowerScript datatype. Similarly or identically named Adaptive Server
+and PowerScript datatypes do <i>not</i> necessarily
+have the same definitions. For information about the definitions
+of PowerScript datatypes, see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI961"></A><h4>Conversion in PowerBuilder scripts</h4>
+<A NAME="TI962"></A><p>A double that has no fractional component is converted to
+a string with one decimal place if the converted string would cause
+Adaptive Server to have an overflow error when parsing the string.
+For example: the double value 12345678901234 would cause an overflow
+error, so PowerBuilder converts the double to the string value 12345678901234.0.</p>
+<A NAME="TI963"></A><h2>Basic software components for Adaptive Server</h2>
+<A NAME="TI964"></A><p>You must install the software components in <A HREF="connpbp31.htm#BABCJHEA">Figure 6-4</A> to access an Adaptive Server
+database in PowerBuilder.</p>
+<A NAME="BABCJHEA"></A><caption><b>Figure 6-4: Components of an Adaptive
+Server Enterprise connection</b></captionls>
+<br><img src="images/cnw5syc.gif">
+<A NAME="X-REF307817801"></A><h2>Preparing to use the Adaptive Server database</h2>
+<A NAME="TI965"></A><p>Before you define the interface and connect to an Adaptive
+Server database in PowerBuilder, follow these steps to prepare the
+database for use: <A NAME="TI966"></A>
+<ol>
+</li>
+<li class=ds>Install and configure the required
+database server, network, and client software.</li>
+<li class=ds>Install the Adaptive Server database interface.</li>
+<li class=ds>Verify that you can connect to Adaptive Server outside PowerBuilder.</li>
+<li class=ds>Install the required PowerBuilder stored procedures
+in the sybsystemprocs database.
+</li>
+</ol>
+</p>
+<A NAME="TI967"></A><p>Preparing an Adaptive Server database for use with PowerBuilder involves these
+four basic tasks.</p>
+<A NAME="TI968"></A><h4>Step 1: Install and configure the database server</h4>
+<A NAME="TI969"></A><p>You must install and configure the database server, network,
+and client software for Adaptive Server.</p>
+<A NAME="TI970"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To install and configure the database server,
+network, and client software:</p>
+<ol><li class=fi><p>Make sure the Adaptive Server database
+software is installed on the server specified in your database profile.</p><p>You must obtain the database server software from Sybase.</p><p>For installation instructions, see your Adaptive
+Server documentation.</p></li>
+<li class=ds><p>Make sure the supported network software (for
+example, TCP/IP) is installed and running on your computer
+and is properly configured so that you can connect to the database
+server at your site.</p><p>You must install the network communication driver that supports
+the network protocol and operating system platform you are using.
+The driver is installed as part of the Net-Library client software.</p><p>For installation and configuration instructions,
+see your network or database administrator.</p></li>
+<li class=ds><p>Install the required Open Client CT-Library (CT-Lib)
+software on each client computer on which PowerBuilder is installed.</p><p>You must obtain the Open Client software from Sybase. Make
+sure the version of Open Client you install supports <i>all</i> of
+the following:<A NAME="TI971"></A>
+<ul>
+<li class=fi>The operating
+system running on the client computer</li>
+<li class=ds>The version of Adaptive Server that you want to
+access</li>
+<li class=ds>The version of PowerBuilder that you are running
+</li>
+</ul>
+</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Required client software versions</span> <A NAME="TI972"></A>To use the ASE Adaptive Server interface, you must install
+Open Client version 15.x or later. To use the SYC Adaptive Server
+interface, you must install Open Client version 11.x or later.</p>
+</li>
+<li class=ds><p>Make sure the Open Client software is properly
+configured so that you can connect to the database at your site.</p><p>Installing the Open Client software places the <i>SQL.INI</i> configuration
+file in the Adaptive Server directory on your computer.</p><p><i>SQL.INI</i> provides information that Adaptive
+Server needs to find and connect to the database server at your
+site. You can enter and modify information in <i>SQL.INI</i> by
+using the configuration utility that comes with the Open Client
+software.</p><p>For information about setting up the <i>SQL.INI</i> or
+other required configuration file, see your Adaptive Server documentation.</p></li>
+<li class=ds><p>If required by your operating system, make sure
+the directory containing the Open Client software is in your system
+path.</p></li>
+<li class=ds><p>Make sure only one copy of each of the following
+files is installed on your client computer:<A NAME="TI973"></A>
+<ul>
+<li class=fi>Adaptive Server interface DLL</li>
+<li class=ds>Network communication DLL (for example, <i>NLWNSCK.DLL</i> for Windows
+Sockets-compliant TCP/IP)</li>
+<li class=ds>Database vendor DLL (for example, <i>LIBCT.DLL</i>)
+</li>
+</ul>
+
+                        </p></li></ol>
+<br><A NAME="TI974"></A><h4>Step 2: Install the database interface</h4>
+<A NAME="TI975"></A><p>In the PowerBuilder Setup program, select the Typical install,
+or select the Custom install and select the Adaptive Server Enterprise
+(ASE or SYC) database interface.</p>
+<A NAME="TI976"></A><p>If you work with PowerBuilder and <ACRONYM title = "E A Server" >EAServer</ACRONYM>,
+you should also select the Adaptive Server interface for <ACRONYM title = "E A Server" >EAServer</ACRONYM> (SYJ).</p>
+<A NAME="TI977"></A><h4>Step 3: Verify the connection</h4>
+<A NAME="TI978"></A><p>Make sure you can connect to the Adaptive Server database
+server and log in to the database you want to access from outside PowerBuilder.</p>
+<A NAME="TI979"></A><p>Some possible ways to verify the connection are by running
+the following tools:<A NAME="TI980"></A>
+<ul>
+<li class=fi><b>Accessing the database server</b>   Tools such as the Open Client/Open Server Configuration
+utility (or any Ping utility) check whether you can reach the database
+server from your computer.</li>
+<li class=ds><b>Accessing the database</b>   Tools such as <ACRONYM title = "I sequel" >ISQL</ACRONYM> (interactive <ACRONYM title = "sequel" >SQL</ACRONYM> utility) check whether you can
+log in to the database and perform database operations. It is a
+good idea to specify the same connection parameters you plan to
+use in your PowerBuilder database profile to access the database.
+</li>
+</ul>
+</p>
+<A NAME="TI981"></A><h4>Step 4: Install the PowerBuilder stored procedures</h4>
+<A NAME="TI982"></A><p>PowerBuilder requires you to install certain stored procedures
+in the sybsystemprocs database <i>before</i> you connect
+to an Adaptive Server database for the first time. PowerBuilder uses
+these stored procedures to get information about tables and columns
+from the DBMS system catalog.</p>
+<A NAME="TI983"></A><p>Run the <ACRONYM title = "sequel" >SQL</ACRONYM> script or
+scripts required to install the PowerBuilder stored procedures in
+the sybsystemprocs database.</p>
+<A NAME="TI984"></A><p>For instructions, see <A HREF="connpbp32.htm#CCJDBEBA">"Installing PowerBuilder stored
+procedures in Adaptive Server databases"</A>.</p>
+<A NAME="TI985"></A><h3>What to do next</h3>
+<A NAME="TI986"></A><p>For instructions on defining the Adaptive
+Server database interface in PowerBuilder, see <A HREF="connpbp31.htm#X-REF367621238">"Defining the Adaptive
+Server database interface"</A>.</p>
+<A NAME="X-REF367621238"></A><h2>Defining the Adaptive Server database interface</h2>
+<A NAME="TI987"></A><p>To define a connection through the Adaptive Server interface,
+you must create a database profile by supplying values for at least
+the basic connection parameters in the Database Profile Setup -
+Adaptive Server Enterprise dialog box. You can then select this
+profile anytime to connect to your database in the development environment.</p>
+<A NAME="TI988"></A><p>For information on how to define a database profile, see <A HREF="connpbp6.htm#X-REF289075262">"Using database profiles"</A>. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Defining a connection for a PowerBuilder custom class
+user object deployed in EAServer</span> <A NAME="TI989"></A>You cannot use the SYJ interface to connect to the database
+in the PowerBuilder development environment. However, the SYJ Database
+Profile Setup dialog box provides a convenient way to set the appropriate
+connection parameters and then copy the syntax from the Preview
+tab into the script for your Transaction object.</p>
+<A NAME="CCJCFJBD"></A><h2>Using Open Client security services</h2>
+<A NAME="TI990"></A><p>The Adaptive Server interfaces provide several DBParm parameters
+that support Open Client 11.1.x or later network-based security
+services in your application. If you are using the required database,
+security, and PowerBuilder software, you can build applications that
+take advantage of Open Client security services.</p>
+<A NAME="TI991"></A><h3>What are Open Client security services?</h3>
+<A NAME="TI992"></A><p>Open Client 11.1.x or later <strong>security services</strong> allow
+you to use a supported third-party security mechanism (such as CyberSafe
+Kerberos) to provide login authentication and per-packet security
+for your application. Login authentication establishes a secure
+connection, and per-packet security protects the data you transmit
+across the network.</p>
+<A NAME="CCJCGHGC"></A><h3>Requirements for using Open Client security services</h3>
+<A NAME="TI993"></A><p>For you to use Open Client security services in your application, <i>all
+of the following must be true</i>:<A NAME="TI994"></A>
+<ul>
+<li class=fi>You are accessing an Adaptive Server database server
+using Open Client Client-Library (CT-Lib) 11.1.x or later software.</li>
+<li class=ds>You have the required network security mechanism
+and driver.<br>
+You have the required Sybase-supported network security mechanism
+and Sybase-supplied security driver properly installed and configured
+for your environment. Depending on your operating system platform,
+examples of supported security mechanisms include: Distributed Computing Environment
+(DCE) security servers and clients, CyberSafe Kerberos, and Windows
+NT LAN Manager Security Services Provider Interface (SSPI).<br><br>
+For information about the third-party security
+mechanisms and operating system platforms that Sybase has tested
+with Open Client security services, see the Open Client documentation.<br></li>
+<li class=ds>You can access the secure server outside PowerBuilder.<br>
+You must be able to access a secure Adaptive Server server
+using Open Client 11.1.x or later software from outside PowerBuilder.<br><br>
+To verify the connection, use a tool such as <ACRONYM title = "I sequel" >ISQL</ACRONYM> or <ACRONYM title = "sequel" >SQL</ACRONYM> Advantage
+to make sure you can connect to the server and log in to the database
+with the same connection parameters and security options you plan
+to use in your PowerBuilder application.<br></li>
+<li class=ds>You are using a PowerBuilder database interface.<br>
+You are using the ASE or SYC Adaptive Server interface to
+access the database.<br></li>
+<li class=ds>The Release DBParm parameter is set to the appropriate
+value for your database.<br>
+You have set the Release DBParm parameter to 11or higher to
+specify that your application should use the appropriate version
+of the Open Client CT-Lib software.<br><br>
+For instructions, see Release in the online
+Help.<br></li>
+<li class=ds>Your security mechanism and driver support the requested
+service.<br>
+The security mechanism and driver you are using must support
+the service requested by the DBParm parameter.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI995"></A><h3>Security services DBParm parameters</h3>
+<A NAME="TI996"></A><p>If you have met the requirements described in <A HREF="connpbp31.htm#CCJCGHGC">"Requirements for using Open
+Client security services"</A>, you can set
+the security services DBParm parameters in the Database Profile
+Setup dialog box for your connection or in a PowerBuilder application
+script.</p>
+<A NAME="TI997"></A><p>There are two types of DBParm parameters that you can set
+to support Open Client security services: login authentication and
+per-packet security.</p>
+<A NAME="TI998"></A><h4>Login authentication DBParms</h4>
+<A NAME="TI999"></A><p>The following login authentication DBParm parameters correspond
+to Open Client 11.1.x or later connection properties that allow
+an application to establish a secure connection.<A NAME="TI1000"></A>
+<ul>
+<li class=fi>Sec_Channel_Bind</li>
+<li class=ds>Sec_Cred_Timeout</li>
+<li class=ds>Sec_Delegation</li>
+<li class=ds>Sec_Keytab_File</li>
+<li class=ds>Sec_Mechanism</li>
+<li class=ds>Sec_Mutual_Auth</li>
+<li class=ds>Sec_Network_Auth</li>
+<li class=ds>Sec_Server_Principal</li>
+<li class=ds>Sec_Sess_Timeout
+</li>
+</ul>
+</p>
+<A NAME="TI1001"></A><p>For instructions on setting these DBParm parameters,
+see their descriptions in online Help. </p>
+<A NAME="TI1002"></A><h4>Per-packet security DBParms</h4>
+<A NAME="TI1003"></A><p>The following per-packet security DBParm parameters correspond
+to Open Client 11.1.x or later connection properties that protect
+each packet of data transmitted across a network. Using per-packet
+security services might create extra overhead for communications
+between the client and server.<A NAME="TI1004"></A>
+<ul>
+<li class=fi>Sec_Confidential</li>
+<li class=ds>Sec_Data_Integrity</li>
+<li class=ds>Sec_Data_Origin</li>
+<li class=ds>Sec_Replay_Detection</li>
+<li class=ds>Sec_Seq_Detection
+</li>
+</ul>
+</p>
+<A NAME="TI1005"></A><p>For instructions on setting these DBParm parameters,
+see their descriptions in online Help. </p>
+<A NAME="CCJCHAIE"></A><h2>Using Open Client directory services</h2>
+<A NAME="TI1006"></A><p>The Adaptive Server interfaces provide several DBParm parameters
+that support Open Client 11.1.x or later network-based directory
+services in your application. If you are using the required database,
+directory services, and PowerBuilder software, you can build applications
+that take advantage of Open Client directory services. </p>
+<A NAME="TI1007"></A><h3>What are Open Client directory services?</h3>
+<A NAME="TI1008"></A><p>Open Client 11.1.x or later <strong>directory services</strong> allow
+you to use a supported third-party directory services product (such
+as the Windows Registry) as your directory service provider. Directory
+services provide centralized control and administration of the network
+entities (such as users, servers, and printers) in your environment. </p>
+<A NAME="CCJBDCEB"></A><h3>Requirements for using Open Client directory services</h3>
+<A NAME="TI1009"></A><p>For you to use Open Client directory services in your application, <i>all
+of the following must be true</i>:<A NAME="TI1010"></A>
+<ul>
+<li class=fi>You are accessing an Adaptive Server database server
+using Open Client Client-Library (CT-Lib) 11.x or later software</li>
+<li class=ds>You have the required Sybase-supported directory
+service provider software and Sybase-supplied directory driver properly
+installed and configured for your environment. Depending on your
+operating system platform, examples of supported security mechanisms
+include: the Windows Registry, Distributed Computing Environment
+Cell Directory Services (DCE/CDS), Banyan StreetTalk Directory
+Assistance (STDA), and Novell NetWare Directory Services (NDS).<br>
+For information about the directory service
+providers and operating system platforms that Sybase has tested
+with Open Client directory services, see the Open Client documentation.<br></li>
+<li class=ds>You must be able to access a secure Adaptive Server
+server using Open Client 11.1.x or later software from outside PowerBuilder.<br>
+To verify the connection, use a tool such as <ACRONYM title = "I sequel" >ISQL</ACRONYM> or <ACRONYM title = "sequel" >SQL</ACRONYM> Advantage
+to make sure you can connect to the server and log in to the database
+with the same connection parameters and directory service options
+you plan to use in your PowerBuilder application.<br></li>
+<li class=ds>You are using the ASE or SYC Adaptive Server interface
+to access the database.</li>
+<li class=ds>You must use the correct syntax as required by your
+directory service provider when specifying the server name in a
+database profile or PowerBuilder application script. Different providers
+require different syntax based on their format for specifying directory
+entry names.<br>
+For information and examples for different
+directory service providers, see <A HREF="connpbp31.htm#CCJDIFGI">"Specifying the server name
+with Open Client directory services"</A>.<br></li>
+<li class=ds>You have set the Release DBParm parameter to 11
+or higher to specify that your application should use the behavior
+of the appropriate version of the Open Client CT-Lib software.<br>
+For instructions, see Release (Adaptive Server
+Enterprise) in the online Help. <br></li>
+<li class=ds>The directory service provider and driver you are
+using must support the service requested by the DBParm parameter.
+</li>
+</ul>
+</p>
+<A NAME="CCJDIFGI"></A><h3>Specifying the server name with Open Client directory services</h3>
+<A NAME="TI1011"></A><p>When you are using Open Client directory services in a PowerBuilder application,
+you must use the syntax required by your directory service provider
+when specifying the server name in a database profile or PowerBuilder
+application script to access the database.</p>
+<A NAME="TI1012"></A><p>Different directory service providers require different syntax
+based on the format they use for specifying directory entry names.
+Directory entry names can be fully qualified or relative to the
+default (active) Directory Information Tree base (DIT base) specified
+in the Open Client/Server&#153; configuration utility.</p>
+<A NAME="TI1013"></A><p>The <strong>DIT base</strong> is the starting node for
+directory searches. Specifying a DIT base is analogous to setting
+a current working directory for UNIX or MS-DOS file systems. (You
+can specify a nondefault DIT base with the DS_DitBase DBParm
+parameter. For information, see DS_DitBase in the online
+Help.)</p>
+<A NAME="TI1014"></A><h4>Windows registry server name example</h4>
+<A NAME="TI1015"></A><p>This example shows typical server name syntax if your directory
+service provider is the Windows registry.<p><PRE> Node name: SALES:software\sybase\server\SYS12<br>DIT base: SALES:software\sybase\server<br>Server name: SYS12</PRE></p>
+<A NAME="TI1016"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the server name in a database profile:</p>
+<ol><li class=fi><p>Type the following in the Server box on
+the Connection tab in the Database Profile Setup dialog box. Do <i>not</i> start
+the server name with a backslash (\).<p><PRE> SYS12</PRE></p></li></ol>
+<br><A NAME="TI1017"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the server name in a PowerBuilder application
+script:</p>
+<ol><li class=fi><p>Type the following. Do<i> not</i> start
+the server name with a backslash (\).<p><PRE> SQLCA.ServerName = "SYS12"</PRE></p><p>If you specify a value in the Server box in your database
+profile, this syntax displays on the Preview tab in the Database
+Profile Setup dialog box. You can copy the syntax from the Preview
+tab into your script.</p></li></ol>
+<br><A NAME="TI1018"></A><h4>DCE/DCS server name example</h4>
+<A NAME="TI1019"></A><p>This example shows typical server name syntax if your directory
+service provider is Distributed Computing Environment Cell Directory
+Services (DCE/CDS).<p><PRE> Node name: /.../boston.sales/dataservers/sybase/SYS12<br>DIT base: /../boston.sales/dataservers<br>Server name: sybase/SYS12</PRE></p>
+<A NAME="TI1020"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the server name in a database profile:</p>
+<ol><li class=fi><p>Type the following in the Server box on
+the Connection tab in the Database Profile Setup dialog box. Do <i>not</i> start
+the server name with a slash (/).<p><PRE> sybase/SYS12</PRE></p></li></ol>
+<br><A NAME="TI1021"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the server name in a PowerBuilder application
+script:</p>
+<ol><li class=fi><p>Type the following. Do<i> not</i> start
+the server name with a slash (/).</p><p><p><PRE> SQLCA.ServerName = "sybase/SYS12"</PRE></p><p>If you specify a value in the Server box in your database
+profile, this syntax displays on the Preview tab in the Database
+Profile Setup dialog box. You can copy the syntax from the Preview
+tab into your script.</p></li></ol>
+<br><A NAME="TI1022"></A><h4>Banyan STDA server name example</h4>
+<A NAME="TI1023"></A><p>This example shows typical server name syntax if your directory
+service provider is Banyan StreetTalk Directory Assistance (STDA).<p><PRE> Node name: SYS12@sales@chicago<br>DIT base: chicago<br>Server name: SYS12@sales</PRE></p>
+<A NAME="TI1024"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the server name in a database profile:</p>
+<ol><li class=fi><p>Type the following in the Server box on
+the Connection tab in the Database Profile Setup dialog box. Do <i>not</i> end
+the server name with @.<p><PRE> SYS12@sales</PRE></p></li></ol>
+<br><A NAME="TI1025"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the server name in a PowerBuilder application
+script:</p>
+<ol><li class=fi><p>Type the following. Do<i> not</i> end
+the server name with @.</p><p><p><PRE> SQLCA.ServerName = "SYS12@sales"</PRE></p><p>If you specify a value in the Server box in your database
+profile, this syntax displays on the Preview tab in the Database
+Profile Setup dialog box. You can copy the syntax from the Preview
+tab into your script.</p></li></ol>
+<br><A NAME="TI1026"></A><h4>Novell NDS server name example</h4>
+<A NAME="TI1027"></A><p>This example shows typical server name syntax if your directory
+service provider is Novell NetWare Directory Services (NDS).<p><PRE> Node name: CN=SYS12.OU=miami.OU=sales.O=sybase<br>DIT base: OU=miami.OU=sales.O=sybase<br>Server name: SYS12</PRE></p>
+<A NAME="TI1028"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the server name in a database profile:</p>
+<ol><li class=fi><p>Type the following in the Server box on
+the Connection tab in the Database Profile Setup dialog box. Do <i>not</i> start
+the server name with CN=.<p><PRE> SYS12</PRE></p></li></ol>
+<br><A NAME="TI1029"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the server name in a PowerBuilder application
+script:</p>
+<ol><li class=fi><p>Type the following. Do<i> not</i> start
+the server name with CN=.</p><p><p><PRE> SQLCA.ServerName = "SYS12"</PRE></p><p>If you specify a value in the Server box in your database
+profile, this syntax displays on the Preview tab in the Database
+Profile Setup dialog box. You can copy the syntax from the Preview
+tab into your script.</p></li></ol>
+<br><A NAME="TI1030"></A><h3>Directory services DBParm parameters</h3>
+<A NAME="TI1031"></A><p>If you have met the requirements described in <A HREF="connpbp31.htm#CCJBDCEB">"Requirements for using Open
+Client directory services"</A>, you can set
+the directory services DBParm parameters in a database profile for
+your connection or in a PowerBuilder application script.</p>
+<A NAME="TI1032"></A><p>The following DBParm parameters correspond to Open Client
+11.1.x or later directory services connection parameters:<A NAME="TI1033"></A>
+<ul>
+<li class=fi>DS_Alias</li>
+<li class=ds>DS_Copy</li>
+<li class=ds>DS_DitBase</li>
+<li class=ds>DS_Failover</li>
+<li class=ds>DS_Password (Open Client 12.5 or later)</li>
+<li class=ds>DS_Principal</li>
+<li class=ds>DS_Provider</li>
+<li class=ds>DS_TimeLimit
+</li>
+</ul>
+</p>
+<A NAME="TI1034"></A><p>For instructions on setting these DBParm parameters,
+see their descriptions in the online Help.</p>
+<A NAME="CCJDGBBF"></A><h2>Using PRINT statements in Adaptive Server stored procedures</h2>
+<A NAME="TI1035"></A><p>The ASE or SYC Adaptive Server database interface allows you
+to use <b>PRINT</b> statements in your stored procedures
+for debugging purposes.</p>
+<A NAME="TI1036"></A><p>This means, for example, that if you turn on Database Trace
+when accessing the database through the ASE or SYC interface, <b>PRINT</b> messages
+appear in the trace log but they do not return errors or cancel
+the rest of the stored procedure.</p>
+<A NAME="TI1037"></A><h2>Creating a DataWindow based on a heterogeneous cross-database join</h2>
+<A NAME="TI1038"></A><p>This functionality is available through the use of Adaptive
+Server's Component Integration Services. Component Integration
+Services allows you to connect to multiple remote heterogeneous
+database servers and define multiple proxy tables that reference
+the tables residing on those servers.</p>
+<A NAME="TI1039"></A><p>For information on how to create proxy tables,
+see the Adaptive Server documentation. For information on identifying
+identity columns in the underlying database tables referenced by
+proxy tables, see the technical note "Techniques for Working
+with Identity Columns in ASA Proxy Tables" on the <A HREF="http://www.sybase.com/detail?id=1035056">Sybase Web site</A>
+.</p>
+<A NAME="TI1040"></A><h2>What to do next</h2>
+<A NAME="TI1041"></A><p>For instructions on connecting to the database,
+see <A HREF="connpbp37.htm#CCJBAGDB">"Connecting to a database"</A>.</p>
+

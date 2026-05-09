@@ -1,0 +1,83 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About OrcaScript</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp275.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp277.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDDHBGB"></A><h1>About OrcaScript</h1>
+<A NAME="TI10651"></A><p>OrcaScript allows
+you to write batch scripts to process PowerBuilder applications
+and files without using the PowerBuilder development environment.
+You can use OrcaScript to get the latest version of a PowerScript
+target from source control, build the target <ACRONYM title = "pibbles" >PBLs</ACRONYM>,
+deploy components to <ACRONYM title = "E A Server" >EAServer</ACRONYM>,
+and compile PowerBuilder executable files&#8212;all without operator
+intervention. </p>
+<A NAME="TI10652"></A><h4>Using OrcaScript with source control</h4>
+<A NAME="TI10653"></A><p>The targets you obtain
+from source control using OrcaScript could be placed on a network
+build machine that is shared by PowerBuilder developers. This is
+especially advantageous for large shops with fixed working hours:
+the builds could be done nightly by running an OrcaScript batch
+file, and an up-to-date version of the targets and libraries would
+be available at the start of the next work day. </p>
+<A NAME="TI10654"></A><p>Developers could then use OrcaScript or operating system commands
+to copy the shared files directly to their local machines. Although
+developers would still connect directly to source control from their
+local workspaces, refreshing the targets in the workspaces would
+be much faster since compilation times for complex PowerScript targets
+would be greatly minimized.</p>
+<A NAME="TI10655"></A><h4>Batch file order</h4>
+<A NAME="TI10656"></A><p>If you include
+OrcaScript commands in a batch file, the file is read line by line. Each
+OrcaScript batch file must begin with a <b>start session</b> command
+and end with an <b>end session</b> command. You can
+save the batch file with any extension. You run the batch file by
+calling the OrcaScript executable on a command line and passing
+the batch file name as an argument:<p><PRE> OrcaScr105 myOrcaBat.dat</PRE></p>
+<A NAME="TI10657"></A><p>If you use relative directories in the OrcaScript batch file,
+create the batch file in the directory that is the required root
+directory at runtime. This must be in the same directory or in the
+path above a directory containing the files referenced by the batch
+file.  </p>
+<A NAME="TI10658"></A><p>When you use relative directories, the OrcaScript batch file
+is portable for all users. However, users must make the directory
+where they copy the batch file the current directory (the one displayed
+in the DOS prompt) before invoking <i>OrcaScr105.exe</i>.
+The command to start the OrcaScript executable can also take the
+following parameters:</p>
+<A NAME="TI10659"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI10660"></A>Parameter</th>
+<th  rowspan="1"  ><A NAME="TI10661"></A>Description</th>
+<th  rowspan="1"  ><A NAME="TI10662"></A>Example</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10663"></A>/D</td>
+<td  rowspan="1"  ><A NAME="TI10664"></A>Sets variables that are valid in the batch
+file</td>
+<td  rowspan="1"  ><A NAME="TI10665"></A><FONT FACE="Courier New">OrcaScr105 /D
+myVar1=value1 <br>/D myVar2=value2
+myOrca.dat</FONT></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10666"></A>/H or /?</td>
+<td  rowspan="1"  ><A NAME="TI10667"></A>Prints syntax help to screen</td>
+<td  rowspan="1"  ><A NAME="TI10668"></A><FONT FACE="Courier New">OrcaScr105 /H</FONT></td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Caution</span> <A NAME="TI10669"></A>You should not run an OrcaScript batch file if PowerBuilder is
+currently running on the same machine. If the PowerBuilder development
+environment is not shut down while OrcaScript is running, your PowerBuilder
+libraries can become corrupted. For this reason, casual use of OrcaScript
+is not recommended.</p>
+<A NAME="TI10670"></A><h4>Error handling</h4>
+<A NAME="TI10671"></A><p>Each line of an OrcaScript batch file either succeeds or fails.
+If a command fails, subsequent commands are not processed and the
+OrcaScript session is ended. An error message is printed to the
+command window. </p>
+<A NAME="TI10672"></A><h4>Comments</h4>
+<A NAME="TI10673"></A><p>A semicolon (;) indicates that the rest of the line is treated
+as a comment.</p>
+

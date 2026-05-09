@@ -1,0 +1,140 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+DDE functions and events </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp103.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp105.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDCHDHC"></A><h1>DDE functions and events </h1>
+<A NAME="TI2969"></A><p>The following tables list the DDE functions and events separated
+into those functions and events used by DDE clients and those used
+by DDE servers. For more information on DDE support, see the <i>PowerScript
+Reference</i>
+.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Return values</span> <A NAME="TI2970"></A>Every DDE function returns an integer.</p>
+<A NAME="TI2971"></A><h4>DDE client </h4>
+<A NAME="TI2972"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 18-1: DDE client functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2973"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI2974"></A>Action</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2975"></A><b>CloseChannel</b></td>
+<td  rowspan="1"  ><A NAME="TI2976"></A>Closes a channel to a DDE server application
+that was opened using <b>OpenChannel</b>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2977"></A><b>ExecRemote</b></td>
+<td  rowspan="1"  ><A NAME="TI2978"></A>Asks a DDE server application to execute
+a command.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2979"></A><b>GetDataDDE</b></td>
+<td  rowspan="1"  ><A NAME="TI2980"></A>Obtains the new data from a hot-linked
+DDE server application and moves it into a specified string.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2981"></A><b>GetDataDDEOrigin</b></td>
+<td  rowspan="1"  ><A NAME="TI2982"></A>Determines the origin of data that has
+arrived from a hot-linked DDE server application.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2983"></A><b>GetRemote</b></td>
+<td  rowspan="1"  ><A NAME="TI2984"></A>Asks a DDE server application for data.
+This function has two formats: one that uses a channel and one that
+does not.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2985"></A><b>OpenChannel</b></td>
+<td  rowspan="1"  ><A NAME="TI2986"></A>Opens a DDE channel to a specified DDE
+server application.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2987"></A><b>RespondRemote</b></td>
+<td  rowspan="1"  ><A NAME="TI2988"></A>Indicates to the DDE server application
+whether the command or data received from the DDE application was acceptable
+to the DDE client.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2989"></A><b>SetRemote</b></td>
+<td  rowspan="1"  ><A NAME="TI2990"></A>Asks a DDE server application to set
+an item such as a cell in a worksheet or a variable to a specific
+value. This function has two formats: one that uses a DDE channel
+and one that does not.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2991"></A><b>StartHotLink</b></td>
+<td  rowspan="1"  ><A NAME="TI2992"></A>Initiates a hot link to a DDE server
+application so that PowerBuilder is immediately notified of specific
+data changes in the DDE server application.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2993"></A><b>StopHotLink</b></td>
+<td  rowspan="1"  ><A NAME="TI2994"></A>Ends a hot link with a DDE server application.</td>
+</tr>
+</table>
+<A NAME="TI2995"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 18-2: DDE client event</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2996"></A>Event</th>
+<th  rowspan="1"  ><A NAME="TI2997"></A>Occurs when</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2998"></A>HotLinkAlarm</td>
+<td  rowspan="1"  ><A NAME="TI2999"></A>A DDE server application has sent new
+(changed) data.</td>
+</tr>
+</table>
+<A NAME="TI3000"></A><h4>DDE server </h4>
+<A NAME="TI3001"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 18-3: DDE server functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3002"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI3003"></A>Action</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3004"></A><b>GetCommandDDE</b></td>
+<td  rowspan="1"  ><A NAME="TI3005"></A>Obtains the command sent by a DDE client
+application</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3006"></A><b>GetCommandDDEOrigin</b></td>
+<td  rowspan="1"  ><A NAME="TI3007"></A>Determines the origin of a command from
+a DDE client</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3008"></A><b>GetDataDDE</b></td>
+<td  rowspan="1"  ><A NAME="TI3009"></A>Gets data that a DDE client application
+has sent and moves it into a specified string</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3010"></A><b>GetDataDDEOrigin</b></td>
+<td  rowspan="1"  ><A NAME="TI3011"></A>Determines the origin of data that has
+arrived from a hot-linked DDE client application</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3012"></A><b>RespondRemote</b></td>
+<td  rowspan="1"  ><A NAME="TI3013"></A>Indicates to the sending DDE client application
+whether the command or data received from the DDE application was
+acceptable to the DDE server</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3014"></A><b>SetDataDDE</b></td>
+<td  rowspan="1"  ><A NAME="TI3015"></A>Sends specified data to a DDE client
+application</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3016"></A><b>StartServerDDE</b></td>
+<td  rowspan="1"  ><A NAME="TI3017"></A>Causes a PowerBuilder application to
+begin acting as a DDE server</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3018"></A><b>StopServerDDE</b></td>
+<td  rowspan="1"  ><A NAME="TI3019"></A>Causes a PowerBuilder application to
+stop acting as a DDE server</td>
+</tr>
+</table>
+<A NAME="TI3020"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 18-4: DDE server events</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3021"></A>Event</th>
+<th  rowspan="1"  ><A NAME="TI3022"></A>Occurs when</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3023"></A>RemoteExec</td>
+<td  rowspan="1"  ><A NAME="TI3024"></A>A DDE client application has sent a command</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3025"></A>RemoteHotLinkStart</td>
+<td  rowspan="1"  ><A NAME="TI3026"></A>A DDE client application wants to start
+a hot link</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3027"></A>RemoteHotLinkStop</td>
+<td  rowspan="1"  ><A NAME="TI3028"></A>A DDE client application wants to end
+a hot link</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3029"></A>RemoteRequest</td>
+<td  rowspan="1"  ><A NAME="TI3030"></A>A DDE client application has requested
+data</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3031"></A>RemoteSend</td>
+<td  rowspan="1"  ><A NAME="TI3032"></A>A DDE client application has sent data</td>
+</tr>
+</table>
+

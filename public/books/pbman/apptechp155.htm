@@ -1,0 +1,164 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Invoking component methods</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp154.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp156.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJECFJI"></A><h1>Invoking component methods</h1>
+<A NAME="TI5184"></A><p>Once a connection to <ABBR title = "e a server" >EAServer</ABBR> has
+been established and a proxy object or objects created, the client
+application can begin using the server components. </p>
+<A NAME="TI5185"></A><h2>Invoking a component method</h2>
+<A NAME="TI5186"></A><p>To invoke a method on most component types, you need to execute
+the PowerScript statements required to perform these operations:<A NAME="TI5187"></A>
+<ol>
+</li>
+<li class=ds>Use the <b>CreateInstance</b> method
+to create an instance of the component.</li>
+<li class=ds>Invoke the method.
+</li>
+</ol>
+</p>
+<A NAME="TI5188"></A><p>You use a different technique to invoke EJB component methods.
+See <A HREF="apptechp155.htm#CIHEGIAI">"Invoking an EJB component
+method"</A>.</p>
+<p><b>Example 1</b>   This script instantiates a component on the server and invokes
+a component method. In this example, the <b>CreateInstance</b> method
+does not specify a package; therefore, <ABBR title = "e a server" >EAServer</ABBR> uses
+the default package specified in the Application property of the
+Connection object:<p><PRE> // Global variable:<br>// connection myconnect<br> <br>uo_customer iuo_customer<br>string ls_custid<br>long ll_rc<br> <br>ls_custid = Trim(sle_custid.text)<br>ll_rc = myconnect.CreateInstance(iuo_customer)<br>if ll_rc &lt;&gt; 0 then <br>   MessageBox("CreateInstance failed", ll_rc)</PRE><PRE>    return 999<br>end if<br>if iuo_customer.retrieve_balance(ls_custid) != 1 then<br>    MessageBox("Error", "Retrieve failed!")<br>end if</PRE></p>
+<p><b>Example 2</b>   This script instantiates a component on the server and assigns
+the object reference to a variable whose datatype is an ancestor
+of the class for the component. The second argument to the <b>CreateInstance</b> function
+specifies the class name for the component as well as the <ABBR title = "e a server" >EAServer</ABBR> package name:<p><PRE> // Global variable:<br>// connection myconnect<br> <br>uo_person lnv_object<br>string ls_custid<br>long ll_rc<br> <br>ls_custid = Trim(sle_custid.text)<br>ll_rc = myconnect.CreateInstance(lnv_object, &amp;<br>    "PB_pkg_1/uo_customer")<br>if ll_rc &lt;&gt; 0 then <br>    MessageBox("CreateInstance failed", ll_rc)</PRE><PRE> return 999<br>end if<br>if iuo_customer.retrieve_balance(ls_custid) != 1 then<br>    MessageBox("Error", "Retrieve failed!")<br>end if</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Invoking a local instance</span> <A NAME="TI5189"></A>By default, the TransactionServer <b>CreateInstance</b> method
+invokes the <ABBR title = "e a server" >EAServer</ABBR> name service
+to create proxies. Proxies for remote components might be returned
+by the name service rather than an instance that is running locally.
+To guarantee that a locally installed instance is used, specify
+the component name as  "<FONT FACE="Courier New">local:<i>package</i>/<i>component</i></FONT>",
+where <i>package</i> is the package name and <i>component</i> is
+the component name.  The call fails if the component is not installed
+in the same server.</p>
+<A NAME="CIHEGIAI"></A><h2>Invoking an EJB component method</h2>
+<A NAME="TI5190"></A><p>To
+invoke an EJB component method, you need to execute the PowerScript statements
+required to perform these operations:<A NAME="TI5191"></A>
+<ol>
+</li>
+<li class=ds>Use the <b>Lookup</b> function to access the component's
+home interface. </li>
+<li class=ds>Invoke the method on the interface to create or
+find an instance of the component and get a reference to the component's
+remote interface.</li>
+<li class=ds>Invoke the business methods on the remote interface.
+</li>
+</ol>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Does not apply to EJBConnection methods</span> <A NAME="TI5192"></A>This section applies to client applications that use an <ABBR title = "e a server" >EAServer</ABBR> proxy object and PowerScript
+functions. For information about invoking EJB methods in client
+applications that use an EJB client proxy and EJBConnection methods, see <A HREF="apptechp184.htm#CDECHFKM">Chapter 29, "Building an EJB client ."</A></p>
+<A NAME="TI5193"></A><h4>Specifying the home interface name</h4>
+<A NAME="TI5194"></A><p>PowerBuilder provides an optional third argument to the <b>Lookup</b> function
+to specify the name of the home interface. EJB components have a
+property in <ABBR title = "e a server" >EAServer</ABBR> called com.sybase.jaguar.component.home.ids.
+You do not need to specify the third argument to the <b>Lookup</b> function
+if the home.ids property looks like this:<p><PRE>IDL:<i>PackageName</i>/<i>ComponentName</i>Home:1.0</PRE></p>
+</p>
+<A NAME="TI5195"></A><p>For example:<p><PRE> IDL:vacation/TripFinderHome:1.0</PRE></p>
+<A NAME="TI5196"></A><p>In most cases, however, the home.ids property uses the java
+package naming scheme and you should use the third argument to make
+sure that the EJB home interface can be located. The string that
+you specify for this argument must match the component's
+com.sybase.jaguar.component.home.ids property without the leading<i> IDL:</i> and
+trailing <i>:1.0</i>.</p>
+<A NAME="TI5197"></A><p>For example, suppose the home.ids property is this:<p><PRE> IDL:com/myproj/myejbs/TripFindHome:1.0</PRE></p>
+<A NAME="TI5198"></A><p>Your <b>Lookup</b> function call should look like
+this::<p><PRE> myconn.lookup(myTripFindHome,"MyEJBs/TripFindHome", &amp;<br>   "com/myproj/myejbs/TripFinderHome")</PRE></p>
+<A NAME="TI5199"></A><p>Alternatively, you can use the fully-qualified Java class
+name of the home interface specified in dot notation. For example:<p><PRE> ts.lookup(MyCartHome, "MyEJBs/TripFindHome", &amp;    "com.myproj.myejbs.TripFinderHome")</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Lookup is case sensitive</span> <A NAME="TI5200"></A><b>Lookup</b> in <ABBR title = "e a server" >EAServer</ABBR> is
+case sensitive. Make sure that the case in the string you specify
+for the arguments to the <b>Lookup</b> function matches
+the case in the home.ids property.</p>
+<A NAME="TI5201"></A><h4>Creating or finding an instance of an EJB</h4>
+<A NAME="TI5202"></A><p><ABBR title = "e a server" >EAServer</ABBR> supports three
+types of EJBs&#8212;session beans, entity beans, and message-driven
+beans. </p>
+<A NAME="TI5203"></A><p>A session bean is <i>created</i> in response
+to a client request. A client usually has exclusive use of the session
+bean for the duration of that client session. </p>
+<A NAME="TI5204"></A><p>An entity bean represents persistent information stored in
+a database. A client uses an entity bean concurrently with other
+clients. Since an entity bean persists beyond the lifetime of the
+client, you must use a primary key class name to identify or <i>find</i> a
+preexisting component, if the bean has already been created. </p>
+<A NAME="TI5205"></A><p>A message-driven bean is similar to a stateless session
+bean, but it responds only to JMS messages and has no direct client
+interface.</p>
+<A NAME="TI5206"></A><p>The following examples assume that an EJB component that provides e-commerce
+shopping cart functionality is running on <ABBR title = "e a server" >EAServer</ABBR>.
+This component is called Cart and is included in a package called
+Shopping.</p>
+<p><b>Example 1</b>   This script instantiates the Cart component and invokes several component
+methods. In this example, the second argument to the <b>Lookup</b> method
+specifies the component name as well as the <ABBR title = "e a server" >EAServer</ABBR> package
+name:<p><PRE> //Instance variable:<br>//Connection myconnect<br> <br>CartHome MyCartHome // EJB's home interface<br>Cart MyShoppingCart // EJB's remote interface<br>long ll_result<br> <br>//Get the home interface<br>ll_result = &amp;<br>myconnect.Lookup(MyCartHome, "Shopping/Cart", &amp;<br>   "com.sybase.shopping.Cart")<br> <br>//Get a reference to Cart component's business logic<br>TRY<br>   MyShoppingCart = MyCartHome.Create()<br>CATCH (ctscomponents_createexception ce)<br>   MessageBox("Create exception", ce.getmessage())<br>   // handle exception<br>END TRY<br> <br>//Use the shopping cart<br>MyShoppingCart.AddItem(66)<br>MyShoppingCart.Purchase()</PRE></p>
+<p><b>Example 2</b>   If the Cart EJB component is defined as an entity bean, then
+the script must use the <b>findByPrimaryKey</b> method
+to find and reference a preexisting or persistent component if one
+exists:<p><PRE> //Instance variable:<br>//Connection myconnect<br> <br>CartHome MyCartHome // EJB's home interface<br>Cart MyCart // EJB's remote interface<br>long ll_result<br> <br>//Get the home interface<br>ll_result = &amp;<br>myconnect.Lookup(MyCartHome, "Shopping/Cart", &amp;<br>   "com.sybase.shopping.Cart")<br> <br>//Get a reference to Cart from a previous session<br>TRY<br>   MyCart = MyCartHome.findByPrimaryKey("MYkey")<br>CATCH ( ctscomponents_finderexception fe )<br>   MessageBox("Finder exception", &amp;<br>      fe.getmessage())<br>   // handle exception<br>END TRY<br>//Use the shopping cart<br>MyCart.AddItem(66)<br>MyCart.Purchase()</PRE></p>
+<A NAME="TI5207"></A><h4>Restrictions</h4>
+<A NAME="TI5208"></A><p>PowerBuilder clients to EJB objects act as CORBA clients,
+which means that they do not have the full capabilities of Java
+clients. Java clients can use methods inherited from the javax.ejb.EJBObject
+interface. </p>
+<A NAME="TI5209"></A><p>For example, a Java client can obtain a handle for a remote
+interface instance. The handle is a binary encoding of the session
+state between the client and the bean. The client can obtain a handle,
+save it to disk or mail it to another location, then reestablish
+the session at a later time. PowerBuilder clients can obtain similar
+functionality using the <b>Object_To_String</b> and <b>String_To_Object</b> functions
+of the JaguarORB object.</p>
+<A NAME="TI5210"></A><h4>Handling exceptions</h4>
+<A NAME="TI5211"></A><p>The remote interface of an EJB component can indicate errors
+or warnings. Standard exceptions thrown by the EJB component are
+mapped to CORBA system exceptions. The EJB component can also throw
+user exceptions. For information about handling exceptions thrown
+by <ABBR title = "e a server" >EAServer</ABBR> components, see <A HREF="apptechp159.htm#CCJBBGBC">"Handling errors "</A>.</p>
+<A NAME="TI5212"></A><p>For information about calling an EJB component from a PowerBuilder component
+in <ABBR title = "e a server" >EAServer</ABBR>, see <A HREF="apptechp145.htm#CEGGABIG">"Accessing an EJB component"</A>.</p>
+<A NAME="TI5213"></A><h2>Destroying instances</h2>
+<A NAME="TI5214"></A><h4>Destroying the proxy object instance</h4>
+<A NAME="TI5215"></A><p>After you have finished using an <ABBR title = "e a server" >EAServer</ABBR> component,
+you can explicitly destroy the <ABBR title = "e a server" >EAServer</ABBR> proxy
+object by using the <b>DESTROY</b> statement, or you can
+let PowerBuilder's garbage collection facility clear the
+object out of memory for you automatically. In either case, the
+destruction of the client-side proxy object has no effect on the
+lifecycle of the server component. Destruction of the server component
+is handled by <ABBR title = "e a server" >EAServer</ABBR>.</p>
+<A NAME="TI5216"></A><h4>Deactivating the component instance</h4>
+<A NAME="TI5217"></A><p>If the Automatic Demarcation/Deactivation setting
+is disabled for a component, and you close the client application
+while the component is still bound to the client (the component
+did not call <b>SetComplete</b> or <b>SetAbort</b>),
+the component is <i>not</i> deactivated. To ensure
+that the component instance is deactivated, you can do one of the
+following things:<A NAME="TI5218"></A>
+<ul>
+<li class=fi>In the Close event of the
+client application, invoke a method of the server component that
+deactivates the component (by calling <b>SetComplete</b> or <b>SetAbort</b>).</li>
+<li class=ds>Set the Timeout property for the component to a
+value other than 0. If the component's Timeout property
+is set to 0, the component will never time out.
+</li>
+</ul>
+</p>
+

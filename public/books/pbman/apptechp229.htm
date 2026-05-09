@@ -1,0 +1,200 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About the PowerBuilder window ActiveX</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp228.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp230.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCDFDHB"></A><h1>About the PowerBuilder window ActiveX</h1>
+<A NAME="TI6941"></A><p>The PowerBuilder window ActiveX lets you display a PowerBuilder
+child window on Web pages viewed in a browser that supports ActiveX.</p>
+<A NAME="TI6942"></A><h4>Features</h4>
+<A NAME="TI6943"></A><p>The PowerBuilder window can include all the familiar controls,
+including DataWindows, OLE objects, OCX (ActiveX) controls, and
+TreeView controls. You can also open other (pop-up or response)
+windows from the child window.</p>
+<A NAME="TI6944"></A><p>As the user interacts with controls in the windows, scripts
+for the controls' events are executed just as they are
+in standalone PowerBuilder applications. Additionally, you can call
+PowerBuilder functions and react to PowerBuilder events by coding
+VB Script or JavaScript within the HTML page.</p>
+<A NAME="TI6945"></A><p>Database access by the PowerBuilder window ActiveX application
+occurs using the client's locally defined database connections.</p>
+<A NAME="TI6946"></A><p>The objects in the application can be contained in one or
+more PowerBuilder Dynamic Libraries (PBDs).</p>
+<A NAME="TI6947"></A><h4>Supported browsers</h4>
+<A NAME="TI6948"></A><p>The PowerBuilder window ActiveX requires use of a browser
+that supports ActiveX, such as Microsoft Internet Explorer.</p>
+<A NAME="TI6949"></A><h2>Kinds of applications that work with the PowerBuilder
+window ActiveX</h2>
+<A NAME="TI6950"></A><p>HTML forms provide some user interaction by means of a limited
+user interface. The PowerBuilder window ActiveX takes you beyond
+HTML. You can present a fully developed application window with
+a rich user interface design to a Web page. You can access data
+sources defined on the client workstation. </p>
+<A NAME="TI6951"></A><h4>Examples</h4>
+<A NAME="TI6952"></A><p>Your application might be:<A NAME="TI6953"></A>
+<ul>
+<li class=fi>A data analysis window with master and detail DataWindows</li>
+<li class=ds>A user interface design that lets the user make
+choices using TreeView, ListView, and PictureListBox controls</li>
+<li class=ds>A data entry form that processes data on a server</li>
+<li class=ds>A data entry form that uses the client's
+defined database connection (either network or local) to process
+the data on the client machine</li>
+<li class=ds>A window that uses PowerBuilder's OLEControl
+control to display an ActiveX control
+</li>
+</ul>
+</p>
+<A NAME="TI6954"></A><h2>How the PowerBuilder window ActiveX works</h2>
+<A NAME="TI6955"></A><p>The PowerBuilder window ActiveX displays a PowerBuilder child
+window inside a fixed space reserved on the Web page. The user can
+interact with the controls on the page, and the PowerBuilder scripts
+for the window and its controls can execute any PowerBuilder code.
+When the user switches to another Web page, the PowerBuilder window
+is closed and the PowerBuilder DLLs are unloaded from memory.</p>
+<A NAME="TI6956"></A><p>The PowerBuilder window ActiveX is included on an HTML page
+using the HTML Object element. It names one or more PBDs that contain
+PowerBuilder objects, the name of the child window object that is
+displayed on the page, and (optionally) the PowerBuilder Application
+object.</p>
+<A NAME="TI6957"></A><h4>Security</h4>
+<A NAME="TI6958"></A><p>Unsecured applications can access local files and can run
+local applications. These types of processing are often undesirable
+in an uncontrolled Web environment but may be perfectly acceptable
+on a corporate intranet where access is controlled. There are two
+versions of the PowerBuilder window ActiveX: one secure (<i>PBRXS105.OCX</i>)
+and the other unsecure (<i>PBRX105.OCX</i>). The secure
+version is extremely restricted, with no access to the client workstation.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Some events always execute in secure mode</span> <A NAME="TI6959"></A>As of PowerBuilder 7, the application Open event and some
+of the Constructor events for controls execute in secure mode even
+when you use the unsecure version of the window ActiveX. If your
+application logic depends on the ability to perform an activity
+that is not secure in these events, such as opening a file for writing,
+post an event message to the application or control. This is processed
+once the window ActiveX returns to standard mode.</p>
+<A NAME="TI6960"></A><h4>Requirements</h4>
+<A NAME="TI6961"></A><p>The PowerBuilder window ActiveX uses the PowerBuilder virtual
+machine as well as the ActiveX itself to provide a full range of
+PowerBuilder functionality.</p>
+<A NAME="TI6962"></A><p>Each client that is used to browse pages with the PowerBuilder
+window ActiveX needs supporting software installed on the local
+machine:<A NAME="TI6963"></A>
+<ul>
+<li class=fi>PowerBuilder virtual
+machine (<i>PBVM105.DLL</i> and supporting files)</li>
+<li class=ds>PowerBuilder window ActiveX
+</li>
+</ul>
+</p>
+<A NAME="TI6964"></A><p>The PowerBuilder window ActiveX is especially useful in an
+intranet application where you have control over the setup of client
+machines.</p>
+<A NAME="TI6965"></A><h2>Installing and configuring the PowerBuilder window
+ActiveX </h2>
+<A NAME="TI6966"></A><p>The PowerBuilder window ActiveX controls are not installed
+on your computer if you select the Typical setup type when you install
+PowerBuilder. You can install the ActiveX controls by running a
+custom installation of PowerBuilder and checking the Web Plugins
+box on the Select Components page. Click the Change button on that
+page to select the plug-ins and controls you want to install.</p>
+<A NAME="TI6967"></A><p>This section describes setup tasks that you may need to perform <i>after</i> installing the
+window ActiveX.</p>
+<A NAME="TI6968"></A><h4>Installation location</h4>
+<A NAME="TI6969"></A><p>The PowerBuilder window ActiveX files (both the secure and
+unsecure versions) are installed in the <i>\Sybase\Shared\PowerBuilder</i> directory.</p>
+<A NAME="TI6970"></A><h4>Register the ActiveX</h4>
+<A NAME="TI6971"></A><p>For you to use the PowerBuilder window ActiveX for development,
+it must be registered on your machine. You can check to see if it
+is registered by using the PowerBuilder Browser. Open the Browser,
+select the OLE tab, and expand the OLE Custom Controls item. If
+the ActiveX is registered, it is listed as the PowerBuilder Window
+Control or PowerBuilder Secure Window Control in the tree view.
+Expand the Class Information node to verify that the current version
+of the control is registered.</p>
+<A NAME="TI6972"></A><p>If the ActiveX is not registered on your machine, you can
+register it from within PowerBuilder or by using the MS-DOS <b>regsvr32</b> command.</p>
+<A NAME="TI6973"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To register the ActiveX within PowerBuilder:</p>
+<ol><li class=fi><p>From within PowerBuilder, open a new or
+existing application, then open a new or existing window.</p></li>
+<li class=ds><p>Select Insert&gt;Control&gt;OLE from
+the menu.</p><p>The Insert Object dialog displays.</p></li>
+<li class=ds><p>Select the Insert Control tab and click the Register
+New button.</p><p>The Browse dialog displays.</p></li>
+<li class=ds><p>Browse to the location of the OCX in the System
+directory, select either <i>PBRX105.OCX</i> or <i>PBRXS105.OCX</i>,
+and click Open.</p><p>If the OCX fails to register, you receive an error message.</p></li></ol>
+<br><A NAME="TI6974"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To register the ActiveX using the MS-DOS regsvr32
+command:</p>
+<ol><li class=fi><p>Run the MS-DOS <b>regsvr32.exe</b><b></b> command
+with the complete path to the OCX as an argument. For example:<p><PRE> regsvr32.exe C:\Windows\System32\pbrx105.ocx</PRE></p></li></ol>
+<br><A NAME="TI6975"></A><h2>Developing and deploying a PowerBuilder window ActiveX application</h2>
+<A NAME="TI6976"></A><p>There are four main tasks involved in developing a PowerBuilder
+window ActiveX application.</p>
+<A NAME="TI6977"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create and deploy a PowerBuilder window ActiveX
+application:</p>
+<ol><li class=fi><p>Create, test, and build the PowerBuilder
+application.</p></li>
+<li class=ds><p>Create an HTML page that includes your PowerBuilder
+application window.</p></li>
+<li class=ds><p>Configure the Web server by copying the HTML page
+and PBD files for the application to appropriate directories.</p></li>
+<li class=ds><p>On all client workstations, install and register
+the PowerBuilder window ActiveX control and install the PowerBuilder
+runtime DLLs.</p></li></ol>
+<br><A NAME="TI6978"></A><h4>Resulting components</h4>
+<A NAME="TI6979"></A><p>When everything is set up, the various computers have the
+components listed in <A HREF="apptechp229.htm#BABDHABD">Table 34-1</A>.</p>
+<A NAME="BABDHABD"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 34-1: Server and client configuration
+for PowerBuilder window ActiveX application</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6980"></A>Computer</th>
+<th  rowspan="1"  ><A NAME="TI6981"></A>Component</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6982"></A>Server</td>
+<td  rowspan="1"  ><A NAME="TI6983"></A>HTML page with an Object element for
+the window (or report) and PBD</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6984"></A></td>
+<td  rowspan="1"  ><A NAME="TI6985"></A>PowerBuilder window ActiveX installed
+and registered (optional)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6986"></A></td>
+<td  rowspan="1"  ><A NAME="TI6987"></A>One or more PBDs containing your child
+windows and other PowerBuilder objects</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6988"></A>Client</td>
+<td  rowspan="1"  ><A NAME="TI6989"></A>PowerBuilder window ActiveX installed
+and registered</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6990"></A></td>
+<td  rowspan="1"  ><A NAME="TI6991"></A>PowerBuilder runtime DLLs installed as
+described in <A HREF="apptechp269.htm#CFHBBAEA">Chapter 41, "Deploying Applications
+and Components."</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6992"></A></td>
+<td  rowspan="1"  ><A NAME="TI6993"></A>Directory for the PowerBuilder runtime
+DLLs listed in the system path</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6994"></A></td>
+<td  rowspan="1"  ><A NAME="TI6995"></A>Microsoft DLLS:<A NAME="TI6996"></A>
+<ul>
+<li class=fi><i>MFC42.DLL</i></li>
+<li class=ds><i>MSVCRT.DLL</i></li>
+<li class=ds><i>URL.DLL</i></li>
+<li class=ds><i>URLMON.DLL</i>
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6997"></A></td>
+<td  rowspan="1"  ><A NAME="TI6998"></A>Any additional software required by the
+PowerBuilder window ActiveX application, such as database connection
+software or OLE servers and ActiveX controls</td>
+</tr>
+</table>
+

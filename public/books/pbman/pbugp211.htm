@@ -1,0 +1,99 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About nested reports </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp210.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp212.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCBIBAB"></A><h1>About nested reports </h1>
+<A NAME="TI7238"></A><p>A nested report is a report within another report.</p>
+<A NAME="TI7239"></A><p>There are two ways to create reports containing nested reports:<A NAME="TI7240"></A>
+<ul>
+<li class=fi>Create a composite report
+using the Composite presentation style</li>
+<li class=ds>Place a nested report in another report
+</li>
+</ul>
+</p>
+<A NAME="TI7241"></A><h4>About creating a composite report</h4>
+<A NAME="TI7242"></A><p>You can choose the Composite presentation style to create
+a new report that consists entirely of one or more nested reports.
+This type of report is called a composite report. A composite report
+is a container for other reports.</p>
+<A NAME="TI7243"></A><p>You can use composite reports to print more than one report
+on a page.</p>
+<A NAME="TI7244"></A><h4>Composite report</h4>
+<A NAME="TI7245"></A><p>For example, the following composite report consists of three
+tabular reports. One of the tabular reports includes a graph:</p>
+<br><img src="images/nest01.gif">
+<A NAME="TI7246"></A><h4>Composite report in the Design view</h4>
+<A NAME="TI7247"></A><p>In the Design view, you see three boxes that represent the
+individual tabular reports that are included in the composite report.
+The only additional controls in this example are a title, date,
+and page number:</p>
+<br><img src="images/nest02.gif">
+<A NAME="TI7248"></A><h4>About placing a nested report within another
+report</h4>
+<A NAME="TI7249"></A><p>You can place one or more reports within another report. The
+report you place is called the nested report. You can place a nested
+report in any type of report except crosstab. Most of the time you
+will place nested reports in freeform or tabular reports.</p>
+<A NAME="TI7250"></A><p>Often, the information in the nested report depends on information
+in the report in which it is placed (the base report). The nested
+report and the base report are related to each other by some common
+data. The base report and the nested report have a master/detail
+relationship.</p>
+<A NAME="TI7251"></A><h4>Freeform report with a related nested report</h4>
+<A NAME="TI7252"></A><p>For example, the following freeform report lists all information
+about a customer and then includes a related nested report (which
+happens to be a tabular report). The related nested report lists
+every order that the customer has ever placed. The base report supplies
+the customer ID to the nested report, which requires a customer
+ID as a retrieval argument. This is an example of a master/detail
+relationship&#8212;one customer has many orders:</p>
+<br><img src="images/nest03.gif">
+<A NAME="TI7253"></A><h4>What you see in the Design view</h4>
+<A NAME="TI7254"></A><p>In the Design view, you see everything in the base report
+plus a box that represents the related nested report:</p>
+<br><img src="images/nest04.gif">
+<A NAME="TI7255"></A><h4>The difference between nested and composite reports</h4>
+<A NAME="TI7256"></A><p>There are two important differences between nesting using
+the Composite style and nesting a report within a base report.</p>
+<p><b>Data sources</b>    The composite report does not have a data source&#8212;it
+is just a container for nested reports. In contrast, a base report
+with a nested report in it has a data source. The nested report
+has its own data source.</p>
+<p><b>Related nesting</b>   The composite report cannot be used to relate reports to each
+other in the database sense. One report cannot feed a value to another report,
+which is what happens in a master/detail report. If you
+want to relate reports to each other so that you can create a master/detail
+report, you need to place a nested report within a base report.</p>
+<A NAME="TI7257"></A><h4>How retrieval works</h4>
+<A NAME="TI7258"></A><p>When you preview (run) a composite report, PowerBuilder retrieves
+all the rows for one nested report, and then for another nested
+report, and so on until all retrieval is complete. Your computer must
+have a default printer specified, because composite reports are
+actually displayed in print preview mode.</p>
+<A NAME="TI7259"></A><p>When you preview (run) a report with another related report
+nested in it, PowerBuilder retrieves all the rows in the base report
+first. Then PowerBuilder retrieves the data for all nested reports
+related to the first row. Next, PowerBuilder retrieves data for nested
+reports related to the second row, and so on, until all retrieval
+is complete for all rows in the base report.</p>
+<A NAME="TI7260"></A><p>For information about efficiency and retrieval,
+see <A HREF="pbugp214.htm#BFCDIAGD">"Supplying retrieval arguments
+to relate a nested report to its base report"</A>.</p>
+<A NAME="TI7261"></A><h4>Limitations on nesting reports</h4>
+<A NAME="TI7262"></A><p>For the most part you can nest the various types of report
+styles. However, limitations apply to two of them.</p>
+<p><b>Crosstabs</b>   You cannot place a crosstab with retrieval arguments within another
+report as a related nested report. However, you can include a crosstab in
+a Composite report.</p>
+<p><b>RichText reports</b>   You cannot nest a RichText report in any way. You cannot place
+a RichText report in another report, and you cannot include a RichText report
+in a Composite report.</p>
+

@@ -1,0 +1,57 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining accelerator keys </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp102.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp104.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIDBGCD"></A><h1>Defining accelerator keys </h1>
+<A NAME="TI2712"></A><p>You can define accelerator keys for controls to allow users
+to change focus from one control to another. An accelerator key
+is sometimes referred to as a mnemonic access key.</p>
+<A NAME="TI2713"></A><p>Users press Alt followed by the accelerator key to use an
+accelerator. If the currently selected control is not an editable
+control (such as a SingleLineEdit, MultiLineEdit, ListBox, or DropDownListBox),
+users only have to press the accelerator key. They do not need to
+press the Alt key.</p>
+<A NAME="TI2714"></A><p>How you define accelerator keys depends on whether the type
+of control has displayed text associated with it. If
+there is no displayed text, you must define the accelerator key
+in the control itself and in a label that identifies the control.</p>
+<A NAME="TI2715"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define an accelerator key for a CommandButton,
+CheckBox, or RadioButton:</p>
+<ol><li class=fi><p>Click the control to display the control's
+properties in the Properties view.</p></li>
+<li class=ds><p>In the Text box on the General page, precede the
+letter that you want to use as the accelerator key with an ampersand
+character (&amp;).</p><p>When you perform your next action (such as tab to the next
+property or select the window or a control in the Layout view),
+the property is set and PowerBuilder displays an underline to indicate
+the accelerator key.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Displaying an ampersand</span> <A NAME="TI2716"></A>If
+you want to display an ampersand character in the text of a control,
+type a double ampersand. The first ampersand acts as an escape character.</p>
+</li></ol>
+<br><A NAME="TI2717"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define an accelerator key for a SingleLineEdit,
+MultiLineEdit, ListBox, or DropDownListBox:</p>
+<ol><li class=fi><p>Click the control to display the control's
+properties in the Properties view.</p></li>
+<li class=ds><p>In the General tab page, type the letter of the
+accelerator key in the Accelerator box. </p><p>For example, if the control contains a user's name
+and you want to make Alt+N the accelerator for the control,
+type <FONT FACE="Courier New">n </FONT>in the Accelerator box.</p><p>At this point you have defined the accelerator key, but the
+user has no way of knowing it, so you need to label the control.</p></li>
+<li class=ds><p>Place a StaticText control next to the control
+that was assigned the accelerator key.</p></li>
+<li class=ds><p>Click the StaticText control to display its properties
+in the Properties view.</p></li>
+<li class=ds><p>In the Text box on the General page, precede the
+letter that you want to use as the accelerator key with an ampersand
+character (&amp;).</p><p>For example, if the StaticText control will display the label
+Name, type <FONT FACE="Courier New">&amp;Name</FONT> in
+the Text box so that the letter N is underlined. Now your user knows
+that there is an accelerator key associated with the control.</p></li></ol>
+<br>

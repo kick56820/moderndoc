@@ -1,0 +1,56 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Changing text </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp98.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp100.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF343931363"></A><h1>Changing text </h1>
+<A NAME="TI2658"></A><p>You can specify the text and text display characteristics
+for a control in the Properties view for the control. You can also
+use the Window painter StyleBar to change:</p>
+<A NAME="TI2659"></A><p><A NAME="TI2660"></A>
+<ul>
+<li class=fi>The text itself</li>
+<li class=ds>The font, point size, and characteristics such as
+bold</li>
+<li class=ds>The alignment of text within the control 
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>CommandButton text</span> <A NAME="TI2661"></A>Text in CommandButtons is always center aligned.</p>
+<A NAME="TI2662"></A><p>The default text for most controls that have a text property
+is <FONT FACE="Courier New">none</FONT>. To display an
+empty StaticText or SingleLineEdit control, clear the Text box in
+the Properties view or the StyleBar.</p>
+<A NAME="TI2663"></A><p>When you add text to a control's text property, the
+width of the control changes automatically to accommodate the text
+as you type it in the StyleBar, or when you tab off the Text box
+in the Properties view.</p>
+<A NAME="TI2664"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change text properties of controls:</p>
+<ol><li class=fi><p>Select one or more controls whose properties
+you want to change.</p></li>
+<li class=ds><p>Specify changes in the Font tab page in the Properties
+view, or specify changes using the StyleBar.</p></li></ol>
+<br><A NAME="TI2665"></A><h2>How text size is stored</h2>
+<A NAME="TI2666"></A><p>A control's text size is specified in the control's
+TextSize property. PowerBuilder saves the text size in points, using
+negative numbers. </p>
+<A NAME="TI2667"></A><p>For example, if you define the text size for the StaticText
+control <b>st_prompt</b> to be 12 points,
+PowerBuilder sets the value of <b>st_prompt's</b> TextSize
+property to<br>&#8211;12. PowerBuilder uses negative numbers
+to record point size for compatibility with previous releases, which
+saved text size in pixels as positive numbers. </p>
+<A NAME="TI2668"></A><p>If you want to change the point size of text at runtime in
+a script, remember to use a negative value. For example, to change
+the point size for <b>st_prompt</b> to 14 points,
+code:<p><PRE> st_prompt.TextSize = -14</PRE></p>
+<A NAME="TI2669"></A><p>You can specify text size in pixels if you want, by using
+positive numbers. The following statement sets the text size to
+be 14 pixels:<p><PRE> st_prompt.TextSize = 14</PRE></p>
+

@@ -1,0 +1,231 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Managing TreeView items</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp47.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp49.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJCCAFG"></A><h1>Managing TreeView items</h1>
+<A NAME="TI1101"></A><p>An item in a TreeView is a TreeViewItem structure. The preceding
+section described how to set the item's properties in the
+structure and then insert it into the TreeView.</p>
+<A NAME="TI1102"></A><p>This code declares a TreeViewItem structure and sets several
+properties:<p><PRE> TreeViewItem tvi_defined<br> <br>tvi_defined.Label = "Symphony No. 3 Eroica"<br>tvi_defined.StatePictureIndex = 0<br>tvi_defined.PictureIndex = 3<br>tvi_defined.SelectedPictureIndex = 4<br>tvi_defined.OverlayPictureIndex = 0<br>tvi_defined.Children = TRUE</PRE></p>
+<A NAME="TI1103"></A><p>For information about Picture properties,
+see <A HREF="apptechp49.htm#CCJCJHBG">"Managing TreeView pictures"</A>.</p>
+<A NAME="TI1104"></A><p>When you insert an item, the inserting function returns a
+handle to that item. The TreeViewItem structure is copied to the
+TreeView control, and you no longer have access to the item's
+properties:<p><PRE> itemhandle = This.InsertItemLast(parenthandle, &amp;<br>   tvi_defined)</PRE></p>
+<A NAME="TI1105"></A><h4>Procedure for items: get, change, and set</h4>
+<A NAME="TI1106"></A><p>If you want to change the properties of an item in the TreeView,
+you:<A NAME="TI1107"></A>
+<ol>
+</li>
+<li class=ds><i>Get</i> the
+item, which assigns it to a TreeViewItem structure.</li>
+<li class=ds>Make the <i>changes</i>, by setting
+TreeViewItem properties.</li>
+<li class=ds><i>Set</i> the item, which copies
+it back into the TreeView.
+</li>
+</ol>
+</p>
+<A NAME="TI1108"></A><p>When you work with items that have been inserted in the TreeView,
+you work with item handles. Most TreeView events pass one or two
+handles as arguments. The handles identify the items the user is
+interacting with. </p>
+<A NAME="TI1109"></A><p>This code for the Clicked event uses the handle of the clicked
+item to copy it into a TreeViewItem structure whose property values
+you can change:<p><PRE> treeviewitem tvi<br>This.GetItem(handle, tvi)<br>tvi.OverlayPictureIndex = 1<br>This.SetItem(handle, tvi)</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Important</span> <A NAME="TI1110"></A>Remember to call the <b>SetItem</b> function after
+you change an item's property value. Otherwise, nothing
+happens in the TreeView.</p>
+<A NAME="TI1111"></A><h4>Items and the hierarchy</h4>
+<A NAME="TI1112"></A><p>You can use item handles with the <b>FindItem</b> function
+to navigate the TreeView and uncover its structure. The item's
+properties tell you what its level is, but not which item is its
+parent. The <b>FindItem</b> function does:<p><PRE> long h_parent<br>h_parent = This.FindItem(ParentTreeItem!, handle)</PRE></p>
+<A NAME="TI1113"></A><p>You can use <b>FindItem</b> to find the children
+of an item or to navigate through visible items regardless of level. </p>
+<A NAME="TI1114"></A><p>For more information, see the <b>FindItem</b> function
+in the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI1115"></A><h4>Enabling TreeView functionality in scripts</h4>
+<A NAME="TI1116"></A><p>By setting TreeView properties, you can enable or disable
+user actions like deleting or renaming items without writing any
+scripts. You can also enable these actions by calling functions.
+You can:<A NAME="TI1117"></A>
+<ul>
+<li class=fi>Delete items</li>
+<li class=ds>Rename items</li>
+<li class=ds>Move items using drag and drop</li>
+<li class=ds>Sort items
+</li>
+</ul>
+</p>
+<A NAME="CCJCDBEC"></A><h2>Deleting items</h2>
+<A NAME="TI1118"></A><p>To allow the user to delete items, enable the TreeView's
+DeleteItems property. When the user presses the Delete key, the
+selected item is deleted and the DeleteItem event is triggered.
+Any children are deleted too.</p>
+<A NAME="TI1119"></A><p>If you want more control over deleting, such as allowing deleting
+of detail items only, you can call the <b>DeleteItem</b> function
+instead of setting the property. The function also triggers the
+DeleteItem event.</p>
+<A NAME="TI1120"></A><h4>Example</h4>
+<A NAME="TI1121"></A><p>This script is for a TreeView user event. Its event ID is
+pbm_keydown and it is triggered by key presses when the
+TreeView has focus. The script checks whether the Delete key is
+pressed and whether the selected item is at the detail level. If
+both are <b>TRUE</b>, it deletes the item.</p>
+<A NAME="TI1122"></A><p>The value of the TreeView's DeleteItems property
+is <b>FALSE</b>. Otherwise, the user could delete any
+item, despite this code:<p><PRE> TreeViewItem tvi<br>long h_item<br> <br>IF KeyDown(KeyDelete!) = TRUE THEN<br>   h_item = This.FindItem(CurrentTreeItem!, 0)<br>   This.GetItem(h_item, tvi)<br>   IF tvi.Level = 3 THEN<br>      This.DeleteItem(h_item<br>)   END IF<br>END IF<br>RETURN 0</PRE></p>
+<A NAME="CCJBFJBA"></A><h2>Renaming items</h2>
+<A NAME="TI1123"></A><p>If you enable the TreeView's EditLabels property,
+the user can edit an item label by clicking twice on the text.</p>
+<A NAME="TI1124"></A><h4>Events</h4>
+<A NAME="TI1125"></A><p>There are two events associated with editing labels.</p>
+<A NAME="TI1126"></A><p>The BeginLabelEdit event occurs after the second click when
+the EditLabels property is set or when the <b>EditLabel</b> function
+is called. You can disallow editing with a return value of 1.</p>
+<A NAME="TI1127"></A><p>This script for BeginLabelEdit prevents changes to labels
+of level 2 items:<p><PRE> TreeViewItem tvi<br>This.GetItem(handle, tvi)<br>IF tvi.Level = 2 THEN <br>   RETURN 1<br>ELSE<br>   RETURN 0<br>END IF</PRE></p>
+<A NAME="TI1128"></A><p>The EndLabelEdit event occurs when the user finishes editing
+by pressing enter, clicking on another item,
+or clicking in the text entry area of another control. A script
+you write for the EndLabelEdit event might validate the user's changes&#8212;for
+example, it could invoke a spelling checker.</p>
+<A NAME="TI1129"></A><h4>EditLabel function</h4>
+<A NAME="TI1130"></A><p>For control over label editing, the BeginLabelEdit event can
+prohibit editing of a label, as shown above. Or you can set the
+EditLabels property to <b>FALSE</b> and call the <b>EditLabel</b> function
+when you want to allow a label to be edited.</p>
+<A NAME="TI1131"></A><p>When you call the <b>EditLabel</b> function, the
+BeginLabelEdit event occurs when editing begins and the EndLabelEdit
+event occurs when the user presses enter or the user clicks another
+item.</p>
+<A NAME="TI1132"></A><p>This code for a CommandButton puts the current item into editing
+mode:<p><PRE> long h_tvi<br>h_tvi = tv_1.findItem(CurrentTreeItem!, 0)<br>tv_1.EditLabel(h_tvi)</PRE></p>
+<A NAME="CCJCGCDG"></A><h2>Moving items using drag and drop</h2>
+<A NAME="TI1133"></A><p>At the window level, PowerBuilder provides functions and properties
+for dragging controls onto other controls. Within the TreeView,
+you can also let the user drag items onto other items. Users might
+drag items to sort them, move them to another branch, or put child
+items under a parent.</p>
+<A NAME="TI1134"></A><p>When you implement drag and drop as a way to move items, you
+decide whether the dragged item becomes a sibling or child of the
+target, whether the dragged item is moved or copied, and whether
+its children get moved with it.</p>
+<A NAME="TI1135"></A><p>There are several properties and events that you need to coordinate
+to implement drag and drop for items, as shown in <A HREF="apptechp48.htm#CJGFHBBA">Table 8-4</A>.</p>
+<A NAME="CJGFHBBA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 8-4: Drag-and-drop properties and
+events</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1136"></A>Property or event</th>
+<th  rowspan="1"  ><A NAME="TI1137"></A>Setting or purpose</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1138"></A>DragAuto property</td>
+<td  rowspan="1"  ><A NAME="TI1139"></A><b>TRUE</b> or <b>FALSE</b><A NAME="TI1140"></A><p>If <b>FALSE</b>, you must call the <b>Drag</b> function
+in the BeginDrag event.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1141"></A>DisableDragDrop property</td>
+<td  rowspan="1"  ><A NAME="TI1142"></A><b>FALSE</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1143"></A>DragIcon property</td>
+<td  rowspan="1"  ><A NAME="TI1144"></A>An appropriate icon <br><i>or</i> <br><b>None!</b>,
+which means the user drags an image of the item</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1145"></A>BeginDrag event</td>
+<td  rowspan="1"  ><A NAME="TI1146"></A>Script for saving the handle of the dragged
+item and optionally preventing particular items from being dragged</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1147"></A>DragWithin event</td>
+<td  rowspan="1"  ><A NAME="TI1148"></A>Script for highlighting drop targets</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1149"></A>DragDrop event</td>
+<td  rowspan="1"  ><A NAME="TI1150"></A>Script for implementing the result of
+the drag operation</td>
+</tr>
+</table>
+<A NAME="TI1151"></A><h4>Example</h4>
+<A NAME="TI1152"></A><p>The key to a successful drag-and-drop implementation is in
+the details. This section illustrates one way of moving items. In
+the example, the dragged item becomes a sibling of the drop target,
+inserted after it. All children of the item are moved with it and
+the original item is deleted. </p>
+<A NAME="TI1153"></A><p>A function called recursively moves the children, regardless
+of the number of levels. To prevent an endless loop, an item cannot
+become a child of itself. This means a drop target that is a child
+of the dragged item is not allowed.</p>
+<p><b>BeginDrag event</b>   The script saves the handle of the dragged item in an instance
+variable:</p>
+<A NAME="TI1154"></A><p><p><PRE> ll_dragged_tvi_handle = handle</PRE></p>
+<A NAME="TI1155"></A><p>If you want to prevent some items from being dragged&#8212;such
+as items at a particular level&#8212;that code goes here too:<p><PRE> TreeViewItem tvi<br>This.GetItem(handle, tvi)<br>IF tvi.Level = 3 THEN This.Drag(Cancel!)</PRE></p>
+<p><b>DragWithin event</b>   The script highlights the item under the cursor so the user can
+see each potential drop target. If only some items are drop targets,
+your script should check an item's characteristics before
+highlighting it. In this example, you could check whether an item
+is a parent of the dragged item and highlight it only if it is not:</p>
+<A NAME="TI1156"></A><p><p><PRE> TreeViewItem tvi<br>This.GetItem(handle, tvi)<br>tvi.DropHighlighted = TRUE<br>This.SetItem(handle, tvi)</PRE></p>
+<p><b>DragDrop event</b>   This script does all the work. It checks whether the item
+can be inserted at the selected location and inserts the dragged
+item in its new position&#8212;a sibling after the drop target.
+Then it calls a function that moves the children of the dragged
+item too:</p>
+<A NAME="TI1157"></A><p><p><PRE> TreeViewItem tvi_src, tvi_child<br>long h_parent, h_gparent, h_moved, h_child<br>integer rtn<br> <br>// Get TreeViewItem for dragged item<br>This.GetItem(ll_dragged_tvi_handle, tvi_src)<br>// Don't allow moving an item into its own branch,<br>// that is, a child of itself<br>h_gparent = This.FindItem(ParentTreeItem!, handle)<br> <br>DO WHILE h_gparent &lt;&gt; -1<br>   IF h_gparent = ll_dragged_tvi_handle THEN<br>      MessageBox("No Drag", &amp;<br>      "Can't make an item a child of itself.")<br>      RETURN 0<br>   END IF<br>   <br>h_gparent=This.FindItem(ParentTreeItem!, h_gparent)<br>LOOP<br> <br>// Get item parent for inserting<br>h_parent = This.FindItem(ParentTreeItem!, handle)<br> <br>// Use 0 if no parent because target is at level 1<br>IF h_parent = -1 THEN h_parent = 0<br> <br>// Insert item after drop target<br>h_moved = This.InsertItem(h_parent, handle, tvi_src)<br>IF h_moved = -1 THEN <br>   MessageBox("No Dragging", "Could not move item.")<br>   RETURN 0<br>ELSE<br>   // Args: old parent, new parent<br>   rtn = uf_movechildren(ll_dragged_tvi_handle, &amp;<br>      h_moved)<br> <br>   / If all children are successfully moved,<br>   // delete original item<br>   IF rtn = 0 THEN<br>      This.DeleteItem(ll_dragged_tvi_handle)<br>   END IF<br> <br>END IF</PRE></p>
+<A NAME="TI1158"></A><p>The DragDrop event script shown above calls the function <b>uf_movechildren</b>. The
+function calls itself recursively so that all the levels of children
+below the dragged item are moved:<p><PRE> // Function: uf_movechildren</PRE><PRE> // Arguments:</PRE><PRE> // oldparent - Handle of item whose children are</PRE><PRE> // being moved. Initially, the dragged item in its</PRE><PRE> // original position</PRE><PRE> //</PRE><PRE> // newparent - Handle of item to whom children are</PRE><PRE> // being moved. Initially, the dragged item in its</PRE><PRE> // new position.</PRE><PRE> </PRE><PRE> long h_child, h_movedchild</PRE><PRE> TreeViewItem tvi</PRE><PRE> </PRE><PRE> // Return -1 if any Insert action fails</PRE><PRE> </PRE><PRE> // Are there any children?</PRE><PRE> h_child = tv_2.FindItem(ChildTreeItem!, oldparent)</PRE><PRE> IF h_child &lt;&gt; -1 THEN</PRE><PRE>    tv_2.GetItem(h_child, tvi)</PRE><PRE>    h_movedchild = tv_2.InsertItemLast(newparent, tvi)</PRE><PRE>    IF h_movedchild = -1 THEN RETURN -1</PRE><PRE> </PRE><PRE>    // Move the children of the child that was found</PRE><PRE>    uf_movechildren(h_child, h_movedchild)</PRE><PRE> </PRE><PRE>    // Check for more children at the original level</PRE><PRE>    h_child = tv_2.FindItem(NextTreeItem!, h_child)</PRE><PRE>    DO WHILE h_child &lt;&gt; -1</PRE><PRE>       tv_2.GetItem(h_child, tvi)</PRE><PRE>       h_movedchild= tv_2.InsertItemLast(newparent,tvi)</PRE><PRE>       IF h_movedchild = -1 THEN RETURN -1   </PRE><PRE>       uf_movechildren(h_child, h_movedchild)</PRE><PRE> </PRE><PRE>       // Any more children at original level?</PRE><PRE>       h_child = tv_2.FindItem(NextTreeItem!, h_child)</PRE><PRE>    LOOP</PRE><PRE> END IF</PRE><PRE> RETURN 0 // Success, all children moved</PRE></p>
+<A NAME="CCJCDAFE"></A><h2>Sorting items</h2>
+<A NAME="TI1159"></A><p>A TreeView can sort items automatically, or you can control
+sorting manually. Manual sorting can be alphabetic by label text,
+or you can implement a user-defined sort to define your
+own criteria. The SortType property controls the way items are sorted.
+Its values are of the enumerated datatype <b>grSortType</b>.</p>
+<p><b>Automatic alphabetic sorting</b>   To enable sorting by the text label, set the SortType property
+to <b>Ascending!</b> or <b>Descending!</b>.
+Inserted items are sorted automatically.</p>
+<p><b>Manual alphabetic sorting</b>   For more control over sorting, you can set SortType to <b>Unsorted!</b> and
+sort by calling the functions in <A HREF="apptechp48.htm#CJGEIGJE">Table 8-5</A>.</p>
+<A NAME="CJGEIGJE"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 8-5: TreeView sorting functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1160"></A>Use
+this function</th>
+<th  rowspan="1"  ><A NAME="TI1161"></A>To do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1162"></A><b>InsertItemSort</b></td>
+<td  rowspan="1"  ><A NAME="TI1163"></A>Insert an item at the correct alphabetic
+position, if possible</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1164"></A><b>Sort</b></td>
+<td  rowspan="1"  ><A NAME="TI1165"></A>Sort the immediate children of an item</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1166"></A><b>SortAll</b></td>
+<td  rowspan="1"  ><A NAME="TI1167"></A>Sort the whole branch below an item</td>
+</tr>
+</table>
+<A NAME="TI1168"></A><p>If users will drag items to organize the list, you should
+disable sorting. </p>
+<p><b>Sorting by other criteria</b>   To sort items by criteria other than their labels, implement
+a user-defined sort by setting the SortType property to <b>UserDefinedSort!</b> and
+writing a script for the Sort event. The script specifies how to
+sort items. </p>
+<A NAME="TI1169"></A><p>PowerBuilder triggers the Sort event for each pair of items
+it tries to reorder. The Sort script returns a value reporting which
+item is greater than the other. The script can have different rules
+for sorting based on the type of item. For example, level 2 items
+can be sorted differently from level 3. The TreeView is sorted whenever
+you insert an item.</p>
+<A NAME="TI1170"></A><h4>Example of Sort event</h4>
+<A NAME="TI1171"></A><p>This sample script for the Sort event sorts the first level
+by the value of the Data property and other levels alphabetically
+by their labels. The first level displays composers chronologically,
+and the Data property contains an integer identifying a composer's
+century:</p>
+<A NAME="TI1172"></A><p><p><PRE> //Return values</PRE><PRE> //-1   Handle1 is less than handle2 </PRE><PRE> // 0   Handle1 is equal to handle2 </PRE><PRE> // 1   Handle1 is greater than handle2</PRE><PRE> </PRE><PRE> TreeViewItem tvi1, tvi2</PRE><PRE> </PRE><PRE> This.GetItem(handle1, tvi1) </PRE><PRE> This.GetItem(handle2, tvi2) </PRE><PRE> </PRE><PRE> IF tvi1.Level = 1 THEN </PRE><PRE>    // Compare century values stored in Data property</PRE><PRE>    IF tvi1.data &gt; tvi2.Data THEN</PRE><PRE>       RETURN 1</PRE><PRE>    ELSEIF tvi1.data = tvi2.Data THEN</PRE><PRE>       RETURN 0</PRE><PRE>    ELSE</PRE><PRE>       RETURN -1</PRE><PRE>    END IF</PRE><PRE>    ELSE</PRE><PRE>    // Sort other levels in alpha order</PRE><PRE>    IF tvi1.Label &gt; tvi2.Label THEN</PRE><PRE>       RETURN 1</PRE><PRE>    ELSEIF tvi1.Label = tvi2.Label THEN</PRE><PRE>       RETURN 0</PRE><PRE>    ELSE</PRE><PRE>       RETURN -1</PRE><PRE>    END IF</PRE><PRE> END IF</PRE></p>
+

@@ -1,0 +1,32 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+The inheritance hierarchy </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp110.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp112.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF298726769"></A><h1>The inheritance hierarchy </h1>
+<A NAME="TI3125"></A><p>When you build an object that inherits from another object,
+you are creating a hierarchy (or tree structure) of ancestor objects
+and descendent objects. <A HREF="pbugp84.htm#CAIDEADB">Chapter 11, "Working with Windows,"</A> uses the example of creating two windows, <b>w_customer</b> and <b>w_employee</b>,
+that inherit their properties from a common ancestor, <b>w_ancestor</b>.
+In this example, <b>w_employee</b> and <b>w_customer</b> are
+the descendants.</p>
+<A NAME="TI3126"></A><p>The object at the top of the hierarchy is a base class object,
+and the other objects are descendants of this object. Each descendant
+inherits information from its ancestor. The base class object typically
+performs generalized processing, and each descendant modifies the
+inherited processing as needed.</p>
+<A NAME="TI3127"></A><h4>Multiple descendants</h4>
+<A NAME="TI3128"></A><p>An object can have an unlimited number of descendants, and
+each descendant can also be an ancestor. For example, if you build
+three windows that are direct descendants of the <b>w_ancestor</b> window
+and three windows that are direct descendants of the <b>w_employee</b> window,
+the hierarchy looks like this:</p>
+<A NAME="TI3129"></A><caption><b>Figure 13-1: Object hierarchy example</b></captionls>
+<br><img src="images/inh01.gif">
+

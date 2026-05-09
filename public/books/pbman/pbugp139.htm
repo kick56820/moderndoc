@@ -1,0 +1,155 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Working with database views </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp138.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp140.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJCAHJF"></A><h1>Working with database views </h1>
+<A NAME="TI4274"></A><p>A database view gives a different (and usually limited) perspective
+of the data in one or more tables. Although you see existing database
+views listed in the Objects view, a database view does not physically
+exist in the database as a table does. Each time you select a database
+view and use the view's data, PowerBuilder executes a <ACRONYM title = "sequel" >SQL</ACRONYM> <b>SELECT</b> statement
+to retrieve the data and creates the database view.</p>
+<A NAME="TI4275"></A><p>For more information about using database
+views, see your DBMS documentation.</p>
+<A NAME="TI4276"></A><h4>Using database views in PowerBuilder</h4>
+<A NAME="TI4277"></A><p>You can define and manipulate database views in PowerBuilder.
+Typically you use database views for the following reasons:<A NAME="TI4278"></A>
+<ul>
+<li class=fi>To give names to frequently
+executed <b>SELECT</b> statements.</li>
+<li class=ds>To limit access to data in a table. For example,
+you can create a database view of all the columns in the <b>Employee</b> table
+except <b>Salary</b>. Users of the database view can
+see and update all information except the employee's salary.</li>
+<li class=ds>To combine information from multiple tables for
+easy access. 
+</li>
+</ul>
+</p>
+<A NAME="TI4279"></A><p>In PowerBuilder, you can create single- or multiple-table database
+views. You can also use a database view when you define data to
+create a new database view. </p>
+<A NAME="TI4280"></A><p>You define, open, and manipulate database views in the View painter,
+which is similar to the SQL Select painter. For more information about the SQL Select painter,
+see <A HREF="pbugp157.htm#CFHDGEIA">"Selecting a data source "</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Updating database views</span> <A NAME="TI4281"></A>Some database views are logically updatable and others are
+not. Some DBMSs do not allow any updating of views. For the rules
+your DBMS follows, see your DBMS documentation.</p>
+<A NAME="TI4282"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To open a database view:</p>
+<ol><li class=fi><p>In the Objects view, expand the list of
+Views for your database.</p></li>
+<li class=ds><p>Highlight the view you want to open and select
+Add To Layout from the pop-up menu, or drag the view's
+icon to the Object Layout view. </p></li></ol>
+<br><A NAME="TI4283"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a database view:</p>
+<ol><li class=fi><p>Click the Create View button, or select
+View or New View from the Object&gt;Insert or pop-up menu.</p><p>The Select Tables dialog box displays, listing all tables
+and views that you can access in the database.</p></li>
+<li class=ds><p>Select the tables and views from which you will
+create the view by doing one of the following:<A NAME="TI4284"></A>
+<ul>
+<li class=fi>Click the name of each table or view you want to
+open in the list displayed in the Select Tables dialog box, then
+click the Open button to open them. The Select Tables dialog box
+closes.</li>
+<li class=ds>Double-click the name of each table or view you
+want to open. Each object is opened immediately. Then click the
+Cancel button to close the Select Tables dialog box.
+</li>
+</ul>
+
+                    </p><p>Representations of the selected tables and views display in the
+View painter workspace:</p><br><img src="images/dbview.gif"><br>
+</li>
+<li class=ds><p>Select the columns to include in the view and
+include computed columns as needed.</p></li>
+<li class=ds><p>Join the tables if there is more than one table
+in the view.</p><p>For information, see <A HREF="pbugp139.htm#BABBIHJJ">"Joining tables"</A>.</p></li>
+<li class=ds><p>Specify criteria to limit rows retrieved (Where
+tab), group retrieved rows (Group tab), and limit the retrieved
+groups (Having tab), if appropriate.</p><p>For information, see the section on using
+the <ACRONYM title = "sequel" >SQL</ACRONYM> Select painter in <A HREF="pbugp157.htm#CFHDGEIA">"Selecting a data source "</A>. The View
+painter and the <ACRONYM title = "sequel" >SQL</ACRONYM> Select painter
+are similar.</p></li>
+<li class=ds><p>When you have completed the view, click the Return button.</p></li>
+<li class=ds><p>Name the view.</p><p>Include <i>view</i> or some other identifier
+in the view's name so that you will be able to distinguish
+it from a table in the Select Tables dialog box.</p></li>
+<li class=ds><p>Click the Create button.</p><p>PowerBuilder generates a <b>CREATE VIEW</b> statement
+and submits it to the DBMS. The view definition is created in the
+database. You return to the Database painter workspace with the new view
+displayed in the workspace.</p></li></ol>
+<br><A NAME="TI4285"></A><h4>Displaying a database view's <ACRONYM title = "sequel" >SQL</ACRONYM> statement</h4>
+<A NAME="TI4286"></A><p>You can display the <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+that defines a database view. How you do it depends on whether you
+are creating a new view in the View painter or want to look at the
+definition of an existing view.</p>
+<A NAME="TI4287"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display the <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+from the View painter:</p>
+<ol><li class=fi><p>Select the Syntax tab in the View painter.</p><p>PowerBuilder displays the <ACRONYM title = "sequel" >SQL</ACRONYM> it
+is generating. The display is updated each time you change the view.</p></li></ol>
+<br><A NAME="TI4288"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display the <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+from the Database painter:</p>
+<ol><li class=fi><p>Highlight the name of the database view
+in the Objects view and select Properties from the pop-up menu,
+or drag the view's icon to the Object Details view.</p><p>The completed <b>SELECT</b> statement used to
+create the database view displays in the Definition field on the
+General page:</p><br><img src="images/dbsql.gif"><br>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>View dialog box is read-only</span> <A NAME="TI4289"></A>You cannot alter the view definition in the Object Details
+view. To alter a view, drop it and create another view.</p>
+</li></ol>
+<br><A NAME="BABBIHJJ"></A><h4>Joining tables</h4>
+<A NAME="TI4290"></A><p>If the database view contains more than one table, you should
+join the tables on their common columns. When the View painter is
+first opened for a database view containing more than one table, PowerBuilder makes
+its best guess as to the join columns, as follows:<A NAME="TI4291"></A>
+<ul>
+<li class=fi>If there is a primary/foreign key relationship
+between the tables, PowerBuilder automatically joins them.</li>
+<li class=ds>If there are no keys, PowerBuilder tries to join tables
+based on common column names and types.
+</li>
+</ul>
+</p>
+<A NAME="TI4292"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To join tables:</p>
+<ol><li class=fi><p>Click the Join button.</p></li>
+<li class=ds><p>Click the columns on which you want to join the
+tables.</p><p>In the following screen, the Employee and Department tables
+are joined on the dept_id column:</p><br><img src="images/db0018.gif"><br>
+</li>
+<li class=ds><p>To create a join other than the equality join,
+click the join representation in the workspace.</p><p>The Join dialog box displays:</p><br><img src="images/db0019.gif"><br>
+</li>
+<li class=ds><p>Select the join operator you want from the Join
+dialog box.</p><p>If your DBMS supports outer joins, outer join options also
+display in the Join dialog box. For example, in the preceding dialog
+box (which uses the Employee and Department tables), you can choose
+to include rows from the Employee table where there are no matching
+departments, or rows from the Department table where there are no
+matching employees.</p><p>For more about outer joins, see <A HREF="pbugp159.htm#CACJAHDI">"Using ANSI outer joins"</A>.</p></li></ol>
+<br><A NAME="TI4293"></A><h4>Dropping a database view</h4>
+<A NAME="TI4294"></A><p>Dropping a database view removes its definition from the database.</p>
+<A NAME="TI4295"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To drop a view:</p>
+<ol><li class=fi><p>In the Objects view, select the database
+view you want to drop.</p></li>
+<li class=ds><p>Click the Drop Object button or select Drop View
+from the pop-up menu. </p><p>PowerBuilder prompts you to confirm the drop, then generates
+a <b>DROP VIEW</b> statement and submits it to the DBMS.</p></li></ol>
+<br><A NAME="BABCIGJCX"></A><h4>Exporting view syntax</h4>
+<A NAME="TI4296"></A><p>You can export the syntax for a view to the log. This feature
+is useful when you want to create a backup definition of the view
+before you alter it or when you want to create the same view in
+another DBMS.</p>
+<A NAME="TI4297"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To export the syntax of an existing view to a
+log:</p>
+<ol><li class=fi><p>Select the view in the painter workspace.</p></li>
+<li class=ds><p>Select Export Syntax from the Object menu or the
+pop-up menu.</p><p>For more information about the log, see <A HREF="pbugp134.htm#BABGECDE">"Logging your work"</A>.</p></li></ol>
+<br>

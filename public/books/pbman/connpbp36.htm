@@ -1,0 +1,72 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About database connections</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp35.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp37.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDFFEG"></A><h1>About database connections</h1>
+<A NAME="TI1252"></A><p>This section gives an overview of when database connections
+occur in PowerBuilder. It also explains why you should use database
+profiles to manage your database connections.</p>
+<A NAME="TI1253"></A><h2>When database connections occur</h2>
+<A NAME="TI1254"></A><h4>Connections in PowerBuilder </h4>
+<A NAME="TI1255"></A><p>PowerBuilder connects to your database when you:<A NAME="TI1256"></A>
+<ul>
+<li class=fi>Open a painter that accesses the database</li>
+<li class=ds>Compile or save a PowerBuilder script containing embedded <ACRONYM title = "sequel" >SQL</ACRONYM> statements (such as a <b>CONNECT</b> statement)</li>
+<li class=ds>Execute an application that accesses the database</li>
+<li class=ds>Invoke a DataWindow control function that accesses
+the database while executing an application
+</li>
+</ul>
+</p>
+<A NAME="TI1257"></A><h4>How PowerBuilder determines which database to access</h4>
+<A NAME="TI1258"></A><p>PowerBuilder <i>connects to the database you used last</i> when
+you open a painter that accesses the database. PowerBuilder determines
+which database you used last by reading a setting in the registry.</p>
+<A NAME="TI1259"></A><h4>What's in this book</h4>
+<A NAME="TI1260"></A><p>This book describes how to connect to your database when you
+are working in the PowerBuilder development environment.</p>
+<A NAME="TI1261"></A><p>For instructions on connecting to a database
+in a PowerBuilder application, see <i>Application Techniques</i>
+.</p>
+<A NAME="CCJCJDFD"></A><h2>Using database profiles</h2>
+<A NAME="TI1262"></A><h4>What is a database profile?</h4>
+<A NAME="TI1263"></A><p>A <strong>database profile</strong> is a named set of
+parameters stored in the registry that defines a connection to a
+particular database in the PowerBuilder development environment.</p>
+<A NAME="TI1264"></A><h4>Why use database profiles?</h4>
+<A NAME="TI1265"></A><p>Creating and using database profiles is the easiest way to
+manage your database connections in PowerBuilder because you can:</p>
+<A NAME="TI1266"></A><p><A NAME="TI1267"></A>
+<ul>
+<li class=fi>Select a database
+profile to establish or change database connections. You can easily
+connect to another database anytime during a PowerBuilder session.
+This is particularly useful if you often switch between different database
+connections.</li>
+<li class=ds>Edit a database profile to modify or supply additional
+connection parameters.</li>
+<li class=ds>Delete a database profile if you no longer need
+to access that data.</li>
+<li class=ds>Import and export profiles.
+</li>
+</ul>
+</p>
+<A NAME="TI1268"></A><p>Because database profiles are created when you define your
+data and are stored in the registry, they have the following benefits:</p>
+<A NAME="TI1269"></A><p><A NAME="TI1270"></A>
+<ul>
+<li class=fi>They are always available
+to you.</li>
+<li class=ds>Connection parameters supplied in a database profile
+are saved until you edit or delete the database profile.
+</li>
+</ul>
+</p>
+

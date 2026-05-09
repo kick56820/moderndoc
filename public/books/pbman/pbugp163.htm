@@ -1,0 +1,61 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Choosing DataWindow object-wide options </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp162.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp164.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CFHCIJGH"></A><h1>Choosing DataWindow object-wide options </h1>
+<A NAME="TI5109"></A><p>You can set the default options, such as colors and borders,
+that PowerBuilder uses in creating the initial draft of a DataWindow object. </p>
+<A NAME="TI5110"></A><p>DataWindow generation options are for styles that use a layout
+made up of bands, which include Freeform, Grid, Label, N-Up, Tabular,
+Group, TreeView, and Crosstab. PowerBuilder maintains a separate set
+of options for each of these styles.</p>
+<A NAME="TI5111"></A><p>When you first create any of these style DataWindow objects, you
+can choose options in the wizard and save your choices as the future
+defaults for the style.</p>
+<A NAME="TI5112"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify default colors and borders for a style:</p>
+<ol><li class=fi><p>Select Design&gt;Options from the
+menu bar.</p><p>The DataWindow Options dialog box displays.</p></li>
+<li class=ds><p>Select the Generation tab page if it is not on
+top.</p></li>
+<li class=ds><p>Select the presentation style you want from the
+Presentation Style drop-down list.</p><p>The values for properties shown on the page are for the currently
+selected presentation style.</p></li>
+<li class=ds><p>Change one or more of the following properties:</p><A NAME="TI5113"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI5114"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI5115"></A>Meaning for the DataWindow object</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5116"></A>Background color</td>
+<td  rowspan="1"  ><A NAME="TI5117"></A>The default color for the background.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5118"></A>Text border and color</td>
+<td  rowspan="1"  ><A NAME="TI5119"></A>The default border and color used for
+labels and headings. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5120"></A>Column border and color</td>
+<td  rowspan="1"  ><A NAME="TI5121"></A>The default border and color used for
+data values. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5122"></A>Wrap Height (Freeform only)</td>
+<td  rowspan="1"  ><A NAME="TI5123"></A>The height of the detail band.<A NAME="TI5124"></A><p>When the value is None, the number of columns selected determines
+the height of the detail band. The columns display in a single vertical
+line.</p><A NAME="TI5125"></A><p>When the value is set to a number, the detail band height
+is set to the number specified and columns wrap within the detail
+band.</p></td>
+</tr>
+</table>
+</li>
+<li class=ds><p>Click OK.</p></li></ol>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About color selections</span> <A NAME="TI5126"></A>If you select Window Background, Application Workspace, Button
+Face, or Window Text from the Color drop-down list, the DataWindow object uses
+the colors specified in the Windows Control Panel on the computer
+on which the DataWindow object is running.</p>
+<br><A NAME="TI5127"></A><h4>Your choices are saved</h4>
+<A NAME="TI5128"></A><p>PowerBuilder saves your generation option choices as the defaults
+to use when creating a DataWindow object with the same presentation style.</p>
+

@@ -1,0 +1,118 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Deploying DataWindow objects to the component server</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp42.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp44.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABCDJEH"></A><h1>Deploying DataWindow objects to the component server</h1>
+<A NAME="TI1693"></A><p>When you run a Web
+DataWindow application, the definitions of your DataWindow objects
+must be available on the component server. You can ensure this by
+copying the PBL or PBD file that contains the definition of the objects
+to the server. If you are using <ABBR title = "e a server" >EAServer</ABBR>,
+the files must be in the server's path, or if the server
+component is running as a service, in the system path. COM+ always
+runs as a service, so the files must be in the COM+ server's system
+path. </p>
+<A NAME="TI1694"></A><p>For more information about setting up your development environment,
+see <A HREF="dwprgugp48.htm#BABBFFEI">"Server configuration requirements"</A>.</p>
+<A NAME="BABFHFFD"></A><h2>The Web DataWindow Container project wizard</h2>
+<A NAME="TI1695"></A><p>In PowerBuilder, you can use the Web DataWindow Container
+project wizard to create a project that deploys a custom version
+of the Web DataWindow server component (HTMLGenerator90) to <ABBR title = "e a server" >EAServer</ABBR> with all the DataWindow
+objects in your library list built into the deployed PBD.</p>
+<A NAME="TI1696"></A><p>Because you are using a custom component instead of the preinstalled HTMLGenerator90 component,
+you can set properties for your component in <ABBR title = "e a server" >EAServer</ABBR> Manager.
+Setting properties reduces the number of method calls required to
+configure the component and can result in improved performance, maintainability,
+and scalability.</p>
+<A NAME="TI1697"></A><h4>Using the wizard</h4>
+<A NAME="TI1698"></A><p>When you have defined the DataWindow objects you need, start
+the Web DataWindow Container wizard from the Project page of the
+New dialog box and follow the instructions in the wizard. </p>
+<A NAME="TI1699"></A><p>The choices you make in the wizard are similar to those you
+make for other <ABBR title = "e a server" >EAServer</ABBR> components,
+such as whether to support instance pooling or live editing. The
+package and component can have any names you want, with the exception
+that you cannot name the package <i>DataWindow</i> (the
+name of the package that contains the preinstalled HTMLGenerator90 component).
+You cannot set component type or transaction support properties. </p>
+<A NAME="TI1700"></A><p>Building the Web DataWindow Container project presets some
+of the properties of the component that you would otherwise need
+to set in scripts or in <ABBR title = "e a server" >EAServer</ABBR> Manager.
+You can specify a database profile in the wizard or Project painter
+to set the com.sybase.datawindow.trans.dbms and other database transaction
+properties. If you want calls to component methods to be written
+to the server log, select Enable Trace to set the com.sybase.datawindow.trace
+property.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Connection cache</span> <A NAME="TI1701"></A>Specifying a profile sets database transaction properties
+for the component, but you still need to create a connection cache
+in <ABBR title = "e a server" >EAServer</ABBR> Manager for the database
+the component will access.</p>
+<A NAME="TI1702"></A><h4>Service classes</h4>
+<A NAME="TI1703"></A><p>You can add a custom class user object to your project to
+perform any special processing you require. This object acts as
+a service class. The custom class user object must be in the same
+library as the DataWindow objects or on the target's library
+list. When you build the Web DataWindow Container project, select
+the class in the Select Objects dialog box in the Project painter.</p>
+<A NAME="TI1704"></A><p>For more information, see <A HREF="dwprgugp51.htm#BABCDFBF">"Using service classes"</A>.</p>
+<A NAME="TI1705"></A><h4>Instantiating the container component</h4>
+<A NAME="TI1706"></A><p>When you create an instance of the container component, you
+must either provide a Java proxy for the component or pass DataWindow/HTMLGenerator90 as
+the last argument to the CreateComponent method. This specifies
+that the component uses the proxy provided for the generic component.
+For example: <p><PRE> dwObj = java.CreateComponent<br>        ("ContainerPkg/ContComponent",<br>        "iiop://testMachine:9000", "Jagadmin", "",<br>        "DataWindow/HTMLGenerator90" );</PRE></p>
+<A NAME="TI1707"></A><p>This is the same way you instantiate custom components. For
+more information on custom components, see <A HREF="dwprgugp50.htm#CHDDFJGC">"Instantiating the custom
+component"</A>.</p>
+<A NAME="TI1708"></A><h4>Selecting a DataWindow from the container component</h4>
+<A NAME="TI1709"></A><p>To select a DataWindow from the container component, you must
+use the SetDWObjectEx method rather than the SetDWObject method:</p>
+<A NAME="TI1710"></A><p><p><PRE> //Only the DW is needed, as package already specified //above when connecting<br>retVal = dwObj.SetDWObjectEx("d_mydw"); document.write("SetDwObject = " + retVal);</PRE></p>
+<A NAME="TI1711"></A><p>For more information on the SetDWObject method, see <A HREF="dwprgugp49.htm#BABJJDCG">"Loading the DataWindow object"</A> and the <i>DataWindow
+Reference</i>
+.</p>
+<A NAME="TI1712"></A><h4>Using the component with the Web DataWindow DTC</h4>
+<A NAME="TI1713"></A><p>You can select the container component when you use the Web/JSP DataWindow
+Page wizard to create a new Web page. On the Choose <ABBR title = "e a server" >EAServer</ABBR> Profile page in the wizard,
+check the Use Custom Web DW Component check box. Then, when you
+click Next, the wizard prompts you for the component name and the
+DataWindow in the component that you want to include on your Web
+page.</p>
+<A NAME="TI1714"></A><p>On the DataWindow page of the Web DataWindow DTC property
+sheet, you can also specify a container component and the DataWindow
+in the container component that you want to use on a Web page. Selecting
+a container component on the DataWindow page automatically selects
+it on the HTML Generator page of the DTC property sheet. (If you
+want, it is possible just to use the container component to generate
+XHTML or HTML for a DataWindow that you select from a PBL, PSR,
+or SRD file).</p>
+<A NAME="TI1715"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use the container component with the Web DataWindow
+DTC</p>
+<ol><li class=fi><p>Select the Web DataWindow Container Component
+radio button on the DataWindow page of the Web DataWindow DTC property
+sheet.</p></li>
+<li class=ds><p>Click the browse button (...) next to the Component
+text box.</p><p>The Web DataWindow Container Component dialog box displays.
+It has a list box with nodes for each<ABBR title = "e a server" > EAServer</ABBR> profile
+defined in PowerBuilder.</p></li>
+<li class=ds><p>Expand the node for the server and package that
+contains the container component you want to use.</p><p>Select the container component and click OK.</p><p>The Web DataWindow DTC property sheet redisplays. The server
+name and the container package and component are displayed in the
+Server and Component text boxes on the DataWindow page of the property
+sheet.</p></li>
+<li class=ds><p>Select a DataWindow from the DataWindow drop-down
+list.</p><p>The drop-down list displays all the DataWindows in the container component.</p></li>
+<li class=ds><p>(Optional) Click the Connection tab and override
+the database connection property stored by the component.</p><p>This is recommended only for testing purposes. If you want
+to change the connection property, you can do it directly from <ABBR title = "e a server" >EAServer</ABBR> Manager.</p></li>
+<li class=ds><p>(Optional) Click the Control tab and override
+the weight settings stored with the DataWindow.</p></li>
+<li class=ds><p>Click OK.</p></li></ol>
+<br>

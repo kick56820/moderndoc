@@ -1,0 +1,147 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+PDF and XSL-FO export</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp276.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp278.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BAJIEEAF"></A><h1>PDF and XSL-FO export</h1>
+<A NAME="TI8293"></A><p>PowerBuilder can save the DataWindow's data and presentation
+as a Portable Document Format (PDF) file using two techniques. By
+default, PowerBuilder saves as PDF using a distiller. PowerBuilder
+can also save to PDF or XSL Formatting Objects (XSL-FO) format using
+the Apache XML Formatting Objects processor.</p>
+<A NAME="BABGDBHJ"></A><h2>Using the Ghostscript distiller</h2>
+<A NAME="TI8294"></A><p>In order for users to use the <b>SaveAs</b> method
+to save data as PDF with the distiller, they must first download
+and install Ghostscript on their computers as described in the procedure
+that follows. </p>
+<A NAME="TI8295"></A><p>The use of GPL Ghostscript is subject to the terms and conditions
+of the GNU General Public License (GPL). Users should be asked to
+read the GPL before installing GPL Ghostscript on their computers.
+A copy of the GPL is available on the <A HREF="http://www.gnu.org/licenses/gpl.html">GNU Project Web server</A>
+.</p>
+<A NAME="TI8296"></A><p>The use of AFPL Ghostscript is subject to the terms and conditions
+of the Aladdin Free Public License (AFPL). Commercial distribution
+of AFPL Ghostscript generally requires a written commercial license.
+For more information, see the <A HREF="http://www.ghostscript.com/awki">Ghostscript Web site</A>
+.</p>
+<A NAME="TI8297"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To install Ghostscript:</p>
+<ol><li class=fi><p>Into a temporary directory on your computer,
+download the self-extracting executable file for the version of
+Ghostscript you want from one of the sites listed on the <A HREF="http://www.ghostscript.com/awki">Ghostscript Web site</A>
+.</p><p>See the <i>Release Bulletin</i>
+ for the version
+of Ghostscript that was used for testing.</p></li>
+<li class=ds><p>Run the executable file<i></i> to
+install Ghostscript on your system. </p><p>The default installation directory is <i>C:\Program
+Files\gs</i>. You can select a different directory
+and/or choose to install shortcuts to the Ghostscript console
+and readme file.</p></li></ol>
+<A NAME="TI8298"></A><p>After installing Ghostscript, you should read the <i>readme.htm</i> file
+in the <i>doc</i> subdirectory in the Ghostscript
+installation directory to find out more about using Ghostscript
+and distributing it with your application. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Save Rows As fails</span> <A NAME="TI8299"></A>To save as PDF in the DataWindow painter, select File&gt;Save
+Rows As and select PDF as the Save As type. If you do not install
+Ghostscript and use the default export properties, PowerBuilder
+displays a pop-up window notifying you that Save Rows As failed.
+If you install Ghostscript and then change the name of the directory
+where Ghostscript is installed, Save Rows As PDF fails silently.</p>
+<br><A NAME="TI8300"></A><h4>Location of files</h4>
+<A NAME="TI8301"></A><p>When you save a DataWindow object as PDF using the distill
+method, PowerBuilder searches in the following locations for an
+installation of GPL or AFPL Ghostscript:<A NAME="TI8302"></A>
+<ul>
+<li class=fi>The
+Windows registry</li>
+<li class=ds>The relative path of the <i>pbdwe105.dll</i> file
+(typically <i>Sybase\Shared\PowerBuilder</i>)</li>
+<li class=ds>The system PATH environment variable
+</li>
+</ul>
+</p>
+<A NAME="TI8303"></A><p>If GPL or AFPL Ghostscript is installed using the Ghostscript
+executable file, the path is added to the Windows registry. </p>
+<A NAME="TI8304"></A><p>If the Ghostscript files are in the relative path of the <i>pbdwe105.dll</i> file,
+they must be installed in this directory structure:<p><PRE> <i>dirname</i>\pbdwe105.dll<br><i>dirname</i>\gs\gs<i>N.NN</i><br><i>dirname</i>\gs\fonts</PRE></p>
+<A NAME="TI8305"></A><p>where <i>dirname</i> is the directory that contains
+the runtime DLLs and <i>N.NN</i> represents the release
+version number for Ghostscript.</p>
+<A NAME="TI8306"></A><p>You might not need to distribute all the fonts provided in
+the distribution. For information about fonts, see <A HREF="http://www.ghostscript.com/doc/current/Fonts.htm">Fonts and font facilities supplied with Ghostscript</A>
+.</p>
+<A NAME="TI8307"></A><h4>PostScript printer drivers</h4>
+<A NAME="TI8308"></A><p>If your users have installed a PostScript printer on their
+computers, the PostScript driver files required to create PDF files, <i>PSCRIPT5.DLL</i>, <i>PS5UI.DLL</i>,
+and <i>pscript.ntf</i>, are already installed, typically
+in <i>C:\WINDOWS\system32\spool\drivers\w32x86</i> on
+Windows XP or <i>C:\Windows\System32\DriverStore\FileRepository\ntprint.inf_1a216484\Amd64</i> on
+a 64-bit Vista system. Your users must use the version of these
+files that is appropriate to the system where the PDF file is created.
+They should copy the files to the <i>dirname\drivers</i> directory. </p>
+<A NAME="TI8309"></A><p>If they have never installed a PostScript printer, they can
+use the Printers and Faxes option in the Windows control panel to
+install a generic PostScript printer. If the Microsoft <i>Pscript5.dll </i>has
+never been installed, they may be prompted to insert the Windows
+install CD.</p>
+<A NAME="TI8310"></A><p>You must also deploy the related files that are installed
+in <i>Sybase\Shared\PowerBuilder\drivers</i>.
+These files can be copied to or installed on users' computers.
+They must be located in this directory structure:<p><PRE> <i>dirname</i>\pbdwe105.dll<br><i>dirname</i>\drivers</PRE></p>
+<A NAME="TI8311"></A><h4>PostScript printer profile</h4>
+<A NAME="TI8312"></A><p>Each user's computer must have a PostScript printer
+profile called Sybase DataWindow PS. This profile is added to your
+development computer automatically when you save a DataWindow's
+rows to a PDF file in the DataWindow painter. You can use this method
+to add a Sybase DataWindow PS printer on any computer where PowerBuilder
+is installed.</p>
+<A NAME="TI8313"></A><p>Users can also add the profile manually using the Windows
+Add Printer wizard in one of the following ways:<A NAME="TI8314"></A>
+<ul>
+<li class=fi>By
+clicking the Have Disk button on the Install Printer Software page
+of the wizard, browsing to the <i>Adist5.inf</i> file
+(installed with PowerBuilder in the <i>Shared\PowerBuilder\drivers</i> directory)
+or to another PostScript driver file, and on the Name Your Printer
+page, changing the printer name to "Sybase DataWindow PS".</li>
+<li class=ds>By selecting a printer with PS in its name (such
+as "Apple Color LW 12/660 PS") from the
+list of printers on the Install Printer Software page of the wizard,
+and changing the printer name to "Sybase DataWindow PS" on
+the Name Your Printer page.
+</li>
+</ul>
+</p>
+<A NAME="TI8315"></A><h2>Using the Apache FO processor</h2>
+<A NAME="TI8316"></A><p>If your application uses the Apache processor to save as PDF
+or XSL-FO, you must deploy the <i>fop-0.20.4</i> directory
+and the Java Runtime Environment (JRE) with your application. </p>
+<A NAME="TI8317"></A><p>They must be deployed in the same directory as the PowerBuilder
+runtime files. For example, if you deploy your application and <i>pbvm105.dll</i> and
+the other PowerBuilder runtime files in a directory called <i>MyApplication</i>,
+the Apache processor and the JRE must be deployed in <i>MyApplication/fop-0.20.4</i> and <i>MyApplication/jre</i>.
+However, you do not need to place a copy of the JRE in this location
+if the full JDK is installed on the target computer and is in the classpath.</p>
+<A NAME="TI8318"></A><p>The following JAR files must be in the user's classpath:<A NAME="TI8319"></A>
+<ul>
+<li class=fi><i>fop-0.20.4\build\fop.jar</i></li>
+<li class=ds><i>fop-0.20.4\lib\batik.jar</i></li>
+<li class=ds><i>fop-0.20.4\lib\xalan-2.3.1.jar</i></li>
+<li class=ds><i>fop-0.20.4\lib\xercesImpl-2.1.0.jar</i></li>
+<li class=ds><i>fop-0.20.4\lib\xml-apis.jar</i></li>
+<li class=ds><i>fop-0.20.4\lib\avalon-framework-cvs-20020315.jar</i>
+</li>
+</ul>
+</p>
+<A NAME="TI8320"></A><p>For more information about the JRE, see <A HREF="apptechp275.htm#BAJBFFIA">"Java support"</A>.</p>
+<A NAME="TI8321"></A><p>On Windows DBCS platforms, you also need to deploy a file
+that supports DBCS characters to the Windows font directory on the
+target computer, for example, <i>C:\WINDOWS\fonts</i>.
+For more information about configuring fonts, see the <A HREF="http://xml.apache.org/fop/fonts.html">Apache Web site</A>
+. </p>
+

@@ -1,0 +1,353 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the Preview view of a DataWindow object </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp168.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp170.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIECGIC"></A><h1>Using the Preview view of a DataWindow object </h1>
+<A NAME="TI5292"></A><p>You use the Preview view of a DataWindow object to view it as it
+will appear with data and test the processing that takes place in
+it. </p>
+<A NAME="TI5293"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display the Preview view of a DataWindow object open
+in the DataWindow painter:</p>
+<ol><li class=fi><p>If the Preview view is not already displayed,
+select View&gt;Preview from the menu bar.</p><p>In the Preview view, the bars that indicate the bands do not
+display, and, if you selected Retrieve on Preview in the DataWindow wizard, PowerBuilder retrieves
+all the rows from the database. You are prompted to supply arguments
+if you defined retrieval arguments.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>In external DataWindow objects</span> <A NAME="TI5294"></A>If the DataWindow object uses the External data source, no data is retrieved. You
+can import data, as described in <A HREF="pbugp169.htm#CAICDBAI">"Importing data into a DataWindow object"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>In DataWindow objects that have stored data</span> <A NAME="TI5295"></A>If the DataWindow object has stored data in it, no data is retrieved
+from the database.</p>
+<p>As the rows are being retrieved, the Retrieve button in the
+PainterBar changes to a Cancel button. You can click the Cancel
+button to stop the retrieval.</p></li>
+<li class=ds><p>Test your DataWindow object. </p><p>For example, modify some data, update the database, re-retrieve
+rows, and so on, as described below.</p></li></ol>
+<br><A NAME="CAICDABH"></A><h2>Retrieving data</h2>
+<A NAME="TI5296"></A><h4>Where PowerBuilder gets data</h4>
+<A NAME="TI5297"></A><p>PowerBuilder follows this order of precedence to supply the
+data in your DataWindow object:<A NAME="TI5298"></A>
+<ol>
+</li>
+<li class=ds>If you have saved data in the DataWindow object, PowerBuilder uses
+the saved rows from the DataWindow object and does not retrieve data from the
+database.</li>
+<li class=ds>PowerBuilder uses the data in the cache, if there
+is any.</li>
+<li class=ds>If there is no data in the cache yet, PowerBuilder retrieves
+data from the database automatically, with one exception. If the
+Retrieve on Preview option is off, you have to request retrieval
+explicitly, as described next.
+</li>
+</ol>
+</p>
+<A NAME="TI5299"></A><h4>Previewing without retrieving data</h4>
+<A NAME="TI5300"></A><p>If you do not want PowerBuilder to retrieve data from the database automatically
+when the Preview view opens, you can set the Retrieve on Preview
+option. The Preview view shows the DataWindow object without retrieving
+data.</p>
+<A NAME="TI5301"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To be able to preview without retrieving data
+automatically:</p>
+<ol><li class=fi><p>Select Design&gt;Options from the
+menu bar.</p><p>The DataWindow Options dialog box displays.</p></li>
+<li class=ds><p>Clear the Retrieve on Preview check box on the
+General page.</p><p>When this check box is cleared, your request to preview the DataWindow object does
+not result in automatic data retrieval from the database.</p></li></ol>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Retrieve on Preview check box is available in the DataWindow wizards</span> <A NAME="TI5302"></A>During the initial creation of a DataWindow object, you can set the
+Retrieve on Preview option.</p>
+<br><A NAME="TI5303"></A><h4>PowerBuilder uses data caching</h4>
+<A NAME="TI5304"></A><p>When PowerBuilder first retrieves data, it stores the data internally.
+When it refreshes the Preview view, PowerBuilder displays the stored
+data instead of retrieving rows from the database again. This can
+save you a lot of time, since data retrieval can be time consuming.</p>
+<A NAME="TI5305"></A><h4>How using data from the cache affects you</h4>
+<A NAME="TI5306"></A><p>Because PowerBuilder accesses the cache and does not automatically
+retrieve data every time you preview, you might not have what you
+want when you preview. The data you see in preview and the data
+in the database can be out of sync.</p>
+<A NAME="TI5307"></A><p>For example, if you are working with live data that changes
+frequently or with statistics based on changing data and you spend
+time designing the DataWindow object, the data you are looking at may no
+longer match the database. In this case, retrieve again just before
+printing.</p>
+<A NAME="TI5308"></A><h4>Explicitly retrieving data</h4>
+<A NAME="TI5309"></A><p>You can explicitly request retrieval at any time.</p>
+<A NAME="TI5310"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To retrieve rows from the database:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI5311"></A>
+<ul>
+<li class=fi>Click
+the Retrieve button in the PainterBar</li>
+<li class=ds>Select Rows&gt;Retrieve from the menu bar.</li>
+<li class=ds>Select Retrieve from the Preview view's
+pop-up menu.
+</li>
+</ul>
+
+                        </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Supplying argument values or criteria</span> <A NAME="TI5312"></A>If the DataWindow object has retrieval arguments or is set up to
+prompt for criteria, you are prompted to supply values for the arguments
+or to specify criteria.</p>
+<p>PowerBuilder retrieves the rows. As PowerBuilder retrieves, the
+Retrieve button changes to a Cancel button. You can click the Cancel
+button to stop the retrieval at any time. </p></li></ol>
+<br><A NAME="TI5313"></A><h4>Sharing data with the Data view</h4>
+<A NAME="TI5314"></A><p>The Data view displays data that can be used to populate a DataWindow object. When
+the ShareData pop-up menu item in the Data view is checked, changes you
+make in the Data view are reflected in the Preview view and vice
+versa.</p>
+<A NAME="TI5315"></A><h4>Other options that affect retrieval</h4>
+<A NAME="TI5316"></A><p>These other options can affect retrieval:<A NAME="TI5317"></A>
+<ul>
+<li class=fi><b>Retrieve Rows As Needed</b>    Lets you specify that only the rows needed to display the
+current portion of the DataWindow object should be retrieved. When you
+scroll downward, additional rows are retrieved. This can speed up
+reporting in certain situations. <br>
+See <A HREF="pbugp173.htm#CAIBFCAB">"Retrieving rows as needed"</A>.<br></li>
+<li class=ds><b>Retrieve Rows to Disk</b>   Lets you specify that PowerBuilder should save retrieved data
+on your hard disk in a temporary file rather than keep the data
+in memory. When you preview the DataWindow object, PowerBuilder swaps rows
+of data from the temporary file into memory as needed.<br>
+For information, see <A HREF="pbugp173.htm#CAIBJBCD">"Saving retrieved rows to
+disk "</A>.<br>
+</li>
+</ul>
+</p>
+<A NAME="BFCECFJD"></A><h2>Modifying data</h2>
+<A NAME="TI5318"></A><p>You can add, modify, or delete rows in the Preview view. When
+you have finished manipulating the data, you can apply the changes
+to the database.</p>
+<A NAME="TI5319"></A><h4>Changing input language</h4>
+<A NAME="TI5320"></A><p>You (and your users) can add or modify data in a DataWindow
+object in multiple input languages. If you use multiple input languages,
+you can display a Language bar on your desktop to change the current
+input language. In a DataWindow object, the input language in effect
+the first time a column gets focus becomes the default input language
+for that column. If you subsequently change the input language when
+that column has focus, the new input language becomes the default
+for that column. This behavior
+does not apply to columns that have the RightToLeft property set.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If looking at data from a view or from more than one
+table</span> <A NAME="TI5321"></A>By default, you cannot update data in a DataWindow object that contains
+a view or more than one table. For more about updating DataWindow objects, see <A HREF="pbugp179.htm#BHBJIJJE">Chapter 21, "Controlling Updates in DataWindow Objects."</A></p>
+<A NAME="TI5322"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify existing data:</p>
+<ol><li class=fi><p>Tab to the field and enter a new value. </p><p>The Preview view uses validation rules, display formats, and
+edit styles that you have defined for the columns, either in the
+Database painter or in this particular DataWindow object.</p></li></ol>
+<br><A NAME="TI5323"></A><p>To save the changes to the database, you must apply them,
+as described below.</p>
+<A NAME="TI5324"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a row:</p>
+<ol><li class=fi><p>Click the Insert Row button.</p><p>PowerBuilder creates a blank row.</p></li>
+<li class=ds><p>Enter data for a row.</p></li></ol>
+<br><A NAME="TI5325"></A><p>To save the changes to the database, you must apply them,
+as described below.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Adding a row in an application</span> <A NAME="TI5326"></A>Clicking the Insert Row button in the Preview view is equivalent
+to calling the <b>InsertRow</b> method and then the <b>ScrollToRow</b> method
+at runtime.</p>
+<A NAME="TI5327"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete a row:</p>
+<ol><li class=fi><p>Click the Delete Row button.</p><p>PowerBuilder removes the row from the display.</p></li></ol>
+<br><A NAME="TI5328"></A><p>To save the changes to the database, you must apply them,
+as described below.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Deleting a row in an application</span> <A NAME="TI5329"></A>Clicking the Delete Row button in the Preview view is equivalent
+to calling the <b>DeleteRow</b> method at runtime.</p>
+<A NAME="TI5330"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To apply changes to the database:</p>
+<ol><li class=fi><p>Click the Update Database button.</p><p>PowerBuilder updates the table with all the changes you have
+made.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Applying changes in an application</span> <A NAME="TI5331"></A>Clicking the Update Database button in the Preview view is
+equivalent to calling the <b>Update</b> method at runtime.</p>
+<A NAME="TI5332"></A><h2>Viewing row information</h2>
+<A NAME="TI5333"></A><p>You can display information about the data you have retrieved.</p>
+<A NAME="TI5334"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display the row information:</p>
+<ol><li class=fi><p>Select Rows&gt;Described from the
+menu bar.</p><p>The Describe Rows dialog box displays, showing the number
+of:<A NAME="TI5335"></A>
+<ul>
+<li class=fi>Rows that have been deleted
+in the painter <i>but not yet deleted from the database</i></li>
+<li class=ds>Rows displayed in the Preview view</li>
+<li class=ds>Rows that have been filtered</li>
+<li class=ds>Rows that have been modified in the painter <i>but
+not yet modified in the database</i>
+</li>
+</ul>
+</p></li></ol>
+<br><A NAME="TI5336"></A><p>All row counts are zero until you retrieve the data from the
+database or add a new row. The count changes when you modify the
+displayed data or test filter criteria.</p>
+<A NAME="CAICDBAI"></A><h2>Importing data into a DataWindow object</h2>
+<A NAME="TI5337"></A><p>You can import and
+display data from an external source and save the imported data
+in the database.</p>
+<A NAME="TI5338"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To import data into a DataWindow object:</p>
+<ol><li class=fi><p>Select Rows&gt;Import from the menu
+bar.</p></li>
+<li class=ds><p>Specify the file from which you want to import
+the data.</p><p>The types of files that you can import into the painter display
+in the List Files of Type drop-down list.</p></li>
+<li class=ds><p>Click Open.</p><p>PowerBuilder reads the data from the file into the DataWindow painter. You
+can then click the Update Database button in the PainterBar to add
+the new rows to the database. </p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Data from file must match DataWindow definition</span> <A NAME="TI5339"></A>When importing data from a file, the datatypes of the data
+must match, column for column, all the columns in the DataWindow definition
+(the columns specified in the <b>SELECT</b> statement),
+not just the columns that are displayed in the DataWindow object.</p>
+<A NAME="TI5340"></A><p>For information about importing XML data, see <A HREF="pbugp236.htm#BABBABHD">Chapter 29, "Exporting and Importing
+XML Data."</A></p>
+<A NAME="CAIDJGIG"></A><h2>Using print preview</h2>
+<A NAME="TI5341"></A><p>You can print the data displayed in the Preview view. Before
+printing, you can preview the output on the screen. Your computer must
+have a default printer specified, otherwise properties handled by
+the printer driver, such as page orientation, are ignored.</p>
+<A NAME="TI5342"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To preview printed output before printing:</p>
+<ol><li class=fi><p>Be sure the Preview view is selected (current)
+and then select File&gt;Print Preview from the menu bar.</p><p>Print Preview displays the DataWindow object as it will print. </p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the IntelliMouse pointing device</span> <A NAME="TI5343"></A>Using the IntelliMouse pointing device, users can scroll
+a DataWindow object by rotating the wheel. Users can also zoom a DataWindow object larger
+or smaller by holding down the Ctrl key while rotating the wheel.</p>
+<A NAME="TI5344"></A><h4>Controlling the display of rulers</h4>
+<A NAME="TI5345"></A><p>You can choose whether to display rulers around page borders.</p>
+<A NAME="TI5346"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To control the display of rulers in Print Preview:</p>
+<ol><li class=fi><p>Select/deselect File&gt;Print
+Preview Rulers from the menu bar.</p></li></ol>
+<br><A NAME="TI5347"></A><h4>Changing margins</h4>
+<A NAME="TI5348"></A><p>You can dynamically change margins while previewing a DataWindow object.</p>
+<A NAME="TI5349"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the margins in Print Preview:</p>
+<ol><li class=fi><p>Drag the margin boundaries on the rulers. </p></li></ol>
+<br><A NAME="TI5350"></A><p>The following picture shows the left and top margin boundaries.
+There are also boundaries for the right and bottom margins. The
+picture shows the outline of the margin. If you do not want to see
+the outline, clear the Print Preview Shows Outline check box on
+the Print Specifications page in the Properties view.</p>
+<br><img src="images/dwen07.gif">
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Changing margins at runtime</span> <A NAME="TI5351"></A>Using the <b>Modify</b> method, you can display
+a DataWindow object in print preview at runtime. While in print preview,
+users can also change margins by dragging boundaries. A user event
+in the DataWindow control (pbm_dwnprintmarginchange) is
+triggered when print margins are changed. Changing margins can affect
+the page count, so if you use the <b>Describe</b> method to
+display the page count in your application (for example, in MicroHelp),
+you must code a script for the user event to recalculate the page
+count.</p>
+<A NAME="TI5352"></A><h4>Zooming the page</h4>
+<A NAME="TI5353"></A><p>You can reduce or enlarge the amount of the page that displays
+in the Print Preview view. This does not affect the printed output.</p>
+<A NAME="TI5354"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To zoom the page on the display screen:</p>
+<ol><li class=fi><p>Select File&gt;Print Preview Zoom
+from the menu bar.</p></li>
+<li class=ds><p>Select the magnification you want and click OK.</p><p>The display of the page zooms in or out as appropriate. The
+size of the contents of the page changes proportionately as you
+zoom. This type of zooming affects your display but does not affect
+printing.</p></li></ol>
+<br><A NAME="TI5355"></A><h4>Zooming the contents</h4>
+<A NAME="TI5356"></A><p>In addition to zooming the display on the screen, you can
+also zoom the contents, affecting the amount of material that prints
+on a page.</p>
+<A NAME="TI5357"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To zoom the contents of a DataWindow object with respect
+to the printed page:</p>
+<ol><li class=fi><p>Select Design&gt;Zoom from the menu
+bar.</p></li>
+<li class=ds><p>Select the magnification you want and click OK.</p><p>The contents of the page zooms in or out as appropriate. If
+you enlarge the contents so they no longer fit, PowerBuilder creates
+additional pages as needed.</p></li></ol>
+<br><A NAME="BFCBHEIF"></A><h2>Printing data</h2>
+<A NAME="TI5358"></A><p>You can print a DataWindow object while the Preview view is displayed.
+You can print all pages, a range of pages, only the current page,
+or only odd or even pages. You can also specify whether you want
+multiple copies, collated copies, and printing to a file.</p>
+<A NAME="TI5359"></A><h4>Avoiding large rows</h4>
+<A NAME="TI5360"></A><p>To avoid multiple blank pages and other anomalies in printed
+reports, no row in the DataWindow object should be larger than the size
+of the target page. The page boundary is often reached in long text
+columns with AutoSizeHeight on. It can also be reached when detail
+rows are combined with page and group headers and trailers, or when
+they contain multiple nested DataWindow objects or a column that has been
+resized to be larger than the page.</p>
+<A NAME="TI5361"></A><p>When a row contains large multiline edit columns, it can be
+broken into a series of rows, each containing one text line. These
+text lines become the source for a nested DataWindow object. The nested DataWindow object determines
+how many of its rows fit in the remaining page space. </p>
+<A NAME="TI5362"></A><h4>Page break before last row</h4>
+<A NAME="TI5363"></A><p>The summary band in a report is always printed on the same
+page as the last row of data.     This means that you sometimes
+find a page break before the last row of     data even if
+there is sufficient space to print the row. If you want the last row
+to print on     the same page as the preceding rows, the summary
+band must be made small enough to fit on the page as well.</p>
+<A NAME="TI5364"></A><h4>To change printers or settings before printing</h4>
+<A NAME="TI5365"></A><p>You can choose File&gt;Printer Setup from the menu bar.</p>
+<A NAME="TI5366"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To print a DataWindow object:</p>
+<ol><li class=fi><p>Select File&gt;Print Report from
+the menu bar to display the Print dialog box.</p></li>
+<li class=ds><p>Specify the number of copies to print.</p></li>
+<li class=ds><p>Specify the pages: select All or Current Page,
+or type page numbers and/or page ranges in the Pages box.</p></li>
+<li class=ds><p>Specify all pages, even pages, or odd pages in
+the Print drop-down list.</p></li>
+<li class=ds><p>If you want to print to a file rather than to
+the printer, select the Print to File check box.</p></li>
+<li class=ds><p>If you want to change the collating option, clear
+or select the Collate Copies check box and click OK.</p><p>If you specified print to file, the Print to File dialog box
+displays.</p></li>
+<li class=ds><p>Enter a file name and click OK.</p><p>The extension <i>PRN</i> indicates that the
+file is prepared for the printer. Change the drive, the directory,
+or both, if you want. </p></li></ol>
+<br><A NAME="CAIBFGFD"></A><h2>Working in a grid DataWindow object</h2>
+<A NAME="TI5367"></A><p>If you are viewing a grid-style DataWindow object in the Preview
+view, you can make the following changes. Whatever you do in the
+Preview view is reflected in the Design view:<A NAME="TI5368"></A>
+<ul>
+<li class=fi>Resize columns</li>
+<li class=ds>Reorder columns</li>
+<li class=ds>Split the display into two horizontal scrolling
+regions<br>
+You can use this feature to keep one or more columns stationary
+on the screen while scrolling through other columns.<br></li>
+<li class=ds>Copy data to the clipboard
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>These features are also available to your users</span> <A NAME="TI5369"></A>Users of your application can also manipulate columns in these
+ways in a grid DataWindow object at runtime.</p>
+<A NAME="TI5370"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To resize a column in a grid DataWindow object:</p>
+<ol><li class=fi><p>Position the mouse pointer
+at a column boundary in the header.</p><p>The pointer changes to a two-headed arrow.</p></li>
+<li class=ds><p>Press and hold the left mouse button and drag
+the mouse to move the boundary.</p></li>
+<li class=ds><p>Release the mouse button when the column is the
+correct width.</p></li></ol>
+<br><A NAME="TI5371"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To reorder columns in a grid DataWindow object:</p>
+<ol><li class=fi><p>Press and hold the left mouse button on
+a column heading.</p><p>PowerBuilder selects the column and displays a line representing
+the column border.</p></li>
+<li class=ds><p>Drag the mouse left or right to move the column.</p></li>
+<li class=ds><p>Release the mouse button.</p></li></ol>
+<br><A NAME="TI5372"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use split horizontal scrolling in a grid DataWindow object:</p>
+<ol><li class=fi><p>To divide the grid into two regions that
+can scroll independently of each other, position the mouse pointer
+at the left end of the horizontal scrollbar.</p><br><img src="images/dwen15.gif"><br>
+<p>The pointer changes to a two-headed arrow.</p></li>
+<li class=ds><p>Press and hold the left mouse button and drag
+the mouse to the right to create a new horizontal scrolling border.</p></li>
+<li class=ds><p>Release the mouse button.</p><p>You now have two independent scrolling regions in the grid DataWindow object.</p></li></ol>
+<br><A NAME="TI5373"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To copy data to the clipboard from a grid DataWindow object:</p>
+<ol><li class=fi><p>Select the cells whose data you want to
+copy to the clipboard:<A NAME="TI5374"></A>
+<ul>
+<li class=fi>To select an entire column, click its header. </li>
+<li class=ds>To select neighboring columns, press and hold Shift,
+then click the headers.</li>
+<li class=ds>To select non-neighboring columns, press and hold
+Ctrl, then click the headers.</li>
+<li class=ds>To select cells, press the left mouse button on
+the bottom border of a cell and drag the mouse.
+</li>
+</ul>
+
+                      </p><p>Selected cells are highlighted.</p></li>
+<li class=ds><p>Select Edit&gt;Copy from the menu bar.</p><p>The contents of the selected cells are copied to the clipboard.
+If you copied the contents of more than one column, the data is
+separated by tabs.</p></li></ol>
+<br>

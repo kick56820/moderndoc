@@ -1,0 +1,58 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Correcting pipeline errors </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp148.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp150.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BCDDCEGH"></A><h1>Correcting pipeline errors </h1>
+<A NAME="TI4675"></A><p>If the pipeline cannot pipe certain rows to the destination
+table for some reason, PowerBuilder displays the following information
+for the error rows:<A NAME="TI4676"></A>
+<ul>
+<li class=fi>Name of the table in the destination database</li>
+<li class=ds>Pipeline operation you chose in the Option box</li>
+<li class=ds>Error messages to identify the problem with each
+row</li>
+<li class=ds>Data values in the error rows</li>
+<li class=ds>Source and destination column information
+</li>
+</ul>
+</p>
+<A NAME="TI4677"></A><p>The following screen shot displays this information:</p>
+<br><img src="images/pipes270.gif">
+<A NAME="TI4678"></A><h4>What you can do</h4>
+<A NAME="TI4679"></A><p>You can correct the error rows by changing one or more of
+their column values so the destination table will accept them, or
+you can ignore the error rows and return to the Data Pipeline painter
+workspace. If you return to the workspace, you cannot redisplay
+the error rows without re-executing the pipeline.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Before you return to the workspace</span> <A NAME="TI4680"></A>You might want to print the list of errors or save them in
+a file. Select File&gt;Print or File&gt;Save As from
+the menu bar.</p>
+<A NAME="TI4681"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To return to the Data Pipeline painter workspace
+without correcting errors:</p>
+<ol><li class=fi><p>Click the Design button.</p></li></ol>
+<br><A NAME="TI4682"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To correct pipeline errors:</p>
+<ol><li class=fi><p>Change data values for the appropriate
+columns in the error rows.</p></li>
+<li class=ds><p>Click the Update DB button, or select Design&gt;Update
+Database from the menu bar.</p><p>PowerBuilder pipes rows in which errors were corrected to the
+destination table and displays any remaining errors.</p></li>
+<li class=ds><p>Repeat steps 1 and 2 until all errors are corrected.</p><p>The Data Pipeline painter workspace displays.</p></li></ol>
+<br><A NAME="TI4683"></A><h4>Viewing an error message</h4>
+<A NAME="TI4684"></A><p>Sometimes you cannot see an entire error message because the
+column is not wide enough. Move the pointer to the error
+message and press the Right Arrow key to scroll through it. You
+can also drag the Error Message column border to the width needed.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Making the error messages shorter</span> <A NAME="TI4685"></A>For ODBC data sources, you can set the MsgTerse database parameter
+in the destination database profile to make the error messages shorter.
+If you type <FONT FACE="Courier New">MsgTerse = 'Yes'</FONT>,
+then the <ACRONYM title = "sequel state" >SQLSTATE</ACRONYM> error
+number does not display. For more information on the MsgTerse parameter</p>
+<A NAME="TI4686"></A>, see the online Help.</p>
+

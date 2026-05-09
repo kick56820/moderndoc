@@ -1,0 +1,85 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Setting up users' workstations</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp226.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp228.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF364047747"></A><h1>Setting up users' workstations</h1>
+<A NAME="TI6907"></A><p>After building the plug-in application, creating its HTML
+page, and setting up the server, you need to make sure client workstations
+are set up to view the plug-in application.</p>
+<A NAME="TI6908"></A><p>To view a Web page that includes a PowerBuilder window plug-in
+application, users need supporting software installed on their client
+workstations. They also need a connection to the Web server.</p>
+<A NAME="TI6909"></A><h2>Required components</h2>
+<A NAME="TI6910"></A><p>Each client workstation needs the components in <A HREF="apptechp227.htm#CHDEEJCD">Table 33-9</A> to view a Web page
+containing a PowerBuilder window plug-in application.</p>
+<A NAME="CHDEEJCD"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-9: Client requirements to view PowerBuilder
+window plug-in</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6911"></A>Component</th>
+<th  rowspan="1"  ><A NAME="TI6912"></A>Details</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6913"></A>An Internet or intranet connection</td>
+<td  rowspan="1"  ><A NAME="TI6914"></A>Available within your corporation or
+from an Internet service provider.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6915"></A>A Web browser that supports Netscape plug-ins</td>
+<td  rowspan="1"  ><A NAME="TI6916"></A>Available from the browser vendor. Examples
+are:<A NAME="TI6917"></A>
+<ul>
+<li class=fi>Netscape Navigator Version 3.x or later.</li>
+<li class=ds>Microsoft Internet Explorer Version 3.x through
+5.5 Service Pack 1. Internet Explorer 5.5 Service Pack 2 and later
+versions do not support plug-ins.
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6918"></A>PowerBuilder deployment DLLs</td>
+<td  rowspan="1"  ><A NAME="TI6919"></A>Install the PowerBuilder runtime DLLs
+as described in <A HREF="apptechp273.htm#BGBEBIEA">"PowerBuilder runtime files"</A>.<A NAME="TI6920"></A><p>The PowerBuilder runtime DLLs belong in the application directory
+or in a directory on the system path. The PowerBuilder window plug-in
+DLL must know the location of the PowerBuilder runtime DLLs. To
+accomplish this, you can add the directory for the PowerBuilder
+deployment DLLs to the system path, or you can add the directory
+to the application path key for the browser (in the Windows registry).</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6921"></A>Standard or secure PowerBuilder window plug-in
+DLL</td>
+<td  rowspan="1"  ><A NAME="TI6922"></A>If it is not there already, copy the <i>NPPBA1050.DLL</i> file (standard)
+or <i>NPPBS1050.DLL</i> file (secure) from the <i>Internet
+Tools\Plugins</i> directory to the browser's <i>Plugins</i> directory.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6923"></A>Other files</td>
+<td  rowspan="1"  ><A NAME="TI6924"></A>If you did not include image resources
+in the PBDs, copy them to the paths specified in the object properties
+if they are not there already.<A NAME="TI6925"></A><p>If the plug-in application connects to a database, set up client
+software for the DBMS. For how to connect to a DBMS from the client
+machine, see <i>Connecting to Your Database</i>
+.</p></td>
+</tr>
+</table>
+<A NAME="TI6926"></A><h2>Viewing the Web page and plug-in application</h2>
+<A NAME="TI6927"></A><p>When the required software is installed, the user can view
+the Web page with the plug-in application.</p>
+<A NAME="TI6928"></A><p>When the user navigates to the URL of the Web page:<A NAME="TI6929"></A>
+<ul>
+<li class=fi>The text on the page displays
+with a reserved space for the PowerBuilder window</li>
+<li class=ds>The client downloads the PBDs from the server</li>
+<li class=ds>The browser displays the child window within the
+Web page</li>
+<li class=ds>The user interacts with controls in the window and
+scripts for events execute</li>
+<li class=ds>The user navigates away from the page, which closes
+the window and causes the PowerBuilder DLLs to be unloaded from
+memory
+</li>
+</ul>
+</p>
+

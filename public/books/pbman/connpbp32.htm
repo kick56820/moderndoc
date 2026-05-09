@@ -1,0 +1,285 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Installing PowerBuilder stored procedures in Adaptive Server databases</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp31.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp33.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDBEBA"></A><h1>Installing PowerBuilder stored procedures in Adaptive Server databases</h1>
+<A NAME="TI1042"></A><p>This section describes how to install PowerBuilder stored procedures
+in an Adaptive Server database by running <ACRONYM title = "sequel" >SQL</ACRONYM> scripts
+provided for this purpose.</p>
+<A NAME="TI1043"></A><p>Sybase recommends that you run these scripts outside PowerBuilder <i>before</i> connecting
+to an Adaptive Server database for the first time through the Adaptive
+Server (ASE or SYC DBMS identifier) native database interface. Although
+the PBSYC development environment will run without the PowerBuilder stored
+procedures created by these scripts, the stored procedures are required
+for full functionality.</p>
+<A NAME="CCJEAJDD"></A><h2>What are the PowerBuilder stored procedure scripts?</h2>
+<A NAME="TI1044"></A><h4>What you do</h4>
+<A NAME="TI1045"></A><p>In order to work with an Adaptive Server database in PowerBuilder,
+you or your system administrator should install certain stored procedures
+in the database <i>before</i> you connect to Adaptive
+Server from PowerBuilder <i>for the first time</i>.</p>
+<A NAME="TI1046"></A><p>You must run the PowerBuilder stored procedure scripts only
+once per database server, and not before each PowerBuilder session.
+If you have already installed the PowerBuilder stored procedures in
+your Adaptive Server database before connecting in PowerBuilder on
+any supported platform, you need <i>not</i> install the
+stored procedures again before connecting in PowerBuilder on a different platform.</p>
+<A NAME="TI1047"></A><h4>PowerBuilder stored procedures</h4>
+<A NAME="TI1048"></A><p>A <strong>stored procedure</strong> is a group of precompiled
+and preoptimized <ACRONYM title = "sequel" >SQL</ACRONYM> statements
+that performs some database operation. Stored procedures reside
+on the database server where they can be accessed as needed.</p>
+<A NAME="TI1049"></A><p>PowerBuilder uses these stored procedures to get information
+about tables and columns from the Adaptive Server system catalog.
+(The PowerBuilder stored procedures are different from the stored
+procedures you might create in your database.)</p>
+<A NAME="TI1050"></A><h4><ACRONYM title = "sequel" >SQL</ACRONYM> scripts</h4>
+<A NAME="TI1051"></A><p>PowerBuilder provides <ACRONYM title = "sequel" >SQL</ACRONYM> script
+files for installing the required stored procedures in the sybsystemprocs
+database:</p>
+<A NAME="TI1052"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI1053"></A>Script</th>
+<th  rowspan="1"  ><A NAME="TI1054"></A>Use for</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1055"></A><i>PBSYC.SQL</i></td>
+<td  rowspan="1"  ><A NAME="TI1056"></A>Adaptive Server databases</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1057"></A><i>PBSYC2.SQL</i></td>
+<td  rowspan="1"  ><A NAME="TI1058"></A>Adaptive Server databases to restrict
+the Select Tables list</td>
+</tr>
+</table>
+<A NAME="TI1059"></A><h4>Where to find the scripts</h4>
+<A NAME="TI1060"></A><p>The stored procedure scripts are located in the <i>Server</i> directory
+on the PowerBuilder CD-ROM. The <i>Server</i> directory
+contains server-side installation components that are <i>not</i> installed
+with PowerBuilder on your computer.</p>
+<A NAME="TI1061"></A><h3>PBSYC.SQL script</h3>
+<A NAME="TI1062"></A><h4>What it does</h4>
+<A NAME="TI1063"></A><p>The <i>PBSYC.SQL</i> script contains <ACRONYM title = "sequel" >SQL</ACRONYM> code that overwrites stored procedures that
+correspond to the same version of PowerBuilder in the Adaptive Server sybsystemprocs
+database and then re-creates them.</p>
+<A NAME="TI1064"></A><p>The <i>PBSYC.SQL</i> script uses the <b>sybsystemprocs</b> database
+to hold the PowerBuilder stored procedures. This database is created
+when you install Adaptive Server.</p>
+<A NAME="TI1065"></A><h4>When to run it</h4>
+<A NAME="TI1066"></A><p>Before you connect to an Adaptive Server database in PowerBuilder <i>for
+the first time</i> using the ASE or SYC DBMS identifier,
+you or your database administrator <i>must run</i> the <i>PBSYC.SQL</i> script
+once per database server into the <b>sybsystemprocs</b> database.</p>
+<A NAME="TI1067"></A><p>Run <i>PBSYC.SQL</i> if the server at your site
+will be <i>accessed by anyone using the PowerBuilder development
+environment or by deployment machines</i>.</p>
+<A NAME="TI1068"></A><p>If you or your database administrator have already run the
+current version of <i>PBSYC.SQL</i> to install PowerBuilder stored
+procedures in the <b>sybsystemprocs</b> database on
+your server, you need not rerun the script to install the stored procedures
+again.</p>
+<A NAME="TI1069"></A><p>For instructions on running <i>PBSYC.SQL</i>,
+see <A HREF="connpbp32.htm#X-REF307891105">"How to run the scripts"</A>.</p>
+<A NAME="TI1070"></A><h4>Stored procedures it creates</h4>
+<A NAME="TI1071"></A><p>The <i>PBSYC.SQL</i> script creates the following PowerBuilder stored
+procedures in the Adaptive Server <b>sybsystemprocs</b> database.
+The procedures are listed in the order in which the script creates
+them.</p>
+<A NAME="TI1072"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI1073"></A><ACRONYM title = "P B S Y C dot sequel" >PBSYC.SQL</ACRONYM> stored procedure</th>
+<th  rowspan="1"  ><A NAME="TI1074"></A>What it does</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1075"></A><b>sp_pb100column</b></td>
+<td  rowspan="1"  ><A NAME="TI1076"></A>Lists the columns in a table.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1077"></A><b>sp_pb100pkcheck</b></td>
+<td  rowspan="1"  ><A NAME="TI1078"></A>Determines whether a table has a primary
+key.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1079"></A><b>sp_pb100fktable</b></td>
+<td  rowspan="1"  ><A NAME="TI1080"></A>Lists the tables that reference the current
+table.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1081"></A><b>sp_pb100procdesc</b></td>
+<td  rowspan="1"  ><A NAME="TI1082"></A>Retrieves a description of the argument
+list for a specified stored procedure.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1083"></A><b>sp_pb100proclist</b></td>
+<td  rowspan="1"  ><A NAME="TI1084"></A>Lists available stored procedures and
+extended stored procedures.<A NAME="TI1085"></A><p>If the SystemProcs DBParm parameter is set to 1 or Yes (the default), <b>sp_pb100proclist</b> displays
+both system stored procedures and user-defined stored procedures.
+If SystemProcs is set to 0 or No, <b>sp_pb100proclist</b> displays
+only user-defined stored procedures.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1086"></A><b>sp_pb100text</b></td>
+<td  rowspan="1"  ><A NAME="TI1087"></A>Retrieves the text of a stored procedure
+from the <b>SYSCOMMENTS</b> table.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1088"></A><b>sp_pb100table</b></td>
+<td  rowspan="1"  ><A NAME="TI1089"></A>Retrieves information about <i>all</i> tables
+in a database, including those for which the current user has no
+permissions.<A NAME="TI1090"></A><p><ACRONYM title = "P B S Y C dot sequel" >PBSYC.SQL</ACRONYM> contains
+the default version of <b>sp_pb100table</b>.
+If you want to replace the default version of <b>sp_pb100table</b> with a
+version that restricts the table list to those tables for which
+the user has <b>SELECT</b> permission, you can run the <i>PBSYC2.SQL</i> script,
+described in <A HREF="connpbp32.htm#X-REF353682973">"PBSYC2.SQL script"</A>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1091"></A><b>sp_pb100index</b></td>
+<td  rowspan="1"  ><A NAME="TI1092"></A>Retrieves information about all indexes
+for a specified table.</td>
+</tr>
+</table>
+<A NAME="X-REF353682973"></A><h3>PBSYC2.SQL script</h3>
+<A NAME="TI1093"></A><h4>What it does</h4>
+<A NAME="TI1094"></A><p>The <i>PBSYC2.SQL</i> script contains <ACRONYM title = "sequel" >SQL</ACRONYM> code that drops and re-creates
+one PowerBuilder stored procedure in the Adaptive Server <b>sybsystemprocs</b> database:
+a replacement version of <b>sp_pb100table</b>.</p>
+<A NAME="TI1095"></A><p>The default version of <b>sp_pb100table</b> is
+installed by the <i>PBSYC.SQL</i> script. PowerBuilder uses
+the <b>sp_pb100table</b> procedure to build
+a list of <i>all</i> tables in the database, including
+those for which the current user has no permissions. This list displays
+in the Select Tables dialog box in PowerBuilder.</p>
+<A NAME="TI1096"></A><p>For security reasons, you or your database administrator might
+want to restrict the table list to display only those tables for
+which a user has permissions. To do this, you can run the <i>PBSYC2.SQL</i> script <i>after
+you run PBSYC.SQL</i>. <i>PBSYC2.SQL</i> replaces
+the default version of <b>sp_pb100table</b> with
+a new version that displays a restricted table list including only
+tables and views:<A NAME="TI1097"></A>
+<ul>
+<li class=fi>Owned by
+the current user</li>
+<li class=ds>For which the current user has <b>SELECT</b> authority</li>
+<li class=ds>For which the current user's group has <b>SELECT</b> authority</li>
+<li class=ds>For which <b>SELECT</b> authority was
+granted to <b>PUBLIC</b>
+</li>
+</ul>
+</p>
+<A NAME="TI1098"></A><h4>When to run it</h4>
+<A NAME="TI1099"></A><p>If you are accessing an Adaptive Server database using the
+ASE or SYC DBMS identifier in PowerBuilder, <i>you</i> <i>must
+first run PBSYC.SQL</i> once per database server to install
+the required PowerBuilder stored procedures in the sybsystemprocs
+database.</p>
+<A NAME="TI1100"></A><p>After you run <i>PBSYC.SQL</i>, you can optionally
+run <i>PBSYC2.SQL</i> if you want to replace <b>sp_pb100table</b> with
+a version that restricts the table list to those tables for which
+the user has <b>SELECT</b> permission.</p>
+<A NAME="TI1101"></A><p>If you do not want to restrict the table list, there is no
+need to run <i>PBSYC2.SQL</i>.</p>
+<A NAME="TI1102"></A><p>For instructions on running <i>PBSYC2.SQL</i>,
+see <A HREF="connpbp32.htm#X-REF307891105">"How to run the scripts"</A>.</p>
+<A NAME="TI1103"></A><h4>Stored procedure it creates</h4>
+<A NAME="TI1104"></A><p>The <i>PBSYC2.SQL</i> script creates the following PowerBuilder stored
+procedure in the Adaptive Server <b>sybsystemprocs</b> database:</p>
+<A NAME="TI1105"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI1106"></A><ACRONYM title = "P B S Y C 2 dot sequel" >PBSYC2.SQL</ACRONYM> stored
+procedure</th>
+<th  rowspan="1"  ><A NAME="TI1107"></A>What it does</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1108"></A><b>sp_pb100table</b></td>
+<td  rowspan="1"  ><A NAME="TI1109"></A>Retrieves information about those tables
+in the database for which the current user has <b>SELECT</b> permission.<A NAME="TI1110"></A><p>This version of <b>sp_pb100table</b> replaces
+the default version of <b>sp_pb100table</b> installed
+by the <i>PBSYC.SQL</i> script.</p></td>
+</tr>
+</table>
+<A NAME="X-REF307891105"></A><h2>How to run the scripts</h2>
+<A NAME="TI1111"></A><p>You can use the <ACRONYM title = "I sequel" >ISQL</ACRONYM> or <ACRONYM title = "sequel" >SQL</ACRONYM> Advantage tools to run the stored
+procedure scripts outside PowerBuilder.</p>
+<A NAME="X-REF298320004"></A><h3>Using ISQL to run the stored procedure scripts</h3>
+<A NAME="TI1112"></A><p><ACRONYM title = "I sequel" >ISQL</ACRONYM> is an interactive <ACRONYM title = "sequel" >SQL</ACRONYM> utility that comes with the Open
+Client software on the Windows platforms. If you have <ACRONYM title = "I sequel" >ISQL</ACRONYM> installed, use the following procedure
+to run the PowerBuilder stored procedure scripts.</p>
+<A NAME="TI1113"></A><p>For complete instructions on using<ACRONYM title = "I sequel" > ISQL</ACRONYM>, see your Open Client documentation.</p>
+<A NAME="TI1114"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use<ACRONYM title = "I sequel" > ISQL</ACRONYM> to
+run the PowerBuilder stored procedure scripts:</p>
+<ol><li class=fi><p>Connect to the <b>sybsystemprocs</b> Adaptive
+Server database as the system administrator. </p></li>
+<li class=ds><p>Open one of the following files containing the PowerBuilder stored procedure
+script you want to run:<A NAME="TI1115"></A>
+<ul>
+<li class=fi><i>PBSYC.SQL</i></li>
+<li class=ds><i>PBSYC2.SQL</i>
+</li>
+</ul>
+
+                        </p></li>
+<li class=ds><p>Issue the appropriate <b>ISQL</b> command
+to run the <ACRONYM title = "sequel" >SQL</ACRONYM> script with the
+user ID, server name, and (optionally) password you specify. Make
+sure you specify uppercase and lowercase exactly as shown:</p><p><p><PRE><b>isql /U sa /S</b> <i>SERVERNAME</i> <b>/i</b> <i>pathname</i> <b>/P</b> {<i> password</i> }</PRE></p>
+</p><A NAME="TI1116"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI1117"></A>Parameter</th>
+<th  rowspan="1"  ><A NAME="TI1118"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1119"></A><b>sa</b></td>
+<td  rowspan="1"  ><A NAME="TI1120"></A>The user ID for the system administrator.
+Do <i>not</i> change this user ID.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1121"></A><i>SERVERNAME</i></td>
+<td  rowspan="1"  ><A NAME="TI1122"></A>The name of the computer running the
+Adaptive Server database.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1123"></A><i>pathname</i></td>
+<td  rowspan="1"  ><A NAME="TI1124"></A>The drive and directory containing the <ACRONYM title = "sequel" >SQL</ACRONYM> script you want to run.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1125"></A><i>password</i></td>
+<td  rowspan="1"  ><A NAME="TI1126"></A>(Optional) The password for the sa (system administrator)
+user ID. The default Adaptive Server installation creates the <b>sa</b> user
+ID without a password. If you changed the password for <b>sa</b> during
+the installation, replace <i>password</i> with your
+new password.</td>
+</tr>
+</table>
+<p>For example, if you are using PowerBuilder and are accessing
+the stored procedure scripts from the product CD-ROM, type either
+of the following (assuming D is your CD-ROM drive):<p><PRE> isql /U sa /S TESTDB /i d:\server\pbsyb.sql /P <br>isql /U sa /S SALES /i d:\server\pbsyc.sql /P adminpwd</PRE></p></li></ol>
+<br><A NAME="X-REF298319956"></A><h3>Using SQL Advantage to run the stored procedure scripts</h3>
+<A NAME="TI1127"></A><p><ACRONYM title = "sequel" >SQL</ACRONYM> Advantage is an interactive <ACRONYM title = "sequel" >SQL</ACRONYM> utility that comes with the Open
+Client software on the Windows platform. If you have <ACRONYM title = "sequel" >SQL</ACRONYM> Advantage installed, use the
+following procedure to run the PowerBuilder stored procedure scripts.</p>
+<A NAME="TI1128"></A><p>For complete instructions on using <ACRONYM title = "sequel" >SQL</ACRONYM> Advantage, see your Open Client documentation.</p>
+<A NAME="TI1129"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use <ACRONYM title = "sequel" >SQL</ACRONYM> Advantage
+to run the PowerBuilder stored procedure scripts:</p>
+<ol><li class=fi><p>Start the <ACRONYM title = "sequel" >SQL</ACRONYM> Advantage
+utility.</p></li>
+<li class=ds><p>Open a connection to the <b>sybsystemprocs</b> Adaptive
+Server database as the system administrator. </p></li>
+<li class=ds><p>Open one of the following files containing the PowerBuilder stored procedure
+script you want to run:<A NAME="TI1130"></A>
+<ul>
+<li class=fi><i>PBSYC.SQL</i></li>
+<li class=ds><i>PBSYC2.SQL</i>
+</li>
+</ul>
+
+                        </p></li>
+<li class=ds><p>Delete the <b>use sybsystemprocs</b> command
+and the <b>go</b> command at the beginning of each script.</p><p><ACRONYM title = "sequel" >SQL</ACRONYM> Advantage requires
+that you issue the <b>use sybsystemprocs</b> command by
+itself, with no other <ACRONYM title = "sequel" >SQL</ACRONYM> commands
+following it. When you open a connection to the sybsystemprocs database
+in step 2, you are in effect issuing the <b>use sybsystemprocs</b> command.
+This command should not be issued again as part of the stored procedure
+script.</p><p>Therefore, to successfully install the stored procedures,
+you <i>must</i> delete the lines shown in the following
+table from the beginning of the PowerBuilder stored procedure script <i>before</i> executing
+the script.</p><A NAME="TI1131"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI1132"></A>Before executing this script</th>
+<th  rowspan="1"  ><A NAME="TI1133"></A>Delete these lines</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1134"></A><i>PBSYC.SQL</i></td>
+<td  rowspan="1"  ><A NAME="TI1135"></A><FONT FACE="Courier New">use sybsystemprocs</FONT><A NAME="TI1136"></A><p><FONT FACE="Courier New">go</FONT></p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1137"></A><i>PBSYC2.SQL</i></td>
+<td  rowspan="1"  ><A NAME="TI1138"></A><FONT FACE="Courier New">use sybsystemprocs</FONT><A NAME="TI1139"></A><p><FONT FACE="Courier New">go</FONT></p></td>
+</tr>
+</table>
+</li>
+<li class=ds><p>Execute all of the statements in the <ACRONYM title = "sequel" >SQL</ACRONYM> script.</p></li>
+<li class=ds><p>Exit the <ACRONYM title = "sequel" >SQL</ACRONYM> Advantage
+session.</p></li></ol>
+<br>

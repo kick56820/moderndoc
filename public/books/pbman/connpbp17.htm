@@ -1,0 +1,53 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining the JDBC interface</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp16.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp18.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCDDJGD"></A><h1>Defining the JDBC interface</h1>
+<A NAME="TI430"></A><h4>Defining the profile</h4>
+<A NAME="TI431"></A><p>To define a connection through the JDBC interface, you must
+create a database profile by supplying values for at least the basic
+connection parameters in the Database Profile Setup - JDBC dialog
+box. You can then select this profile at any time to connect to
+your database in the development environment. </p>
+<A NAME="TI432"></A><p>For information on how to define a database profile, see <A HREF="connpbp6.htm#X-REF289075262">"Using database profiles"</A>. </p>
+<A NAME="TI433"></A><h4>Specifying connection parameters</h4>
+<A NAME="TI434"></A><p>To provide maximum flexibility (as provided in the JDBC API),
+the JDBC interface supports database connections made with different
+combinations of connection parameters: <A NAME="TI435"></A>
+<ul>
+<li class=fi><b>Driver name, URL, and Properties</b>   You should specify values for this combination of connection
+parameters if you need to define driver-specific properties.
+When properties are defined, you <i>must</i> also define
+the user ID and password in the properties field. <br>
+For example, when connecting to the jConnect driver, enter
+the following values in the Driver-Specific Properties field:<p><PRE> SQLINITSTRING=set TextSize 32000; user=system;password=manager;</PRE><br></li>
+<li class=ds><b>Driver name, URL, User ID, and Password</b>   You should specify values for this combination of connection
+parameters if you do not need to define any driver-specific properties. <p><PRE> Driver Name: com.sybase.jdbc.SybDriver</PRE><PRE> URL:         jdbc:sybase:Tds:localhost:2638</PRE><PRE> Login ID:    dba</PRE><PRE> Password:    sql</PRE></li>
+<li class=ds><b>Driver name and URL</b>   You should specify values for this combination of connection
+parameters when the user ID and password are included as part of
+the URL.<br>
+For example, when connecting to the Oracle JDBC driver, the
+URL can include the user ID and password:<p><PRE> jdbc:oracle:thin:userid/password@host:port:dbname</PRE><br>
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Specifying properties when connecting to jConnect</span> <A NAME="TI436"></A>If you plan to use the blob datatype in PowerBuilder, you should
+be aware that jConnect imposes a restriction on blob size. Consequently,
+before you make your database connection from PowerBuilder, you might
+want to reset the blob size to a value greater than the maximum
+size you plan to use. </p>
+<A NAME="TI437"></A>To set blob size, define the jConnect property <ACRONYM title = "sequel init string" >SQLINITSTRING</ACRONYM> in the Driver-Specific
+Properties box on the Connection page. The <ACRONYM title = "sequel init string" >SQLINITSTRING</ACRONYM> property
+is used to define commands to be passed to the back-end database
+server: <p><PRE> SQLINITSTRING=set TextSize 32000; </PRE></p>
+<A NAME="TI438"></A>Remember that if you define a property in the Driver-Specific
+Properties box, you must also define the user ID and password in
+this box. </p>
+

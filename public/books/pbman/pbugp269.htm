@@ -1,0 +1,236 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Building an executable file and dynamic libraries</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp268.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp270.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDDBHHH"></A><h1>Building an executable file and dynamic libraries</h1>
+<A NAME="TI9935"></A><p>Once you have completed development and defined your project,
+you build the project to create the executable files and all specified
+dynamic libraries. You can build your project whenever you have
+made changes to the objects and want to test or deploy another version
+of your application.</p>
+<A NAME="TI9936"></A><p>This section describes building a single project in the Project
+painter. You can build all the targets in your workspace at any
+time using buttons on the PowerBar, pop-up menus in the System Tree,
+or a command line. For more information, see <A HREF="pbugp11.htm#CEGJEBBB">"Building workspaces"</A>.</p>
+<A NAME="TI9937"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To build the application:</p>
+<ol><li class=fi><p>Open the project you built in the Project
+painter.</p></li>
+<li class=ds><p>Click the Build button in the PainterBar, or select
+Design&gt;Build Project.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If the target's library list has changed</span> <A NAME="TI9938"></A>When you click Build, PowerBuilder checks your target's
+library list. If it has changed since you defined your project,
+PowerBuilder updates the Project painter workspace with the new
+library list. Make whatever changes you need in the workspace, then
+click Build again.</p>
+<p>PowerBuilder builds the executable and all specified dynamic
+libraries.</p></li></ol>
+<br><A NAME="TI9939"></A><p>The next two sections describe in detail how PowerBuilder
+builds the project and finds the objects used in the target. </p>
+<A NAME="TI9940"></A><p>When PowerBuilder has built the target, you can check which
+objects are included in the target. See <A HREF="pbugp269.htm#CAIBFEAA">"Listing the objects in a
+project"</A>.</p>
+<A NAME="TI9941"></A><h2>How PowerBuilder builds the project</h2>
+<A NAME="TI9942"></A><p>When PowerBuilder builds your application project:<A NAME="TI9943"></A>
+<ol>
+</li>
+<li class=ds>If you selected Rebuild: Full,
+PowerBuilder regenerates all the objects in the libraries.</li>
+<li class=ds>If you selected Prompt for Overwrite, PowerBuilder
+displays a message box asking for confirmation before overwriting
+the executable file and each dynamic library.</li>
+<li class=ds>To create the executable file you specified, PowerBuilder
+searches through your target and copies into the executable file
+the compiled versions of <i>referenced</i> objects
+from the libraries in the target's library search path
+that are not specified as dynamic libraries. For more details, see <A HREF="pbugp269.htm#CACJAIAD">"How PowerBuilder searches
+for objects"</A>.</li>
+<li class=ds>PowerBuilder creates a dynamic library for each
+of the libraries you specified for the target and maintains a list
+of these library files. PowerBuilder maintains the unqualified file
+names of the dynamic library files; it does not save the path name.
+</li>
+</ol>
+</p>
+<A NAME="TI9944"></A><p>PowerBuilder does not copy objects that are not referenced
+in the application to the executable file, nor does it copy objects
+to the executable file from libraries you declared to be dynamic
+libraries. These objects are linked to the target at runtime and
+are not stored in the executable file. </p>
+<A NAME="TI9945"></A><h4>What happens at runtime</h4>
+<A NAME="TI9946"></A><p>When an object such as a window is referenced in the application, PowerBuilder
+first looks in the executable file for the object. If it does not
+find it there, it looks in the dynamic library files that are defined
+for the target. For example, if you specified that a dynamic library
+should be generated from <i>test.pbl</i>, PowerBuilder
+looks for <i>test.pbd</i> or <i>test.dll</i> at
+runtime. The dynamic library files must be in the search path. If
+PowerBuilder cannot find the object in any of the dynamic library
+files, it reports a runtime error.</p>
+<A NAME="CACJAIAD"></A><h2>How PowerBuilder searches for objects</h2>
+<A NAME="TI9947"></A><p>When searching through the target, PowerBuilder does not find
+all the objects that are used in your target and copy them to the
+executable file. This section describes which objects it finds and
+copies and which it does not.</p>
+<A NAME="TI9948"></A><h3>Which
+objects are copied to the executable file</h3>
+<A NAME="TI9949"></A><p>PowerBuilder finds and copies the following objects to the
+executable file.</p>
+<A NAME="TI9950"></A><h4>Objects that are directly referenced in scripts</h4>
+<A NAME="TI9951"></A><p>PowerBuilder copies objects directly referenced in scripts
+to the executable file. For example:<A NAME="TI9952"></A>
+<ul>
+<li class=fi>If a window script contains the following statement, <b>w_continue</b> is
+copied to the executable file:<p><PRE> Open(w_continue)</PRE></li>
+<li class=ds>If a menu item script refers to the global function <b>f_calc</b>, <b>f_calc</b> is
+copied to the executable file:<p><PRE> f_calc(EnteredValue)</PRE></li>
+<li class=ds>If a window uses a pop-up menu using the following
+statements, <b>m_new</b> is copied to the
+executable file:<p><PRE> m_new   mymenu<br>mymenu = create m_new<br>mymenu.m_file.PopMenu(PointerX(), PointerY())</PRE>
+</li>
+</ul>
+</p>
+<A NAME="TI9953"></A><h4>Objects that are referenced in painters</h4>
+<A NAME="TI9954"></A><p>PowerBuilder copies objects referenced in painters to the
+executable file. For example:<A NAME="TI9955"></A>
+<ul>
+<li class=fi>If
+a menu is associated with a window in the Window painter, the menu
+is copied to the executable file.</li>
+<li class=ds>If a DataWindow object is associated with a DataWindow
+control in the Window painter, the DataWindow object is copied to
+the executable file.</li>
+<li class=ds>If a window contains a custom user object that includes
+another user object, both user objects are copied.</li>
+<li class=ds>If a resource is assigned in a painter, it is copied
+to the executable file. For example, when you place a Picture control
+in a window in the Window painter, the bitmap file you associate
+with it is copied.
+</li>
+</ul>
+</p>
+<A NAME="TI9956"></A><h3>Which objects are not copied to the executable file</h3>
+<A NAME="TI9957"></A><p>When creating the executable file, PowerBuilder can identify
+the associations you made in the painter, because those references
+are saved with the object's definition in the library,
+and direct references in scripts, because the compiler saves this
+information.</p>
+<A NAME="TI9958"></A><p>However, it cannot identify objects that are referenced dynamically
+through string variables. To do so, it would have to read through
+all the scripts and process all assignment statements to uncover
+all the referenced objects. The following examples show objects
+that are not copied to the executable file:<A NAME="TI9959"></A>
+<ul>
+<li class=fi>If the DataWindow object <b>d_emp</b> is
+associated with a DataWindow control dynamically using the following
+statement, <b>d_emp</b> is not copied:<p><PRE> dw_info.DataObject = "d_emp"</PRE></li>
+<li class=ds>The bitmap files assigned dynamically in the following
+script are not copied:<p><PRE> IF Balance &lt; 0 THEN<br>   p_logo.PictureName = "frown.bmp"<br>ELSE<br>   p_logo.PictureName = "smile.bmp"<br>END IF</PRE></li>
+<li class=ds>The reference to window <b>w_go</b> in
+a string variable in the following window script is <i>not</i> found
+by PowerBuilder when building the executable file, so <b>w_go</b> is
+not copied to the executable file:<p><PRE> window   mywin<br>string   winname = "w_go"<br>Open(mywin,winname)</PRE>
+</li>
+</ul>
+</p>
+<A NAME="TI9960"></A><h3>Which objects are not copied to the dynamic libraries</h3>
+<A NAME="TI9961"></A><p>When building a dynamic library, PowerBuilder does not inspect
+the objects; it simply copies the compiled form of the objects.
+Therefore, the DataWindow objects and resources (pictures, icons,
+and pointers) used by any of the objects in the library&#8212;<i>either
+specified in a painter or assigned dynamically in a script</i>&#8212;are
+not copied into the dynamic library.</p>
+<A NAME="TI9962"></A><p>For example, suppose <i>test_dw.pbl</i> contains
+DataWindow objects and <i>test_w.pbl</i> contains
+window objects that reference them, either statically or dynamically. If
+you build a dynamic library from <i>test_w.pbl</i>,
+you must either include the DataWindow objects in a PowerBuilder
+resource file that is referenced by <i>test_w.pbl</i>,
+or build a dynamic library from <i>test_dw.pbl</i>,
+as described in <A HREF="pbugp269.htm#CAIBHGDJ">"How to include the objects
+that were not found"</A>.</p>
+<A NAME="CAIBHGDJ"></A><h3>How to include the objects that were not found</h3>
+<A NAME="TI9963"></A><p>If you did not use any of the types of references described
+in the preceding sections, you do not need to do anything else to
+ensure that all objects get distributed: they are all built into
+the executable file. Otherwise, you have the following choices for
+how to include the objects that were not found.</p>
+<A NAME="TI9964"></A><h4>Distributing graphic objects</h4>
+<A NAME="TI9965"></A><p>For graphic objects such as icons and bitmaps, you have two
+choices:<A NAME="TI9966"></A>
+<ul>
+<li class=fi>Distribute them separately</li>
+<li class=ds>Include them in a PowerBuilder resource file (PBR),
+then build an executable file or dynamic PowerBuilder library that
+uses the resource file
+</li>
+</ul>
+</p>
+<A NAME="TI9967"></A><h4>Distributing DataWindow objects</h4>
+<A NAME="TI9968"></A><p>For DataWindow objects, you have two choices:<A NAME="TI9969"></A>
+<ul>
+<li class=fi>Include them in a PBR, then build an executable
+file or dynamic PowerBuilder library that uses the resource file</li>
+<li class=ds>Build and distribute a dynamic library from the <ACRONYM title = "pibble" >PBL</ACRONYM> that contains the DataWindow
+objects
+</li>
+</ul>
+</p>
+<A NAME="TI9970"></A><h4>Distributing other objects</h4>
+<A NAME="TI9971"></A><p>All other objects, such as windows referenced only in string
+variables, must be included directly in a dynamic library.</p>
+<A NAME="TI9972"></A><p><A HREF="pbugp269.htm#CACFJHIG">Table 34-3</A> summarizes
+resource distribution possibilities.</p>
+<A NAME="CACFJHIG"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 34-3: Summary: options for distributing
+resources</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9973"></A>Distribution method</th>
+<th  rowspan="1"  ><A NAME="TI9974"></A>Graphic objects</th>
+<th  rowspan="1"  ><A NAME="TI9975"></A>DataWindow objects</th>
+<th  rowspan="1"  ><A NAME="TI9976"></A>Other objects</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9977"></A>As a separate file</td>
+<td  rowspan="1"  ><A NAME="TI9978"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI9979"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI9980"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9981"></A>In an executable or dynamic library that
+references a PBR </td>
+<td  rowspan="1"  ><A NAME="TI9982"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI9983"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI9984"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9985"></A>Directly in a dynamic library</td>
+<td  rowspan="1"  ><A NAME="TI9986"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI9987"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI9988"></A>Yes</td>
+</tr>
+</table>
+<A NAME="CAIBFEAA"></A><h2>Listing the objects in a project</h2>
+<A NAME="TI9989"></A><p>After you have built your project, you can display a list
+of objects in the project in a grid DataWindow object with three
+columns showing:<A NAME="TI9990"></A>
+<ul>
+<li class=fi>The source
+library that contains the object</li>
+<li class=ds>The name of the object</li>
+<li class=ds>The type of the object
+</li>
+</ul>
+</p>
+<A NAME="TI9991"></A><p>The report lists the objects that PowerBuilder placed in the
+executable file and the dynamic libraries it created when it built
+the project. </p>
+<A NAME="TI9992"></A><p>Because the report is a grid DataWindow object, you can resize
+and reorder columns just as you can in other grid DataWindow objects.
+You can also sort the rows and print the report using the Sort and
+Print buttons.</p>
+<A NAME="TI9993"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To list the objects in a project:</p>
+<ol><li class=fi><p>Build your project.</p></li>
+<li class=ds><p>Select Design&gt;List Objects from the menu
+bar.</p></li></ol>
+<br>

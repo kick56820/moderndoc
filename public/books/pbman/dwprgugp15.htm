@@ -1,0 +1,82 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating reports</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp14.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp16.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF353961636"></A><h1>Creating reports</h1>
+<A NAME="TI638"></A><p>You can use DataWindow objects to create standard business
+reports such as financial statements, sales order reports, employee
+lists, or inventory reports.</p>
+<A NAME="TI639"></A><p>To create a production report, you:<A NAME="TI640"></A>
+<ul>
+<li class=fi>Determine the type of report
+you want to produce</li>
+<li class=ds>Build a DataWindow object to display data for the
+report</li>
+<li class=ds>Place the DataWindow object in a DataWindow control
+on a window or form</li>
+<li class=ds>Write code to perform the processing required to
+populate the DataWindow control and print the contents as a report
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Calling InfoMaker from an application</span> <A NAME="TI641"></A>If your users have installed InfoMaker (the Sybase reporting
+product), you can invoke InfoMaker from an application. This way
+you can let your users create and save their own reports. To do
+this in PowerBuilder, use the Run function. For information about
+invoking InfoMaker, see the <i>InfoMaker</i>
+ <i>User's
+Guide</i>
+.</p>
+<A NAME="TI642"></A><h2>Planning and building the DataWindow object</h2>
+<A NAME="TI643"></A><p>To design the report, you create a DataWindow object. You
+select the data source and presentation style and then:<A NAME="TI644"></A>
+<ul>
+<li class=fi>Sort the data</li>
+<li class=ds>Create groups in the DataWindow object to organize
+the data in the report and force page breaks when the group values
+change</li>
+<li class=ds>Enhance the DataWindow object to look like a report
+(for example, you might want to add a title, column headers, and
+a computed field to number the pages)
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using fonts</span> <A NAME="TI645"></A>Printer fonts are usually shorter and fatter than screen fonts,
+so text might not print in the report exactly as it displays in
+the DataWindow painter. You can pad the text fields to compensate
+for this discrepancy. You should test the report format with a small
+amount of data before you print a large report.</p>
+<A NAME="TI646"></A><h2>Printing the report</h2>
+<A NAME="TI647"></A><p>After you build the DataWindow object and fill in print specifications,
+you can place it in a DataWindow control on a window or form, as
+described in <A HREF="dwprgugp8.htm#X-REF354980967">"Putting a DataWindow
+object into a control"</A>.</p>
+<A NAME="TI648"></A><p>To allow users to print the report, your application needs
+code that performs the printing logic. For example, you can place
+a button on the window or form, then write code that is run when
+the user clicks the button. </p>
+<A NAME="TI649"></A><p>To print the contents of a single DataWindow control or DataStore,
+call the Print method. For example, this PowerBuilder statement
+prints the report in the DataWindow control dw_Sales:<p><PRE> dw_Sales.<i>Print</i>(TRUE)</PRE></p>
+<A NAME="TI650"></A><p>For information about the Print method, see
+the <i>DataWindow Reference.</i>
+ For information about
+using nested reports to print multiple DataWindows, see <A HREF="dwprgugp16.htm#X-REF361620553">"Using nested reports"</A>.</p>
+<A NAME="TI651"></A><h4>Separate DataWindow controls in a single print
+job</h4>
+<p><b>For PowerBuilder applications only</b>   If the window has multiple DataWindow controls, you can use
+multiple PrintDataWindow method calls in a script to print the contents
+of all the DataWindow controls in one print job.</p>
+<A NAME="TI652"></A><p>These statements print the contents of three DataWindow controls
+in a single print job:<p><PRE> int job</PRE><PRE> job = PrintOpen("Employee Reports")</PRE><PRE> // Each DataWindow starts printing on a new page.</PRE><PRE> PrintDataWindow(job, dw_EmpHeader)</PRE><PRE> PrintDataWindow(job, dw_EmpDetail)</PRE><PRE> PrintDataWindow(job, dw_EmpDptSum)</PRE><PRE> PrintClose(job)</PRE></p>
+<A NAME="TI653"></A><p>For information about PowerBuilder system
+functions for printing, see the <i>PowerScript Reference.</i>
+</p>
+

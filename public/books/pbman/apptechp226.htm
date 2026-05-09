@@ -1,0 +1,71 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Setting up the server</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp225.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp227.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF364063144"></A><h1>Setting up the server</h1>
+<A NAME="TI6884"></A><p>After defining the HTML page that displays your plug-in application,
+you need to set up the Web server.</p>
+<A NAME="X-REF363896716"></A><h4>Specifying the
+MIME type</h4>
+<A NAME="TI6885"></A><p>Using the appropriate software for your Web server, register
+the <strong>MIME type</strong> for the PowerBuilder window
+plug-in. <A HREF="apptechp226.htm#CHDDFFDH">Table 33-7</A> shows
+the MIME types you can use.</p>
+<A NAME="CHDDFFDH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-7: PowerBuilder window plug-in MIME
+types</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6886"></A>For this
+plug-in</th>
+<th  rowspan="1"  ><A NAME="TI6887"></A>Register
+this MIME type</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6888"></A>Standard PowerBuilder window plug-in</td>
+<td  rowspan="1"  ><A NAME="TI6889"></A>application/vnd.powerbuilder10.5</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6890"></A>Secure PowerBuilder window plug-in</td>
+<td  rowspan="1"  ><A NAME="TI6891"></A>application/vnd.powerbuilder10.5-s</td>
+</tr>
+</table>
+<A NAME="TI6892"></A><p>The file extension associated with the MIME type is <i>PBD</i>.</p>
+<A NAME="TI6893"></A><p>Your server documentation might use the term <strong>content
+type</strong> instead of MIME type.</p>
+<A NAME="X-REF363896727"></A><h4>Putting the files
+on the server</h4>
+<A NAME="TI6894"></A><p>You need to copy PowerBuilder libraries and the HTML file
+to appropriate directories on your server.</p>
+<A NAME="TI6895"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-8: PBD and HTML file locations on server</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6896"></A>Files</th>
+<th  rowspan="1"  ><A NAME="TI6897"></A>Location</th>
+<th  rowspan="1"  ><A NAME="TI6898"></A>What
+you do</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6899"></A>HTML page</td>
+<td  rowspan="1"  ><A NAME="TI6900"></A>The HTML documents directory</td>
+<td  rowspan="1"  ><A NAME="TI6901"></A>Copy the HTML page to the directory specified
+in any URLs that link to the page</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6902"></A>PBD files named in the SRC and LIBRARY
+attributes of the Embed element</td>
+<td  rowspan="1"  ><A NAME="TI6903"></A>The HTML documents directory or some
+other directory as appropriate</td>
+<td  rowspan="1"  ><A NAME="TI6904"></A>Copy the PBD files to the directories
+you specified in the Embed element attributes</td>
+</tr>
+</table>
+<p><b>About URLs</b>   The URLs you
+specify in your HTML page are logical paths as defined by the Web
+server. On Windows, for example, the system path for your PBD might
+be:<p><PRE> C:\WEBSITE\HTDOCS\PB\PLUGIN_APP.PBD</PRE></p>
+<A NAME="TI6905"></A><p>If <i>htdocs</i> is defined as the server's
+documents directory, you can use the following relative path when
+specifying the SRC attribute of the Embed element. This path is
+relative to the documents directory:<p><PRE> pb/plugin_app.pbd</PRE></p>
+<A NAME="TI6906"></A><p>For the LIBRARY attribute, do not specify a relative URL for
+the PBD. You must specify a full URL. For example:<p><PRE> http://www.mycompany.com/pb/plugin_app.pbd</PRE></p>
+

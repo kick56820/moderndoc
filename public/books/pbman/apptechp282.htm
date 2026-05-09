@@ -1,0 +1,45 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+PowerBuilder automation servers</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp281.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp283.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBCJEDD"></A><h1>PowerBuilder automation servers</h1>
+<A NAME="TI8450"></A><p>To use a PowerBuilder automation server, you need to deploy
+the following files:<A NAME="TI8451"></A>
+<ul>
+<li class=fi>The PBD or DLL containing
+the implementation of the automation server</li>
+<li class=ds>The generated type library file if you chose to
+create one or, if you built a named server, the <i>PBAEN105.TLB</i> file
+that provides type library information for PowerBuilder.Application</li>
+<li class=ds>A copy of the registry update (.<i>REG</i>)
+file generated in the Project painter, edited to reference the directory
+where you will deploy the PBD or DLL and the type library file</li>
+<li class=ds>The PowerBuilder runtime and database connectivity
+files required by the server as described in <A HREF="apptechp281.htm#BGBDACJF">"PowerBuilder COM servers"</A>
+</li>
+</ul>
+</p>
+<A NAME="TI8452"></A><p>After deploying the files listed above, run the registry update
+file to register the server on the target computer. For more information
+about using automation servers, see <i></i>
+<A HREF="apptechp120.htm#X-REF350582958">"Deploying an application
+that uses the automation server "</A>.</p>
+<A NAME="TI8453"></A><h2>Creating registry information for OLE automation
+objects</h2>
+<A NAME="TI8454"></A><p>If your application includes user objects that are used for
+OLE inbound automation, you must update the user's registry
+with information about the server. The Automation Server Project
+wizard sets up a project that helps you to generate a globally unique
+identifier (GUID), a registration (REG) file, and a type library
+(TLB) file. The Automation Server project wizard is available on the
+Project page of the New dialog box.</p>
+<A NAME="TI8455"></A><p>For more information, see <A HREF="apptechp120.htm#X-REF350582958">"Deploying an application
+that uses the automation server "</A>.</p>
+

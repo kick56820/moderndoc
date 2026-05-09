@@ -1,0 +1,102 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Specifying the WHERE clause for update/delete</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp184.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp186.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BHBHDIEG"></A><h1>Specifying the WHERE clause for update/delete</h1>
+<A NAME="TI5990"></A><p>Sometimes multiple users are accessing the same tables at
+the same time. In these situations, you need to decide when to allow
+your application to update the database. If you allow your application to
+always update the database, it could overwrite changes made by other
+users:</p>
+<br><img src="images/aacu06.gif">
+<A NAME="TI5991"></A><p>You can control when updates succeed by specifying which columns PowerBuilder includes
+in the <b>WHERE</b> clause in the <b>UPDATE</b> or <b>DELETE</b> statement
+used to update the database:<p><PRE>UPDATE table...<br>SET <i>column = newvalue</i><b><br>WHERE </b><i>col1 = value1</i><br>AND <i>col2 = value2 ...</i><br> <br>DELETE<br>FROM <i>table</i><b><br>WHERE</b> <i>col1 = value1</i><br>AND <i>col2 = value2 ...</i></PRE></p>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using timestamps</span> <A NAME="TI5992"></A>Some DBMSs maintain timestamps so you can ensure that users are
+working with the most current data. If the <b>SELECT</b> statement
+for the DataWindow object contains a timestamp column, PowerBuilder includes
+the key column and the timestamp column in the <b>WHERE</b> clause
+for an <b>UPDATE</b> or <b>DELETE</b> statement regardless
+of which columns you specify in the Where Clause for Update/Delete
+box.</p>
+<A NAME="TI5993"></A>If the value in the timestamp column changes (possibly due
+to another user modifying the row), the update fails.</p>
+<A NAME="TI5994"></A>To see whether you can use timestamps with
+your DBMS, see <i>Connecting to Your Database</i>
+.</p>
+<A NAME="TI5995"></A><p>Choose one of the options in <A HREF="pbugp185.htm#CHDGAGIC">Table 21-1</A> in the Where Clause for Update/Delete box.
+The results are illustrated by an example following the table.</p>
+<A NAME="CHDGAGIC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 21-1: Specifying the WHERE clause for
+UPDATE and DELETE </caption>
+<tr><th  rowspan="1"  ><A NAME="TI5996"></A>Option</th>
+<th  rowspan="1"  ><A NAME="TI5997"></A>Result</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5998"></A>Key Columns</td>
+<td  rowspan="1"  ><A NAME="TI5999"></A>The <b>WHERE</b> clause includes
+the key columns only. These are the columns you specified in the
+Unique Key Columns box.<A NAME="TI6000"></A><p>The values in the originally retrieved key columns for the
+row are compared against the key columns in the database. No other comparisons
+are done. If the key values match, the update succeeds.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Caution</span> <A NAME="TI6001"></A>Be very careful when using this option. If you tell PowerBuilder only
+to include the key columns in the <b>WHERE</b> clause
+and someone else modified the same row after you retrieved it, their
+changes will be overwritten when you update the database (see the
+example following this table).</p>
+<A NAME="TI6002"></A>Use this option only with a single-user database or if you
+are using database locking. In other situations, choose one of the
+other two options described in this table.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6003"></A>Key and Updatable Columns</td>
+<td  rowspan="1"  ><A NAME="TI6004"></A>The <b>WHERE</b> clause includes
+all key and updatable columns.<A NAME="TI6005"></A><p>The values in the originally retrieved key columns and the originally
+retrieved updatable columns are compared against the values in the
+database. If any of the columns have changed in the database since
+the row was retrieved, the update fails.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6006"></A>Key and Modified Columns</td>
+<td  rowspan="1"  ><A NAME="TI6007"></A>The <b>WHERE</b> clause includes
+all key and modified columns.<A NAME="TI6008"></A><p>The values in the originally retrieved key columns and the
+modified columns are compared against the values in the database.
+If any of the columns have changed in the database since the row
+was retrieved, the update fails.</p></td>
+</tr>
+</table>
+<A NAME="TI6009"></A><h4>Example</h4>
+<A NAME="TI6010"></A><p>Consider this situation: a DataWindow object is updating the <b>Employee</b> table, whose
+key is <b>Emp_ID</b>; all columns in the
+table are updatable. Suppose the user has changed the salary of
+employee 1001 from $50,000 to $65,000. This is what
+happens with the different settings for the <b>WHERE</b> clause
+columns:<A NAME="TI6011"></A>
+<ul>
+<li class=fi>If you choose Key
+Columns for the <b>WHERE</b> clause, the <b>UPDATE</b> statement looks
+like this:<p><PRE> UPDATE Employee<br>SET Salary = 65000<br>WHERE Emp_ID = 1001</PRE><br>
+This statement will succeed <i>regardless of whether
+other users have modified the row since your application retrieved
+the row</i>. For example, if another user had modified the
+salary to $70,000, that change will be overwritten when
+your application updates the database.<br></li>
+<li class=ds>If you choose Key and Modified Columns for the <b>WHERE</b> clause,
+the <b>UPDATE</b> statement looks like this:<p><PRE> UPDATE Employee<br>SET Salary = 65000<br>WHERE Emp_ID = 1001<i>    <br>   AND Salary = 50000</i></PRE><br>
+Here the <b>UPDATE</b> statement is also checking
+the original value of the modified column in the <b>WHERE</b> clause.
+The statement will fail if another user changed the salary of employee
+1001 since your application retrieved the row.<br></li>
+<li class=ds>If you choose Key and Updatable Columns for the <b>WHERE</b> clause,
+the <b>UPDATE</b> statement looks like this:<p><PRE> UPDATE Employee<br>SET Salary = 65000<br>WHERE Emp_ID = 1001    <i><br>   AND Salary = 50000</i><i>    <br>   AND Emp_Fname = original_value</i><i>    <br>   AND Emp_Lname = original_value</i><i>    <br>   AND Status = original_value</i>    <i><br>   ...</i></PRE><br>
+Here the <b>UPDATE</b> statement is checking all
+updatable columns in the <b>WHERE</b> clause. This statement
+will fail if any of the updatable columns for employee 1001 have
+been changed since your application retrieved the row.<br>
+</li>
+</ul>
+</p>
+

@@ -1,0 +1,1292 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the individual controls </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp106.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp108.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF298661320"></A><h1>Using the individual controls </h1>
+<A NAME="TI2751"></A><p>There are four basic types of controls with different purposes.</p>
+<A NAME="TI2752"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 12-2: Summary of control types by function</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2753"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI2754"></A>Controls include</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2755"></A>Invoke actions</td>
+<td  rowspan="1"  ><A NAME="TI2756"></A>CommandButtons, PictureButtons, PictureHyperLinks, StaticHyperLinks,
+Tabs, User Objects</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2757"></A>Display or accept data, or both</td>
+<td  rowspan="1"  ><A NAME="TI2758"></A>ListBoxes, PictureListBoxes, DropDownListBoxes, DropDownPictureListBoxes,
+DataWindow controls, StaticText, ListViews, TreeViews, RichTextEdit,
+Graphs, Pictures, ProgressBars, ScrollBars, SingleLineEdits, MultiLineEdits, EditMasks,
+Tabs, user objects, OLE controls, MonthCalendar, DatePicker, InkEdit,
+and InkPicture controls</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2759"></A>Indicate choices</td>
+<td  rowspan="1"  ><A NAME="TI2760"></A>RadioButtons, CheckBoxes (you can group
+these controls in a GroupBox), TrackBars</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2761"></A>Decorative </td>
+<td  rowspan="1"  ><A NAME="TI2762"></A>Line, Rectangle, RoundRectangle, Oval,
+Animation</td>
+</tr>
+</table>
+<A NAME="TI2763"></A><h4>How to use the controls</h4>
+<A NAME="TI2764"></A><p>You should use the controls only for the purpose shown in
+the table. For example, users expect radio buttons for selecting
+an option. Do not use a radio button also to invoke an action, such
+as opening a window or printing. Use a command button for that.</p>
+<A NAME="TI2765"></A><p>There are, however, several exceptions: user objects can be
+created for any purpose, and ListBoxes, ListViews, TreeViews, and
+Tabs are often used both to display data and to invoke actions.
+For example, double-clicking a ListBox item often causes some action
+to occur. </p>
+<A NAME="TI2766"></A><h4>Individual controls</h4>
+<A NAME="TI2767"></A><p>The following sections describe some features that are unique
+to individual controls. The controls are listed in the order in
+which they display on the Insert&gt;Control menu and the drop-down
+controls palette:<A NAME="TI2768"></A>
+<ul>
+<li class=fi><A HREF="pbugp107.htm#CIHGJHFF">"CommandButton"</A></li>
+<li class=ds><A HREF="pbugp107.htm#X-REF368135000">"PictureButton"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHIHGFG">"CheckBox"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHHEEIC">"RadioButton"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHJBFGD">"StaticText"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CHDCJFBC">"StaticHyperLink"</A></li>
+<li class=ds><A HREF="pbugp107.htm#X-REF368135254">"Picture"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CHDDIFEI">"PictureHyperLink"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHBIEAX">"GroupBox"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHBFJEA">"Drawing controls"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHDABJF">"SingleLineEdit and MultiLineEdit"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHGCEEB">"EditMask"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHHJJIJ">"HScrollBar and VScrollBar"</A></li>
+<li class=ds><A HREF="pbugp107.htm#BABCFHDB">"HTrackBar and VTrackBar"</A></li>
+<li class=ds><A HREF="pbugp107.htm#BABDAAJH">"HProgressBar and
+VProgressBar"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CHDBECJI">"DropDownListBox"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHBIHCF">"DropDownPictureListBox"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CHDCEJJD">"ListBox"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHIIJDE">"PictureListBox"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CHDBCDCA">"ListView"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHBBEBC">"TreeView"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHBIBBA">"Tab"</A></li>
+<li class=ds><A HREF="pbugp107.htm#BABJDHHA">"MonthCalendar"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHDCBGH">"DatePicker"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHIBIBA">"Animation"</A></li>
+<li class=ds><A HREF="pbugp107.htm#CIHFAGEI">"InkEdit and InkPicture"</A>
+</li>
+</ul>
+</p>
+<A NAME="TI2769"></A><p>Some controls are not covered in this chapter:<A NAME="TI2770"></A>
+<ul>
+<li class=fi>DataWindow controls and objects. See <A HREF="pbugp153.htm#BFCDDADG">Chapter 18, "Defining DataWindow Objects ."</A></li>
+<li class=ds>RichTextEdit controls. See <A HREF="pbugp243.htm#CIHBJDJF">Chapter 30, "Working with Rich Text ."</A></li>
+<li class=ds>User objects. See <A HREF="pbugp124.htm#BCADFDDI">Chapter 15, "Working with User Objects ."</A></li>
+<li class=ds>Graph controls. See <A HREF="pbugp215.htm#CCJCJJAE">Chapter 26, "Working with Graphs ."</A></li>
+<li class=ds>OLE controls. See <A HREF="pbugp248.htm#CCJBFGBD">Chapter 31, "Using OLE in a DataWindow Object ."</A>
+</li>
+</ul>
+</p>
+<A NAME="CIHGJHFF"></A><h2>CommandButton</h2>
+<A NAME="TI2771"></A><p>CommandButtons are used to carry out actions. For example,
+you can use an OK button to confirm a deletion or a Cancel button
+to cancel a requested deletion. If there are many related CommandButtons,
+place them along the right side of the window; otherwise, place
+them along the bottom of the window.</p>
+<A NAME="TI2772"></A><p>You cannot change the color or alignment of text in a CommandButton.</p>
+<A NAME="TI2773"></A><p>If clicking the button opens a window that requires user interaction
+before any other action takes place, use ellipsis points in the
+button text; for example, "<FONT FACE="Courier New">Print...</FONT>".</p>
+<A NAME="TI2774"></A><h3>Specifying Default and Cancel buttons</h3>
+<A NAME="TI2775"></A><p>You can specify that a CommandButton is the default button
+in a window by selecting Default in the General property page in
+the button's Properties view.</p>
+<A NAME="TI2776"></A><p>When there is a default CommandButton and the user presses
+the Enter key:<A NAME="TI2777"></A>
+<ul>
+<li class=fi>If the focus is <i>not</i> on
+another CommandButton, the default button's Clicked event
+is triggered</li>
+<li class=ds>If the focus is on another CommandButton, the Clicked
+event of the button with focus is triggered
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Other controls affect default behavior</span> <A NAME="TI2778"></A>If the window does not contain an editable field, use the <b>SetFocus</b> function
+or the tab order setting to make sure the default button behaves
+as described above.</p>
+<A NAME="TI2779"></A><p>A bold border is placed around the default CommandButton (or
+the button with focus if the user explicitly tabs to a CommandButton).</p>
+<A NAME="TI2780"></A><p>You can define a CommandButton as being the cancel button
+by selecting Cancel in the General property page in the button's
+Properties view. If you define a cancel CommandButton, the cancel
+button's Clicked event is triggered when the user presses
+the Esc key.</p>
+<A NAME="X-REF368135000"></A><h2>PictureButton</h2>
+<A NAME="TI2781"></A><p>PictureButtons are identical to CommandButtons in their functionality.
+The only difference is that you can specify a picture to display
+on the button. The picture can be a bitmap (BMP) file, a run-length
+encoded (RLE) file, an Aldus-style Windows metafile (WMF),
+a GIF file, an animated GIF file, or a JPEG file.</p>
+<A NAME="TI2782"></A><p>You can choose to display one picture if the button is enabled
+and a different picture if the button is disabled.</p>
+<A NAME="TI2783"></A><p>Use these controls when you want to be able to represent the
+purpose of a button by using a picture instead of text.</p>
+<A NAME="TI2784"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a picture:</p>
+<ol><li class=fi><p>Select the PictureButton to display its
+properties in the Properties view.</p></li>
+<li class=ds><p>On the General tab page, enter the name of the
+image file you want to display when the button is enabled, or use
+the Browse button and choose a file.</p></li>
+<li class=ds><p>Enter the name of the image file you want to display
+when the button is disabled, or use the Browse Disabled button and
+choose a file.</p><p>If the PictureButton is defined as initially enabled, the
+enabled picture displays in the Layout view. If the PictureButton
+is defined as initially disabled, the disabled picture displays
+in the Layout view.</p></li></ol>
+<br><A NAME="TI2785"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify button text alignment:</p>
+<ol><li class=fi><p>Select the PictureButton to display its
+properties in the Properties view.</p></li>
+<li class=ds><p>On the General tab page, enter the text for the
+PictureButton in the Text box.</p></li>
+<li class=ds><p>Use the HTextAlign and VTextAlign lists to choose
+how you want to display the button text.</p></li></ol>
+<br><A NAME="CIHIHGFG"></A><h2>CheckBox</h2>
+<A NAME="TI2786"></A><p>CheckBoxes are square boxes used to set independent options.
+When they are selected, they contain a check mark; when they are
+not selected, they are empty.</p>
+<br><img src="images/ctl15.gif">
+<A NAME="TI2787"></A><p>CheckBoxes are independent of each other. You can group them
+in a GroupBox or rectangle to make the window easier to understand
+and use, but that does not affect the CheckBoxes' behavior;
+they are still independent.</p>
+<A NAME="TI2788"></A><h4>Using three states</h4>
+<A NAME="TI2789"></A><p>CheckBoxes usually have two states: on and off. But sometimes
+you need to represent a third state, such as Unknown. The third
+state displays as a grayed box with a check mark.</p>
+<br><img src="images/ctl16.gif">
+<A NAME="TI2790"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To enable the third state:</p>
+<ol><li class=fi><p>Select the ThreeState property in the General
+page of the CheckBox Properties view.</p></li></ol>
+<br><A NAME="TI2791"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify that a CheckBox's current
+state is the third state:</p>
+<ol><li class=fi><p>Select the ThreeState and the ThirdState
+properties in the General page of the CheckBox Properties view.</p></li></ol>
+<br><A NAME="CIHHEEIC"></A><h2>RadioButton</h2>
+<A NAME="TI2792"></A><p>RadioButtons are round buttons that represent mutually exclusive
+options. They always exist in groups. Exactly one RadioButton is
+selected in each group.</p>
+<A NAME="TI2793"></A><p>When a RadioButton is selected, it has a dark center; when
+it is not selected, the center is blank.</p>
+<A NAME="TI2794"></A><p>In the following example, the text can be either plain, bold,
+or italic (plain is selected):</p>
+<br><img src="images/ctl13.gif">
+<A NAME="TI2795"></A><p>When the user clicks a RadioButton, it becomes selected and
+the previously selected RadioButton in the group becomes deselected.</p>
+<A NAME="TI2796"></A><p>Use RadioButtons to represent the state of an option. Do not
+use them to invoke actions.</p>
+<A NAME="TI2797"></A><p>When a window opens, one RadioButton in a group must be selected.
+You specify which is the initially selected RadioButton by selecting
+the Checked property in the General property page in the RadioButton's
+Properties view.</p>
+<A NAME="TI2798"></A><h4>Grouping RadioButtons</h4>
+<A NAME="TI2799"></A><p>By default, all RadioButtons in a window are in one group,
+no matter what their location in the window. Only one RadioButton
+can be selected at a time.</p>
+<A NAME="TI2800"></A><p>You use a GroupBox control to group related RadioButtons.
+All RadioButtons inside a GroupBox are considered to be in one group.
+One button can be selected in each group.</p>
+<br><img src="images/ctl14.gif">
+<A NAME="TI2801"></A><h4>The Automatic property</h4>
+<A NAME="TI2802"></A><p>When a window contains several RadioButtons that are outside
+of a GroupBox, the window acts as a GroupBox. Only one RadioButton
+can be active at a time <i>unless</i> the check box
+for the Automatic property on the RadioButton's General property
+page is cleared. When the Automatic property is not set, you must
+use scripts to control when a button is selected. Multiple RadioButtons
+can be selected outside of a group. </p>
+<A NAME="TI2803"></A><p>The Automatic property does not change how RadioButtons are
+processed inside a GroupBox.</p>
+<A NAME="CIHJBFGD"></A><h2>StaticText</h2>
+<A NAME="TI2804"></A><p>You use a StaticText control to display text to the user or
+to describe a control that does not have text associated with it,
+such as a list box or edit control.</p>
+<A NAME="TI2805"></A><p>The user cannot change the text, but you can change the text
+for a StaticText control in a script by assigning a string to the
+control's Text property.</p>
+<A NAME="TI2806"></A><p>StaticText controls have events associated with them, but
+you will probably seldom write scripts for them because users do
+not expect to interact with static text.</p>
+<A NAME="TI2807"></A><h4>Indicating accelerator keys</h4>
+<A NAME="TI2808"></A><p>One use of a StaticText control is to label a list box or
+edit control. If you assign an accelerator key to a list box or
+edit control, you need to indicate the accelerator key in the text
+that labels the control. Otherwise, the user would have no way of
+knowing that an accelerator key is defined for the control. This technique
+is described in <A HREF="pbugp103.htm#CAIDBGCD">"Defining accelerator keys "</A>.</p>
+<A NAME="TI2809"></A><h4>Indicating a border style</h4>
+<A NAME="TI2810"></A><p>You can select a border style using the BorderStyle property
+on the General property page.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Selecting the Border property</span> <A NAME="TI2811"></A>The BorderStyle property will affect only the StaticText control
+if the Border property check box is selected.</p>
+<A NAME="CHDCJFBC"></A><h2>StaticHyperLink</h2>
+<A NAME="TI2812"></A><p>A StaticHyperLink is display text that provides a hot link
+to a specified Web page. When a user clicks the StaticHyperLink
+in a window, the user's Web browser opens to display the
+page.</p>
+<A NAME="TI2813"></A><p>The StaticHyperLink control has a URL property that specifies
+the target of the link. You specify the text and URL on the StaticHyperLink
+control's General tab page in the Properties view. </p>
+<A NAME="TI2814"></A><p>If you know that your users have browsers that support URL
+completion, you can enter a partial address&#8212;for example, <FONT FACE="Courier New">sybase.com</FONT> instead
+of the complete address, <FONT FACE="Courier New">http://www.sybase.com</FONT>.</p>
+<A NAME="TI2815"></A><p>When the StaticHyperLink control is in an MDI Frame window
+with MicroHelp, the URL you specify displays in the status bar when
+the user's pointer is over the control.</p>
+<A NAME="TI2816"></A><p>A hand is the default pointer and blue underlined text is
+the default font. To change the pointer, use the Other property
+page. To change the font, use the Font property page.</p>
+<A NAME="X-REF368135254"></A><h2>Picture</h2>
+<A NAME="TI2817"></A><p>Pictures are PowerBuilder-specific controls that display a
+bitmap (BMP) file, a run-length encoded (.RLE) file, an Aldus-style
+Windows metafile (WMF), a GIF file, an animated GIF file, or a JPEG
+file.</p>
+<A NAME="TI2818"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display a picture:</p>
+<ol><li class=fi><p>Place a picture control in the window.</p></li>
+<li class=ds><p>In the General tab page in the Properties view,
+enter in the PictureName text box the name of the file you want
+to display, or browse to select a file.</p><p>The picture displays.</p></li></ol>
+<br><A NAME="TI2819"></A><p>You can choose to resize or invert the image.</p>
+<A NAME="TI2820"></A><p>If you try to insert a very large image into a picture control,
+the image may fail to display. The maximum size that will display
+depends on the version of Windows, the graphics card and driver,
+and the available memory. Compressed files must be decompressed
+to display. Failure to display is most likely to occur with JPEG
+files because the JPEG standard supports very high compression and
+the decompressed content may be many times larger than the size
+of the JPEG file.</p>
+<A NAME="TI2821"></A><p>Be careful about how you use picture controls. They can serve
+almost any purpose. They have events, so users can click on them,
+but you can also use them simply to display images. Be consistent
+in their use so users know what they can do with them.</p>
+<A NAME="CHDDIFEI"></A><h2>PictureHyperLink</h2>
+<A NAME="TI2822"></A><p>A PictureHyperLink is a picture that provides a hot link to
+a specified Web page. When a user clicks the PictureHyperLink in
+a window, the user's Web browser opens to display the page.</p>
+<A NAME="TI2823"></A><p>The PictureHyperLink control has a URL property that specifies
+the target of the link. You specify the picture and URL in the PictureHyperLink
+control's Properties view in the General tab page. If you
+know that your users have browsers that support URL completion,
+you can enter a partial address&#8212;for example, <FONT FACE="Courier New">sybase.com</FONT>&#8212;instead
+of the complete address, <FONT FACE="Courier New">http://www.sybase.com</FONT>.</p>
+<A NAME="TI2824"></A><p>When the PictureHyperLink control is in an MDI Frame window
+with MicroHelp, the URL you specify appears in the status bar when
+the user's pointer is over the control.</p>
+<A NAME="TI2825"></A><p>A hand is the default pointer. To change the pointer, use
+the Other property page.</p>
+<A NAME="TI2826"></A><p>The PictureHyperLink control is a descendant of the Picture
+control. Like a Picture control, a PictureHyperLink control can
+display a bitmap (BMP) file, a run-length encoded (RLE) file, an
+Aldus-style Windows metafile (WMF), a GIF file, an animated GIF
+file, or a JPEG file.</p>
+<A NAME="TI2827"></A><p>You display a picture in a PictureHyperLink control in the
+same way you display a picture in a picture control. For more information,
+see <A HREF="pbugp107.htm#X-REF368135254">"Picture"</A>.</p>
+<A NAME="CIHBIEAX"></A><h2>GroupBox</h2>
+<A NAME="TI2828"></A><p>You use a GroupBox to group a set of related controls. When
+a user tabs from another control to a GroupBox, or selects a GroupBox,
+the first control in the GroupBox gets focus. To tab between controls
+in a GroupBox, set the tab value of the GroupBox to 0 and assign
+a tab value to each control within it.</p>
+<A NAME="TI2829"></A><p>All RadioButtons in a GroupBox are considered to be in a group.
+For more information about using RadioButtons in GroupBoxes, see <A HREF="pbugp107.htm#CIHHEEIC">"RadioButton"</A>. </p>
+<A NAME="CIHBFJEA"></A><h2>Drawing controls</h2>
+<A NAME="TI2830"></A><p>PowerBuilder provides the following drawing controls: Line,
+Oval, Rectangle, and RoundRectangle. Drawing controls are usually
+used only to enhance the appearance of a window or to group controls.
+However, constructor and destructor events are available, and you
+can define your own unmapped events for a drawing control. A drawing
+control does not receive Windows messages, so a mapped event would
+not be useful.</p>
+<A NAME="TI2831"></A><p>You can use the following functions to manipulate drawing
+controls at runtime:</p>
+<A NAME="TI2832"></A><p><A NAME="TI2833"></A>
+<ul>
+<li class=fi><b>Hide</b></li>
+<li class=ds><b>Move</b></li>
+<li class=ds><b>Resize</b></li>
+<li class=ds><b>Show</b>
+</li>
+</ul>
+</p>
+<A NAME="TI2834"></A><p>In addition, each drawing control has a set of properties
+that define its appearance. You can assign values to the properties
+in a script to change the appearance of a drawing control.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Never in front</span> <A NAME="TI2835"></A>You cannot place a drawing control on top of another control
+that is not a drawing control, such as a GroupBox. Drawing controls <i>always </i>appear
+behind other controls whether or not the Bring to Front or Send
+to Back items on the pop-up menu are set. However, drawing controls
+can be on top of or behind other drawing controls.</p>
+<A NAME="CIHDABJF"></A><h2>SingleLineEdit and MultiLineEdit</h2>
+<A NAME="TI2836"></A><p>A SingleLineEdit is a box in which users can enter a single
+line of text. A MultiLineEdit is a box in which users can enter
+more than one line of text.</p>
+<A NAME="TI2837"></A><p>SingleLineEdits and MultiLineEdits are typically used for
+input and output of data.</p>
+<A NAME="TI2838"></A><p>For these controls, you can specify many properties, including:</p>
+<A NAME="TI2839"></A><p><A NAME="TI2840"></A>
+<ul>
+<li class=fi>Whether the box has
+a border (the Border property)</li>
+<li class=ds>Whether the box automatically scrolls as needed
+(AutoHScroll and, for MultiLineEdits, AutoVScroll)</li>
+<li class=ds>For SingleLineEdits, whether the box is a Password
+box so asterisks are displayed instead of the actual entry (Password)</li>
+<li class=ds>The case in which to accept and display the entry
+(TextCase)</li>
+<li class=ds>Whether the selection displays when the control
+does not have focus (Hide Selection)
+</li>
+</ul>
+</p>
+<A NAME="TI2841"></A><p>For more information about properties of these
+controls, right-click in any tab page in the Properties view and
+select Help from the pop-up menu.</p>
+<A NAME="CIHGCEEB"></A><h2>EditMask</h2>
+<A NAME="TI2842"></A><p>Sometimes users need to enter data that has a fixed format.
+For example, U.S. and Canadian phone numbers have a three-digit
+area code, followed by three digits, followed by four digits. You
+can use an EditMask control that specifies that format to make it
+easier for users to enter values. Think of an EditMask control as
+a smart SingleLineEdit: it knows the format of the data that can
+be entered.</p>
+<A NAME="TI2843"></A><p>An edit mask consists of special characters that determine
+what can be entered in the box. An edit mask can also contain punctuation
+characters to aid the user. </p>
+<A NAME="TI2844"></A><p>For example, to make it easier for users to enter phone numbers
+in the proper format, you can specify the following mask, where # indicates
+a number:<p><PRE> (###) ###-####</PRE></p>
+<A NAME="TI2845"></A><p>At runtime, the punctuation characters (the parentheses and
+dash) display in the box and the cursor jumps over them as the user
+types.</p>
+<A NAME="TI2846"></A><p>Masks in EditMask controls in windows work in a similar way
+to masks in display formats and in the EditMask edit style in DataWindow
+objects. For more information about specifying masks, see the discussion
+of display formats in <A HREF="pbugp188.htm#CAIDCCJB">Chapter 22, "Displaying and Validating
+Data ."</A></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Edit mask character for Arabic and Hebrew</span> <A NAME="TI2847"></A>The b mask character allows the entry of Arabic characters
+when you run PowerBuilder on an Arabic-enabled version of Windows
+and Hebrew characters when running on a Hebrew-enabled version.
+It has no effect on other operating systems.</p>
+<A NAME="TI2848"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use an EditMask control:</p>
+<ol><li class=fi><p>Select
+the EditMask to display its properties in the Properties view.</p></li>
+<li class=ds><p>Name the control on the General property page.</p></li>
+<li class=ds><p>Select the Mask tab.</p></li>
+<li class=ds><p>In the MaskDataType drop-down list, specify the
+type of data that users will enter into the control.</p></li>
+<li class=ds><p>In the Mask edit box, type the mask.</p><p>You can click the button on the right and select masks. The
+masks have the special characters used for the specified data type.</p></li>
+<li class=ds><p>Specify other properties for the EditMask control.</p><p>For information on the other properties, right-click
+in any tab page in the Properties view and select Help from the
+pop-up menu.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Control size and text entry</span> <A NAME="TI2849"></A>The size of the EditMask control affects its behavior. If
+the control is too small for the specified font size, users might
+not be able to enter text. </p>
+<A NAME="TI2850"></A>To correct this, either specify a smaller font size or resize
+the EditMask control.</p>
+<A NAME="TI2851"></A><h4>Validation for EditMask controls</h4>
+<A NAME="TI2852"></A><p>The EditMask control checks the validity of a date when you
+enter it, but if you change a date so that it is no longer valid,
+its validity is not checked when you tab away from the control.
+For example, if you enter the date 12/31/2005
+in an EditMask control with the mask mm/dd/yyyy,
+you can delete the 1 in 12, so that the date becomes 02/31/2005.
+To catch problems like this, add validation code to the LoseFocus
+event for the control.</p>
+<A NAME="TI2853"></A><h4>Keyboard behavior</h4>
+<A NAME="TI2854"></A><p>Some keystrokes have special behavior in EditMask controls.
+For more information, see <A HREF="pbugp195.htm#X-REF356199281">"The EditMask edit
+style"</A>.</p>
+<A NAME="TI2855"></A><h4>Using a drop-down calendar</h4>
+<A NAME="TI2856"></A><p>You can use a drop-down calendar that is similar to the DatePicker
+control in EditMask controls that have a Date or DateTime edit mask.
+The user can choose to edit the date in the control or to select
+a date from a drop-down calendar. </p>
+<A NAME="TI2857"></A><p>To specify that an EditMask control uses a drop-down calendar
+to display and set dates, select the Drop-down Calendar check box
+on the Mask page in the Properties view. You can set display properties
+for the calendar on the Calendar page. Users navigate and select
+dates within the calendar as they do in the calendar in a DatePicker
+control.</p>
+<A NAME="TI2858"></A><h4>Using spin controls</h4>
+<A NAME="TI2859"></A><p>You can define an EditMask as a spin control, which is an
+edit control that contains up and down arrows that users can click
+to cycle through fixed values. For example, assume you want to allow
+your users to select how many copies of a report to print. You could
+define an EditMask as a spin control that allows users to select
+from a range of values. </p>
+<br><img src="images/ctl18.gif">
+<A NAME="TI2860"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define an EditMask as a spin control:</p>
+<ol><li class=fi><p>Name the EditMask and provide the data
+type and mask, as described above.</p></li>
+<li class=ds><p>Select the Spin check box on the Mask property
+page.</p></li>
+<li class=ds><p>Specify the needed information.</p><p>For example, to allow users to select a number from 1 to 20
+in increments of 1, specify a spin range of 1 to 20 and a spin increment
+of 1.</p></li></ol>
+<br><A NAME="TI2861"></A><p>For more information on the options for spin
+controls, right-click in any tab page in the Properties view and
+select Help from the pop-up menu.</p>
+<A NAME="CIHHJJIJ"></A><h2>HScrollBar and VScrollBar</h2>
+<A NAME="TI2862"></A><p>You can place freestanding scroll bar controls within a window.
+Typically, you use these controls to do one of the following:</p>
+<A NAME="TI2863"></A><p><A NAME="TI2864"></A>
+<ul>
+<li class=fi>Act as a slider control
+with which users can specify a continuous value</li>
+<li class=ds>Graphically display information to the user
+</li>
+</ul>
+</p>
+<A NAME="TI2865"></A><p>You can set the position of the scroll box by specifying the
+value for the control's Position property. When the user
+drags the scroll box, the value of Position is automatically updated.</p>
+<A NAME="BABCFHDB"></A><h2>HTrackBar and VTrackBar</h2>
+<A NAME="TI2866"></A><p>HTrackBars and VTrackBars are bars with sliders that move
+in discrete increments. Like a scroll bar, you typically use a track
+bar as a slider control that allows users to specify a value or
+see a value you have displayed graphically, but on a discrete scale
+rather than a continuous scale. Clicking on the slider moves it
+in discrete increments instead of continuously. </p>
+<A NAME="TI2867"></A><p>Typically a horizontal trackbar has a series of tick marks
+along the bottom of the channel and a vertical trackbar has tick
+marks on the right. </p>
+<br><img src="images/ctl35.gif">
+<A NAME="TI2868"></A><p>Use a trackbar when you want the user to select a discrete
+value. For example, you might use a trackbar to enable a user to
+select a timer interval or the size of a window. </p>
+<A NAME="TI2869"></A><p>You can set properties such as minimum and maximum values,
+the frequency of tick marks, and the location where tick marks display.</p>
+<A NAME="TI2870"></A><p>You can highlight a range of values in the trackbar with the
+SelectionRange function. The range you select is indicated by a
+black fill in the channel and an arrow at each end of the range.
+This is useful if you want to indicate a range of preferred values.
+In a scheduling application, the selection range could indicate a
+block of time that is unavailable. Setting a selection range does
+not prevent the user from selecting a value either inside or outside
+the range. </p>
+<br><img src="images/ctl36.gif">
+<A NAME="TI2871"></A><p>You can see an example of a window with a trackbar in the
+PowerBuilder Code Examples sample application in the Examples subdirectory
+in your PowerBuilder directory. See the <b>w_trackbars</b> window
+in <i>PBEXAMW3.PBL</i>.</p>
+<A NAME="BABDAAJH"></A><h2>HProgressBar and VProgressBar</h2>
+<A NAME="TI2872"></A><p>HProgressBars and VProgressBars are rectangles that indicate
+the progress of a lengthy operation, such as an installation program
+that copies a large number of files. The progress bar gradually
+fills with the system highlight color as the operation progresses.</p>
+<A NAME="TI2873"></A><p>You can set the range and current position of the progress
+bar in the Properties view using the MinPosition, MaxPosition, and
+Position properties. To specify the size of each increment, set
+the SetStep property.</p>
+<A NAME="TI2874"></A><p>You can see an example of a window with a progress bar in
+the PowerBuilder Code Examples sample application in the Examples
+subdirectory in your PowerBuilder directory. See the <b>w_progressbars</b> window
+in <i>PBEXAMW3.PBL</i>.</p>
+<A NAME="CHDBECJI"></A><h2>DropDownListBox</h2>
+<A NAME="TI2875"></A><p>DropDownListBoxes combine the features of a SingleLineEdit
+and a ListBox.</p>
+<br><img src="images/ctl23.gif">
+<A NAME="TI2876"></A><p>There are two types of DropDownListBoxes:</p>
+<A NAME="TI2877"></A><p><A NAME="TI2878"></A>
+<ul>
+<li class=fi>Noneditable</li>
+<li class=ds>Editable
+</li>
+</ul>
+</p>
+<A NAME="TI2879"></A><h4>Noneditable boxes</h4>
+<A NAME="TI2880"></A><p>If you want your user to choose only from a fixed set of choices,
+make the DropDownListBox noneditable.</p>
+<A NAME="TI2881"></A><p>In these boxes, the only valid values are those in the list.</p>
+<A NAME="TI2882"></A><p>There are several ways for users to pick an item from a noneditable DropDownListBox:</p>
+<A NAME="TI2883"></A><p><A NAME="TI2884"></A>
+<ul>
+<li class=fi>Use the arrow keys
+to scroll through the list.</li>
+<li class=ds>Type a character. The ListBox scrolls to the first
+entry in the list that begins with the typed character. Typing the
+character again scrolls to the next entry that begins with the character,
+unless the character can be combined with the first to match an
+entry.</li>
+<li class=ds>Click the down arrow to the right of the edit control
+to display the list, then select the one you want.
+</li>
+</ul>
+</p>
+<A NAME="TI2885"></A><h4>Editable boxes</h4>
+<A NAME="TI2886"></A><p>If you want to give users the option of specifying a value
+that is not in the list, make the DropDownListBox editable by selecting
+the AllowEdit check box on the General tab page.</p>
+<A NAME="TI2887"></A><p>With editable DropDownListBoxes, you can choose to have the
+list always display or not. For the latter type, the user can display
+the list by clicking the down arrow.</p>
+<A NAME="TI2888"></A><h4>Populating the list</h4>
+<A NAME="TI2889"></A><p>You specify the list in a DropDownListBox the same way as
+for a ListBox. For information, see <A HREF="pbugp107.htm#CHDCEJJD">"ListBox"</A>.</p>
+<A NAME="TI2890"></A><h4>Specifying the size of the drop-down box</h4>
+<A NAME="TI2891"></A><p>To indicate the size of the box that drops down, size the
+control in the Window painter using the mouse. When the control
+is selected in the painter, the full size&#8212;including the
+drop-down box&#8212;is shown.</p>
+<A NAME="TI2892"></A><h4>Other properties</h4>
+<A NAME="TI2893"></A><p>As with ListBoxes, you can specify whether the list is sorted
+and whether the edit control is scrollable.</p>
+<A NAME="TI2894"></A><p>For more information, right-click in any tab
+page in the Properties view and select Help from the pop-up menu.</p>
+<A NAME="CIHBIHCF"></A><h2>DropDownPictureListBox</h2>
+<A NAME="TI2895"></A><p>DropDownPictureListBoxes are similar to DropDownListBoxes
+in the way they present information. They differ in that DropDownListBoxes
+use only text to present information, whereas DropDownPictureListBoxes
+add images to the information.</p>
+<br><img src="images/ctl25.gif">
+<A NAME="TI2896"></A><p>Everything that you can do with DropDownListBoxes you can
+do with DropDownPictureListBoxes. For more information, see <A HREF="pbugp107.htm#CHDBECJI">"DropDownListBox"</A>.</p>
+<A NAME="TI2897"></A><h4>Adding images to a DropDownPictureListBox</h4>
+<A NAME="TI2898"></A><p>You can choose from a group of stock images provided by PowerBuilder,
+or use any bitmap (BMP) file, icon (ICO) file, GIF file, or JPEG
+file when you add images to a DropDownPictureListBox. You use the
+same technique that you use to add pictures to a PictureListBox.
+For more information, see <A HREF="pbugp107.htm#CAIEAAEA">"Adding images to a PictureListBox"</A>.</p>
+<A NAME="CHDCEJJD"></A><h2>ListBox</h2>
+<A NAME="TI2899"></A><p>A ListBox displays available choices. You can specify that
+ListBoxes have scroll bars if more choices exist than can be displayed
+in the ListBox at one time.</p>
+<A NAME="TI2900"></A><p>ListBoxes are an exception to the rule that a control should
+either invoke an action or be used for viewing and entering data.
+ListBoxes can do both. ListBoxes display data, but can also invoke
+actions. Typically in Windows applications, clicking an item in
+the ListBox selects the item. Double-clicking an item acts upon
+the item.</p>
+<A NAME="TI2901"></A><p>For example, in the PowerBuilder Open dialog box, clicking
+an object name in a ListBox selects the object. Double-clicking
+a name opens the object's painter.</p>
+<A NAME="TI2902"></A><p>PowerBuilder automatically selects (highlights) an item when
+a user selects it at runtime. If you want something to happen when
+users double-click an item, you must code a script for the control's
+DoubleClicked event. The Clicked event is always triggered before
+the DoubleClicked event.</p>
+<A NAME="TI2903"></A><h4>Populating the list</h4>
+<A NAME="TI2904"></A><p>To add items to a ListBox, select the ListBox to display its
+properties in the Properties view, select the Items tab, and enter
+the values for the list. Press tab to go to the next line.</p>
+<A NAME="TI2905"></A><p>In the Items tab page, you can work with rows in this way:</p>
+<A NAME="TI2906"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI2907"></A>To do this</th>
+<th  rowspan="1"  ><A NAME="TI2908"></A>Do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2909"></A>Select a row</td>
+<td  rowspan="1"  ><A NAME="TI2910"></A>Click the row button on the left or with
+the cursor in the edit box, press Shift+Space</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2911"></A>Delete a row</td>
+<td  rowspan="1"  ><A NAME="TI2912"></A>Select the row and press Delete</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2913"></A>Move a row</td>
+<td  rowspan="1"  ><A NAME="TI2914"></A>Click the row button and drag the row
+where you want it or press Shift+Space to select the row
+and then press Ctrl+Up Arrow or Ctrl+Down Arrow
+to move the row</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2915"></A>Delete text</td>
+<td  rowspan="1"  ><A NAME="TI2916"></A>Click the text and select Delete from
+the pop-up menu</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Changing the list at runtime</span> <A NAME="TI2917"></A>To change the items in the list at runtime, use the functions <b>AddItem</b>, <b>DeleteItem</b>,
+and <b>InsertItem</b>.</p>
+<A NAME="TI2918"></A><h4>Setting tab stops</h4>
+<A NAME="TI2919"></A><p>You can set tab stops for text in ListBoxes (and in MultiLineEdits)
+by setting the TabStop property on the General property page. You
+can define up to 16 tab stops. The default is a tab stop every eight
+characters. </p>
+<A NAME="TI2920"></A><p>You can also define tab stops in a script. Here is an example
+that defines two tab stops and populates a ListBox:<p><PRE> // lb_1 is the name of the ListBox.<br>string f1, f2, f3<br>f1 = "1"<br>f2 = "Emily"<br>f3 = "Foulkes"<br>// Define 1st tab stop at character 5.<br>lb_1.tabstop[1] = 5<br>// Define 2nd tab stop 10 characters after the 1st.<br>lb_1.tabstop[2] = 10<br>// Add an item, separated by tabs.<br>// Note that the ~t must have a space on either side<br>// and must be lowercase.<br>lb_1.AddItem(f1 + " ~t " + f2 + " ~t " + f3)</PRE></p>
+<A NAME="TI2921"></A><p>Note that this script will not work if it is in the window's
+Open event, because the controls have not yet been created. The
+best way to specify this is in a user event that is posted in the
+window's Open event using the <b>PostEvent</b> function.</p>
+<A NAME="TI2922"></A><h4>Other properties</h4>
+<A NAME="TI2923"></A><p>For ListBoxes, you can specify whether:</p>
+<A NAME="TI2924"></A><p><A NAME="TI2925"></A>
+<ul>
+<li class=fi>Items in the ListBox
+are displayed in sorted order</li>
+<li class=ds>The ListBox allows the user to select multiple items</li>
+<li class=ds>The ListBox displays scroll bars if needed
+</li>
+</ul>
+</p>
+<A NAME="TI2926"></A><p>For more information, right-click in any tab
+page in the Properties view for a ListBox and select Help from the
+pop-up menu.</p>
+<A NAME="CIHIIJDE"></A><h2>PictureListBox</h2>
+<A NAME="TI2927"></A><p>A PictureListBox, like a ListBox, displays available choices
+in both text and images. You can specify that PictureListBoxes have
+scroll bars if more choices exist than can be displayed in the PictureListBox
+at one time.</p>
+<A NAME="CAIEAAEA"></A><h4>Adding images to a PictureListBox</h4>
+<A NAME="TI2928"></A><p>You can choose from a group of stock images provided by PowerBuilder,
+or use any bitmap (BMP) file, icon (ICO) file, GIF file, or JPEG
+file when you add images to a PictureListBox.</p>
+<A NAME="TI2929"></A><p>Keep in mind, however, that the images should add meaning
+to the list of choices. If you use a large number of images in a
+list, they become meaningless.</p>
+<A NAME="TI2930"></A><p>You could, for example, use images in a long list of employees
+to show the department to which each employee belongs, so you might
+have a list with 20 or 30 employees, each associated with one of
+five images.</p>
+<A NAME="TI2931"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add an image to a PictureListBox:</p>
+<ol><li class=fi><p>Select the PictureListBox control to display
+its properties in the Properties view, and then select the Pictures
+tab.</p><p>The Pictures property page displays.</p></li>
+<li class=ds><p>Use the PictureName drop-down ListBox to select
+stock pictures to add to the PictureListBox</p><p><i>or</i></p><p>Use the Browse button to select a bitmap (BMP) file,
+icon (ICO) file, GIF file, or JPEG file to include in the PictureListBox.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About cursor files</span> <A NAME="TI2932"></A>To use a cursor file, you must type the file name. You cannot
+select it.</p>
+</li>
+<li class=ds><p>Specify a picture mask color (the color that will
+be transparent for the picture).</p></li>
+<li class=ds><p>Specify the height and width for the image in
+pixels or accept the defaults.</p><br><img src="images/ctl22.gif"><br>
+</li>
+<li class=ds><p>Repeat the procedure for the number of images
+you plan to use in your PictureListBox.</p></li>
+<li class=ds><p>Select the Items tab and change the Picture Index
+for each item to the appropriate number.</p><br><img src="images/ctl24.gif"><br>
+</li>
+<li class=ds><p>Click OK.</p></li></ol>
+<br><A NAME="TI2933"></A><p>On the Items tab page, you can work with rows in this way:</p>
+<A NAME="TI2934"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI2935"></A>To</th>
+<th  rowspan="1"  ><A NAME="TI2936"></A>Do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2937"></A>Select a row</td>
+<td  rowspan="1"  ><A NAME="TI2938"></A>Click the row button on the left, or
+with the cursor in the edit box, press Shift+Space</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2939"></A>Delete a row</td>
+<td  rowspan="1"  ><A NAME="TI2940"></A>Select the row and press Delete</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2941"></A>Move a row</td>
+<td  rowspan="1"  ><A NAME="TI2942"></A>Click the row button and drag the row
+where you want it or press Shift+Space to select the row
+and then press Ctrl+Up Arrow or Ctrl+Down Arrow
+to move the row</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2943"></A>Delete text</td>
+<td  rowspan="1"  ><A NAME="TI2944"></A>Click the text and select Delete from
+the pop-up menu</td>
+</tr>
+</table>
+<A NAME="TI2945"></A><p>On the Pictures tab page, you can work with rows in the same
+way, and also:</p>
+<A NAME="TI2946"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI2947"></A>To</th>
+<th  rowspan="1"  ><A NAME="TI2948"></A>Do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2949"></A>Browse for a picture</td>
+<td  rowspan="1"  ><A NAME="TI2950"></A>Select the row and click the Browse button
+or press F2</td>
+</tr>
+</table>
+<A NAME="TI2951"></A><p>For information about other properties, right-click
+in any tab page in the Properties view and select Help from the
+pop-up menu.</p>
+<A NAME="CHDBCDCA"></A><h2>ListView</h2>
+<A NAME="TI2952"></A><p>A ListView control lets you display items and icons in a variety
+of arrangements. You can display large or small icons in free-form
+lists. You can add columns, pictures, and items to the ListView,
+and modify column properties, using PowerScript functions such as <b>AddColumn</b>, <b>AddLargePicture, SetItem</b>, <b>SetColumn</b>,
+and so on. For information about ListView functions, see the online
+Help.</p>
+<A NAME="TI2953"></A><p>The following illustration from the Code Examples application
+shows a ListView control used in a sales order application.</p>
+<br><img src="images/ctl31.gif">
+<A NAME="TI2954"></A><h4>Adding ListView items and pictures</h4>
+<A NAME="TI2955"></A><p>Adding images to a ListView control is the same as adding
+images to a PictureListBox. The ListView control's Properties
+view has two tab pages for adding pictures: Large Picture (default
+size 32 by 32 pixels) and Small Picture (16 by 16 pixels).</p>
+<A NAME="TI2956"></A><p>For more information, see <A HREF="pbugp107.htm#CAIEAAEA">"Adding images to a PictureListBox"</A>.</p>
+<A NAME="TI2957"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add ListView items:</p>
+<ol><li class=fi><p>Select the ListView control to display
+its properties in the Properties view and then select the Items
+tab.</p></li>
+<li class=ds><p>Enter the name of the ListView item and the picture
+index you want to associate with it. This picture index corresponds
+to the images you select on the Large Picture, Small Picture, and
+State property pages.</p><p>On the Items tab page, you can work with rows in this way:</p><A NAME="TI2958"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI2959"></A>To</th>
+<th  rowspan="1"  ><A NAME="TI2960"></A>Do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2961"></A>Select a row</td>
+<td  rowspan="1"  ><A NAME="TI2962"></A>Click the row button on the left, or
+with the cursor in the edit box, press Shift+Space</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2963"></A>Delete a row</td>
+<td  rowspan="1"  ><A NAME="TI2964"></A>Select the row and press Delete</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2965"></A>Move a row</td>
+<td  rowspan="1"  ><A NAME="TI2966"></A>Click the row button and drag the row
+where you want it, or press Shift+Space to select the row
+and then press Ctrl+Up Arrow or Ctrl+Down Arrow
+to move the row</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2967"></A>Delete text</td>
+<td  rowspan="1"  ><A NAME="TI2968"></A>Click the text and select Delete from
+the pop-up menu</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <A NAME="TI2969"></A>Setting the picture index for the first item to zero
+clears all the settings on the tab page.</p>
+</li>
+<li class=ds><p>Set properties for the item on the Large Picture,
+Small Picture, and/or State tab pages as you did on the
+Items tab page.</p><p>On these pages, you can also browse for a picture. To do so,
+click the browse button or press F2.</p></li>
+<li class=ds><p>Repeat until all the items are added to the ListView.</p></li></ol>
+<br><A NAME="TI2970"></A><h4>Choosing a ListView style</h4>
+<A NAME="TI2971"></A><p>You can display a ListView in four styles:</p>
+<A NAME="TI2972"></A><p><A NAME="TI2973"></A>
+<ul>
+<li class=fi>Large icon</li>
+<li class=ds>Small icon</li>
+<li class=ds>List</li>
+<li class=ds>Report
+</li>
+</ul>
+</p>
+<A NAME="TI2974"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select a ListView style:</p>
+<ol><li class=fi><p>Select the ListView control to display
+its properties in the Properties view and then select the General
+tab.</p></li>
+<li class=ds><p>Select the type of view you want from the View
+drop-down list.</p></li></ol>
+<br><A NAME="TI2975"></A><p>For more information about other properties,
+right-click in any tab page in the Properties view and select Help
+from the pop-up menu.</p>
+<A NAME="TI2976"></A><h4>Setting other properties</h4>
+<A NAME="TI2977"></A><p>You can set other ListView properties.</p>
+<A NAME="TI2978"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify other ListView properties:</p>
+<ol><li class=fi><p>Select the ListView control to display its properties
+in the Properties view.</p></li>
+<li class=ds><p>Choose the tab appropriate to the property you want
+to specify:</p><A NAME="TI2979"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI2980"></A>To specify</th>
+<th  rowspan="1"  ><A NAME="TI2981"></A>Choose this tab</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2982"></A>The border style</td>
+<td  rowspan="1"  ><A NAME="TI2983"></A>General</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2984"></A>Whether the user can delete items</td>
+<td  rowspan="1"  ><A NAME="TI2985"></A>General</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2986"></A>The images for ListView items in Large
+Icon view</td>
+<td  rowspan="1"  ><A NAME="TI2987"></A>Large Picture</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2988"></A>The images for ListView items in Small
+Icon, list, and report views</td>
+<td  rowspan="1"  ><A NAME="TI2989"></A>Small Picture</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2990"></A>The state images for ListView items</td>
+<td  rowspan="1"  ><A NAME="TI2991"></A>State</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2992"></A>The names and associated picture index
+for ListView items</td>
+<td  rowspan="1"  ><A NAME="TI2993"></A>Items</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2994"></A>The font size, family, and color for
+ListView items</td>
+<td  rowspan="1"  ><A NAME="TI2995"></A>Font</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2996"></A>The size and position of the ListView</td>
+<td  rowspan="1"  ><A NAME="TI2997"></A>Other</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2998"></A>The icon for the mouse pointer in the
+ListView</td>
+<td  rowspan="1"  ><A NAME="TI2999"></A>Other</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3000"></A>The icon for a drag item, and whether
+the drag-and-drop must be performed programmatically</td>
+<td  rowspan="1"  ><A NAME="TI3001"></A>Other</td>
+</tr>
+</table>
+</li></ol>
+<br><A NAME="TI3002"></A><p>For more information on the ListView control,
+see <i>Application Techniques</i>
+. For information
+about its properties, see <i>Objects and Controls</i>
+.</p>
+<A NAME="CIHBBEBC"></A><h2>TreeView</h2>
+<A NAME="TI3003"></A><p>You can use TreeView controls in your application to represent
+relationships among hierarchical data. An example of a TreeView
+implementation is PowerBuilder's Browser. The tab pages
+in the Browser contain TreeView controls.</p>
+<br><img src="images/ap4.gif">
+<A NAME="TI3004"></A><h4>Adding TreeView items and pictures</h4>
+<A NAME="TI3005"></A><p>A TreeView consists of TreeView items that are associated
+with one or more pictures. You add images to a TreeView in the same
+way that you add images to a PictureListBox. </p>
+<A NAME="TI3006"></A><p>For more information, see <A HREF="pbugp107.htm#CAIEAAEA">"Adding images to a PictureListBox"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Dynamically changing image size</span> <A NAME="TI3007"></A>The image size can be changed at runtime by setting the PictureHeight
+and PictureWidth properties when you create a TreeView.</p>
+<A NAME="TI3008"></A>For more information about PictureHeight and
+PictureWidth, see the <i>PowerScript Reference.</i>
+</p>
+<A NAME="TI3009"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add items to a TreeView:</p>
+<ol><li class=fi><p>Write a script in the TreeView constructor
+event to create TreeView items.</p><p>For more information about populating a TreeView,
+see <i>Application Techniques</i>
+ and <i>Objects
+and Controls.</i>
+</p></li></ol>
+<br><A NAME="TI3010"></A><h4>Adding state pictures to TreeView items</h4>
+<A NAME="TI3011"></A><p>A <i>state</i> picture is an image that appears
+to the left of the TreeView item indicating that the item is not
+in its normal mode. A state picture could indicate that a TreeView
+item is being changed, or that it is performing a process and is unavailable
+for action.</p>
+<br><img src="images/ctl30.gif">
+<A NAME="TI3012"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a state picture for a TreeView item:</p>
+<ol><li class=fi><p>Select the TreeView control to display
+its properties in the Properties view and then select the State
+tab.</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI3013"></A>
+<ul>
+<li class=fi>Use
+the StatePictureName drop-down list to select stock pictures to add
+to the TreeView.</li>
+<li class=ds>Use the Browse button to select any bitmap (BMP)
+file, icon (ICO) file, GIF file, or JPEG file.
+</li>
+</ul>
+
+                      </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>To specify a cursor file</span> <A NAME="TI3014"></A>To use a cursor file, you must type the file name. You cannot
+select it.</p>
+</li></ol>
+<br><A NAME="TI3015"></A><p>Working in the Properties view with the rows in the State
+or Pictures tab page is the same as working with them in a ListView
+control. For information, see <A HREF="pbugp107.htm#CHDBCDCA">"ListView"</A>.</p>
+<A NAME="TI3016"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To activate a state picture for a TreeView item:</p>
+<ol><li class=fi><p>Write a script that changes the image when
+appropriate. </p><p>For example, the following script gets the current TreeView
+item and displays the state picture for it.<p><PRE> long           ll_tvi<br>treeviewitem   tvi<br> <br>ll_tvi = tv_foo.finditem(currenttreeitem! , 0)<br>tv_foo.getitem(ll_tvi , tvi)<br>tvi.statepictureindex = 1<br>tv_foo.setitem(ll_tvi, tvi)</PRE></p><p>For more information on the TreeView control,
+see <i>Application Techniques</i>
+.</p></li></ol>
+<br><A NAME="TI3017"></A><h4>Setting other properties</h4>
+<A NAME="TI3018"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify other TreeView properties:</p>
+<ol><li class=fi><p>Select the TreeView control to display
+its properties in the Properties view and then select the General
+tab.</p></li>
+<li class=ds><p>Enter a name for the TreeView in the Name text
+box and specify other properties as appropriate. Among the properties
+you can specify on the General property page are:<A NAME="TI3019"></A>
+<ul>
+<li class=fi>The border style</li>
+<li class=ds>Whether the TreeView has lines showing the item
+hierarchy</li>
+<li class=ds>Whether the TreeView includes collapse and expand
+buttons</li>
+<li class=ds>Whether the user can delete items</li>
+<li class=ds>Whether the user can drag and drop items into the
+TreeView
+</li>
+</ul>
+
+                        </p><p>For more information, right-click in any tab
+page in the Properties view and select Help from the pop-up menu.</p></li>
+<li class=ds><p>For other options, choose the tab appropriate to the
+property you want to specify:</p><A NAME="TI3020"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI3021"></A>To specify</th>
+<th  rowspan="1"  ><A NAME="TI3022"></A>Choose this tab</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3023"></A>The images used to represent TreeView
+items</td>
+<td  rowspan="1"  ><A NAME="TI3024"></A>Pictures</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3025"></A>The state images for the TreeView items</td>
+<td  rowspan="1"  ><A NAME="TI3026"></A>State</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3027"></A>The font size, family, and color for
+TreeView items</td>
+<td  rowspan="1"  ><A NAME="TI3028"></A>Font</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3029"></A>The size and position of the TreeView</td>
+<td  rowspan="1"  ><A NAME="TI3030"></A>Other</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3031"></A>The icon for the mouse pointer in the
+TreeView</td>
+<td  rowspan="1"  ><A NAME="TI3032"></A>Other</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3033"></A>The icon for a drag item, and whether
+the drag-and-drop must be performed programmatically</td>
+<td  rowspan="1"  ><A NAME="TI3034"></A>Other</td>
+</tr>
+</table>
+<p>For more information on the TreeView control,
+see <i>Application Techniques</i>
+. For information
+about its properties, see <i>Objects and Controls</i>
+.</p></li></ol>
+<br><A NAME="CIHBIBBA"></A><h2>Tab</h2>
+<A NAME="TI3035"></A><p>A Tab control is a container for tab pages that display other
+controls. You can add a Tab control to a window in your application
+to present information that can logically be grouped together but
+may also be divided into distinct categories. An example is the
+use of tab pages in the Properties view for objects in PowerBuilder.
+Each tab page has a tab that displays the label for the tab page and
+is always visible, whichever tab page is selected.</p>
+<A NAME="TI3036"></A><p>When you add a Tab control to a window, PowerBuilder creates
+a Tab control with one tab page labeled "none".
+The control is rectangular. </p>
+<A NAME="TI3037"></A><h4>Selecting Tab controls and tab pages</h4>
+<A NAME="TI3038"></A><p>You may find that you select the control when you want to
+select the page and vice versa. This Tab control has three tab pages.
+The TabPosition setting is <b>tabsontopandbottom!</b>,
+so that the tab for the selected tab page and pages that precede
+it in the tab order display at the top of the Tab control.</p>
+<br><img src="images/ctl46.gif">
+<A NAME="TI3039"></A><p>To select the Tab control, click any of the tabs where the
+label displays, or in the area adjacent to the tabs, shown in gray
+here.</p>
+<A NAME="TI3040"></A><p>To select a tab page, click its tab and then click anywhere
+on the tab page except the tab itself. The handles at
+the corners of the white area indicate that the tab page is selected,
+not the Tab control.</p>
+<A NAME="TI3041"></A><h4>Adding tab pages to a Tab control</h4>
+<A NAME="TI3042"></A><p>To add a new Tab control to a window, select Insert&gt;Control&gt;Tab
+and click in the window. The control has one tab page when it is
+created. Use the following procedure to add additional tab pages
+to the tab control.</p>
+<A NAME="TI3043"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new tab page within a Tab control:</p>
+<ol><li class=fi><p>Select the Tab control by clicking on the
+tab of the tab page or in the area to its right.</p><p>The handles that indicate that the Tab control is selected
+display at the corners of the Tab control. If you selected the tab
+page, the handles display at the corners of the area under the tab.</p></li>
+<li class=ds><p>Choose Insert TabPage from the pop-up menu.</p><br><img src="images/ctl39.gif"><br>
+</li>
+<li class=ds><p>Add controls to the new tab page.</p></li></ol>
+<br><A NAME="TI3044"></A><h4>Creating a reusable tab page</h4>
+<A NAME="TI3045"></A><p>You can create reusable tab pages in the User Object painter
+by defining a tab page with controls on it that is independent of
+a Tab control. Then you can add that tab page to one or more Tab
+controls.</p>
+<A NAME="TI3046"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a tab page that is independent of a
+Tab control:</p>
+<ol><li class=fi><p>Click the New button on the PowerBar and
+use the Custom Visual icon on the Object tab page to create a custom
+visual user object.</p></li>
+<li class=ds><p>Size the user object to match the size of the
+Tab controls in which you will use it.</p></li>
+<li class=ds><p>Add the controls that you want to have appear
+on the tab page to the user object.</p></li>
+<li class=ds><p>Select the user object (not one of the controls
+you added) and specify the information to be used by the tab page
+on the TabPage page in the Properties view:<A NAME="TI3047"></A>
+<ul>
+<li class=fi>Text&#8212;the
+text to be displayed on the tab</li>
+<li class=ds>PictureName&#8212;a picture to appear on the
+tab with or instead of the text</li>
+<li class=ds>PowerTipText&#8212;text for a pop-up message
+that displays when the user moves the cursor to the tab</li>
+<li class=ds>Colors for the tab and the text on the tab
+</li>
+</ul>
+
+                        </p></li>
+<li class=ds><p>Save and close the user object.</p></li></ol>
+<br><A NAME="TI3048"></A><h4>Adding a reusable tab page to a Tab control</h4>
+<A NAME="TI3049"></A><p>Once you have created a user object that can be used as a
+tab page, you can add it to a Tab control. You cannot add the user
+object to a Tab control if the user object is open, and, after you
+have added the user object to the control, you cannot open the user
+object and the window that contains the Tab control at the same
+time.</p>
+<A NAME="CIHFIHJD"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a tab page that
+exists as an independent user object to a Tab control:</p>
+<ol><li class=fi><p>In the Window painter, right-click the
+Tab control.</p></li>
+<li class=ds><p>Choose Insert User Object from the pop-up menu.</p></li>
+<li class=ds><p>Select a user object that you have set up as a
+tab page and click OK.</p></li></ol>
+<br><A NAME="TI3050"></A><p>A tab page, inherited from the user object you selected, is
+inserted. You can select the tab page, set its tab page properties,
+and write scripts for the inherited user object just as you do for
+tab pages defined within the Tab control, but you cannot edit the
+content of the user object within the Tab control. If you want to edit
+the controls, close the Window painter and go back to the User Object painter
+to make changes.</p>
+<A NAME="TI3051"></A><h4>Manipulating the Tab control</h4>
+<A NAME="TI3052"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the name and properties of the Tab control:</p>
+<ol><li class=fi><p>Click any of the tabs in the Tab control
+to display the Tab control properties in the Properties view.</p></li>
+<li class=ds><p>Edit the properties.</p><p>For more information, right-click in the Properties
+view and select Help from the pop-up menu.</p></li></ol>
+<br><A NAME="TI3053"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the scripts of the Tab control:</p>
+<ol><li class=fi><p>With the mouse pointer on one of the tabs,
+double-click the Tab control, or display the pop-up menu and select
+Script.</p></li>
+<li class=ds><p>Select a script and edit it.</p></li></ol>
+<br><A NAME="TI3054"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To resize a Tab control:</p>
+<ol><li class=fi><p>Grab a border of the control and drag it
+to the new size. </p><p>The Tab control and all tab pages are sized as a group.</p></li></ol>
+<br><A NAME="TI3055"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To move a Tab control:</p>
+<ol><li class=fi><p>With the mouse pointer on one of the tabs,
+hold down the left mouse button and drag to move the control to
+the new position. </p><p>The Tab control and all tab pages are moved as a group.</p></li></ol>
+<br><A NAME="TI3056"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete a Tab control:</p>
+<ol><li class=fi><p>With the mouse pointer on one of the tabs,
+select Cut or Delete from the pop-up menu.</p></li></ol>
+<br><A NAME="TI3057"></A><h4>Manipulating the tab pages</h4>
+<A NAME="TI3058"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To view a different tab page:</p>
+<ol><li class=fi><p>Click on the page's tab.</p><p>The selected tab page is brought to the front. The tabs are
+rearranged according to the TabPosition setting you have chosen.</p></li></ol>
+<br><A NAME="TI3059"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the name and properties of a tab page:</p>
+<ol><li class=fi><p>Select the tab. </p><p>It might move to the position for a selected tab based on
+the TabPosition setting. For example, if TabPosition is set to tabsonbottomandtop!
+and a tab displays at the top, it moves to the bottom when you select
+it.</p></li>
+<li class=ds><p>Click anywhere on the tab page except the tab.</p></li>
+<li class=ds><p>Edit the properties.</p></li></ol>
+<br><A NAME="TI3060"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the scripts of the tab page:</p>
+<ol><li class=fi><p>Select the tab. </p><p>It may move to the position for a selected tab based on the
+Tab Position setting.</p></li>
+<li class=ds><p>Click anywhere on the tab page except the tab.</p></li>
+<li class=ds><p>Select Script from the tab page's pop-up
+menu.</p></li>
+<li class=ds><p>Select a script and edit it.</p></li></ol>
+<br><A NAME="TI3061"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete a tab page from a Tab control:</p>
+<ol><li class=fi><p>With the mouse pointer anywhere on the
+tab page except the tab, select Cut or Delete from the pop-up menu.</p></li></ol>
+<br><A NAME="TI3062"></A><h4>Managing controls on tab pages</h4>
+<A NAME="TI3063"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a control to a tab page:</p>
+<ol><li class=fi><p>Choose a control from the toolbar or the
+Control menu and click on the tab page, just as you would add a
+control to a window.</p><p>You can add controls only to a tab page created within the
+Tab control. To add controls to an independent tab page, open it
+in the User Object painter.</p></li></ol>
+<br><A NAME="TI3064"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To move a control from one tab page to another:</p>
+<ol><li class=fi><p>Cut or copy the control and paste it on
+the destination tab page.</p></li></ol>
+<br><A NAME="TI3065"></A><p>The source and destination tab pages must be embedded tab
+pages, not independent ones created in the User Object painter.</p>
+<A NAME="TI3066"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To move a control between a tab page and the window
+containing the Tab control:</p>
+<ol><li class=fi><p>Cut or copy the control and paste it on
+the destination window or tab page.</p></li></ol>
+<br><A NAME="TI3067"></A><p>Moving the control between a tab page and the window changes
+the control's parent, which affects scripts that refer
+to the control.</p>
+<A NAME="TI3068"></A><p>For more information on the Tab control, see the chapter on
+using tabs in a window in <i>Application Techniques</i>
+.</p>
+<A NAME="BABJDHHA"></A><h2>MonthCalendar</h2>
+<A NAME="TI3069"></A><p>A MonthCalendar control lets you display a calendar to your
+users to make it easy for them to view and set date information.
+You can size the calendar to show from one to twelve months. The
+following illustration shows a calendar with three months. Today's
+date is August 25, 2004, and the date October 8 has been selected.</p>
+<br><img src="images/mcal01.gif">
+<A NAME="TI3070"></A><p>If a user selects a date or a range of dates in the calendar,
+you can use the <b>GetSelectedDate</b> or <b>GetSelectedRange</b> functions
+to obtain them. You use the <b>SetSelectedDate</b> and <b>SetSelectedRange</b> functions
+to select dates programmatically. </p>
+<A NAME="TI3071"></A><p>You can also:<A NAME="TI3072"></A>
+<ul>
+<li class=fi>Set and get minimum and
+maximum dates that can be displayed in the calendar</li>
+<li class=ds>Display dates in bold</li>
+<li class=ds>Get the number of months currently displayed with
+the start and end dates</li>
+<li class=ds>Set and get the date the calendar uses as the current
+date</li>
+<li class=ds>Use properties to customize the appearance of the
+calendar
+</li>
+</ul>
+</p>
+<A NAME="TI3073"></A><p>Users can navigate through the calendar using the arrow keys
+in the top corners. You can specify how many months should scroll
+for each click using the ScrollRate property. If users click on
+the name of the month in the title bar, a drop-down list displays,
+allowing them to navigate to another month in the same year. Clicking
+on the year in the title bar displays a spin control that lets users
+navigate quickly to a different year.</p>
+<A NAME="CIHDCBGH"></A><h2>DatePicker</h2>
+<A NAME="TI3074"></A><p>The DatePicker control provides an easy way for a user to
+select a single date. The user can choose to edit the date in the
+control or to select a date from a drop-down calendar. The calendar
+is similar to the MonthCalendar control, which can be used to select
+a range of dates. As an alternative to the drop-down calendar, you
+can set the ShowUpDown property to display up and down arrows that
+allow users to specify one element of the date at a time.</p>
+<A NAME="TI3075"></A><p>The drop-down calendar can only be used to select a date.
+The up and down arrows lets users specify a time as well as a date.
+The following illustration shows three DatePicker controls. The
+controls on the left have the ShowUpDown property set. One uses
+the standard date format, and the other uses a custom format that
+displays the date and time. The control on the right uses the default
+drop-down calendar option and the standard long date format.</p>
+<br><img src="images/dtpckr01.gif">
+<A NAME="TI3076"></A><p>You can set initial properties for the appearance and behavior
+of the control in the Properties view. Properties that apply to
+the drop-down calendar portion of the control are similar to the
+properties that apply to the MonthCalendar control and display on
+the Calendar page in the Properties view. For example, you can choose
+which day of the week displays as the first day in the week, whether
+the current date is circled, and whether a "Today Section" showing
+the current date displays at the bottom of the calendar.</p>
+<A NAME="TI3077"></A><h4>Specifying a format</h4>
+<A NAME="TI3078"></A><p>You can choose to display the date in the DatePicker control
+as a long date, a short date, a time, or with a custom format. To
+set a custom format in the painter, select dtfCustom! from the Format
+list and type the format in the Custom Format field. For example,
+the second control on the left in the previous illustration uses
+the custom format <FONT FACE="Courier New">yyyy/MM/dd
+HH:mm:ss</FONT>. The uppercase H for the hour format
+specifies a 24-hour clock. The following statements set the Format
+property to use a custom format and set the CustomFormat property
+to show the full name of the month, the day of the month followed
+by a comma, and the four-digit year:<p><PRE> dp_1.Format = dtfCustom!<br>dp_1.CustomFormat = "MMMM dd, yyyy"</PRE></p>
+<A NAME="TI3079"></A><p>For a complete list of formats you can use, see the description
+of the CustomFormat property in the online Help. </p>
+<A NAME="TI3080"></A><h4>Specifying maximum and minimum dates</h4>
+<A NAME="TI3081"></A><p>The MaxDate and MinDate properties determine the range of
+dates that a user can enter or pick in the control. If you set a
+restricted range, the calendar displays only the months in the range
+you set, and if users type a date outside the range into the control,
+the date reverts to its previous value.</p>
+<A NAME="TI3082"></A><h4>Editing modes</h4>
+<A NAME="TI3083"></A><p>When a user tabs into a DatePicker control, the control is
+in normal editing mode and behaves in much the same way as an EditMask
+control with a Date or DateTime mask. Users can edit the part of
+the date (year, month, day, hour, minutes, or seconds) that has
+focus using the up/down arrow keys on the keyboard or,
+for numeric fields, the number keys. Use the left/right
+arrow keys to move between parts of the date.If the control has
+a drop-down calendar, users can navigate from one month or year
+to another using the controls in the calendar and click to select
+a date. If the ShowUpDown option is set, users can change the selected
+part of the date or time with the up and down keys in the control.
+To navigate in the drop-down calendar, a user can:<A NAME="TI3084"></A>
+<ul>
+<li class=fi>Click the arrows in the top corners to move from
+month to month</li>
+<li class=ds>Click the month to display a list of months, then
+click a month to select it</li>
+<li class=ds>Click the year to display a spin control, then use
+the spin control's arrows to select a year</li>
+<li class=ds>Click a date to select the date and close the calendar</li>
+<li class=ds>Press the Esc key to close the calendar without
+changing the selection
+</li>
+</ul>
+</p>
+<A NAME="TI3085"></A><h4>Allowing users to edit the date directly</h4>
+<A NAME="TI3086"></A><p>You can give users a third way to change the date by setting
+the AllowEdit property to <b>true</b>. The user can
+then press F2 or click in the control to select all the text in
+the control for editing. When the control loses focus, the control returns
+to normal editing mode and the UserString event is fired. The UserString
+event lets you test whether the text the user entered in the control
+is a valid date and set the value to the new date if it is valid.
+If it is valid, you can use the event's <i>dtm</i> by
+reference argument to set the value to the new date. This code in
+the UserString event tests whether the date is valid and within
+range:<p><PRE> Date d<br>DateTime dt<br> <br>IF IsDate(userstr) THEN<br>   d = Date(usrstr)<br>   IF (this.maxdate &gt;= d and this.mindate &lt;= d) THEN<br>      dtm = DateTime(dt)<br>   ELSE<br>      MessageBox("Date is out of range", userstr)<br>   END IF<br>ELSE<br>   MessageBox("Date is invalid", userstr)<br>END IF</PRE></p>
+<A NAME="TI3087"></A><h4>The Value property</h4>
+<A NAME="TI3088"></A><p>The Value property contains the date and time to which the
+control is set. If you do not specify a date, the Value property
+defaults to the current date and time. You can set the property
+in the painter or in a script. If you change the value at runtime,
+the display is updated automatically. The Value property has two
+parts that can be obtained from the DateValue and TimeValue properties.
+These properties should be used only to obtain the date and time
+parts of the Value property; they cannot be used to set a date or
+time. The Text property and the <b>GetText</b> function
+return the Value property as a string formatted according to your
+format property settings.</p>
+<A NAME="TI3089"></A><p>You can use the <b>SetValue</b> function to set
+the Value property in a control using separate date and time values
+or a single DateTime value. This example sets the property control
+using separate date and time values:<p><PRE> date d<br>time td=date("2007/12/27")<br>t=time("12:00:00")dp_1.SetValue(d, t)</PRE>This example sets the Value property using a DateTime
+value:<PRE> date d<br>time t<br>datetime dt<br>dt = DateTime(d, t)<br> <br>dp_1.SetValue(dt)</PRE></p>
+<A NAME="TI3090"></A><h4>Localizing the DatePicker control</h4>
+<A NAME="TI3091"></A><p>The DatePicker control is designed to work in different locales.
+The string values in the DatePicker control support non-English
+charactersand the names of months and days of the week in the calendar
+display in the local language. You can set the FirstDayOfWeek property
+on the Calendar page in the Properties view to have the drop-down
+calendar use Monday or any other day of the week as the first day.</p>
+<A NAME="TI3092"></A><p>The MaxDate and MinDate properties and the date part of the
+Value property use the Short Date format specified in the regional
+settings in the Windows control panel of the local computer, and
+the time part uses the local computer's time format. The
+three predefined display formats&#8212;long date, short date,
+and time&#8212;also depend on the local computer's regional
+settings. </p>
+<A NAME="CIHIBIBA"></A><h2>Animation</h2>
+<A NAME="TI3093"></A><p>Animation controls can display Audio-Video Interleaved (AVI)
+clips. An AVI clip is a series of bitmap frames that can be played
+like a movie. The clip can come from an uncompressed AVI file or
+from an AVI file compressed using run-length encoding (BI_RLE8).
+If you use an AVI file that has a sound channel, the sound is not
+played.</p>
+<A NAME="TI3094"></A><p>You might display an AVI clip to show the user that some activity
+is occurring while a lengthy operation such as a search or full
+build is completing. To specify which AVI clip to use, specify the
+AVI file name in the control's AnimationName property.
+If you want the control to display only when an event in your application
+starts to play the application, set its Border and Visible properties
+to <b>false</b> and its Transparent property to <b>true</b>.</p>
+<A NAME="CIHFAGEI"></A><h2>InkEdit and InkPicture</h2>
+<A NAME="TI3095"></A><p>InkEdit and InkPicture provide the ability to capture ink
+input from users of Tablet PCs. </p>
+<A NAME="TI3096"></A><p>The InkEdit control captures and recognizes handwriting and
+optionally converts it to text. The InkPicture control captures
+signatures, drawings, and other annotations that do not need to
+be recognized as text. You can place a background image in an InkPicture
+control, and capture and save a user's annotations to the
+picture.</p>
+<A NAME="TI3097"></A><p>The ink controls are fully functional on Tablet PCs. On other
+computers, the InkEdit control behaves like a multiline edit control.
+If the Microsoft Tablet PC Software Development Kit (SDK) 1.7 is
+installed on the computer, InkPicture controls can accept ink input
+from the mouse.</p>
+<A NAME="TI3098"></A><h4>InkEdit control</h4>
+<A NAME="TI3099"></A><p>The InkEdit control on a Tablet PC is like a MultiLineEdit
+control that has the added ability to accept ink input. On other
+PCs, the InkEdit control behaves as a normal MultiLineEdit control
+and cannot collect ink.</p>
+<A NAME="TI3100"></A><p>On a Tablet PC, the InkEdit control collects ink from a user
+in the form of handwriting and can handle single or multiple lines
+of text. It also recognizes gestures, which are specific pen strokes
+that represent a keyboard action such as backspace, space, or tab.The InkEdit control can convert ink
+to text, or leave it as handwriting. </p>
+<A NAME="TI3101"></A><h4>InkPicture control</h4>
+<A NAME="TI3102"></A><p>The InkPicture control behaves like a Picture control that
+accepts annotation. The InkPicture control does not convert ink
+to text. You can associate a picture with the control so that the
+user can draw annotations on the picture, then save the ink, the
+picture, or both. If you want to use the control to capture and
+save signatures, you usually do not associate a picture with it. </p>
+<A NAME="TI3103"></A><p>You might use an InkPicture control to display an image of
+a process flow chart or a floor plan of a building, and capture
+suggested changes that users enter in the form of ink. Using an
+image of a garden, for example, a user could mark trees and shrubs
+to be removed and indicate where new plants should be added.</p>
+<A NAME="TI3104"></A><p>You can save the background image, the ink annotations, or
+both, to a file or to a blob. </p>
+

@@ -1,0 +1,54 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+TreeView presentation style</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp227.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp229.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CEGBGJGA"></A><h1>TreeView presentation style</h1>
+<A NAME="TI8031"></A><p>The TreeView presentation style provides an easy way to create DataWindow objects
+that display hierarchical data in a TreeView, where the rows are
+divided into groups that can be expanded and collapsed. </p>
+<A NAME="TI8032"></A><p>The TreeView DataWindow displays a hierarchy of nodes, similar
+to the way:<A NAME="TI8033"></A>
+<ul>
+<li class=fi>The left pane of Windows Explorer
+displays folders and files </li>
+<li class=ds>The PowerBuilder System Tree displays workspaces
+and their contents
+</li>
+</ul>
+</p>
+<A NAME="TI8034"></A><p>In the TreeView DataWindow, each parent node contains other
+nodes called child nodes. You can display parent nodes&#8212;nodes
+that contain child nodes&#8212;in expanded or collapsed form.</p>
+<A NAME="TI8035"></A><p>With the TreeView DataWindow presentation style, you can group
+data in a hierarchy that allows users to browse the data and expand
+nodes to view details. Each TreeView level or node has an icon that
+users can click to expand or collapse the node. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>No Web DataWindow support</span> <A NAME="TI8036"></A>Currently you cannot use the TreeView DataWindow presentation
+style with the Web DataWindow.</p>
+<A NAME="TI8037"></A><p>You use the TreeView DataWindow wizard to create a TreeView DataWindow object.
+For information, see <A HREF="pbugp229.htm#BABEJEJC">"Creating a new TreeView DataWindow"</A>.</p>
+<A NAME="CEGEEEHH"></A><h4>Example</h4>
+<A NAME="TI8038"></A><p>This sample TreeView DataWindow uses the department and employee
+tables in the EAS Demo DB database and has two TreeView levels.
+The first level is the department name. The second level is the
+city where each employee resides. The detail data for each employee
+is grouped in TreeView leaf nodes under these two levels.</p>
+<br><img src="images/dwsamp.gif">
+<A NAME="TI8039"></A><h4>Similarities to the Group presentation style</h4>
+<A NAME="TI8040"></A><p>Creating and using a TreeView DataWindow is similar to creating
+and using a Group DataWindow. However, with the TreeView DataWindow,
+you can click the state icon to expand and collapse nodes.</p>
+<A NAME="TI8041"></A><p>The state icon in a TreeView DataWindow is a plus sign (+)
+when the node is collapsed and a minus sign (-) when the node is
+expanded. When a node is expanded, connecting lines display by default
+to show more detail and indicate how the parent data connects with
+the child data. When a node is collapsed, only the parent data displays;
+the detail data does not.</p>
+

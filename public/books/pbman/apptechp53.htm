@@ -1,0 +1,106 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using lists</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp52.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp54.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIDAGDE"></A><h1>Using lists</h1>
+<A NAME="TI1244"></A><p>You can use lists to present information to the user in simple
+lists with scrollbars. You can present this information with text
+and pictures (in a PictureListBox) or with text alone (using a ListBox).</p>
+<A NAME="TI1245"></A><p>Depending on how you design your application, the user can
+select one or more list items to perform an action based on the
+list selection.</p>
+<A NAME="TI1246"></A><p>You add ListBox and PictureListBox controls to windows in
+the same way you add other controls: select ListBox or PictureListBox
+from the Insert&gt;Control menu and click the window.</p>
+<A NAME="TI1247"></A><h4>Adding items to list controls</h4>
+<p><b>In the painter</b>   Use the Item property page for the control to add new items.</p>
+<A NAME="TI1248"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add items to a ListBox or PictureListBox:</p>
+<ol><li class=fi><p>Select the Items tab in the Properties
+view for the control.</p></li>
+<li class=ds><p>Enter the name of the items for the ListBox. For
+a PictureListBox, also enter a picture index number to associate
+the item with a picture.</p><p>For instructions on adding pictures to a PictureListBox,
+see <A HREF="apptechp53.htm#CAIBDIGJ">"Adding pictures to PictureListBox controls"</A>.</p></li></ol>
+<br><p><b>In a script</b>   Use the <b>AddItem</b> and <b>InsertItem</b> functions
+to dynamically add items to a ListBox or PictureListBox at runtime. <b>AddItem</b> adds
+items to the end of the list. However, if the list is sorted, the
+item will then be moved to its position in the sort order. Use <b>InsertItem</b> if
+you want to specify where in the list the item will be inserted.</p>
+<A NAME="TI1249"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 9-1: Using the InsertItem and AddItem functions </caption>
+<tr><th  rowspan="1"  ><A NAME="TI1250"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI1251"></A>You supply</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1252"></A><b>InsertItem</b></td>
+<td  rowspan="1"  ><A NAME="TI1253"></A>Item name<A NAME="TI1254"></A><p>Position in which the item will be inserted</p><A NAME="TI1255"></A><p>Picture index (for a PictureListBox)</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1256"></A><b>AddItem</b></td>
+<td  rowspan="1"  ><A NAME="TI1257"></A>Item name<A NAME="TI1258"></A><p>Picture index (for a PictureListBox)</p></td>
+</tr>
+</table>
+<A NAME="TI1259"></A><p>For example, this script adds items to a ListBox:<p><PRE> This.AddItem ("Vaporware")<br>This.InsertItem ("Software",2)<br>This.InsertItem ("Hardware",2)<br>This.InsertItem ("Paperware",2)</PRE></p>
+<A NAME="TI1260"></A><p>This script adds items and images to a PictureListBox:<p><PRE> This.AddItem ("Monitor",2)<br>This.AddItem ("Modem", 3)<br>This.AddItem ("Printer",4)<br>This.InsertItem ("Scanner",5,1)</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the Sort property</span> <A NAME="TI1261"></A>You can set the control's sort property to <b>TRUE</b> or
+check the Sorted check box on the General property page to ensure
+that the items in the list are always arranged in ascending alphabetical
+order.</p>
+<A NAME="CAIBDIGJ"></A><h4>Adding pictures to PictureListBox controls</h4>
+<p><b>In the painter</b>   Use the Pictures and Items property pages for the control
+to add pictures.</p>
+<A NAME="TI1262"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add pictures to a PictureListBox:</p>
+<ol><li class=fi><p>Select the Pictures tab in the Properties
+view for the control.</p></li>
+<li class=ds><p>Select an image from the stock image list, or
+use the Browse button to select a bitmap, cursor, or icon image.</p></li>
+<li class=ds><p>Select a color from the PictureMaskColor drop-down
+menu for the image.</p><p>The color selected for the picture mask will appear transparent
+in the PictureListBox.</p></li>
+<li class=ds><p>Select a picture height and width.</p><p>This will control the size of the images in the PictureListBox.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Dynamically changing image size</span> <A NAME="TI1263"></A>You can use a script to change the image size at runtime by
+setting the PictureHeight and PictureWidth properties before you
+add any pictures when you create a PictureListBox.</p>
+<A NAME="TI1264"></A>For more information about PictureHeight and
+PictureWidth, see the <i>PowerScript Reference.</i>
+</p>
+</li>
+<li class=ds><p>Repeat the procedure for the number of images
+you plan to use in your PictureListBox.</p></li>
+<li class=ds><p>Select the Items tab and change the Picture Index
+for each item to the appropriate number.</p></li></ol>
+<br><p><b>In a script</b>   Use the <b>AddPicture</b> function to dynamically
+add pictures to a PictureListBox at runtime. For example, the script
+below sets the size of the picture, adds a <i>BMP</i> file
+to the PictureListBox, and adds an item to the control:</p>
+<A NAME="TI1265"></A><p><p><PRE> This.PictureHeight = 75<br>This.PictureWidth = 75<br>This.AddPicture ("c:\ArtGal\bmps\butterfly.bmp")<br>This.AddItem("Aine Minogue",8)</PRE></p>
+<A NAME="CAIDAEDD"></A><h4>Deleting pictures from picture
+list controls</h4>
+<A NAME="TI1266"></A><p>Use the <b>DeletePicture</b> and <b>DeletePictures</b> functions
+to delete pictures from either a PictureListBox or a DropDownPictureListBox. </p>
+<A NAME="TI1267"></A><p>When you use the <b>DeletePicture</b> function,
+you must supply the picture index of the picture you want to delete. </p>
+<A NAME="TI1268"></A><p>For example:<p><PRE> This.DeletePicture (1)</PRE></p>
+<A NAME="TI1269"></A><p>deletes the first Picture from the control, and<p><PRE> This.DeletePictures ()</PRE></p>
+<A NAME="TI1270"></A><p>deletes all the pictures in a control.</p>
+<p><b>Example</b>   The following window contains a ListBox control and a PictureListBox.
+The ListBox control contains four items, and the PictureListBox
+has one:</p>
+<br><img src="images/uilst01.gif">
+<A NAME="TI1271"></A><p>When the user double-clicks an item in the ListBox, a script
+executes to:</p>
+<A NAME="TI1272"></A><p><A NAME="TI1273"></A>
+<ul>
+<li class=fi>Delete all the items
+in the PictureListBox</li>
+<li class=ds>Add new items to the PictureListBox that are related
+to the ListBox item that was double-clicked
+</li>
+</ul>
+</p>
+<br><img src="images/uilst02.gif">
+<A NAME="TI1274"></A><p>This is the script used in the ListBox DoubleClicked event:<p><PRE> int li_count<br>//Find out the number of items<br>//in the PictureListBox<br>li_count = plb_1.totalItems()<br> <br>// Find out which item was double-clicked<br>// Then:<br>// * Delete all the items in the PictureListBox<br>// * Add the items associated with the<br>//    double-clicked item<br>CHOOSE CASE index<br>   CASE 1<br>      DO WHILE plb_1.totalitems() &gt; 0<br>      plb_1.DeleteItem(plb_1.totalitems())<br>      LOOP<br>      plb_1.AddItem("Monitor",2)<br>      plb_1.AddItem("Modem",3)<br>      plb_1.AddItem("Printer",4)<br>      plb_1.InsertItem("Scanner",5,1)<br></PRE><PRE>    CASE 2<br>      DO WHILE plb_1.totalitems() &gt; 0<br>      plb_1.DeleteItem(plb_1.totalitems())<br>      LOOP<br>      plb_1.InsertItem("GreenBar",6,1)<br>      plb_1.InsertItem("LetterHead",7,1)<br>      plb_1.InsertItem("Copy",8,1)<br>      plb_1.InsertItem("50 lb.",9,1)<br> <br>   CASE 3<br>      DO WHILE plb_1.totalitems() &gt; 0<br>      plb_1.DeleteItem(plb_1.totalitems())<br>      LOOP<br>      plb_1.InsertItem("SpreadIt!",10,1)<br>      plb_1.InsertItem("WriteOn!",11,1)<br>      plb_1.InsertItem("WebMaker!",12,1)<br>      plb_1.InsertItem("Chessaholic",13,1)<br> <br>   CASE 4<br>      DO WHILE plb_1.totalitems() &gt; 0<br>      plb_1.DeleteItem(plb_1.totalitems())<br>      LOOP<br>      plb_1.InsertItem("AlnaWarehouse",14,1)<br>      plb_1.InsertItem("AlnaInfo",15,1)<br>      plb_1.InsertItem("Info9000",16,1)<br>      plb_1.InsertItem("AlnaThink",17,1)<br> <br>END CHOOSE</PRE></p>
+

@@ -1,0 +1,139 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Concepts and terms</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp3.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp5.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABJFIDA"></A><h1>Concepts and terms</h1>
+<A NAME="TI80"></A><p>This section discusses some basic concepts and terms you need
+to be familiar with before you start using PowerBuilder to develop
+applications and components.</p>
+<A NAME="TI81"></A><h2>Workspaces and targets</h2>
+<A NAME="TI82"></A><p>In PowerBuilder, you work with one or more targets in a workspace.
+You can add as many targets to the workspace as you want, open and
+edit objects in multiple targets, and build and deploy multiple
+targets at once. </p>
+<A NAME="TI83"></A><p>A PowerBuilder target can be one of two types:<A NAME="TI84"></A>
+<ul>
+<li class=fi><b>PowerScript target</b>   A client/server or multitier executable application or
+a server component. Most of this book is concerned with building PowerScript
+applications. See <A HREF="pbugp38.htm#CAIDBGGED">Chapter 5, "Working with Targets."</A></li>
+<li class=ds><b>Web target</b>   A Web target that can contain all the elements you need to build
+a Web site application&#8212;HTML files, scripts, images, downloaded components&#8212;or
+a JavaServer Pages (JSP) application. A Web target also contains
+settings for build options, database connections, and deployment. Web
+targets are described in detail in a separate book, <i>Working
+with Web and JSP Targets.</i>
+
+</li>
+</ul>
+</p>
+<A NAME="TI85"></A><p>For more information about creating a workspace and targets,
+see <A HREF="pbugp6.htm#CHDFCIIE">"Creating and opening workspaces"</A> and <A HREF="pbugp8.htm#BABCGGHA">"Creating a target"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>PowerBuilder editions</span> <A NAME="TI86"></A>The ability to create Web targets is available in the Enterprise
+edition of PowerBuilder. If you have the Professional or Desktop
+edition, or if you chose not to install Web target functionality,
+Web target options are not available in the user interface.</p>
+<A NAME="BFCBEIFE"></A><h2>Objects</h2>
+<A NAME="TI87"></A><p>Your application is a collection of objects. For PowerScript targets, PowerBuilder
+provides many types of objects, including graphical objects such as
+windows, menus, and buttons, and nonvisual objects such as datastore, exception,
+and timing objects. In a Web target, the objects you work with include
+HTML pages, images, and style sheets. </p>
+<A NAME="TI88"></A><p>As you work in your application, you create new objects and
+open existing objects to continue work on their development. </p>
+<A NAME="TI89"></A><p>For more information about creating, opening, and editing
+objects, see <A HREF="pbugp46.htm#CHDBJABB">"Working with objects"</A>.</p>
+<A NAME="TI90"></A><h2>DataWindow objects</h2>
+<A NAME="TI91"></A><p>The applications
+you build are often centered around your organization's
+data. With PowerBuilder you can define DataWindow objects to retrieve,
+display, and manipulate data. For more information about DataWindow
+objects, see <A HREF="pbugp153.htm#BFCDDADG">Chapter 18, "Defining DataWindow Objects ."</A></p>
+<A NAME="TI92"></A><h2>PowerBuilder libraries</h2>
+<A NAME="TI93"></A><p>As you work in a PowerScript
+target, the objects you create are stored in one or more libraries
+(<ACRONYM title = "pibble" >PBL</ACRONYM> files) associated with
+the application. When you run your application, PowerBuilder retrieves
+the objects from the library.</p>
+<A NAME="TI94"></A><p>PowerBuilder provides a Library painter for managing your
+libraries. For information about creating a new library and working
+with libraries in the Library painter, see <A HREF="pbugp48.htm#CAICGJAJ">Chapter 6, "Working with Libraries."</A></p>
+<A NAME="TI95"></A><h2>Painters and editors</h2>
+<A NAME="TI96"></A><p>Some of the editors you use to edit objects are called painters.
+For example, you build a window in the Window painter. There you
+define the properties of the window, add controls such as buttons
+and labels, and code the window and its controls to work as your
+application requires. </p>
+<A NAME="TI97"></A><p>PowerBuilder provides painters for windows, menus, DataWindow
+objects, visual and nonvisual user-defined objects, functions, structures,
+databases, data pipelines, and the application itself. For each
+of these object types, there is also a Source editor in which you
+can modify code directly. See <A HREF="pbugp40.htm#CHDDDIFD">"Working in painters"</A> and <A HREF="pbugp47.htm#CEGCABBH">"Using the Source editor"</A>.</p>
+<A NAME="TI98"></A><p>There is also a file editor you can use to edit any file without
+leaving the development environment. See <A HREF="pbugp12.htm#X-REF342804944">"Using the file editor"</A>.</p>
+<A NAME="TI99"></A><p>For Web targets, there are specialized editors for HTML and
+JSP files, frame sets, and style sheets. For more information, see <i>Working
+with Web and JSP Targets</i>
+. </p>
+<A NAME="TI100"></A><h2>Events and scripts</h2>
+<A NAME="TI101"></A><p>PowerScript applications are event-driven: users control the
+flow of the application by the actions they take. When a user clicks
+a button, chooses an item from a menu, or enters data into a text
+box, an event is triggered. You write scripts that specify the processing
+that should happen when the event is triggered.</p>
+<A NAME="TI102"></A><p>For example, buttons have a Clicked event. You write a script
+for a button's Clicked event that specifies what happens
+when the user clicks the button. Similarly, edit controls have a
+Modified event, which is triggered each time the user changes a
+value in the control.</p>
+<A NAME="TI103"></A><p>You write scripts using PowerScript, the PowerBuilder language,
+in a Script view in the painter for the object you are working on.
+Scripts consist of PowerScript functions, expressions, and statements
+that perform processing in response to an event. The script for
+a button's Clicked event might retrieve and display information
+from the database; the script for an edit control's Modified event
+might evaluate the data and perform processing based on the data.</p>
+<A NAME="TI104"></A><p>Scripts can also trigger events. For example, the script for
+a button's Clicked event might open another window, which
+triggers the Open event in that window.</p>
+<A NAME="TI105"></A><h2>Functions</h2>
+<A NAME="TI106"></A><p>PowerScript provides a rich assortment of built-in functions
+you use to act upon the objects and controls in your application.
+There are functions to open a window, close a window, enable a button,
+retrieve data, update a database, and so on.</p>
+<A NAME="TI107"></A><p>You can also build your own functions to define processing
+unique to your application.</p>
+<A NAME="TI108"></A><h2>Properties</h2>
+<A NAME="TI109"></A><p>All the objects and controls in a PowerScript target have
+properties, many of which you set as you develop your application.
+For example, you specify a label for a button by setting its text
+property. You can set these properties in painters or set them and
+modify them dynamically in scripts.</p>
+<A NAME="TI110"></A><h2>Source control</h2>
+<A NAME="TI111"></A><p>If you are working with other developers on a large application,
+you can make sure you are working with the latest version of a component
+or object by synchronizing the copy of the object you are working
+on with the last version of the object checked into a source control
+system. PowerBuilder provides a basic check in/check out
+utility as well as a standard application programming interface
+to more sophisticated source control systems. For more information, see <A HREF="pbugp23.htm#BABBEACC">Chapter 3, "Using Source Control."</A></p>
+<A NAME="TI112"></A><h2>PowerBuilder extensions</h2>
+<A NAME="TI113"></A><p>You can use PowerBuilder extension objects in a PowerScript
+target in the same way as you would built-in PowerBuilder objects,
+with one difference&#8212;you must add the PowerBuilder dynamic
+library that the object requires to the library list for the target.
+Some extensions are provided with PowerBuilder, but you can also
+obtain them from third parties or build your own.</p>
+<A NAME="TI114"></A><p>For more information about the extensions provided with PowerBuilder,
+see the <i>PowerBuilder Extension Reference</i>
+. For
+how to build your own extensions, see the <i>PowerBuilder
+Native Interface Programmer's Guide and Reference</i>
+.</p>
+

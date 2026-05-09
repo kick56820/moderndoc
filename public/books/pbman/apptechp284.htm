@@ -1,0 +1,86 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Web DataWindow on COM+ or IIS</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp283.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp285.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBDHGDG"></A><h1>Web DataWindow on COM+ or IIS</h1>
+<A NAME="TI8470"></A><p>You can run the Web DataWindow server component on COM+ using
+ASP as the page server. You can also run the Web DataWindow on a
+Microsoft IIS application server.</p>
+<A NAME="BGBCJIHC"></A><h4>Files required on the COM+ or
+IIS server</h4>
+<A NAME="TI8471"></A><p>Two types of files are required on the COM+ or IIS
+server:<A NAME="TI8472"></A>
+<ul>
+<li class=fi>The PBLs or PBDs containing the definitions
+of your DataWindow objects. <br>
+Make sure that they are installed in a directory on the <i>system</i> path.<br><br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Use the system path and system DSNs</span> <A NAME="TI8473"></A>Because COM+ and IIS both run as system services,
+required files must be available on the system path and data sources
+must be defined as system DSNs. The user path and user DSNs are
+not referenced by the server.
+<br>
+</li>
+<li class=ds>PowerBuilder runtime files and<i> PBDWR105.DLL</i>,
+which contains the implementation of the DataWindow HTMLGenerator
+component.<A NAME="TI8474"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-20: PowerBuilder files required on COM+ or IIS server</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8475"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8476"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8477"></A><i>PBVM105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8478"></A>PowerBuilder virtual machine</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8479"></A><i>PBSHR105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8480"></A>Required by <i>PBVM105.DLL</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8481"></A><i>LIBJCC.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8482"></A>Required by <i>PBVM105.DLL</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8483"></A><i>LIBJUTILS.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8484"></A>Required by <i>LIBJCC.DLL</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8485"></A><i>PBDWE105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8486"></A>DataWindow support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8487"></A><i>PBODB105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8488"></A>PowerBuilder ODBC interface</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8489"></A><i>PBODB105.INI</i></td>
+<td  rowspan="1"  ><A NAME="TI8490"></A>PowerBuilder ODBC interface setup file</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8491"></A><i>PBDWR105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8492"></A>DataWindow HTMLGenerator component</td>
+</tr>
+</table>
+
+</li>
+</ul>
+</p>
+<p><b>Installed path</b>   If PowerBuilder is not installed on the COM+ or IIS
+server computer, these files must be installed in a directory on
+the <i>system</i> path on the COM+ or IIS
+server. They can be obtained from the <i>Sybase\Shared\PowerBuilder</i> directory
+on the computer on which PowerBuilder is installed.</p>
+<p><b>Registry entries</b>   If <i>PBDWR105.DLL</i> was copied from another
+computer, it must be registered on the COM+ or IIS server.</p>
+<p><b>Notes</b>   ODBC data sources must be defined as <i>system</i> DSNs.
+For more information about configuring ODBC, see <A HREF="apptechp274.htm#BGBDCJAI">"Configuring ODBC data
+sources and drivers"</A>.</p>
+<A NAME="TI8493"></A><p>If COM+ is hosting the server component and running
+on a different computer from IIS, you need to create a client install
+package and install it on the IIS server.</p>
+<A NAME="BGBDDDGF"></A><h4>Files required on the ASP
+server</h4>
+<A NAME="TI8494"></A><p>To use ASP as the page server and connect to the COM+ or
+IIS component using ActiveX, the following files are required on
+the ASP server computer:</p>
+<p><b>HTML pages, templates, and scripts</b>   These are the files that you created for your application.
+If you used a Web target to generate these files, you can set up
+a deployment configuration in PowerBuilder to deploy them to ASP.
+For more information, see <i>Working with Web and JSP Targets</i>
+. </p>

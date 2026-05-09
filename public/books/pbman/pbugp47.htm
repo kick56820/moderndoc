@@ -1,0 +1,58 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the Source editor</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp46.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp48.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CEGCABBH"></A><h1>Using the Source editor</h1>
+<A NAME="TI1524"></A><p>You can use the Source editor to edit the source of most PowerScript
+objects directly instead of making changes to an object in a painter.
+You cannot edit the source of project or proxy objects. The Source
+editor makes it unnecessary to export an object in order to edit
+it and then import it, as you do with the file editor. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Caution: back up your objects</span> <A NAME="TI1525"></A>Although the Source editor provides a quick way to make global
+changes, you should use it with caution, and you must be familiar
+with the syntax and semantics of PowerScript source code before
+using the Source editor to change it.</p>
+<A NAME="TI1526"></A>Changes you make to an object's source code using
+the Source editor take effect <i>immediately</i> when
+you save the object, <i>before the code is validated.</i> If
+an error message displays in the Output window, you must fix the
+problem in the Source editor before you close the editor. If you
+do not, you will not be able to open the object in a painter.</p>
+<A NAME="TI1527"></A>Technical Support is not able to provide support if changes
+you make in the Source editor render an object unusable. For this
+reason, Sybase strongly recommends that you make backup copies of
+your <ACRONYM title = "pibbles" >PBLs</ACRONYM> or objects before
+you edit objects in the Source editor. </p>
+<A NAME="TI1528"></A><p>You can open an object in the Source editor in one of several
+ways: <A NAME="TI1529"></A>
+<ul>
+<li class=fi>Use the Open dialog box</li>
+<li class=ds>Select the Edit Source menu item in the System Tree
+or Library painter</li>
+<li class=ds>Select the
+Edit Source menu item in the Output window for a line that contains
+an error
+</li>
+</ul>
+</p>
+<A NAME="TI1530"></A><p>Unlike the file editor, the Source editor cannot be opened
+independently. It can only be used in conjunction with an object
+defined within a PowerScript target in the current workspace. You
+cannot open an object in the Source editor that is already open
+in a painter.</p>
+<A NAME="TI1531"></A><p>When you export an object and view the exported file in the
+file editor, a PBExportHeader line displays at the beginning of
+the file. If you saved the object with a comment from the object's
+painter, a PBExportComment also displays. The Source editor display
+is identical to the display in the file editor except that the PBExport
+lines are not present in the Source editor. </p>
+<A NAME="TI1532"></A><p>For more information on exporting objects, see <A HREF="pbugp58.htm#X-REF302058208">"Exporting
+and importing entries"</A>.</p>
+

@@ -1,0 +1,126 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Adding functions to PBODB105.INI</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp58.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp60.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CBBECEEF"></A><h1>Adding functions to PBODB105.INI</h1>
+<A NAME="TI1873"></A><p><i>PBODB105.INI</i> lists the functions for
+certain DBMSs that have ODBC drivers. If you need to add a function
+to <i>PBODB105.INI</i> for use with your back-end DBMS,
+you can do either of the following:<A NAME="TI1874"></A>
+<ul>
+<li class=fi><b>Existing sections</b>   Add the function to the Functions section for your back-end
+database if this section exists in <i>PBODB105.INI</i>.</li>
+<li class=ds><b>New sections</b>   Create new sections for your back-end DBMS in <i>PBODB105.INI</i> and
+add the function to the newly created Functions section.
+</li>
+</ul>
+</p>
+<A NAME="TI1875"></A><h2>Adding functions to an existing section in the file</h2>
+<A NAME="TI1876"></A><p>If sections for your back-end DBMS <i>already exist</i> in <i>PBODB105.INI</i>,
+use the following procedure to add new functions.</p>
+<A NAME="TI1877"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add functions to an existing section in PBODB105.INI:</p>
+<ol><li class=fi><p>Open <i>PBODB105.INI</i> in
+one of the following ways:<A NAME="TI1878"></A>
+<ul>
+<li class=fi>Use
+the File Editor in PowerBuilder. (For instructions, see the <i>User's Guide</i>
+.)</li>
+<li class=ds>Use any text editor outside PowerBuilder.
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>Locate
+the entry for your back-end DBMS in the DBMS Driver/DBMS Settings
+section of <i>PBODB105.INI</i>.</p><p>For example, here is the<i>PBODB105.INI</i> entry
+for ASA:<p><PRE> ;*********************************************</PRE><PRE> ;DBMS Driver/DBMS Settings see comments at end</PRE><PRE> ;of file</PRE><PRE> ;*********************************************</PRE><PRE> ...</PRE><PRE> [Adaptive Server Anywhere]</PRE><PRE> PBSyntax='WATCOM50_SYNTAX'</PRE><PRE> PBDateTime='STANDARD_DATETIME'</PRE><PRE> PBFunctions='ASA_FUNCTIONS'</PRE><PRE> PBDefaultValues='autoincrement,current date,</PRE><PRE>    current time,current timestamp,timestamp,</PRE><PRE>    null,user'</PRE><PRE> PBDefaultCreate='YES'</PRE><PRE> PBDefaultAlter='YES'</PRE><PRE> PBDefaultExpressions='YES'</PRE><PRE> DelimitIdentifier='YES'</PRE><PRE> PBDateTimeInvalidInSearch='NO'</PRE><PRE> PBTimeInvalidInSearch='YES'</PRE><PRE> PBQualifierIsOwner='NO'</PRE><PRE> PBSpecialDataTypes='WATCOM_SPECIALDATATYPES'</PRE><PRE> IdentifierQuoteChar='"'</PRE><PRE> PBSystemOwner='sys,dbo'</PRE><PRE> PBUseProcOwner='YES'</PRE><PRE> SQLSrvrTSName='YES'</PRE><PRE> SQLSrvrTSQuote='YES'</PRE><PRE> SQLSrvrTSDelimit='YES'</PRE><PRE> ForeignKeyDeleteRule='Disallow if Dependent Rows</PRE><PRE>    Exist (RESTRICT),Delete any Dependent Rows</PRE><PRE>    (CASCADE),Set Dependent Columns to NULL</PRE><PRE>    (SET NULL)'</PRE><PRE> TableListType='GLOBAL TEMPORARY'</PRE></p></li>
+<li class=ds><p>Find the name of the section in <i>PBODB105.INI</i> that
+contains function information for your back-end DBMS.</p><p>To find this section, look for a line similar to the following
+in the DBMS Driver/DBMS Settings entry:<p><PRE> PBFunctions='<i>section_name</i>'</PRE></p><p>For example, the following line in the DBMS Driver/DBMS
+Settings entry for ASA indicates that the name of the Functions
+section is ASA_FUNCTIONS:<p><PRE> PBFunctions='ASA_FUNCTIONS'</PRE></p></li>
+<li class=ds><p>Find the Functions section for your back-end DBMS
+in <i>PBODB105.INI</i>.</p><p>For example, here is the Functions section for ASA:<p><PRE> ;*********************************************</PRE><PRE> ;Functions</PRE><PRE> ;*********************************************</PRE><PRE> [ASA_FUNCTIONS]</PRE><PRE> AggrFuncs=avg(x),avg(distinct x),count(x),</PRE><PRE>    count(distinct x),count(*),list(x),</PRE><PRE>    list(distinct x),max(x),max(distinct x),</PRE><PRE>    min(x),min(distinct x),sum(x),sum(distinct x)</PRE><PRE> Functions=abs(x),acos(x),asin(x),atan(x),</PRE><PRE>    atan2(x,y),ceiling(x),cos(x),cot(x),degrees(x),</PRE><PRE>    exp(x),floor(x),log(x),log10(x),</PRE><PRE>    mod(dividend,divisor),pi(*),power(x,y),</PRE><PRE>    radians(x),rand(),rand(x),</PRE><PRE>    remainder(dividend,divisor),round(x,y),</PRE><PRE>    sign(x),sin(x),sqrt(x),tan(x),</PRE><PRE>    "truncate"(x,y),ascii(x),byte_length(x),</PRE><PRE>    byte_substr(x,y,z),char(x),char_length(x),</PRE><PRE>    charindex(x,y),difference(x,y)insertstr(x,y,z),</PRE><PRE>    lcase(x),left(x,y),length(x), locate(x,y,z),</PRE><PRE>    lower(x),ltrim(x),patindex('x',y),repeat(x,y),</PRE><PRE>    replicate(x,y),right(x,y),rtrim(x),</PRE><PRE>    similar(x,y),soundex(x),space(x),str(x,y,z),</PRE><PRE>    string(x,...),stuff(w,x,y,z),substr(x,y,z),</PRE><PRE>    trim(x),ucase(x),upper(x),date(x),</PRE><PRE>    dateformat(x,y),datename(x,y),day(x),</PRE><PRE>    dayname(x),days(x),dow(x),hour(x),hours(x),</PRE><PRE>    minute(x),minutes(x),minutes(x,y),month(x),</PRE><PRE>    monthname(x),months(x),months(x,y),now(*),</PRE><PRE>    quarter(x),second(x),seconds(x),seconds(x,y),</PRE><PRE>    today(*),weeks(x),weeks(x,y),year(x),years(x),</PRE><PRE>    years(x,y),ymd(x,y,z),dateadd(x,y,z),</PRE><PRE>    datediff(x,y,z),datename(x,y),datepart(x,y),</PRE><PRE>    getdate(),cast(x as y),convert(x,y,z),</PRE><PRE>    hextoint(x),inttohex(x),</PRE><PRE>    connection_property(x,...),datalength(x),</PRE><PRE>    db_id(x),db_name(x),db_property(x),</PRE><PRE>    next_connection(x),next_database(x),</PRE><PRE>    property(x),property_name(x),</PRE><PRE>    property_number(x),property_description(x),</PRE><PRE>    argn(x,y,...),coalesce(x,...),</PRE><PRE>    estimate(x,y,z),estimate_source(x,y,z),</PRE><PRE>    experience_estimate(x,y,z),ifnull(x,y,z),</PRE><PRE>    index_estimate(x,y,z),isnull(x,...),</PRE><PRE>    number(*),plan(x),traceback(*)</PRE></p></li>
+<li class=ds><p>To add a new function, type a comma followed by
+the function name at the end of the appropriate function list, as
+follows:<A NAME="TI1879"></A>
+<ul>
+<li class=fi><b>Aggregate
+functions</b>   Add aggregate functions to the end of the AggrFuncs list.</li>
+<li class=ds><b>All other functions</b>   Add all other functions to the end of the Functions list.
+</li>
+</ul>
+
+                      </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Case sensitivity</span> <A NAME="TI1880"></A>If the back-end DBMS you are using is case sensitive, be sure
+to use the required case when you add the function name.</p>
+<p>The following example shows a new function for ASA added at
+the end of the Functions list:<p><PRE> ;*********************************************</PRE><PRE> ;Functions</PRE><PRE> ;*********************************************</PRE><PRE> [ASA_FUNCTIONS]</PRE><PRE> AggrFuncs=avg(x),avg(distinct x),count(x),</PRE><PRE>    count(distinct x),count(*),list(x),</PRE><PRE>    list(distinct x),max(x),max(distinct x),</PRE><PRE>    min(x),min(distinct x),sum(x),sum(distinct x)</PRE><PRE> Functions=abs(x),acos(x),asin(x),atan(x),</PRE><PRE>    atan2(x,y),ceiling(x),cos(x),cot(x),degrees(x),</PRE><PRE>    exp(x),floor(x),log(x),log10(x),</PRE><PRE>    mod(dividend,divisor),pi(*),power(x,y),</PRE><PRE>    radians(x),rand(),rand(x),</PRE><PRE>    ...</PRE><PRE>    number(*),plan(x),traceback(*),newfunction()</PRE></p></li>
+<li class=ds><p>Save your changes to <i>PBODB105.INI</i>.</p></li></ol>
+<br><A NAME="TI1881"></A><h2>Adding functions to a new section in the file</h2>
+<A NAME="TI1882"></A><p>If entries for your back-end DBMS <i>do not exist</i> in <i>PBODB105.INI</i>,
+use the following procedure to create the required sections and
+add the appropriate functions.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Before you start</span> <A NAME="TI1883"></A>For more about the settings to supply for
+your back-end DBMS in <i>PBODB105.INI</i>, read the
+comments at the end of the file.</p>
+<A NAME="TI1884"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add functions to a new section in PBODB105.INI:</p>
+<ol><li class=fi><p>Open <i>PBODB105.INI</i> in
+one of the following ways:<A NAME="TI1885"></A>
+<ul>
+<li class=fi>Use
+the File Editor in PowerBuilder. (For instructions, see the <i>User's Guide</i>
+.)</li>
+<li class=ds>Use any text editor outside PowerBuilder.
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>Edit the DBMS Driver/DBMS Settings section
+of the PBODB105 initialization file to add an entry for your back-end
+DBMS. </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Finding the name</span> <A NAME="TI1886"></A>The name required to identify the entry for your back-end
+DBMS in the DBMS Driver/DBMS Settings section is in <i>PBODB105.INI</i>. </p>
+<p>Make sure that you:<A NAME="TI1887"></A>
+<ul>
+<li class=fi>Follow
+the instructions in the comments at the end of <i>PBODB105.INI</i>.</li>
+<li class=ds>Use the same syntax as existing entries in the DBMS
+Driver/DBMS Settings section of <i>PBODB105.INI</i>.</li>
+<li class=ds>Include a section name for PBFunctions.
+</li>
+</ul>
+</p><p>For example, here is the relevant portion of an entry for
+a DB2/2 database:<p><PRE> ;***********************************************</PRE><PRE> ;DBMS Driver/DBMS Settings</PRE><PRE> ;***********************************************</PRE><PRE> [DB2/2]</PRE><PRE> ...</PRE><PRE> PBFunctions='DB22_FUNCTIONS'</PRE><PRE> ...</PRE></p></li>
+<li class=ds><p>Edit the Functions section of <i>PBODB105.INI</i> to
+add an entry for your back-end DBMS.</p><p>Make sure that you:<A NAME="TI1888"></A>
+<ul>
+<li class=fi>Follow
+the instructions in the comments at the end of <i>PBODB105.INI</i>.</li>
+<li class=ds>Use the same syntax as existing entries in the Functions
+section of <i>PBODB105.INI</i>.</li>
+<li class=ds>Give the Functions section the name that you specified
+for PBFunctions in the DBMS Driver/DBMS Settings entry.
+</li>
+</ul>
+</p><p>For example:<p><PRE> ;***********************************************</PRE><PRE> ;Functions</PRE><PRE> ;***********************************************</PRE><PRE> [DB22_FUNCTIONS]</PRE><PRE> AggrFuncs=avg(),count(),list(),max(),min(),sum()</PRE><PRE> Functions=curdate(),curtime(),hour(), ...</PRE></p></li>
+<li class=ds><p>Type a comma followed by the function name at
+the end of the appropriate function list, as follows:<A NAME="TI1889"></A>
+<ul>
+<li class=fi><b>Aggregate functions</b>   Add aggregate functions to the end of the AggrFuncs list.</li>
+<li class=ds><b>All other functions</b>   Add all other functions to the end of the Functions list.
+</li>
+</ul>
+
+                      </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Case sensitivity</span> <A NAME="TI1890"></A>If the back-end DBMS you are using is case sensitive, be sure
+to use the required case when you add the function name.</p>
+<p>The following example shows (in bold) a new DB2/2
+function named <b>substr</b>() added at the end of the
+Functions list:<p><PRE> ;***********************************************</PRE><PRE> ;Functions</PRE><PRE> ;***********************************************</PRE><PRE> [DB22_FUNCTIONS]</PRE><PRE> AggrFuncs=avg(),count(),list(),max(),min(),sum()</PRE><PRE> Functions=curdate(),curtime(),hour(), <i>substr()</i></PRE></p></li>
+<li class=ds><p>Save your changes to <i>PBODB105.INI</i>.</p></li></ol>
+<br>

@@ -1,0 +1,156 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using toolbars in MDI applications</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp31.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp33.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDICGAI"></A><h1>Using toolbars in MDI applications</h1>
+<A NAME="TI636"></A><p>This section describes some techniques you can use to customize
+the behavior of your toolbars and save and restore toolbar settings.
+For information about how to define and use menus and toolbars,
+see the <i>User's Guide</i>
+.</p>
+<A NAME="TI637"></A><h2>Customizing toolbar behavior</h2>
+<A NAME="TI638"></A><h4>Disabling toolbar buttons</h4>
+<A NAME="TI639"></A><p>To disable a toolbar button, you need to disable the menu
+item with which it is associated. Disabling the menu item disables
+the toolbar button automatically.</p>
+<A NAME="TI640"></A><p>To disable a menu item, you need to set the Enabled property
+of the menu item:<p><PRE> m_test.m_file.m_new.Enabled = FALSE</PRE></p>
+<A NAME="TI641"></A><h4>Hiding toolbar buttons</h4>
+<A NAME="TI642"></A><p>To hide a menu item, you set the Visible property of the item:<p><PRE> m_test.m_file.m_open.Visible = FALSE</PRE></p>
+<A NAME="TI643"></A><p>Hiding a menu item does not cause its toolbar button to disappear
+or be disabled. To hide a toolbar button, you need to set the ToolbarItemVisible property
+of the menu item:<p><PRE> m_test.m_file.m_open.ToolBarItemVisible = FALSE</PRE></p>
+<A NAME="TI644"></A><p>Hiding a menu item does not cause the toolbar buttons for
+the drop-down or cascading menu items at the next level to disappear
+or be disabled. You need to hide or disable these buttons individually.</p>
+<A NAME="TI645"></A><h4>Setting the current item in a drop-down toolbar</h4>
+<A NAME="TI646"></A><p>When a user clicks on a toolbar button in a drop-down toolbar,
+PowerBuilder makes the selected button the current item. This makes
+it easy for the user to perform a particular toolbar action repeatedly.
+You can also make a particular button the current item programmatically
+by setting the CurrentItem property of the MenuCascade object. For
+example, to set the current item to the toolbar button for the New
+option on the File menu, you could execute this line in a script:<p><PRE> m_test.m_file.currentitem = m_test.m_file.m_new</PRE></p>
+<A NAME="TI647"></A><p>In order for this to work, you would need to specify MenuCascade
+as the object type for the File menu in the Menu painter.</p>
+<A NAME="TI648"></A><h4>Testing for whether a toolbar is moved</h4>
+<A NAME="TI649"></A><p>Whenever a toolbar moves in an MDI frame window, PowerBuilder
+triggers the ToolBarMoved event for the window. In the script for
+this event, you can test to see which toolbar has moved and perform
+some processing. When the user moves the FrameBar or SheetBar, the
+ToolbarMoved event is triggered and the Message.WordParm and Message.LongParm
+properties are populated with values that indicate which toolbar
+was moved:</p>
+<A NAME="TI650"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 5-1: Values of Message.WordParm and Message.LongParm properties</caption>
+<tr><th  rowspan="1"  ><A NAME="TI651"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI652"></A>Value</th>
+<th  rowspan="1"  ><A NAME="TI653"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="2"  ><A NAME="TI654"></A>Message.WordParm </td>
+<td  rowspan="1"  ><A NAME="TI655"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI656"></A>FrameBar moved</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI657"></A>1</td>
+<td  rowspan="1"  ><A NAME="TI658"></A>SheetBar moved</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td  rowspan="5"  ><A NAME="TI659"></A>Message.LongParm</td>
+<td  rowspan="1"  ><A NAME="TI660"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI661"></A>Moved to left</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI662"></A>1</td>
+<td  rowspan="1"  ><A NAME="TI663"></A>Moved to top</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI664"></A>2</td>
+<td  rowspan="1"  ><A NAME="TI665"></A>Moved to right</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI666"></A>3</td>
+<td  rowspan="1"  ><A NAME="TI667"></A>Moved to bottom</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI668"></A>4</td>
+<td  rowspan="1"  ><A NAME="TI669"></A>Set to floating</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<A NAME="CCJCDGBH"></A><h2>Saving and restoring toolbar settings</h2>
+<A NAME="TI670"></A><p>You can save and restore the current toolbar settings using
+functions that retrieve information about your toolbar settings,
+and you can modify these settings.</p>
+<A NAME="TI671"></A><p><b>GetToolbar</b> and <b>GetToolbarPos</b> allow
+you to retrieve the current toolbar settings. <b>SetToolbar</b> and <b>SetToolbarPos</b> allow
+you to change the toolbar settings. The syntax you use for the <b>GetToolbarPos</b> and <b>SetToolbarPos</b> functions
+varies depending on whether the toolbar you are working with is
+floating or docked.</p>
+<A NAME="TI672"></A><h4>Floating toolbars</h4>
+<A NAME="TI673"></A><p>The position of a floating toolbar is determined by its x
+and y coordinates. The size of a floating toolbar is determined
+by its width and height.</p>
+<A NAME="TI674"></A><p>When you code the <b>GetToolbarPos</b> and <b>SetToolbarPos</b> functions
+for a floating toolbar, you need to include arguments for the x
+and y coordinates and the width and height.</p>
+<A NAME="TI675"></A><h4>Docked toolbars</h4>
+<A NAME="TI676"></A><p>The position of a docked toolbar is determined by its docking
+row and its offset from the beginning of the docking row. For toolbars
+at the top or bottom, the offset for a docked toolbar is measured
+from the left edge. For toolbars at the left or right, the offset
+is measured from the top.</p>
+<A NAME="TI677"></A><p>By default, the docking row for a toolbar is the same as its
+bar index. If you align the toolbar with a different border in the
+window, its docking row may change depending on where you place
+it.</p>
+<A NAME="TI678"></A><p>When you code the <b>GetToolbarPos</b> and <b>SetToolbarPos</b> functions
+for a docked toolbar, you need to include arguments for the docking
+row and the offset.</p>
+<A NAME="TI679"></A><h4>Example</h4>
+<A NAME="TI680"></A><p>The example below shows how to use a custom class user object
+to manage toolbar settings. The user object has two functions, one
+for saving the current settings and the other for restoring the
+settings later on. Because the logic required to save and restore
+the settings is handled in the user object (instead of in the window
+itself), this logic can easily be used with any window.</p>
+<A NAME="TI681"></A><p>The sample code shown below supports both fixed and floating
+toolbars.</p>
+<p><b>Script for the window's Open event</b>   When the window opens, the following script restores the toolbar
+settings from an initialization file. To restore the settings, it
+creates a custom class user object called <b>u_toolbar</b> and calls
+the <b>Restore</b> function: <p><PRE> // Create the toolbar NVO<br>u_toolbar = create u_toolbar<br>// Restore the toolbar positions<br>u_toolbar.Restore(this,"toolbar.ini",   this.ClassName())</PRE></p>
+<p><b>Script for the window's Close event</b>   When the window closes, the following script saves the toolbar
+settings by calling the <b>Save</b> function. Once the
+settings have been saved, it destroys the user object: <p><PRE> // Save the toolbar <br>stateu_toolbar.Save(this, "toolbar.ini", ClassName())<br>// Destroy the toolbar NVOdestroy u_toolbar</PRE></p>
+<p><b>Script for the Save function</b>   The <b>Save</b> function has three arguments:<A NAME="TI682"></A>
+<ul>
+<li class=fi><i>Win</i> &#8211; provides
+the window reference</li>
+<li class=ds><i>File</i> &#8211; provides the
+name of the file where the settings should be saved</li>
+<li class=ds><i>Section</i> &#8211; identifies
+the section where the settings should be saved
+</li>
+</ul>
+</p>
+<A NAME="TI683"></A><p>The <b>Save</b> function uses the <b>GetToolbar</b> and <b>GetToolbarPos</b> functions
+to retrieve the current toolbar settings. To write the settings
+to the initialization file, it uses the <b>SetProfileString</b> function.</p>
+<A NAME="TI684"></A><p>The <b>Save</b> function can handle multiple toolbars
+for a single menu. It uses the bar index to keep track of information
+for each toolbar:<p><PRE> // Store the toolbar settings for the passed window<br>integer index, row, offset, x, y, w, h<br>boolean visible<br>string visstring, alignstring, title<br>toolbaralignment alignmentFOR index = 1 to 16 </PRE></p>
+<A NAME="TI685"></A><p><p><PRE> // Try to get the attributes for the bar.   <br>IF win.GetToolbar(index, visible, alignment, &amp;<br>   title)= 1 THEN   <br>   // Convert visible to a string<br>   CHOOSE CASE visible<br>   CASE true<br>      visstring = "true"<br>   CASE false   <br>      visstring = "false"   <br>   END CHOOSE// Convert alignment to a string   <br> <br>   CHOOSE CASE alignment      <br>   CASE AlignAtLeft!      <br>      alignstring = "left"<br>   CASE AlignAtTop!<br>      alignstring = "top"      <br>   CASE AlignAtRight!      <br>      alignstring = "right"      <br>   CASE AlignAtBottom!      <br>      alignstring = "bottom"      <br>   CASE Floating!      <br>      alignstring = "floating"<br>   END CHOOSE<br> <br>   // Save the basic attributes   <br>   SetProfileString(file, section +  &amp;      <br>      String(index), "visible", visstring)         <br>   SetProfileString(file, section +  &amp;<br>      String(index), "alignment", alignstring)   <br>   SetProfileString(file, section +  &amp;<br>      String(index), "title", title)<br> <br>   // Save the fixed position<br>   win.GetToolbarPos(index, row, offset)<br>   SetProfileString(file, section +  &amp;<br>      String(index), "row", String(row))<br>   SetProfileString(file, section +  &amp;<br>      String(index), "offset", String(offset))<br> <br>   // Save the floating position<br>   win.GetToolbarPos(index, x, y, w, h)<br>   SetProfileString(file, section +  &amp;<br>      String(index), "x", String(x))<br>   SetProfileString(file, section +  &amp;<br>      String(index), "y", String(y))<br>   SetProfileString(file, section +  &amp;<br>      String(index), "w", String(w))<br> <br>   SetProfileString(file, section +  &amp;<br>      String(index), "h", String(h))<br>   END IF<br>NEXT</PRE></p>
+<p><b>Script for the Restore function</b>   The <b>Restore</b> function has the same three arguments
+as the <b>Save</b> function. It uses the <b>ProfileString</b> function
+to retrieve toolbar settings from the initialization file. Once
+the settings have been retrieved, it uses the <b>SetToolbar</b> and <b>SetToolbarPos</b> functions
+to restore the toolbar settings.</p>
+<A NAME="TI686"></A><p>Like the <b>Save</b> function, the <b>Restore</b> function
+can handle multiple toolbars for a single menu. It uses the bar
+index to keep track of information for each toolbar:<p><PRE> // Restore toolbar settings for the passed window<br> <br>integer index, row, offset, x, y, w, h<br>boolean visible<br>string visstring, alignstring, title<br>toolbaralignment alignment<br> <br>FOR index = 1 to 16<br>  // Try to get the attributes for the bar.<br>  IF win.GetToolbar(index, visible, alignment, &amp;<br>    title)= 1 THEN<br>    // Try to get the attributes from the .ini<br>    // file<br>    visstring = ProfileString(file, section +  &amp;<br>      String(index), "visible", "")<br>    IF visstring &gt; "" THEN<br>      // Get all of the attributes<br>      alignstring = ProfileString(file, section +  &amp;<br>        String(index), "alignment", "left")<br>      title = ProfileString(file, section +  &amp;<br>        String(index), "title", "(Untitled)")<br>      row = Integer(ProfileString(file, section +  &amp;<br>        String(index), "row", "1"))<br>      offset = Integer(ProfileString(file, &amp;<br>        section + String(index), "offset", "0"))<br>      x = Integer(ProfileString(file, section +  &amp;<br>        String(index), "x", "0"))<br>      y = Integer(ProfileString(file, section +  &amp;<br>        String(index), "y", "0"))<br>      w = Integer(ProfileString(file, section +  &amp;<br>        String(index), "w", "0"))<br>      h = Integer(ProfileString(file, section +  &amp;<br>        String(index), "h", "0"))<br> <br>      // Convert visstring to a boolean<br>      CHOOSE CASE visstring<br>      CASE "true"<br>        visible = true<br>      CASE "false"<br>        visible = false<br>      END CHOOSE<br> <br>      // Convert alignstring to toolbaralignment<br>      CHOOSE CASE alignstring<br>      CASE "left"<br>        alignment = AlignAtLeft!<br>      CASE "top"<br>        alignment = AlignAtTop!<br>      CASE "right"<br>        alignment = AlignAtRight!<br>      CASE "bottom"<br>        alignment = AlignAtBottom!<br>      CASE "floating"<br>        alignment = Floating!<br>      END CHOOSE<br> <br>      // Set the new position<br>      win.SetToolbar(index, visible, alignment, title)<br>      win.SetToolbarPos(index, row, offset, false)<br>      win.SetToolbarPos(index, x, y, w, h)<br>    END IF<br>  END IF<br>NEXT</PRE></p>
+

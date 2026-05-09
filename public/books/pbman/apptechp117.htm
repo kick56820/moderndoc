@@ -1,0 +1,148 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using PowerBuilder as an automation server</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp116.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp118.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF350572694"></A><h1>Using PowerBuilder as an automation server</h1>
+<A NAME="TI3774"></A><p>Using PowerBuilder.Application as an automation server involves
+these steps:<A NAME="TI3775"></A>
+<ol>
+</li>
+<li class=ds>Define the objects you will
+access.</li>
+<li class=ds>Build the runtime libraries for those objects.</li>
+<li class=ds>Write code in the client that connects to PowerBuilder,
+creates the objects, and accesses their methods and properties.
+</li>
+</ol>
+</p>
+<A NAME="X-REF350595498"></A><h2>Creating the user objects you will access</h2>
+<A NAME="TI3776"></A><p>How you define user objects for an automation server depends
+mainly on your application design. The object must be a custom class
+user object. You define instance variables and functions for the
+object. The object can declare and instantiate other objects for
+its own use.</p>
+<A NAME="TI3777"></A><h4>Objects created using automation</h4>
+<A NAME="TI3778"></A><p>When the client instantiates multiple objects in the same
+server runtime session, you can pass references to those objects,
+enabling the objects to work together.</p>
+<A NAME="TI3779"></A><p>You can make a PowerBuilder object you create from the client
+aware of another by passing it that reference. When the objects
+exist in the same session, PowerBuilder accepts the OLE object reference
+and also recognizes the underlying PowerBuilder object datatype.
+This reference gives access to the first object's properties
+and methods just as in any PowerBuilder application.</p>
+<A NAME="TI3780"></A><p>Keeping this technique in mind, you can define functions for
+the user object that accept object references passed from the client,
+assign them to the correct variable type, and treat the references
+as instantiated PowerBuilder objects, which they are.</p>
+<A NAME="X-REF350595547"></A><h2>Building runtime libraries</h2>
+<A NAME="TI3781"></A><p>After you have defined your objects, use the Library painter
+to build PowerBuilder dynamic libraries (<i>PBD</i>s)
+or compiled libraries (<i>DLL</i>s). All the libraries
+accessed in the same PowerBuilder.Application session must be the same
+type. The reasons for choosing either type, Pcode or compiled machine code,
+are the same as for building any PowerBuilder application.</p>
+<A NAME="TI3782"></A><p>Here is a quick overview of what you need to do to build each
+library in the Library painter.<A NAME="TI3783"></A>
+<ol>
+</li>
+<li class=ds>In
+the Library painter, select the library name.</li>
+<li class=ds>Select Library&gt;Build Runtime Library.</li>
+<li class=ds>Check or clear the Machine Code check box to correspond
+to your decision about <i>PBD</i>s versus <i>DLL</i>s.<br>
+Other options in the dialog box are not essential
+to this process. For information about them, click the Help button
+or see the <i>PowerBuilder User's Guide</i>
+.<br></li>
+<li class=ds>Click OK to build the library.</li>
+<li class=ds>Repeat steps 1 to 4 for each library specified in
+the LibraryList property of PowerBuilder.Application.</li>
+<li class=ds>Put the resulting <i>PBD</i>s or <i>DLL</i>s
+in the desired directory. The client application will specify the
+paths so that the server can locate them.
+</li>
+</ol>
+</p>
+<A NAME="TI3784"></A><p>For more information about building an application
+in the Project painter, see the <i>PowerBuilder User's
+Guide</i>
+.</p>
+<A NAME="TI3785"></A><h2>Writing client code that accesses PowerBuilder and
+user objects</h2>
+<A NAME="TI3786"></A><p>A client application that wants to establish a PowerBuilder.Application
+session needs code to:<A NAME="TI3787"></A>
+<ul>
+<li class=fi>Connect to the server</li>
+<li class=ds>Set properties for the server</li>
+<li class=ds>Instantiate objects</li>
+<li class=ds>Access those objects
+</li>
+</ul>
+</p>
+<A NAME="TI3788"></A><p>All the steps of the process should be accompanied by error
+checking because there are any number of reasons why server sessions
+can fail.</p>
+<A NAME="TI3789"></A><p>The following steps with code examples illustrate how to do
+it. The first set of steps shows client code for PowerBuilder. A
+Visual Basic example follows.</p>
+<A NAME="TI3790"></A><h4>PowerBuilder as a client</h4>
+<A NAME="TI3791"></A><p>To establish a server automation session with PowerBuilder.Application
+and access objects, you need code for each of these steps:<A NAME="TI3792"></A>
+<ol>
+</li>
+<li class=ds>Declare one OLEObject variable
+for PowerBuilder.Application. Declare additional OLEObject variables
+for each object you will create.<p><PRE> OLEObject ole_pba, ole_analyze</PRE><br>
+If you want to handle errors in the OLEObject ExternalException
+and Error events, use a user object inherited from OLEObject instead.<br></li>
+<li class=ds>Start the automation server and check that the connection
+was established. A status of 0 indicates success.<p><PRE> ole_pba = CREATE OLEObject</PRE><PRE> li_status = ole_pba.ConnectToNewObject &amp;<br>   ("PowerBuilder.Application")</PRE><PRE> IF li_status &lt; 0 THEN</PRE><PRE>    MessageBox("No Server", &amp;</PRE><PRE>       "Can't connect to PowerBuilder.Application.")</PRE><PRE>    RETURN</PRE><PRE> END IF</PRE></li>
+<li class=ds>Set the properties of PowerBuilder.Application,
+establishing the libraries you will access. You cannot change these
+property values after you create objects.<p><PRE> ole_pba.LibraryList = &amp;</PRE><PRE>    "c:\pbobjs\myobj\serv1.dll;c:\pbobjs\myobj\serv2.dll"</PRE><PRE> ole_pba.MachineCode = TRUE</PRE></li>
+<li class=ds>Create the first object you want to use and check
+for success. Specify the object's name as defined in the
+library:<p><PRE> ole_analyze = ole_pba.CreateObject("uo_analyze")</PRE><PRE> IF IsNull(ole_analyze) THEN</PRE><PRE>    MessageBox("No Object", &amp;</PRE><PRE>       "Can't create object uo_analyze.")</PRE><PRE>    RETURN</PRE><PRE> END IF</PRE></li>
+<li class=ds>Access functions or properties of the object using
+automation syntax. (These properties and methods are hypothetical.)<p><PRE> ld_avg = ole_analyze.uof_average()</PRE><PRE> ole_analyze.Projection = TRUE</PRE><PRE> li_status = ole_analyze.uof_RTFReport(REF ls_rpt)</PRE></li>
+<li class=ds>Disconnect from PowerBuilder.Application and destroy
+the objects when you are done. (Exiting your application also accomplishes
+this.)<p><PRE> DESTROY ole_analyze</PRE><PRE> ole_pba.DisconnectObject()</PRE><PRE> DESTROY ole_pba</PRE>
+</li>
+</ol>
+</p>
+<A NAME="TI3793"></A><h4>Visual Basic version</h4>
+<A NAME="TI3794"></A><p>This example shows typical Visual Basic client code for establishing
+a server automation session with PowerBuilder.Application. The steps
+are similar to those for PowerBuilder above.<A NAME="TI3795"></A>
+<ol>
+</li>
+<li class=ds>Declare an object variable for the PowerBuilder.Application.
+Declare additional object variables for each object you will create.<p><PRE> Dim ole_pba As Object</PRE><PRE> Dim ole_analyze As Object</PRE></li>
+<li class=ds>Start the automation server and check that the connection
+was established. A status of 0 indicates success.<p><PRE> Set ole_pba = CreateObject_<br>   ("PowerBuilder.Application")</PRE><PRE> If ole_pba Is Nothing Then</PRE><PRE>    REM Handle the error</PRE><PRE> End If</PRE></li>
+<li class=ds>Set the properties of PowerBuilder.Application,
+establishing the libraries you will access. You cannot change these
+property values after you create objects.<p><PRE> ole_pba.LibraryList = _</PRE><PRE>    "c:\pb\myobj\serv1.dll;c:\pb\myobj\serv2.dll"</PRE><PRE> ole_pba.MachineCode = TRUE</PRE></li>
+<li class=ds>Create the first object you want to use and check
+for success. You specify the object's name as defined in
+the library:<p><PRE> Set ole_analyze = ole_pba.CreateObject _</PRE><PRE>    ("uo_analyze")</PRE><PRE> If ole_analyze Is Nothing Then</PRE><PRE>    REM Handle the error</PRE><PRE> End If</PRE></li>
+<li class=ds>Access functions or properties of the object using
+automation syntax. (These properties and methods are hypothetical.)<p><PRE> ld_avg = ole_analyze.uof_average()</PRE><PRE> ole_analyze.Projection = TRUE</PRE><PRE> li_status = ole_analyze.uof_RTFreport(REF ls_rpt)</PRE></li>
+<li class=ds>Destroy the objects. (Exiting the application also
+accomplishes this.)<p><PRE> Set ole_analyze = Nothing</PRE><PRE> Set ole_pba = Nothing</PRE>
+</li>
+</ol>
+</p>
+<A NAME="TI3796"></A><p>For complete information about PowerBuilder.Application
+functions and properties, see <A HREF="apptechp120.htm#X-REF349033929">"Runtime
+automation server reference "</A>.</p>
+

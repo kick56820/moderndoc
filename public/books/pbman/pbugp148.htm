@@ -1,0 +1,436 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Modifying the data pipeline definition </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp147.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp149.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BCDCFJDI"></A><h1>Modifying the data pipeline definition </h1>
+<A NAME="TI4505"></A><p>After you create a pipeline definition, you can modify it
+in a variety of ways. The changes you make depend on what pipeline
+operation you select, the destination DBMS, and what you are trying
+to accomplish by executing the pipeline.</p>
+<A NAME="TI4506"></A><p><A HREF="pbugp148.htm#CHDIGCAF">Table 17-1</A> lists
+properties you can modify that apply to the destination table. These
+properties display at the top of the Data Pipeline painter workspace.</p>
+<A NAME="CHDIGCAF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 17-1: Pipeline properties for the destination
+table</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4507"></A>Item</th>
+<th  rowspan="1"  ><A NAME="TI4508"></A>Description</th>
+<th  rowspan="1"  ><A NAME="TI4509"></A>Default</th>
+<th  rowspan="1"  ><A NAME="TI4510"></A>How to edit</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4511"></A>Table</td>
+<td  rowspan="1"  ><A NAME="TI4512"></A>Name of the destination table.</td>
+<td  rowspan="1"  ><A NAME="TI4513"></A>If source and destination are different,
+name of first table specified in the source data or name of the
+stored procedure. If the same, <b>_copy</b> is
+appended.</td>
+<td  rowspan="1"  ><A NAME="TI4514"></A>For Create or Replace, enter a name.<A NAME="TI4515"></A><p>For Refresh, Append, or Update, select a name from the drop-down
+list.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4516"></A>Options</td>
+<td  rowspan="1"  ><A NAME="TI4517"></A>Pipeline operation: Create, Replace, Refresh,
+Append, or Update.</td>
+<td  rowspan="1"  ><A NAME="TI4518"></A>Create - Add Table.</td>
+<td  rowspan="1"  ><A NAME="TI4519"></A>Select an option from the drop-down
+list. See <A HREF="pbugp148.htm#CHDHIICA">Table 17-3</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4520"></A>Commit</td>
+<td  rowspan="1"  ><A NAME="TI4521"></A>Number of rows piped to the destination
+database before PowerBuilder commits the rows to the database.</td>
+<td  rowspan="1"  ><A NAME="TI4522"></A>100 rows.</td>
+<td  rowspan="1"  ><A NAME="TI4523"></A>Select a number, <b>All</b>,
+or <b>None</b> from the drop-down list.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4524"></A>Key</td>
+<td  rowspan="1"  ><A NAME="TI4525"></A>Key name for the table in the destination
+database.</td>
+<td  rowspan="1"  ><A NAME="TI4526"></A>If the source is only one table, the
+table name is followed by <b>_x</b>.</td>
+<td  rowspan="1"  ><A NAME="TI4527"></A>(Create or Replace only) Enter a name. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4528"></A>Max Errors</td>
+<td  rowspan="1"  ><A NAME="TI4529"></A>Number of errors allowed before the pipeline
+stops.</td>
+<td  rowspan="1"  ><A NAME="TI4530"></A>100 errors.</td>
+<td  rowspan="1"  ><A NAME="TI4531"></A>Select a number or <b>No Limit</b> from
+the drop-down list.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4532"></A>Extended Attributes</td>
+<td  rowspan="1"  ><A NAME="TI4533"></A>(Create and Replace only) Specifies whether
+or not the extended attributes of the selected source columns are piped
+to the extended attribute system tables of the destination database. </td>
+<td  rowspan="1"  ><A NAME="TI4534"></A>Not checked.</td>
+<td  rowspan="1"  ><A NAME="TI4535"></A>Click the check box.</td>
+</tr>
+</table>
+<A NAME="TI4536"></A><p><A HREF="pbugp148.htm#CHDGFHBJ">Table 17-2</A> lists
+properties that you can modify that apply to the destination table's
+columns and keys. These properties display under the properties
+that apply to the table itself and most can be modified only for
+the Create and Replace pipeline operations. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Column names and datatypes that cannot be modified</span> <A NAME="TI4537"></A>You cannot modify the source column names and datatypes that
+display at the left of the workspace.</p>
+<A NAME="CHDGFHBJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 17-2: Pipeline properties
+for the destination table's columns and keys</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4538"></A>Item</th>
+<th  rowspan="1"  ><A NAME="TI4539"></A>Description</th>
+<th  rowspan="1"  ><A NAME="TI4540"></A>Default</th>
+<th  rowspan="1"  ><A NAME="TI4541"></A>How to edit</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4542"></A>Destination Name</td>
+<td  rowspan="1"  ><A NAME="TI4543"></A>Column name</td>
+<td  rowspan="1"  ><A NAME="TI4544"></A>Source column name.</td>
+<td  rowspan="1"  ><A NAME="TI4545"></A>Enter a name.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4546"></A>Type</td>
+<td  rowspan="1"  ><A NAME="TI4547"></A>Column datatype</td>
+<td  rowspan="1"  ><A NAME="TI4548"></A>If the DBMS is unchanged, source column
+datatype. If the DBMS is different, a best-guess datatype.</td>
+<td  rowspan="1"  ><A NAME="TI4549"></A>Select a type from the drop-down list.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4550"></A>Key</td>
+<td  rowspan="1"  ><A NAME="TI4551"></A>Whether the column is a key column (check
+means yes)</td>
+<td  rowspan="1"  ><A NAME="TI4552"></A>Source table's key columns (if the
+source is only one table and all key columns were selected).</td>
+<td  rowspan="1"  ><A NAME="TI4553"></A>Select or clear check boxes.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4554"></A>Width</td>
+<td  rowspan="1"  ><A NAME="TI4555"></A>Column width</td>
+<td  rowspan="1"  ><A NAME="TI4556"></A>Source column width.</td>
+<td  rowspan="1"  ><A NAME="TI4557"></A>Enter a number.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4558"></A>Dec</td>
+<td  rowspan="1"  ><A NAME="TI4559"></A>Decimal places for the column</td>
+<td  rowspan="1"  ><A NAME="TI4560"></A>Source column decimal places.</td>
+<td  rowspan="1"  ><A NAME="TI4561"></A>Enter a number.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4562"></A>Nulls</td>
+<td  rowspan="1"  ><A NAME="TI4563"></A>Whether <b>NULL</b> is allowed
+for the column (check means yes)</td>
+<td  rowspan="1"  ><A NAME="TI4564"></A>Source column value.</td>
+<td  rowspan="1"  ><A NAME="TI4565"></A>Select or clear check boxes.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4566"></A>Initial Value</td>
+<td  rowspan="1"  ><A NAME="TI4567"></A>Column initial value</td>
+<td  rowspan="1"  ><A NAME="TI4568"></A>Source column initial value. (If no initial
+value, character columns default to spaces and numeric columns default
+to 0.)</td>
+<td  rowspan="1"  ><A NAME="TI4569"></A>Select an initial value from the drop-down
+list.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4570"></A>Default Value</td>
+<td  rowspan="1"  ><A NAME="TI4571"></A>Column default value</td>
+<td  rowspan="1"  ><A NAME="TI4572"></A>None. Default values stored in the source
+database are not piped to the destination database.</td>
+<td  rowspan="1"  ><A NAME="TI4573"></A>Select a default value from the drop-down
+list or enter a default value. Keyword values depend on destination
+DBMS.</td>
+</tr>
+</table>
+<A NAME="TI4574"></A><h2>Choosing a pipeline operation</h2>
+<A NAME="TI4575"></A><p>When PowerBuilder pipes data, what happens in the destination
+database depends on which pipeline operation you choose in the Options
+drop-down list at the top of the workspace.</p>
+<A NAME="CHDHIICA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 17-3:  Effect of pipeline
+operations on the destination database</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4576"></A>Pipeline operation</th>
+<th  rowspan="1"  ><A NAME="TI4577"></A>Effect on destination database</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4578"></A>Create - Add Table</td>
+<td  rowspan="1"  ><A NAME="TI4579"></A>A new table is created and rows selected
+from the source tables are inserted.<A NAME="TI4580"></A><p>If a table with the specified name already exists in the destination
+database, a message displays and you must select another option
+or change the table name.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4581"></A>Replace - Drop/Add Table</td>
+<td  rowspan="1"  ><A NAME="TI4582"></A>An existing table with the specified
+table name is dropped, a new table is created, and rows selected from
+the source tables are inserted.<A NAME="TI4583"></A><p>If no table exists with the specified name, a table is created.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4584"></A>Refresh - Delete/Insert Rows</td>
+<td  rowspan="1"  ><A NAME="TI4585"></A>All rows of data in an existing table
+are deleted, and rows selected from the source tables are inserted.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4586"></A>Append - Insert Rows</td>
+<td  rowspan="1"  ><A NAME="TI4587"></A>All rows of data in an existing table
+are preserved, and new rows selected from the source tables are inserted.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4588"></A>Update - Update/Insert Rows</td>
+<td  rowspan="1"  ><A NAME="TI4589"></A>Rows in an existing table that match
+the key criteria values in the rows selected from the source tables
+are updated, and rows that do not match the key criteria values
+are inserted.</td>
+</tr>
+</table>
+<A NAME="TI4590"></A><h2>Dependency of modifications on pipeline operation</h2>
+<A NAME="TI4591"></A><p>The modifications you can make in the workspace depend on
+the pipeline operation you have chosen.</p>
+<A NAME="TI4592"></A><h4>When using <br>Create or Replace</h4>
+<A NAME="TI4593"></A><p>When you select the Create - Add Table option (the default)
+or the Replace - Drop/Add Table option, you can:<A NAME="TI4594"></A>
+<ul>
+<li class=fi>Change the destination table definition.<br>
+Follow the rules of the destination DBMS.<br></li>
+<li class=ds>Specify or clear a key name and/or key
+columns.<br>
+Specify key columns by selecting one or more check boxes to
+define a unique identifier for rows. Neither a key name nor key
+columns are required.<br></li>
+<li class=ds>Allow or disallow <b>NULLs</b> for a
+column.<br>
+If <b>NULL</b> is allowed, no initial value is
+allowed. If <b>NULL</b> is not allowed, an initial value
+is required. The words <b>spaces</b> (a string filled
+with spaces) and <b>today</b> (today's date)
+are initial value keywords.<br></li>
+<li class=ds>Modify the Commit and Max Errors values.</li>
+<li class=ds>Specify an initial value and a default value.
+</li>
+</ul>
+</p>
+<A NAME="TI4595"></A><p>If you have specified key columns and a key name and if the
+destination DBMS supports primary keys, the Data Pipeline painter
+creates a primary key for the destination table. If the destination
+DBMS does not support primary keys, a unique index is created.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>For Oracle databases</span> <A NAME="TI4596"></A>PowerBuilder generates a unique index for Oracle databases.</p>
+<A NAME="TI4597"></A><p>If you try to use the Create option, but a table with the
+specified name already exists in the destination database, PowerBuilder tells
+you, and you must select another option or change the table name.</p>
+<A NAME="TI4598"></A><p>When you use the Replace option, PowerBuilder warns you that
+you are deleting a table, and you can choose another option if needed.</p>
+<A NAME="TI4599"></A><h4>When using Refresh and Append</h4>
+<A NAME="TI4600"></A><p>For the Refresh - Delete/Insert Rows or Append -
+Insert Rows options, the destination table must already exist. You
+can:<A NAME="TI4601"></A>
+<ul>
+<li class=fi>Select an existing table
+from the Table drop-down list.</li>
+<li class=ds>Modify the Commit and Max Errors values.</li>
+<li class=ds>Change the initial value for a column.
+</li>
+</ul>
+</p>
+<A NAME="TI4602"></A><h4>When using Update</h4>
+<A NAME="TI4603"></A><p>For the Update - Update/Insert Rows option, the destination
+table must already exist. You can:<A NAME="TI4604"></A>
+<ul>
+<li class=fi>Select an existing table from the Table drop-down list.</li>
+<li class=ds>Modify the Commit and Max Errors values.</li>
+<li class=ds>Change the Key columns in the destination table's
+primary key or unique index, depending on what the DBMS supports.
+Key columns must be selected; the key determines the <b>UPDATE</b> statement's <b>WHERE</b> clause.</li>
+<li class=ds>Change the initial value for a column.
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Bind variables and the Update option</span> <A NAME="TI4605"></A>If the destination database supports bind variables, the Update
+option takes advantage of them to optimize pipeline execution.</p>
+<A NAME="BCDCGDID"></A><h2>When execution stops</h2>
+<A NAME="TI4606"></A><p>Execution of a pipeline can stop for any of these reasons:<A NAME="TI4607"></A>
+<ul>
+<li class=fi>You click the Cancel button<br>
+During the execution of a pipeline, the Execute button in
+the PainterBar changes to a Cancel button.<br></li>
+<li class=ds>The error limit is reached
+</li>
+</ul>
+</p>
+<A NAME="TI4608"></A><p>If there are rows that cannot be piped to the destination
+table for some reason, those error rows display once execution stops.
+You can correct error rows or return to the workspace to change
+the pipeline definition and then execute it again. For information,
+see <A HREF="pbugp149.htm#BCDDCEGH">"Correcting pipeline errors "</A>.</p>
+<A NAME="TI4609"></A><h3>Whether rows are committed</h3>
+<A NAME="TI4610"></A><p>When rows are piped to the destination table, they are first
+inserted and then either committed or rolled back. Whether rows
+are committed depends on:<A NAME="TI4611"></A>
+<ul>
+<li class=fi>What the Commit and Max Errors values are</li>
+<li class=ds>When errors occur during execution</li>
+<li class=ds>Whether you click the Cancel button or PowerBuilder stops
+execution
+</li>
+</ul>
+</p>
+<A NAME="TI4612"></A><h4>When you stop execution</h4>
+<A NAME="TI4613"></A><p>When you click Cancel, if the Commit value is a number, every
+row that was piped is committed. If the Commit value is <b>All</b> or <b>None</b>,
+every row that was piped is rolled back.</p>
+<A NAME="TI4614"></A><p>For example, if you click the Cancel button when the 24th
+row is piped and the Commit value is 20, then:<A NAME="TI4615"></A>
+<ol>
+</li>
+<li class=ds>20 rows are piped and committed.</li>
+<li class=ds>3 rows are piped and committed.</li>
+<li class=ds>Piping stops.
+</li>
+</ol>
+</p>
+<A NAME="TI4616"></A><p>If the Commit value is <b>All</b> or <b>None</b>,
+23 rows are rolled back.</p>
+<A NAME="TI4617"></A><h4>When PowerBuilder stops execution</h4>
+<A NAME="TI4618"></A><p>PowerBuilder stops execution if the error limit is reached. <A HREF="pbugp148.htm#CHDBEDIC">Table 17-4</A> shows how the Commit
+and Max Errors values affect the number of rows that are piped and
+committed.</p>
+<A NAME="CHDBEDIC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 17-4: Rows committed when PowerBuilder stops
+execution</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4619"></A>Commit value</th>
+<th  rowspan="1"  ><A NAME="TI4620"></A>Max Errors value</th>
+<th  rowspan="1"  ><A NAME="TI4621"></A>Result</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4622"></A>A number <i>n</i></td>
+<td  rowspan="1"  ><A NAME="TI4623"></A><b>No limit</b> or a number <i>m</i></td>
+<td  rowspan="1"  ><A NAME="TI4624"></A>Rows are piped and committed <i>n</i> rows
+at a time until the Max Errors value is reached.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4625"></A><b>All</b> or <b>None</b></td>
+<td  rowspan="1"  ><A NAME="TI4626"></A><b>No limit</b></td>
+<td  rowspan="1"  ><A NAME="TI4627"></A>Every row that pipes without error is committed.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4628"></A><b>All</b> or <b>None</b></td>
+<td  rowspan="1"  ><A NAME="TI4629"></A>A number <i>n</i></td>
+<td  rowspan="1"  ><A NAME="TI4630"></A>If the number of errors is less than <i>n</i>, all
+rows are committed.<A NAME="TI4631"></A><p>If the number of errors is equal to <i>n</i>, every
+row that was piped is rolled back. No changes are made.</p></td>
+</tr>
+</table>
+<A NAME="TI4632"></A><p>For example, if an error occurs when the 24th row is piped
+and the Commit value is 10 and the Max Errors value is 1, then:<A NAME="TI4633"></A>
+<ol>
+</li>
+<li class=ds>10 rows are piped and committed.</li>
+<li class=ds>10 rows are piped and committed.</li>
+<li class=ds>3 rows are piped and committed.</li>
+<li class=ds>Piping stops.
+</li>
+</ol>
+</p>
+<A NAME="TI4634"></A><p>If the Commit value is <b>All</b> or <b>None</b>,
+23 rows are rolled back.</p>
+<A NAME="TI4635"></A><h4>About transactions</h4>
+<A NAME="TI4636"></A><p>A transaction is a logical unit of work done by a DBMS, within
+which either all the work in the unit must be completed or none
+of the work in the unit must be completed. If the destination DBMS
+does not support transactions or is not in the scope of a transaction,
+each row that is inserted or updated is committed.</p>
+<A NAME="TI4637"></A><h4>About the All and None commit values</h4>
+<A NAME="TI4638"></A><p>In the Data Pipeline painter, the Commit values <b>All</b> and <b>None</b> have
+the same meaning.</p>
+<A NAME="TI4639"></A><p>The <b>None </b>commit value is most useful at
+runtime. For example, some PowerBuilder applications require either
+all piped rows to be committed or no piped rows to be committed
+if an error occurs. Specifying <b>None</b> allows the application
+to control the committing and rolling back of piped rows by means of
+explicit transaction processing, such as the issuing of commits
+and rollbacks in pipeline scripts using <b>COMMIT</b> and <b>ROLLBACK</b> statements.</p>
+<A NAME="BCDBIHGG"></A><h2>Piping blob data</h2>
+<A NAME="TI4640"></A><p>Blob data is data that is a <i>b</i>inary <i>l</i>arge-<i>ob</i>ject
+such as a Microsoft Word document or an Excel spreadsheet. A data
+pipeline can pipe columns containing blob data.</p>
+<A NAME="TI4641"></A><p>The name of the datatype that supports blob data varies by
+DBMS. <A HREF="pbugp148.htm#CHDBEDIC">Table 17-4</A> shows
+some examples.</p>
+<A NAME="TI4642"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 17-5: Examples of datatypes that support blob data</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4643"></A>DBMS</th>
+<th  rowspan="1"  ><A NAME="TI4644"></A>Data types that support
+blob data</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4645"></A>Sybase Adaptive Server Anywhere</td>
+<td  rowspan="1"  ><A NAME="TI4646"></A>LONG BINARY, <br>LONG VARCHAR (if
+more than 32 KB)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4647"></A>Sybase Adaptive Server Enterprise</td>
+<td  rowspan="1"  ><A NAME="TI4648"></A>IMAGE, <br>TEXT</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4649"></A>Microsoft <ACRONYM title = "sequel" >SQL</ACRONYM> Server</td>
+<td  rowspan="1"  ><A NAME="TI4650"></A>IMAGETEXT</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4651"></A>Oracle</td>
+<td  rowspan="1"  ><A NAME="TI4652"></A>RAW, <br>LONG RAW</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4653"></A>Informix</td>
+<td  rowspan="1"  ><A NAME="TI4654"></A>BYTE, <br>TEXT</td>
+</tr>
+</table>
+<A NAME="TI4655"></A><p>For information about the datatype that supports
+blob data in your DBMS, see your DBMS documentation.</p>
+<A NAME="TI4656"></A><h4>Adding blob columns to a pipeline definition</h4>
+<A NAME="TI4657"></A><p>When you select data to pipe, you cannot select a blob column
+as part of the data source because blobs cannot be handled in a <b>SELECT</b> statement.
+After the pipeline definition is created, you add blob columns,
+one at a time, to the definition.</p>
+<A NAME="TI4658"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a blob column to a pipeline definition:</p>
+<ol><li class=fi><p>Select Design&gt;Database Blob from
+the menu bar.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If the Database Blob menu item is disabled</span> <A NAME="TI4659"></A>The Database Blob menu item is disabled if the pipeline definition
+does not contain a unique key for at least one source table, or
+if the pipeline operation is Refresh, Append, or Update and the
+destination table has no blob columns.</p>
+<p>The Database Binary/Text Large Object dialog box
+displays. The Table box has a drop-down list of tables in the pipeline
+source that have a primary key and contain blob columns.</p></li>
+<li class=ds><p>In the Table box, select the table that contains
+the blob column you want to add to the pipeline definition.</p><p>For example, in the <b>EAS Demo DB</b>, the <b>ole</b> table
+contains a blob column named <b>Object</b> with the
+large binary datatype.</p></li>
+<li class=ds><p>In the Large Binary/Text Column box,
+select a column that has a blob datatype.</p></li>
+<li class=ds><p>In the Destination Column box, change the name
+of the destination column for the blob if you want to.</p><p>If you want to add the column and see changes you make without
+closing the dialog box, click Apply after each change.</p></li>
+<li class=ds><p>When you have specified the blob source and destination
+as needed, click OK.</p></li></ol>
+<br><A NAME="TI4660"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To edit the source or destination name of the
+blob column in the pipeline definition:</p>
+<ol><li class=fi><p>Display the blob column's pop-up
+menu and select Properties.</p></li></ol>
+<br><A NAME="TI4661"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete a blob column from the pipeline definition:</p>
+<ol><li class=fi><p> Display the blob column's pop-up
+menu and select Clear.</p></li></ol>
+<br><A NAME="TI4662"></A><h4>Executing a pipeline with blob columns</h4>
+<A NAME="TI4663"></A><p>After you have completed the pipeline definition by adding
+one or more blob columns, you can execute the pipeline. When you
+do, rows are piped a block at a time, depending on the Commit value.
+For a given block, Row 1 is inserted, then Row 1 is updated with
+Blob 1, then Row 1 is updated with Blob 2, and so on. Then Row 2
+is inserted, and so on until the block is complete.</p>
+<A NAME="TI4664"></A><p>If a row is not successfully piped, the blob is not piped.
+Blob errors display, but the blob itself does not display. When
+you correct a row and execute the pipeline, the pipeline pipes the
+blob.</p>
+<A NAME="BCDDHDEH"></A><h2>Changing the destination and source databases</h2>
+<A NAME="TI4665"></A><h4>Changing the destination</h4>
+<A NAME="TI4666"></A><p>When you create a pipeline, you can change the destination
+database. If you want to pipe the same data to more than one destination,
+you can change the destination database again and re-execute.</p>
+<A NAME="TI4667"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the destination database:</p>
+<ol><li class=fi><p>Click the Destination button in the PainterBar,
+or select File&gt;Destination Connect from the menu bar.</p></li></ol>
+<br><A NAME="TI4668"></A><h4>Changing the source</h4>
+<A NAME="TI4669"></A><p>Normally you would not change the source database, because
+your pipeline definition is dependent on it, but if you need to
+(perhaps because you are no longer connected to that source), you
+can.</p>
+<A NAME="TI4670"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the source database:</p>
+<ol><li class=fi><p>Select File&gt;Source Connect from
+the menu bar.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Source changes when active profile changes</span> <A NAME="TI4671"></A>When you open a pipeline in the Data Pipeline painter, the
+source database becomes the active connection. If you change the
+active connection in the Database painter when the Data Pipeline
+painter is open, the source database in the Data Pipeline painter
+changes to the new active connection automatically. </p>
+<A NAME="TI4672"></A><h4>Working with database profiles</h4>
+<A NAME="TI4673"></A><p>At any time in the Data Pipeline painter, you can edit an
+existing database profile or create a new one.</p>
+<A NAME="TI4674"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To edit or create a database profile:</p>
+<ol><li class=fi><p>Click the Database Profile button in the
+PainterBar and then click the Edit button or the New button.</p><p>For information about how to edit or define
+a database profile, see <i>Connecting to Your Database</i>
+.</p></li></ol>
+<br>

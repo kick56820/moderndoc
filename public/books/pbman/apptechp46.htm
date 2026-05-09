@@ -1,0 +1,156 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About TreeView controls</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp45.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp47.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJCAABB"></A><h1>About TreeView controls</h1>
+<A NAME="TI1000"></A><p>TreeView controls provide a way to represent hierarchical
+relationships within a list. The TreeView provides a standard interface
+for expanding and collapsing branches of a hierarchy:</p>
+<br><img src="images/uitv01.gif">
+<A NAME="TI1001"></A><h4>When to use a TreeView</h4>
+<A NAME="TI1002"></A><p>You use TreeViews in windows and custom visual user objects.
+Choose a TreeView instead of a ListBox or ListView when your information
+is more complex than a list of similar items and when levels of
+information have a one-to-many relationship. Choose a TreeView
+instead of a DataWindow control when your user will want to expand
+and collapse the list using the standard TreeView interface.</p>
+<A NAME="TI1003"></A><h4>Hierarchy of items</h4>
+<A NAME="TI1004"></A><p>Although items in a TreeView can be a single, flat list like
+the report view of a ListView, you tap the power of a TreeView when
+items have a one-to-many relationship two or more levels deep. For
+example, your list might have one or several parent categories with
+child items within each category. Or the list might have several
+levels of subcategories before getting to the end of a branch in
+the hierarchy:</p>
+<A NAME="TI1005"></A><p><p><PRE> Root<br>   Category 1<br>      Subcategory 1a<br>         Detail<br>         Detail<br>      Subcategory 1b<br>         Detail<br>         Detail<br>   Category 2<br>      Subcategory 2a<br>         Detail</PRE></p>
+<A NAME="TI1006"></A><h4>Number of levels in each branch</h4>
+<A NAME="TI1007"></A><p>You do not have to have the same number of levels in every
+branch of the hierarchy if your data requires more levels of categorization
+in some branches. However, programming for the TreeView is simpler
+if the items at a particular level are the same type of item, rather
+than subcategories in some branches and detail items in others. </p>
+<A NAME="TI1008"></A><p>For example, in scripts you might test the level of an item
+to determine appropriate actions. You can call the <b>SetLevelPictures</b> function
+to set pictures for all the items at a particular level.</p>
+<A NAME="TI1009"></A><h4>Content sources for a TreeView</h4>
+<A NAME="TI1010"></A><p>For most of the list types in PowerBuilder, you can add items
+in the painter or in a script, but for a TreeView, you have to write
+a script. Generally, you will populate the first level (the root
+level) of the TreeView when its window opens. When the user wants
+to view a branch, a script for the TreeView's ItemPopulate event
+can add items at the next levels.</p>
+<A NAME="TI1011"></A><p>The data for items can be hard-coded in the script, but it
+is more likely that you will use the user's own input or
+a database for the TreeView's content. Because of the one-to-many
+relationship of an item to its child items, you might use several
+tables in a database to populate the TreeView. </p>
+<A NAME="TI1012"></A><p>For an example using DataStores, see <A HREF="apptechp50.htm#CDECBFBJ">"Using DataWindow information
+to populate a TreeView"</A>.</p>
+<A NAME="TI1013"></A><h4>Pictures for items</h4>
+<A NAME="TI1014"></A><p>Pictures are associated with individual items in a TreeView.
+You identify pictures you want to use in the control's
+picture lists and then associate the index of the picture with an
+item. Generally, pictures are not unique for each item. Pictures
+provide a way to categorize or mark items within a level. To help the
+user understand the data, you might:</p>
+<A NAME="TI1015"></A><p><A NAME="TI1016"></A>
+<ul>
+<li class=fi>Use a different picture for each level</li>
+<li class=ds>Use several pictures within a level to identify
+different types of items</li>
+<li class=ds>Use pictures on some levels only</li>
+<li class=ds>Change the picture after the user clicks on an item
+</li>
+</ul>
+</p>
+<p><b>Pictures are not required</b>   You do not have to use pictures if they do not convey useful
+information to the user. Item labels and the levels of the hierarchy
+may provide all the information the user needs.</p>
+<A NAME="TI1017"></A><h4>Appearance of the TreeView</h4>
+<A NAME="TI1018"></A><p>You can control the appearance of the TreeView by setting
+property values. Properties that affect the overall appearance are
+shown in <A HREF="apptechp46.htm#CJGDEDID">Table 8-1</A>.</p>
+<A NAME="CJGDEDID"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 8-1: TreeView properties</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1019"></A>Properties</th>
+<th  rowspan="1"  ><A NAME="TI1020"></A>Effect
+when set</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1021"></A>HasButtons</td>
+<td  rowspan="1"  ><A NAME="TI1022"></A>Puts + and - buttons before
+items that have children, showing the user whether the item is expanded
+or collapsed</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1023"></A>HasLines and LinesAtRoot</td>
+<td  rowspan="1"  ><A NAME="TI1024"></A>Display lines connecting items within
+a branch and connecting items at the root level </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1025"></A>Checkboxes</td>
+<td  rowspan="1"  ><A NAME="TI1026"></A>Replaces the state image with checked
+and unchecked check boxes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1027"></A>TrackSelect</td>
+<td  rowspan="1"  ><A NAME="TI1028"></A>Changes the appearance of an item as
+the mouse moves over it</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1029"></A>FullRowSelect</td>
+<td  rowspan="1"  ><A NAME="TI1030"></A>Highlights the entire row of a selected
+item</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1031"></A>SingleExpand</td>
+<td  rowspan="1"  ><A NAME="TI1032"></A>Expands the selected item and collapses
+the previously selected item automatically</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1033"></A>Indent</td>
+<td  rowspan="1"  ><A NAME="TI1034"></A>Sets the amount an item is indented</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1035"></A>Font properties</td>
+<td  rowspan="1"  ><A NAME="TI1036"></A>Specifies the font for all the labels</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1037"></A>Various picture properties</td>
+<td  rowspan="1"  ><A NAME="TI1038"></A>Controls the pictures and their size</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1039"></A>LayoutRTL and RightToLeft</td>
+<td  rowspan="1"  ><A NAME="TI1040"></A>Display elements and characters in the
+control from right to left</td>
+</tr>
+</table>
+<A NAME="TI1041"></A><p>For more information about these properties,
+see <i>Objects and Controls</i>
+.</p>
+<A NAME="TI1042"></A><h4>User interaction</h4>
+<A NAME="TI1043"></A><p>Basic TreeView functionality allows users to edit labels,
+delete items, expand and collapse branches, and sort alphabetically,
+without any scripting on your part. For example, the user can click
+a second time on a selected item to edit it, or press the Delete
+key to delete an item. If you do not want to allow these actions,
+properties let you disable them.</p>
+<A NAME="TI1044"></A><p>You can customize any of these basic actions by writing scripts.
+Events associated with the basic actions let you provide validation
+or prevent an action from completing. You can also implement other
+features such as adding items, dragging items, and performing customized
+sorting. </p>
+<A NAME="TI1045"></A><h4>Using custom events</h4>
+<A NAME="TI1046"></A><p>In PowerBuilder 7 and later releases, PowerBuilder uses Microsoft
+controls for ListView and Treeview controls. The events that fire
+when the right mouse button is clicked are different from earlier
+releases. </p>
+<A NAME="TI1047"></A><p>When you release the right mouse button, the pbm_rbuttonup
+event does not fire. The stock RightClicked! event for a TreeView
+control, pbm_tvnrclickedevent, fires when the button is
+released. </p>
+<A NAME="TI1048"></A><p>When you click the right mouse button on an unselected TreeView
+item, focus returns to the previously selected TreeView item when
+you release the button. To select the new item, insert this code
+in the pbm_tvnrclickedevent script before any code that
+acts on the selected item:<p><PRE> this.SelectItem(handle)</PRE></p>
+<A NAME="TI1049"></A><p>When you right double-click, only the pbm_rbuttondblclk
+event fires. In previous releases, both the pbm_rbuttondblclk
+and pbm_tvnrdoubleclick events fired.</p>
+

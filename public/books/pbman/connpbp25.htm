@@ -1,0 +1,65 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Preparing to use the ADO.NET interface</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp24.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp26.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABCCHIDN"></A><h1>Preparing to use the ADO.NET interface</h1>
+<A NAME="TI607"></A><p>Before you define the interface and connect to a database
+using ADO.NET: <A NAME="TI608"></A>
+<ol>
+</li>
+<li class=ds>Install and configure the database
+server, network, and client software.</li>
+<li class=ds>Install the ADO.NET interface.</li>
+<li class=ds>Install Microsoft's Data Access Components
+version 2.6 or higher software on your machine.
+</li>
+</ol>
+</p>
+<A NAME="TI609"></A><h4>Step 1: Install and configure the data server</h4>
+<A NAME="TI610"></A><p>You must install and configure the database server and install
+the network software and client software.</p>
+<A NAME="TI611"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To install and configure the database server,
+network, and client software:</p>
+<ol><li class=fi><p>Make sure the appropriate database software
+is installed and running on its server.</p><p>You must obtain the database server software from your database
+vendor. For installation instructions, see your database vendor's
+documentation.</p></li>
+<li class=ds><p>Make sure the required network software (such
+as TCP/IP) is installed and running on your computer and
+is properly configured so that you can connect to the data server
+at your site. You must install the network communication driver
+that supports the network protocol and operating system platform
+you are using.</p><p>For installation and configuration instructions,
+see your network or data source administrator.</p></li>
+<li class=ds><p>If required, install the appropriate client software
+on each client computer on which PowerBuilder is installed. </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Client software requirements </span> <A NAME="TI612"></A>To determine client software requirements, see your database
+vendor's documentation. </p>
+</li></ol>
+<br><A NAME="TI613"></A><h4>Step 2: Install the ADO.NET interface </h4>
+<A NAME="TI614"></A><p>In the PowerBuilder Setup program, select the Custom install
+and select the ADO.NET database interface. You can also install
+one or more of the OLE DB data providers shipped with PowerBuilder,
+or you can install data providers from another vendor later. </p>
+<A NAME="TI615"></A><h4>Step 3: Install the Microsoft Data Access Components
+software</h4>
+<A NAME="TI616"></A><p>The PowerBuilder ADO.NET interface requires the functionality
+of the Microsoft Data Access Components (MDAC) version 2.6 or higher
+software. </p>
+<A NAME="TI617"></A><p>To check the version of MDAC, download and run the MDAC Component Checker
+utility from the <A HREF="http://msdn.microsoft.com/data/downloads/default.aspx">Microsoft Data Access Downloads page</A>
+.</p>
+<A NAME="TI618"></A><p>If MDAC version 2.6 or higher is not installed, you can install
+it by running the file <i>mdac_typ.exe</i> found
+in the <i>Support</i> directory. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>OLE DB data providers installed with MDAC</span> <A NAME="TI619"></A>When you run the <i>mdac_typ</i> file,
+several Microsoft OLE DB data providers are automatically installed,
+including the provider for SQL Server, SQLOLEDB, which can be used
+with ADO.NET.</p>
+

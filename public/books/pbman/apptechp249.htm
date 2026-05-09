@@ -1,0 +1,31 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Printing a job </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp248.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp250.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299755171"></A><h1>Printing a job </h1>
+<A NAME="TI7542"></A><p><b>PrintOpen</b> must be the first function call
+in every print job. The <b>PrintOpen</b> function defines
+a new blank page in memory, specifies that all printing be done
+in the printer's default font, and returns an integer.
+The integer is the print job number that is used to identify the
+job in all other function calls.</p>
+<A NAME="TI7543"></A><p><b>PrintOpen</b> is followed by calls to one or
+more other printing functions, and then the job is ended with a <b>PrintClose</b> (or <b>PrintCancel</b>)
+call. The functions you call between the <b>PrintOpen</b> call
+and the <b>PrintClose</b> call can be simple print functions that
+print a string with or without tabs, or more complex functions that
+add lines and objects to the report or even include a picture in
+the report.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Printing titles</span> <A NAME="TI7544"></A>To print a title at the top of each page, keep count of the
+number of lines printed, and when the count reaches a certain number
+(such as 50), call the <b>PrintPage</b> function, reset
+the counter, and print the title.</p>
+<A NAME="TI7545"></A><p>Here is a simple print request:<p><PRE> Int PrintJobNumber</PRE><PRE> // Start the print job and set PrintJobNumber to</PRE><PRE> // the integer returned by PrintOpen.</PRE><PRE> PrintJobNumber = PrintOpen()</PRE><PRE> // Print the string Atlanta.</PRE><PRE> Print(PrintJobNumber,"Atlanta")</PRE><PRE> // Close the job.</PRE><PRE> PrintClose(PrintJobNumber)</PRE></p>
+

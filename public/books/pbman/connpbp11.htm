@@ -1,0 +1,183 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining ODBC data sources</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp10.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp12.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJBICIG"></A><h1>Defining ODBC data sources</h1>
+<A NAME="TI275"></A><p>Each ODBC data source requires a corresponding ODBC driver
+to access it. When you define an ODBC data source, you provide information
+about the data source that the driver requires in order to connect
+to it. Defining an ODBC data source is often called <strong>configuring</strong> the
+data source.</p>
+<A NAME="TI276"></A><p>After you prepare to use the data source, you must define
+it using Microsoft's ODBC Data Source Administrator utility.
+This utility can be accessed from the Control Panel in Windows or PowerBuilder's
+Database painter. </p>
+<A NAME="TI277"></A><p>The rest of this section describes what you need to know to
+define an ODBC data source in order to access it in the PowerBuilder development
+environment.</p>
+<A NAME="CCJDJGGB"></A><h2>How PowerBuilder accesses the data source</h2>
+<A NAME="TI278"></A><p>When you access an ODBC data source in PowerBuilder, there are
+several initialization files and registry entries on your computer
+that work with the ODBC interface and driver to make the connection.</p>
+<A NAME="TI279"></A><h3>PBODB105 initialization file</h3>
+<A NAME="TI280"></A><h4>Contents</h4>
+<A NAME="TI281"></A><p><i>PBODB105.INI</i> is installed in the <i>Sybase\Shared\PowerBuilder</i> directory. PowerBuilder uses <i>PBODB105.INI</i> to
+maintain access to extended functionality in the back-end
+DBMS, for which ODBC does not provide an API call. Examples of extended
+functionality are SQL syntax or DBMS-specific function
+calls.</p>
+<A NAME="TI282"></A><h4>Editing</h4>
+<A NAME="TI283"></A><p>In most cases, you do not need to edit <i>PBODB105.INI</i>.
+In certain situations, however, you might need to add functions
+to <i>PBODB105.INI</i> for your back-end
+DBMS. </p>
+<A NAME="TI284"></A><p>For instructions, see <A HREF="connpbp57.htm#BJBBHCIE">Appendix A, "Adding
+Functions to the PBODB105 Initialization File"</A></p>
+<A NAME="TI285"></A><h3>ODBCINST registry entries</h3>
+<A NAME="TI286"></A><h4>Contents</h4>
+<A NAME="TI287"></A><p>The ODBCINST initialization information is located in the <i>HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI</i> registry
+key. When you install an ODBC-compliant driver supplied by Sybase
+or another vendor, <i>ODBCINST.INI</i> is automatically
+updated with a description of the driver. </p>
+<A NAME="TI288"></A><p>This description includes:<A NAME="TI289"></A>
+<ul>
+<li class=fi>The DBMS or data source associated
+with the driver</li>
+<li class=ds>The drive and directory of the driver and setup
+DLLs (for some data sources, the driver and setup DLLs are the same)</li>
+<li class=ds>Other driver-specific connection parameters
+</li>
+</ul>
+</p>
+<A NAME="TI290"></A><h4>Editing</h4>
+<A NAME="TI291"></A><p>You do <i>not</i> need to edit the registry
+key directly to modify connection information. If your driver uses
+the information in the <i>ODBCINST.INI</i> registry key,
+the key is automatically updated when you install the driver. This
+is true whether the driver is supplied by Sybase or another vendor.</p>
+<A NAME="TI292"></A><h3>ODBC registry entries</h3>
+<A NAME="TI293"></A><h4>Contents</h4>
+<A NAME="TI294"></A><p>ODBC initialization information is located in the <i>HKEY_CURRENT_USER\SOFTWARE\ODBC\ODBC.INI</i> registry
+key. When you define a data source for a particular ODBC driver,
+the driver writes the values you specify in the ODBC setup dialog
+box to the <i>ODBC.INI</i> registry key.</p>
+<A NAME="TI295"></A><p>The <i>ODBC.INI</i> key contains subkeys named
+for each defined data source. Each subkey contains the values specified
+for that data source in the ODBC setup dialog box. The values might
+vary for each data source but generally include the following:<A NAME="TI296"></A>
+<ul>
+<li class=fi>Database</li>
+<li class=ds>Driver</li>
+<li class=ds>Optional description</li>
+<li class=ds>DBMS-specific connection parameters
+</li>
+</ul>
+</p>
+<A NAME="TI297"></A><h4>Editing</h4>
+<A NAME="TI298"></A><p>Do <i>not</i> edit the <i>ODBC</i> subkey
+directly to modify connection information. Instead, use a tool designed
+to define ODBC data sources and the ODBC configuration automatically,
+such as the ODBC Data Source Administrator.</p>
+<A NAME="TI299"></A><h3>Database profiles registry entry</h3>
+<A NAME="TI300"></A><h4>Contents</h4>
+<A NAME="TI301"></A><p>Database profiles for all data sources are stored in the registry
+in <i>HKEY_CURRENT_USER\SOFTWARE\Sybase\PowerBuilder\10.5\<br>DatabaseProfiles</i>.</p>
+<A NAME="TI302"></A><h4>Editing</h4>
+<A NAME="TI303"></A><p>You should <i>not</i> need to edit the profiles
+directly to modify connection information. These files are updated
+automatically when PowerBuilder creates the database profile as part
+of the ODBC data source definition.</p>
+<A NAME="TI304"></A><p>You can also edit the profile in the Database Profile Setup
+dialog box or complete the Database Preferences property sheet in PowerBuilder to
+specify other connection parameters stored in the registry. (For
+instructions, see <A HREF="connpbp42.htm#BABGFFIB">Chapter 8, "Setting Additional Connection Parameters."</A>)</p>
+<A NAME="TI305"></A><h4>Example</h4>
+<A NAME="TI306"></A><p>The following example shows a portion of the database profile
+for an <ACRONYM title = "E A S" >EAS</ACRONYM> Demo DB data source:</p>
+<A NAME="TI307"></A><p><p><PRE> DBMS=ODBC<br>DBParm=ConnectString='DSN=EAS Demo DB;UID=dba;PWD=00c61737'<br>Prompt=0</PRE></p>
+<A NAME="TI308"></A><p>This registry entry example shows the two most important values
+in a database profile for an ODBC data source:</p>
+<A NAME="TI309"></A><p><A NAME="TI310"></A>
+<ul>
+<li class=fi><b>DBMS</b>   The DBMS value (ODBC) indicates that you are using the ODBC interface
+to connect to the data source. </li>
+<li class=ds><b>DBParm</b>   The ConnectString DBParm parameter controls your ODBC data
+source connection. The connect string <i>must</i> specify
+the DSN (data source name) value, which tells ODBC which data source
+you want to access. When you select a database profile to connect
+to a data source, ODBC looks in the ODBC.INI registry key for a
+subkey that corresponds to the data source name in your profile.
+ODBC then uses the information in the subkey to load the required
+libraries to connect to the data source. The connect string can
+also contain the UID (user ID) and PWD (password) values needed
+to access the data source.
+</li>
+</ul>
+</p>
+<A NAME="TI311"></A><h2>Defining multiple data sources for the same data</h2>
+<A NAME="TI312"></A><p>When you define an ODBC data source in PowerBuilder, each data
+source name must be unique. You can, however, define multiple data
+sources that access the same data, as long as the data sources have
+unique names.</p>
+<A NAME="TI313"></A><p>For example, assume that your data source is an ASA database
+located in <i>C:\ASA\SALES.DB</i>.
+Depending on your application, you might want to specify different
+sets of connection parameters for accessing the database, such as different
+passwords and user IDs.</p>
+<A NAME="TI314"></A><p>To do this, you can define two ODBC data sources named Sales1
+and Sales2 that specify the same database (<i>C:\ASA\SALES.DB</i>)
+but use different user IDs and passwords. When you connect to the
+data source using a profile created for either of these data sources,
+you are using different connection parameters to access the same
+data.</p>
+<A NAME="TI315"></A><caption><b>Figure 2-4: Using two data sources to access a database</b></captionls>
+<br><img src="images/cnw2src.gif">
+<A NAME="CCJBJICH"></A><h2>Displaying Help for ODBC drivers</h2>
+<A NAME="TI316"></A><p>The online Help for ODBC drivers in PowerBuilder is provided
+by the driver vendors. It gives help on:<A NAME="TI317"></A>
+<ul>
+<li class=fi>Completing the ODBC setup dialog box to define the
+data source </li>
+<li class=ds>Using the ODBC driver to access the data source   
+</li>
+</ul>
+</p>
+<A NAME="TI318"></A><h3>Help for any ODBC driver</h3>
+<A NAME="TI319"></A><p>Use the following procedure to display vendor-supplied Help
+when you are in the ODBC setup dialog box for ODBC drivers supplied
+with PowerBuilder.</p>
+<A NAME="TI320"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display Help for any ODBC driver:</p>
+<ol><li class=fi><p>Click the Help button in the ODBC setup
+dialog box for your driver.</p><p>A Help window displays, describing features in the setup dialog
+box.</p></li></ol>
+<br><A NAME="CCJDDEEA"></A><h2>Selecting an ODBC translator</h2>
+<A NAME="TI321"></A><h4>What is an ODBC translator?</h4>
+<A NAME="TI322"></A><p>The ODBC drivers supplied with PowerBuilder allow you to specify
+a translator when you define the data source. An <strong>ODBC
+translator</strong> is a DLL that translates data passing between
+an application and a data source. Typically, translators are used
+to translate data from one character set to another.</p>
+<A NAME="TI323"></A><h4>What you do</h4>
+<A NAME="TI324"></A><p>Follow these steps to select a translator for your ODBC driver.</p>
+<A NAME="TI325"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select a translator when using an ODBC driver:</p>
+<ol><li class=fi><p>In the ODBC setup dialog box for your driver,
+display the Select Translator dialog box.</p><p>The way you display the Select Translator
+dialog box for Sybase-supplied ODBC drivers depends on the driver
+and Windows platform you are using. Click Help in your driver's
+setup dialog box for instructions on displaying the Select Translator
+dialog box.</p><p>In the Select Translator dialog box, the translators listed
+are determined by the values in your <i>ODBCINST.INI</i> registry
+key.</p></li>
+<li class=ds><p>From the Installed Translators list, select a
+translator to use.</p><p>If you need help using the Select Translator dialog box, click
+Help.</p></li>
+<li class=ds><p>Click OK.</p><p>The Select Translator dialog box closes and the driver performs
+the translation.</p></li></ol>
+<br>

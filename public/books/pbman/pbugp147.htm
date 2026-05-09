@@ -1,0 +1,82 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating a data pipeline</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp146.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp148.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BCDCCEBH"></A><h1>Creating a data pipeline</h1>
+<A NAME="TI4490"></A><p>You have a number of choices when creating a data pipeline.
+This section leads you through them.</p>
+<A NAME="TI4491"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a data pipeline:</p>
+<ol><li class=fi><p>Click the New button in the PowerBar and
+then select the Database tab page.</p></li>
+<li class=ds><p>Select Data Pipeline and click OK.</p><p>The New Data Pipeline dialog box displays.</p><br><img src="images/pipes060.gif"><br>
+<p>The Source Connection and Destination Connection boxes display database
+profiles that have been defined. The last database you connected to
+is selected as the source. The first database on the destination
+list is selected as the destination.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you do not see the connections you need</span> <A NAME="TI4492"></A>To create a pipeline, the databases you want to use for your
+source and destination must each have a database profile defined.
+If you do not see profiles for the databases you want to use, select
+Cancel in the New Data Pipeline dialog box and then define those
+profiles. For information about defining
+profiles, see <A HREF="pbugp148.htm#BCDDHDEH">"Changing the destination
+and source databases"</A>.</p>
+</li>
+<li class=ds><p>Select a data source.</p><p>The data source determines how PowerBuilder retrieves data when
+you execute a pipeline:</p><A NAME="TI4493"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI4494"></A>Data source</th>
+<th  rowspan="1"  ><A NAME="TI4495"></A>Use it if</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4496"></A>Quick Select</td>
+<td  rowspan="1"  ><A NAME="TI4497"></A>The data is from tables that have a primary/foreign
+key relationship and you need only to sort and limit data</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4498"></A><ACRONYM title = "sequel" >SQL</ACRONYM> Select</td>
+<td  rowspan="1"  ><A NAME="TI4499"></A>You want more control over the <b>SQL
+SELECT</b> statement generated for the data source or your
+data is from tables that are not connected through a key</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4500"></A>Query</td>
+<td  rowspan="1"  ><A NAME="TI4501"></A>The data has been defined as a query</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4502"></A>Stored Procedure</td>
+<td  rowspan="1"  ><A NAME="TI4503"></A>The data is defined in a stored procedure</td>
+</tr>
+</table>
+</li>
+<li class=ds><p>Select the source and destination connections
+and click OK.</p></li>
+<li class=ds><p>Define the data to pipe.</p><p>How you do this depends on what data source you chose in step
+3, and is similar to the process used to define a data source for
+a DataWindow object. For complete information
+about using each data source and defining the data, see <A HREF="pbugp153.htm#BFCDDADG">Chapter 18, "Defining DataWindow Objects ."</A></p><p>When you finish defining the data to pipe, the Data Pipeline
+painter workspace displays the pipeline definition, which includes
+a pipeline operation, a check box for specifying whether to pipe
+extended attributes, and source and destination items.</p><p></p><br><img src="images/pipes070.gif"><br>
+<p>The pipeline definition is PowerBuilder's best guess
+based on the source data you specified.</p></li>
+<li class=ds><p>Modify the pipeline definition as needed.</p><p>For information, see <A HREF="pbugp148.htm#BCDCFJDI">"Modifying the data pipeline
+definition "</A>.</p></li>
+<li class=ds><p>(Optional) Modify the source data as needed. To
+do so, click
+the Data button in the PainterBar, or select Design&gt;Edit
+Data Source from the menu bar.</p><p>For information about working in the Select
+painter, see <A HREF="pbugp153.htm#BFCDDADG">Chapter 18, "Defining DataWindow Objects ."</A></p><p>When you return to the Data Pipeline painter workspace, PowerBuilder reminds
+you that the pipeline definition will change. Click OK to accept the
+definition change.</p></li>
+<li class=ds><p>If you want to try the pipeline now, click the
+Execute button or select Design&gt;Execute from the menu bar.</p><p>PowerBuilder retrieves the source data and executes the pipeline.
+If you specified retrieval arguments in the Select painter, PowerBuilder first prompts
+you to supply them.</p><p>At runtime, the number of rows read and written, the elapsed
+execution time, and the number of errors display in MicroHelp. You
+can stop execution yourself or PowerBuilder might stop execution if
+errors occur.</p><p>For information about execution and how rows
+are committed to the destination table, see <A HREF="pbugp148.htm#BCDCGDID">"When execution stops"</A>.</p></li>
+<li class=ds><p>Save the pipeline definition if appropriate.</p><p>For information, see <A HREF="pbugp150.htm#BCDCIABH">"Saving a pipeline "</A>.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Seeing the results of piping data</span> <A NAME="TI4504"></A>You can see the results of piping data by connecting to the
+destination database and opening the destination table.</p>
+</li></ol>
+<br>

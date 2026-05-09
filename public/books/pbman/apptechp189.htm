@@ -1,0 +1,71 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Connecting to the server</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp188.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp190.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJBGAEBA"></A><h1>Connecting to the server</h1>
+<A NAME="TI6043"></A><p>The EJBConnection class is used to connect to an EJB server
+and locate an EJB. It has four methods: <b>ConnectToServer</b>, <b>DisconnectServer</b>, <b>Lookup</b>,
+and <b>GetEJBTransaction</b>.</p>
+<A NAME="TI6044"></A><p>To establish
+a connection to the server, you need to execute the PowerScript statements
+required to perform these operations:</p>
+<A NAME="TI6045"></A><p><A NAME="TI6046"></A>
+<ol>
+</li>
+<li class=ds>Declare an instance
+of the EJBConnection class.</li>
+<li class=ds>Set properties for the EJBConnection object.</li>
+<li class=ds>Use the <b>CREATE</b> statement to instantiate
+the EJBConnection object.</li>
+<li class=ds>Invoke the <b>ConnectToServer</b> method
+to establish a connection to the server.</li>
+<li class=ds>Check for errors.
+</li>
+</ol>
+</p>
+<A NAME="TI6047"></A><h4>Class path requirements</h4>
+<A NAME="TI6048"></A><p>To connect to the application server and create an EJB object,
+the system CLASSPATH environment variable or the <i>classpath</i> argument
+of <b>createJavaVM</b> must contain the location of
+the EJB stub files, either a directory or a JAR file. The application
+server you are using might also require that some classes or JAR
+files be available on the client computer and added to the class path.
+For more information, see <A HREF="apptechp188.htm#BABEHDFJ">"The Java VM classpath
+in the development environment"</A>. </p>
+<A NAME="TI6049"></A><h4>Setting the initial context</h4>
+<A NAME="TI6050"></A><p>The string used to establish the initial context depends on
+the EJB server. The following table shows sample string values.
+See the documentation for your server for more information.</p>
+<A NAME="TI6051"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI6052"></A>Server</th>
+<th  rowspan="1"  ><A NAME="TI6053"></A>INITIAL_CONTEXT_FACTORY
+value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6054"></A><ABBR title = "e a server" >EAServer</ABBR> </td>
+<td  rowspan="1"  ><A NAME="TI6055"></A><b>com.sybase.ejb.InitialContextFactory</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6056"></A>WebLogic </td>
+<td  rowspan="1"  ><A NAME="TI6057"></A><b>weblogic.jndi.WLInitialContextFactory</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6058"></A>WebSphere </td>
+<td  rowspan="1"  ><A NAME="TI6059"></A><b>com.ibm.websphere.naming.WsnInitialContextFactory</b></td>
+</tr>
+</table>
+<A NAME="TI6060"></A><h4>Example</h4>
+<A NAME="TI6061"></A><p>The following script shows a connection to <ABBR title = "e a server" >EAServer</ABBR>. It sets connection properties
+to create an initial context, to identify the host name and port
+number of the server, and to identify the user ID and password. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>IIOPS</span> <A NAME="TI6062"></A>IIOPS connections are not currently supported.</p>
+<A NAME="TI6063"></A><p>Then, the script creates an instance of the EJBConnection
+object, invokes the <b>ConnectToServer</b> method to
+establish a connection to the server, and checks for errors:<p><PRE> ejbconnection conn<br>string properties[]<br> <br>properties[1]="javax.naming.Context.INITIAL_CONTEXT_FACTORY= com.sybase.ejb.InitialContextFactory"<br>properties[2]="javax.naming.Context.PROVIDER_URL=iiop://myejbserver:9000"<br>properties[3]="javax.naming.Context.SECURITY_PRINCIPAL=jagadmin"<br>properties[4]="javax.naming.Context.SECURITY_CREDENTIALS="<br> <br>conn = CREATE ejbconnection<br>TRY<br>  conn.connectToServer(properties)<br>CATCH (exception e)<br>  MessageBox("exception", e.getmessage())<br>END TRY</PRE></p>
+<A NAME="TI6064"></A><h4>Disconnecting from the server</h4>
+<A NAME="TI6065"></A><p>When your application has finished using the EJB server, it
+should disconnect from the server:<p><PRE> conn.disconnectserver()</PRE></p>
+

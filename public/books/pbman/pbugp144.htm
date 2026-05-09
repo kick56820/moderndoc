@@ -1,0 +1,69 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Managing MobiLink synchronization on the server</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp143.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp145.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDBDDAGK"></A><h1>Managing MobiLink synchronization on the server</h1>
+<A NAME="TI4441"></A><p>You can start the MobiLink synchronization server and Sybase
+Central from the PowerBuilder UI.</p>
+<A NAME="CHDCIDFF"></A><h2>Starting the MobiLink synchronization server</h2>
+<A NAME="TI4442"></A><p>Before you synchronize remote databases with the consolidated
+database, you must start the MobiLink synchronization server. You
+can start the server from the Database or the Database Profile painter
+in PowerBuilder.</p>
+<A NAME="TI4443"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To start the MobiLink synchronization server:</p>
+<ol><li class=fi><p>From the Objects view of the Database painter
+or from the Database Profile painter, expand the ODBC Utilities
+folder and click MobiLink Synchronization server.</p><p>The MobiLink Synchronization Server Options dialog box displays.</p></li>
+<li class=ds><p>Select the MobiLink version and enter the ODBC
+connection string for your consolidated database.</p><p>The values that populate the MobiLink version drop-down list
+come from the SQL Anywhere versions listed in the <i>hkey_local_machine\software\odbc\odbcinst.ini</i> registry
+key.</p><p>The ODBC connection string should not contain any blank spaces
+that are not part of the data source name. The following is an example
+of an ODBC connection string for ASA:<p><PRE> DSN=ASA 9.0 Sample;UID=dba;PWD=sql</PRE></p></li>
+<li class=ds><p>Define other options as needed. </p><p>For information about filling in specific
+fields in the dialog box, click the Help button in the dialog box.
+The Usage button opens a dialog box with information about command
+line options.</p></li>
+<li class=ds><p>Click OK.</p><p>When you click OK, PowerBuilder starts the MobiLink Synchronization server.</p></li></ol>
+<br><A NAME="TI4444"></A><h2>Using Sybase Central</h2>
+<A NAME="TI4445"></A><p>You
+can use Sybase Central to manage MobiLink synchronization and create synchronization
+scripts that are held in the consolidated database. You can also use
+the SQL Anywhere plug-in to Sybase Central to add publications, synchronization
+users, and synchronization subscriptions to remote databases.</p>
+<A NAME="TI4446"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To start Sybase Central</p>
+<ol><li class=fi><p>From the Objects view of the Database painter
+or from the Database Profile painter, expand the ODBC Utilities
+folder, and click Sybase Central.</p><p>Sybase Central displays.</p></li></ol>
+<br><A NAME="TI4447"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To work with the consolidated database in Sybase
+Central</p>
+<ol><li class=fi><p>Right-click MobiLink Synchronization in
+the left pane of Sybase Central, select Connect from the pop-up
+menu, enter connection parameters in the Connect dialog box, and
+click OK.</p><p>You can use Sybase Central to add scripts for database tables
+and select synchronization events that cause the script to be executed.</p></li></ol>
+<br><A NAME="TI4448"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To work with remote databases in Sybase Central</p>
+<ol><li class=fi><p>Right-click SQL Anywhere in the left pane
+of Sybase Central, select Connect from the pop-up menu, enter connection
+parameters in the Connect dialog box, and click OK.</p><p>If you open the Publications and MobiLink Users folders under
+the MobiLink Synchronization Client folder for the remote database,
+you can add publications and synchronization users in the right
+pane of Sybase Central. </p><p>After you add a publication and a synchronization user, you
+can create a synchronization subscription by right-clicking the
+publication in the right pane of Sybase Central, selecting Properties
+from the pop-up menu, clicking the Subscribe button on the Synchronization
+Subscriptions tab of the Publication Properties dialog box, and
+clicking OK.</p></li></ol>
+<br><A NAME="TI4449"></A><p>For more information, see the chapter on MobiLink synchronization
+in the <i>Application Techniques</i>
+ and the <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere Studio online Help.
+You can open the online Help by clicking the Help button in dialog
+boxes of the SQL Anywhere or MobiLink plug-in for Sybase Central.</p>
+

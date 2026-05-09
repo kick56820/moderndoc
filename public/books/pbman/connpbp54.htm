@@ -1,0 +1,150 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Deploying a component to EAServer</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp53.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp55.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABFEIHF"></A><h1>Deploying a component to EAServer</h1>
+<A NAME="TI1808"></A><p>If you are developing a PowerBuilder custom class user object
+containing business logic that will be deployed to a transaction
+server, there are some database connectivity issues to keep in mind. </p>
+<A NAME="TI1809"></A><p>For detailed information about the files you need to deploy
+with applications or components you build in PowerBuilder, see the
+chapter on deploying your application in <i>Application Techniques</i>
+.</p>
+<A NAME="TI1810"></A><p>If you want the component you are developing to take advantage
+of <ACRONYM title = "E A Servers" >EAServer's</ACRONYM> support
+for connection pooling and transaction management, you <i>must</i> use
+one of the database interfaces supported by the transaction coordinator
+being used by <ACRONYM title = "E A Server" >EAServer</ACRONYM>. <ACRONYM title = "E A Server" >EAServer</ACRONYM> supports the Microsoft Distributed
+Transaction Coordinator (DTC) and the Java Transaction Service (JTS)
+for OTS/XA Transactions.</p>
+<A NAME="TI1811"></A><p>The default coordinator is the JTS coordinator.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Setting the transaction coordinator</span> <A NAME="TI1812"></A>The transaction coordinator is set through EAServer Manager
+using the Transaction tab of the Server Properties dialog box.</p>
+<A NAME="TI1813"></A><h2>Supported database connections when using Shared
+Connection</h2>
+<A NAME="TI1814"></A><p>The pseudo-coordinator shared connection is built into <ACRONYM title = "E A Server" >EAServer</ACRONYM>. In this model, all
+components participating in a transaction share a single connection. To
+use this model, all of your application data must reside on one
+data server, and all components that participate in a transaction
+must use a connection with the same user name, password and server
+name or the same <ACRONYM title = "E A Server" >EAServer</ACRONYM> connection
+cache name as defined in the CacheName DBParm. It supports the following
+database interfaces to connect to the database:<A NAME="TI1815"></A>
+<ul>
+<li class=fi>ODBC
+database interface, which provides connectivity to a variety of databases through
+ODBC drivers. The same ODBC drivers shipped with PowerBuilder are
+also supported on <ACRONYM title = "E A Server" >EAServer</ACRONYM>.</li>
+<li class=ds>Sybase SYJ database interface, which provides connectivity
+to Adaptive Server Enterprise 11.5 or later. (Some versions of Open
+Client and Adaptive Server currently do not support OTS/XA
+transactions on Windows NT.)</li>
+<li class=ds>JDB database interface, which provides connectivity
+through Sun's Java Virtual Machine to a JDBC driver such
+as Sybase jConnect.</li>
+<li class=ds>Oracle O84, O90, and O10 database interfaces, which
+provide connectivity to Oracle8<i>i</i>, Oracle9<i>i</i>,
+and Oracle 10<i>g</i> databases.
+</li>
+</ul>
+</p>
+<A NAME="TI1816"></A><h2>Supported database connections when using Microsoft
+DTC</h2>
+<A NAME="TI1817"></A><p>Microsoft Distributed Transaction Coordinator (DTC) uses two-phase
+commit to coordinate transactions among multiple databases. This
+transaction coordinator supports the following database interfaces
+to connect to the database:<A NAME="TI1818"></A>
+<ul>
+<li class=fi>ODBC database interface.
+Support is limited to the following ODBC drivers: Microsoft <ACRONYM title = "sequel" >SQL</ACRONYM> Server 6.5 or later and Microsoft
+ODBC driver for Oracle.</li>
+<li class=ds>JDB database interface, which provides connectivity
+through Sun's Java Virtual Machine to a JDBC driver that
+acts as a JDBC-ODBC bridge. 
+</li>
+</ul>
+</p>
+<A NAME="TI1819"></A><h2>Supported database connections when using OTS/XA</h2>
+<A NAME="TI1820"></A><p>This option uses the Transarc Encina transaction coordinator
+that is built into <ACRONYM title = "E A Server" >EAServer</ACRONYM>.
+The Encina transaction coordinator uses two-phase commit to coordinate
+transactions among multiple databases. This transaction coordinator
+supports the following database interfaces to connect to the database:<A NAME="TI1821"></A>
+<ul>
+<li class=fi>The SYJ database interface, which provides connectivity
+to Adaptive Server Enterprise 11.5 or later.</li>
+<li class=ds>The JDB database interface, which provides connectivity
+through Sun's Java Virtual Machine (JRE 1.2 or later) to
+a JDBC driver that supports the Java Transaction API (JTA) such
+as Sybase jConnect 5.2.</li>
+<li class=ds>Oracle O84, O90, and O10 database interfaces, which
+provide connectivity to Oracle8<i>i</i>, Oracle9<i>i</i>,
+and Oracle 10<i>g</i> databases.
+</li>
+</ul>
+</p>
+<A NAME="TI1822"></A><h2>Using the SYJ database interface</h2>
+<A NAME="TI1823"></A><p><ACRONYM title = "E A Server" >EAServer</ACRONYM> uses a slightly
+different version of the Sybase Open Client CT-Library (CT-Lib)
+software from PowerBuilder. Therefore, at runtime, you need to use
+SYJ rather than ASE or SYC to connect to an Adaptive Server Enterprise database.
+The SYJ Database Profile Setup dialog box provides a convenient way
+to set the appropriate connection parameters and then copy the syntax from
+the Preview tab into the script for your Transaction object. </p>
+<A NAME="TI1824"></A><p>You cannot use the SYJ interface, however, to connect to the
+database in the PowerBuilder development environment. Therefore,
+during the development phase (before the component has been deployed
+to Jaguar), you must use ASE or SYC to connect to the database.</p>
+<A NAME="TI1825"></A><p>Note that the SYJ database interface supports only those DBParms
+relevant at runtime. It does not support any DBParm parameters that
+have to be set before PowerBuilder establishes a database connection.
+The following DBParms, which are included on the SYJ Profile Setup
+dialog box, are not supported by SYJ:<A NAME="TI1826"></A>
+<ul>
+<li class=fi>All the
+DBParms on the Regional Settings tab including CharSet, Language,
+and Locale</li>
+<li class=ds>All the Directory services DBParms on the Directory
+Services tab</li>
+<li class=ds>All the Security services DBParms on the Security
+tab</li>
+<li class=ds>All the DBParms on the Network tab including AppName,
+Host, MaxConnect, PacketSize, and PWEncrypt</li>
+<li class=ds>The Release DBParm on the Connection tab</li>
+<li class=ds>The TableCriteria DBParm on the System tab</li>
+<li class=ds>The Asynchronous Operations DBParms, Async and DBGetTime,
+on the Transaction tab
+</li>
+</ul>
+</p>
+<A NAME="TI1827"></A><h2>Using the JDB database interface</h2>
+<A NAME="TI1828"></A><p>When you deploy a component developed using the JDB interface
+to <ACRONYM title = "E A Server" >EAServer</ACRONYM>, PowerBuilder
+checks the version of the JVM <ACRONYM title = "E A Server" >EAServer</ACRONYM> is
+using against the version PowerBuilder is using. If the versions
+do not match, a warning is entered in the Jaguar log file. PowerBuilder
+uses the version loaded by <ACRONYM title = "E A Server" >EAServer</ACRONYM>.
+The Jaguar log file records errors relating to component execution.
+You can view its contents using the EAServer Manager File Viewer. </p>
+<A NAME="TI1829"></A><h2>Specifying AutoCommit mode</h2>
+<A NAME="TI1830"></A><p>For those DBMSs and database interfaces that support it (ODBC,
+SYJ, and JDB), AutoCommit controls whether PowerBuilder issues <ACRONYM title = "sequel" >SQL</ACRONYM> statements outside or inside
+the scope of a transaction. When AutoCommit is set to False (the
+default), PowerBuilder issues <ACRONYM title = "sequel" >SQL</ACRONYM> statements <i>inside</i> the
+scope of a transaction. When AutoCommit is set to True, PowerBuilder
+issues <ACRONYM title = "sequel" >SQL</ACRONYM> statements <i>outside</i> the
+scope of a transaction. AutoCommit is set using the AutoCommit Mode check
+box on the Connection tab in the Database Profile Setup dialog box
+or by giving it a value in a PowerBuilder application script.</p>
+<A NAME="TI1831"></A><p>However, if the component you are developing participates
+in an <ACRONYM title = "E A Server" >EAServer</ACRONYM> transaction,
+the AutoCommit setting is ignored. Instead, <ACRONYM title = "E A Server" >EAServer</ACRONYM> determines how the component's
+database operations execute as part of the transaction. </p>
+

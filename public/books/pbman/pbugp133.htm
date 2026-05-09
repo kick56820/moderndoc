@@ -1,0 +1,58 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Managing databases </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp132.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp134.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJCHJFB"></A><h1>Managing databases </h1>
+<A NAME="TI3982"></A><p>PowerBuilder supports many database management systems (DBMSs).
+For the most part, you work the same way in PowerBuilder for each
+DBMS, but because each DBMS provides some unique features (which PowerBuilder makes
+use of), there are some issues that are specific to a particular
+DBMS. For complete information
+about using your DBMS, see <i>Connecting to Your Database</i>
+.</p>
+<A NAME="TI3983"></A><h4>What you can do</h4>
+<A NAME="TI3984"></A><p>Using the Database painter, you can do the following in any DBMS
+to which you have been given access by the database administrator: <A NAME="TI3985"></A>
+<ul>
+<li class=fi>Modify local table and column properties</li>
+<li class=ds>Retrieve, change, and insert data</li>
+<li class=ds>Create new local tables or modify existing tables
+</li>
+</ul>
+</p>
+<A NAME="TI3986"></A><h4>Setting the database connection</h4>
+<A NAME="TI3987"></A><p>When you open a painter that communicates with the database
+(such as the Database painter or DataWindow painter), PowerBuilder
+connects you to the database you used last if you are not already
+connected. If the connection to the default database fails, the
+painter still opens.</p>
+<A NAME="TI3988"></A><p>If you do not want to connect to the database you used last,
+you can deselect the Connect to Default Profile option in the Database
+Preferences dialog box.</p>
+<A NAME="BDCIJBEB"></A><h4>Changing the database
+connection</h4>
+<A NAME="TI3989"></A><p>You can change to a different database at any time. You can
+have several database connections open at a time, although only
+one connection can be active. The database components for each open
+connection are listed in the Objects view. </p>
+<A NAME="TI3990"></A><p>The Database painter title bar displays the number of open
+connections and which is active. The title bar for each view displays
+the connection with which it is currently associated. You can change
+the connection associated with a view by dragging the profile name
+for a different connection onto the view. </p>
+<A NAME="TI3991"></A><p>For more about changing the database you are connected to,
+see <i>Connecting to Your Database</i>
+.</p>
+<A NAME="BDCGEGCB"></A><h4>Creating and deleting databases</h4>
+<A NAME="TI3992"></A><p>When you are connected to Adaptive Server Anywhere, you can create a new
+database or delete an existing database using the Database painter.</p>
+<A NAME="TI3993"></A><p>For all other DBMSs, creating and deleting a database is an
+administrative task that you cannot do within PowerBuilder.</p>
+

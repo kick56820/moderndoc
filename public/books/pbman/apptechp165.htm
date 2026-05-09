@@ -1,0 +1,141 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using SSL callbacks</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp164.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp166.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CIHBDGIC"></A><h1>Using SSL callbacks</h1>
+<A NAME="TI5488"></A><p>The SSLCallback object
+handles SSL requests for additional authentication information from
+a server to a client application. The C++ ORB
+invokes callback methods when a required setting, such as a pin,
+has not been specified, or when the value specified is invalid. </p>
+<A NAME="TI5489"></A><p>The callback can respond to exceptional conditions, such as
+server certificates that have expired. When using mutual authentication,
+the callback <b>getCertificateLabel</b> method allows
+you to present a list of available certificates to the user. Using
+a callback can also simplify handling of retry logic when the user
+enters an invalid certificate or password. </p>
+<A NAME="TI5490"></A><p>To use the SSL callback mechanism, you need to follow these
+steps:<A NAME="TI5491"></A>
+<ol>
+</li>
+<li class=ds>Create proxy objects for the
+CTS Security module in <ABBR title = "e a server" >EAServer</ABBR> to
+obtain SSL session information.</li>
+<li class=ds>Create a standard custom class user object inherited
+from the SSLCallback object and implement the callback functions
+you need. </li>
+<li class=ds>Set the global SSL property CallBackImpl to the
+name of your SSLCallback object and connect to the server.
+</li>
+</ol>
+</p>
+<A NAME="TI5492"></A><h2>Getting session information</h2>
+<A NAME="TI5493"></A><p>SSL callback functions all have access to the SSL session
+information. You should use this information to provide the user
+of the client application with information needed to supply the
+required authentication information. </p>
+<A NAME="TI5494"></A><p>To make the SSL session information available to the callback
+functions, create an <ABBR title = "e a server" >EAServer</ABBR> proxy
+for the CTSSecurity module.</p>
+<A NAME="TI5495"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a proxy for the CTSSecurity module:</p>
+<ol><li class=fi><p>Select the <ABBR title = "e a server" >EAServer</ABBR> Proxy
+wizard from the Project page in the New dialog box and select your
+client application target from the Target drop-down list.</p></li>
+<li class=ds><p>Connect to any <ABBR title = "e a server" >EAServer</ABBR> host
+and select the CTSSecurity module.</p><p>The CTSSecurity module is a standard module that is available
+on all servers.</p></li>
+<li class=ds><p>Complete the wizard and build the project.</p><p>Among the proxy objects you will see in the System Tree is
+the Sessioninfo object that is passed to all the SSLCallback functions. </p></li></ol>
+<br><A NAME="TI5496"></A><h2>Implementing the SSLCallback object</h2>
+<A NAME="TI5497"></A><p>There are four callback functions.</p>
+<A NAME="TI5498"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 26-2: SSL callback functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5499"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI5500"></A>When
+it is called</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5501"></A><b>GetCertificateLabel</b></td>
+<td  rowspan="1"  ><A NAME="TI5502"></A>Called when the client application has
+not set a certificate label for client authentication and the server
+has requested client authentication.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5503"></A><b>GetCredentialAttribute</b></td>
+<td  rowspan="1"  ><A NAME="TI5504"></A>Called when the client application has
+not set credential attributes.<A NAME="TI5505"></A><p>These attributes are used when the client application has set
+the UseEntrustId property using the SSLServiceProvider object. <b>GetCredentialAttribute</b> is useful
+only if you are using Entrust IDs. For more information about Entrust
+and PKCS 11 tokens, see the <i>EAServer Security Administration
+and Programming Guide</i>
+.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5506"></A><b>GetPin</b></td>
+<td  rowspan="1"  ><A NAME="TI5507"></A>Called if the PKCS11 token is not logged
+in and the PIN has not been set as a property of the SSLServiceProvider object.
+It can also be called if the login session has timed out.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5508"></A><b>TrustVerify</b></td>
+<td  rowspan="1"  ><A NAME="TI5509"></A>Called when the server's internal
+SSL trust verification check fails to verify the server's
+certificate chain or when the pin to log in to the Sybase PKCS11
+token was not supplied or is incorrect.<A NAME="TI5510"></A><p><b>TrustVerify</b> can be invoked when you are
+using any SSL protocol, because server authentication is a required
+step in the SSL handshake process. The user can choose whether to
+override the internal check and proceed with the SSL connection.</p></td>
+</tr>
+</table>
+<A NAME="TI5511"></A><p>Each of these functions is implemented by the SSLCallback
+class and has a default implementation. You need to implement any
+function for which you want to use the callback. For sample implementations
+of each function, see the <i>PowerScript Reference</i>
+ or
+the online Help.</p>
+<A NAME="TI5512"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To implement the SSLCallBack class:</p>
+<ol><li class=fi><p>Select Standard Class from the PBObject
+page of the New dialog box.</p></li>
+<li class=ds><p>Select SSLCallback in the Select Standard Class
+Type dialog box and click OK.</p></li>
+<li class=ds><p>Code a callback function to provide the user with
+information about the session and prompt the user to return the
+required authentication information.</p></li>
+<li class=ds><p>Repeat step 3 for any other callback functions
+you want to implement.</p></li></ol>
+<br><A NAME="TI5513"></A><h4>Default implementations</h4>
+<A NAME="TI5514"></A><p>If you do not provide an implementation, or if your implementation
+returns an empty string, the default implementation of the callback
+is used. </p>
+<A NAME="TI5515"></A><p>For both <b>GetCertificateLabel</b> and <b>GetCredentialAttribute</b>,
+the argument list includes an array of string values that are valid
+return values for the callback. The default implementation of these
+callbacks throws an exception if the array is empty, and returns
+the first value in the array if it exists. As a result, the connection
+process continues if the first value in the array is acceptable
+to the server, but fails if the value is unacceptable. </p>
+<A NAME="TI5516"></A><p>For <b>TrustVerify</b>, the default implementation
+rejects the current connection.</p>
+<A NAME="TI5517"></A><h4>Handling exceptions</h4>
+<A NAME="TI5518"></A><p>Your implementation of <b>GetPin</b>, <b>GetCertificateLabel</b>,
+and <b>GetCredentialAttribute</b> should allow users
+to cancel the connection if they are unable to provide the requested
+information. You can do this by throwing an exception in your implementation
+of the function and catching it in a try-catch block that surrounds
+the call to <b>ConnectToServer</b>. Exceptions thrown
+in any of the callback functions raise the CTSSecurity::UserAbortedException
+exception. You should add any exceptions that can be thrown by the
+function to the throws clause of the function's prototype.</p>
+<A NAME="TI5519"></A><h2>Specifying the SSLCallback object</h2>
+<A NAME="TI5520"></A><p>Before you connect to the server, specify the name of your
+SSLCallback object in the CallbackImpl property of SSLServiceProvider:</p>
+<A NAME="TI5521"></A><p><p><PRE> SSLServiceProvider sp<br>int    rc<br> <br>getcontextservice("SSLServiceProvider", sp)<br>rc = sp.setglobalproperty( "CallbackImpl", &amp;<br>   "uo_sslcallback" )<br>IF rc &lt;&gt; 0 THEN<br>   MessageBox("Set CallbackImpl Failed", "rc= " + &amp;<br>      string(rc))   <br>   RETURN<br>END IF<br>MessageBox( "Set CallbackImpl Property", "succeeded" )<br>RETURN</PRE></p>
+<A NAME="TI5522"></A><p>To make sure that the executable version of your client application
+can reference your callback object, you need to declare a variable
+of its type in your application, for example:<p><PRE> uo_sslcallback iuo_sslcb</PRE>This is because the callback object
+is referenced only by its string name so that it is technically
+an unreferenced object and is not included in the executable file.
+Your code does not need to use the declared variable. </p>
+

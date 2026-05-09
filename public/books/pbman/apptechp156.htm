@@ -1,0 +1,135 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the JaguarORB object</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp155.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp157.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CIHCGCEC"></A><h1>Using the JaguarORB object</h1>
+<A NAME="TI5219"></A><p>To create a CORBA-compatible client, you can use the JaguarORB
+object instead of the Connection object to establish the connection
+to the server. The JaguarORB object allows you to access <ABBR title = "e a server" >EAServer</ABBR> from PowerBuilder clients in
+the same way as C++ clients. </p>
+<A NAME="TI5220"></A><h4>Two techniques</h4>
+<A NAME="TI5221"></A><p>The JaguarORB object supports two techniques for accessing
+component interfaces, using its <b>String_To_Object</b> and <b>Resolve_Initial_References</b> functions. </p>
+<A NAME="TI5222"></A><p>Using the <b>String_To_Object</b> function
+works in the same way that the <b>ConnectToServer</b> and <b>CreateInstance</b> functions
+on the Connection object do internally. The <b>String_To_Object</b> function
+allows you to instantiate a proxy instance by passing a string argument
+that describes how to connect to the server that hosts the component.
+The disadvantage of this approach is that you lose the benefits
+of server address abstraction that are provided by using the naming
+service API explicitly.</p>
+<A NAME="TI5223"></A><p>If you want to use the <ABBR title = "e a server" >EAServer</ABBR> naming
+service API, you can use the <b>Resolve_Initial_References</b> function
+to obtain the initial naming context. However, this technique is
+not recommended because it requires use of a deprecated SessionManager::Factory <b>create</b> method.
+Most PowerBuilder clients do not need to use the CORBA naming service
+explicitly. Instead, they can rely on the name resolution that is
+performed automatically when they create <ABBR title = "e a server" >EAServer</ABBR> component
+instances using the <b>CreateInstance</b> and <b>Lookup</b> functions
+of the Connection object. </p>
+<A NAME="TI5224"></A><h4>About the naming service</h4>
+<A NAME="TI5225"></A><p>The <ABBR title = "e a server" >EAServer</ABBR> naming service
+is an implementation of the CORBA CosNaming component, which is
+a collection of interfaces that provide support for object binding
+and lookup. For more information about the CosNaming module, see
+the <ABBR title = "e a server" >EAServer</ABBR> interface repository
+documentation. The interface repository documentation can be viewed
+in a Web browser by connecting to your server with the URL http://<i>yourhost</i>:<i>yourport</i>/ir/ where <i>yourhost</i> is
+the server's host name and <i>yourport</i> is
+the HTTP port number. </p>
+<A NAME="TI5226"></A><h2>Instantiation using String_To_Object</h2>
+<A NAME="TI5227"></A><h4>Obtaining proxies for SessionManager interfaces</h4>
+<A NAME="TI5228"></A><p>To instantiate a proxy without explicitly using the CORBA
+Naming Service, you use the <b>String_To_Object</b> function
+of the JaguarORB object in conjunction with interfaces defined in
+the SessionManager module. Before using the Manager, Session, and
+Factory interfaces, you need to use the <ABBR title = "e a server" >EAServer</ABBR> Proxy wizard
+to create a proxy library project for the SessionManager module,
+build the project, and include the generated proxy library in the
+library list for the client target. </p>
+<A NAME="TI5229"></A><h4>Identifying the server</h4>
+<A NAME="TI5230"></A><p>You use the SessionManager::Manager interface to interact
+with the server. You can identify the server using its Interoperable
+Object Reference (IOR) or its URL. The IOR string encodes the server's
+host address and the port at which the server accepts IIOP requests.
+Each time a server is started, it writes a hex-encoded
+IOR string with standard encoding to two files for each listener, one
+containing the IOR string by itself, and the other containing the
+IOR as part of an HTML PARAM definition that can be inserted into
+an APPLET tag. The files reside in the <i>HTML</i> subdirectory
+of the <ABBR title = "e a server" >EAServer</ABBR> directory. You
+can code the client to obtain the IOR string from one of these files.</p>
+<A NAME="TI5231"></A><h4>Creating an authenticated session</h4>
+<A NAME="TI5232"></A><p>After initializing the ORB and obtaining the IOR or URL of
+the server, use the <b>String_To_Object</b> function
+to convert the string to a CORBA object reference that you can convert
+to a reference to the Manager interface using the <b>_Narrow</b> function.
+Then use the <b>createSession</b> method of the Manager
+interface to create an authenticated session between the client
+application and the server.</p>
+<A NAME="TI5233"></A><h4>Creating a reference to the component's interface</h4>
+<A NAME="TI5234"></A><p>Use the session's <b>lookup</b> method
+to return a factory for proxy object references to the component
+you want to call. Then call the <b>create</b> method
+of the Factory object to obtain proxies for the component. The <b>create</b> method
+returns a CORBA object reference that you can convert into a reference
+to the component's interface using the <b>_Narrow</b> function.</p>
+<A NAME="TI5235"></A><p>A component's default name is the package name and
+the component name, separated by a slash, as in calculator/calc.
+However, you can specify a different name with the component's
+com.sybase.jaguar.component.naming property. For example, you can
+specify a logical name, such as USA/MyCompany/FinanceServer/Payroll.
+For more information on configuring the naming service, see the
+section on naming services in the <i>EAServer System Administration
+Guide</i>
+.</p>
+<A NAME="TI5236"></A><h4>Examples</h4>
+<A NAME="TI5237"></A><p>In this example, the first argument to the <b>String_To_Object</b> function
+includes the URLs for two servers in a cluster:<p><PRE> // PowerBuilder objects<br>JaguarORB my_JaguarORB<br>CORBAObject my_corbaobj<br>n_bank_acct my_acct<br> <br>// Proxy objects<br>Manager my_manager<br>Session my_session<br>Factory my_factory<br> <br>long ll_return<br>my_JaguarORB = CREATE JaguarORB<br> <br>// Initialize the ORB<br>ll_return = my_JaguarORB.init("ORBRetryCount=3,<br>    ORBRetryDelay=1000")<br> <br>// Convert a URL string to an object reference<br>ll_return = my_JaguarORB.String_To_Object<br>    (''iiop://JagOne:9000;iiop://JagTwo:9000'',<br>    my_corbaobj)<br> <br>// Narrow the object reference to the Manager interface<br>ll_return = my_corbaobj._narrow(my_manager,<br>    "SessionManager/Manager")<br> <br>// Create a session object reference<br>my_session = my_manager.createSession("jagadmin", "")<br> <br>// Create a Factory for proxy object references to<br>// the remote interface<br>my_corbaobj = my_session.lookup("Bank/n_bank_acct ")<br>my_corbaobj._narrow(my_Factory,    "SessionManager/Factory")<br> <br>// Obtain a proxy, narrow it to the remote<br>// interface, and call a method<br>my_corbaobj = my_Factory.create()<br>my_corbaobj._narrow(my_acct, "Bank/n_bank_acct")<br>my_acct.withdraw(1000.0)</PRE></p>
+<A NAME="TI5238"></A><p>In this example, the component is an EJB component. The home
+interface effectively performs the same role for the EJB that the
+factory interface does for a CORBA component:<p><PRE> JaguarORB my_orb<br>CORBAObject my_corbaobj<br>Manager my_mgr<br>Session my_session<br>CartHome my_cartHome<br>Cart my_cart<br> <br>my_orb = CREATE JaguarORB<br>my_orb.init("ORBLogFile='c:\temp\orblog'")<br>my_orb.String_to_Object("iiop://svr1:9000", &amp;<br>    my_corbaObj)<br>my_corbaObj._narrow(my_mgr, "SessionManager/Manager" )<br>my_Session = my_mgr.createSession("jagadmin", "")<br>my_corbaObj = my_session.lookup("Cart")<br>my_corbaObj._narrow(my_CartHome, "shopping/CartHome")   my_corbaObj = my_CartHome.create()<br>my_Cart.addItem()</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using a Connection object</span> <A NAME="TI5239"></A>You can use the <b>Lookup</b> function on the
+Connection object to obtain a reference to the home interface of
+an EJB component. See <A HREF="apptechp155.htm#CIHEGIAI">"Invoking an EJB component
+method"</A>.</p>
+<A NAME="TI5240"></A><h2>Instantiation using the naming service API</h2>
+<A NAME="TI5241"></A><h4>Obtaining proxies for CosNaming and SessionManager interfaces</h4>
+<A NAME="TI5242"></A><p>To instantiate a proxy using the CORBA naming service API,
+you need to generate proxies for the naming service interface and
+include these proxies in the library list for the client. Use the <ABBR title = "e a server" >EAServer</ABBR> Proxy wizard to create
+a proxy project for the CosNaming module, build the project to create
+a proxy library, and add the proxy library to the client target's
+library list. You also need a proxy for the SessionManager module. </p>
+<A NAME="TI5243"></A><h4>Getting an initial naming context</h4>
+<A NAME="TI5244"></A><p>After initializing the ORB, call the <b>Resolve_Initial_References</b> function
+to obtain an initial naming context and use <b>_Narrow</b> to
+convert it to a reference to the CORBA naming context interface.
+You must identify the CosNaming package by including omg.orb in
+the class name as shown in the example below. </p>
+<A NAME="TI5245"></A><h4>Resolving the naming context</h4>
+<A NAME="TI5246"></A><p>You need to resolve the naming context to obtain a reference
+to a Factory object for the component and then narrow that reference
+to the SessionManager::Factory interface. The <b>resolve</b> method
+takes a name parameter, which is a sequence of NameComponent structures.
+Each NameComponent structure has an <i>id</i> attribute
+that identifies the component and a <i>kind</i> attribute
+that can be used to describe the component. In the example below,
+the name has only one component. </p>
+<A NAME="TI5247"></A><h4>Creating a reference to the component's interface</h4>
+<A NAME="TI5248"></A><p>Call the <b>create</b> method of the Factory object
+to obtain proxies for the component. The <b>create</b> method
+returns a CORBA object reference that you can convert into a reference
+to the component's interface using the <b>_Narrow</b> function.</p>
+<A NAME="TI5249"></A><h4>Example</h4>
+<A NAME="TI5250"></A><p>The NamingContext and NameComponent types used in the example
+are proxies imported from the CosNaming package in <ABBR title = "e a server" >EAServer</ABBR>, and the Factory type is
+imported from the SessionManager package:<p><PRE> CORBAObject my_corbaobj<br>JaguarORB my_orb<br>NamingContext my_nc<br>NameComponent the_name[]<br>Factory my_Factory<br>n_jagcomp my_jagcomp<br> <br>my_orb = CREATE JaguarORB<br>// Enclose the name of the URL in single quotes<br>my_orb.init("ORBNameServiceURL='iiop://server1:9000'")<br> <br>my_orb.<i>Resolve_Initial_References</i>("NameService", &amp;<br>    my_corbaobj)<br>my_corbaobj._narrow(my_nc, &amp;<br>    "omg.org/CosNaming/NamingContext")<br> <br>the_name[1].id = "mypackage/n_jagcomp"<br>the_name[1].kind = ""<br> <br>my_corbaobj = my_nc.resolve(the_name)<br>my_corbaobj._narrow(my_Factory, &amp;<br>    "SessionManager/Factory")<br>my_corbaobj = my_Factory.create("jagadmin","")<br>my_corbaobj._narrow(my_jagcomp,<br>    "mypackage/n_jagcomp")<br> <br>my_jagcomp.getdata()</PRE></p>
+

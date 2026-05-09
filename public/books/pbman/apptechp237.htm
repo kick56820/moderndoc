@@ -1,0 +1,198 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using Unicode </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp236.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp238.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CBHBCHIG"></A><h1>Using Unicode </h1>
+<A NAME="TI7207"></A><p>Unicode is a character encoding scheme that enables text display
+for most of the world's languages. Support for Unicode
+characters is built into PowerBuilder. This means that you can display
+characters from multiple languages on the same page of your application,
+create a flexible user interface suitable for deployment to different
+countries, and process data in multiple languages.</p>
+<A NAME="TI7208"></A><h2>About Unicode</h2>
+<A NAME="TI7209"></A><p>Before Unicode was developed, there were many different encoding
+systems, many of which conflicted with each other. For example,
+the same number could represent different characters in different
+encoding systems. Unicode provides a unique number for each character
+in all supported written languages. For languages that can be written
+in several scripts, Unicode provides a unique number for each character
+in each supported script. </p>
+<A NAME="TI7210"></A><p>For more information about the supported languages and scripts,
+see the <A HREF="http://www.unicode.org/onlinedat/languages-scripts.html">Unicode Web site</A>
+. </p>
+<A NAME="TI7211"></A><h4>Encoding forms</h4>
+<A NAME="TI7212"></A><p>There are three Unicode encoding forms: UTF-8, UTF-16, and
+UTF-32. Originally UTF stood for Unicode Transformation Format.
+The acronym is used now in the names of these encoding forms, which
+map from a character set definition to the actual code units that
+represent the data, and to the encoding schemes, which are encoding
+forms with a specific byte serialization.<A NAME="TI7213"></A>
+<ul>
+<li class=fi>UTF-8
+uses an unsigned byte sequence of one to four bytes to represent each
+Unicode character. </li>
+<li class=ds>UTF-16 uses one or two unsigned 16-bit code units,
+depending on the range of the scalar value of the character, to
+represent each Unicode character.</li>
+<li class=ds>UTF-32 uses a single unsigned 32-bit code unit to
+represent each Unicode character. 
+</li>
+</ul>
+</p>
+<A NAME="TI7214"></A><h4>Encoding schemes</h4>
+<A NAME="TI7215"></A><p>An encoding scheme specifies how the bytes in an encoding
+form are serialized. When you manipulate files, convert blobs and
+strings, and save DataWindow data in PowerBuilder, you can choose
+to use ANSI encoding, or one of three Unicode encoding schemes:<A NAME="TI7216"></A>
+<ul>
+<li class=fi>UTF-8 serializes a UTF-8 code unit sequence in exactly
+the same order as the code unit sequence itself. </li>
+<li class=ds>UTF-16BE serializes a UTF-16 code unit sequence
+as a byte sequence in big-endian format. </li>
+<li class=ds>UTF-16LE serializes a UTF-16 code unit sequence
+as a byte sequence in little-endian format.
+</li>
+</ul>
+</p>
+<A NAME="TI7217"></A><p>UTF-8 is frequently used in Web requests and responses. The
+big-endian format, where the most significant value in the byte
+sequence is stored at the lowest storage address, is typically used
+on UNIX systems. The little-endian format, where the least significant
+value in the sequence is stored first, is used on Windows.</p>
+<A NAME="TI7218"></A><h2>Unicode support in PowerBuilder</h2>
+<A NAME="TI7219"></A><p>PowerBuilder uses UTF-16LE encoding internally. The source
+code in PBLs is encoded in UTF-16LE, any text entered in an application
+is automatically converted to Unicode, and the <b>string</b> and <b>character</b> PowerScript
+datatypes hold Unicode data only. Any ANSI or DBCS characters assigned
+to these datatypes are converted internally to Unicode encoding.</p>
+<A NAME="TI7220"></A><h4>Support for Unicode databases</h4>
+<A NAME="TI7221"></A><p>Most PowerBuilder database interfaces support both ANSI and
+Unicode databases. </p>
+<A NAME="TI7222"></A><p>A Unicode database is a database whose character set is set
+to a Unicode format, such as UTF-8 or UTF-16. All data in the database
+is in Unicode format, and any data saved to the database must be
+converted to Unicode data implicitly or explicitly.</p>
+<A NAME="TI7223"></A><p>A database that uses ANSI (or DBCS) as its character set can
+use special datatypes to store Unicode data. These datatypes are
+NChar, NVarChar, and NVarChar2. Columns with one of these datatypes
+can store Unicode data, but data saved to such a column must be
+converted to Unicode explicitly.</p>
+<A NAME="TI7224"></A><p>For more specific information about each interface, see <i>Connecting
+to Your Database</i>
+.</p>
+<A NAME="TI7225"></A><h4>String functions</h4>
+<A NAME="TI7226"></A><p>PowerBuilder string functions, such as <b>Fill</b>, <b>Len</b>, <b>Mid</b>,
+and <b>Pos</b>, take characters instead of bytes as
+parameters or return values and return the same results in all environments.
+These functions have a "wide" version (such as <b>FillW</b>)
+that is obsolete and will be removed in a future version of PowerBuilder
+because it produces the same results as the standard version of
+the function. Some of these functions also have an ANSI version
+(such as <b>FillA</b>). This version is provided for
+backwards compatibility for users in DBCS environments who used
+the standard version of the string function in previous versions
+of PowerBuilder to return bytes instead of characters.</p>
+<A NAME="TI7227"></A><p>You can use the <b>GetEnvironment</b> function
+to determine the character set used in the environment:<p><PRE> environment env<br>getenvironment(env)<br> <br>choose case env.charset<br>case charsetdbcs!<br>    // DBCS processing<br>    ...<br>case charsetunicode!<br>    // Unicode processing<br>    ...<br>case charsetansi!<br>    // ANSI processing<br>    ...<br>case else<br>    // Other processing<br>    ...<br>end choose</PRE></p>
+<A NAME="TI7228"></A><h4>Encoding enumeration</h4>
+<A NAME="TI7229"></A><p>Several functions, including <b>Blob</b>, <b>BlobEdit</b>, <b>FileEncoding</b>, <b>FileOpen</b>, <b>SaveAs</b>, and <b>String</b>,
+have an optional <i>encoding</i> parameter. These
+functions let you work with blobs and files with ANSI, UTF-8, UTF-16LE,
+and UTF-16BE encoding. If you do not specify this parameter, the
+default encoding used for <b>SaveAs</b> and <b>FileOpen</b> is
+ANSI. For other functions, the default is UTF-16LE.</p>
+<A NAME="TI7230"></A><p>The following examples illustrate how to open different kinds
+of files using <b>FileOpen</b>:<p><PRE> // Read an ANSI File<br>Integer li_FileNum<br>String s_rec<br>li_FileNum = FileOpen("Employee.txt")<br>// or:<br>// li_FileNum = FileOpen("Emplyee.txt", &amp;<br>//    LineMode!, Read!)<br>FileRead(li_FileNum, s_rec)<br> <br>// Read a Unicode File<br>Integer li_FileNum<br>String s_rec<br>li_FileNum = FileOpen("EmployeeU.txt", LineMode!, &amp;<br>   Read!, EncodingUTF16LE!)<br>FileRead(li_FileNum, s_rec)<br> <br>// Read a Binary File<br>Integer li_FileNum<br>blob bal_rec<br>li_FileNum = FileOpen("Employee.imp", Stream Mode!, &amp;<br>   Read!)<br>FileRead(li_FileNum, bal_rec)</PRE></p>
+<A NAME="TI7231"></A><h4>Initialization files</h4>
+<A NAME="TI7232"></A><p>The <b>SetProfileString</b> function can write
+to initialization files with ANSI or UTF16-LE encoding on Windows
+systems, and ANSI or UTF16-BE encoding on UNIX systems. The <b>ProfileInt</b> and <b>ProfileString</b> PowerScript
+functions and DataWindow expression functions can read files with
+these encoding schemes.</p>
+<A NAME="CHDGDEFB"></A><h4>Exporting and importing
+source</h4>
+<A NAME="TI7233"></A><p>The Export Library Entry dialog box lets you select the type
+of encoding for an exported file. The choices are ANSI/DBCS,
+which lets you import the file into PowerBuilder 9 or earlier, HEXASCII,
+UTF8, or Unicode LE. </p>
+<A NAME="TI7234"></A><p>The HEXASCII export format is used for source-controlled files.
+Unicode strings are represented by hexadecimal/ASCII strings
+in the exported file, which has the letters HA at the beginning
+of the header to identify it as a file that might contain such strings.
+You cannot import HEXASCII files into PowerBuilder 9 or earlier.</p>
+<A NAME="TI7235"></A><p>If you import an exported file from PowerBuilder 9 or earlier,
+the source code in the file is converted to Unicode before the object
+is added to the PBL.</p>
+<A NAME="TI7236"></A><h4>External functions</h4>
+<A NAME="TI7237"></A><p>When you call an external function that returns an ANSI string
+or has an ANSI string argument, you must use an ALIAS clause in
+the external function declaration and add <FONT FACE="Courier New">;ansi</FONT> to
+the function name. For example:<p><PRE> FUNCTION int MessageBox(int handle, string content, string title, int showtype)<br>LIBRARY "user32.dll" ALIAS FOR "MessageBoxA;ansi"</PRE></p>
+<A NAME="TI7238"></A><p>The following declaration is for the "wide" version
+of the function, which uses Unicode strings:<p><PRE> FUNCTION int MessageBox(int handle, string content, string title, int showtype)<br>LIBRARY "user32.dll" ALIAS FOR "MessageBoxW"</PRE></p>
+<A NAME="TI7239"></A><p>If you are migrating an application from PowerBuilder 9 or
+earlier, PowerBuilder replaces function declarations that use ANSI
+strings with the correct syntax automatically.</p>
+<A NAME="CHDBAEIG"></A><h4>Setting fonts for multiple
+language support</h4>
+<A NAME="TI7240"></A><p>The default font in the System Options and Design Options
+dialog boxes is Tahoma.</p>
+<A NAME="TI7241"></A><p>Setting the font in the System Options dialog box to Tahoma
+ensures that multiple languages display correctly in the Layout
+and Properties views in the Window, User Object, and Menu painters
+and in the wizards. </p>
+<A NAME="TI7242"></A><p>If the font on the Editor Font page in the Design Options
+dialog box is not set to Tahoma, multiple languages <i>cannot</i> be
+displayed in Script views, the File and Source editors, the ISQL
+view in the DataBase painter, and the Debug window.</p>
+<A NAME="TI7243"></A><p>You can select a different font for printing on the Printer
+Font tab page of the Design Options dialog box for Script views,
+the File and Source editors, and the ISQL view in the DataBase painter.
+If the printer font is set to Tahoma and the Tahoma font is not
+installed on the printer, PowerBuilder downloads the entire font
+set to the printer when it encounters a multilanguage character.
+If you need to print multilanguage characters, specify a printer
+font that is installed on your printer. </p>
+<A NAME="TI7244"></A><p>To support multiple languages in DataWindow objects, set the
+font in every column and text control to Tahoma. </p>
+<A NAME="TI7245"></A><p>The default font for print functions is the system font. Use
+the <b>PrintDefineFont</b> and <b>PrintSetFont</b> functions
+to specify a font that is available on users' printers and
+supports multiple languages.</p>
+<A NAME="TI7246"></A><h4>PBNI</h4>
+<A NAME="TI7247"></A><p>The PowerBuilder Native Interface is Unicode based. PBNI extensions
+must be compiled using the _UNICODE preprocessor directive
+in your C++ development environment. </p>
+<A NAME="TI7248"></A><p>Your extension's code must use <b>TCHAR</b>, <b>LPTSTR</b>,
+or <b>LPCTSTR</b> instead of <b>char</b>, <b>char*</b>,
+and <b>const char*</b> to ensure that it
+works correctly in a Unicode environment. Alternatively, you can
+use the <b>MultiByteToWideChar</b> function to map character
+strings to Unicode strings. For more information about enabling Unicode
+in your application, see the documentation for your C++ development environment.</p>
+<A NAME="CHDIFCJF"></A><h4>Unicode enabling for Web
+services</h4>
+<A NAME="TI7249"></A><p>In a PowerScript target, the PBNI extension classes instantiated
+by Web service client applications use Unicode for all internal
+processing. However, calls to component methods are converted to
+ANSI for processing by EasySoap, and data returned from these calls
+is converted to Unicode.</p>
+<A NAME="TI7250"></A><p>In a JSP target, the authoring tool (HTML editor) is Unicode-enabled
+so you can input text in multiple languages on a single page. When
+you type in the editor, the text is saved in UTF-16LE encoding.
+However, JSP files with other encoding schemes can still be imported
+in the editor. Text with these encodings is automatically converted
+to UTF-16LE.</p>
+<A NAME="CHDCFBHE"></A><h4>XML string encoding</h4>
+<A NAME="TI7251"></A><p>The XML parser cannot parse a string that uses an eight-bit
+character code such as windows-1253. For example, a string
+with the following declaration cannot be parsed:<p><PRE> string ls_xml<br>ls_xml += '&lt;?xml version="1.0" encoding="windows-1253"?&gt;'</PRE></p>
+<A NAME="TI7252"></A><p>You must use a Unicode encoding value such as UTF16-LE.</p>
+

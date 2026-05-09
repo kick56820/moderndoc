@@ -1,0 +1,129 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Localizing the product</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp238.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp240.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF354479635"></A><h1>Localizing the product</h1>
+<A NAME="TI7262"></A><p>PowerBuilder provides resources for international developers
+that include localized runtime files and the Translation Toolkit.
+The localized files become available after the general release of
+a new version of PowerBuilder.</p>
+<A NAME="TI7263"></A><h4>Localized runtime files</h4>
+<A NAME="TI7264"></A><p>Localized runtime files are provided for French, German, Italian,
+Spanish, Dutch, Danish, Norwegian, and Swedish. You can install
+localized runtime files in the development environment or on the
+user's machine. If you install them on the development
+machine, you can use them for testing purposes.</p>
+<A NAME="TI7265"></A><p>The localized PowerBuilder runtime files handle language-specific
+data at runtime. They are required to display standard dialog boxes
+and user interface elements, such as day and month names in spin
+controls, in the local language. They also provide the following
+features:<A NAME="TI7266"></A>
+<ul>
+<li class=fi><b>DayName
+function manipulation</b>   The <b>DayName</b> function returns a name in
+the language of the runtime files available on the machine where the
+application is run.</li>
+<li class=ds><b>DateTime manipulation</b>   When you use the <b>String</b> function to format
+a date and the month is displayed as text (for example, the display
+format includes "mmm"), the month is in the language
+of the runtime files available when the application is run.</li>
+<li class=ds><b>Error messages</b>   PowerBuilder error messages are translated into the language
+of the runtime files.
+</li>
+</ul>
+</p>
+<A NAME="TI7267"></A><h4>Localized PFC libraries</h4>
+<A NAME="TI7268"></A><p>The PFC is now available on the Sybase CodeXchange Web site
+in the <A HREF="http://pfc.codeXchange.sybase.com/">PFC project</A>
+.</p>
+<A NAME="TI7269"></A><p>In order to convert an English language PFC-based application
+to another language such as Spanish, you need multiple components.
+You need to test the application on a computer running the localized
+version of the operating system with appropriate regional settings.
+You must also obtain or build localized PFC libraries and install
+the localized PowerBuilder runtime files. When you deploy the application,
+you must deploy it to a computer running a localized version of
+the operating system, and you must deploy the localized runtime
+files.</p>
+<A NAME="TI7270"></A><p>You can translate the PFC libraries with the Translation Toolkit.
+Localized PFC libraries are the same as the original PFC libraries
+except that strings that occur in windows, menus, DataWindow objects,
+dialog boxes, and other user interface elements, and in runtime
+error messages, are translated into the local language. These include,
+for example, day and month names in the Calendar service. All services
+remain otherwise the same. In a Spanish PFC application, error messages
+displayed by the PFC are in Spanish, month names in the Calendar
+service are in Spanish, column headers in DataWindow objects and Menu
+items are in Spanish, and so on.</p>
+<A NAME="TI7271"></A><p>The Translation Toolkit adds a string in the format<FONT FACE="Courier New"> %LANGUAGE%</FONT> to
+the comment associated with every object that contains a translated
+string. For example, if you look at a PFC library that has been
+translated into Spanish in the List view in the Library painter,
+you will notice the string <FONT FACE="Courier New">%SPANISH%</FONT> at
+the beginning of the comment for many objects. </p>
+<A NAME="TI7272"></A><p>The dictionaries used to translate the PFC libraries into
+each language are provided with the Translation Toolkit. You can
+use the dictionaries to translate the rest of your application into
+a local language using the Translation Toolkit, and you can view
+the dictionary in a text editor to see which strings have been translated.</p>
+<A NAME="TI7273"></A><p>The localized PFC libraries work in coordination with the
+localized runtime files, regional settings, and the localized operating
+system. </p>
+<A NAME="TI7274"></A><h4>Regional settings</h4>
+<A NAME="TI7275"></A><p>PowerBuilder always uses the system's regional settings,
+set in the Windows Control Panel, to determine formats for the <b>Date</b> and <b>Year</b> functions,
+as well as date formats to be used by the <b>SaveAs</b> function.
+The use of these regional settings is independent of the use of
+PowerBuilder localized runtime files or PFC libraries. </p>
+<A NAME="TI7276"></A><p>The regional settings are also used to determine behavior
+when using Format and Edit masks. For more information, see the
+section on defining display formats in the <i>User's
+Guide</i>
+.</p>
+<A NAME="TI7277"></A><h4>Localized operating system</h4>
+<A NAME="TI7278"></A><p>The localized operating system is required for references
+to System objects, such as icons and buttons, that are referenced
+using enumerated types in PowerBuilder, such as <i>OKCancel!</i>, <i>YesNo!</i>, <i>Information!</i>,
+and <i>Error!</i>. These enumerated types rely on
+API calls to the local operating system, which passes back the appropriate
+button, icon or symbol for the local language. For example, if you
+use the <i>OKCancel! </i>argument in a <b>MessageBox</b> function,
+the buttons that display on the message box are labeled OK and Cancel
+if the application is <i>not</i> running on a localized
+operating system.</p>
+<A NAME="TI7279"></A><h2>About the Translation Toolkit</h2>
+<A NAME="TI7280"></A><p>The Translation Toolkit is a set of tools designed to help
+you translate PowerBuilder applications into other languages. It
+includes a standalone translator tool that is used by the person
+or group translating the text of the application.</p>
+<A NAME="TI7281"></A><p>When you use the Toolkit to create a project, a copy of each
+of your application's source libraries is created for each
+project. The application's original source libraries are
+not changed.</p>
+<A NAME="TI7282"></A><h4>How the Toolkit works</h4>
+<A NAME="TI7283"></A><p>You work with the <strong>phrases</strong> (one or more
+words of text) in an application. These phrases are in the application's
+object properties, controls, and scripts.</p>
+<A NAME="TI7284"></A><p>You use the tools to:</p>
+<A NAME="TI7285"></A><p><A NAME="TI7286"></A>
+<ul>
+<li class=fi>Extract phrases from
+the project libraries</li>
+<li class=ds>Present the phrases for translation</li>
+<li class=ds>Substitute translated phrases for the original phrases
+in the project libraries
+</li>
+</ul>
+</p>
+<A NAME="TI7287"></A><p>Using the translated project libraries, you use PowerBuilder
+to build the translated application. </p>
+<A NAME="TI7288"></A><p>For more information, see the online Help for the Translation
+Toolkit.</p>
+

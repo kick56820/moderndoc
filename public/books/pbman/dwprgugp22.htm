@@ -1,0 +1,107 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating a DataWindow object </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp21.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp23.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299343605"></A><h1>Creating a DataWindow object </h1>
+<A NAME="TI829"></A><p>This section describes how to create a DataWindow object by
+calling the Create method in an application.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>DataWindow painter</span> <A NAME="TI830"></A>You should use the techniques described here for creating
+a DataWindow from syntax only if you cannot accomplish what you
+need to in the DataWindow painter. The usual way of creating DataWindow
+objects is to use the DataWindow painter.</p>
+<A NAME="TI831"></A>To learn about creating DataWindow objects
+in the DataWindow painter, see the <i>PowerBuilder User's
+Guide</i>
+.</p>
+<A NAME="TI832"></A><p>You use the Create method to create a DataWindow object dynamically
+during execution. Create generates a DataWindow object using source
+code that you specify. It replaces the DataWindow object currently
+in the specified DataWindow control with the new DataWindow object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Resetting the transaction object</span> <A NAME="TI833"></A>The Create method destroys the association between the DataWindow
+control and the transaction object. As a result, you need to reset
+the control's transaction object by calling the SetTransObject
+or SetTrans method after you call Create.</p>
+<p><b>Web ActiveX</b>   If you used a connection technique that did not require you
+to call the SetTransObject or SetTrans method, you do not need to
+call it after Create either.</p>
+<A NAME="TI834"></A>To learn how to associate a DataWindow control
+with a transaction object, see <A HREF="dwprgugp6.htm#BIIDDADJ">Chapter 2, "Using DataWindow Objects."</A></p>
+<A NAME="CAIBIAJF"></A><h4>Specifying the DataWindow
+object syntax</h4>
+<A NAME="TI835"></A><p>There are several ways to specify or generate the syntax required
+for the Create method. Not all the techniques are available in all
+environments. </p>
+<A NAME="TI836"></A><p>In PowerBuilder, you can:<A NAME="TI837"></A>
+<ul>
+<li class=fi>Use
+the SyntaxFromSQL method of the transaction object</li>
+<li class=ds>Use the LibraryExport PowerScript function
+</li>
+</ul>
+</p>
+<A NAME="TI838"></A><p>In all environments, you can:<A NAME="TI839"></A>
+<ul>
+<li class=fi>Use the
+DataWindow.Syntax property of the DataWindow object</li>
+<li class=ds>Create the syntax yourself
+</li>
+</ul>
+</p>
+<p><b>Using SyntaxFromSQL</b>   You are likely to use SyntaxFromSQL to create the syntax for
+most dynamic DataWindow objects. If you use SyntaxFromSQL, all you
+have to do is provide the SELECT statement and the presentation
+style.</p>
+<A NAME="TI840"></A><p>In PowerBuilder, SyntaxFromSQL is a method of the transaction
+object. The transaction object must be connected when you call the
+method. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Setting USERID for native drivers</span> <A NAME="TI841"></A>In PowerBuilder, table names are automatically qualified with
+the owner's name if you are using a native driver. To obtain
+the same results in an application, you must set the USERID property
+in the transaction object so that the table name is properly qualified
+and extended attributes can be looked up. </p>
+<A NAME="TI842"></A><p>SyntaxFromSQL has three required arguments:<A NAME="TI843"></A>
+<ul>
+<li class=fi>A string containing the SELECT statement for the DataWindow
+object</li>
+<li class=ds>A string identifying the presentation style and
+other settings</li>
+<li class=ds>The name of a string you want to fill with any error
+messages that might result
+</li>
+</ul>
+</p>
+<A NAME="TI844"></A><p>SyntaxFromSQL returns the complete syntax for a DataWindow
+object that is built using the specified SELECT statement.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using SyntaxFromSQL with Adaptive Server Enterprise</span> <A NAME="TI845"></A>If your DBMS is Adaptive Server Enterprise and you call SyntaxFromSQL, PowerBuilder
+must determine whether the tables are updatable through a unique
+index. This is possible only if you set AutoCommit to TRUE before calling
+SyntaxFromSQL, as shown below:<p><PRE> sqlca.autocommit=TRUE</PRE><PRE> sqlca.syntaxfromsql (sqlstmt, presentation, err)</PRE><PRE> sqlca.autocommit=FALSE</PRE></p>
+<p><b>Using LibraryExport in PowerBuilder</b>   You can use the LibraryExport PowerScript function to export
+the syntax for a DataWindow object and store the syntax in a string.</p>
+<A NAME="TI846"></A><p>You can then use the exported syntax (or a modification of
+the syntax) in Create to create a DataWindow object.</p>
+<p><b>Using the DataWindow.Syntax property</b>   You can obtain the source code of an existing DataWindow object
+to use as a model or for making minor changes to the syntax. Many
+values in the source code syntax correspond to properties of the
+DataWindow object.</p>
+<A NAME="TI847"></A><p>This JavaScript example gets the syntax of the DataWindow
+object in the DataWindow control, dw_1, and displays it
+in the text box control, textb_dw_syntax : <p><PRE> var dwSyntax;</PRE><PRE> dwSyntax = dw_1.<i>Describe</i>("datawindow.syntax");<br>textb_dw_syntax.value = dwSyntax;</PRE></p>
+<p><b>Creating the syntax yourself</b>   You need to create the syntax yourself to use some of the
+advanced dynamic DataWindow features, such as creating a group break.</p>
+<A NAME="TI848"></A><p>The DataWindow source code syntax that you need to supply
+to the Create method can be very complex. To see examples of DataWindow
+object syntax, go to the Library painter and export a DataWindow
+object to a text file, then view the file in a text editor.</p>
+<A NAME="TI849"></A><p>For more information on Create and Describe
+methods as well as DataWindow object properties and syntax, see
+the <i>DataWindow Reference</i>
+.</p>
+

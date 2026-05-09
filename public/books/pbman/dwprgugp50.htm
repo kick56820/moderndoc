@@ -1,0 +1,343 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using a custom server component</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp49.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp51.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BEIEHDDG"></A><h1>Using a custom server component</h1>
+<A NAME="TI2147"></A><p>If you are using <ABBR title = "e a server" >EAServer</ABBR> as
+the component server, you can deploy a custom component that uses
+methods of the generic server component interface. You can also
+write a server component with its own DataWindow methods for use with <ABBR title = "e a server" >EAServer</ABBR> or COM+.</p>
+<A NAME="TI2148"></A><h4>Some advantages of a custom component</h4>
+<A NAME="TI2149"></A><p>You can use a custom component to enhance: <A NAME="TI2150"></A>
+<ul>
+<li class=fi><b>Maintainability</b>   Keep connection information on the server by specifying values
+for transaction properties.</li>
+<li class=ds><b>Performance</b>   Specify the source file and DataWindow object on the server
+so that the DataWindow object is loaded when the component instance
+is created, resulting in fewer method calls from server-side scripts in
+the Web page. You can also improve performance by having your custom
+component maintain its state.<br>
+For information about changing the state property of a custom
+component, see <A HREF="dwprgugp50.htm#BABFABGD">"Maintaining state on the
+server"</A>.<br></li>
+<li class=ds><b>Scalability</b>   Specify the source file and DataWindow object and use <ABBR title = "e a server" >EAServer</ABBR> instance pooling so that
+the component is reused and loading the DataWindow object occurs
+only once. 
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Contention between the DataWindow painter and <ABBR title = "e a server" >EAServer</ABBR></span> <A NAME="TI2151"></A>If you are working in the DataWindow painter and testing the
+same PBL in <ABBR title = "e a server" >EAServer</ABBR>, your PBL
+might be locked when the <ABBR title = "e a server" >EAServer</ABBR> component
+loads the DataWindow. To avoid this, disable instance pooling for
+the component in <ABBR title = "e a server" >EAServer</ABBR> Manager.
+After you have finished testing and editing the DataWindow object,
+you can enable instance pooling. </p>
+<A NAME="TI2152"></A>Instance pooling provides better performance in a production
+environment when a component instance can be reinitialized and reused
+for multiple clients.</p>
+<A NAME="TI2153"></A><p>For information on creating a custom component that uses the
+generic Web DataWindow interface, see <A HREF="dwprgugp50.htm#BABBHABC">"Creating a custom server
+component in <ABBR title = "e a server" >EAServer</ABBR>"</A> or <A HREF="dwprgugp43.htm#BABCDJEH">"Deploying DataWindow objects
+to the component server"</A>.</p>
+<A NAME="BABGAEIG"></A><h4>Writing your own custom
+component</h4>
+<A NAME="TI2154"></A><p>For full control of Web generation and the state of the DataStore
+object that holds the DataWindow definition and data, you can write
+your own custom class user object in PowerBuilder and deploy it
+as an <ABBR title = "e a server" ></ABBR><ABBR title = "e a server" >EAServer</ABBR> or
+COM component. Using a custom component that includes only the processing
+you need can reduce the size of the client control returned to the
+Web client.</p>
+<A NAME="TI2155"></A><p>The source code for the generic component is available in <i>PBDWRMT.PBL</i> in the
+PowerBuilder code examples directory so that you can examine or
+reuse it. You can modify or add to the code in this PBL or start
+from scratch, using the sample PBL as a model for your own component. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Mixed-case method names</span> <A NAME="TI2156"></A>The methods of the generic <ABBR title = "e a server" >EAServer</ABBR> component
+use mixed-case names and all the examples in this section use mixed
+case. If you write your own server component, the methods of the <ABBR title = "e a server" >EAServer</ABBR> component you generate
+are all lowercase. However, you can change the case of the method
+names in the IDL file for your component after it is deployed to <ABBR title = "e a server" >EAServer</ABBR>. When you use your own
+component, you must generate and compile stubs for the component,
+and you must do this after you make any changes to the IDL.</p>
+<A NAME="TI2157"></A><p>Your server component will use methods on a DataStore object
+to retrieve data and return the data and state to the client as
+HTML. To get the HTML and JavaScript that represents the state,
+data, and presentation of the DataWindow object, use the Describe
+method:<p><PRE> ls_html = ds_1.Describe("DataWindow.Data.HTML");</PRE></p>
+<A NAME="TI2158"></A><p>To update the HTML according to user actions, use the SetHTMLAction method:<p><PRE> li_rtn = ds_1.SetHTMLAction(arg_action, arg_context);</PRE></p>
+<A NAME="TI2159"></A><p>SetHTMLAction restores the state of the DataStore based on
+the context passed in as an argument and then changes the state
+based on the passed action. </p>
+<A NAME="TI2160"></A><p>For more information about SetHTMLAction, see the <i>DataWindow
+Reference</i>
+ or online Help. For information about working
+with DataStore objects, see <A HREF="dwprgugp26.htm#CFHCIHDJ">Chapter 4, "Using DataStore Objects "</A>.</p>
+<A NAME="TI2161"></A><p>If you create your own server component and deploy it to <ABBR title = "e a server" >EAServer</ABBR>, you must also generate
+and compile the stubs. For information on generating and compiling
+stubs, see the <ABBR title = "e a server" >EAServer</ABBR> documentation.</p>
+<A NAME="TI2162"></A><p>If you deploy the user object as a COM component, you need
+to register it. For information about registering COM components,
+see <A HREF="dwprgugp48.htm#BABBFFEI">"Server configuration requirements"</A>.</p>
+<A NAME="BABBHABC"></A><h2>Creating a custom server component in EAServer</h2>
+<A NAME="TI2163"></A><p>You can install and configure a custom Web DataWindow server
+component in <ABBR title = "e a server" >EAServer</ABBR> Manager.
+In this procedure, you create a custom version of the <ABBR title = "e a server" >EAServer</ABBR> server component with custom
+properties preset in <ABBR title = "e a server" >EAServer</ABBR> Manager.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the Web DataWindow Container Project wizard</span> <A NAME="TI2164"></A>The procedure in this section describes how to create a custom
+component in <ABBR title = "e a server" >EAServer</ABBR> Manager
+that uses the generic DataWindow::HTMLGenerator105 interface. You
+can also create a custom component with a Web DataWindow Container
+project. For more information, see <A HREF="dwprgugp43.htm#BABFHFFD">"The Web DataWindow Container
+project wizard"</A>.</p>
+<A NAME="TI2165"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a Web DataWindow custom component in <ABBR title = "e a server" >EAServer</ABBR>:</p>
+<ol><li class=fi><p>In the left pane of <ABBR title = "e a server" >EAServer</ABBR> Manager,
+under the server name, right-click Packages and select New Package
+from the pop-up menu.</p></li>
+<li class=ds><p>In the New Package dialog box, type a package
+name (you cannot change it later) and click Create A New Package. </p><p>For example, use EmpListPkg to identify a package for an application called
+EmpList.</p></li>
+<li class=ds><p>On the General tab of the Package Properties dialog
+box, enter a description of the package and click OK. </p><p>For example, enter <i>DataWindow Components for EmpList
+app</i> to describe EmpListPkg in terms of the application
+that you are customizing it for. </p></li>
+<li class=ds><p>In the left pane of <ABBR title = "e a server" >EAServer</ABBR> Manager,
+under the server name, right-click the new package and choose Install
+Component from the pop-up menu.</p></li>
+<li class=ds><p>In the wizard, choose the Define New Component
+radio button and click Next.</p></li>
+<li class=ds><p>Specify the name of your custom component (you
+cannot change it later) and click Finish. </p><p>For example, use EmpListDW to identify a component that uses
+the d_emplist DataWindow object.</p></li>
+<li class=ds><p>In the Component Properties dialog on the General
+tab, specify:</p><A NAME="TI2166"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><td  rowspan="1"  ><A NAME="TI2167"></A><i>Module
+and interface</i></td>
+<td  rowspan="1"  ><A NAME="TI2168"></A>DataWindow::HTMLGenerator105</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2169"></A><i>Component
+Type</i></td>
+<td  rowspan="1"  ><A NAME="TI2170"></A>PowerBuilder NVO</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2171"></A><i>PowerBuilder
+Class Name</i></td>
+<td  rowspan="1"  ><A NAME="TI2172"></A>nv_remote_datawindow</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2173"></A><i>PowerBuilder
+Library List</i></td>
+<td  rowspan="1"  ><A NAME="TI2174"></A>pbdwr105.pbd</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2175"></A><i>PowerBuilder Application</i></td>
+<td  rowspan="1"  ><A NAME="TI2176"></A>remote_datawindow_appl</td>
+</tr>
+</table>
+</li>
+<li class=ds><p>On the All Properties tab, add the properties
+for which you want preset values.</p></li></ol>
+<br><A NAME="TI2177"></A><h2>Setting properties for a custom component in EAServer</h2>
+<A NAME="TI2178"></A><p>You add as many of the following properties as needed for
+your custom component. The properties
+are divided into two groups: general and database connection.</p>
+<A NAME="TI2179"></A><p>For boolean properties, values can be true or false, or yes
+or no.</p>
+<p><b>General properties</b>   These properties specify settings that take effect when the
+component is instantiated.</p>
+<A NAME="TI2180"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 7-3: General properties to add for custom component</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2181"></A>General property</th>
+<th  rowspan="1"  ><A NAME="TI2182"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2183"></A>com.sybase.datawindow.<br>sourceFileName</td>
+<td  rowspan="1"  ><A NAME="TI2184"></A>Specifies the PBL, the PBD that contains
+the DataWindow object for the component, or the SRD or PSR file
+that is the DataWindow object.<A NAME="TI2185"></A><p>See also the SetDWObject method in the online Help or <i>DataWindow
+Reference</i>
+.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2186"></A>com.sybase.datawindow.<br>dwObjectName</td>
+<td  rowspan="1"  ><A NAME="TI2187"></A>The name of the DataWindow object in
+the PBL or PBD specified for sourceFileName.<A NAME="TI2188"></A><p>See also the SetDWObject method.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2189"></A>com.sybase.datawindow.<br>fixed</td>
+<td  rowspan="1"  ><A NAME="TI2190"></A>Whether component properties can be modified
+from server-side script (SetDWObject, Create, Modify, and SetTrans
+methods) that instantiates the component. Values are:<A NAME="TI2191"></A>
+<ul>
+<li class=fi>Yes &#8212; Properties are fixed and cannot be changed.</li>
+<li class=ds>No &#8212; Properties can be changed.
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2192"></A>com.sybase.datawindow.<br>serverServiceClasses</td>
+<td  rowspan="1"  ><A NAME="TI2193"></A>A list of PowerBuilder user objects that
+are in the PBL or PBD specified in sourceFileName. The class names should
+be separated by semicolons (;). The user objects implement custom
+events for data validation.<A NAME="TI2194"></A><p>For information on custom events, see the SetServerServiceClasses
+method in the online Help or <i>DataWindow Reference</i>
+.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2195"></A>com.sybase.datawindow.<br>serverSideState</td>
+<td  rowspan="1"  ><A NAME="TI2196"></A>Specifies whether the server attempts
+to maintain its state between method calls. Values are:<A NAME="TI2197"></A>
+<ul>
+<li class=fi>Yes &#8212; The server component keeps the result set and
+keeps the transaction open if possible.</li>
+<li class=ds>No &#8212; (Default) The result set is not saved
+and the server component uses information passed back from the client
+to retrieve the result set again and restore any uncommitted changes.
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2198"></A>com.sybase.datawindow.<br>trace</td>
+<td  rowspan="1"  ><A NAME="TI2199"></A>Whether calls to component methods are
+included in the <ABBR title = "e a server" >EAServer</ABBR> server
+log. Values are:<A NAME="TI2200"></A>
+<ul>
+<li class=fi>Yes &#8212; Calls to component
+methods are listed in the log. </li>
+<li class=ds>No &#8212; (Default) Calls to component methods
+are not logged. 
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2201"></A>com.sybase.datawindow.<br>HTMLObjectName</td>
+<td  rowspan="1"  ><A NAME="TI2202"></A>The name used for the Web DataWindow
+client control in the generated code. The name is used to implement client-side
+events and to allow client-side scripting<A NAME="TI2203"></A><p>Set this property when there will be more than one Web DataWindow
+on a Web page so that they do not conflict.</p><A NAME="TI2204"></A><p>See also the SetHTMLObjectName method.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2205"></A>com.sybase.datawindow.<br>modifyString</td>
+<td  rowspan="1"  ><A NAME="TI2206"></A>A string that is used as an argument
+to the Modify method for setting properties of the DataWindow object.
+The component calls the Modify method when it is initialized.<A NAME="TI2207"></A><p>For information on syntax, see the Modify method. </p></td>
+</tr>
+</table>
+<p><b>Database connection properties</b>   For the database connection properties, you must add com.sybase.datawindow.trans.dbms.
+This property must be set for any of the other trans properties
+to be recognized. When trans.dbms is set, any unspecified connection
+properties default to an empty string.</p>
+<A NAME="TI2208"></A><p>For more information about database connections, see the SetTrans
+method in the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI2209"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 7-4: Database connection properties to add for custom component</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2210"></A>Database
+connection property</th>
+<th  rowspan="1"  ><A NAME="TI2211"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2212"></A>com.sybase.datawindow.<br>trans.dbms</td>
+<td  rowspan="1"  ><A NAME="TI2213"></A>A database vendor identifier, as displayed
+in the PowerBuilder Connection Profiles dialog box.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2214"></A>com.sybase.datawindow.<br>trans.dbparm</td>
+<td  rowspan="1"  ><A NAME="TI2215"></A>DBMS-specific connection parameters.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2216"></A>com.sybase.datawindow.<br>trans.lock</td>
+<td  rowspan="1"  ><A NAME="TI2217"></A>The isolation level. See the online Help
+for information about database preferences.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2218"></A>com.sybase.datawindow.<br>trans.logid</td>
+<td  rowspan="1"  ><A NAME="TI2219"></A>The name or ID of the account the component
+uses when it logs on to the database server.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2220"></A>com.sybase.datawindow.<br>trans.logpass</td>
+<td  rowspan="1"  ><A NAME="TI2221"></A>The password used to log on to the database
+server.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2222"></A>com.sybase.datawindow.<br>trans.database</td>
+<td  rowspan="1"  ><A NAME="TI2223"></A>The name of the database to which the
+component is connecting. Ignored for ODBC.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2224"></A>com.sybase.datawindow.<br>trans.servername</td>
+<td  rowspan="1"  ><A NAME="TI2225"></A>The name of the server on which the database
+resides.</td>
+</tr>
+</table>
+<A NAME="CHDDFJGC"></A><h2>Instantiating the custom component</h2>
+<A NAME="TI2226"></A><p>To use the custom component in your server-side scripts, you
+specify your package and component name in the form YourPackage/YourComponent.
+If you are using methods of the generic component installed with <ABBR title = "e a server" >EAServer</ABBR>, you must use the narrow
+method on the generic component helper class to reference the DataWindow/HTMLGenerator105
+interface.</p>
+<A NAME="TI2227"></A><p>The following code in a JSP instantiates a custom component
+called EmpListDW that uses the generic HTMLGenerator105 component
+interface. EmpListDW is deployed in the EmpListPkg package. You
+substitute this code for the line that instantiates the generic
+component in the example for <A HREF="dwprgugp49.htm#BEIIGDFI">"Instantiating the component"</A>, but you do not change the narrow method
+called on the generic component's helper class:<p><PRE> String dwGenerator = "EmpListPkg/EmpListDW";</PRE><PRE>    EmpListDW dwGen = null;</PRE><PRE> ...</PRE><PRE> dwGen = HTMLGenerator105Helper.narrow(factory.create<br>          ("jagadmin",""));</PRE></p>
+<p><b>Using OneTrip to set up the component and get
+the generated HTML</b>   <A HREF="dwprgugp49.htm#BABCBGAH">"Instantiating and configuring
+the server component"</A> described several
+items your server script should include to set up the Web DataWindow correctly.
+Instead of coding all these things separately, you can do all the
+setup and get the generated HTML with a single method when the <ABBR title = "e a server" >EAServer</ABBR> component has been configured
+with a DataWindow definition and transaction information.</p>
+<A NAME="TI2228"></A><p>This technique is especially useful for improving performance
+without requiring the server component to maintain state.</p>
+<A NAME="TI2229"></A><p><p><PRE> String browser=(String)request.getHeader("User-Agent");</PRE><PRE> dwGen.SetBrowser(browser);</PRE><PRE> String URI = request.getRequestURI();</PRE><PRE> String [] myArray = URI.split ("/");</PRE><PRE> String selfLink = myArray [myArray.length-1];</PRE><PRE> int retVal;</PRE><PRE> String dw_1_action =(String)request.GetParameter     ("dw_1_action");</PRE><PRE> String dw_1_context = (String)request.GetParameter     ("dw_1_context");</PRE><PRE> if (dw_1_action == null){</PRE><PRE>  dw_1_action = "";</PRE><PRE>  }</PRE><PRE> if (dw_1_context == null){</PRE><PRE>  dw_1_context = "";</PRE><PRE>  }</PRE><PRE> // Pass setup info to server </PRE><PRE> String dwHTML = dwGen.OneTrip("dw_1", browser, <br>        selfLink, "", dw_1_action, dw_1_context);</PRE><PRE> // Insert HTML returned from OneTrip in the page</PRE><PRE> out.print (dwHTML);</PRE></p>
+<p><b>Using OneTripEx for retrieval arguments</b>   If your DataWindow requires retrieval arguments, use OneTripEx
+instead of OneTrip. The code checks for a page parameter that has
+the retrieval argument value. It also makes sure the value will
+still be available in a reloaded page by providing a <i>selflinkargs</i> expression:<p><PRE> String retrievearg = (String) request.getParameter ("RetArg"):</PRE><PRE> if (retrievearg == null){</PRE><PRE> // Provide some meaningful default value</PRE><PRE>    retrievearg = "default";</PRE><PRE> }</PRE><PRE> String selflinkarg = "RetArg='\"" + retrievearg + "\"'";</PRE><PRE> String dwHTML = dwGen.OneTripEx("dw_1", retrievearg,<br>   browser, selfLink, selflinkarg, action, context);</PRE><PRE> out.print (dwHTML);</PRE></p>
+<A NAME="BABFABGD"></A><h2>Maintaining state on the server</h2>
+<A NAME="TI2230"></A><h4>Using a stateless component</h4>
+<A NAME="TI2231"></A><p>The Web DataWindow can run in a fully stateless server environment. Variables
+in the Web page keep information about the rows being viewed and any
+changes the user makes; this information is communicated to the
+server component as needed so that the component can restore its
+state each time it is called. Restoring its state includes retrieving
+data from the database each time the page is reloaded, including
+each time the user navigates to another page.</p>
+<A NAME="TI2232"></A><p>Operating in a stateless mode minimizes use of server resources
+but can decrease performance. The client maintains the state of
+the server component in string form and the information is sent
+back and forth with every request. Also, when state is not maintained
+on the server, the component must connect to the database and retrieve
+data each time it is called. If the component server does not do
+connection caching, response time for the client could be very slow.</p>
+<A NAME="TI2233"></A><h4>Using a stateful component</h4>
+<A NAME="TI2234"></A><p>You can increase performance by maintaining state on the server.
+To maintain state, the page server's session object keeps
+a reference to the server component. If the server component is
+running in <ABBR title = "e a server" >EAServer</ABBR>, you must
+mark the component as a stateful object and set a timeout value
+for the component. Failing to set a timeout value if you are using
+the component as a stateful object will result in orphaned instances
+of the component on the server. </p>
+<A NAME="TI2235"></A><p>Maintaining state on the server provides faster response time
+if the same component is accessed again. However, it also increases
+the server resources used for each client connection.</p>
+<A NAME="TI2236"></A><p>To minimize impact on server resources, a short timeout on
+a session lets the server get rid of a component that might not
+be requested again. If the component is called again, its state
+can be restored from the client state information. When the number
+of hits on a page is expected to be large, setting a shorter timeout
+reduces the number of instances that need to be maintained simultaneously.</p>
+<A NAME="TI2237"></A><h4>Marking the object as stateful</h4>
+<A NAME="TI2238"></A><p>To mark the component as a stateful object, set the component's com.sybase.datawindow.serverSideState
+property in <ABBR title = "e a server" >EAServer</ABBR> Manager or call
+the SetServerSideState method in a server-side script:<p><PRE> dwGen.SetServerSideState( true );</PRE></p>
+<A NAME="TI2239"></A><p>You should <i>not</i> set the com.sybase.jaguar.component.stateless
+property for the HTMLGenerator105 component in <ABBR title = "e a server" >EAServer</ABBR> Manager. </p>
+<A NAME="TI2240"></A><p>If you are using the Web Target object model, you specify
+whether the database state is managed on the server by passing the
+boolean value TRUE as the second parameter to the PSDataWindowClass
+constructor:</p>
+<A NAME="TI2241"></A><p><p><PRE> dw_1 = new PSDataWindowClass("dw_list", true,<br>        jagConn, dwSource, dbConn, 5);</PRE></p>
+<A NAME="TI2242"></A><p>Passing this parameter calls the SetServerSideState method,
+but it does not set a timeout value&#8212;you need to set a timeout
+value whether or not you are using the Web Target object model.</p>
+<A NAME="TI2243"></A><h4>Setting timeout values</h4>
+<A NAME="TI2244"></A><p>To set the timeout value for the HTMLGenerator105 component,
+open its Component Properties dialog box in <ABBR title = "e a server" >EAServer</ABBR> Manager
+and set the com.sybase.jaguar.component.timeout property. Timeout
+values are specified in seconds; a value of 0 means the component
+never times out. </p>
+

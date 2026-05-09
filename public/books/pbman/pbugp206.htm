@@ -1,0 +1,116 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Highlighting information </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp205.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp207.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIDGHAI"></A><h1>Highlighting information </h1>
+<A NAME="TI6761"></A><p>Every control in a DataWindow object has a set of properties that determines
+what the control looks like and where it is located. For example,
+the values in a column of data display in a particular font and color,
+in a particular location, with or without a border, and so on.</p>
+<A NAME="TI6762"></A><h2>Modifying properties when designing</h2>
+<A NAME="TI6763"></A><p>You define the appearance and behavior of controls in DataWindow objects
+in the DataWindow painter. As you do that, you are specifying the controls' properties.
+For example, when you place a border around a column, you are setting
+that column's Border property.</p>
+<A NAME="TI6764"></A><p>In most cases, the appearance and behavior of controls is
+fixed; you do not want them to change at runtime. When you make
+headings bold when designing them, you want them to be bold at all
+times.</p>
+<A NAME="TI6765"></A><p>In the following DataWindow object, the Salary Plus Benefits column
+has a Shadow box border around every data value in the column. To
+display the border, you set the border property for the column:</p>
+<br><img src="images/cond006.gif">
+<A NAME="BEIDJEGA"></A><h2>Modifying properties at runtime</h2>
+<A NAME="TI6766"></A><p>In some cases, however, you might want some properties of
+controls in DataWindow objects to be driven by the data, which is not known
+when you are defining the DataWindow object in the painter. For these
+situations you can define property conditional expressions, which
+are expressions that are evaluated at runtime. </p>
+<A NAME="TI6767"></A><p>You can use these expressions to conditionally and dynamically
+modify the appearance and behavior of your DataWindow object at runtime.
+The results of the expressions set the values of properties of controls
+in the DataWindow object. </p>
+<A NAME="TI6768"></A><p>In the following DataWindow object, the Salary Plus Benefits column
+has a Shadow box border highlighting each data value that is greater
+than $60,000: </p>
+<br><img src="images/cond007.gif">
+<A NAME="TI6769"></A><p>To control the display of the border, you define a property
+conditional expression for the column's Border property.
+When users run the DataWindow object, PowerBuilder changes the border
+of individual data values based on the condition (value greater
+than $60,000).</p>
+<A NAME="TI6770"></A><h4>Defining an expression</h4>
+<A NAME="TI6771"></A><p>The following illustration shows the <b>Salary_Plus_Benefits</b> column
+selected in the Design view. To the right of the Design view, the
+Properties view shows properties for the column, including the Border
+property. Next to the Border property is a button for accessing
+the dialog box where you enter the expression. The button displays
+an equals sign with a slash through it when no expression has been
+entered, and an equals sign without a slash when it has.</p>
+<br><img src="images/cond008a.gif">
+<A NAME="TI6772"></A><p>In this example the Border property is set to NoBorder in
+the Properties view. However, the expression defined for the property
+overrides that setting at runtime.</p>
+<A NAME="TI6773"></A><h4>A closer look at the expression</h4>
+<A NAME="TI6774"></A><p>The expression you enter almost always begins with <FONT FACE="Courier New">If</FONT>.
+Then you specify three things: the condition, what happens if it
+is true, and what happens if it is false. Parentheses surround the
+three things and commas separate them:<p><PRE>If( <i>expression, </i><i>true, false</i> )</PRE></p>
+</p>
+<A NAME="TI6775"></A><p>The following expression is used in the example. Because the
+expression is for the Border property, the values for true and false
+indicate particular borders. The value 1 means Shadow box border
+and the value 0 means no border:<p><PRE> If(salary_plus_benefits &gt; 60000, 1, 0)</PRE></p>
+<A NAME="TI6776"></A><p>When users run the DataWindow object, PowerBuilder checks the
+value in the computed column called <b>salary_plus_benefits</b> to
+see if it is greater than 60,000. If it is (true), PowerBuilder displays
+the value with the Shadow box border. If not (false), PowerBuilder displays
+the value with no border.</p>
+<A NAME="TI6777"></A><h4>About specifying properties</h4>
+<A NAME="TI6778"></A><p>Usually you specify a number to indicate what you want for
+a particular property. For example, the following list shows all
+of the borders you can specify and the numbers you use. If you want
+the border property to be Shadow box, you specify <FONT FACE="Courier New">1</FONT> in
+the <b>If</b> statement, for either true or false.<A NAME="TI6779"></A>
+<ul>
+<li class=fi><FONT FACE="Courier New">0</FONT>&#8212;None</li>
+<li class=ds><FONT FACE="Courier New">1</FONT>&#8212;Shadow
+box</li>
+<li class=ds><FONT FACE="Courier New">2</FONT>&#8212;Box</li>
+<li class=ds><FONT FACE="Courier New">3</FONT>&#8212;Resize</li>
+<li class=ds><FONT FACE="Courier New">4</FONT>&#8212;Underline</li>
+<li class=ds><FONT FACE="Courier New">5</FONT>&#8212;3D
+Lowered</li>
+<li class=ds><FONT FACE="Courier New">6</FONT>&#8212;3D
+Raised
+</li>
+</ul>
+</p>
+<A NAME="TI6780"></A><p>In the Properties view, the list of choices for setting a
+property includes the values that correspond to choices in parentheses.
+This makes it easier to define an expression for a property; you
+do not need to look up the values. For example, if you want to specify
+the ResizeBorder in your expression, you use the number 3, as shown
+in the drop-down list.</p>
+<br><img src="images/cond009a.gif">
+<A NAME="TI6781"></A><p>For details on the values of properties that
+can be set using expressions, see <A HREF="pbugp208.htm#CAIEAIJC">"Supplying property values"</A>. </p>
+<A NAME="TI6782"></A><p>For complete information about what the valid
+values are for all properties associated with a DataWindow object,
+see the discussion of DataWindow object properties in the <i>DataWindow Reference</i>
+ or
+online Help.</p>
+<A NAME="TI6783"></A><h4>About modifying properties programmatically</h4>
+<A NAME="TI6784"></A><p>You can also programmatically modify the properties of controls
+in a DataWindow object at runtime. For more information, see the <i>DataWindow Reference</i>
+ and
+the <i>DataWindow Programmer's Guide</i>
+.</p>
+

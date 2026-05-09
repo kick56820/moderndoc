@@ -1,0 +1,222 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using external functions</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp128.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp130.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299420549"></A><h1>Using external functions</h1>
+<A NAME="TI4176"></A><p>External functions are functions that are written in languages
+other than PowerScript and stored in dynamic libraries. External functions are stored in
+dynamic link libraries (<i>DLL</i>s).</p>
+<A NAME="TI4177"></A><p>You can use external functions written in any language that
+supports the standard calling sequence for 32-bit platforms.</p>
+<A NAME="TI4178"></A><p>If you are calling functions in libraries that you have written
+yourself, remember that you need to export the functions. Depending
+on your compiler, you can do this in the function prototype or in
+a linker definition (<i>DEF</i>) file.</p>
+<A NAME="TI4179"></A><h4>Use _stdcall convention</h4>
+<A NAME="TI4180"></A><p>C and C++ compilers typically support several
+calling conventions, including <b>_cdecl </b>(the
+default calling convention for C programs),  <b>_stdcall</b> (the
+standard convention for Windows API calls), <b>_fastcall</b>,
+and <b>thiscall</b>. PowerBuilder, like many other Windows
+development tools, requires external functions to be exported using
+the WINAPI (<b>_stdcall</b>) format. Attempting
+to use a different calling convention can cause an application crash.</p>
+<A NAME="TI4181"></A><p>When you create your own C or C++ DLLs containing
+functions to be used in PowerBuilder, make sure that they use the
+standard convention for Windows API calls. For example, if you are
+using a DEF file to export function definitions, you can declare
+the function like this:<p><PRE> LONG WINAPI myFunc()<br>{<br>...<br>};</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using PBNI</span> <A NAME="TI4182"></A>You can also call external functions in PowerBuilder extensions.
+PowerBuilder extensions are built using the PowerBuilder Native
+Interface (PBNI). For more information about building PowerBuilder
+extensions, see the <i>PowerBuilder Native Interface Programmer's
+Guide and Reference</i>
+. For more information about using
+PowerBuilder extensions, see the <i>PowerBuilder Extension Reference</i>
+.</p>
+<A NAME="X-REF369577665"></A><h2>Declaring external functions</h2>
+<A NAME="TI4183"></A><p>Before you can use an external function in a script, you must
+declare it.</p>
+<A NAME="TI4184"></A><h4>Two types</h4>
+<A NAME="TI4185"></A><p>You can declare two types of external functions:<A NAME="TI4186"></A>
+<ul>
+<li class=fi><strong>Global external
+functions</strong>, which are available anywhere in the application </li>
+<li class=ds><strong>Local external functions</strong>,
+which are defined for a particular type of window, menu, or user
+object<br>
+These functions are part of the object's definition
+and can always be used in scripts for the object itself. You can
+also choose to make these functions accessible to other scripts
+as well. <br>
+</li>
+</ul>
+</p>
+<A NAME="TI4187"></A><h4>Datatypes for external function arguments</h4>
+<A NAME="TI4188"></A><p>When you declare an external function, the datatypes of the
+arguments must correspond with the datatypes as declared in the
+function's source definition.</p>
+<A NAME="TI4189"></A><p>For a comparison of datatypes in external
+functions and datatypes in PowerBuilder, see the section on declaring
+and calling external functions in the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI4190"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To declare an external function:</p>
+<ol><li class=fi><p>If you are declaring a local external function,
+open the object for which you want to declare it.</p></li>
+<li class=ds><p>In the Script view, select Declare in the first
+drop-down list and either Global External Functions or Local External
+Functions from the second list.</p></li>
+<li class=ds><p>Enter the function declaration in the Script view.</p><p>For the syntax to use, see the <i>PowerScript
+Reference </i>
+or the examples below.</p></li>
+<li class=ds><p>Save the object.</p><p>PowerBuilder compiles the declaration. If there are syntax
+errors, an error window opens, and you must correct the errors before
+PowerBuilder can save the declaration.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Modifying existing functions</span> <A NAME="TI4191"></A>You can also modify existing external function declarations
+in the Script view. </p>
+<A NAME="X-REF369577668"></A><h2>Sample declarations</h2>
+<A NAME="TI4192"></A><p>Suppose you have created a C dynamic library, <i>SIMPLE.DLL</i>,
+that contains a function called <b>SimpleFunc</b> that
+accepts two parameters: a character string and a structure. The
+following statement declares the function in PowerBuilder, passing
+the arguments by reference:<p><PRE> FUNCTION int SimpleFunc(REF string lastname, &amp;    <br>   REF my_str pbstr) LIBRARY "simple.dll"</PRE></p>
+<A NAME="TI4193"></A><p>By default, PowerBuilder handles string arguments and return
+values as if they have Unicode encoding. If SimpleFunc passes ANSI
+strings as arguments, you must use this syntax to declare it:<p><PRE> FUNCTION int SimpleFunc(REF string lastname, &amp;    <br>   REF my_str pbstr) LIBRARY "simple.dll" &amp;<br>   ALIAS FOR "SimpleFunc;ansi"</PRE></p>
+<A NAME="TI4194"></A><h4>Declaring Windows API functions</h4>
+<A NAME="TI4195"></A><p>The Windows API includes over a thousand functions that you
+can call from PowerBuilder. The following examples show sample declarations
+for functions in the 32-bit Windows API libraries <i>KERNEL32.DLL</i>, <i>GDI32.DLL</i>, and <i>USER32.DLL</i>. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Windows API calls</span> <A NAME="TI4196"></A>Some 32-bit function names end with A (for ANSI) or W (for
+wide). Use wide function names in PowerBuilder.</p>
+<A NAME="TI4197"></A>For a complete list of Windows API functions,
+see the Microsoft Windows SDK documentation. For examples of PowerBuilder
+declaration syntax and scripts, search for Windows API calls in
+the <A HREF="www.sybase.com/support/techdocs/">Technical Documents section of the Sybase Web site</A>
+.</p>
+<A NAME="TI4198"></A><p>The following statements declare a function that gets the
+handle of any window that is called by name, and a function that
+releases the open object handle:<p><PRE> FUNCTION ulong FindWindowW(ulong classname, &amp;</PRE><PRE>         string windowname) LIBRARY "User32.dll"</PRE><PRE> FUNCTION boolean CloseHandle(ulong w_handle) &amp;</PRE><PRE>         LIBRARY "Kernel32.dll"</PRE></p>
+<A NAME="TI4199"></A><p>The following statement declares a function that draws a pie
+chart based on the coordinates received:<p><PRE> FUNCTION boolean Pie(ulong hwnd,long x1,long y1, &amp;</PRE><PRE>         long x2,long y2,long x3,long y3,long x4, &amp;</PRE><PRE>         long y4) LIBRARY "Gdi32.dll"</PRE></p>
+<A NAME="TI4200"></A><p>The following statement declares an external C function named <b>IsZoomed</b>:<p><PRE> FUNCTION boolean IsZoomed(Ulong handle)  &amp;</PRE><PRE>         LIBRARY "User32.DLL"</PRE></p>
+<A NAME="TI4201"></A><p>A script that uses <b>IsZoomed</b> is included
+as an example in <A HREF="apptechp130.htm#X-REF299420582">"Using utility functions
+to manage information"</A>.</p>
+<A NAME="TI4202"></A><p>For more information about these functions,
+see the Microsoft documentation in the <A HREF="http://msdn.microsoft.com/library/default.asp">MSDN Library</A>
+.</p>
+<A NAME="TI4203"></A><h2>Passing arguments</h2>
+<A NAME="TI4204"></A><p>In PowerBuilder, you can define external functions that expect arguments
+to be passed by reference or by value. When you pass an argument
+by reference, the external function receives a pointer to the argument
+and can change the contents of the argument and return the changed
+contents to PowerBuilder. When you pass the argument by value, the
+external function receives a copy of the argument and can change
+the contents of the copy of the argument. The changes affect only
+the local copy; the contents of the original argument are unchanged.</p>
+<A NAME="TI4205"></A><p>The syntax for an argument that is passed by reference is:<p><PRE>REF <i>datatype arg</i></PRE></p>
+</p>
+<A NAME="TI4206"></A><p>The syntax for an argument that is passed by value is:<p><PRE><i>datatype arg</i></PRE></p>
+</p>
+<A NAME="TI4207"></A><h3>Passing numeric datatypes</h3>
+<A NAME="TI4208"></A><p>The following statement declares the external function <b>TEMP</b> in
+PowerBuilder. This function returns an integer and expects an integer
+argument to be passed by reference:<p><PRE> FUNCTION int TEMP(ref int degree)     LIBRARY "LibName.DLL"</PRE></p>
+<A NAME="TI4209"></A><p>The same statement in C would be:<p><PRE> int _stdcall TEMP(int * degree)</PRE></p>
+<A NAME="TI4210"></A><p>Since the argument is passed by reference, the function can
+change the contents of the argument, and changes made to the argument
+within the function will directly affect the value of the original
+variable in PowerBuilder. For example, the C statement <FONT FACE="Courier New">*degree = 75</FONT> would
+change the argument named degree to 75 and return 75 to PowerBuilder.</p>
+<A NAME="TI4211"></A><p>The following statement declares the external function <b>TEMP2</b> in PowerBuilder.
+This function returns an <b>Integer</b> and expects
+an <b>Integer</b> argument to be passed by value:<p><PRE> FUNCTION int TEMP2(int degree) LIBRARY "LibName.DLL"</PRE></p>
+<A NAME="TI4212"></A><p>The same statement in C would be:<p><PRE> int _stdcall TEMP2(int degree)</PRE></p>
+<A NAME="TI4213"></A><p>Since the argument is passed by value, the function can change
+the contents of the argument. All changes are made to the local
+copy of the argument; the variable in PowerBuilder is not affected.</p>
+<A NAME="TI4214"></A><h3>Passing strings</h3>
+<A NAME="TI4215"></A><p>PowerBuilder assumes all string arguments and returned values
+use Unicode encoding. If a function uses strings with ANSI encoding,
+you need to add an ALIAS FOR clause to the function declaration
+and add a semicolon followed by the <b>ansi</b> keyword.
+For example:<p><PRE> FUNCTION string NAME(string CODE)     LIBRARY "LibName.DLL" ALIAS FOR "NAME;ansi"</PRE></p>
+<p><b>Passing by value</b>   The following statement declares the external C function <b>NAME</b> in
+PowerBuilder. This function expects a <b>String</b> argument
+with Unicode encoding to be passed by value:<p><PRE> FUNCTION string NAME(string CODE)     LIBRARY "LibName.DLL"</PRE></p>
+<A NAME="TI4216"></A><p>The same statement in C would point to a buffer containing
+the <b>String</b>:<p><PRE> char * _stdcall NAME(char  * CODE)</PRE></p>
+<A NAME="TI4217"></A><p>Since the <b>String</b> is passed by value,
+the C function can change the contents of its local copy of <i>CODE</i>,
+but the original variable in PowerBuilder is not affected.</p>
+<p><b>Passing by reference</b>   PowerBuilder has access only to its own memory. Therefore,
+an external function cannot return to PowerBuilder a pointer to
+a string. (It cannot return a memory address.)</p>
+<A NAME="TI4218"></A><p>When you pass a string to an external function, either by
+value or by reference, PowerBuilder passes a pointer to the string.
+If you pass by value, any changes the function makes to the string
+are not accessible to PowerBuilder. If you pass by reference, they
+are.</p>
+<A NAME="TI4219"></A><p>The following statement declares the external C function <b>NAME2</b> in PowerBuilder.
+This function returns a <b>String</b> and expects
+a <b>String</b> argument to be passed by reference:<p><PRE> FUNCTION string NAME2(<i>ref</i> string CODE)  &amp;</PRE><PRE>         LIBRARY "LibName.DLL"</PRE></p>
+<A NAME="TI4220"></A><p>In C, the statement would be the same as when the argument
+is passed by value, shown above:<p><PRE> char * _stdcall NAME2(char * CODE)</PRE></p>
+<A NAME="TI4221"></A><p>The <b>String</b> argument is passed by reference,
+and the C function can change the contents of the argument and the
+original variable in PowerBuilder. For example, <FONT FACE="Courier New">Strcpy(CODE,STUMP)</FONT> would
+change the contents of <i>CODE</i> to <i>STUMP</i> and
+change the variable in the calling PowerBuilder script to the contents
+of variable <i>STUMP</i>.</p>
+<A NAME="TI4222"></A><p>If the function <b>NAME2</b> in the preceding
+example takes a user ID and replaces it with the user's
+name, the PowerScript string variable <i>CODE</i> must
+be long enough to hold the returned value. To ensure that this is
+true, declare the <b>String</b> and then use the <b>Space</b> function
+to fill the <b>String</b> with blanks equal to the maximum
+number of characters you expect the function to return.</p>
+<A NAME="TI4223"></A><p>If the maximum number of characters allowed for a user's
+name is 40 and the ID is always five characters, you would fill
+the <b>String</b> <i>CODE</i> with 35
+blanks before calling the external function:<p><PRE> String CODE</PRE><PRE> CODE = ID + Space(35)</PRE><PRE> . . .</PRE><PRE> NAME2(CODE)</PRE></p>
+<A NAME="TI4224"></A><p>For information about the <b>Space</b> function,
+see the <i>PowerScript Reference</i>
+.</p>
+<p><b>Passing chars to C functions</b>   <b>Char</b> variables passed to external C functions are
+converted to the C <b>char</b> type before passing.
+Arrays of <b>Char</b> variables are converted to the
+equivalent C array of <b>char</b> variables.</p>
+<A NAME="TI4225"></A><p>An array of <b>Char</b> variables embedded in
+a structure produces an embedded array in the C structure. This
+is different from an embedded <b>String</b>, which results
+in an embedded pointer to a <b>string</b> in the C
+structure.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Recommendation</span> <A NAME="TI4226"></A>Whenever possible, pass <b>String</b> variables
+back to PowerBuilder as a return value from the function.</p>
+<A NAME="TI4227"></A><h2>Calling external functions on UNIX</h2>
+<A NAME="TI4228"></A><p>In PowerBuilder custom class user objects that you plan to
+deploy as <ABBR title = "e a server" >EAServer</ABBR> components
+on a UNIX platform, you can call external functions in shared libraries
+compiled on the operating system where the server is running. You cannot
+call external functions in libraries that make Windows API calls
+or rely on graphical processing.</p>
+<A NAME="TI4229"></A><p>You use the standard PowerScript syntax to declare functions
+that reside in UNIX shared libraries. For example, this statement
+declares the function <b>getcwd</b> in the standard
+C library on Solaris:<p><PRE> FUNCTION string getcwd(REF string buff, &amp;</PRE><PRE>         unsigned int size) LIBRARY "/usr/lib/libc.so"</PRE></p>
+<A NAME="TI4230"></A><p>You call the function from a script in your application in
+the way you call any other function. In this example, the <b>space</b> function
+allocates enough space to hold the directory name returned by <b>getcwd</b>:<p><PRE> string ls_return, ls_directory</PRE><PRE> ls_directory = space(100)</PRE><PRE> . . .</PRE><PRE> ls_return = getcwd(ls_directory, 100)</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Updating the load library path</span> <A NAME="TI4231"></A>On UNIX, when your component calls an external function, it
+must be able to find the shared library in which that function resides.
+To ensure this, you must update the library path environment variable
+to include the directory where that shared library is stored.</p>
+

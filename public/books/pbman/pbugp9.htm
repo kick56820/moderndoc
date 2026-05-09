@@ -1,0 +1,144 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Target types</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp8.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp10.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABHCBDH"></A><h1>Target types</h1>
+<A NAME="TI259"></A><p>This section describes each of the PowerScript application
+and component targets and Web targets you can build. </p>
+<A NAME="TI260"></A><h2>PowerScript application targets</h2>
+<A NAME="TI261"></A><p>There are three wizards for creating PowerScript application
+targets:<A NAME="TI262"></A>
+<ul>
+<li class=fi><A HREF="pbugp9.htm#CEGHGICG">Application Target wizard</A></li>
+<li class=ds><A HREF="pbugp9.htm#X-REF342889239">Template Application Target
+wizard</A></li>
+<li class=ds><A HREF="pbugp9.htm#CEGEIHCF">Existing Application Target
+wizard</A>
+</li>
+</ul>
+</p>
+<A NAME="CEGHGICG"></A><h4>Application Target wizard</h4>
+<A NAME="TI263"></A><p>You use the Application Target wizard to create a new PowerScript-based Application
+object and the library containing it. You must create any other objects
+you need from scratch. </p>
+<A NAME="X-REF342889239"></A><h4>Template Application Target
+wizard</h4>
+<A NAME="TI264"></A><p>You use the Template Application Target wizard to create a
+PowerScript-based application, the library containing it, and a
+set of basic objects and scripts. If the application requires a
+connection to <ACRONYM title = "E A Server" >EAServer</ACRONYM> or
+a <ACRONYM title = "sequel" >SQL</ACRONYM> database, the wizard automatically
+creates a Connection object.</p>
+<A NAME="TI265"></A><p>In the Template Application wizard, you can choose one of
+two application types: MDI Application and SDI Application.</p>
+<p><b>MDI Application</b>   The wizard automatically generates the shell and scripts for a
+basic Multiple Document Interface (MDI) application that includes
+these objects:<A NAME="TI266"></A>
+<ul>
+<li class=fi>Application
+object</li>
+<li class=ds>Frame window</li>
+<li class=ds>Frame menu</li>
+<li class=ds>Base sheet window</li>
+<li class=ds>Sheet menu</li>
+<li class=ds>Sheet menu service object</li>
+<li class=ds>Sheet windows</li>
+<li class=ds>About window</li>
+<li class=ds>Toolbar window</li>
+<li class=ds>Connection service object (if database connection
+is needed)</li>
+<li class=ds>Project object (optional; can build later using
+a Project wizard)
+</li>
+</ul>
+</p>
+<A NAME="TI267"></A><p>You can run the MDI application immediately by clicking the
+Run button on the PowerBar. You can open sheets, display an About
+box, and select items from menus. The To-Do List can help you use
+the application as a starting point for continuing development of
+an MDI application. </p>
+<p><b>SDI Application</b>   In the Template Application wizard, you can also choose to create
+an SDI application. An SDI application has only one main window
+with a menu and an about window. If the application requires a connection
+to <ACRONYM title = "E A Server" >EAServer</ACRONYM> or a <ACRONYM title = "sequel" >SQL</ACRONYM> database, the wizard automatically
+creates a Connection object.</p>
+<A NAME="TI268"></A><p>For information about building MDI and SDI
+applications, see <i>Application Techniques</i>
+. </p>
+<A NAME="CEGEIHCF"></A><h4>Existing Application Target
+wizard</h4>
+<A NAME="TI269"></A><p>You use the Existing Application Target wizard to add a target
+to your workspace that uses an application you built in an earlier
+version of PowerBuilder. After
+you complete the wizard, the Migrate Application dialog box opens
+so you can migrate the application to this version. </p>
+<p><b>Before you migrate</b>   Always make a backup copy of all the <ACRONYM title = "pibbles" >PBLs</ACRONYM> used
+in an application before you migrate it to a new version of PowerBuilder.</p>
+<A NAME="TI270"></A><p>You can use the Migration Assistant to check for obsolete
+syntax in your application before you migrate; then you can make
+changes in the earlier version of PowerBuilder and avoid some migration
+errors. The Migration Assistant is particularly useful if you are
+migrating from PowerBuilder 6 or earlier. Open the Migration Assistant
+from the Tool tab of the New dialog box, and press F1 if you need
+Help in the wizard.</p>
+<A NAME="TI271"></A><p>You should also check the release notes for the version of
+PowerBuilder that you are using to find out if there are any migration
+issues that might affect you.</p>
+<A NAME="TI272"></A><p>For more information about migrating targets, see <A HREF="pbugp57.htm#BGBJHCBC">"Migrating targets"</A>.</p>
+<A NAME="TI273"></A><p>For information about building PowerScript
+applications, see the rest of this book and <i>Application
+Techniques</i>
+. </p>
+<A NAME="TI274"></A><h2>PowerScript component targets</h2>
+<A NAME="TI275"></A><h4><ACRONYM title = "E A Server" >EAServer</ACRONYM> Component Target
+wizard</h4>
+<A NAME="TI276"></A><p>You use the <ACRONYM title = "E A Server" >EAServer</ACRONYM> Component
+Target wizard to create a new target containing a custom class user
+object (to which you later add methods and properties) with the
+characteristics required by an <ACRONYM title = "E A Server" >EAServer</ACRONYM> component
+object that you can deploy to <ACRONYM title = "E A Server" >EAServer</ACRONYM>. If you want to
+create an <ACRONYM title = "E A Server" >EAServer</ACRONYM> component in
+an existing target, use the wizard on the PB Object page.</p>
+<A NAME="TI277"></A><p>Access to the <ACRONYM title = "E A Server" >EAServer</ACRONYM> component
+from a PowerBuilder client application is gained through a Proxy
+object. You create a Proxy object using the <ACRONYM title = "E A Server" >EAServer</ACRONYM> Proxy wizard on the
+Project tab page.</p>
+<A NAME="TI278"></A><h4>COM/COM+ Component Target wizard</h4>
+<A NAME="TI279"></A><p>The COM/COM+ Component Target wizard creates
+a new target containing a custom class user object (to which you
+later add methods and properties) with the characteristics needed
+to be a component object that you can deploy to a Microsoft COM+ server. If you
+want to create a COM or COM+ component in an existing target,
+use the wizard on the PB Object page.</p>
+<A NAME="TI280"></A><h4>Automation Server Target wizard</h4>
+<A NAME="TI281"></A><p>The Automation Server Target wizard creates a new custom class
+user object (to which you later add methods and properties) with
+the characteristics needed to be an automation server. You can access
+methods in the user object from clients built with OLE-enabled applications
+such as PowerBuilder, Visual Basic, and Visual C++.</p>
+<A NAME="TI282"></A><p>For information about building components, see <i>Application
+Techniques</i>
+.</p>
+<A NAME="TI283"></A><h2>Web and JSP targets</h2>
+<A NAME="TI284"></A><h4>JSP Target wizard</h4>
+<A NAME="TI285"></A><p>The JSP Target wizard creates a target in which you can
+build a Web application and helps you set deployment and configuration
+options for deploying the target to an application server.</p>
+<A NAME="TI286"></A><h4>Web Site Target wizard</h4>
+<A NAME="TI287"></A><p>The Web Site Target wizard creates a target for organizing
+the files for a Web site that can be deployed to ASP or to the file
+system.</p>
+<A NAME="TI288"></A><h4>Source Controlled Web Target wizard</h4>
+<A NAME="TI289"></A><p>The Source Controlled Web Target wizard opens a Web target
+that has been checked into a source control system.</p>
+<A NAME="TI290"></A><p>For more information about creating Web applications,
+see <i>Working with Web and JSP Targets</i>
+.</p>
+

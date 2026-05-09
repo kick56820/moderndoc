@@ -1,0 +1,279 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining user-defined functions </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp71.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp73.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF297023136"></A><h1>Defining user-defined functions </h1>
+<A NAME="TI2026"></A><p>Although you define global functions in the Function painter
+and object-level functions in the painter for a specific object,
+in both cases you define and code the function in a Script view.</p>
+<A NAME="TI2027"></A><p>When you add a new function, a Prototype window displays above
+the script area in the Script view. The fields in the Prototype
+window are in the same order as the function's signature:<A NAME="TI2028"></A>
+<ul>
+<li class=fi>The function's access level, return type,
+and name</li>
+<li class=ds>For each parameter, how it is passed, its datatype,
+and its name</li>
+<li class=ds>The exceptions the function can throw, if any
+</li>
+</ul>
+</p>
+<br><img src="images/codfun01.gif">
+<A NAME="TI2029"></A><p>The following sections describe each of the steps required
+to define and code a new function:<A NAME="TI2030"></A>
+<ol>
+</li>
+<li class=ds><A HREF="pbugp72.htm#CIHCBEAC">Opening a Prototype window
+to add a new function</A>.</li>
+<li class=ds><A HREF="pbugp72.htm#BCGFGICJ">Defining the access level</A> (for
+object-level functions).</li>
+<li class=ds><A HREF="pbugp72.htm#CDEBHHEA">Defining a return type</A>.</li>
+<li class=ds><A HREF="pbugp72.htm#CIHBDHCF">Naming the function</A>.</li>
+<li class=ds><A HREF="pbugp72.htm#CDECBAED">Defining
+arguments</A>.</li>
+<li class=ds><A HREF="pbugp72.htm#BCGGBBID">Defining a THROWS clause</A>.</li>
+<li class=ds><A HREF="pbugp72.htm#BCGFCHCJ">Coding the function</A>.</li>
+<li class=ds><A HREF="pbugp72.htm#BCGECAJF">Compiling and saving the
+function</A>.
+</li>
+</ol>
+</p>
+<A NAME="CIHCBEAC"></A><h2>Opening a Prototype window to add a new function</h2>
+<A NAME="TI2031"></A><p>How you create a new function depends on whether you are defining
+a global function or an object-level function. </p>
+<A NAME="TI2032"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new global function:</p>
+<ol><li class=fi><p>Select File&gt;New from the menu
+bar and select Function from the PB Object tab.</p><p>The Function painter opens, displaying a Script view with
+an open Prototype window in which you define the function. </p></li></ol>
+<br><A NAME="TI2033"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new object-level function:</p>
+<ol><li class=fi><p>Open the object for which you want to declare
+a function.</p><p>You can declare functions for windows, menus, user objects,
+or applications.</p></li>
+<li class=ds><p>Select Insert&gt;Function from the menu
+bar, or, in the Function List view, select Add from the pop-up menu. </p><p>The Prototype window opens in a Script view or, if no Script
+view is open, in a new Script view.</p></li></ol>
+<br><A NAME="BCGFGICJ"></A><h2>Defining the access level</h2>
+<A NAME="TI2034"></A><p>In the Prototype window, use the drop-down list labeled Access
+to specify where you can call the function in the application.</p>
+<A NAME="TI2035"></A><h4>For global functions</h4>
+<A NAME="TI2036"></A><p>Global functions can always be called anywhere in the application.
+In PowerBuilder terms, they are public. When you are defining a
+global function, you cannot modify the access level; the field is
+read-only.</p>
+<A NAME="TI2037"></A><h4>For object-level functions</h4>
+<A NAME="TI2038"></A><p>You can restrict access to an object-level function by setting
+its access level.</p>
+<A NAME="TI2039"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 8-1: Access levels for object-level functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2040"></A>Access</th>
+<th  rowspan="1"  ><A NAME="TI2041"></A>Means you can call the
+function</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2042"></A>Public</td>
+<td  rowspan="1"  ><A NAME="TI2043"></A>In any script in the application.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2044"></A>Private</td>
+<td  rowspan="1"  ><A NAME="TI2045"></A>Only in scripts for events in the object
+in which the function is defined. You cannot call the function from
+descendants of the object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2046"></A>Protected</td>
+<td  rowspan="1"  ><A NAME="TI2047"></A>Only in scripts for the object in which
+the function is defined and scripts for that object's descendants.</td>
+</tr>
+</table>
+<A NAME="TI2048"></A><p>If a function is to be used only internally within an object,
+you should define its access as private or protected. This ensures
+that the function is never called inappropriately from outside the
+object. In object-oriented terms, defining a function as protected
+or private encapsulates the function within the object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Transaction server components</span> <A NAME="TI2049"></A>If you are defining functions for a custom class user object
+that you will use as an <ACRONYM title = "E A Server" >EAServer</ACRONYM> or
+COM component, remember that only public functions can appear in
+the interface for the component.</p>
+<A NAME="CDEBHHEA"></A><h2>Defining a return type</h2>
+<A NAME="TI2050"></A><p>Many functions perform some processing and then return a value.
+That value can be the result of the processing or a value that indicates
+whether the function executed successfully or not. To have your
+function return a value, you need to define its return type, which
+specifies the datatype of the returned value. </p>
+<A NAME="TI2051"></A><p>You must code a <b>return</b> statement in the
+function that specifies the value to return. See <A HREF="pbugp72.htm#BEGBHHCC">"Returning a value"</A>. When you
+call the function in a script or another function, you can use an
+assignment statement to assign the returned value to a variable
+in the calling script or function. You can also use the returned
+value directly in an expression in place of a variable of the same type.</p>
+<A NAME="TI2052"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a function's return type:</p>
+<ol><li class=fi><p>Select the return type from the Return
+Type drop-down list in the Prototype window, or type in the name of an object type
+you have defined.</p><p>You can specify any PowerBuilder datatype, including the standard datatypes,
+such as <b>integer</b> and <b>string</b>,
+as well as objects and controls, such as DataStore or MultiLineEdit.</p><p>You can also specify as the return type any object type that
+you have defined. For example, if you defined a window named <b>w_calculator</b> and want
+the function to process the window and return it, type <FONT FACE="Courier New">w_calculator</FONT> in
+the Return Type list. You cannot select <b>w_calculator</b> from
+the list, because the list shows only built-in datatypes.</p></li></ol>
+<br><A NAME="TI2053"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify that a function does not return a value:</p>
+<ol><li class=fi><p>Select (None) from the Return Type list.</p><p>This tells PowerBuilder that the function does not return
+a value. This is similar to defining a procedure or a void function
+in some programming languages.</p></li></ol>
+<br><A NAME="TI2054"></A><h4>Examples of functions returning values</h4>
+<A NAME="TI2055"></A><p>The following examples show the return type you would specify
+for some different functions:</p>
+<A NAME="TI2056"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI2057"></A>If you are defining</th>
+<th  rowspan="1"  ><A NAME="TI2058"></A>Specify this return type</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2059"></A>A mathematical function that does some
+processing and returns a real number </td>
+<td  rowspan="1"  ><A NAME="TI2060"></A><b>real</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2061"></A>A function that takes a string as an
+argument and returns the string in reverse order </td>
+<td  rowspan="1"  ><A NAME="TI2062"></A><b>string</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2063"></A>A function that is passed an instance
+of window <b>w_calculator</b>, does some
+processing (such as changing the window's color), then returns
+the modified window</td>
+<td  rowspan="1"  ><A NAME="TI2064"></A><b>w_calculator</b></td>
+</tr>
+</table>
+<A NAME="CIHBDHCF"></A><h2>Naming the function</h2>
+<A NAME="TI2065"></A><p>Name the function in the Function Name box. Function names
+can have up to 40 characters. For valid characters, see the <i>PowerScript
+Reference</i>
+. </p>
+<A NAME="TI2066"></A><p>For object-level functions, the function is added to the Function
+List view when you tab off the Function Name box. It is saved as
+part of the object whenever you save the object.</p>
+<A NAME="TI2067"></A><p>Using a naming convention for user-defined functions makes
+them easy to recognize and distinguish from built-in PowerScript
+functions. A commonly used convention
+is to preface all global function names with <b>f_</b> and
+object-level functions with <b>of_</b>, such
+as: <p><PRE> // global functions<br>f_calc<br>f_get_result<br> <br>// object-level functions<br>of_refreshwindow<br>of_checkparent</PRE></p>
+<A NAME="TI2068"></A><p>Built-in functions do not usually have underscores in their
+names, so this convention makes it easy for you to identify functions
+as user defined.</p>
+<A NAME="CDECBAED"></A><h2>Defining arguments</h2>
+<A NAME="TI2069"></A><p>Like built-in functions, user-defined functions can have any
+number of arguments, including none. You declare the arguments and
+their types when you define a function.</p>
+<A NAME="BEGBJIAF"></A><h4>Passing arguments</h4>
+<A NAME="TI2070"></A><p>In user-defined functions, you can pass arguments by reference,
+by value, or read-only. You specify this for each argument in the
+Pass By list.</p>
+<p><b>By reference</b>   When you pass an argument by reference, the function has access
+to the original argument and can change it directly.</p>
+<p><b>By value</b>   When you pass by value, you are passing the function a temporary local
+copy of the argument. The function can alter the value of the local
+copy within the function, but the value of the argument is not changed
+in the calling script or function.</p>
+<p><b>Read-only</b>   When you pass as read-only, the variable's value
+is available to the function but it is treated as a constant. Read-only
+provides a performance advantage over passing by value for <b>string</b>, <b>blob</b>, <b>date</b>, <b>time</b>,
+and <b>datetime</b> arguments, because it does not
+create a copy of the data.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If the function takes no arguments</span> <A NAME="TI2071"></A>Leave the initial argument shown in the Prototype window blank.</p>
+<A NAME="TI2072"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define arguments:</p>
+<ol><li class=fi><p>Declare whether the first argument is passed
+by reference, by value, or read-only.</p><p>The order in which you specify arguments here is the order
+you use when calling the function.</p></li>
+<li class=ds><p>Declare the argument's type. You can
+specify any datatype, including: </p><p><A NAME="TI2073"></A>
+<ul>
+<li class=fi>Built-in datatypes,
+such as <b>integer</b> and <b>real</b></li>
+<li class=ds>Object types, such as window, or specific objects,
+such as <b>w_emp</b></li>
+<li class=ds>User objects</li>
+<li class=ds>Controls, such as CommandButtons
+</li>
+</ul>
+</p></li>
+<li class=ds><p>Name the argument.</p></li>
+<li class=ds><p>If you want to add another argument, press the
+Tab key or select Add Parameter from the pop-up menu and repeat
+steps 1 to 3.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Passing arrays</span> <A NAME="TI2074"></A>You must include the square brackets in the array definition,
+for example, <FONT FACE="Courier New">price[ ]</FONT> or <FONT FACE="Courier New">price[50]</FONT>,
+and the datatype of the array must be the datatype of the argument. For information
+on arrays, see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="BCGGBBID"></A><h2>Defining a THROWS clause</h2>
+<A NAME="TI2075"></A><p>If you are using user-defined exceptions, you must define
+what exceptions might be thrown from a user-defined function or
+event. You use the Throws box to do this.</p>
+<A NAME="TI2076"></A><h4>When you need to add a THROWS clause</h4>
+<A NAME="TI2077"></A><p>Any developers who call the function or event need to know
+what exceptions can be thrown from it so that their code can handle
+the exceptions. If a function contains a <b>THROW</b> statement
+that is not surrounded by a try-catch block that can deal with that
+type of exception, then the function must be declared to throw that
+type of an exception or some ancestor of that exception type.</p>
+<A NAME="TI2078"></A><p>There are two exception types that inherit from the Throwable
+object: Exception and RuntimeError. Typically, you add objects that
+inherit from Exception to the <b>THROWS</b> clause of
+a function. Exception objects are the parents of all checked exceptions,
+which are exceptions that must be dealt with when thrown and declared
+when throwing. You do not need to add Runtime error objects to the <b>THROWS</b> clause,
+because they can occur at any time. You can catch these errors in
+a try-catch block, but you are not required to.</p>
+<A NAME="TI2079"></A><h4>Adding a THROWS clause</h4>
+<A NAME="TI2080"></A><p>You can add a <b>THROWS</b> clause to any PowerBuilder
+function or to any user event that is not defined by an event ID.
+To do so, drag and drop it from the System Tree, or type the name
+of the object in the box. If you type the names of multiple user
+objects in the Throws box, use a comma to separate the object names.
+When you drag and drop multiple user objects, PowerBuilder automatically
+adds the comma separators.</p>
+<A NAME="TI2081"></A><p>The PowerBuilder compiler checks whether a user-defined exception
+thrown on a function call in a script matches an exception in the <b>THROWS</b> clause
+for that function. It prompts you if there is no matching exception
+in the <b>THROWS</b> clause.</p>
+<A NAME="TI2082"></A><p>You can define a user-defined exception object, and inherit
+from it to define more specific lower-level exceptions. If you add
+a high-level exception to the throws clause, you can throw any lower-level
+exception in the script, but you risk hiding any useful information
+obtainable from the lower-level exception.</p>
+<A NAME="TI2083"></A><p>For more information about exception handling, see <i>Application
+Techniques</i>
+.</p>
+<A NAME="BCGFCHCJ"></A><h2>Coding the function</h2>
+<A NAME="TI2084"></A><p>When you have finished defining the function prototype, you
+specify the code for the function just as you specify the script
+for an event in the Script view. For information about
+using the Script view, see <A HREF="pbugp61.htm#BFCEBFDG">Chapter 7, "Writing Scripts ."</A></p>
+<A NAME="TI2085"></A><h4>What functions can contain</h4>
+<A NAME="TI2086"></A><p>User-defined functions can include PowerScript statements,
+embedded <ACRONYM title = "sequel" >SQL</ACRONYM> statements, and
+calls to built-in, user-defined, and external functions. </p>
+<A NAME="TI2087"></A><p>You can type the statements in the Script view or use the
+buttons in the PainterBar or items on the Edit&gt;Paste Special
+menu to insert them into the function. For more information, see <A HREF="pbugp65.htm#X-REF297000138">"Pasting information
+into scripts"</A>.</p>
+<A NAME="BEGBHHCC"></A><h4>Returning a value</h4>
+<A NAME="TI2088"></A><p>If you specified a return type for your function in the Prototype
+window, you must return a value in the body of the function. To
+return a value in a function, use the <b>RETURN</b> statement:<p><PRE>RETURN <i>expression</i></PRE></p>
+</p>
+<A NAME="TI2089"></A><p>where <i>expression</i> is the value you want
+returned by the function. The datatype of the expression must be
+the datatype you specified for the return value for the function.</p>
+<A NAME="TI2090"></A><h4>Example</h4>
+<A NAME="TI2091"></A><p>The following function returns the result of dividing <i>arg1</i> by <i>arg2</i> if <i>arg2</i> does not
+equal zero. It returns &#8211;1 if <i>arg2</i> equals
+zero:<p><PRE> IF arg2 &lt;&gt; 0 THEN<br>   RETURN arg1 / arg2<br>ELSE<br>   RETURN -1<br>END IF</PRE></p>
+<A NAME="BCGECAJF"></A><h2>Compiling and saving the function</h2>
+<A NAME="TI2092"></A><p>When you finish building a function, compile it and save it
+in a library. Then you can use it in scripts or other user-defined
+functions in any application that includes the library containing
+the function in its library search path. You compile the script
+and handle errors as described in <A HREF="pbugp68.htm#X-REF342976055">"Compiling the script "</A>. </p>
+

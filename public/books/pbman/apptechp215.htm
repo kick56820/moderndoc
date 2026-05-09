@@ -1,0 +1,55 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Saving a Powersoft report (PSR)</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp214.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp216.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF364150474"></A><h1>Saving a Powersoft report (PSR)</h1>
+<A NAME="TI6526"></A><h4>Creating a PSR file</h4>
+<A NAME="TI6527"></A><p>There are several ways in which you or a user can create a
+PSR file.</p>
+<A NAME="TI6528"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a PSR file:</p>
+<ol><li class=fi><p>In the PowerBuilder DataWindow painter
+or InfoMaker Report painter, do one of the following:<A NAME="TI6529"></A>
+<ul>
+<li class=fi>Select File&gt;Save As File. In the Select a File Name
+dialog, specify a location for the file, a file name, and Powersoft
+Report as the file type.</li>
+<li class=ds>Select File&gt;Save Rows As. In the Save As
+dialog box, specify a location for the file, a file name, and Powersoft
+Report as the type.
+</li>
+</ul>
+
+                      </p></li></ol>
+<br><A NAME="TI6530"></A><h4>Resources for the PSR</h4>
+<A NAME="TI6531"></A><p>A DataWindow or report object can display bitmap objects and
+custom pointers. These external resources must be made available
+on the client workstation. They are not automatically downloaded
+from the server.</p>
+<A NAME="TI6532"></A><p>Paths for external resources must be valid on the client workstation.
+In the DataWindow or Report painter, you can edit paths so that
+they specify directories relative to the current directory instead
+of absolute paths that are unlikely to exist on the user's
+computer.</p>
+<A NAME="TI6533"></A><p>In an intranet environment, you can store external resources
+on a network drive that is accessible to all users. In Windows environments,
+you can use a network path to name the network drive instead of
+using a mapped drive letter.</p>
+<A NAME="TI6534"></A><h4>OLE objects and custom controls</h4>
+<A NAME="TI6535"></A><p>OLE
+servers and custom controls must be installed and registered on
+each client workstation.</p>
+<A NAME="TI6536"></A><h4>Restrictions</h4>
+<A NAME="TI6537"></A><p>You <i>cannot</i> use a PSR file in the DataWindow
+plug-in whose original DataWindow or report had the RichText presentation
+style.</p>
+<A NAME="TI6538"></A><h4>What's next</h4>
+<A NAME="TI6539"></A><p>After saving a PSR file, you need to create the HTML page
+that displays it.</p>
+

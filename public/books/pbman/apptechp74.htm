@@ -1,0 +1,85 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Synchronization techniques</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp73.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp75.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BJFJEDAD"></A><h1>Synchronization techniques</h1>
+<A NAME="TI2085"></A><p>This section highlights some issues that you need to consider
+when designing an application that uses MobiLink synchronization.
+For more information about all these issues, see the chapter on
+synchronization techniques in the <i>MobiLink Synchronization
+User's Guide</i>
+.</p>
+<A NAME="BJFDGGAD"></A><h4>Limiting data downloads</h4>
+<A NAME="TI2086"></A><p>One of the major goals of synchronization is to increase the
+speed and efficiency of data movement by restricting the amount
+of data moved. To limit the data transferred by the <b>download_cursor</b> script,
+you can partition data based on its timestamp, the MobiLink user
+name, or both.</p>
+<p><b>Timestamp partitioning</b>   One way to limit downloads to data changed since the last
+download is to add a <b>last_modified</b> column
+to each table in the consolidated database (or, if the table itself
+cannot be changed, to a shadow table that holds the primary key
+and that is joined to the original table in the <b>download_cursor</b> script).
+The <b>last_modified</b> column need only
+be added to the consolidated database.</p>
+<A NAME="TI2087"></A><p>In <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere, you can
+use built-in <b>DEFAULT TIMESTAMP</b> datatypes for this
+column. In other DBMSs, you need to provide an update trigger to
+set the timestamp of the <b>last_modified</b> column.</p>
+<A NAME="TI2088"></A><p>The timestamp is generated on the consolidated database and
+downloaded unmodified to the remote database during synchronization;
+the time zone of the remote database does not affect it. </p>
+<p><b>User-based partitioning</b>   The <b>download_cursor</b> script has
+two parameters: <b>last_download</b>, of
+datatype <b>datetime</b>, and <b>ml_username</b>,
+of type <b>varchar</b>(128). You can use these parameters
+to restrict the download not only to rows that have changed since
+the last synchronization, but also to rows that belong to the current
+user. </p>
+<A NAME="TI2089"></A><p>In this sample <b>download_cursor</b> script,
+only those rows are downloaded that have been modified since the
+last synchronization, and that apply to the sales representative
+whose ID matches the MobiLink user ID:<p><PRE> SELECT order_id, cust_id, order_date<br>   FROM Sales_Order<br>WHERE last_modified &gt;= ?<br>   AND sales_rep = ?</PRE></p>
+<A NAME="TI2090"></A><p>For this to work correctly, the MobiLink user ID must match
+the <b>sales_rep</b> ID. If this is not the
+case, you might need to join a table that associates these two IDs.</p>
+<A NAME="TI2091"></A><h4>Primary key uniqueness</h4>
+<A NAME="TI2092"></A><p>In a conventional client/server environment where
+clients are always connected, referential integrity is directly
+imposed. In a mobile environment, you must ensure that primary keys
+are unique and that they are never updated. There are several techniques
+for achieving this, such as using primary key pools. </p>
+<A NAME="TI2093"></A><h4>Handling conflicts</h4>
+<A NAME="TI2094"></A><p>You need to handle conflicts that arise when, for example,
+two remote users update the same rows but synchronize at different
+intervals, so that the latest synchronization might not be the latest
+update. MobiLink provides mechanisms to detect and resolve conflicts.</p>
+<A NAME="BCGCFGJH"></A><h4>Deleting rows from the remote
+database only</h4>
+<A NAME="TI2095"></A><p>By default, when a user starts a synchronization, the net
+result of all the changes made to the database since the last synchronization
+is uploaded to the consolidated database. However, sometimes a remote
+user deletes certain rows from the remote database to recapture
+space, perhaps because the data is old or a customer has transferred
+to another sales agent. Usually, those deleted rows should not be
+deleted from the consolidated database.</p>
+<A NAME="TI2096"></A><p>One way to handle this is to use the command <FONT FACE="Courier New">STOP
+SYNCHRONIZATION DELETE</FONT> in a script in your PowerBuilder
+application to hide the <ACRONYM title = "sequel" >SQL</ACRONYM> <b>DELETE</b> statements
+that follow it from the transaction log. None of the subsequent <b>DELETE</b> operations
+on the connection will be synchronized until the <FONT FACE="Courier New">START SYNCHRONIZATION
+DELETE </FONT>statement is executed.</p>
+<A NAME="TI2097"></A><p>For example, you might provide a menu item called Delete Local
+where the code that handles the delete is wrapped, as in this example:<p><PRE> STOP SYNCHRONIZATION DELETE;<br>// call code to perform delete operation<br>START SYNCHRONIZATION DELETE;<br>COMMIT;</PRE></p>
+<A NAME="TI2098"></A><p>There are other approaches to handling deletes. For more information,
+see the chapter on synchronization techniques in the <i>MobiLink
+Synchronization User's Guide</i>
+.</p>
+

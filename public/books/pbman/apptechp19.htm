@@ -1,0 +1,46 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Optimizing expressions for DataWindow and external objects</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp18.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp20.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF354823874"></A><h1>Optimizing expressions for DataWindow and external objects</h1>
+<A NAME="TI299"></A><h4>No compiler validation for container objects</h4>
+<A NAME="TI300"></A><p>When you use dot notation to
+refer to a DataWindow object in a DataWindow control or DataStore,
+the compiler does not check the validity of the expression:<p><PRE> dw_data.Object.column.<i>property</i></PRE></p>
+<A NAME="TI301"></A><p>Everything you specify after the Object property passes the
+compiler and is checked during execution.</p>
+<A NAME="TI302"></A><p>The same applies to external OLE objects. No checking occurs
+until execution:<p><PRE> ole_1.Object.<i>qualifier</i>.<i>qualifier</i>.<i>property</i>.<i>Value</i></PRE></p>
+<A NAME="TI303"></A><h4>Establishing partial references</h4>
+<A NAME="TI304"></A><p>Because of the runtime syntax checking, using many expressions
+like these can impact performance. To improve efficiency when you
+refer repeatedly to the same DataWindow component object or external
+object, you can define a variable of the appropriate type and assign
+a partial reference to the variable. The script evaluates most of
+the reference only once and reuses it.</p>
+<A NAME="TI305"></A><p>The datatype of a DataWindow component object is <b>DWObject</b>:<p><PRE> DWObject dwo_column<br>dwo_column = dw_data.Object.column<br>dwo_column.SlideLeft = ...<br>dwo_column.SlideUp = ...</PRE></p>
+<A NAME="TI306"></A><p>The datatype of a partially resolved automation expression
+is <b>OLEObject</b>:<p><PRE> OLEObject ole_wordbasic<br>ole_wordbasic = ole_1.Object.application.wordbasic<br>ole_wordbasic.propertyname1 = value<br>ole_wordbasic.propertyname2 = value</PRE></p>
+<A NAME="TI307"></A><h4>Handling errors</h4>
+<A NAME="TI308"></A><p>The Error and (for automation) ExternalException events are
+triggered when errors occur in evaluating the DataWindow and OLE
+expressions. If you write a script for these events, you can catch
+an error before it triggers the SystemError event. These events
+allow you to ignore an error or substitute an appropriate value.
+However, you must be careful to avoid setting up conditions that
+cause another error. You can also use try-catch blocks to handle
+exceptions as described in <A HREF="apptechp20.htm#BABDCHCF">"Exception handling in PowerBuilder"</A>.</p>
+<A NAME="TI309"></A><h4>For information</h4>
+<A NAME="TI310"></A><p>For information about DataWindow data expressions and property
+expressions and <b>DWObject</b> variables, see the <i>DataWindow
+Reference</i>
+. For information about using <b>OLEObject</b> variables
+in automation, see <A HREF="apptechp105.htm#CAIBCEAE">Chapter 19, "Using OLE in an Application ."</A> </p>
+

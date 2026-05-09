@@ -1,0 +1,39 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Connecting to a SOAP server</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp207.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp209.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABCEAII"></A><h1>Connecting to a SOAP server</h1>
+<A NAME="TI6416"></A><p>You use
+the SoapConnection<b></b> object to connect to the
+SOAP server that hosts the Web service that you want to access.
+The <b>SetOptions</b> method on a SoapConnection object
+lets you set options such as the user ID and password for an HTTPS
+connection. For .NET Web services, you can also use authentication
+methods such as <b>SetBasicAuthentication</b>, <b>SetCertificateFile</b> and <b>UseWindowsAuthentication</b>. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using multiple Web services in the same application</span> <A NAME="TI6417"></A>If you connect to multiple Web services that have different
+authentication requirements, you must instantiate multiple SoapConnection
+objects and set the appropriate values in the <b>SetOptions</b> method
+or in the other authentication methods of each connection object.</p>
+<A NAME="TI6418"></A><p>You use the <b>CreateInstance</b> method to create
+the client proxy instance to access the Web service. </p>
+<A NAME="TI6419"></A><p>For more information on SoapConnection object methods, see
+the <i>PowerBuilder Extension Reference</i>
+ in the
+online Help.</p>
+<A NAME="TI6420"></A><h4>Example</h4>
+<A NAME="TI6421"></A><p>The following script creates a connection to a Web service
+on a SOAP server using the EasySoap Web service engine. It sets
+the connection properties using an endpoint defined in the CreateInstance
+method. If the endpoint is not defined in the CreateInstance method,
+a default URL stored in the proxy would be used. The script uses
+the <b>SetSoapLogFile</b> method to specify a log file.
+It displays a return value in a message box.</p>
+<A NAME="TI6422"></A><p><p><PRE> SoapConnection conn // Define SoapConnection<br>syb_currencyexchangeport proxy_obj // Declare proxy<br>long rVal, lLog<br>real amount<br> <br>//Define endpoint. You can omit it, if you want to use<br>//the default endpoint inside proxy<br>string str_endpoint<br> <br>str_endpoint = "http://services.xmethods.net:80/soap"<br>conn = create SoapConnection  //Instantiated connection<br> <br>lLog = conn.SetSoapLogFile ("C:\mySoapLog.log") <br>// Set trace file to record soap interchange data, <br>// if string is "", disables the feature<br> <br>rVal = Conn.CreateInstance(proxy_obj, &amp;<br>   "syb_currencyexchangeport", str_endpoint)<br> <br>// Create proxy object<br>try<br>   amount = proxy_obj.getrate("us","japan") <br>   // Invoke service<br>   messagebox("Current Exchange Rate", "One US Dollar"&amp;<br>   + " is equal to " + string(amount) + " Japanese Yen")<br>catch ( SoapException e )<br>   messagebox ("Error", "Cannot invoke Web service")<br>   // error handling   <br>end try<br>destroy conn</PRE></p>
+

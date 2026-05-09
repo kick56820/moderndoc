@@ -1,0 +1,238 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Informix</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp28.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp30.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF292018095"></A><h1>Informix</h1>
+<A NAME="TI683"></A><p>This section describes how to use the native IBM Informix
+database interface in PowerBuilder.</p>
+<A NAME="CCJDAIBD"></A><h2>Supported versions for Informix</h2>
+<A NAME="TI684"></A><p>You can access the following Informix databases using the
+native Informix database interface:<A NAME="TI685"></A>
+<ul>
+<li class=fi>Informix Dynamic Server</li>
+<li class=ds>Informix-OnLine and Informix-SE version 9.x
+</li>
+</ul>
+</p>
+<A NAME="TI686"></A><p>PowerBuilder provides the IN9 interface in the <i>PBIN9105.DLL</i> to
+connect through Informix-Connect version 9.x client software.</p>
+<A NAME="TI687"></A><h4>Accessing Unicode data</h4>
+<A NAME="TI688"></A><p>PowerBuilder can connect, save, and retrieve data in ANSI/DBCS
+databases. The Informix native driver does not currently support
+access to Unicode databases.</p>
+<A NAME="TI689"></A><h2>Supported Informix datatypes</h2>
+<A NAME="TI690"></A><p>The Informix database interface supports the Informix datatypes
+listed in <A HREF="connpbp29.htm#BABDBCDG">Table 6-1</A> in DataWindow
+objects and embedded <ACRONYM title = "sequel" >SQL</ACRONYM>.</p>
+<A NAME="BABDBCDG"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-1: Supported datatypes for Informix</caption>
+<tr><td  rowspan="1"  ><A NAME="TI691"></A>Byte (a maximum
+of 231 bytes)</td>
+<td  rowspan="1"  ><A NAME="TI692"></A>Integer (4 bytes)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI693"></A>Character (1
+to 32,511 bytes)</td>
+<td  rowspan="1"  ><A NAME="TI694"></A>Money</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI695"></A>Date</td>
+<td  rowspan="1"  ><A NAME="TI696"></A>Real</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI697"></A>DateTime</td>
+<td  rowspan="1"  ><A NAME="TI698"></A>Serial</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI699"></A>Decimal</td>
+<td  rowspan="1"  ><A NAME="TI700"></A>SmallInt (2 bytes)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI701"></A>Float</td>
+<td  rowspan="1"  ><A NAME="TI702"></A>Text (a maximum of 231 bytes)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI703"></A>Interval</td>
+<td  rowspan="1"  ><A NAME="TI704"></A>VarChar (1 to 255 bytes)</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Exceptions</span> <A NAME="TI705"></A>Byte, text, and VarChar datatypes are not supported in Informix
+SE.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Datatype conversion</span> <A NAME="TI706"></A>When you retrieve or update columns, PowerBuilder converts
+data appropriately between the Informix datatype and the PowerScript
+datatype. Keep in mind, however, that similarly or identically named
+Informix and PowerScript datatypes do <i>not</i> necessarily
+have the same definitions.</p>
+<A NAME="TI707"></A>For information about the definitions of PowerScript
+datatypes, see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI708"></A><h3>Informix DateTime datatype</h3>
+<A NAME="TI709"></A><p>The <b>DateTime</b> datatype is a contiguous
+sequence of boxes. Each box represents a component of time that
+you want to record. The syntax is:</p>
+<A NAME="TI710"></A><p><p><PRE><b>DATETIME</b> <i>largest_qualifier</i> <b>TO</b> <i>smallest_qualifier</i></PRE></p>
+</p>
+<A NAME="TI711"></A><p>PowerBuilder defaults to Year TO Fraction(5).</p>
+<A NAME="TI712"></A><p>For a list of qualifiers, see your Informix
+documentation.</p>
+<A NAME="TI713"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create your own variation of the DateTime datatype:</p>
+<ol><li class=fi><p>In the Database painter, create a table
+with a DateTime column.</p><p>For instructions on creating a table, see
+the <i>User's Guide</i>
+.</p></li>
+<li class=ds><p>In the Columns view, select Pending Syntax from
+the Objects or pop-up menu. </p><p>The Columns view displays the pending changes to the table
+definition. These changes execute only when you click the Save button
+to save the table definition.</p></li>
+<li class=ds><p>Select Copy from the Edit or pop-up menu</p><p><i>or</i></p><p>Click the Copy button.</p><p>The <ACRONYM title = "sequel" >SQL</ACRONYM> syntax (or the
+portion you selected) is copied to the clipboard.</p></li>
+<li class=ds><p>In the <ACRONYM title = "I sequel" >ISQL</ACRONYM> view,
+modify the DateTime syntax and execute the <b>CREATE TABLE</b> statement.</p><p>For instructions on using the<ACRONYM title = "I sequel" > ISQL</ACRONYM> view, see the <i>User's
+Guide</i>.</p></li></ol>
+<br><A NAME="TI714"></A><h3>Informix Time datatype</h3>
+<A NAME="TI715"></A><p>The Informix database interfaces also support a time datatype.
+The time datatype is a subset of the DateTime datatype. The time
+datatype uses only the time qualifier boxes.</p>
+<A NAME="TI716"></A><h3>Informix Interval datatype</h3>
+<A NAME="TI717"></A><p>The interval datatype is one value or a sequence of values
+that represent a component of time. The syntax is:</p>
+<A NAME="TI718"></A><p><p><PRE><b>INTERVAL</b> <i>largest_qualifier</i> <b>TO</b> <i>smallest_qualifier</i></PRE></p>
+</p>
+<A NAME="TI719"></A><p>PowerBuilder defaults to <FONT FACE="Courier New">Day(3) TO Day</FONT>.
+For more about interval datatypes, see your Informix documentation.</p>
+<A NAME="TI720"></A><h2>Basic software components for Informix</h2>
+<A NAME="TI721"></A><p><A HREF="connpbp29.htm#BABIBECA">Figure 6-2</A> shows
+the basic software components required to access an Informix database
+using the native Informix database interfaces.</p>
+<A NAME="BABIBECA"></A><caption><b>Figure 6-2: Components of an Informix
+connection</b></captionls>
+<br><img src="images/cnw5infx.gif">
+<A NAME="TI722"></A><h2>Preparing to use the Informix database</h2>
+<A NAME="TI723"></A><p>Before you define the database interface and connect to an
+Informix database in PowerBuilder, follow these steps to prepare the
+database for use: <A NAME="TI724"></A>
+<ol>
+</li>
+<li class=ds>Install and configure the required
+database server, network, and client software.</li>
+<li class=ds>Install the native Informix IN9 database interface.</li>
+<li class=ds>Verify that you can connect to the Informix server
+and database outside PowerBuilder.
+</li>
+</ol>
+</p>
+<A NAME="TI725"></A><h4>Step 1: Install and configure the database server</h4>
+<A NAME="TI726"></A><p>You must install and configure the required database server,
+network, and client software for Informix. </p>
+<A NAME="TI727"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To install and configure the required database
+server, network, and client software:</p>
+<ol><li class=fi><p>Make sure the Informix database server
+software and database network software is installed and running
+on the server specified in your database profile.</p><p>You must obtain the database server and database network software
+from Informix.</p><p>For installation instructions, see your Informix
+documentation.</p></li>
+<li class=ds><p>Install the required Informix client software
+on each client computer on which PowerBuilder is installed.</p><p>Install Informix Connect or the Informix Client SDK (which
+includes Informix Connect) and run the SetNet32 utility to configure
+the client registry settings.</p><p>You must obtain the Informix client software from IBM. Make
+sure the version of the client software you install supports <i>all</i> of
+the following:<A NAME="TI728"></A>
+<ul>
+<li class=fi>The operating
+system running on the client computer</li>
+<li class=ds>The version of the database that you want to access</li>
+<li class=ds>The version of PowerBuilder that you are running
+</li>
+</ul>
+</p><p>For installation instructions, see your Informix
+documentation.</p></li>
+<li class=ds><p>Make sure the Informix client software is properly
+configured so that you can connect to the Informix database server
+at your site.</p><p>For example, when you install Informix-Connect client software,
+it automatically creates the correct configuration file on your
+computer.</p><p>The configuration file contains default parameters that define
+your network configuration, network protocol, and environment variables.
+If you omit these values from the database profile when you define
+the native Informix database interface, they default to the values
+specified in your configuration file.</p><p>For instructions on setting up the Informix
+configuration file, see your Informix documentation.</p></li>
+<li class=ds><p>If required by your operating system, make sure
+the directory containing the Informix client software is in your
+system path.</p></li></ol>
+<br><A NAME="TI729"></A><h4>Step 2: Install the database interface</h4>
+<A NAME="TI730"></A><p>In the PowerBuilder Setup program, select the Typical install,
+or select the native Informix database interface in the Custom install.</p>
+<A NAME="TI731"></A><h4>Step 3: Verify the connection</h4>
+<A NAME="TI732"></A><p>Make sure you can connect to the Informix server and database
+you want to access from outside PowerBuilder.</p>
+<A NAME="TI733"></A><p>To verify the connection, use any Windows-based utility (such
+as the Informix <i>ILOGIN.EXE</i> program) that connects
+to the database. When connecting, be sure to specify the same parameters
+you plan to use in your PowerBuilder database profile to access the
+database.</p>
+<A NAME="TI734"></A><p>For instructions on using <i>ILOGIN.EXE</i>,
+see your Informix documentation.</p>
+<A NAME="TI735"></A><h2>Defining the Informix database interface</h2>
+<A NAME="TI736"></A><p>To define a connection through an Informix database interface,
+you must create a database profile by supplying values for at least
+the basic connection parameters in the Database Profile Setup -
+Informix IN9 dialog box. You can then select this profile at any
+time to connect to your database in the development environment.</p>
+<A NAME="TI737"></A><p>For information on how to define a database profile, see <A HREF="connpbp6.htm#X-REF289075262">"Using database profiles"</A>. </p>
+<A NAME="TI738"></A><h3>Specifying the server name </h3>
+<A NAME="TI739"></A><p>When you specify the server name value, you <i>must</i> use
+the following format to connect to the database through the Informix
+interface:</p>
+<A NAME="TI740"></A><p><p><PRE><i>host_name</i>@<i>server_name</i></PRE></p>
+</p>
+<A NAME="TI741"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI742"></A>Parameter</th>
+<th  rowspan="1"  ><A NAME="TI743"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI744"></A><i>host_name</i></td>
+<td  rowspan="1"  ><A NAME="TI745"></A>The name of the host computer running
+the Informix database server. This corresponds to the Informix HOSTNAME environment
+variable.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI746"></A><i>server_name</i></td>
+<td  rowspan="1"  ><A NAME="TI747"></A>The name of the server containing the
+Informix database. This corresponds to the Informix SERVER environment variable.</td>
+</tr>
+</table>
+<A NAME="TI748"></A><p>For example, to use the IN9 interface to connect to an Informix
+database server named <b>server01</b> running on a
+host machine named <FONT FACE="Courier New">sales</FONT>, do
+either of the following:<A NAME="TI749"></A>
+<ul>
+<li class=fi><b>In a
+database profile</b>   Type the host name (<FONT FACE="Courier New">sales</FONT>)
+in the Host Name box and the server name (<FONT FACE="Courier New">server01</FONT>)
+in the Server box on the Connection tab in the Database Profile
+Setup - Informix IN9 dialog box. PowerBuilder saves this server name
+as <FONT FACE="Courier New">sales@server01</FONT> in
+the database profile entry in the system registry.</li>
+<li class=ds><b>In a PowerBuilder script</b>   Type the following in your PowerBuilder application script:<br>
+<p><PRE> SQLCA.ServerName = "sales@server01"</PRE><br><br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Tip</span> <A NAME="TI750"></A>If you specify a value for Host Name and Server in your database
+profile, this syntax displays on the Preview tab in the Database
+Profile Setup - Informix IN9 dialog box. You can then copy the syntax
+from the Preview tab into your script.
+<br>
+
+</li>
+</ul>
+</p>
+<A NAME="TI751"></A><h2>Accessing serial values in a PowerBuilder script</h2>
+<A NAME="TI752"></A><p>If you are connecting to an Informix database from a PowerBuilder
+script, you can obtain the serial number of the row inserted into
+an Informix table by checking the value of the <ACRONYM title = "sequel return data" >SQLReturnData</ACRONYM> property
+of the Transaction object.</p>
+<A NAME="TI753"></A><p>After an embedded <ACRONYM title = "sequel" >SQL</ACRONYM> <b>INSERT</b> statement
+executes, <ACRONYM title = "sequel return data" >SQLReturnData</ACRONYM> contains the
+serial number that uniquely identifies the row inserted into the
+table.</p>
+<A NAME="TI754"></A><p>PowerBuilder updates <ACRONYM title = "sequel return data" >SQLReturnData</ACRONYM> following
+an embedded <ACRONYM title = "sequel" >SQL</ACRONYM> statement only;
+it does not update it following a DataWindow operation.</p>
+<A NAME="TI755"></A><h2>What to do next</h2>
+<A NAME="TI756"></A><p>For instructions on connecting to the database,
+see <A HREF="connpbp37.htm#CCJBAGDB">"Connecting to a database"</A>.</p>
+

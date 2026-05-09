@@ -1,0 +1,82 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About using OLE in DataWindow objects </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp248.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp250.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCCDAFH"></A><h1>About using OLE in DataWindow objects </h1>
+<A NAME="TI8833"></A><p>A DataWindow object can include a control that is a container for
+an OLE object. The container stores information about the application
+that created the object and it can launch the application to display
+or modify the OLE object.</p>
+<A NAME="TI8834"></A><p>The container can fill the whole DataWindow object, when you create
+a new DataWindow object using the OLE presentation style, or it can exist alongside
+other controls in a DataWindow object, when you add an OLE object to an
+existing DataWindow object. You can also read OLE data from a blob column
+in a database and display the objects in the DataWindow object.</p>
+<A NAME="TI8835"></A><p>You can use OLE objects in DataWindow objects in the following ways:<A NAME="TI8836"></A>
+<ul>
+<li class=fi><b>OLE object in
+a DataWindow object</b>    The OLE object is displayed in its container control with
+the DataWindow data and other controls, such as bitmaps or text.
+You can associate it with data in a particular row, the rows on
+a page, or with all rows. You choose which columns in the DataWindow object are
+transferred to the OLE object. You can add an OLE container control
+to a DataWindow object that uses any presentation style that supports multiple DataWindow objects.
+(This does not include the graph and RichText presentation styles.)</li>
+<li class=ds><b>OLE presentation style</b>    The OLE presentation style is similar to an OLE object in
+a DataWindow object. The difference is that the OLE container is <i>the
+only</i> control in the DataWindow object. The underlying data is <i>not</i> presented
+in column controls and <i>there are no other</i> controls, such
+as bitmaps or text. The OLE object is <i>always</i> associated
+with all the rows in the DataWindow object.</li>
+<li class=ds><b>OLE database blob column</b>    OLE objects that are stored in the database in a blob column
+are displayed in each row of the DataWindow object.
+</li>
+</ul>
+</p>
+<A NAME="TI8837"></A><p>You can also add ActiveX controls (also called OLE custom
+controls or OCXs) to DataWindow objects. ActiveX controls range from simple
+visual displays, such as meters and clocks, to more complex controls
+that perform spell checking or image processing.</p>
+<A NAME="TI8838"></A><p>The behavior of OLE objects in DataWindow objects is similar
+to the behavior of OLE controls in windows.</p>
+<A NAME="TI8839"></A><p>For more information about linked and embedded
+objects and automation, see the chapter on using OLE in an application
+in <i>Application Techniques</i>
+.</p>
+<A NAME="BFCDHAEF"></A><h4>Activating OLE objects</h4>
+<A NAME="TI8840"></A><p>When you are working in the DataWindow painter, you can start the
+server application for an OLE object by selecting Open from the
+pop-up menu. Once the server application has started, you can use
+the tools provided by the server to edit the initial presentation
+of the object.</p>
+<A NAME="TI8841"></A><p>If the OLE object is associated with <i>all rows</i> retrieved
+and is in the foreground or background layer, not the band layer,
+users can activate the object. If the object is associated with
+a single row or page or is in the band layer, users can see the
+object but cannot activate it. DataWindows created using the OLE presentation
+style are <i>always</i> associated with all rows.</p>
+<A NAME="TI8842"></A><p>Unlike OLE objects, ActiveX controls are always active. They
+do not contain objects that need to be opened or activated.</p>
+<A NAME="TI8843"></A><h4>Editing OLE objects</h4>
+<A NAME="TI8844"></A><p>When an OLE object is activated, you can edit the presentation
+of the data. Changes made to DataWindow data affect the OLE object.
+Changes made to the OLE object <i>do not</i> affect
+the data the DataWindow object retrieved.</p>
+<A NAME="TI8845"></A><p>Each OLE object stored in the database in a blob column can
+be activated and changed. When the DataWindow object updates the
+database, the changes are saved.</p>
+<A NAME="TI8846"></A><h4>What's next</h4>
+<A NAME="TI8847"></A><p>Whether you are inserting an OLE object into a DataWindow object or
+using the OLE presentation style, you use the same procedures to
+define, preview, and specify data for the OLE object. Because of
+their similarities, the next section discusses both OLE objects
+in DataWindow objects and the OLE presentation style. The last section
+discusses OLE database blob columns.</p>
+

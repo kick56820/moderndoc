@@ -1,0 +1,60 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Importing objects from an extension file</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp205.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp207.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABEGFIJ"></A><h1>Importing objects from an extension file</h1>
+<A NAME="TI6238"></A><p>Invoking Web services
+through SOAP requires serialization and deserialization of data
+types, and the building and parsing of XML-based SOAP messages. </p>
+<A NAME="TI6239"></A><p>The <i>pbwsclient105.pbx</i> file contains objects
+for the .NET Web service engine that enable you to perform these
+tasks without extensive knowledge of the SOAP specification and
+schema, the XML Schema specification, or the WSDL specification
+and schema. You can use these objects after you import the extension
+file into a PowerBuilder Web service application.</p>
+<A NAME="TI6240"></A><p>If
+you use the EasySoap Web service engine, you can import the <i>pbsoapclient105.pbx</i> file or the <i>pbwsclient105.pbx</i> file into your PowerBuilder applications.
+However, the <i>pbwsclient105.pbx</i> file requires
+the .NET 2.0 Framework on design-time and runtime machines, even
+if you are not using the .NET Web service engine. Both extension
+files contain the same objects, and you use these objects and their
+methods in similar ways.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using a PBD file</span> <A NAME="TI6241"></A>In earlier releases of PowerBuilder, instead of importing
+an extension file, you needed to add a <i>PBD</i> file
+to the application library list. Although this is no longer necessary,
+the setup program installs <i>PBD</i> files (containing
+the same SoapConnection and SoapException objects as the extension
+files) in the <i>Sybase\Shared\PowerBuilder</i> directory.
+You can use the <i>pbwsclient105.pbd</i> or the <i>pbsoapclient105.pbd</i> instead
+of importing object definitions from the <i>pbwsclient105.pbx</i> or <i>pbsoapclient105.pbx</i> file.</p>
+<A NAME="TI6242"></A><p>To add definitions from a PowerBuilder extension file to an
+application library, right-click the library in the System Tree
+and select Import PB Extensions from the pop-up menu. Browse to
+the <i>Sybase\Shared\PowerBuilder </i>directory
+and select the extension file that you want to use. </p>
+<A NAME="TI6243"></A><p>After you import the <i>PBWSClient105.pbx</i> or
+the <i>PBSoapClient105.pbx</i> file to your application,
+the following objects display in the System Tree:</p>
+<A NAME="TI6244"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI6245"></A>Object</th>
+<th  rowspan="1"  ><A NAME="TI6246"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6247"></A><b>soapconnection</b></td>
+<td  rowspan="1"  ><A NAME="TI6248"></A>Used to connect to a SOAP server</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6249"></A><b>soapexception</b></td>
+<td  rowspan="1"  ><A NAME="TI6250"></A>Used to catch exceptions thrown from <b>soapconnection</b></td>
+</tr>
+</table>
+<A NAME="TI6251"></A><p>When you create a Web service client application, you must
+deploy the extension file that you use along with the client executable
+to a directory in the application's search path. You can
+use the Runtime Packager tool to automatically include the extension
+files required by your Web service applications.</p>
+

@@ -1,0 +1,533 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using graphs in DataWindow objects </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp216.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp218.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF352146481"></A><h1>Using graphs in DataWindow objects </h1>
+<A NAME="TI7398"></A><p>Graphs are used most often in DataWindow objects&#8212;the data
+for the graph comes from tables in the database.</p>
+<A NAME="TI7399"></A><h4>Graphs in DataWindow objects are dynamic</h4>
+<A NAME="TI7400"></A><p>Graphs in DataWindow objects are tied directly to the data that is
+in the DataWindow object. As the data changes, the graph is automatically
+updated to reflect the new values.</p>
+<A NAME="TI7401"></A><h4>Two techniques</h4>
+<A NAME="TI7402"></A><p>You can use graphs in DataWindow objects in two ways:<A NAME="TI7403"></A>
+<ul>
+<li class=fi>By including a graph as a
+control in a DataWindow object<br>
+The graph enhances the display of information in a DataWindow object, such
+as a tabular or freeform DataWindow object. This technique is described
+in <A HREF="pbugp217.htm#CEGJABIJ">"Placing a graph in a DataWindow object"</A>.<br></li>
+<li class=ds>By using the Graph presentation style<br>
+The entire DataWindow object is a graph. The underlying data is not visible.
+This technique is described in <A HREF="pbugp218.htm#X-REF352385627">"Using the Graph presentation
+style"</A>.<br>
+</li>
+</ul>
+</p>
+<A NAME="CEGJABIJ"></A><h2>Placing a graph in a DataWindow object</h2>
+<A NAME="TI7404"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To place a graph in a DataWindow object:</p>
+<ol><li class=fi><p>Open or create the DataWindow object that will
+contain the graph.</p></li>
+<li class=ds><p>Select Insert&gt;Control&gt;Graph
+from the menu bar.</p></li>
+<li class=ds><p>Click where you want the graph.</p><p>PowerBuilder displays the Graph Data dialog box:</p><br><img src="images/graph13.gif"><br>
+</li>
+<li class=ds><p>Specify which columns contain the data and the
+type of graph you want, and click OK.</p><p>For more information, see <A HREF="pbugp217.htm#X-REF339707717">"Associating
+data with a graph"</A>.</p><p>The Design view now contains a representation of the graph:</p><br><img src="images/graph14.gif"><br>
+</li>
+<li class=ds><p>Specify the graph's properties in the
+Properties view.</p></li></ol>
+<br><A NAME="X-REF352150508"></A><h2>Using the graph's Properties view</h2>
+<A NAME="TI7405"></A><p>A graph has a Properties view in which you can specify the
+data as well as the other properties of the graph.<i></i></p>
+<A NAME="TI7406"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display the graph's Properties view:</p>
+<ol><li class=fi><p>Select Properties from the graph's
+pop-up menu.</p></li></ol>
+<br><A NAME="TI7407"></A><p>The Properties view for a graph has seven property pages in
+which you specify information about the graph. <A HREF="pbugp217.htm#CEGHBDGI">Table 26-3</A> lists the property
+pages and describes what each property page specifies.</p>
+<A NAME="CEGHBDGI"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 26-3: Property pages for graphs</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7408"></A>Property page</th>
+<th  rowspan="1"  ><A NAME="TI7409"></A>What it specifies</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7410"></A>Axis</td>
+<td  rowspan="1"  ><A NAME="TI7411"></A>Labels, scale, information about major
+and minor divisions for the category axes.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7412"></A>Data</td>
+<td  rowspan="1"  ><A NAME="TI7413"></A>Where to get the graph's data.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7414"></A>General</td>
+<td  rowspan="1"  ><A NAME="TI7415"></A>Various general graph properties, including
+border, graph colors, whether to size the graph to the full screen
+display, suppression in newspaper columns.<A NAME="TI7416"></A><p>Graph type, title, legend location.</p><A NAME="TI7417"></A><p>For 3D graphs, perspective, rotation, and elevation.</p><A NAME="TI7418"></A><p>For bar graphs, overlap, spacing and depth of bars.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7419"></A>Pointer</td>
+<td  rowspan="1"  ><A NAME="TI7420"></A>The pointer to use when the mouse is
+positioned over the graph.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7421"></A>Position</td>
+<td  rowspan="1"  ><A NAME="TI7422"></A>The x,y location of the upper left corner
+of the graph, its width and height, sliding options, the layer in
+which the graph is to be positioned.<A NAME="TI7423"></A><p>Whether the graph can be resized and moved at runtime.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7424"></A>Text</td>
+<td  rowspan="1"  ><A NAME="TI7425"></A>Text properties for text controls that
+display on the graph, including title, axis text, axis label, and
+legend.<A NAME="TI7426"></A><p>Text properties include font, font style, font size, alignment, rotation,
+color, display expression, display format.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7427"></A>Other</td>
+<td  rowspan="1"  ><A NAME="TI7428"></A>Descriptions and label for use by assistive
+technology tools.</td>
+</tr>
+</table>
+<A NAME="TI7429"></A><h2>Changing a graph's
+position and size</h2>
+<A NAME="TI7430"></A><p>When you first place a graph in a DataWindow object, it is in the
+foreground&#8212;it sits above the bands in the DataWindow object. Unless
+you change this setting, the graph displays in front of any retrieved
+data.</p>
+<A NAME="TI7431"></A><p>The initial graph is also moveable and resizable, so users have
+complete flexibility as to the size and location of a graph at runtime.
+You can change these properties.</p>
+<A NAME="TI7432"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a graph's position and size:</p>
+<ol><li class=fi><p>Select Properties from the graph's
+pop-up menu and then select the Position page or the General page
+in the Properties view.</p></li>
+<li class=ds><p>Select the settings for the following options
+on the Position property page:</p><A NAME="TI7433"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 26-4: Settings on the Position property page for graphs</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7434"></A>Setting</th>
+<th  rowspan="1"  ><A NAME="TI7435"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7436"></A>Layer</td>
+<td  rowspan="1"  ><A NAME="TI7437"></A><i>Background</i> &#8212; The
+graph displays behind other elements in the DataWindow object.<A NAME="TI7438"></A><p><i>Band</i> &#8212; The graph displays in
+one particular band. If you choose this setting, you should resize
+the band to fit the graph. Often you will want to place a graph
+in the Footer band. As users scroll through rows in the DataWindow object,
+the graph remains at the bottom of the screen as part of the footer.</p><A NAME="TI7439"></A><p><i>Foreground</i> &#8212; (Default) The graph
+displays above all other elements in the DataWindow object. Typically,
+if you choose this setting, you also make the graph movable so it
+will not obscure data while users display the DataWindow object.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7440"></A>Moveable</td>
+<td  rowspan="1"  ><A NAME="TI7441"></A>The graph can be moved in the Preview
+view and at runtime.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7442"></A>Resizable</td>
+<td  rowspan="1"  ><A NAME="TI7443"></A>The graph can be resized in the Preview
+view and at runtime.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7444"></A>Slide Left, Slide Up</td>
+<td  rowspan="1"  ><A NAME="TI7445"></A>The graph slides to the left or up to
+remove extra white space. For more information, see <A HREF="pbugp176.htm#BFCDCEHJ">"Sliding controls to remove
+blank space in a DataWindow object"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7446"></A>X, Y</td>
+<td  rowspan="1"  ><A NAME="TI7447"></A>The location of the upper-left corner
+of the graph.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7448"></A>Width, Height</td>
+<td  rowspan="1"  ><A NAME="TI7449"></A>The width and height of the graph.</td>
+</tr>
+</table>
+</li>
+<li class=ds><p>Select the settings for the following options
+on the General property page:</p><A NAME="TI7450"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 26-5: Size and position settings on the General property page</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7451"></A>Setting</th>
+<th  rowspan="1"  ><A NAME="TI7452"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7453"></A>Size To Display</td>
+<td  rowspan="1"  ><A NAME="TI7454"></A>The graph fills the DataWindow object and resizes
+when users resize the DataWindow object. This setting is used with
+the Graph presentation style.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7455"></A>HideSnaked</td>
+<td  rowspan="1"  ><A NAME="TI7456"></A>Do not repeat graph after the first column
+in a DataWindow object using newspaper-style columns.</td>
+</tr>
+</table>
+</li></ol>
+<br><A NAME="X-REF339707717"></A><h2>Associating data with a graph</h2>
+<A NAME="TI7457"></A><p>When using a graph in a DataWindow object, you associate axes of
+the graph with columns in the DataWindow object.</p>
+<A NAME="TI7458"></A><p>The only way to get data into a graph in a DataWindow object is through columns
+in the DataWindow object. You cannot add, modify, or delete data in the
+graph except by adding, modifying, or deleting data in the DataWindow object.</p>
+<A NAME="TI7459"></A><p>You can graph data from any columns retrieved into the DataWindow object. The
+columns do not have to be displayed.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About the examples</span> <A NAME="TI7460"></A>The process of specifying data for a graph is illustrated below using the <b>Printer</b> table
+in the EAS Demo DB.</p>
+<A NAME="TI7461"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify data for a graph:</p>
+<ol><li class=fi><p>If you are creating a new graph, the Graph
+Data dialog box displays. Otherwise, select Properties from the
+graph's pop-up menu and select the Data tab in the Properties
+view. </p></li>
+<li class=ds><p>Fill in the boxes as described in the sections
+that follow, and click OK.</p></li></ol>
+<br><A NAME="TI7462"></A><h3>Specifying which rows to include
+in a graph</h3>
+<A NAME="TI7463"></A><p>The Rows drop-down list allows you to specify which rows of
+data are graphed at any one time:</p>
+<A NAME="TI7464"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 26-6: Specifying which rows to include in a graph</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7465"></A>Setting</th>
+<th  rowspan="1"  ><A NAME="TI7466"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7467"></A>All</td>
+<td  rowspan="1"  ><A NAME="TI7468"></A>Graphs the data from all the rows that
+have been retrieved but not filtered or deleted (that is, the rows
+in the primary buffer of the DataWindow object)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7469"></A>Page</td>
+<td  rowspan="1"  ><A NAME="TI7470"></A>Graphs only the data from the rows that
+are currently displayed on the page</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7471"></A>Group n</td>
+<td  rowspan="1"  ><A NAME="TI7472"></A>Graphs only the data in the specified
+group (in a grouped DataWindow object)</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you select Group</span> <A NAME="TI7473"></A>If you are graphing data in the current group in a grouped DataWindow object and
+have several groups displayed at the same time, you should localize
+the graph in a group-related band in the Design view. This makes
+clear which group the graph represents. Usually, the group header
+band is the most appropriate band.</p>
+<A NAME="TI7474"></A><h3>Specifying the categories</h3>
+<A NAME="TI7475"></A><p>Specify the column or expression whose values determine the
+categories. In the Graph Data page in the Graph dialog box and on
+the Data page in the Properties view, you can select a column name
+from a drop-down list. In the Data tab, you can also type an expression:</p>
+<br><img src="images/graph18.gif">
+<A NAME="TI7476"></A><p>There is an entry along the Category axis for each different
+value of the column or expression you specify.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using display values of data</span> <A NAME="TI7477"></A>If you are graphing columns that use code tables, when data
+is stored with a data value but displayed to users with more
+meaningful display values, by default the graph uses the column's
+data values. To have the graph use a column's display values,
+use the <b>LookupDisplay</b> DataWindow expression function when specifying
+Category or Series. <b>LookupDisplay</b> returns a string that
+matches the display value for a column:<p><PRE>LookupDisplay ( <i>column</i> )</PRE></p>
+</p>
+<A NAME="TI7478"></A>For more about code tables, see <A HREF="pbugp196.htm#BFCDHGFC">"Defining a code table"</A>. For more about <b>LookupDisplay</b>,
+see the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI7479"></A><h3>Specifying the values</h3>
+<A NAME="TI7480"></A><p>PowerBuilder populates the Value drop-down list. The list includes
+the names of all the retrieved columns as well as the following
+aggregate functions:<A NAME="TI7481"></A>
+<ul>
+<li class=fi><b>Count</b> for all non-numeric columns</li>
+<li class=ds><b>Sum</b> for all numeric columns
+</li>
+</ul>
+</p>
+<A NAME="TI7482"></A><p>Select an item from the drop-down list or type an expression
+(in the Properties view). For example, if you want to graph the
+sum of units sold, you can specify:<p><PRE> sum(units for graph)</PRE></p>
+<A NAME="TI7483"></A><p>To graph 110 percent of the sum of units sold, you can specify:<p><PRE> sum(units*1.1 for graph)</PRE></p>
+<A NAME="TI7484"></A><h3>Specifying the series</h3>
+<A NAME="TI7485"></A><p>Graphs can have one or more series.</p>
+<A NAME="TI7486"></A><h4>Single-series graphs</h4>
+<A NAME="TI7487"></A><p>If you want only one series (that is, if you want to graph
+all retrieved rows as one series of values), leave the Series box
+empty.</p>
+<A NAME="TI7488"></A><h4>Multiple-series graphs</h4>
+<A NAME="TI7489"></A><p>If you want to graph more than one series, select the Series
+check box and specify the column that will provide the series values.</p>
+<A NAME="TI7490"></A><p>You can select column names from the drop-down list:</p>
+<br><img src="images/graph20.gif">
+<A NAME="TI7491"></A><p>There is a set of data points for each different value of
+the column you specify here. For example, if you specify in the
+Series box a column that has 10 values, then your graph will have
+10 series: one set of data points for each different value of the
+column.</p>
+<A NAME="TI7492"></A><h4>Using expressions</h4>
+<A NAME="TI7493"></A><p>You can also specify expressions for Series (on the Data page
+of the Properties view). For example, you could specify the following
+for Series:<p><PRE> Units / 1000</PRE></p>
+<A NAME="TI7494"></A><p>In this case, if a table had unit values of 10,000, 20,000,
+and 30,000, the graph would show series values of 10, 20, and 30.</p>
+<A NAME="TI7495"></A><h4>Specifying multiple entries</h4>
+<A NAME="TI7496"></A><p>You can specify more than one of the retrieved columns to
+serve as series. Separate multiple entries by commas.</p>
+<A NAME="TI7497"></A><p>You must specify the same number of entries in the Value box
+as you do in the Series box. The first value in the Value box corresponds
+to the first series identified in the Series box, the second value
+corresponds to the second series, and so on. The example about graphing
+actual and projected sales in <A HREF="pbugp217.htm#X-REF299438620">"Examples"</A> illustrates this technique.</p>
+<A NAME="X-REF299438620"></A><h3>Examples</h3>
+<A NAME="TI7498"></A><p>This section shows how to specify the data for several different
+graphs of the data in the <b>Printer</b> table in
+the EAS Demo DB. The table records quarterly unit sales of three
+printers by three sales representatives.</p>
+<A NAME="TI7499"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 26-7: The Printer table in the <ACRONYM title = "E A S" >EAS</ACRONYM> Demo
+DB</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7500"></A>Rep</th>
+<th  rowspan="1"  ><A NAME="TI7501"></A>Quarter</th>
+<th  rowspan="1"  ><A NAME="TI7502"></A>Product</th>
+<th  rowspan="1"  ><A NAME="TI7503"></A>Units</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7504"></A>Simpson</td>
+<td  rowspan="1"  ><A NAME="TI7505"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7506"></A>Stellar</td>
+<td  rowspan="1"  ><A NAME="TI7507"></A>12</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7508"></A>Jones</td>
+<td  rowspan="1"  ><A NAME="TI7509"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7510"></A>Stellar</td>
+<td  rowspan="1"  ><A NAME="TI7511"></A>18</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7512"></A>Perez</td>
+<td  rowspan="1"  ><A NAME="TI7513"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7514"></A>Stellar</td>
+<td  rowspan="1"  ><A NAME="TI7515"></A>15</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7516"></A>Simpson</td>
+<td  rowspan="1"  ><A NAME="TI7517"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7518"></A>Cosmic</td>
+<td  rowspan="1"  ><A NAME="TI7519"></A>33</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7520"></A>Jones</td>
+<td  rowspan="1"  ><A NAME="TI7521"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7522"></A>Cosmic</td>
+<td  rowspan="1"  ><A NAME="TI7523"></A>5</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7524"></A>Perez</td>
+<td  rowspan="1"  ><A NAME="TI7525"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7526"></A>Cosmic</td>
+<td  rowspan="1"  ><A NAME="TI7527"></A>26</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7528"></A>Simpson</td>
+<td  rowspan="1"  ><A NAME="TI7529"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7530"></A>Galactic</td>
+<td  rowspan="1"  ><A NAME="TI7531"></A>6</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7532"></A>Jones</td>
+<td  rowspan="1"  ><A NAME="TI7533"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7534"></A>Galactic</td>
+<td  rowspan="1"  ><A NAME="TI7535"></A>2</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7536"></A>Perez</td>
+<td  rowspan="1"  ><A NAME="TI7537"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7538"></A>Galactic</td>
+<td  rowspan="1"  ><A NAME="TI7539"></A>1</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7540"></A>...</td>
+<td  rowspan="1"  ><A NAME="TI7541"></A>...</td>
+<td  rowspan="1"  ><A NAME="TI7542"></A>...</td>
+<td  rowspan="1"  ><A NAME="TI7543"></A>...</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7544"></A>Simpson</td>
+<td  rowspan="1"  ><A NAME="TI7545"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7546"></A>Stellar</td>
+<td  rowspan="1"  ><A NAME="TI7547"></A>30</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7548"></A>Jones</td>
+<td  rowspan="1"  ><A NAME="TI7549"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7550"></A>Stellar</td>
+<td  rowspan="1"  ><A NAME="TI7551"></A>24</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7552"></A>Perez</td>
+<td  rowspan="1"  ><A NAME="TI7553"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7554"></A>Stellar</td>
+<td  rowspan="1"  ><A NAME="TI7555"></A>36</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7556"></A>Simpson</td>
+<td  rowspan="1"  ><A NAME="TI7557"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7558"></A>Cosmic</td>
+<td  rowspan="1"  ><A NAME="TI7559"></A>60</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7560"></A>Jones</td>
+<td  rowspan="1"  ><A NAME="TI7561"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7562"></A>Cosmic</td>
+<td  rowspan="1"  ><A NAME="TI7563"></A>52</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7564"></A>Perez</td>
+<td  rowspan="1"  ><A NAME="TI7565"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7566"></A>Cosmic</td>
+<td  rowspan="1"  ><A NAME="TI7567"></A>48</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7568"></A>Simpson</td>
+<td  rowspan="1"  ><A NAME="TI7569"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7570"></A>Galactic</td>
+<td  rowspan="1"  ><A NAME="TI7571"></A>3</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7572"></A>Jones</td>
+<td  rowspan="1"  ><A NAME="TI7573"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7574"></A>Galactic</td>
+<td  rowspan="1"  ><A NAME="TI7575"></A>3</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7576"></A>Perez</td>
+<td  rowspan="1"  ><A NAME="TI7577"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7578"></A>Galactic</td>
+<td  rowspan="1"  ><A NAME="TI7579"></A>6</td>
+</tr>
+</table>
+<A NAME="TI7580"></A><h4>Graphing total sales</h4>
+<A NAME="TI7581"></A><p>To graph total sales of printers in each quarter, retrieve
+all the columns into a DataWindow object and create a graph with the following
+settings on the Data page in the Properties view:<A NAME="TI7582"></A>
+<ul>
+<li class=fi>Set
+Rows to <FONT FACE="Courier New">All</FONT></li>
+<li class=ds>Set Category to <FONT FACE="Courier New">quarter</FONT></li>
+<li class=ds>Set Value to <FONT FACE="Courier New">sum(units for graph)</FONT>
+</li>
+</ul>
+</p>
+<A NAME="TI7583"></A><p>Leave the Series check box and text box empty.</p>
+<A NAME="TI7584"></A><p>The <b>Quarter</b> column serves as the category.
+Because the <b>Quarter</b> column has four values
+(Q1, Q2, Q3, and Q4), there will be four categories along the Category
+axis. You want only one series (total sales in each quarter), so
+you can leave the Series box empty, or type a string literal to
+identify the series in a legend. Setting Value to <FONT FACE="Courier New">sum(units
+for graph)</FONT> graphs total sales in each quarter.</p>
+<A NAME="TI7585"></A><p>Here is the resulting column graph. PowerBuilder automatically
+generates the category text based on the data in the table:</p>
+<br><img src="images/graph22.gif">
+<A NAME="TI7586"></A><p>In the preceding graph, there is one set of data points (one
+series) across four quarters (the category values).</p>
+<A NAME="TI7587"></A><p>The following is a pie graph, which has exactly the same properties
+as the preceding column graph except for the type, which is 3D Pie:</p>
+<br><img src="images/graph23.gif">
+<A NAME="TI7588"></A><p>In pie graphs, categories are shown in the legend.</p>
+<A NAME="CEGEADFB"></A><h4>Graphing unit sales of each
+printer</h4>
+<A NAME="TI7589"></A><p>To graph total quarterly sales of each printer, retrieve all
+the columns into a DataWindow object and create a graph with the following
+settings on the Data page in the Properties view:<A NAME="TI7590"></A>
+<ul>
+<li class=fi>Set
+Rows to <FONT FACE="Courier New">All</FONT></li>
+<li class=ds>Set Category to <FONT FACE="Courier New">quarter</FONT></li>
+<li class=ds>Set Value to <FONT FACE="Courier New">sum(units for graph)</FONT></li>
+<li class=ds>Select the Series check box<FONT FACE="Courier New"></FONT></li>
+<li class=ds>Set Series to <FONT FACE="Courier New">product</FONT>
+</li>
+</ul>
+</p>
+<A NAME="TI7591"></A><p>You want a different series for each printer, so the column <b>Product</b> serves
+as the series. Because the <b>Product</b> column has
+three values (Cosmic, Galactic, and Stellar), there will be three
+series in the graph. As in the first example, you want a value for
+each quarter, so the <b>Quarter</b> column serves
+as the category, and you want to graph total sales in each quarter,
+so the Value box is specified as <FONT FACE="Courier New">sum(units for
+graph)</FONT>.</p>
+<A NAME="TI7592"></A><p>Here is the resulting graph. PowerBuilder automatically generates
+the category and series labels based on the data in the table. The
+series labels display in the graph's legend:</p>
+<br><img src="images/graph25.gif">
+<A NAME="TI7593"></A><h4>Graphing unit sales by representative</h4>
+<A NAME="TI7594"></A><p>To graph quarterly sales made by each representative, create
+a graph with the following settings on the Data page in the Properties
+view:<A NAME="TI7595"></A>
+<ul>
+<li class=fi>Set Rows to <FONT FACE="Courier New">All</FONT></li>
+<li class=ds>Set Category to <FONT FACE="Courier New">quarter</FONT></li>
+<li class=ds>Set Value to <FONT FACE="Courier New">sum(units for graph)</FONT></li>
+<li class=ds>Select the Series check box<FONT FACE="Courier New"></FONT></li>
+<li class=ds>Set Series to <FONT FACE="Courier New">rep</FONT>
+</li>
+</ul>
+</p>
+<A NAME="TI7596"></A><p>Here is the resulting graph:</p>
+<br><img src="images/graph27.gif">
+<A NAME="TI7597"></A><h4>Graphing unit sales by representative and total
+sales</h4>
+<A NAME="TI7598"></A><p>To graph quarterly sales made by each representative, plus
+total sales for each printer, create a graph with the following
+settings on the Data page in the Properties view:<A NAME="TI7599"></A>
+<ul>
+<li class=fi>Set
+Rows to <FONT FACE="Courier New">All</FONT></li>
+<li class=ds>Set Category to <FONT FACE="Courier New">quarter, "Total"</FONT></li>
+<li class=ds>Set Value to <FONT FACE="Courier New">sum(units for graph),
+sum(units for graph)</FONT></li>
+<li class=ds>Select the Series check box<FONT FACE="Courier New"></FONT></li>
+<li class=ds>Set Series to <FONT FACE="Courier New">rep, rep</FONT>
+</li>
+</ul>
+</p>
+<br><img src="images/graph28.gif">
+<A NAME="TI7600"></A><p>Here you have two types of categories: the first is Quarter,
+which shows quarterly sales, as in the previous graph. You also
+want a category for total sales. There is no corresponding column
+in the DataWindow object, so you can simply type the literal "Total" to
+identify the category. You separate multiple entries with a comma. </p>
+<A NAME="TI7601"></A><p>For each of these category types, you want to graph the sum
+of units sold for each representative, so the Value and Series values
+are repeated. </p>
+<A NAME="TI7602"></A><p>Here is the resulting graph:</p>
+<br><img src="images/graph29.gif">
+<A NAME="TI7603"></A><p>Notice that PowerBuilder uses the literal "Total" supplied
+in the Category box in the Graph Data window as a value in the Category
+axis.</p>
+<A NAME="BFCBHGFH"></A><h4>Graphing actual and projected
+sales</h4>
+<A NAME="TI7604"></A><p>To graph total quarterly sales of all printers and projected
+sales for next year, create a graph with the following settings
+on the Data page in the Properties view (you assume that sales will
+increase by 10% next year):<A NAME="TI7605"></A>
+<ul>
+<li class=fi>Set Rows
+to <FONT FACE="Courier New">All</FONT></li>
+<li class=ds>Set Category to <FONT FACE="Courier New">quarter</FONT></li>
+<li class=ds>Set Value to <FONT FACE="Courier New">sum(units for graph),
+sum(units*1.1 for graph)</FONT></li>
+<li class=ds>Select the Series check box<FONT FACE="Courier New"></FONT></li>
+<li class=ds>Set Series to <FONT FACE="Courier New">'Actual','Projected'</FONT>
+</li>
+</ul>
+</p>
+<A NAME="TI7606"></A><p>You are using labels to identify two series, Actual and Projected.
+Note the single quotation marks around the literals. For Values,
+you enter the expressions that correspond to Actual and Projected
+sales. For Actual, you use the same expression as in the examples
+above, <FONT FACE="Courier New">sum(units for graph)</FONT>.
+For Projected sales, you multiply each unit sale by 1.1 to get the
+10 percent increase. Therefore, the second expression is <FONT FACE="Courier New">sum(units*1.1
+for graph)</FONT>.</p>
+<A NAME="TI7607"></A><p>Here is the resulting graph. PowerBuilder uses the literals
+you typed for the series as the series labels in the legend:</p>
+<br><img src="images/graph31.gif">
+<A NAME="TI7608"></A><h2>Using overlays</h2>
+<A NAME="TI7609"></A><p>It is often useful to call special attention to one of the
+series in a graph, particularly in a bar or column graph. You can
+do that by defining the series as an overlay. An overlay series
+is graphed as a line on top of the other series in the graph. To
+define a series as an overlay, define it as follows:<A NAME="TI7610"></A>
+<ul>
+<li class=fi>If specifying a column name to identify the series,
+specify this for the series:<p><PRE>"@overlay~t" + <i>ColumnName</i></PRE></p>
+</li>
+<li class=ds>If using a label to identify the series, specify
+this for the series:<p><PRE>"@overlay~t<i>SeriesLabel</i> "</PRE></p>
+
+</li>
+</ul>
+</p>
+<A NAME="CCJBDFCB"></A><h3>Examples</h3>
+<A NAME="TI7611"></A><p>To graph sales in each quarter and overlay the sales of each
+individual printer, specify the graph's data as in <A HREF="pbugp217.htm#CEGEADFB">"Graphing unit sales of each
+printer"</A>, but use the
+following expression in the Series box:<p><PRE> "Total Sales", "@overlay~t" + product</PRE></p>
+<A NAME="TI7612"></A><p>Here is the resulting graph:</p>
+<br><img src="images/graph33.gif">
+<A NAME="TI7613"></A><p>To graph unit sales of printers by quarter and overlay the
+largest sale made in each quarter, change the Value expression to
+this:<p><PRE> sum(units for graph), max(units for graph)</PRE></p>
+<A NAME="TI7614"></A><p>Change the Series expression to this:<p><PRE> "Total Sales", "@overlay~tLargets Sale"</PRE></p>
+<A NAME="TI7615"></A><p>Here is the resulting graph:</p>
+<br><img src="images/graph35.gif">
+

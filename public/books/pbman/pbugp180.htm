@@ -1,0 +1,73 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About controlling updates </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp179.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp181.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BHBHCEHJ"></A><h1>About controlling updates </h1>
+<A NAME="TI5966"></A><p>When PowerBuilder generates the basic DataWindow object, it defines whether
+the data is updatable by default as follows: <A NAME="TI5967"></A>
+<ul>
+<li class=fi>If the DataWindow object contains columns from a single
+table and includes that table's key columns, PowerBuilder defines
+all columns as updatable and specifies a nonzero tab order for each
+column, allowing users to tab to the columns.</li>
+<li class=ds>If the DataWindow object contains columns from two or more
+tables or from a view, PowerBuilder defines all columns as not being updatable
+and sets all tab orders to zero, preventing users from tabbing
+to them.
+</li>
+</ul>
+</p>
+<A NAME="TI5968"></A><p>You can accept the default settings or modify the update characteristics
+for a DataWindow object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If using a Stored Procedure or External data source</span> <A NAME="TI5969"></A>If the data source is Stored Procedure or External, you can
+use the <b>GetNextModified</b><b></b> method
+to write your own update script. For more information,
+see the <i>DataWindow Reference.</i>
+</p>
+<A NAME="TI5970"></A><h2>What you can do</h2>
+<A NAME="TI5971"></A><p>You can:<A NAME="TI5972"></A>
+<ul>
+<li class=fi>Allow updates
+in a DataWindow object associated with multiple tables or a view; you can
+define one of the tables as being updatable</li>
+<li class=ds>Prevent updates in a DataWindow object associated with
+one table</li>
+<li class=ds>Prevent updates to specific columns in a DataWindow object that
+is associated with an updatable table</li>
+<li class=ds>Specify which columns uniquely identify a row to
+be updated</li>
+<li class=ds>Specify which columns will be included in the <b>WHERE</b> clause
+of the <b>UPDATE</b> or <b>DELETE</b> statement PowerBuilder generates
+to update the database</li>
+<li class=ds>Specify whether PowerBuilder generates an <b>UPDATE</b> statement,
+or a <b>DELETE</b> then an <b>INSERT</b> statement,
+to update the database when users modify the values in a key
+column
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Updatability of views</span> <A NAME="TI5973"></A>Some views are logically updatable; some are not. For the
+rules your DBMS follows for updating views, see your DBMS documentation.</p>
+<A NAME="TI5974"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify update characteristics for a DataWindow object:</p>
+<ol><li class=fi><p>Select Rows&gt;Update Properties
+from the menu bar.</p><p>The Specify Update Properties dialog box displays.</p></li>
+<li class=ds><p>To prevent updates to the data, make sure the
+Allow Updates box is not selected.</p><p>To allow updates, select the Allow Updates box and specify
+the other settings as described below.</p></li>
+<li class=ds><p>Click OK.</p></li></ol>
+<br><A NAME="TI5975"></A><h4>Changing tab values</h4>
+<A NAME="TI5976"></A><p>PowerBuilder does not change the tab values associated with
+columns after you change the update characteristics of the DataWindow object.
+If you have allowed updates to a table in a multitable DataWindow object,
+you should change the tab values for the updatable columns so that users can
+tab to them.</p>
+<A NAME="TI5977"></A><p>For more information, see <A HREF="pbugp171.htm#BFCDECGDKJ">"Defining the tab order
+in a DataWindow object"</A>.</p>
+

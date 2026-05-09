@@ -1,0 +1,53 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Tracing execution</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp267.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp269.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF352470517"></A><h1>Tracing execution</h1>
+<A NAME="TI9925"></A><p>You can trace execution of an executable file built with PowerBuilder.
+By tracing execution, you can troubleshoot your application if it
+does not behave the same way when run as an executable file as it
+does when run in the PowerBuilder development environment. You can
+also use the trace output to profile your application: for example,
+you can see how many times particular scripts and functions are
+being executed.</p>
+<A NAME="TI9926"></A><h4>Two kinds of trace files</h4>
+<A NAME="TI9927"></A><p>You can generate two kinds of trace files:<A NAME="TI9928"></A>
+<ul>
+<li class=fi><b>With timing information</b>   You collect trace information by adding code to the scripts
+in the application or adding a window that lets users turn tracing
+on and off. PowerBuilder generates a binary trace file that you analyze
+using a comprehensive set of objects and functions or the Profiling tools.
+For more information about tracing and profiling, see <A HREF="pbugp257.htm#CAICEDBJ">"About tracing and profiling
+an application"</A>.</li>
+<li class=ds><b>Without timing information</b>   You collect information by running the application with the <b>/pbdebug</b> command-line
+switch. PowerBuilder generates a text file that logs the creation
+and destruction of objects and the execution of scripts and functions.
+</li>
+</ul>
+</p>
+<A NAME="TI9929"></A><h4>Tracing execution using <b>/pbdebug</b></h4>
+<A NAME="TI9930"></A><p>You generate PBDebug trace information for an executable file
+by invoking the executable with a command-line switch.</p>
+<A NAME="TI9931"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To generate PBDebug trace information:</p>
+<ol><li class=fi><p>Invoke the executable file using the<b> /pbdebug</b> command-line
+switch:<p><PRE> <i>EXEFILE</i> /pbdebug</PRE></p></li></ol>
+<br><A NAME="TI9932"></A><p>As the application executes, PowerBuilder records the trace
+output in a file called <i>exefile.dbg</i>, which
+is a text file that you can read in any editor. For information
+about PBDebug tracing in the development environment, see <A HREF="pbugp261.htm#BFCDAGIA">"Generating a trace file
+without timing information"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Enabling tracing</span> <A NAME="TI9933"></A>If you are compiling machine code, you must enable tracing
+at compile time by selecting Trace Information in the Project painter
+Compile Options group. If you have not enabled tracing when you
+compile for machine code, no trace information is generated and
+the <b>/pbdebug</b> switch has no effect.</p>
+<A NAME="TI9934"></A>If you compile your project in Pcode, the compiler automatically
+adds the information needed to enable tracing.</p>
+

@@ -1,0 +1,81 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About DataWindow objects </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp153.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp155.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CFHCDJJDMK"></A><h1>About DataWindow objects </h1>
+<A NAME="TI4723"></A><p>A DataWindow object is an object you use to retrieve, present,
+and manipulate data from a relational database or other data source (such
+as an Excel worksheet or dBASE file).</p>
+<A NAME="TI4724"></A><p>DataWindow objects have knowledge about the data they are
+retrieving. You can specify display formats, presentation styles,
+and other data properties so that users can make the most meaningful
+use of the data.</p>
+<A NAME="TI4725"></A><h2>DataWindow object examples</h2>
+<A NAME="TI4726"></A><p>You can display the data in the format that best presents
+the data to your users.</p>
+<A NAME="TI4727"></A><h4>Edit styles</h4>
+<A NAME="TI4728"></A><p>If a column can take only a small number of values, you can
+have the data appear as radio buttons in a DataWindow object so
+that users know what their choices are.</p>
+<br><img src="images/defin01.gif">
+<A NAME="TI4729"></A><h4>Display formats</h4>
+<A NAME="TI4730"></A><p>If a column displays phone numbers, salaries, or dates, you
+can specify the format appropriate to the data.</p>
+<br><img src="images/defin02.gif">
+<A NAME="TI4731"></A><h4>Validation rules</h4>
+<A NAME="TI4732"></A><p>If a column can take numbers only in a specific range, you
+can specify a simple validation rule for the data, without writing
+any code, to make sure users enter valid data.</p>
+<A NAME="TI4733"></A><h4>Enhancing DataWindow objects</h4>
+<A NAME="TI4734"></A><p>If you want to enhance the presentation and manipulation of
+data in a DataWindow object, you can include computed fields, pictures,
+and graphs that are tied directly to the data retrieved by the object.</p>
+<A NAME="TI4735"></A><h2>How to use DataWindow objects</h2>
+<A NAME="TI4736"></A><p>Before you can use a DataWindow object, you need to build
+the object. To do that you can go to the DataWindow painter, which
+lets you create and edit DataWindow objects. It also lets you make
+PSR (Powersoft report) files, which you might also want to use in
+applications. A PSR file contains a report definition&#8212;essentially
+a nonupdatable DataWindow object&#8212;as well as the data contained
+in that report when the PSR file was created.</p>
+<A NAME="TI4737"></A><p>This section describes the overall process for creating and
+using DataWindow objects. You can use DataWindow objects in client/server,
+Web-based, and multitier applications. For more information about
+using DataWindow objects in different kinds of applications and
+writing code that interacts with DataWindow objects, see the <i>DataWindow
+Programmer's Guide</i>
+.</p>
+<A NAME="TI4738"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use DataWindow objects in an application:</p>
+<ol><li class=fi><p>Create the DataWindow <i>object</i> using
+one of the DataWindow wizards on the DataWindow tab page of the
+New dialog box. </p><p>The wizard helps you define the data source, presentation
+style, and other basic properties of the object, and the DataWindow
+object displays in the DataWindow painter. In this painter, you
+define additional properties for the DataWindow object, such as
+display formats, validation rules, and sorting and filtering criteria.</p><p>For more information about creating a DataWindow
+object, see <A HREF="pbugp156.htm#CFHCIDFC">"Building a DataWindow object "</A>.</p></li>
+<li class=ds><p>Place a DataWindow <i>control</i> in
+a window or user object.</p><p>It is through this control that your application communicates
+with the DataWindow object you created in the DataWindow painter.</p></li>
+<li class=ds><p>Associate the DataWindow control with the DataWindow
+object.</p></li>
+<li class=ds><p>Write scripts in the Window painter to manipulate
+the DataWindow control and its contents. </p><p>For example, you use the PowerScript Retrieve method to retrieve
+data into the DataWindow control.</p><p>You can write scripts for the DataWindow control to deal with
+error handling, sharing data between DataWindow controls, and so
+on.</p></li></ol>
+<br><A NAME="CDCFBFJF"></A><h4>Reports versus DataWindow
+objects</h4>
+<A NAME="TI4739"></A><p>Reports and DataWindow objects are the same objects. You can
+open and modify both in the DataWindow painter. However, a report
+is not updatable and can only be used to present data. For information
+about how you can specify whether users can update the data in a
+DataWindow object, see <A HREF="pbugp179.htm#BHBJIJJE">Chapter 21, "Controlling Updates in DataWindow Objects."</A></p>
+

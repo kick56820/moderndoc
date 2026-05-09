@@ -1,0 +1,307 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using AutoScript</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp65.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp67.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABIEJFG"></A><h1>Using AutoScript</h1>
+<A NAME="TI1882"></A><p>AutoScript is a tool designed to help you write PowerScript
+code more quickly by providing a lookup and paste service inside
+the Script view. It is an alternative to using the paste toolbar
+buttons or the Browser&#8212;you do not need to move your hands
+away from the keyboard to paste functions, events, variables, properties,
+and templates for PowerBuilder <b>TRY</b>, <b>DO</b>, <b>FOR</b>, <b>IF</b>,
+and <b>CHOOSE</b> statements into your script. </p>
+<A NAME="TI1883"></A><p>If you are not sure what the name or syntax of a function
+is or what the names of certain variables are, AutoScript can show
+you a list to choose from and paste what you need right into the
+script. If you can remember part of the name, start typing and select
+Edit&gt;Activate AutoScript or press F8 (or do nothing if automatic
+pop-up is turned on). If you cannot remember the name at all, place your
+cursor in white space and press F8. </p>
+<A NAME="TI1884"></A><h4>Where you use AutoScript</h4>
+<A NAME="TI1885"></A><p>You can use AutoScript in three different contexts:<A NAME="TI1886"></A>
+<ul>
+<li class=fi>When you can remember part of the name and you want
+AutoScript to finish typing it for you or show you a list of alternatives.</li>
+<li class=ds>When you cannot remember the name or you just want
+a list. AutoScript options can help you narrow the list if you do
+not know the name but you do know the type you are looking for.
+For example, you can choose to see a list showing all variables,
+or only all local variables.</li>
+<li class=ds>When you want a list of the properties and/or
+functions and events that apply to an identifier followed by a dot.
+</li>
+</ul>
+</p>
+<A NAME="TI1887"></A><p>For how to use AutoScript options, see <A HREF="pbugp66.htm#BABEFGGE">"Customizing AutoScript"</A>.</p>
+<A NAME="TI1888"></A><h4>Two ways to use AutoScript</h4>
+<A NAME="TI1889"></A><p>AutoScript can pop up a list automatically when you pause
+while typing, or when you request it:<A NAME="TI1890"></A>
+<ul>
+<li class=fi>Turn
+automatic pop-up on to have AutoScript pop up the list or complete what
+you are typing when you pause for a few seconds after typing one
+or more characters or an identifier followed by a dot. See <A HREF="pbugp66.htm#BABCFJBA">"Using automatic pop-up"</A>.</li>
+<li class=ds>Invoke AutoScript when you need it by pressing F8
+when you have typed one or more characters or an identifier followed
+by a dot, or when the cursor is in white space. Pressing F8 activates
+AutoScript only once. It does not turn automatic pop-up on.
+</li>
+</ul>
+</p>
+<A NAME="TI1891"></A><p>For how to paste an item from the pop-up window into a script,
+see <A HREF="pbugp66.htm#BABDCHHA">"Using the AutoScript pop-up
+window"</A>. </p>
+<A NAME="BABDCHHA"></A><h2>Using the AutoScript pop-up window</h2>
+<A NAME="TI1892"></A><p>If there is more than one property, variable, method, or statement
+that could be inserted, AutoScript pops up an alphabetical list
+of possible completions or insertions. An icon next to each item
+indicates its type. The following screen includes an instance variable,
+events, properties, statements, and a function:</p>
+<br><img src="images/sc02.gif">
+<A NAME="TI1893"></A><p>If a function is overloaded, each version displays on a different
+line in the AutoScript pop-up window. </p>
+<A NAME="TI1894"></A><p>If you have started typing a word, only completions that begin
+with the string you have already typed display in the list. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Case sensitivity</span> <A NAME="TI1895"></A>AutoScript always pastes lowercase characters, but the case
+of any characters you have already typed is preserved. For example,
+if you are using AutoScript to complete a function name and you
+want to use mixed case, you can type up to the last uppercase letter
+before invoking AutoScript. AutoScript completes the function name
+and pastes an argument template.</p>
+<A NAME="TI1896"></A><h4>Pasting an item into the script</h4>
+<A NAME="TI1897"></A><p>To paste an item into the script, press Tab or Enter or double-click
+the item. Use the arrow and page up and page down keys to scroll
+through the list. If the item is a function, event, or statement,
+the template that is pasted includes descriptive comments that you
+replace with argument names, conditions, and so forth. The first
+commented argument or statement is selected so that it is easy to
+replace. You can jump to the next comment by selecting <br>Edit&gt;Go
+To&gt;Next Marker.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Go to next marker</span> <A NAME="TI1898"></A>You can use Edit&gt;Go To&gt;Next Marker to jump
+to the next comment enclosed by <FONT FACE="Courier New">/*</FONT> and <FONT FACE="Courier New">*/</FONT> anywhere
+in the Script view, not just in AutoScript templates. For the steps
+to create a shortcut for this menu item, see <A HREF="pbugp66.htm#BABEFGGE">"Customizing AutoScript"</A>.</p>
+<A NAME="TI1899"></A><h4>If you do not want to paste from the list</h4>
+<A NAME="TI1900"></A><p>Press the Backspace key or click anywhere outside the pop-up
+window to dismiss it without pasting into the script.</p>
+<A NAME="TI1901"></A><h4>If nothing displays</h4>
+<A NAME="TI1902"></A><p>AutoScript does not pop up a list if the cursor is in a comment
+or string literal or if an identifier is complete. If neither of
+these conditions applies and nothing displays when you press F8,
+there may be no appropriate completions in the current context.
+Check that the options you need are selected on the AutoScript options
+page as described in <A HREF="pbugp66.htm#BABEFGGE">"Customizing AutoScript"</A>.</p>
+<A NAME="BABEFGGE"></A><h2>Customizing AutoScript</h2>
+<A NAME="TI1903"></A><p>There are four ways to customize AutoScript: <A NAME="TI1904"></A>
+<ul>
+<li class=fi><A HREF="pbugp66.htm#BABDHEDC">Creating shortcut keys</A></li>
+<li class=ds><A HREF="pbugp66.htm#BABFIAHD">Specifying what displays
+in the list</A></li>
+<li class=ds><A HREF="pbugp66.htm#BABCFJBA">Using automatic pop-up</A></li>
+<li class=ds><A HREF="pbugp66.htm#BABEHHAC">Using AutoScript only with
+dot notation</A>
+</li>
+</ul>
+</p>
+<A NAME="BABDHEDC"></A><h4>Creating shortcut keys</h4>
+<A NAME="TI1905"></A><p>AutoScript is easier to use if you create shortcuts for the
+menu items that you use frequently. The Edit&gt;Activate AutoScript
+menu item uses F8 as a shortcut key by default, but you can change
+it if you prefer to use a different shortcut. </p>
+<A NAME="TI1906"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify or create shortcut keys for using AutoScript:</p>
+<ol><li class=fi><p>Select Tools&gt;Keyboard Shortcuts
+from the menu bar and expand the Edit menu in the Keyboard Shortcuts
+dialog box. </p></li>
+<li class=ds><p>If you want to change the default key for activating
+AutoScript, scroll down and select Activate AutoScript and type
+a key sequence, such as Ctrl+Space. </p></li>
+<li class=ds><p>Expand the Go To menu, select Next Marker, and
+type a key sequence, such as Ctrl+M. </p><p>After you click OK, the shortcuts display in the Edit menu.</p></li></ol>
+<br><A NAME="TI1907"></A><p>To make the next three customizations, select Design&gt;Options
+from the menu bar and select the AutoScript tab:</p>
+<br><img src="images/sc03.gif">
+<A NAME="BABFIAHD"></A><h4>Specifying what displays
+in the list</h4>
+<A NAME="TI1908"></A><p>You can select different items to include in three different
+contexts: <A NAME="TI1909"></A>
+<ul>
+<li class=fi>When you have started typing a variable
+or method name or the beginning of a PowerScript statement</li>
+<li class=ds>When you have typed the name of an object followed
+by a dot</li>
+<li class=ds>When the cursor is at the beginning of a new line
+or in white space 
+</li>
+</ul>
+</p>
+<A NAME="TI1910"></A><p><A HREF="pbugp66.htm#CHDJEJCI">Table 7-3</A> shows
+what is included in the list or pasted when you check each box.</p>
+<A NAME="CHDJEJCI"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 7-3: Setting options for AutoScript</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1911"></A>Check box</th>
+<th  rowspan="1"  ><A NAME="TI1912"></A>Displays</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1913"></A>Arguments</td>
+<td  rowspan="1"  ><A NAME="TI1914"></A>Arguments for the current function or
+event.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1915"></A>Local Variables</td>
+<td  rowspan="1"  ><A NAME="TI1916"></A>Variables defined in the current script.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1917"></A>Instance Variables</td>
+<td  rowspan="1"  ><A NAME="TI1918"></A>Variables defined for and associated
+with an instance of the current object or, after a dot, variables
+associated with the object preceding the dot.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1919"></A>Shared Variables</td>
+<td  rowspan="1"  ><A NAME="TI1920"></A>Variables defined for the current object
+and associated with all instances of it.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1921"></A>Global Variables</td>
+<td  rowspan="1"  ><A NAME="TI1922"></A>Variables defined for the current application.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1923"></A>Properties</td>
+<td  rowspan="1"  ><A NAME="TI1924"></A>Properties for the current object or,
+after a dot, properties for the object preceding the dot. Includes
+controls on the current window.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1925"></A>Methods</td>
+<td  rowspan="1"  ><A NAME="TI1926"></A>Functions and events for the current
+object or, after a dot, functions and events for the object preceding
+the dot. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1927"></A>Statement Templates</td>
+<td  rowspan="1"  ><A NAME="TI1928"></A>PowerScript statement templates for each
+type of <b>IF</b>, <b>FOR</b>, <b>CHOOSE</b> <b>CASE</b>, <b>TRY</b>,
+or <b>DO</b> statement with comments indicating what
+code should be inserted. This option is off by default.</td>
+</tr>
+</table>
+<A NAME="TI1929"></A><p>Turning options off reduces the length of the list that displays
+when you invoke AutoScript so that it is faster and easier to paste
+a completion or insert code into the script:<A NAME="TI1930"></A>
+<ul>
+<li class=fi>To
+show all variables and methods when typing, check all the boxes
+except Statement Templates in the Partial Name Resolution Include
+group box. When you pause or press F8, the list shows variables
+and methods that begin with the string you typed.</li>
+<li class=ds>To quickly find functions on an object, clear all
+the boxes except Methods in the After A Dot Include group box. When
+you type an instance name followed by a dot, only function and event
+names for the instance display. </li>
+<li class=ds>To see a list of arguments and local variables when
+the cursor is in white space, check the Arguments and Local Variables
+boxes in the When No Context Include group box. When you press F8,
+the list shows only arguments and local variables.
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using name completion shortens the list</span> <A NAME="TI1931"></A>You might not need to clear boxes on the AutoScript page to
+reduce the length of the list if you are using name completion and
+F8 to invoke AutoScript. For example, suppose you have created an
+instance called <b>inv_ncst_dssrv</b> of
+the class <b>n_cst_dssrv </b>and
+you know the function you want to use begins with <b>of_g</b>. Type
+the following into a script and then press F8:<p><PRE> inv_ncst_dssrv.of_g</PRE></p>
+<A NAME="TI1932"></A>AutoScript displays a pop-up window showing only the functions
+on <b>n_cst_dssrv</b> that begin
+with <b>of_g</b>. </p>
+<A NAME="BABCFJBA"></A><h4>Using automatic pop-up</h4>
+<A NAME="TI1933"></A><p>Most of the time you will probably use a shortcut key to invoke
+AutoScript, but you can also have AutoScript pop up a list or paste
+a selection automatically whenever you pause for several seconds
+while typing. To do so, check the Automatic Popup box on the AutoScript
+options page. Automatic pop-up does not operate when the cursor
+is at the beginning of a line or in white space. </p>
+<A NAME="TI1934"></A><p>This feature is most useful when you are entering new code.
+You can customize the options in the Partial Name Resolution Include
+and After A Dot Include group boxes to reduce the number of times
+AutoScript pops up.</p>
+<A NAME="TI1935"></A><p>When you are editing existing code, it is easier to work with
+automatic pop-up off. AutoScript might pop up a list or paste a
+template for a function when you do not want it to. Using only the
+shortcut key to invoke AutoScript gives you complete control.</p>
+<A NAME="BABEHHAC"></A><h4>Using AutoScript only with
+dot notation</h4>
+<A NAME="TI1936"></A><p>If you want AutoScript to work <i>only</i> when
+you have typed an identifier followed by a dot, check the Activate
+Only After a Dot box on the AutoScript options page. The effect
+of checking this box applies whether or not you have checked Automatic
+Popup. You might find it most useful when you have checked Automatic
+Popup, because it provides another way to limit the number of times
+AutoScript pops up automatically. </p>
+<A NAME="TI1937"></A><h2>Example</h2>
+<A NAME="TI1938"></A><p>The following simple example illustrates how AutoScript works
+with automatic pop-up turned off and different settings for each
+context. To set up the example:<A NAME="TI1939"></A>
+<ul>
+<li class=fi>Create a new
+window and place on it a DataWindow control and a CommandButton
+control.</li>
+<li class=ds>Select all the boxes in the Partial Name Resolution
+Include group box.</li>
+<li class=ds>Clear all the boxes in the After A Dot Include group
+box except Methods.</li>
+<li class=ds>Clear all the boxes in the When No Context Include
+group box except Arguments and Local Variables.</li>
+<li class=ds>Clear both boxes in the Options group box.
+</li>
+</ul>
+</p>
+<A NAME="TI1940"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 7-4: AutoScript example</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1941"></A>Context</th>
+<th  rowspan="1"  ><A NAME="TI1942"></A>Do this</th>
+<th  rowspan="1"  ><A NAME="TI1943"></A>What happens</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1944"></A>Partial name resolution</td>
+<td  rowspan="1"  ><A NAME="TI1945"></A>In the Clicked event script for <b>cb_1</b>,
+type <FONT FACE="Courier New">long ll_rtn</FONT>.
+On a new line, type <FONT FACE="Courier New">ll</FONT> and
+press F8.</td>
+<td  rowspan="1"  ><A NAME="TI1946"></A>AutoScript pastes the local variable <b>ll_rtn</b> into
+the script because it is the only completion that begins with <b>ll</b>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1947"></A></td>
+<td  rowspan="1"  ><A NAME="TI1948"></A>Type <FONT FACE="Courier New">= d</FONT> and
+press F8.</td>
+<td  rowspan="1"  ><A NAME="TI1949"></A>The list displays all properties, events, functions,
+variables, and statements that begin with d.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1950"></A></td>
+<td  rowspan="1"  ><A NAME="TI1951"></A>Type <FONT FACE="Courier New">w</FONT> and
+press Tab or Enter.</td>
+<td  rowspan="1"  ><A NAME="TI1952"></A>The list scrolls to <b>dw_1</b> and
+AutoScript pastes it into the script when you press Tab or Enter.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1953"></A>After a dot</td>
+<td  rowspan="1"  ><A NAME="TI1954"></A>Type a dot after dw_1 and press
+F8.</td>
+<td  rowspan="1"  ><A NAME="TI1955"></A>The list shows all the functions and events
+for a DataWindow control.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1956"></A></td>
+<td  rowspan="1"  ><A NAME="TI1957"></A>Type <FONT FACE="Courier New">GetNextM</FONT> and
+press Tab or Enter.</td>
+<td  rowspan="1"  ><A NAME="TI1958"></A>AutoScript pastes the rest of the <b>GetNextModified</b> function
+name and template into the script, retaining your capitalization.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1959"></A></td>
+<td  rowspan="1"  ><A NAME="TI1960"></A>Select Edit&gt;Go To&gt;Next Marker.</td>
+<td  rowspan="1"  ><A NAME="TI1961"></A>AutoScript selects the next function argument
+so you can replace it. Complete or comment out the statement.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1962"></A>No context</td>
+<td  rowspan="1"  ><A NAME="TI1963"></A>In the empty ItemChanged event for <b>dw_1</b>,
+declare some local variables, press Tab or Enter, and then press F8.</td>
+<td  rowspan="1"  ><A NAME="TI1964"></A>The list displays the local variables
+and the arguments for the ItemChanged event.</td>
+</tr>
+</table>
+

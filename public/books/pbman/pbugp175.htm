@@ -1,0 +1,665 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Adding controls to a DataWindow object</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp174.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp176.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCCIJACX"></A><h1>Adding controls to a DataWindow object</h1>
+<A NAME="TI5595"></A><p>This section describes adding controls to enhance your DataWindow object.</p>
+<A NAME="BFCCHFBA"></A><h2>Adding columns to a DataWindow object</h2>
+<A NAME="TI5596"></A><p>You can add columns that are included in the data source to
+a DataWindow object. When you first create a DataWindow object, each of the columns in
+the data source is automatically placed in the DataWindow object. Typically,
+you would add a column to restore one that you had deleted from
+the DataWindow object, or to display the column more than once in the DataWindow object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Adding columns not previously retrieved to the data
+source</span> <A NAME="TI5597"></A>To specify that you want to retrieve a column not previously
+retrieved (that is, add a column to the data source), you must modify
+the data source.</p>
+<A NAME="TI5598"></A>See <A HREF="pbugp171.htm#CAICFEBG">"Modifying the data source
+of a DataWindow object"</A>.</p>
+<A NAME="TI5599"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a column from the data source to a DataWindow object:</p>
+<ol><li class=fi><p>Select Insert&gt;Control&gt;Column
+from the menu bar.</p></li>
+<li class=ds><p>Click where you want to place the column.</p><p>The Select Column dialog box displays, listing all columns
+included in the data source of the DataWindow object.</p></li>
+<li class=ds><p>Select the column and click OK.</p></li></ol>
+<br><A NAME="TI5600"></A><h4>Insert columns instead of copying them</h4>
+<A NAME="TI5601"></A><p>If you want to add a column from the DataWindow definition
+to a DataWindow, always use Insert&gt;Control&gt;Column.
+You might see unexpected results if you copy a column from one DataWindow object to
+another if they both reference the same column but the column order
+is different. This is because copying a column copies a reference
+to the column's id in the DataWindow definition. </p>
+<A NAME="TI5602"></A><p>Suppose <b>d_first</b> and <b>d_second</b> both
+have <b>first_name</b> and <b>last_name</b> columns,
+but <b>first_name</b> is column 1 in <b>d_first</b> and
+column 2 in <b>d_second</b>. If you delete
+the <b>first_name</b> column in <b>d_second</b> and
+paste column 1 from <b>d_first</b> in its
+place, both columns in <b>d_second</b> display
+the <b>last_name</b> column in the Preview
+view, because both columns now have a column id of 1.</p>
+<A NAME="BFCBGFFG"></A><h2>Adding text to a DataWindow object</h2>
+<A NAME="TI5603"></A><p>When PowerBuilder generates a basic DataWindow object from a presentation style
+and data source, it places columns and their headings in the DataWindow painter.
+You can add text anywhere you want to make the DataWindow object easier
+to understand.</p>
+<A NAME="TI5604"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add text to a DataWindow object:</p>
+<ol><li class=fi><p>Select Insert&gt;Control&gt;Text
+from the menu bar.</p></li>
+<li class=ds><p>Click where you want the text.</p><p>PowerBuilder places the text control in the Design view and
+displays the word <FONT FACE="Courier New">text</FONT>.</p></li>
+<li class=ds><p>Type the text you want.</p></li>
+<li class=ds><p>(Optional) Change the font, size, style, and alignment
+for the text using the StyleBar.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Displaying an ampersand character</span> <A NAME="TI5605"></A>If you want to display an ampersand character, type a double
+ampersand in the Text field. A single ampersand causes the next
+character to display with an underscore because it is used to indicate
+accelerator keys.</p>
+<A NAME="TI5606"></A><h4>About the default font and style</h4>
+<A NAME="TI5607"></A><p>When you place text in a DataWindow object, PowerBuilder uses the font
+and style (such as boldface) defined for the application's
+text in the Application painter. You can override the text properties
+for any text in a DataWindow object.</p>
+<A NAME="TI5608"></A><p>For more about changing the application's
+default text font and style, see <A HREF="pbugp38.htm#CAIDBGGED">Chapter 5, "Working with Targets."</A></p>
+<A NAME="BFCDAICD"></A><h2>Adding drawing controls to a DataWindow object</h2>
+<A NAME="TI5609"></A><p>You can add the following drawing controls to a DataWindow object to enhance
+its appearance:<A NAME="TI5610"></A>
+<ul>
+<li class=fi>Rectangle</li>
+<li class=ds>RoundRectangle</li>
+<li class=ds>Line</li>
+<li class=ds>Oval
+</li>
+</ul>
+</p>
+<A NAME="TI5611"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To place a drawing control in a DataWindow object:</p>
+<ol><li class=fi><p>Select the drawing control from the Insert&gt;Control
+menu.</p></li>
+<li class=ds><p>Click where you want the control to display.</p></li>
+<li class=ds><p>Resize or move the drawing control as needed.</p></li>
+<li class=ds><p>Use the drawing control's Properties
+view to change its properties as needed. </p><p>For example, you might want to specify a fill color for a
+rectangle or thickness for a line.</p></li></ol>
+<br><A NAME="BFCCBFFD"></A><h2>Adding a group box to a DataWindow object</h2>
+<A NAME="TI5612"></A><p>To visually enhance the layout of a DataWindow object, you can add
+a group box. A group box is a static frame used to group and label
+a set of controls in a DataWindow object. The following
+example shows two group boxes in a report (nonupdatable DataWindow
+object). The Address group box groups address information and the
+Phone/Fax group box groups telephone numbers.</p>
+<br><img src="images/dwen30a.gif">
+<A NAME="TI5613"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a group box to a DataWindow object:</p>
+<ol><li class=fi><p>Select Insert&gt;Control&gt;Group
+Box from the menu bar and click in the Design view.</p></li>
+<li class=ds><p>With the group box selected, type the text to
+display in the frame.</p></li>
+<li class=ds><p>Move and resize the group box as appropriate.</p></li></ol>
+<br><A NAME="BFCCHGGA"></A><h2>Adding pictures to a DataWindow object</h2>
+<A NAME="TI5614"></A><p>You can place pictures, such as your company logo, in a DataWindow object to
+enhance its appearance. If you place a picture in the header, summary,
+or footer band of the DataWindow object, the picture displays each time
+the content of that band displays. If you place the picture in the
+detail band of the DataWindow object, it displays in each row.</p>
+<A NAME="TI5615"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To place a picture in a DataWindow object:</p>
+<ol><li class=fi><p>Select Insert&gt;Control&gt;Picture
+from the menu bar.</p></li>
+<li class=ds><p>Click where you want the picture to display.</p><p>The Select Picture dialog box displays.</p></li>
+<li class=ds><p>Use the Browse button to find the file or enter
+a file name in the File Name box. Then click Open.</p><p>The picture must be a bitmap (BMP), runlength-encoded (RLE),
+Windows metafile (WMF), Graphics Interchange Format (GIF), or Joint Photographic
+Experts Group (JPEG) file.</p></li>
+<li class=ds><p>Display the pop-up menu and select Original Size
+to display the bitmap in its original size. </p><p>You can use the mouse to change the size of the bitmap in
+the DataWindow painter.</p></li>
+<li class=ds><p>Click the Invert Image check box on the General
+page of the Properties view to display the picture with its colors
+inverted.</p></li></ol>
+<br><A NAME="TI5616"></A><h4>Tips for using pictures</h4>
+<A NAME="TI5617"></A><p>To display a different picture for each row of data, retrieve
+a column containing picture file names from the database.</p>
+<A NAME="TI5618"></A><p>For more information, see <A HREF="pbugp136.htm#BABDFJCI">"Specifying additional properties
+for character columns"</A>.<i></i>
+<i></i>
+</p>
+<A NAME="TI5619"></A><p>To compute a picture name at runtime, use the <b>Bitmap</b> function
+in the expression defining a computed field. If you change the bitmap
+in the Picture control in a DataWindow object, you need to reset the original
+size property. The property automatically reverts to the default
+setting when you change the bitmap. </p>
+<A NAME="TI5620"></A><p>To use a picture to indicate that a row has focus at runtime,
+use the <b>SetRowFocusIndicator</b> function.</p>
+<A NAME="CAICBBCE"></A><h2>Adding computed fields to a DataWindow object</h2>
+<A NAME="TI5621"></A><p>You can use computed fields in any band of the DataWindow object.
+Typical uses with examples include:<A NAME="TI5622"></A>
+<ul>
+<li class=fi>Calculations based on column
+data that change for each retrieved row<br>
+If you retrieve yearly salary, you can define a computed field
+in the detail band that displays monthly salary: <FONT FACE="Courier New">Salary / 12</FONT>.<br></li>
+<li class=ds>Summary statistics of the data<br>
+In a grouped DataWindow object, you can use a computed field to calculate
+the totals of a column, such as <b>salary</b>, for
+each group: <FONT FACE="Courier New">sum (salary for group 1)</FONT>.<br></li>
+<li class=ds>Concatenated fields<br>
+If you retrieve first name and last name, you can define a
+computed field that concatenates the values so they appear with
+only one space between them: <FONT FACE="Courier New">Fname + "
+" + Lname</FONT>.<br></li>
+<li class=ds>System information<br>
+You can place the current date and time in a DataWindow object's
+header using the built-in functions <FONT FACE="Courier New">Today() </FONT>and <FONT FACE="Courier New">Now()</FONT> in
+computed fields.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI5623"></A><h3>Computed columns versus computed fields</h3>
+<A NAME="TI5624"></A><p>When creating a DataWindow object, you can define computed columns
+and computed fields as follows:<A NAME="TI5625"></A>
+<ul>
+<li class=fi>In the SQL Select painter,
+you can define computed columns when you are defining the <b>SELECT</b> statement
+that will be used to retrieve data into the DataWindow object.</li>
+<li class=ds>In the DataWindow painter, you can define computed fields
+after you have defined the <b>SELECT</b> statement (or
+other data source).
+</li>
+</ul>
+</p>
+<A NAME="TI5626"></A><h4>The difference between the two ways</h4>
+<A NAME="TI5627"></A><p>When you define the computed column in the SQL Select painter, the
+value is calculated by the DBMS when the data is retrieved. The
+computed column's value does not change until data has
+been updated and retrieved again.</p>
+<A NAME="TI5628"></A><p>When you define the computed field in the DataWindow painter, the
+value of the column is calculated in the DataWindow object after the data
+has been retrieved. The value changes dynamically as the data in
+the DataWindow object changes. </p>
+<A NAME="TI5629"></A><h4>Example</h4>
+<A NAME="TI5630"></A><p>Consider a DataWindow object with four columns: <b>Part number</b>, <b>Quantity</b>, <b>Price</b>,
+and <b>Cost</b>. <b>Cost</b> is computed
+as <b>Quantity</b> * <b>Price</b>.</p>
+<A NAME="TI5631"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI5632"></A>Part #</th>
+<th  rowspan="1"  ><A NAME="TI5633"></A>Quantity</th>
+<th  rowspan="1"  ><A NAME="TI5634"></A>Price</th>
+<th  rowspan="1"  ><A NAME="TI5635"></A>Cost</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5636"></A>101</td>
+<td  rowspan="1"  ><A NAME="TI5637"></A>100</td>
+<td  rowspan="1"  ><A NAME="TI5638"></A>1.25</td>
+<td  rowspan="1"  ><A NAME="TI5639"></A>125.00</td>
+</tr>
+</table>
+<A NAME="TI5640"></A><p>If <b>Cost</b> is defined as a computed column
+in the SQL Select painter, the <b>SELECT</b> statement is as
+follows:<p><PRE> SELECT part.part_num,    <br>part.part_qty,    <br>part.part_price,    <br><i>part.part_qty * part.part_price</i><br>FROM part;</PRE></p>
+<A NAME="TI5641"></A><p>If the user changes the price of a part in the DataWindow object in
+this scenario, the cost does not change in the DataWindow object until
+the database is updated and the data is retrieved again. The user
+sees a display with the changed price but the unchanged, incorrect
+cost.</p>
+<A NAME="TI5642"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI5643"></A>Part #</th>
+<th  rowspan="1"  ><A NAME="TI5644"></A>Quantity</th>
+<th  rowspan="1"  ><A NAME="TI5645"></A>Price</th>
+<th  rowspan="1"  ><A NAME="TI5646"></A>Cost</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5647"></A>101</td>
+<td  rowspan="1"  ><A NAME="TI5648"></A>100</td>
+<td  rowspan="1"  ><A NAME="TI5649"></A>2.50</td>
+<td  rowspan="1"  ><A NAME="TI5650"></A><i>125.00</i></td>
+</tr>
+</table>
+<A NAME="TI5651"></A><p>If <b>Cost</b> is defined as a computed field
+in the DataWindow object, the <b>SELECT</b> statement is as
+follows, with no computed column:<p><PRE> SELECT part.part_num,    <br>part.part_qty,    <br>part.part_price<br>FROM part;</PRE></p>
+<A NAME="TI5652"></A><p>The computed field is defined in the DataWindow object as <FONT FACE="Courier New">Quantity * Price</FONT>.</p>
+<A NAME="TI5653"></A><p>In this scenario, if the user changes the price of a part
+in the DataWindow object, the cost changes immediately.</p>
+<A NAME="TI5654"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI5655"></A>Part #</th>
+<th  rowspan="1"  ><A NAME="TI5656"></A>Quantity</th>
+<th  rowspan="1"  ><A NAME="TI5657"></A>Price</th>
+<th  rowspan="1"  ><A NAME="TI5658"></A>Cost</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5659"></A>101</td>
+<td  rowspan="1"  ><A NAME="TI5660"></A>100</td>
+<td  rowspan="1"  ><A NAME="TI5661"></A>2.50</td>
+<td  rowspan="1"  ><A NAME="TI5662"></A><i>250.00</i></td>
+</tr>
+</table>
+<A NAME="TI5663"></A><h4>Recommendation</h4>
+<A NAME="TI5664"></A><p>If you want your DBMS to do the calculations on the server
+before bringing data down and you do not need the computed values
+to be updated dynamically, define the computed column as part of
+the <b>SELECT</b> statement.</p>
+<A NAME="TI5665"></A><p>If you need computed values to change dynamically, define
+computed fields in the DataWindow painter Design view, as described next.</p>
+<A NAME="TI5666"></A><h3>Defining a computed field in the DataWindow painter Design
+view</h3>
+<A NAME="TI5667"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a computed field in the DataWindow painter Design
+view:</p>
+<ol><li class=fi><p>Select Insert&gt;Control&gt;Computed
+Field from the menu bar.</p></li>
+<li class=ds><p>Click where you want to place the computed field. </p><p>If the calculation is to be based on column data that changes
+for each row, make sure you place the computed field in the detail
+band.</p><p>The Modify Expression dialog box displays, listing:<A NAME="TI5668"></A>
+<ul>
+<li class=fi>DataWindow expression functions you can use in
+the computed field</li>
+<li class=ds>The columns in the DataWindow object</li>
+<li class=ds>Operators and parentheses
+</li>
+</ul>
+</p></li>
+<li class=ds><p>Enter the expression that defines the computed
+field as described in <A HREF="pbugp175.htm#BABHJFHB">"Entering the expression"</A>.</p></li>
+<li class=ds><p>(Optional) Click Verify to test the expression.</p><p>PowerBuilder analyzes the expression.</p></li>
+<li class=ds><p>Click OK.</p></li></ol>
+<br><A NAME="BABHJFHB"></A><h4>Entering the expression</h4>
+<A NAME="TI5669"></A><p>You can enter any valid DataWindow expression when defining a computed field.
+You can paste operators, columns, and DataWindow expression functions into the expression
+from information in the Modify Expression dialog box. Use the + operator
+to concatenate strings.</p>
+<A NAME="TI5670"></A><p>You can use any built-in or user-defined global function in
+an expression. You cannot use object-level functions.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>DataWindow expressions</span> <A NAME="TI5671"></A>You are entering a DataWindow expression, not a <ACRONYM title = "sequel" >SQL</ACRONYM> expression
+processed by the DBMS, so the expression follows the rules for DataWindow expressions. For
+complete information about DataWindow expressions, see the <i>DataWindow
+Reference.</i>
+</p>
+<A NAME="TI5672"></A><h4>Referring to next and previous rows</h4>
+<A NAME="TI5673"></A><p>You can refer to other rows in a computed field. This is particularly
+useful in N-Up DataWindow objects when you want to refer to another row
+in the detail band. Use this syntax:</p>
+<A NAME="TI5674"></A><p><p><PRE><i>ColumnName</i>[<i>x</i>]</PRE></p>
+</p>
+<A NAME="TI5675"></A><p>where <i>x</i> is an integer. 0 refers to the
+current row (or first row in the detail band), 1 refers to the next
+row, &#8211;1 refers to the previous row, and so on.</p>
+<A NAME="TI5676"></A><h4>Examples</h4>
+<A NAME="TI5677"></A><p><A HREF="pbugp175.htm#BABBAAID">Table 20-1</A> shows
+some examples of computed fields.</p>
+<A NAME="BABBAAID"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 20-1: Computed field examples</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5678"></A>To display</th>
+<th  rowspan="1"  ><A NAME="TI5679"></A>Enter this expression</th>
+<th  rowspan="1"  ><A NAME="TI5680"></A>In this band</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5681"></A>Current date at top of each page</td>
+<td  rowspan="1"  ><A NAME="TI5682"></A><FONT FACE="Courier New">Today() </FONT></td>
+<td  rowspan="1"  ><A NAME="TI5683"></A>Header</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5684"></A>Current time at top of each page</td>
+<td  rowspan="1"  ><A NAME="TI5685"></A><FONT FACE="Courier New">Now()</FONT></td>
+<td  rowspan="1"  ><A NAME="TI5686"></A>Header</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5687"></A>Current page at bottom of each page</td>
+<td  rowspan="1"  ><A NAME="TI5688"></A><FONT FACE="Courier New">Page()</FONT></td>
+<td  rowspan="1"  ><A NAME="TI5689"></A>Footer</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5690"></A>Total page count at bottom of each page</td>
+<td  rowspan="1"  ><A NAME="TI5691"></A><FONT FACE="Courier New">PageCount()</FONT></td>
+<td  rowspan="1"  ><A NAME="TI5692"></A>Footer</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5693"></A>Concatenation of <b>Fname</b> and <b>Lname</b> columns
+for each row</td>
+<td  rowspan="1"  ><A NAME="TI5694"></A><FONT FACE="Courier New">Fname + "
+" + Lname</FONT></td>
+<td  rowspan="1"  ><A NAME="TI5695"></A>Detail</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5696"></A>Monthly salary if <b>Salary</b> column contains
+annual salary</td>
+<td  rowspan="1"  ><A NAME="TI5697"></A><FONT FACE="Courier New">Salary / 12</FONT></td>
+<td  rowspan="1"  ><A NAME="TI5698"></A>Detail</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5699"></A>Four asterisks if the value of the <b>Salary</b> column
+is greater than $50,000</td>
+<td  rowspan="1"  ><A NAME="TI5700"></A><FONT FACE="Courier New">IF(Salary&gt; 50000, "****",
+"")</FONT></td>
+<td  rowspan="1"  ><A NAME="TI5701"></A>Detail</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5702"></A>Average salary of all retrieved rows</td>
+<td  rowspan="1"  ><A NAME="TI5703"></A><FONT FACE="Courier New">Avg(Salary)</FONT></td>
+<td  rowspan="1"  ><A NAME="TI5704"></A>Summary</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5705"></A>Count of retrieved rows, assuming each
+row contains a value for <b>EmpID</b></td>
+<td  rowspan="1"  ><A NAME="TI5706"></A><FONT FACE="Courier New">Count(EmpID)</FONT></td>
+<td  rowspan="1"  ><A NAME="TI5707"></A>Summary</td>
+</tr>
+</table>
+<A NAME="TI5708"></A><p>For complete information about the functions you can use in
+computed fields in the DataWindow painter, see the <i>DataWindow </i>
+<i>Reference</i>
+.</p>
+<A NAME="TI5709"></A><h4>Menu options and PainterBar buttons for common
+functions</h4>
+<A NAME="TI5710"></A><p>PowerBuilder provides a quick way to create computed fields
+that summarize values in the detail band, display the current date,
+or show the current page number. </p>
+<A NAME="TI5711"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To summarize values:</p>
+<ol><li class=fi><p>Select one or more columns in the DataWindow
+object's detail band.</p></li>
+<li class=ds><p>Select Insert&gt;Control from the menu bar.</p></li>
+<li class=ds><p>Select one of the options at the bottom of the
+cascading menu: Average, Count, or Sum. </p><p>The same options are available at the bottom of the Controls
+drop-down toolbar on the PainterBar.</p><p>PowerBuilder places a computed field in the summary band or
+in the group trailer band if the DataWindow object is grouped. The band
+is resized automatically to hold the computed field. If there is
+already a computed field that matches the one being generated, it
+is skipped.</p></li></ol>
+<br><A NAME="TI5712"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To insert a computed field for the current date
+or page number:</p>
+<ol><li class=fi><p>Select Insert&gt;Control from the
+menu bar.</p></li>
+<li class=ds><p>Select Today() or Page n of n from the options
+at the bottom of the cascading menu. </p><p>The same options are available at the bottom of the Controls
+drop-down toolbar on the PainterBar.</p></li>
+<li class=ds><p>Click anywhere in the DataWindow object.</p><p>If you selected Today, PowerBuilder inserts a computed field
+containing this expression: <FONT FACE="Courier New">Today()</FONT>.
+For Page n of n, the computed field contains this expression: <FONT FACE="Courier New">'Page ' + page() + ' of ' + pageCount()</FONT>.</p></li></ol>
+<br><A NAME="TI5713"></A><h4>Adding custom buttons that place computed fields</h4>
+<A NAME="TI5714"></A><p>You can add buttons to the PainterBar in the DataWindow painter that
+place computed fields using any of the aggregate functions, such
+as <b>Max</b>, <b>Min</b>, and <b>Median</b>.</p>
+<A NAME="TI5715"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To customize the PainterBar with custom buttons
+for placing computed fields:</p>
+<ol><li class=fi><p>Place the mouse pointer over the PainterBar and
+select Customize from the pop-up menu.</p><p>The Customize dialog box displays.</p></li>
+<li class=ds><p>Click Custom in the Select palette group to display
+the set of custom buttons.</p></li>
+<li class=ds><p>Drag a custom button into the Current toolbar group
+and release it.</p><p>The Toolbar Item Command dialog box displays.</p></li>
+<li class=ds><p>Click the Function button.</p><p>The Function For Toolbar dialog box displays.</p></li>
+<li class=ds><p>Select a function and click OK.</p><p>You return to the Toolbar Item Command dialog box.</p></li>
+<li class=ds><p>Specify text and microhelp that displays for the button,
+and click OK.</p><p>PowerBuilder places the new button in the PainterBar. You can
+click it to add a computed field to your DataWindow object the same way
+you use the built-in Sum button.</p></li></ol>
+<br><A NAME="BFCBACAG"></A><h2>Adding buttons to a DataWindow object</h2>
+<A NAME="TI5716"></A><p>Buttons make it easy to provide command button actions in
+a DataWindow object. No coding is required. The use of Button controls
+in the DataWindow object, instead of CommandButton controls in a
+window, ensures that actions appropriate to the DataWindow object
+are included in the object itself.</p>
+<A NAME="TI5717"></A><p>The Button control is a command or picture button that can
+be placed in a DataWindow object. When clicked at runtime, the button activates either
+a built-in or user-supplied action.</p>
+<A NAME="TI5718"></A><p>For example, you can place a button in a report and specify
+that clicking it opens the Filter dialog box, where users can
+specify a filter to be applied to the currently retrieved data.</p>
+<A NAME="TI5719"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a button to a DataWindow object:</p>
+<ol><li class=fi><p>Select Insert&gt;Control&gt;Button
+from the menu bar.</p></li>
+<li class=ds><p>Click where you want the button to display.</p><p>You may find it useful to put a Delete button or an Insert
+button in the detail band. Clicking a Delete button in the detail
+band will delete the row next to the button clicked. Clicking an
+Insert button in the detail band will insert a row following the
+current row.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Be careful when putting buttons in the detail band</span> <A NAME="TI5720"></A>Buttons in the detail band repeat for every row of data, which
+is not always desirable. Buttons in the detail band are not visible
+during retrieval, so a Cancel button in the detail band would be
+unavailable when needed.</p>
+</li>
+<li class=ds><p>With the button still selected, type the text to display
+on the button in the PainterBar or on the General page of the Properties
+view.</p></li>
+<li class=ds><p>Select the action you want to assign to the button from
+the Action drop-down list on the General page of the Properties
+view.</p><p>For information about actions, see <A HREF="pbugp175.htm#BFCBEJJH">"Actions assignable to buttons
+in DataWindow objects"</A>.</p></li>
+<li class=ds><p>If you want to add a picture to the button, select the
+Action Default Picture check box or enter the name of the Picture
+file to display on the button.</p><p>If you plan to use the DataWindow object as a Web DataWindow,
+you can use images for default buttons provided in the <i>dwaction.jar</i> file.
+For more information, see the <i>DataWindow Programmer's
+Guide</i>
+.</p></li>
+<li class=ds><p>If you want to suppress event processing when the button
+is clicked at runtime, select the Suppress Event check box.</p><p>When this option has been selected for the button and the
+button is clicked at runtime, only the action assigned to the button
+and the Clicked event are executed. The ButtonClicking and the ButtonClicked
+events are not triggered.</p></li></ol>
+<br><A NAME="TI5721"></A><h4>What happens if Suppress Event is off</h4>
+<A NAME="TI5722"></A><p>If Suppress Event is off and the button is clicked, the Clicked
+and ButtonClicking events are fired. Code in the ButtonClicking
+event (if any) is executed. Note that the Clicked event is executed
+before the ButtonClicking event.<A NAME="TI5723"></A>
+<ul>
+<li class=fi>If the return
+code from the ButtonClicking event is 0, the action assigned to
+the button is executed and then the ButtonClicked event is executed. </li>
+<li class=ds>If the return code from the ButtonClicking event
+is 1, neither the action assigned to the button nor the ButtonClicked
+event are executed. 
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Do not use a message box in the Clicked event</span> <A NAME="TI5724"></A>If you call the <b>MessageBox</b> function in
+the Clicked event, the action assigned to the button is executed,
+but the ButtonClicking and ButtonClicked events are not executed.</p>
+<A NAME="TI5725"></A><h4>Example</h4>
+<A NAME="TI5726"></A><p>For an example of a DataWindow object that uses buttons, see
+the <b>d_button_report</b> object
+in the Code Examples application. </p>
+<A NAME="TI5727"></A><p>This DataWindow object has several buttons that have default
+actions, and two that have user-defined actions. In the
+Properties view in the DataWindow painter, these buttons are named <b>cb_help</b> and <b>cb_exit</b>.
+Suppress Event is off for all buttons.</p>
+<A NAME="TI5728"></A><p>In the Window painter, the Clicked and ButtonClicking events
+for the DataWindow control that contains <b>d_button_report</b> are
+not scripted. This is the ButtonClicked event script:</p>
+<A NAME="TI5729"></A><p><p><PRE> string    ls_Object<br>string    ls_win<br> <br>ls_Object = String(dwo.name)<br> <br>If ls_Object = "cb_exit" Then<br>    Close(Parent)<br>ElseIf ls_Object = "cb_help" Then<br>    ls_win = parent.ClassName()<br>    f_open_help(ls_win)<br>End If</PRE></p>
+<A NAME="TI5730"></A><p>This script is triggered when any button in the DataWindow
+object is clicked.</p>
+<A NAME="TI5731"></A><h3>Controlling the display of buttons in print preview
+and in printed output</h3>
+<A NAME="TI5732"></A><p>You can choose whether to display buttons in print preview
+or in printed output. You control this in the Properties view for
+the DataWindow object (not the Properties view for the button).</p>
+<A NAME="TI5733"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To control the display of buttons in a DataWindow object in
+print preview and on printed output:</p>
+<ol><li class=fi><p>Display the DataWindow object's Properties
+view with the Print Specification page on top.</p></li>
+<li class=ds><p>Select the Display Buttons &#8211; Print check
+box.</p><p>The buttons are included in the printed output when the DataWindow object is
+printed. </p></li>
+<li class=ds><p>Select the Display Buttons &#8211; Print Preview
+check box.</p><p>The buttons display on the screen when viewing the DataWindow object in
+print preview.</p></li></ol>
+<br><A NAME="BFCBEJJH"></A><h3>Actions assignable to buttons in DataWindow objects</h3>
+<A NAME="TI5734"></A><p><A HREF="pbugp175.htm#BABGGEJB">Table 20-2</A> shows
+the actions you can assign to a button in a DataWindow object. Each
+action is associated with a numeric value (the Action DataWindow
+object property) and a return code (the actionreturncode event argument). </p>
+<A NAME="TI5735"></A><p>The following code in the ButtonClicked event displays the
+value returned by the action:<p><PRE> MessageBox("Action return code", actionreturncode)</PRE></p>
+<A NAME="BABGGEJB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 20-2: Button
+actions for DataWindow objects</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5736"></A>Action</th>
+<th  rowspan="1"  ><A NAME="TI5737"></A>Effect</th>
+<th  rowspan="1"  ><A NAME="TI5738"></A>Value</th>
+<th  rowspan="1"  ><A NAME="TI5739"></A>Action return code</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5740"></A>User Defined (default)</td>
+<td  rowspan="1"  ><A NAME="TI5741"></A>Allows the developer to program the ButtonClicked
+event with no intervening action occurring.</td>
+<td  rowspan="1"  ><A NAME="TI5742"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI5743"></A>The return code from the user's
+coded event script.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5744"></A>Retrieve (Yield)</td>
+<td  rowspan="1"  ><A NAME="TI5745"></A>Retrieves rows from the database. Before retrieval
+occurs, the option to yield is turned on; this will allow the Cancel
+action to take effect during a long retrieve.</td>
+<td  rowspan="1"  ><A NAME="TI5746"></A>1</td>
+<td  rowspan="1"  ><A NAME="TI5747"></A>Number of rows retrieved.<A NAME="TI5748"></A><p>-1 if retrieve fails.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5749"></A>Retrieve</td>
+<td  rowspan="1"  ><A NAME="TI5750"></A>Retrieves rows from the database. The option
+to yield is not automatically turned on.</td>
+<td  rowspan="1"  ><A NAME="TI5751"></A>2</td>
+<td  rowspan="1"  ><A NAME="TI5752"></A>Number of rows retrieved.<A NAME="TI5753"></A><p>-1 if retrieve fails.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5754"></A>Cancel</td>
+<td  rowspan="1"  ><A NAME="TI5755"></A>Cancels a retrieval that has been started with
+the option to yield.</td>
+<td  rowspan="1"  ><A NAME="TI5756"></A>3</td>
+<td  rowspan="1"  ><A NAME="TI5757"></A>0</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5758"></A>Page Next</td>
+<td  rowspan="1"  ><A NAME="TI5759"></A>Scrolls to the next page.</td>
+<td  rowspan="1"  ><A NAME="TI5760"></A>4</td>
+<td  rowspan="1"  ><A NAME="TI5761"></A>The row displayed at the top of the DataWindow
+control when the scrolling is complete or attempts to go past the first
+row.<A NAME="TI5762"></A><p>-1 if an error occurs.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5763"></A>Page Prior</td>
+<td  rowspan="1"  ><A NAME="TI5764"></A>Scrolls to the prior page.</td>
+<td  rowspan="1"  ><A NAME="TI5765"></A>5</td>
+<td  rowspan="1"  ><A NAME="TI5766"></A>The row displayed at the top of the DataWindow
+control when the scrolling is complete or attempts to go past the first
+row.<A NAME="TI5767"></A><p>-1 if an error occurs.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5768"></A>Page First</td>
+<td  rowspan="1"  ><A NAME="TI5769"></A>Scrolls to the first page.</td>
+<td  rowspan="1"  ><A NAME="TI5770"></A>6</td>
+<td  rowspan="1"  ><A NAME="TI5771"></A>1 if successful.<A NAME="TI5772"></A><p>-1 if an error occurs.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5773"></A>Page Last</td>
+<td  rowspan="1"  ><A NAME="TI5774"></A>Scrolls to the last page.</td>
+<td  rowspan="1"  ><A NAME="TI5775"></A>7</td>
+<td  rowspan="1"  ><A NAME="TI5776"></A>The row displayed at the top of the DataWindow
+control when the scrolling is complete or attempts to go past the first
+row.<A NAME="TI5777"></A><p>-1 if an error occurs.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5778"></A>Sort</td>
+<td  rowspan="1"  ><A NAME="TI5779"></A>Displays Sort dialog box and sorts as specified.</td>
+<td  rowspan="1"  ><A NAME="TI5780"></A>8</td>
+<td  rowspan="1"  ><A NAME="TI5781"></A>1 if successful.<A NAME="TI5782"></A><p>-1 if an error occurs. </p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5783"></A>Filter</td>
+<td  rowspan="1"  ><A NAME="TI5784"></A>Displays Filter dialog box and filters
+as specified.</td>
+<td  rowspan="1"  ><A NAME="TI5785"></A>9</td>
+<td  rowspan="1"  ><A NAME="TI5786"></A>Number of rows filtered.<A NAME="TI5787"></A><p>Number &lt; 0 if an error occurs.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5788"></A>Delete Row</td>
+<td  rowspan="1"  ><A NAME="TI5789"></A>If button is in detail band, deletes
+row associated with button; otherwise, deletes the current row.</td>
+<td  rowspan="1"  ><A NAME="TI5790"></A>10</td>
+<td  rowspan="1"  ><A NAME="TI5791"></A>1 if successful.<A NAME="TI5792"></A><p>-1 if an error occurs.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5793"></A>Append Row</td>
+<td  rowspan="1"  ><A NAME="TI5794"></A>Inserts row at the end.</td>
+<td  rowspan="1"  ><A NAME="TI5795"></A>11</td>
+<td  rowspan="1"  ><A NAME="TI5796"></A>Row number of newly inserted row.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5797"></A>Insert Row</td>
+<td  rowspan="1"  ><A NAME="TI5798"></A>If button is in detail band, inserts
+row using row number associated with the button; otherwise, inserts
+row using the current row.</td>
+<td  rowspan="1"  ><A NAME="TI5799"></A>12</td>
+<td  rowspan="1"  ><A NAME="TI5800"></A>Row number of newly inserted row.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5801"></A>Update</td>
+<td  rowspan="1"  ><A NAME="TI5802"></A>Saves changes to the database. If the update
+is successful, a <b>Commit</b> will be issued; if the
+update fails, a <b>Rollback</b> will be issued.</td>
+<td  rowspan="1"  ><A NAME="TI5803"></A>13</td>
+<td  rowspan="1"  ><A NAME="TI5804"></A>1 if successful.<A NAME="TI5805"></A><p>-1 if an error occurs.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5806"></A>Save Rows As</td>
+<td  rowspan="1"  ><A NAME="TI5807"></A>Displays Save As dialog box and saves rows
+in the format specified.</td>
+<td  rowspan="1"  ><A NAME="TI5808"></A>14</td>
+<td  rowspan="1"  ><A NAME="TI5809"></A>Number of rows filtered.<A NAME="TI5810"></A><p>Number &lt; 0 if an error occurs.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5811"></A>Print</td>
+<td  rowspan="1"  ><A NAME="TI5812"></A>Prints one copy of the DataWindow object.</td>
+<td  rowspan="1"  ><A NAME="TI5813"></A>15</td>
+<td  rowspan="1"  ><A NAME="TI5814"></A>0</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5815"></A>Preview</td>
+<td  rowspan="1"  ><A NAME="TI5816"></A>Toggles between preview and print preview.</td>
+<td  rowspan="1"  ><A NAME="TI5817"></A>16</td>
+<td  rowspan="1"  ><A NAME="TI5818"></A>0</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5819"></A>Preview With Rulers</td>
+<td  rowspan="1"  ><A NAME="TI5820"></A>Toggles between rulers on and off.</td>
+<td  rowspan="1"  ><A NAME="TI5821"></A>17</td>
+<td  rowspan="1"  ><A NAME="TI5822"></A>0</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5823"></A>Query Mode</td>
+<td  rowspan="1"  ><A NAME="TI5824"></A>Toggles between query mode on and off.</td>
+<td  rowspan="1"  ><A NAME="TI5825"></A>18</td>
+<td  rowspan="1"  ><A NAME="TI5826"></A>0</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5827"></A>Query Sort</td>
+<td  rowspan="1"  ><A NAME="TI5828"></A>Allows user to specify sorting criteria (forces
+query mode on).</td>
+<td  rowspan="1"  ><A NAME="TI5829"></A>19</td>
+<td  rowspan="1"  ><A NAME="TI5830"></A>0</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5831"></A>Query Clear</td>
+<td  rowspan="1"  ><A NAME="TI5832"></A>Removes the <b>WHERE</b> clause
+from a query (if one was defined).</td>
+<td  rowspan="1"  ><A NAME="TI5833"></A>20</td>
+<td  rowspan="1"  ><A NAME="TI5834"></A>0</td>
+</tr>
+</table>
+<A NAME="BFCCGJID"></A><h2>Adding graphs to a DataWindow object</h2>
+<A NAME="TI5835"></A><p>Graphs are one of the best ways to present information. For
+example, if your application displays sales information over the
+course of a year, you can easily build a graph in a DataWindow object to
+display the information visually.</p>
+<A NAME="TI5836"></A><p>PowerBuilder offers many types of graphs and provides you with
+the ability to control the appearance of a graph to best meet your
+application's needs.</p>
+<A NAME="TI5837"></A><p>For information on using graphs, see <A HREF="pbugp215.htm#CCJCJJAE">Chapter 26, "Working with Graphs ."</A></p>
+<A NAME="TI5838"></A><h2>Adding InkPicture controls to a DataWindow object</h2>
+<A NAME="TI5839"></A><p>The InkPicture control is designed for use on a Tablet PC
+and provides the ability to capture ink input from users of Tablet
+PCs. The control captures signatures, drawings, and other annotations
+that do not need to be recognized as text.</p>
+<A NAME="TI5840"></A><p>The InkPicture control is fully functional on Tablet PCs.
+If the Microsoft Tablet PC Software Development Kit (SDK) 1.7 is
+installed on other computers, InkPicture controls in DataWindow objects
+can accept ink input from the mouse.</p>
+<A NAME="TI5841"></A><p>For more information about ink controls and the Tablet PC,
+and to download the Tablet PC SDK, go to <A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnanchor/html/tabletpc.asp">the Microsoft Tablet PC Web site</A></p>
+<A NAME="TI5842"></A><p>You use an InkPicture control with a table that has a blob
+column to store the ink data, and optionally a second blob column
+to provide a background image.</p>
+<A NAME="TI5843"></A><p>The InkPicture control behaves like a Picture control that
+accepts annotation. You can associate a picture with the control
+so that the user can draw annotations on the picture, then save
+the ink, the picture, or both. If
+you want to use the control to capture and save signatures, you
+usually do not associate a picture with it. </p>
+<A NAME="TI5844"></A><p>To add an InkPicture control to a DataWindow object, select Insert&gt;Control&gt;InkPicture
+from the menu. A dialog box displays to let you specify a blob column
+to store the ink data and another to use as a background image.
+After you specify the columns in the dialog box, the InkPicture
+control displays in the DataWindow and its Properties view includes
+a Definition tab page where you can view or change the column definitions.</p>
+<A NAME="BFCCIJACN"></A><h2>Adding OLE controls to a DataWindow object</h2>
+<A NAME="TI5845"></A><p>You can add the following to a DataWindow object:<A NAME="TI5846"></A>
+<ul>
+<li class=fi>A column that contains a database binary large object (a blob
+object) using OLE 2.0</li>
+<li class=ds>OLE 2.0 objects
+</li>
+</ul>
+</p>
+<A NAME="TI5847"></A><p>For information on using OLE in a DataWindow object,
+see <A HREF="pbugp248.htm#CCJBFGBD">Chapter 31, "Using OLE in a DataWindow Object ."</A></p>
+<A NAME="BFCDIHDC"></A><h2>Adding reports to a DataWindow object</h2>
+<A NAME="TI5848"></A><p>You can nest reports (nonupdatable DataWindow objects) in
+a DataWindow object.</p>
+<A NAME="TI5849"></A><p>For information on nesting reports, see <A HREF="pbugp210.htm#BFCEAGEF">Chapter 25, "Using Nested Reports ."</A></p>
+

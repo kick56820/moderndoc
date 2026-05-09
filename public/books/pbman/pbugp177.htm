@@ -1,0 +1,71 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Positioning controls in a DataWindow object</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp176.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp178.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIDIAEE"></A><h1>Positioning controls in a DataWindow object</h1>
+<A NAME="TI5924"></A><p><A HREF="pbugp177.htm#BABBIEAA">Table 20-3</A> shows
+the properties for each control in a DataWindow object that determine how
+it is positioned within the DataWindow object.</p>
+<A NAME="BABBIEAA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 20-3: Position properties for controls
+in a DataWindow object</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5925"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI5926"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5927"></A>Background</td>
+<td  rowspan="1"  ><A NAME="TI5928"></A>Control is behind other controls. It
+is not restricted to one band. This is useful for adding a watermark
+(such as the word CONFIDENTIAL) to the background of a report.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5929"></A>Band</td>
+<td  rowspan="1"  ><A NAME="TI5930"></A>Control is placed within one band. It
+cannot extend beyond the band's border.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5931"></A>Foreground</td>
+<td  rowspan="1"  ><A NAME="TI5932"></A>Control is in front of other controls.
+It is not restricted to one band.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5933"></A>Moveable</td>
+<td  rowspan="1"  ><A NAME="TI5934"></A>Control can be moved at runtime and in
+preview. This is useful for designing layout.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5935"></A>Resizable</td>
+<td  rowspan="1"  ><A NAME="TI5936"></A>Control can be resized at runtime and
+in preview. This is useful for designing layout.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5937"></A>HideSnaked</td>
+<td  rowspan="1"  ><A NAME="TI5938"></A>Control appears only in the first column
+on the page; in subsequent columns the control does not appear.
+This is only for newspaper columns, where the entire DataWindow object snakes
+from column to column (set on the General page of the Properties
+view).</td>
+</tr>
+</table>
+<A NAME="TI5939"></A><h4>Default positioning</h4>
+<A NAME="TI5940"></A><p>PowerBuilder uses the defaults shown in <A HREF="pbugp177.htm#BABDCGEJ">Table 20-4</A> when you place
+a new control in a DataWindow object.</p>
+<A NAME="BABDCGEJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 20-4: Default position properties for
+controls in a DataWindow object</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5941"></A>Control</th>
+<th  rowspan="1"  ><A NAME="TI5942"></A>Default positioning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5943"></A>Graph</td>
+<td  rowspan="1"  ><A NAME="TI5944"></A>Foreground, movable, resizable</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5945"></A>All other controls</td>
+<td  rowspan="1"  ><A NAME="TI5946"></A>Band, not movable, not resizable</td>
+</tr>
+</table>
+<A NAME="TI5947"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the position of a control in a DataWindow object:</p>
+<ol><li class=fi><p>Select Properties from the control's
+pop-up menu and then select the Position tab.</p></li>
+<li class=ds><p>From the Layer option drop-down list, select Background,
+Band, or Foreground.</p></li>
+<li class=ds><p>Select Resizable or Moveable as appropriate.</p></li></ol>
+<br>

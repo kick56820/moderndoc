@@ -1,0 +1,48 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Generating a trace file without timing information</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp260.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp262.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCDAGIA"></A><h1>Generating a trace file without timing information</h1>
+<A NAME="TI9793"></A><p>If you want to generate an activity log with no timing information
+in a text file, you can turn on PBDebug tracing in the System Options
+dialog box. The PBDebug trace file contains a log showing which
+object functions and instructions and system DLL functions were
+executed in chronological order. </p>
+<A NAME="TI9794"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To generate a simple trace file:</p>
+<ol><li class=fi><p>Select Tools&gt;System Options and
+check the Enable PBDebug Tracing check box.</p></li>
+<li class=ds><p>Check the Prompt Before OverWriting PBDebug Output
+File box if you want to retain existing trace output when you run
+or debug the application.</p></li>
+<li class=ds><p>(Optional) Specify a pathname for the PBDebug
+output file.</p></li>
+<li class=ds><p>Run your application.</p></li></ol>
+<br><A NAME="TI9795"></A><p>If you do not check the Prompt Before OverWriting PBDebug
+Output File box, PowerBuilder overwrites the existing trace file
+every time you run the application or click the Start button in
+the debugger. If you check the box, it displays a response window.
+You can choose to overwrite the file, append new trace output to
+the existing file, or cancel the run or debug session.</p>
+<A NAME="TI9796"></A><p>If you want to retain the trace file, save it with a different
+name before running the application, or specify a new file name
+in the System Options dialog box. </p>
+<A NAME="TI9797"></A><p>If you do not specify an output file path, PowerBuilder creates
+an output file in the same directory as the PowerBuilder executable
+file. The output file has the same name as the PowerBuilder executable
+with the extension <i>DBG</i>. If you do not have
+write permission to this directory, you must specify a value for
+the output file path.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Turning PBDebug off</span> <A NAME="TI9798"></A>Running your application with PBDebug on will slow down execution.
+Be sure to clear the Enable PBDebug Tracing check box on the System
+Options dialog box if you do not need this trace information.</p>
+<A NAME="TI9799"></A><p>For information on creating the same kind
+of diagnostic trace file when you run your compiled application
+outside PowerBuilder, see <A HREF="pbugp268.htm#X-REF352470517">"Tracing execution"</A>.</p>
+

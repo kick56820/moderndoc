@@ -1,0 +1,21 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Retrieving session security information</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp165.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp167.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CIHDGAIF"></A><h1>Retrieving session security information</h1>
+<A NAME="TI5523"></A><p>The <b>CtsSecurity.SSLSession</b> and <b>CtsSecurity.SSLSessionInfo</b> classes
+allow a client application to determine whether SSL is used on connections
+from a proxy to the server, and if so, to retrieve the SSL session
+settings and display them to the user. For a list of the properties
+for which you can retrieve values, see the <ABBR title = "e a server" >EAServer</ABBR> interface
+repository documentation for SessionInfo in a Web browser by connecting
+to your server at <b>http://<i>hostname</i>:<i>portnumber</i>/ir/CtsSecurity__SSLSessionInfo.html</b>.</p>
+<A NAME="TI5524"></A><p><p><PRE> long rc<br>string stmp<br> <br>CTSSecurity_sslSessionInfo mySessionInfo<br>rc = thesessioninfo._narrow( mySessionInfo, &amp;<br>   "SessionInfo" )<br>MessageBox( str_header, "Narrow: rc=" + string(rc))<br> <br>sTmp  = "Properties"<br>sTmp  = "~nVersion: "<br>stmp += mySessionInfo.getProperty( "Version" )<br>sTmp  = "~nHost: "<br>stmp += mySessionInfo.getProperty( "host" )<br> <br>stmp += "~nport: "<br>stmp += mySessionInfo.getProperty( "port" )<br>stmp += "~nciphersuite: "<br>stmp += mySessionInfo.getProperty( "ciphersuite" )<br>stmp += "~nCertificateLabel: "<br>stmp += mySessionInfo.getProperty( "certificateLabel" )<br>stmp += "~nUserData: "<br>stmp += mySessionInfo.getProperty( "UserData" )<br>stmp += "~ntokenName: "<br>stmp += mySessionInfo.getProperty( "tokenName" )<br>stmp += "~nuseEntrustID: "<br>stmp + = mySessionInfo.getProperty( "useEntrustID" )<br>MessageBox( str_header, stmp)</PRE></p>
+

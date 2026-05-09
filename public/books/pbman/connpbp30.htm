@@ -1,0 +1,536 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Oracle</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp29.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp31.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF338760894"></A><h1>Oracle</h1>
+<A NAME="TI757"></A><p>This section describes how to use the native Oracle database
+interfaces in PowerBuilder.</p>
+<A NAME="CCJDFIBD"></A><h2>Supported versions for Oracle</h2>
+<A NAME="TI758"></A><p>PowerBuilder provides three Oracle database interfaces. These
+interfaces use different DLLs and access different versions of Oracle.</p>
+<A NAME="TI759"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-2: Supported native database interfaces for Oracle</caption>
+<tr><th  rowspan="1"  ><A NAME="TI760"></A>Oracle interface</th>
+<th  rowspan="1"  ><A NAME="TI761"></A>DLL</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI762"></A>O84 Oracle8<i>i</i></td>
+<td  rowspan="1"  ><A NAME="TI763"></A><i>PBO84105.DLL</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI764"></A>O90 Oracle9<i>i</i></td>
+<td  rowspan="1"  ><A NAME="TI765"></A><i>PBO90105.DLL</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI766"></A>O10 Oracle 10<i>g</i></td>
+<td  rowspan="1"  ><A NAME="TI767"></A><i>PBO10105.DLL</i></td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>For more information</span> <A NAME="TI768"></A>Updated information about supported versions of databases
+might be available electronically on the <A HREF="http://support.sybase.com">Sybase Customer Service and Support Web site</A>
+ or in
+the PowerBuilder Release Bulletin.</p>
+<A NAME="TI769"></A><p>The Oracle 10<i>g</i> database interface allows
+you to connect to Oracle 10<i>g</i> servers using
+Oracle 10<i>g</i> Database Client or Oracle 10<i>g</i> Instant
+Client. It supports <b>BINARY_FLOAT</b> and <b>BINARY_DOUBLE</b> datatypes
+and increased size limits for <b>CLOB</b> and <b>NCLOB</b> datatypes.
+Oracle 10<i>g</i> clients can connect to Oracle9<i>i</i> or Oracle
+10<i>g</i> servers; they cannot connect to Oracle8<i>i</i> or
+earlier servers.</p>
+<A NAME="TI770"></A><h2>Supported Oracle datatypes</h2>
+<A NAME="TI771"></A><p>The Oracle database interfaces support the Oracle datatypes
+listed in <br><A HREF="connpbp30.htm#BABBJEHC">Table 6-3</A> in DataWindow objects and embedded <ACRONYM title = "sequel" >SQL</ACRONYM>:</p>
+<A NAME="BABBJEHC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-3: Supported datatypes for Oracle</caption>
+<tr><td  rowspan="1"  ><A NAME="TI772"></A>Bfile</td>
+<td  rowspan="1"  ><A NAME="TI773"></A>NChar (Oracle9<i>i</i> and
+later only)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI774"></A>Blob</td>
+<td  rowspan="1"  ><A NAME="TI775"></A>Number</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI776"></A>Char</td>
+<td  rowspan="1"  ><A NAME="TI777"></A>NVarChar2 (Oracle9<i>i</i> and
+later only)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI778"></A>Clob</td>
+<td  rowspan="1"  ><A NAME="TI779"></A>Raw</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI780"></A>Date</td>
+<td  rowspan="1"  ><A NAME="TI781"></A>TimeStamp (Oracle9<i>i</i> and
+later only)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI782"></A>Float</td>
+<td  rowspan="1"  ><A NAME="TI783"></A>VarChar</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI784"></A>Long</td>
+<td  rowspan="1"  ><A NAME="TI785"></A>VarChar2</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI786"></A>LongRaw</td>
+<td  rowspan="1"  >&nbsp;</td>
+</tr>
+</table>
+<A NAME="TI787"></A><p>The Oracle 10<i>g</i> interface also supports <b>BINARY_FLOAT</b> and <b>BINARY_DOUBLE</b> datatypes.
+These are IEEE floating-point types that pass the work
+of performing floating-point computations to the operating system,
+providing greater efficiency for large computations. </p>
+<A NAME="TI788"></A><h4>Accessing Unicode data</h4>
+<A NAME="TI789"></A><p>Using the O90 or O10 database interface, PowerBuilder can connect,
+save, and retrieve data in both ANSI/DBCS and Unicode databases,
+but it does not convert data between Unicode and ANSI/DBCS.
+When character data or command text is sent to the database, PowerBuilder sends
+a Unicode string. The driver must guarantee that the data is saved
+as Unicode data correctly. When PowerBuilder retrieves character data,
+it assumes the data is Unicode.</p>
+<A NAME="TI790"></A><p>Using the O84 database interface, PowerBuilder detects whether
+the Oracle client variable NLS_LANG is set. If the variable
+is set to a value that requires UTF-8 or DBCS characters, PowerBuilder converts
+command text (such as <FONT FACE="Courier New">SELECT * FROM emp</FONT>)
+to the appropriate character set before sending the command to the
+database. However, if DisableBind is set to 0 (the default), PowerBuilder always
+binds string data as Unicode data. Using O84, you can set the DisableUnicode
+database parameter to 1 to retrieve data as an ANSI string.</p>
+<A NAME="TI791"></A><p>A Unicode database is a database whose character set is set
+to a Unicode format, such as UTF-8, UTF-16, UCS-2, or UCS-4. All
+data must be in Unicode format, and any data saved to the database
+must be converted to Unicode data implicitly or explicitly.</p>
+<A NAME="TI792"></A><p>A database that uses ANSI (or DBCS) as its character set might
+use special datatypes to store Unicode data. These datatypes are <b>NCHAR</b> and <b>NVARCHAR2</b>. Columns
+with this datatype can store <i>only</i> Unicode data.
+Any data saved into such a column must be converted to Unicode explicitly.
+This conversion must be handled by the database server or client.</p>
+<A NAME="TI793"></A><p>A constant string is regarded as a char type by Oracle and
+its character set is NLS_CHARACTERSET.  However, if the
+datatype in the database is NCHAR and its character set is NLS_NCHAR_CHARACTERSET,
+Oracle performs a conversion from NLS_CHARACTERSET to NLS_NCHAR_CHARACTERSET.
+This can cause loss of data. For example, if NLS_CHARACTERSET
+is WE8ISO8859P1 and NLS_NCHAR_CHARACTERSET is
+UTF8, when the Unicode data is mapped to WE8ISO8859P1, the Unicode
+data is corrupted.</p>
+<A NAME="TI794"></A><p>If you want to access Unicode data using <b>NCHAR</b> and <b>NVARCHAR2</b> columns or
+stored procedure parameters, use PowerBuilder variables to store the Unicode
+data in a script using embedded SQL to avoid using a constant string, and
+force PowerBuilder to bind the variables. </p>
+<A NAME="TI795"></A><p>By default, the O90 and O10 database interfaces bind all string
+data to internal variables as the Oracle <b>CHAR</b> datatype
+to avoid downgrading performance. To ensure that <b>NCHAR</b> and <b>NVARCHAR2</b> columns
+are handled as such on the server, set the NCharBind database parameter
+to 1 to have the O90 and O10 drivers bind string data as the Oracle <b>NCHAR</b> datatype.</p>
+<A NAME="TI796"></A><p>For example, suppose <b>table1</b> has a column <b>c1</b> with
+the datatype <b>NVARCHAR2</b>. To insert Unicode data
+into the table, set DisableBind to 0, set NCharBind to 1, and use
+this syntax:<p><PRE> string var1<br>insert into table1 (c1) values(:var1);</PRE></p>
+<A NAME="TI797"></A><p>If an Oracle stored procedure has an <b>NCHAR</b> or <b>NVARCHAR2</b> input
+parameter and the input data is a Unicode string, set the BindSPInput
+database parameter to 1 to force the Oracle database to bind the
+input data. The O90 and O10 database interfaces are able to describe
+the procedure to determine its parameters, therefore you do not
+need to set the NCharBind database parameter.</p>
+<A NAME="TI798"></A><p>For a DataWindow object to access <b>NCHAR</b> and <b>NVARCHAR2</b> columns
+and retrieve data correctly, set both DisableBind and StaticBind
+to 0. Setting StaticBind to 0 ensures that PowerBuilder gets an accurate
+datatype before retrieving.</p>
+<A NAME="TI799"></A><h4>TimeStamp datatype</h4>
+<A NAME="TI800"></A><p>The<b> TimeStamp</b> datatype in Oracle9<i>i</i> and
+later is an extension of the <b>Date</b> datatype.
+It stores the year, month, and day of the Date value plus hours, minutes,
+and seconds:<p><PRE>Timestamp[<i>fractional_seconds_precision</i>]</PRE></p>
+</p>
+<A NAME="TI801"></A><p>The<i> fractional_seconds_precision</i> value
+is optional and provides the number of digits for indicating seconds.
+The range of valid values for use with PowerBuilder is 0-6.</p>
+<A NAME="TI802"></A><h3>Datatype conversion</h3>
+<A NAME="TI803"></A><p>When you retrieve or update columns, in general PowerBuilder
+converts data appropriately between the Oracle datatype and the
+PowerScript datatype. Keep in mind, however, that similarly or identically
+named Oracle and PowerScript datatypes do <i>not</i> necessarily
+have the same definitions.</p>
+<A NAME="TI804"></A><p>For information about the definitions of PowerScript
+datatypes, see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI805"></A><h4>Number datatype converted to decimal</h4>
+<A NAME="TI806"></A><p>When a DataWindow object is defined in PowerBuilder, the Oracle
+datatype <b>number(size,d)</b> is mapped to a <b>decimal</b> datatype.
+In PowerBuilder, the precision of a decimal is 18 digits. If a column's
+datatype has a higher precision, for example <b>number(32,30)</b>,
+inserting a number with a precision greater than 18 digits produces
+an incorrect result when the number is retrieved in a DataWindow.
+For example, 1.8E-17 displays as 0.000000000000000018, whereas 1.5E-25
+displays as 0.</p>
+<A NAME="TI807"></A><p>You might be able to avoid this problem by using a different
+datatype, such as <b>float</b>, for high precision
+number columns in the Oracle DBMS. The <b>float</b> datatype
+is mapped to the <b>number</b> datatype within the
+DataWindow's source. </p>
+<A NAME="TI808"></A><h2>Basic software components for Oracle</h2>
+<A NAME="TI809"></A><p>You must install the software components in <A HREF="connpbp30.htm#BABEAHFA">Figure 6-3</A> to access an Oracle database
+in PowerBuilder.</p>
+<A NAME="BABEAHFA"></A><caption><b>Figure 6-3: Components of an Oracle connection</b></captionls>
+<br><img src="images/cnw5ora.gif">
+<A NAME="CCJEAHBJ"></A><h2>Preparing to use the Oracle database</h2>
+<A NAME="TI810"></A><p>Before you define the database interface and connect to an
+Oracle database in PowerBuilder, follow these steps to prepare the
+database for use: <A NAME="TI811"></A>
+<ol>
+</li>
+<li class=ds>Install and configure the required
+database server, network, and client software.</li>
+<li class=ds>Install the native Oracle database interface for
+the version of Oracle you want to access.</li>
+<li class=ds>Verify that you can connect to the Oracle server
+and database outside PowerBuilder.
+</li>
+</ol>
+</p>
+<A NAME="TI812"></A><p>Preparing an Oracle database for use with PowerBuilder involves
+these three basic tasks.</p>
+<A NAME="TI813"></A><h4>Step 1: Install and configure the database server</h4>
+<A NAME="TI814"></A><p>You must install and configure the database server, network,
+and client software for Oracle.</p>
+<A NAME="TI815"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To install and configure the database server,
+network, and client software:</p>
+<ol><li class=fi><p>Make sure the Oracle database software
+is installed on your computer or on the server specified in your
+database profile.</p><p>For example, with the Oracle O90 interface you can access
+an Oracle9<i>i </i>or Oracle 10<i>g</i> database
+server. </p><p>You must obtain the database server software from Oracle Corporation.</p><p>For installation instructions, see your Oracle
+documentation.</p></li>
+<li class=ds><p>Make sure the supported network software (such
+as TCP/IP) is installed and running on your computer and
+is properly configured so that you can connect to the Oracle database
+server at your site.</p><p>The Hosts and Services files must be present on your computer
+and properly configured for your environment. </p><p>You must obtain the network software from your network vendor
+or database vendor.</p><p>For installation and configuration instructions,
+see your network or database administrator.</p></li>
+<li class=ds><p>Install the required Oracle client software on
+each client computer on which PowerBuilder is installed.</p><p>You must obtain the client software from Oracle Corporation.
+Make sure the client software version you install supports <i>all</i> of
+the following:<A NAME="TI816"></A>
+<ul>
+<li class=fi>The operating
+system running on the client computer</li>
+<li class=ds>The version of the database that you want to access</li>
+<li class=ds>The version of PowerBuilder that you are running
+</li>
+</ul>
+</p><p>Oracle 10<i>g</i> Instant Client is free client
+software that lets you run applications without installing the standard
+Oracle client software. It has a small footprint and can be freely
+redistributed.</p></li>
+<li class=ds><p>Make sure the Oracle client software is properly
+configured so that you can connect to the Oracle database server
+at your site.</p><p>For information about setting up Oracle configuration
+files, see your Oracle Net documentation.</p></li>
+<li class=ds><p>If required by your operating system, make sure
+the directory containing the Oracle client software is in your system
+path.</p></li></ol>
+<br><A NAME="TI817"></A><h4>Step 2: Install the database interface</h4>
+<A NAME="TI818"></A><p>In the PowerBuilder Setup program, select the Typical install
+or select the Custom install and select the Oracle database interfaces
+you require. </p>
+<A NAME="TI819"></A><p>For a list of the Oracle database interfaces
+available, see <A HREF="connpbp30.htm#CCJDFIBD">"Supported versions for Oracle"</A>.</p>
+<A NAME="TI820"></A><h4>Step 3: Verify the connection </h4>
+<A NAME="TI821"></A><p>Make sure you can connect to the Oracle database server and
+log in to the database you want to access from outside PowerBuilder.</p>
+<A NAME="TI822"></A><p>Some possible ways to verify the connection are by running
+the following Oracle tools:<A NAME="TI823"></A>
+<ul>
+<li class=fi><b>Accessing the database server</b>   Tools such as Oracle <b>TNSPING</b> (or any other <b>ping</b> utility)
+check whether you can reach the database server from your computer.</li>
+<li class=ds><b>Accessing the database</b>   Tools such as <b>Oracle SQL*Plus</b> check
+whether you can log in to the Oracle database you want to access
+and perform database operations. It is a good idea to specify the
+same connection parameters you plan to use in your PowerBuilder database
+profile to access the database.
+</li>
+</ul>
+</p>
+<A NAME="TI824"></A><h3>What to do next</h3>
+<A NAME="TI825"></A><p>For instructions on defining the Oracle database
+interface in PowerBuilder, see <A HREF="connpbp30.htm#CCJDAAGF">"Defining the Oracle database
+interface"</A>.</p>
+<A NAME="CCJDAAGF"></A><h2>Defining the Oracle database interface</h2>
+<A NAME="TI826"></A><p>To define a connection through an Oracle database interface,
+you must create a database profile by supplying values for at least
+the basic connection parameters in the Database Profile Setup dialog
+box for your Oracle interface. You can then select this profile
+at any time to connect to your database in the development environment.</p>
+<A NAME="TI827"></A><p>For information on how to define a database profile, see <A HREF="connpbp6.htm#X-REF289075262">"Using database profiles"</A>. </p>
+<A NAME="X-REF299267753"></A><h3>Specifying the Oracle server connect descriptor</h3>
+<A NAME="TI828"></A><p>To connect to an Oracle database server that resides on a
+network, you must specify the proper connect descriptor in the Server
+box on the Connection tab of the Database Profile Setup dialog box
+for your Oracle interface. The connect descriptor specifies the
+connection parameters that Oracle uses to access the database.</p>
+<A NAME="TI829"></A><p>For help determining the proper connect descriptor
+for your environment, see your Oracle documentation or system administrator.</p>
+<A NAME="TI830"></A><h4>Specifying a connect descriptor</h4>
+<A NAME="TI831"></A><p>The syntax of the connect descriptor depends on the Oracle
+client software you are using.</p>
+<A NAME="TI832"></A><p>If you are using Net version 8.x or later, the syntax is:<p><PRE><i>OracleServiceName</i></PRE></p>
+</p>
+<A NAME="TI833"></A><p>If you are using <ACRONYM title = "sequel" >SQL</ACRONYM>*Net
+version 2.x, the syntax is: <p><PRE>@ <b>TNS:</b> <i>OracleServiceName</i></PRE></p>
+</p>
+<A NAME="TI834"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI835"></A>Parameter</th>
+<th  rowspan="1"  ><A NAME="TI836"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI837"></A>@</td>
+<td  rowspan="1"  ><A NAME="TI838"></A>The at ( @ ) sign is required </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI839"></A><b>TNS</b></td>
+<td  rowspan="1"  ><A NAME="TI840"></A>The identifier for the Oracle Transparent
+Network Substrate (TNS) technology</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI841"></A><b>:</b></td>
+<td  rowspan="1"  ><A NAME="TI842"></A>The colon ( : ) is required </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI843"></A><i>OracleServiceName</i></td>
+<td  rowspan="1"  ><A NAME="TI844"></A>The service name assigned to your server
+in the Oracle configuration file for your platform</td>
+</tr>
+</table>
+<p><b>Net version 8.x example</b>   To use Net version 8.x or later client software to connect
+to the service named ORA8, type the following connect descriptor
+in the Server box on the Connection tab of the Database Profile
+Setup dialog box for Oracle 8.x and later:<FONT FACE="Courier New"> ORA8</FONT>.</p>
+<A NAME="CCJDICBE"></A><h2>Using Oracle stored procedures as a data source</h2>
+<A NAME="TI845"></A><p>This section describes how you can use Oracle stored procedures.</p>
+<A NAME="TI846"></A><h3>What is an Oracle stored procedure?</h3>
+<A NAME="TI847"></A><p>Oracle defines a <strong>stored procedure</strong> (or
+function) as a named PL/<ACRONYM title = "sequel" >SQL</ACRONYM> program unit
+that logically groups a set of <ACRONYM title = "sequel" >SQL</ACRONYM> and
+other PL/<ACRONYM title = "sequel" >SQL</ACRONYM> programming language
+statements together to perform a specific task.</p>
+<A NAME="TI848"></A><p>Stored procedures can take parameters and return one or more
+result sets (also called cursor variables). You create stored procedures
+in your schema and store them in the data dictionary for use by
+multiple users.</p>
+<A NAME="CCJBDEFC"></A><h3>What you can do with Oracle stored procedures</h3>
+<A NAME="TI849"></A><h4>Ways to use Oracle stored procedures</h4>
+<A NAME="TI850"></A><p>You can use an Oracle stored procedure in the following ways
+in your PowerBuilder application:<A NAME="TI851"></A>
+<ul>
+<li class=fi>As a data source for DataWindow objects</li>
+<li class=ds>Called by an embedded <ACRONYM title = "sequel" >SQL</ACRONYM> <b>DECLARE
+PROCEDURE</b> statement in a PowerBuilder application (includes
+support for fetching against stored procedures with result sets)</li>
+<li class=ds>Called as an external function or subroutine in
+a PowerBuilder application by using the <b>RPCFUNC</b> keyword
+when you declare the procedure
+</li>
+</ul>
+</p>
+<A NAME="TI852"></A><p>For information about the syntax for using
+the <b>DECLARE PROCEDURE</b> statement with the <b>RPCFUNC</b> keyword,
+see the <i>PowerScript Reference</i>
+.</p>
+<p><b>Procedures with a single result set</b>   You can use stored procedures that return a single result
+set in DataWindow objects and embedded <ACRONYM title = "sequel" >SQL</ACRONYM>,
+but <i>not</i> when using the <b>RPCFUNC</b> keyword
+to declare the stored procedure as an external function or subroutine.</p>
+<p><b>Procedures with multiple result sets</b>   You can use procedures that return multiple result sets <i>only</i> in
+embedded <ACRONYM title = "sequel" >SQL</ACRONYM>. Multiple result
+sets are <i>not supported</i> in DataWindows, reports,
+or with the <b>RPCFUNC</b> keyword. </p>
+<A NAME="TI853"></A><h3>Using Oracle stored procedures with result sets</h3>
+<A NAME="TI854"></A><h4>Overview of basic steps</h4>
+<A NAME="TI855"></A><p>The following procedure assumes you are creating the stored
+procedure in the <ACRONYM title = "I sequel" >ISQL</ACRONYM> view
+of the Database painter in PowerBuilder.</p>
+<A NAME="TI856"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use an Oracle stored procedure with a result
+set:</p>
+<ol><li class=fi><p>Set up the <ACRONYM title = "I sequel" >ISQL</ACRONYM> view
+of the Database painter to create the stored procedure.</p></li>
+<li class=ds><p>Create the stored procedure with a result set
+as an <b>IN OUT</b> (reference) parameter.</p></li>
+<li class=ds><p>Create DataWindow objects that use the stored procedure
+as a data source.</p></li></ol>
+<br><A NAME="TI857"></A><h4>Setting up the Database painter</h4>
+<A NAME="TI858"></A><p>When you create a stored procedure in the <ACRONYM title = "I sequel" >ISQL </ACRONYM>view of the Database painter, you
+must change the default <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+terminator character to one that you do not plan to use in your
+stored procedure syntax.</p>
+<A NAME="TI859"></A><p>The default <ACRONYM title = "sequel" >SQL</ACRONYM> terminator
+character for the Database painter is a semicolon (;). If you plan
+to use a semicolon in your Oracle stored procedure syntax, you must
+change the painter's terminator character to something
+other than a semicolon to avoid conflicts. A good choice is the
+backquote ( ` ) character.</p>
+<A NAME="TI860"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the default <ACRONYM title = "sequel" >SQL</ACRONYM> terminator
+character in the Database painter:</p>
+<ol><li class=fi><p>Connect to your Oracle database in PowerBuilder as
+the System user.</p><p>For instructions, see <A HREF="connpbp30.htm#CCJDAAGF">"Defining the Oracle database
+interface"</A>.</p></li>
+<li class=ds><p>Open the Database painter.</p></li>
+<li class=ds><p>Select Design&gt;Options from the menu bar.</p><p>The Database Preferences property sheet displays. If necessary,
+click the General tab to display the General property page.</p></li>
+<li class=ds><p>Type the character you want (for example, a backquote)
+in the <ACRONYM title = "sequel" >SQL</ACRONYM> Terminator Character
+box.</p></li>
+<li class=ds><p>Click Apply or OK.</p><p>The <ACRONYM title = "sequel" >SQL</ACRONYM> Terminator Character
+setting is applied to the current connection and all future connections
+(until you change it).</p></li></ol>
+<br><A NAME="TI861"></A><h4>Creating the stored procedure</h4>
+<A NAME="TI862"></A><p>After setting up the Database painter, you can create an Oracle
+stored procedure that has a result set as an <b>IN OUT </b>(reference)
+parameter. PowerBuilder retrieves the result set to populate a DataWindow object.</p>
+<A NAME="TI863"></A><p>There are many ways to create stored procedures with result
+sets. The following procedure describes one possible method that
+you can use. </p>
+<A NAME="TI864"></A><p>For information about when you can use stored
+procedures with single and multiple result sets, see <A HREF="connpbp30.htm#CCJBDEFC">"What you can do with Oracle
+stored procedures"</A>.</p>
+<A NAME="TI865"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create Oracle stored procedures with result
+sets:</p>
+<ol><li class=fi><p>Make sure your Oracle user account has
+the necessary database access and privileges to access Oracle objects
+(such as tables and procedures).</p><p>Without the appropriate access and privileges, you will be
+unable to create Oracle stored procedures.</p></li>
+<li class=ds><p>Assume the following table named <b>tt</b> exists
+in your Oracle database:</p><A NAME="TI866"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI867"></A>a</th>
+<th  rowspan="1"  ><A NAME="TI868"></A>b</th>
+<th  rowspan="1"  ><A NAME="TI869"></A>c</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI870"></A>1</td>
+<td  rowspan="1"  ><A NAME="TI871"></A>Newman</td>
+<td  rowspan="1"  ><A NAME="TI872"></A>sysdate</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI873"></A>2</td>
+<td  rowspan="1"  ><A NAME="TI874"></A>Everett</td>
+<td  rowspan="1"  ><A NAME="TI875"></A>sysdate</td>
+</tr>
+</table>
+</li>
+<li class=ds><p>Create an Oracle package that holds the result
+set type and stored procedure. The result type must match your table
+definition.</p><p>For example, the following statement creates an Oracle package
+named <b>spm</b> that holds a result set type named <b>rctl</b> and
+a stored procedure named <b>proc1</b>. The tt%ROWTYPE
+attribute defines <b>rctl</b> to contain all of the columns
+in table <b>tt</b>. The procedure <b>proc1</b> takes
+one parameter, a cursor variable named <b>rc1</b> that
+is an <b>IN OUT</b> parameter of type <b>rctl</b>.<p><PRE> CREATE OR REPLACE PACKAGE spm<br>   IS TYPE rctl IS REF CURSOR<br>   RETURN tt%ROWTYPE;<br>   PROCEDURE proc1(rc1 IN OUT rctl);END;`</PRE></p></li>
+<li class=ds><p>Create the Oracle stored procedure separately
+from the package you defined.</p><p>The following examples show how to create two stored procedures: <i>spm_proc
+1</i> (returns a single result set) and <b>spm_proc2</b> (returns
+multiple result sets).</p><p>The <b>IN OUT</b> specification means that PowerBuilder passes
+the cursor variable (<b>rc1</b> or <b>rc2</b>)
+by reference to the Oracle procedure and expects the procedure to
+open the cursor. After the procedure call, PowerBuilder fetches the
+result set from the cursor and then closes the cursor.</p></li>
+<li class=ds><b>spm_proc1 example for DataWindow objects</b>   The following statements create <b>spm_proc1 </b>which
+returns one result set. You can use this procedure as the data source
+for a DataWindow object in PowerBuilder.</p>
+<p><p><PRE> CREATE OR REPLACE PROCEDURE spm_proc1(rc1 IN OUT      spm.rctl)<br>AS<br>BEGIN<br>   OPEN rc1 FOR SELECT * FROM tt;END;`</PRE></p></li>
+<li class=ds><b>spm_proc2 example for embedded <ACRONYM title = "sequel" >SQL</ACRONYM></b>   The following statements create <b>spm_proc2</b> which
+returns two result sets. You can use this procedure only in embedded <ACRONYM title = "sequel" >SQL</ACRONYM>.</p>
+<p><p><PRE> CREATE OR REPLACE PROCEDURE spm_proc2 (rc1 IN OUT spm.rctl, rc2 IN OUT spm.rctl)<br>AS<br>BEGIN<br>   OPEN rc1 FOR SELECT * FROM tt ORDER BY 1;<br>   OPEN rc2 FOR SELECT * FROM tt ORDER BY 2;END;`</PRE></p></li></ol>
+<br><br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Error checking</span> <A NAME="TI876"></A>If necessary, check the Oracle system table <b>public.user_errors</b> for
+a list of errors.
+<br>
+<A NAME="TI877"></A><h4>Creating the DataWindow object</h4>
+<A NAME="TI878"></A><p>After you create the stored procedure, you can define the DataWindow object that
+uses the stored procedure as a data source.</p>
+<A NAME="TI879"></A><p>You can use Oracle stored procedures that return a single
+result set in a DataWindow object. If your stored procedure returns multiple
+result sets, you must use embedded <ACRONYM title = "sequel" >SQL</ACRONYM> commands
+to access it.</p>
+<A NAME="TI880"></A><p>The following procedure assumes that your Oracle stored procedure
+returns only a single result set.</p>
+<A NAME="TI881"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a DataWindow object using an Oracle stored
+procedure with a result set:</p>
+<ol><li class=fi><p>Select a presentation style on the DataWindow
+page of the New dialog box and click OK.</p></li>
+<li class=ds><p>Select the Stored Procedure icon and click OK.</p><p>The Select Stored Procedure wizard page displays, listing
+the stored procedures available in your database.</p></li>
+<li class=ds><p>Select the stored procedure you want to use as
+a data source, and click Next.</p></li>
+<li class=ds><p>Complete the wizard to define the DataWindow object.</p><p>When you preview the DataWindow object or call <b>Retrieve</b>, PowerBuilder fetches
+the result set from the cursor in order to populate the DataWindow object.
+If you selected Retrieve on Preview on the Choose Data Source page
+in the wizard, the result set displays in the Preview view when
+the DataWindow opens.</p></li></ol>
+<br><A NAME="TI882"></A><h3>Using a large-object output parameter</h3>
+<A NAME="TI883"></A><p>You can define a large object (LOB) as an output parameter
+for an Oracle stored procedure or function to retrieve large-object
+data. There is no limit on the number of LOB output arguments that
+can be defined for each stored procedure or function.</p>
+<A NAME="TI884"></A><p>In Oracle 10<i>g</i>, the maximum size of LOB
+datatypes has been increased from 4 gigabytes minus 1 to 4 gigabytes
+minus 1 multiplied by the block size of the database. For a database
+with a block size of 32K, the maximum size is 128 terabytes.</p>
+<A NAME="CCJBEBBI"></A><h2>Using Oracle user-defined types</h2>
+<A NAME="TI885"></A><h4>What PowerBuilder supports</h4>
+<A NAME="TI886"></A><p>PowerBuilder supports <ACRONYM title = "sequel" >SQL</ACRONYM> <b>CREATE
+TYPE</b> and <b>CREATE TABLE</b> statements for
+Oracle user-defined types (objects) in the <ACRONYM title = "I sequel" >ISQL</ACRONYM> view of the Database painter.
+It correctly handles <ACRONYM title = "sequel" >SQL</ACRONYM> <b>SELECT</b>, <b>INSERT</b>, <b>UPDATE</b>,
+and <b>DELETE</b> statements for user-defined types
+in the Database and DataWindow painters.</p>
+<A NAME="TI887"></A><h4>What you can do</h4>
+<A NAME="TI888"></A><p>This means that using the Oracle native database interfaces
+in PowerBuilder, you can:</p>
+<A NAME="TI889"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI890"></A>Do this</th>
+<th  rowspan="1"  ><A NAME="TI891"></A>In</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI892"></A>Use Oracle syntax to create user-defined
+types</td>
+<td  rowspan="1"  ><A NAME="TI893"></A>Database painter</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI894"></A>Use Oracle syntax to create tables with
+columns that reference user-defined types</td>
+<td  rowspan="1"  ><A NAME="TI895"></A>Database painter</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI896"></A>View columns in Oracle tables that reference user-defined
+types</td>
+<td  rowspan="1"  ><A NAME="TI897"></A>Database painter</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI898"></A>Manipulate data in Oracle tables that
+have user-defined types</td>
+<td  rowspan="1"  ><A NAME="TI899"></A>Database painter<A NAME="TI900"></A><p>DataWindow painter</p><A NAME="TI901"></A><p>DataWindow objects</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI902"></A>Export Oracle table syntax containing
+user-defined types to a log file</td>
+<td  rowspan="1"  ><A NAME="TI903"></A>Database painter</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI904"></A>Invoke methods </td>
+<td  rowspan="1"  ><A NAME="TI905"></A>DataWindow painter (Compute tab in <ACRONYM title = "sequel" >SQL</ACRONYM> Toolbox)</td>
+</tr>
+</table>
+<A NAME="TI906"></A><h4>Example</h4>
+<A NAME="TI907"></A><p>Here is a simple example that shows how you might create and
+use Oracle user-defined types in PowerBuilder.</p>
+<A NAME="TI908"></A><p>For more information about Oracle user-defined
+types, see your Oracle documentation.</p>
+<A NAME="TI909"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create and use Oracle user-defined types:</p>
+<ol><li class=fi><p>In the <ACRONYM title = "I sequel" >ISQL</ACRONYM> view
+of the Database painter, create two Oracle user-defined types: ball_stats_type
+and player_type.</p><p>Here is the Oracle syntax to create <b>ball_stats_type</b>.
+Notice that the <b>ball_stats</b> object
+of type <b>ball_stats_type</b> has
+a method associated with it called <b>get_avg</b>.<p><PRE> CREATE OR REPLACE TYPE ball_stats_type AS OBJECT (bat_avg NUMBER(4,3),rbi NUMBER(3),MEMBER FUNCTION get_avg RETURN NUMBER,PRAGMA RESTRICT_REFERENCES    (get_avg,WNDS,RNPS,WNPS));<br>CREATE OR REPLACE TYPE BODY ball_stats_type ASMEMBER FUNCTION get_avg RETURN NUMBER ISBEGINRETURN SELF.bat_avg;<br>END;<br>END;</PRE></p><p>Here is the Oracle <ACRONYM title = "sequel" >SQL</ACRONYM> syntax
+to create <b>player_type</b>. <b>Player_type</b> references
+the user-defined type <b>ball_stats_type</b>. PowerBuilder supports such
+nesting graphically in the Database, DataWindow, and Table painters (see
+step 3).<p><PRE> CREATE TYPE player_type AS OBJECT (player_no NUMBER(2),player_name VARCHAR2(30),ball_stats ball_stats_type);</PRE></p></li>
+<li class=ds><p>In the Database painter, create a table named
+lineup that references these user-defined types.</p><p>Here is the Oracle <ACRONYM title = "sequel" >SQL</ACRONYM> syntax
+to create the lineup table and insert a row. Lineup references the <b>player_type</b> user-defined
+type.<p><PRE> CREATE TABLE lineup (position NUMBER(2) NOT NULL, player player_type);<br>INSERT INTO lineup VALUES (1,player_type (34, 'David Ortiz', ball_stats_type (0.300, 148)));</PRE></p></li>
+<li class=ds><p>Display the lineup table in the Database or DataWindow painter.</p><p>PowerBuilder uses the following structure-&gt;member notation
+to display the table:<p><PRE> lineup</PRE><PRE> ======</PRE><PRE> position</PRE><PRE> player-&gt;player_no</PRE><PRE> player-&gt;player_name</PRE><PRE> player-&gt;ball_stats-&gt;bat_avg</PRE><PRE> player-&gt;ball_stats-&gt;rbi</PRE></p></li>
+<li class=ds><p>To access the <b>get_avg</b> method
+of the object ball_stats contained in the object column
+player, use the following <b>structure-&gt;member</b> notation
+when defining a computed column for the DataWindow object. For example, when
+working in the DataWindow painter, you could use this notation on the Compute
+tab in the <ACRONYM title = "sequel" >SQL</ACRONYM> Toolbox:</p><p><p><PRE> player-&gt;ball_stats-&gt;get_avg()</PRE></p></li></ol>
+<br><A NAME="TI910"></A><h2>What to do next</h2>
+<A NAME="TI911"></A><p>For instructions on connecting to the database,
+see <A HREF="connpbp37.htm#CCJBAGDB">"Connecting to a database"</A>. </p>
+

@@ -1,0 +1,80 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Resolving naming conflicts </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp14.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp16.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF354974752"></A><h1>Resolving naming conflicts </h1>
+<A NAME="TI240"></A><p>There are two areas in which name conflicts occur:</p>
+<A NAME="TI241"></A><p><A NAME="TI242"></A>
+<ul>
+<li class=fi>Variables that are
+defined within different scopes can have the same name. For example,
+a global variable can have the same name as a local or instance
+variable. The compiler warns you of these conflicts, but you do not
+have to change the names.</li>
+<li class=ds>A descendent object has functions and events that
+are inherited from the ancestor and have the same names.
+</li>
+</ul>
+</p>
+<A NAME="TI243"></A><p>If you need to refer to a hidden variable or an ancestor's
+event or function, you can use dot notation qualifiers or the scope
+operator.</p>
+<A NAME="TI244"></A><h4>Hidden instance variables</h4>
+<A NAME="TI245"></A><p>If an instance variable has the same name as a local, shared,
+or global variable, qualify the instance variable with its object's
+name:<p><PRE><i>objectname</i>.<i>instancevariable</i></PRE></p>
+</p>
+<A NAME="TI246"></A><p>If a local variable and an instance variable of a window are
+both named <i>birthdate</i>, then qualify the instance
+variable:<p><PRE> w_main.birthdate</PRE></p>
+<A NAME="TI247"></A><p>If a window script defines a local variable <i>x</i>,
+the name conflicts with the X property of the window. Use a qualifier
+for the X property. This statement compares the two:<p><PRE> IF x &gt; w_main.X THEN</PRE></p>
+<A NAME="TI248"></A><h4>Hidden global variables</h4>
+<A NAME="TI249"></A><p>If a global variable has the same name as a local or shared
+variable, you can access the global variable with the scope operator
+(::) as follows:<p><PRE>::<i>globalvariable</i></PRE></p>
+</p>
+<A NAME="TI250"></A><p>This expression compares a local variable with a global variable,
+both named <i>total</i>:<p><PRE> IF total &lt; ::total THEN ...</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Use prefixes to avoid naming conflicts</span> <A NAME="TI251"></A>If your naming conventions include prefixes that identify
+the scope of the variable, then variables of different scopes always
+have different names and there are no conflicts.</p>
+<A NAME="TI252"></A><p>For more information about the search order
+that determines how name conflicts are resolved, see the chapters
+about declarations and calling functions and events in the <i>PowerScript
+Reference</i>
+.</p>
+<A NAME="TI253"></A><h4>Overridden functions and events</h4>
+<A NAME="TI254"></A><p>When you change the script for a function that is inherited,
+you override the ancestor version of the function. For events, you
+can choose to override or extend the ancestor event script in the
+painter.</p>
+<A NAME="TI255"></A><p>You can
+use the scope operator to call the ancestor version of an overridden function
+or event. The ancestor class name, not a variable, precedes the
+colons:<p><PRE> result = w_ancestor:: FUNCTION of_func(arg1, arg2)</PRE></p>
+<A NAME="TI256"></A><p>You can use the <b>Super</b> pronoun instead of
+naming an ancestor class. <b>Super</b> refers to the
+object's immediate ancestor:<p><PRE> result = Super:: EVENT ue_process()</PRE></p>
+<A NAME="TI257"></A><p>In good object-oriented design, you would not call ancestor
+scripts for other objects. It is best to restrict this type of call
+to the current object's immediate ancestor using <b>Super</b>.</p>
+<A NAME="TI258"></A><p>For how to capture the return value of an
+ancestor script, see <A HREF="apptechp16.htm#CAIDCHAE">"Return values from ancestor
+scripts"</A>.</p>
+<A NAME="TI259"></A><h4>Overloaded functions</h4>
+<A NAME="TI260"></A><p>When you have several functions of the same name for the same
+object, the function name is considered to be overloaded. PowerBuilder
+determines which version of the function to call by comparing the
+signatures of the function definitions with the signature of the
+function call. The signature includes the function name, argument
+list, and return value.</p>
+

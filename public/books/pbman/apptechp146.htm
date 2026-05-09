@@ -1,0 +1,263 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Accessing component properties</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp145.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp147.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJCIGFE"></A><h1>Accessing component properties</h1>
+<A NAME="TI4839"></A><h4>ContextKeyword service object</h4>
+<A NAME="TI4840"></A><p>You can use the ContextKeyword service object to get a specific
+component property value from the component's .<i>properties</i> file.
+To retrieve a property value, you call the <b>GetContextKeywords</b> function (to
+enumerate all the properties of an <ACRONYM title = "e a server" >EAServer</ACRONYM> component,
+use the Jaguar::Repository API). </p>
+<A NAME="TI4841"></A><p>Before you can use the ContextKeyword service object, create
+a reference to the object by calling the <b>GetContextService</b> function,
+using Keyword as the service name.</p>
+<A NAME="TI4842"></A><h4><ABBR title = "e a server" >EAServer</ABBR> properties for
+PowerBuilder</h4>
+<A NAME="TI4843"></A><p>This table lists component
+properties that pertain to PowerBuilder custom class user objects
+running as <ABBR title = "e a server" >EAServer</ABBR> components.
+Component properties are prefixed with the string <FONT FACE="Courier New">com.sybase.jaguar.component</FONT>.
+The values of all component properties are displayed on the All
+Properties tab of the Component Properties dialog box in <ABBR title = "e a server" >EAServer</ABBR> Manager. Some properties
+also map to items on other tabs in this dialog box as shown in <A HREF="apptechp146.htm#CEGFHCHA">Table 24-7</A>.</p>
+<A NAME="CEGFHCHA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 24-7: <ABBR title = "e a server" >EAServer</ABBR> component
+properties for PowerBuilder components</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4844"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI4845"></A>Description</th>
+<th  rowspan="1"  ><A NAME="TI4846"></A>Where displayed</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4847"></A>auto.failover</td>
+<td  rowspan="1"  ><A NAME="TI4848"></A>Enables client proxies for the component
+to transfer to alternative servers when a server becomes unavailable.<A NAME="TI4849"></A><p>This property cannot be enabled unless you have enabled automatic demarcation/deactivation.</p><A NAME="TI4850"></A><p>Automatic failover requires that your application use a cluster
+of servers, so that redundant servers are available to run the application's
+components. The cluster must include at least one name server and
+clients must resolve proxy references using naming services. See "Load
+Balancing, Failover, and Component Availability" in the <i>EAServer
+System Administration Guide</i>
+ for more information.</p></td>
+<td  rowspan="1"  ><A NAME="TI4851"></A>Transactions (Automatic Failover)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4852"></A>bind.thread</td>
+<td  rowspan="1"  ><A NAME="TI4853"></A>Indicates whether the component instance
+must always be invoked on the creating thread.<A NAME="TI4854"></A><p>Valid values are <b>TRUE</b> and <b>FALSE</b>.
+This property must be set to <b>TRUE</b> for live editing
+but should be set to <b>FALSE</b> otherwise to improve
+scalability.</p></td>
+<td  rowspan="1"  ><A NAME="TI4855"></A>Instances (Bind Thread)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4856"></A>code.set</td>
+<td  rowspan="1"  ><A NAME="TI4857"></A>Specifies the name of the coded character
+set used by the component.<A NAME="TI4858"></A><p>By default, the component uses the server's coded
+character set (specified on the General tab in the Server Properties
+window). For European or Asian languages, you may need to set this
+property to a value such as <b>iso_1</b> or <b>big5</b>.</p></td>
+<td  rowspan="1"  ><A NAME="TI4859"></A>All Properties</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4860"></A>interfaces</td>
+<td  rowspan="1"  ><A NAME="TI4861"></A>Identifies the interfaces that the component
+implements.<A NAME="TI4862"></A><p>This is a comma-separated list of IDL interface names, each
+of which takes the form: <FONT FACE="Courier New">module::interface.</FONT></p></td>
+<td  rowspan="1"  ><A NAME="TI4863"></A>All Properties</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4864"></A>minpool</td>
+<td  rowspan="1"  ><A NAME="TI4865"></A>When instance pooling is enabled, specifies
+the minimum number of instances that can be pooled.<A NAME="TI4866"></A><p>To release idle pooled instances, <ABBR title = "e a server" >EAServer</ABBR> has
+a garbage collector thread that runs periodically. Each time it
+runs, the garbage collector removes one idle instance from the pool,
+unless the minimum pool size has been reached. The default is 0.</p></td>
+<td  rowspan="1"  ><A NAME="TI4867"></A>Resources</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4868"></A>maxpool</td>
+<td  rowspan="1"  ><A NAME="TI4869"></A>When instance pooling is enabled, specifies
+the maximum number of instances that can be pooled.<A NAME="TI4870"></A><p>If the maximum pool size is reached, <ABBR title = "e a server" >EAServer</ABBR> destroys
+excess instances after deactivation. The default is 0, which means
+no maximum pool size is in effect.</p></td>
+<td  rowspan="1"  ><A NAME="TI4871"></A>Resources</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4872"></A>name</td>
+<td  rowspan="1"  ><A NAME="TI4873"></A>Specifies the name of the component.<A NAME="TI4874"></A><p>The value must take the form: <FONT FACE="Courier New">package/component</FONT></p></td>
+<td  rowspan="1"  ><A NAME="TI4875"></A>General (component part only)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4876"></A>pb.appname</td>
+<td  rowspan="1"  ><A NAME="TI4877"></A>Specifies the name of the PowerBuilder
+application.</td>
+<td  rowspan="1"  ><A NAME="TI4878"></A>General</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4879"></A>pb.class</td>
+<td  rowspan="1"  ><A NAME="TI4880"></A>Specifies the name of the PowerBuilder
+custom class user object.</td>
+<td  rowspan="1"  ><A NAME="TI4881"></A>General</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4882"></A>pb.cookie</td>
+<td  rowspan="1"  ><A NAME="TI4883"></A>Provides a number used to construct the
+path for the library list.<A NAME="TI4884"></A><p>The path takes this form: <i>Repository\Component\package\component\Ccookie</i></p></td>
+<td  rowspan="1"  ><A NAME="TI4885"></A>All Properties</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4886"></A>pb.debug</td>
+<td  rowspan="1"  ><A NAME="TI4887"></A>Indicates whether you can debug the component
+in the PowerBuilder debugger.</td>
+<td  rowspan="1"  ><A NAME="TI4888"></A>All Properties</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4889"></A>pb.librarylist</td>
+<td  rowspan="1"  ><A NAME="TI4890"></A>Specifies the PowerBuilder library list.<A NAME="TI4891"></A><p>When a library name has a prepended dollar sign ($), <ABBR title = "e a server" >EAServer</ABBR> assumes that its location
+is relative to the <ABBR title = "e a server" >EAServer</ABBR> Repository
+directory. When a library name does not have a prepended dollar
+sign, <ABBR title = "e a server" >EAServer</ABBR> assumes the name
+specifies an absolute path.</p></td>
+<td  rowspan="1"  ><A NAME="TI4892"></A>General</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4893"></A>pb.live_edit</td>
+<td  rowspan="1"  ><A NAME="TI4894"></A>Specifies whether you can build the project
+from the User Object painter instead of the Project painter.<A NAME="TI4895"></A><p>See <A HREF="apptechp148.htm#CHDBAHDC">"Live editing"</A>.</p></td>
+<td  rowspan="1"  ><A NAME="TI4896"></A>All Properties</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4897"></A>pb.trace</td>
+<td  rowspan="1"  ><A NAME="TI4898"></A>Specifies trace options for logging activity
+against the component (currently disabled).</td>
+<td  rowspan="1"  ><A NAME="TI4899"></A>All Properties</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4900"></A>pb.version</td>
+<td  rowspan="1"  ><A NAME="TI4901"></A>Specifies the version of PowerBuilder
+in which the component was built.</td>
+<td  rowspan="1"  ><A NAME="TI4902"></A>All Properties</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4903"></A>pooling</td>
+<td  rowspan="1"  ><A NAME="TI4904"></A>Indicates whether the component is pooled.<A NAME="TI4905"></A><p>When the pooling property is set to <b>TRUE</b>,
+the component is always pooled and the CanBePooled event is never
+triggered. When the pooling property is set to <b>FALSE</b>,
+the CanBePooled event is triggered, allowing selective refusal of
+pooling.</p><A NAME="TI4906"></A><p>If the tx_vote property is set to <b>FALSE</b>,
+the component is pooled after each method; otherwise, it is pooled
+at the end of the transaction.</p></td>
+<td  rowspan="1"  ><A NAME="TI4907"></A>Instances</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4908"></A>sharing</td>
+<td  rowspan="1"  ><A NAME="TI4909"></A>Indicates whether this is a shared component.<A NAME="TI4910"></A><p>When the sharing property is set to <b>TRUE</b>,
+all clients share a single component instance. Pooling options do
+not apply to shared components.</p><A NAME="TI4911"></A><p>To make a shared component a service, add it to the list of
+services specified for the com.<ABBR title = "e a server" >EAServer</ABBR>.server.services
+property.</p></td>
+<td  rowspan="1"  ><A NAME="TI4912"></A>Instances</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4913"></A>state</td>
+<td  rowspan="1"  ><A NAME="TI4914"></A>When using automatic persistence, specifies
+the name of an IDL type.<A NAME="TI4915"></A><p>For PowerBuilder, the named type is a user-defined structure
+that must encapsulate all data to be persisted. When you select
+Automatic Persistent State, enter the name of the structure in the
+State text box on the Persistence tab page, and click OK, default
+values are supplied for other properties on the page. Stateful failover
+is supported for PowerBuilder components when using automatic persistence.
+For more information, see the chapter on managing persistent component
+state in the <i>EAServer Programmer's Guide</i>
+.</p></td>
+<td  rowspan="1"  ><A NAME="TI4916"></A>Persistence</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4917"></A>state.gs</td>
+<td  rowspan="1"  ><A NAME="TI4918"></A>The names of methods in the state structure
+that get and set the state datatype, specified as a 2-item comma-separated
+list.<A NAME="TI4919"></A><p>The default is: <FONT FACE="Courier New">getState, setState</FONT></p></td>
+<td  rowspan="1"  ><A NAME="TI4920"></A>Persistence (State Methods)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4921"></A>stateless</td>
+<td  rowspan="1"  ><A NAME="TI4922"></A>Applies only to EJB session Beans and
+non-EJB components that use the control interface CtsComponents::ObjectControl.<A NAME="TI4923"></A><p> Setting this property has the same effect as setting the
+tx_vote property to <b>FALSE</b>, but it also
+disables the activate and deactivate events. Do <i>not</i> set this
+property if you want to specify that a component is stateless. Instead, set
+pooling to <b>TRUE</b> and tx_vote to <b>FALSE</b>.</p></td>
+<td  rowspan="1"  ><A NAME="TI4924"></A>Instances</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4925"></A>storage</td>
+<td  rowspan="1"  ><A NAME="TI4926"></A>Specifies the name of a component that
+reads and writes component state information from a remote database
+server.<A NAME="TI4927"></A><p>Required when using automatic persistence, or when using component-managed
+persistence with an implementation that delegates to <ABBR title = "e a servers" >EAServer's</ABBR> built-in storage
+component. The default is: <FONT FACE="Courier New">CtsComponents/JdbcStorage</FONT> </p><A NAME="TI4928"></A><p>Also specifies the connection cache and table used by the
+storage component. </p></td>
+<td  rowspan="1"  ><A NAME="TI4929"></A>Persistence (Storage Component, Connection Cache,
+Table)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4930"></A>thread.safe</td>
+<td  rowspan="1"  ><A NAME="TI4931"></A>Indicates whether multiple invocations
+can be processed simultaneously.<A NAME="TI4932"></A><p>For more information see <A HREF="apptechp139.htm#CEGJIFAH">"Concurrency property"</A>.</p></td>
+<td  rowspan="1"  ><A NAME="TI4933"></A>Instances (Concurrency)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4934"></A>timeout</td>
+<td  rowspan="1"  ><A NAME="TI4935"></A>Specifies how long an active component
+instance can remain idle between method calls before being automatically
+deactivated.</td>
+<td  rowspan="1"  ><A NAME="TI4936"></A>Resources (Instance Timeout)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4937"></A>tx_outcome</td>
+<td  rowspan="1"  ><A NAME="TI4938"></A>Determines whether a CORBA::TRANSACTION_ROLLEDBACK exception
+is thrown to the client when a transaction is rolled back.<A NAME="TI4939"></A><p>The allowable settings are:<A NAME="TI4940"></A>
+<ul>
+<li class=fi><b>always</b>   The default. The server sends the exception to the client
+when a transaction is rolled back.</li>
+<li class=ds><b>failed</b>   <ABBR title = "e a server" >EAServer</ABBR> does not send the
+exception to the client when a transaction is rolled back. If you
+use this setting, you can code your components to raise a different
+exception with a descriptive message after calling the RollbackWork
+transaction primitive. 
+</li>
+</ul>
+With
+the failed setting in effect, <ABBR title = "e a server" >EAServer</ABBR> may
+still throw a CORBA system exception if unable to commit a transaction
+at your component's request.You can set this property to
+failed if you require that no exceptions be sent to the client for
+rolled-back transactions or that an alternative exception be sent.
+This setting is useful if you require that the client be able to
+retrieve output parameters after a transaction is rolled back: if
+an exception is thrown, the output parameters are not available.</p></td>
+<td  rowspan="1"  ><A NAME="TI4941"></A>All Properties</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4942"></A>tx_timeout</td>
+<td  rowspan="1"  ><A NAME="TI4943"></A>Specifies the maximum duration of an <ABBR title = "e a server" >EAServer</ABBR> transaction.<A NAME="TI4944"></A><p><ABBR title = "e a server" >EAServer</ABBR> checks for timeouts
+after each method returns.</p></td>
+<td  rowspan="1"  ><A NAME="TI4945"></A>Resources (Transaction Timeout)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4946"></A>tx_type</td>
+<td  rowspan="1"  ><A NAME="TI4947"></A>Indicates whether the component participates
+in <ABBR title = "e a server" >EAServer</ABBR> transactions and in
+what way.<A NAME="TI4948"></A><p>Valid values are: <A NAME="TI4949"></A>
+<ul>
+<li class=fi><FONT FACE="Courier New">not_supported</FONT></li>
+<li class=ds><FONT FACE="Courier New">supports</FONT></li>
+<li class=ds><FONT FACE="Courier New">requires</FONT></li>
+<li class=ds><FONT FACE="Courier New">requires_new</FONT></li>
+<li class=ds><FONT FACE="Courier New">mandatory</FONT></li>
+<li class=ds><FONT FACE="Courier New">user-managed</FONT></li>
+<li class=ds><FONT FACE="Courier New">never</FONT>
+</li>
+</ul>
+</p></td>
+<td  rowspan="1"  ><A NAME="TI4950"></A>Transactions</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4951"></A>tx_vote</td>
+<td  rowspan="1"  ><A NAME="TI4952"></A>Indicates whether the component supports
+automatic demarcation and deactivation.<A NAME="TI4953"></A><p>When tx_vote is set to <b>TRUE</b>, the
+component must control transaction state and component deactivation
+by explicitly calling methods of the TransactionServer service object.</p><A NAME="TI4954"></A><p>When tx_vote is set to <b>FALSE</b>, <ABBR title = "e a server" >EAServer</ABBR> automatically deactivates
+the component after each method invocation. You do not need to make
+explicit calls to <b>SetComplete</b> to cause deactivation
+because <b>SetComplete</b> is assumed by default. To
+override the default state, you can call <b>SetAbort</b>.</p></td>
+<td  rowspan="1"  ><A NAME="TI4955"></A>Transactions (when the Automatic Demarcation/<br>Deactivation check
+box is checked, the value of this property is <b>FALSE</b>)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4956"></A>type</td>
+<td  rowspan="1"  ><A NAME="TI4957"></A>Specifies the type of component.<A NAME="TI4958"></A><p>For PowerBuilder objects, <ABBR title = "e a server" >EAServer</ABBR> sets
+this property to pb.</p></td>
+<td  rowspan="1"  ><A NAME="TI4959"></A>General</td>
+</tr>
+</table>
+

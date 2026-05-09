@@ -1,0 +1,348 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining edit styles</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp194.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp196.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BHAFJDFC"></A><h1>Defining edit styles</h1>
+<A NAME="TI6427"></A><p>This section describes how to specify each type of edit style.</p>
+<A NAME="BHAHDIII"></A><h2>The Edit edit style</h2>
+<A NAME="TI6428"></A><p>By default, columns use the Edit edit style, which displays
+data in an edit control. You can customize the appearance and behavior
+of the edit control by modifying a column's Edit edit style.
+To do so, select Edit in the Style Type drop-down list and specify
+the properties for that style:<A NAME="TI6429"></A>
+<ul>
+<li class=fi>To
+restrict the number of characters users can enter, enter a
+value in the Limit box. </li>
+<li class=ds>To convert the case of characters upon display,
+enter an appropriate value in the Case box.      </li>
+<li class=ds>To have entered values display as asterisks for
+sensitive data, check the Password box. </li>
+<li class=ds>To allow users to tab to the column but not
+change the value, check the Display Only box.</li>
+<li class=ds>To define a code table to determine which values
+are displayed to users and which values are stored in the database,
+check the Use Code Table box and enter display and data values for
+the code table.<br>
+See <A HREF="pbugp196.htm#BFCDHGFC">"Defining a code table"</A>.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI6430"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use the Edit edit style:</p>
+<ol><li class=fi><p>Select Edit from the Style Type box, if
+it is not already selected.</p></li>
+<li class=ds><p>Select the properties you want.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Date columns and regional settings</span> <A NAME="TI6431"></A>Using the Edit edit style, or no edit style, with a date column
+can cause serious data entry and validation problems if a user's
+computer is set up to use a nonstandard date style, such as yyyy/dd/mm.
+For example, if you enter 2001/03/05 in the Retrieval
+Arguments dialog box for a date column when the mask is yyyy/dd/mm,
+the date is interpreted as March 5 instead of May 3. To ensure that
+the order of the day and month is interpreted correctly, use an EditMask
+edit style.</p>
+<A NAME="BHAJAJAD"></A><h2>The DropDownListBox edit style</h2>
+<A NAME="TI6432"></A><p>You can use the DropDownListBox edit style to have columns
+display as drop-down lists at runtime:</p>
+<br><img src="images/dwdis12.gif">
+<A NAME="TI6433"></A><p>Typically, this edit style is used with code tables, where
+you can specify display values (which users see) and shorter
+data values (which are stored in the database).</p>
+<A NAME="TI6434"></A><p>In the DropDownListBox edit style, the display values of the
+code table display in the ListBox portion of the DropDownListBox. The
+data values are the values that are put in the DataWindow buffer
+(and sent to the database when an Update is issued) when the user
+selects an item in the ListBox portion of the drop-down list. </p>
+<A NAME="TI6435"></A><p>In the preceding example, when users see the value Business
+Services, the corresponding data value could be 200.</p>
+<A NAME="TI6436"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use the DropDownListBox edit style:</p>
+<ol><li class=fi><p>Select DropDownListBox from the Style Type
+box.</p></li>
+<li class=ds><p>Select the appropriate properties.</p></li>
+<li class=ds><p>Enter the value you want to have appear in the
+Display Value box and the corresponding data value in the Data Value
+box.</p></li></ol>
+<br><A NAME="TI6437"></A><h4>At runtime</h4>
+<A NAME="TI6438"></A><p>You can define and modify a code table for a column in a script by
+using the <b>SetValue</b> method at runtime. To obtain
+the value of a column at runtime, use the <b>GetValue</b> method.
+To clear the code table of values, use the <b>ClearValues</b> method.</p>
+<A NAME="TI6439"></A><p>For more about code tables, see <A HREF="pbugp196.htm#BFCDHGFC">"Defining a code table"</A>.</p>
+<A NAME="BHADCJFG"></A><h2>The CheckBox edit style</h2>
+<A NAME="TI6440"></A><p>If a column can take only one of two (or perhaps three) values,
+you might want to display the column as a check box; users can
+select or clear the check box to specify a value. In the following
+entry from a DataWindow object, users can simply check or clear a
+box to indicate whether an employee has health insurance:</p>
+<br><img src="images/dwdis14.gif">
+<A NAME="TI6441"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use the CheckBox edit style:</p>
+<ol><li class=fi><p>In the Text box, enter the text you want displayed
+next to the check box.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using accelerator keys</span> <A NAME="TI6442"></A>If the CheckBox has an accelerator key, enter an ampersand
+(&amp;) before the letter in the text that represents the accelerator
+key.</p>
+</li>
+<li class=ds><p> In the Data Value For boxes, enter the values you want put
+in the DataWindow buffer when the CheckBox is checked (on) or unchecked (off).</p><p>If you selected the 3 States box, an optional third state
+box (other) appears, for the case when the condition is neither
+on nor off.</p></li></ol>
+<br><A NAME="TI6443"></A><h4>What happens</h4>
+<A NAME="TI6444"></A><p>The value you enter in the Text box becomes the display value,
+and values entered for On, Off, and Other become the data values.</p>
+<A NAME="TI6445"></A><p>When users check or clear the check box at runtime, PowerBuilder enters
+the appropriate data value in its buffer. When the <b>Update</b> method
+is called, PowerBuilder sends the corresponding data values to the
+database.</p>
+<A NAME="TI6446"></A><h4>Centering check boxes without text</h4>
+<A NAME="TI6447"></A><p>You may find it useful to center check boxes used for columns
+of information. First make the text control used for the column
+header and the column control the same size and left aligned. Then
+you can center the check boxes and the column header.</p>
+<A NAME="TI6448"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To center check boxes without text:</p>
+<ol><li class=fi><p>In the Edit property page for the column,
+make sure the Left Text check box is not selected and that the Text
+box where you specify associated text is empty.</p></li>
+<li class=ds><p>In the General property page, specify centering
+(Alignment&gt;Center) or specify centering using the StyleBar.</p></li></ol>
+<br><A NAME="BHAFDFBD"></A><h2>The RadioButtons edit style</h2>
+<A NAME="TI6449"></A><p>If a column can take one of a small number of values, you
+might want to display the column as radio buttons:</p>
+<br><img src="images/dwdis16.gif">
+<A NAME="TI6450"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use the RadioButtons edit style:</p>
+<ol><li class=fi><p>Specify how many radio buttons will display
+in the Columns Across box.</p></li>
+<li class=ds><p>Enter a set of display and data values for each
+button you want to display. </p><p>The display values you enter become the text of the buttons;
+the data values are put in the DataWindow buffer when the button
+is clicked.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using accelerator keys</span> <A NAME="TI6451"></A>To use an accelerator key on a radio button, enter an ampersand
+(&amp;) in the Display Value before the letter that will be
+the accelerator key.</p>
+</li></ol>
+<br><A NAME="TI6452"></A><h4>What happens</h4>
+<A NAME="TI6453"></A><p>Users select values by clicking a radio button. When the <b>Update</b> method
+is issued, the data values are sent to the database. </p>
+<A NAME="X-REF356199281"></A><h2>The EditMask edit style</h2>
+<A NAME="TI6454"></A><p>Sometimes users need to enter data that has a fixed format.
+For example, in North America phone numbers have a 3-digit area
+code, followed by three digits, followed by four digits. You can
+define an edit mask that specifies the format to make it easier
+for users to enter values:</p>
+<br><img src="images/dwdis18.gif">
+<A NAME="TI6455"></A><p>Edit masks consist of special characters that determine what
+can be entered in the column. They can also contain punctuation
+characters to aid users.</p>
+<A NAME="TI6456"></A><p>For example, to make it easier for users to enter phone
+numbers in the proper format, specify this mask:<p><PRE> (###) ###-####</PRE></p>
+<A NAME="TI6457"></A><p>At runtime, the punctuation characters display in the box
+and the cursor jumps over them as the user types:</p>
+<br><img src="images/dwdis19.gif">
+<A NAME="TI6458"></A><h4>Special characters and keywords</h4>
+<A NAME="TI6459"></A><p>Most edit masks use the same special characters as display
+formats, and there are special considerations for using numeric,
+string, date, and time masks. For information, see <A HREF="pbugp192.htm#BFCCJFHF">"Defining display formats"</A>.</p>
+<A NAME="TI6460"></A><p>The special characters you can use in string edit masks are
+different from those you can use in string display formats. </p>
+<A NAME="TI6461"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 22-9: Special
+characters for string edit masks</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6462"></A>Character</th>
+<th  rowspan="1"  ><A NAME="TI6463"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6464"></A>!</td>
+<td  rowspan="1"  ><A NAME="TI6465"></A>Uppercase &#8211; displays all characters
+with letters in uppercase</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6466"></A>^</td>
+<td  rowspan="1"  ><A NAME="TI6467"></A>Lowercase &#8211; displays all characters
+with letters in lowercase</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6468"></A>#</td>
+<td  rowspan="1"  ><A NAME="TI6469"></A>Number &#8211; displays only numbers</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6470"></A>a</td>
+<td  rowspan="1"  ><A NAME="TI6471"></A>Alphanumeric &#8211; displays only
+letters and numbers</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6472"></A>X</td>
+<td  rowspan="1"  ><A NAME="TI6473"></A>Any character &#8211; displays all
+characters</td>
+</tr>
+</table>
+<A NAME="TI6474"></A><p>If you use the "#" or "a" special
+characters in a mask, Unicode characters, spaces, and other characters
+that are not alphanumeric do not display.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Semicolons invalid in EditMask edit styles</span> <A NAME="TI6475"></A>In a display format, you can use semicolons to separate sections
+in number, date, time, and string formats. You cannot use semicolons
+in an EditMask edit style.</p>
+<A NAME="TI6476"></A><h4>Keyboard behavior</h4>
+<A NAME="TI6477"></A><p>Note the following about how certain keystrokes behave in
+edit masks:<A NAME="TI6478"></A>
+<ul>
+<li class=fi>Both Backspace
+and Shift + Backspace delete the preceding character.</li>
+<li class=ds>Delete deletes everything that is selected.</li>
+<li class=ds>Non-numeric edit masks treat any characters that
+do not match the mask pattern as delimiters.
+</li>
+</ul>
+</p>
+<A NAME="TI6479"></A><p>Also, note certain behavior in Date edit masks:<A NAME="TI6480"></A>
+<ul>
+<li class=fi>Entering zero for the day
+or month causes the next valid date to be entered. For example,
+if the edit mask is DD/MM/YY, typing <FONT FACE="Courier New">00/11/01</FONT> results
+in <FONT FACE="Courier New">01/11/01</FONT>.
+You can override this behavior in the development environment by
+adding the following lines to your <i>PB.INI</i> file:<p><PRE> [Edit Mask Behaviors]<br>    AutocompleteDates=no</PRE><br>
+For deployed applications, the date is completed automatically
+unless you provide a file called <i>PB.INI</i> in
+the same directory as the executable file that contains these lines.
+Note that this section must be in a file called <i>PB.INI</i>. Adding
+the section to a different INI file shipped with the application
+will have no effect. <br></li>
+<li class=ds>The strings 00/00/00 or 00/00/0000
+are interpreted as the <b>NULL</b> value for the column. 
+</li>
+</ul>
+</p>
+<A NAME="TI6481"></A><h4>Using the Mask pop-up menu</h4>
+<A NAME="TI6482"></A><p> Click the button to the right of the Mask box on the Mask
+property page to display a list that contains complete masks that
+you can click to add to the mask box, as well as special characters
+that you can use to construct your own mask. For example, the menu
+for a Date edit mask contains complete masks such as mm/dd/yy
+and dd/mmm/yyyy. It also has components such as
+dd and jjj (for a Julian day). You might use these to construct
+a mask like dd-mm-yy, typing in the hyphens as separators.You cannot
+use a partial mask, such as dd or mmm, in a date edit mask. Any mask
+that does not include any characters representing the year will
+be replaced by a mask that does.</p>
+<A NAME="TI6483"></A><h4>Using masks with "as is" characters</h4>
+<A NAME="TI6484"></A><p>You can define a mask that contains "as is" characters
+that always appear in the control or column. For example, you might
+define a numeric mask such as <FONT FACE="Courier New">Rs0000.00</FONT> to
+represent Indian rupees in a currency column. </p>
+<A NAME="TI6485"></A><p>However, you cannot enter a minus sign to represent negative
+numbers in a mask that contains "as is" characters,
+and the # special character is treated as a 0 character.
+As a result, if you specify a mask such as ###,##0.00EUR,
+a value such as 45,000 Euros would display with a leading zero:
+045,000.00EUR. Note that you must always specify a mask that has
+enough characters to display all possible data values. If the mask
+does not have enough characters, for example if the mask is #,##0.00
+and the value is 45000, the result is unpredictable.</p>
+<A NAME="TI6486"></A><p>The preferred method of creating a currency editmask is to
+use the predefined <FONT FACE="Courier New">[currency(7)] -
+International </FONT>mask. You can change the number
+in parentheses, which is the number of characters in the mask including
+two decimal places. When you use this mask, PowerBuilder uses the
+currency symbol and format defined in the regional settings section
+of the Windows control panel. You can enter negative values in a
+column that uses a currency mask. </p>
+<A NAME="TI6487"></A><h4>Using spin controls</h4>
+<A NAME="TI6488"></A><p>You can define an edit mask as a spin control, a box that
+contains up and down arrows that users can click to cycle through
+fixed values. For example, you can set up a code table that provides
+the valid entries in a column; users simply click an arrow
+to select an entry. Used this way, a spin control works like a drop-down
+list that displays one value at a time:</p>
+<br><img src="images/dwdis21.gif">
+<A NAME="TI6489"></A><p>For more about code tables, see <A HREF="pbugp196.htm#BFCDHGFC">"Defining a code table"</A>.</p>
+<A NAME="TI6490"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use an EditMask edit style:</p>
+<ol><li class=fi><p>Select EditMask in the Style Type box if it is
+not already selected.</p></li>
+<li class=ds><p>Define the mask in the Mask box. Click the special characters
+in the pop-up menu to use them in the mask. To display
+the pop-up menu, click the button to the right of the Mask box.</p></li>
+<li class=ds><p>Specify other properties for the edit mask.</p><p>When you use your EditMask, check its appearance and behavior.
+If characters do not appear as you expect, you might want to change
+the font size or the size of the EditMask.</p></li></ol>
+<br><A NAME="TI6491"></A><h4>Using a drop-down calendar</h4>
+<A NAME="TI6492"></A><p>You can use a drop-down calendar option on any DataWindow column
+with an EditMask edit style and a Date, DateTime, or TimeStamp datatype.
+The DDCalendar EditMask property option allows for separate selections
+of the calendar month, year, and date. This option can be set in
+a check box on the Edit page of the DataWindow painter Properties view when
+a column with the EditMask edit style is selected. It can also be
+set in code, as in this example for the <b>birth_date</b> column:<p><PRE> dw_1.Modify("birth_date.EditMask.DDCalendar='Yes'")</PRE></p>
+<A NAME="TI6493"></A><p>If you do not include script for client formatting in a Web
+DataWindow, the drop-down calendar uses a default edit
+mask to display the column data based on the client computer's
+default localization settings. To make sure that dates selected
+with the drop-down calendar option are displayed with the
+desired edit mask, specify that the Client Formatting option be
+included with the static JavaScript generated and deployed for the
+DataWindow. </p>
+<A NAME="TI6494"></A><p>To conserve bandwidth, JavaScript for client formatting is
+not included by default. To include this script, you can select
+the Client Formatting check box on the Web Generation tab of the
+DataWindow Properties view. </p>
+<A NAME="TI6495"></A><p>The drop-down calendar option is supported in all Web DataWindow
+rendering formats (HTML, XHTML, and XML).</p>
+<A NAME="BHABBGIB"></A><h2>The DropDownDataWindow edit style</h2>
+<A NAME="TI6496"></A><p>Sometimes another data source determines which data is valid
+for a column.</p>
+<A NAME="TI6497"></A><p>Consider this situation: the <b>Department</b> table
+includes two columns, <b>Dept_id</b> and <b>Dept_name</b>,
+to record your company's departments. The <b>Employee</b> table records
+your employees. The <b>Department</b> column in the <b>Employee</b> table
+can have any of the values in the <b>Dept_id</b> column
+in the <b>Department</b> table.</p>
+<A NAME="TI6498"></A><p>As new departments are added to your company, you want the DataWindow object containing
+the <b>Employee</b> table to automatically provide
+the new departments as choices when users enter values in the <b>Department</b> column.</p>
+<A NAME="TI6499"></A><p>In situations such as these, you can specify the DropDownDataWindow
+edit style for a column: it is populated from another DataWindow object.
+When users go to the column, the contents of the DropDownDataWindow
+display, showing the latest data:</p>
+<br><img src="images/dwdis22.gif">
+<A NAME="TI6500"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use the DropDownDataWindow edit style:</p>
+<ol><li class=fi><p>Create a DataWindow object that contains the columns
+in the detail band whose values you want to use in the column.</p><p>You will often choose at least two columns: one column that
+contains values that the user sees and another column that contains
+values to be stored in the database. In the example above, you would
+create a DataWindow object containing the <b>dept_id</b> and <b>dept_name</b> columns
+in the <b>Department</b> table. Assume this DataWindow object is
+named <b>d__dddw_dept</b>.</p></li>
+<li class=ds><p>For the column getting its data from the DataWindow object,
+select the DropDownDW edit style.</p><p>In the example, you would specify the DropDownDataWindow edit
+style for the <b>dept_name</b> column:</p><br><img src="images/dwdis20.gif"><br>
+</li>
+<li class=ds><p>Click the browse button next to the DataWindow box and
+select the DataWindow object that contains the data for the column from
+the drop-down list (in the example, <b>d__dddw_dept</b>). </p></li>
+<li class=ds><p>In the Display Column box, select the column containing
+the values that will display in the DataWindow object (in the example, <b>dept_name</b>).</p></li>
+<li class=ds><p>In the Data Column box, select the column containing
+the values that will be stored in the database (in the example,<b> dept_id</b>).</p></li>
+<li class=ds><p>Specify other properties for the edit style and click
+OK when done.</p></li></ol>
+<br><A NAME="TI6501"></A><h4>What happens</h4>
+<A NAME="TI6502"></A><p>At runtime, when data is retrieved into the DataWindow object, the
+column whose edit style is DropDownDataWindow will itself be populated
+as data is retrieved into the DataWindow object serving as the drop-down DataWindow object.</p>
+<A NAME="TI6503"></A><p>When the user goes to the column and drops it down, the contents
+of the drop-down DataWindow object display. When the user selects
+a display value, the corresponding data value is stored in the DataWindow
+buffer and is stored in the database when an <b>Update</b> is
+issued.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Limit on size of data value</span> <A NAME="TI6504"></A>The data value for a column that uses the DropDownDataWindow
+edit style is limited to 511 characters.</p>
+<A NAME="TI6505"></A><h2>The InkEdit edit style</h2>
+<A NAME="TI6506"></A><p>The InkEdit edit style is designed for use on a Tablet PC
+and provides the ability to capture ink input from users of Tablet
+PCs. </p>
+<A NAME="TI6507"></A><p>You can specify InkEdit as a style type on the Edit page in
+the Properties view for columns. When the column gets focus, an
+InkEdit control displays so that the user can enter text with the
+stylus or mouse. The text is recognized and displayed, then sent
+back to the database when the column loses focus.</p>
+<A NAME="TI6508"></A><p>The InkEdit edit style is fully functional on Tablet PCs.
+On other computers, it behaves like the Edit edit style. </p>
+<A NAME="TI6509"></A><p>For more information about ink controls and the Tablet PC,
+and to download the Tablet PC SDK, go to <A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnanchor/html/tabletpc.asp">the Microsoft Tablet PC Web site</A></p>
+

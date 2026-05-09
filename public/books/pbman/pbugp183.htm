@@ -1,0 +1,29 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Specifying an identity column</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp182.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp184.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BHBCEBDJ"></A><h1>Specifying an identity column</h1>
+<A NAME="TI5982"></A><p>Many DBMSs allow you to specify that the value for a column
+in a new row is to be automatically assigned by the DBMS. This kind
+of column is called an identity column. Different DBMSs provide
+different types of identity columns.</p>
+<A NAME="TI5983"></A><p> For example, some DBMSs allow you to define autoincrement
+columns so that the column for a new row is automatically assigned
+a value one greater than that of the previous highest value. You
+could use this feature to specify that an order number be automatically
+incremented when someone adds a new order:</p>
+<br><img src="images/aacu04.gif">
+<A NAME="TI5984"></A><p>By specifying an identity column in the Specify Update Properties
+dialog box, you tell PowerBuilder to bring back the value of a new
+row's identity column after an insert in the DataWindow object so
+that users can see it.</p>
+<A NAME="TI5985"></A><p>For information about identity columns in
+your DBMS, see your DBMS documentation.</p>
+

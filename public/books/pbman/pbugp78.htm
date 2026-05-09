@@ -1,0 +1,80 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using a user event </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp77.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp79.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF298920608"></A><h1>Using a user event </h1>
+<A NAME="TI2162"></A><p>After you define a user event, you must write the script that
+PowerBuilder will execute when that user event is triggered. If
+it is an unmapped user event, you also write the code that will
+trigger the user event.</p>
+<A NAME="TI2163"></A><p>User events display in alphabetical order in the Event List
+view and the event list box in the Script view, along with the predefined
+events. As with predefined events, the script tells PowerBuilder
+what processing to perform when the user event occurs.</p>
+<A NAME="TI2164"></A><p>If the user event is not mapped to a Windows message (that
+is, if there is no event ID associated with it), you must trigger
+the event in a script. You can trigger the user event in an object
+using the <b>EVENT</b> syntax. For information about
+calling events, see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI2165"></A><h2>Examples of user event scripts</h2>
+<A NAME="TI2166"></A><p>This section includes two examples that use a mapped user
+event and one example that uses an unmapped user event. For more
+user event examples, see <A HREF="pbugp130.htm#CAHCAHDE">"Communicating between a
+window and a user object "</A>.</p>
+<A NAME="TI2167"></A><h4>Example 1: mapped user event for a control</h4>
+<p><b>Situation</b>   You have several SingleLineEdit controls in a window and want the
+Enter key to behave like the Tab key (if users press Enter, you
+want them to tab to the next SingleLineEdit).</p>
+<p><b>Solution</b>   Define a user event for each SingleLineEdit. Give the event
+any name you want, such as <b>ue_CheckKey</b>.
+Map the event to the event ID <b>pbm_keydown</b>.
+Write a script for the user event that tests for the key that was pressed.
+If Enter was pressed, set the focus to the SingleLineEdit that you
+want the user to go to.</p>
+<A NAME="TI2168"></A><p>For example, in the script for the user event for <b>sle_1</b>,
+you could code:<p><PRE> // Script for user event ue_CheckKey<br>// which is mapped to pbm_keydown.<br>IF KeyDown(KeyEnter!) THEN   // Go to sle_2 if<br>   sle_2.SetFocus( )      // Enter pressed.<br>END IF</PRE></p>
+<A NAME="TI2169"></A><p>Similarly, in the script for the user event for <b>sle_2</b>,
+you could code:<p><PRE> // Script for user event ue_CheckKey,<br>// which is mapped to pbm_keydown.<br>IF KeyDown(KeyEnter!) THEN  // Go to sle_3 if<br>   sle_3.SetFocus( )       // Enter pressed. <br>END IF</PRE></p>
+<A NAME="TI2170"></A><h4>Example 2: mapped user event for an edit style</h4>
+<p><b>Situation</b>   You have a DataWindow control with a column that uses the RadioButton
+edit style and you want to allow users to scroll through the RadioButtons
+when they press Down Arrow or Up Arrow (normally, pressing Down
+Arrow or Up Arrow scrolls to the next or preceding row).</p>
+<p><b>Solution</b>   Declare a user event for the DataWindow control that maps
+to the event ID <b>pbm_dwnkey</b> and write
+a script like the following for it. <b>dwn</b> stands
+for DataWindow notification. <p><PRE> // Script is in a user event for a DataWindow control.<br>// It is mapped to pbm_dwnkey. If user is in column <br>// number 6, which uses the RadioButton edit style, and<br>// presses DownArrow, the cursor moves to the next item<br>// in the RadioButton list, instead of going to the next<br>// row in the DataWindow, which is the default behavior.<br>// Pressing UpArrow moves to preceding RadioButton.<br>//<br>// Note that the CHOOSE CASE below tests for data <br>// values, not display values, for the RadioButtons.<br> <br>int colnum = 6                     // Column number<br>long rownum<br>rownum = dw_2.GetRow( ) // Current row<br> <br>IF KeyDown(KeydownArrow!) AND &amp;<br>   This.GetColumn( ) = colnum THEN   <br>   CHOOSE CASE dw_2.GetItemString(rownum, colnum)      <br>      case "P"             // First value in RB<br>         This.SetItem(rownum, colnum,"L")  // Next <br>      case "L"             // Second value in RB<br>         This.SetItem(rownum, colnum,"A")  // Next <br>      case "A"             // Last value in RB<br>         This.SetItem(rownum, colnum,"P")  // First<br>   END CHOOSE   <br>   This.SetActionCode(1)   // Ignore key press<br>END IF</PRE><PRE> // The following code does same thing for UpArrow.<br>IF KeyDown(KeyupArrow!) AND &amp;<br>   This.GetColumn( ) = colnum THEN<br>   CHOOSE CASE dw_2.GetItemString(rownum, colnum) <br>      case "P"            // First value in RB   <br>         This.SetItem(rownum, colnum,"A")   // Last  <br>      case "L"            // Another value in RB  <br>         This.SetItem(rownum, colnum,"P")<br>      case "A"            // Last value in RB <br>         This.SetItem(rownum, colnum,"L")   <br>   END CHOOSE<br>   This.SetActionCode(1)<br>END IF</PRE></p>
+<A NAME="TI2171"></A><h4>Example 3: unmapped user event for menu options</h4>
+<p><b>Situation</b>   Suppose you use the same menu in all your windows, but you
+want to enable or disable some menu items, in this case database
+update items, depending on which window the user is in.</p>
+<p><b>Solution</b>   In the window that will be the ancestor of all the sheet windows
+that do not have database update capability, define an unmapped
+user event called <b>ue_ct_menu_enable</b>.
+The event takes a boolean argument, <b>ab_state</b>,
+to set or clear the enabled property on various menus. This is the
+script for the <b>ue_ct_menu_enable</b> user
+event in the ancestor window:<p><PRE> //  Enable / Disable Menu Options<br>im_CurrMenu.m_maint.m_add.enabled = Not ab_state<br>im_CurrMenu.m_maint.m_delete.enabled = Not ab_state<br>im_CurrMenu.m_maint.m_undelete.enabled = Not ab_state<br>im_CurrMenu.m_maint.m_update.enabled = Not ab_state<br>im_CurrMenu.m_maint.m_close.enabled = ab_state</PRE></p>
+<A NAME="TI2172"></A><p>Then, in the script for the Activate event in the ancestor
+window, call the user event and pass the value "true" for
+the boolean variable <b>ab_state</b>. <p><PRE> this.EVENT ue_ct_menu_enable ( TRUE ) </PRE></p>
+<A NAME="TI2173"></A><p>Write a similar script for the Deactivate event with the value "false" for <b>ab_state</b>. </p>
+<A NAME="TI2174"></A><p>You can use this window as the ancestor of any sheet window
+in your application that does not have database update capability.
+When the window is active, the Add, Delete, Undelete, and Update
+menu items are grayed out. When it is not active, the Close item
+is grayed out.</p>
+<A NAME="TI2175"></A><p>For windows that have database update capability, you can
+create a second ancestor window that inherits from the ancestor
+window in which you defined <b>ue_ct_menu_enable</b>.
+In the second ancestor window, you can override the <b>ue_ct_menu_enable</b> event
+script so that the appropriate menu options are enabled.</p>
+

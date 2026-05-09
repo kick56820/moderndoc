@@ -1,0 +1,95 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Filtering rows </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp201.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp203.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCDJDCA"></A><h1>Filtering rows </h1>
+<A NAME="TI6634"></A><p>You can use <b>WHERE</b> and <b>HAVING</b> clauses
+and retrieval arguments in the <ACRONYM title = "sequel" >SQL</ACRONYM> <b>SELECT</b> statement
+for the DataWindow object to limit the data that is retrieved from the
+database. This reduces retrieval time and space requirements at
+runtime.</p>
+<A NAME="TI6635"></A><p>However, you may want to further limit the data that displays
+in the DataWindow object. For example, you might want to:<A NAME="TI6636"></A>
+<ul>
+<li class=fi>Retrieve many rows and initially
+display only a subset (perhaps allowing the user to specify a different
+subset of rows to display at runtime)</li>
+<li class=ds>Limit the data that is displayed using DataWindow expression functions
+(such as <b>If</b>) that are not valid in the <b>SELECT</b> statement
+</li>
+</ul>
+</p>
+<A NAME="TI6637"></A><h4>Using filters</h4>
+<A NAME="TI6638"></A><p>In the DataWindow painter, you can define filters to limit the rows
+that display at runtime. Filters can use most DataWindow expression functions or user-defined
+functions.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Filters do not affect which rows are retrieved</span> <A NAME="TI6639"></A>A filter operates against the retrieved data. It does not
+re-execute the <b>SELECT</b> statement.</p>
+<A NAME="TI6640"></A><h4>Defining a filter</h4>
+<A NAME="TI6641"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a filter:</p>
+<ol><li class=fi><p>In the DataWindow painter, select Rows&gt;Filter
+from the menu bar.</p><p>The Specify Filter dialog box displays:</p><br><img src="images/db0022.gif"><br>
+</li>
+<li class=ds><p>In the Specify Filter dialog box, enter a boolean
+expression that PowerBuilder will test against each retrieved row.</p><p>If the expression evaluates to <b>TRUE</b>, the
+row is displayed. You can specify any valid expression in a filter. Filters
+can use any non-object-level PowerScript function, including user-defined
+functions. You can paste commonly used functions, names of columns,
+computed fields, retrieval arguments, and operators into the filter.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>International considerations</span> <A NAME="TI6642"></A>For applications to run the same in any country, filter expressions
+require U.S. notation for numbers. That is, a comma always represents
+the thousands delimiter and a period always represents the decimal
+place when you specify expressions in the development environment.</p>
+<p>For information about expressions for filters,
+see the <i>DataWindow Reference</i>
+.</p></li>
+<li class=ds><p>(Optional) Click Verify to make sure the expression
+is valid.</p></li>
+<li class=ds><p>Click OK.</p><p>Only rows meeting the filter criteria are displayed in the
+Preview view.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Filtered rows and updates </span> <A NAME="TI6643"></A>Modifications of filtered rows are applied to the database
+when you issue an update request.</p>
+</li></ol>
+<br><A NAME="TI6644"></A><h4>Removing a filter</h4>
+<A NAME="TI6645"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To remove a filter:</p>
+<ol><li class=fi><p>Select Rows&gt;Filter from the menu
+bar.</p></li>
+<li class=ds><p>Delete the filter expression from the Specify
+Filter dialog box, then click OK.</p></li></ol>
+<br><A NAME="TI6646"></A><h4>Examples of filters</h4>
+<A NAME="TI6647"></A><p>Assume that a DataWindow object retrieves employee rows and three
+of the columns are <b>Salary</b>, <b>Status</b>,
+and <b>Emp_Lname</b>. <A HREF="pbugp202.htm#BHACDIEJ">Table 23-1</A> shows some examples of
+filters you might use.</p>
+<A NAME="BHACDIEJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 23-1: Sample filters</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6648"></A>To display
+these rows</th>
+<th  rowspan="1"  ><A NAME="TI6649"></A>Use this filter</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6650"></A>Employees with salaries over $50,000</td>
+<td  rowspan="1"  ><A NAME="TI6651"></A><FONT FACE="Courier New">Salary &gt; 50000</FONT></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6652"></A>Active employees</td>
+<td  rowspan="1"  ><A NAME="TI6653"></A><FONT FACE="Courier New">Status = 'A'</FONT></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6654"></A>Active employees with salaries over $50,000</td>
+<td  rowspan="1"  ><A NAME="TI6655"></A><FONT FACE="Courier New">Salary &gt; 50000
+AND Status = 'A'</FONT></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6656"></A>Employees whose last names begin with
+H</td>
+<td  rowspan="1"  ><A NAME="TI6657"></A><FONT FACE="Courier New">left(Emp_Lname,
+1) = 'H'</FONT></td>
+</tr>
+</table>
+<A NAME="TI6658"></A><h4>Setting filters dynamically</h4>
+<A NAME="TI6659"></A><p>You can use the <b>SetFilter</b> and <b>Filter</b> methods
+in a script to dynamically modify a filter that was set in the DataWindow painter. For
+information about <b>SetFilter</b> and <b>Filter</b>,
+see the online help.</p>
+

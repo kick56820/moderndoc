@@ -1,0 +1,3802 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="FrameName" value="left">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="About the HTML Books">
+		<param name="Local" value="pboverview.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PowerBuilder User's Guide">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About This Book">
+<param name="Local" value="pbugp1.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+</UL><UL><LI><OBJECT type="text/sitemap">
+<param name="Name" value="The PowerBuilder Environment">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 1  Working with PowerBuilder">
+<param name="Local" value="pbugp2.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About PowerBuilder">
+<param name="Local" value="pbugp3.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Concepts and terms">
+<param name="Local" value="pbugp4.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="The PowerBuilder environment">
+<param name="Local" value="pbugp5.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating and opening workspaces">
+<param name="Local" value="pbugp6.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using wizards">
+<param name="Local" value="pbugp7.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating a target">
+<param name="Local" value="pbugp8.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Target types">
+<param name="Local" value="pbugp9.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Managing workspaces">
+<param name="Local" value="pbugp10.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Building workspaces">
+<param name="Local" value="pbugp11.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with tools">
+<param name="Local" value="pbugp12.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using online Help">
+<param name="Local" value="pbugp13.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Building an application">
+<param name="Local" value="pbugp14.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 2  Customizing PowerBuilder">
+<param name="Local" value="pbugp15.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Starting PowerBuilder with an open workspace">
+<param name="Local" value="pbugp16.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Changing default layouts">
+<param name="Local" value="pbugp17.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using toolbars">
+<param name="Local" value="pbugp18.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Customizing keyboard shortcuts">
+<param name="Local" value="pbugp19.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Changing fonts">
+<param name="Local" value="pbugp20.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining colors">
+<param name="Local" value="pbugp21.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="How the PowerBuilder environment is managed">
+<param name="Local" value="pbugp22.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 3  Using Source Control">
+<param name="Local" value="pbugp23.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About source control systems">
+<param name="Local" value="pbugp24.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using a source control system with PowerBuilder">
+<param name="Local" value="pbugp25.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Source control operations in PowerBuilder">
+<param name="Local" value="pbugp26.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Modifying source-controlled targets and objects">
+<param name="Local" value="pbugp27.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Migrating existing projects under source control">
+<param name="Local" value="pbugp28.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 4  PowerDesigner Integration">
+<param name="Local" value="pbugp29.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About PowerDesigner and the PowerDesigner plug-in">
+<param name="Local" value="pbugp30.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="What is an OOM?">
+<param name="Local" value="pbugp31.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Advantages of an OOM class diagram in PowerBuilder">
+<param name="Local" value="pbugp32.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Reverse-engineering a PowerBuilder target">
+<param name="Local" value="pbugp33.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using PowerDesigner menu items in PowerBuilder">
+<param name="Local" value="pbugp34.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Class diagram menu commands">
+<param name="Local" value="pbugp35.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Checking the OOM model">
+<param name="Local" value="pbugp36.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Plug-in toolbars">
+<param name="Local" value="pbugp37.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with PowerScript Targets">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 5  Working with PowerScript Targets">
+<param name="Local" value="pbugp38.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About PowerScript targets">
+<param name="Local" value="pbugp39.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working in painters">
+<param name="Local" value="pbugp40.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the Application painter">
+<param name="Local" value="pbugp41.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Specifying application properties">
+<param name="Local" value="pbugp42.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Writing application-level scripts">
+<param name="Local" value="pbugp43.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Specifying the target's library search path">
+<param name="Local" value="pbugp44.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Looking at an application's structure">
+<param name="Local" value="pbugp45.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with objects">
+<param name="Local" value="pbugp46.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the Source editor">
+<param name="Local" value="pbugp47.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 6  Working with Libraries">
+<param name="Local" value="pbugp48.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About libraries">
+<param name="Local" value="pbugp49.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Opening the Library painter">
+<param name="Local" value="pbugp50.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the Library painter">
+<param name="Local" value="pbugp51.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with libraries">
+<param name="Local" value="pbugp52.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Searching targets, libraries, and objects">
+<param name="Local" value="pbugp53.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Optimizing libraries">
+<param name="Local" value="pbugp54.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Regenerating library entries">
+<param name="Local" value="pbugp55.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Rebuilding workspaces and targets">
+<param name="Local" value="pbugp56.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Migrating targets">
+<param name="Local" value="pbugp57.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Exporting and importing entries">
+<param name="Local" value="pbugp58.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating runtime libraries">
+<param name="Local" value="pbugp59.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating reports on library contents">
+<param name="Local" value="pbugp60.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Coding Fundamentals">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 7  Writing Scripts ">
+<param name="Local" value="pbugp61.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the Script view ">
+<param name="Local" value="pbugp62.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Opening Script views">
+<param name="Local" value="pbugp63.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Modifying Script view properties">
+<param name="Local" value="pbugp64.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Editing scripts">
+<param name="Local" value="pbugp65.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using AutoScript">
+<param name="Local" value="pbugp66.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Getting context-sensitive Help">
+<param name="Local" value="pbugp67.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Compiling the script ">
+<param name="Local" value="pbugp68.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Declaring variables and external functions">
+<param name="Local" value="pbugp69.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 8  Working with User-Defined Functions ">
+<param name="Local" value="pbugp70.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About user-defined functions ">
+<param name="Local" value="pbugp71.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining user-defined functions ">
+<param name="Local" value="pbugp72.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Modifying user-defined functions ">
+<param name="Local" value="pbugp73.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using your functions ">
+<param name="Local" value="pbugp74.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 9  Working with User Events ">
+<param name="Local" value="pbugp75.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About user events ">
+<param name="Local" value="pbugp76.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining user events ">
+<param name="Local" value="pbugp77.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using a user event ">
+<param name="Local" value="pbugp78.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 10  Working with Structures ">
+<param name="Local" value="pbugp79.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About structures">
+<param name="Local" value="pbugp80.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining structures ">
+<param name="Local" value="pbugp81.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Modifying structures ">
+<param name="Local" value="pbugp82.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using structures ">
+<param name="Local" value="pbugp83.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with Windows">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 11  Working with Windows">
+<param name="Local" value="pbugp84.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About windows ">
+<param name="Local" value="pbugp85.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Types of windows ">
+<param name="Local" value="pbugp86.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the Window painter">
+<param name="Local" value="pbugp87.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Building a new window">
+<param name="Local" value="pbugp88.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Viewing your work ">
+<param name="Local" value="pbugp89.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Writing scripts in windows ">
+<param name="Local" value="pbugp90.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Running a window">
+<param name="Local" value="pbugp91.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using inheritance to build a window ">
+<param name="Local" value="pbugp92.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 12  Working with Controls ">
+<param name="Local" value="pbugp93.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About controls ">
+<param name="Local" value="pbugp94.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Inserting controls in a window ">
+<param name="Local" value="pbugp95.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Selecting controls ">
+<param name="Local" value="pbugp96.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining a control's properties">
+<param name="Local" value="pbugp97.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Naming controls ">
+<param name="Local" value="pbugp98.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Changing text ">
+<param name="Local" value="pbugp99.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Moving and resizing controls ">
+<param name="Local" value="pbugp100.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Copying controls ">
+<param name="Local" value="pbugp101.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining the tab order ">
+<param name="Local" value="pbugp102.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining accelerator keys ">
+<param name="Local" value="pbugp103.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Specifying accessibility of controls ">
+<param name="Local" value="pbugp104.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Choosing colors ">
+<param name="Local" value="pbugp105.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the 3D look">
+<param name="Local" value="pbugp106.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the individual controls ">
+<param name="Local" value="pbugp107.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 13  Understanding Inheritance ">
+<param name="Local" value="pbugp108.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About inheritance ">
+<param name="Local" value="pbugp109.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating new objects using inheritance">
+<param name="Local" value="pbugp110.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="The inheritance hierarchy ">
+<param name="Local" value="pbugp111.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Browsing the class hierarchy">
+<param name="Local" value="pbugp112.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with inherited objects ">
+<param name="Local" value="pbugp113.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using inherited scripts ">
+<param name="Local" value="pbugp114.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 14  Working with Menus and Toolbars">
+<param name="Local" value="pbugp115.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Menus and menu items ">
+<param name="Local" value="pbugp116.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the Menu painter">
+<param name="Local" value="pbugp117.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Building a new menu ">
+<param name="Local" value="pbugp118.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining the appearance and behavior of menu items">
+<param name="Local" value="pbugp119.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Providing toolbars ">
+<param name="Local" value="pbugp120.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Writing scripts for menu items ">
+<param name="Local" value="pbugp121.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using inheritance to build a menu ">
+<param name="Local" value="pbugp122.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using menus in your applications">
+<param name="Local" value="pbugp123.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 15  Working with User Objects ">
+<param name="Local" value="pbugp124.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About user objects ">
+<param name="Local" value="pbugp125.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the User Object painter">
+<param name="Local" value="pbugp126.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Building a new user object ">
+<param name="Local" value="pbugp127.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using inheritance to build user objects ">
+<param name="Local" value="pbugp128.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using user objects ">
+<param name="Local" value="pbugp129.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Communicating between a window and a user object ">
+<param name="Local" value="pbugp130.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with Databases">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 16  Managing the Database">
+<param name="Local" value="pbugp131.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with database components">
+<param name="Local" value="pbugp132.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Managing databases ">
+<param name="Local" value="pbugp133.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the Database painter ">
+<param name="Local" value="pbugp134.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating and deleting an Adaptive Server Anywhere database">
+<param name="Local" value="pbugp135.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with tables">
+<param name="Local" value="pbugp136.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with keys">
+<param name="Local" value="pbugp137.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with indexes">
+<param name="Local" value="pbugp138.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with database views ">
+<param name="Local" value="pbugp139.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Manipulating data ">
+<param name="Local" value="pbugp140.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating and executing SQL statements">
+<param name="Local" value="pbugp141.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Controlling access to the current database">
+<param name="Local" value="pbugp142.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Adding objects for MobiLink synchronization">
+<param name="Local" value="pbugp143.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Managing MobiLink synchronization on the server">
+<param name="Local" value="pbugp144.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 17  Working with Data Pipelines ">
+<param name="Local" value="pbugp145.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About data pipelines ">
+<param name="Local" value="pbugp146.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating a data pipeline">
+<param name="Local" value="pbugp147.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Modifying the data pipeline definition ">
+<param name="Local" value="pbugp148.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Correcting pipeline errors ">
+<param name="Local" value="pbugp149.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Saving a pipeline ">
+<param name="Local" value="pbugp150.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using an existing pipeline ">
+<param name="Local" value="pbugp151.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Pipeline examples ">
+<param name="Local" value="pbugp152.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with DataWindows">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 18  Defining DataWindow Objects ">
+<param name="Local" value="pbugp153.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About DataWindow objects ">
+<param name="Local" value="pbugp154.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Choosing a presentation style ">
+<param name="Local" value="pbugp155.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Building a DataWindow object ">
+<param name="Local" value="pbugp156.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Selecting a data source ">
+<param name="Local" value="pbugp157.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using Quick Select">
+<param name="Local" value="pbugp158.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using SQL Select">
+<param name="Local" value="pbugp159.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using Query">
+<param name="Local" value="pbugp160.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using External">
+<param name="Local" value="pbugp161.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using Stored Procedure">
+<param name="Local" value="pbugp162.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Choosing DataWindow object-wide options ">
+<param name="Local" value="pbugp163.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Generating and saving a DataWindow object ">
+<param name="Local" value="pbugp164.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining queries ">
+<param name="Local" value="pbugp165.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="What's next ">
+<param name="Local" value="pbugp166.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 19  Enhancing DataWindow Objects ">
+<param name="Local" value="pbugp167.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working in the DataWindow painter ">
+<param name="Local" value="pbugp168.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the Preview view of a DataWindow object ">
+<param name="Local" value="pbugp169.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Saving data in an external file">
+<param name="Local" value="pbugp170.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Modifying general DataWindow object properties ">
+<param name="Local" value="pbugp171.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Storing data in a DataWindow object using the Data view">
+<param name="Local" value="pbugp172.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Retrieving data">
+<param name="Local" value="pbugp173.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 20  Working with Controls in DataWindow Objects ">
+<param name="Local" value="pbugp174.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Adding controls to a DataWindow object">
+<param name="Local" value="pbugp175.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Reorganizing controls in a DataWindow object ">
+<param name="Local" value="pbugp176.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Positioning controls in a DataWindow object">
+<param name="Local" value="pbugp177.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Rotating controls in a DataWindow object">
+<param name="Local" value="pbugp178.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 21  Controlling Updates in DataWindow Objects">
+<param name="Local" value="pbugp179.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About controlling updates ">
+<param name="Local" value="pbugp180.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Specifying the table to update">
+<param name="Local" value="pbugp181.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Specifying the unique key columns">
+<param name="Local" value="pbugp182.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Specifying an identity column">
+<param name="Local" value="pbugp183.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Specifying updatable columns">
+<param name="Local" value="pbugp184.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Specifying the WHERE clause for update/delete">
+<param name="Local" value="pbugp185.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Specifying update when key is modified">
+<param name="Local" value="pbugp186.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using stored procedures to update the database">
+<param name="Local" value="pbugp187.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 22  Displaying and Validating Data ">
+<param name="Local" value="pbugp188.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About displaying and validating data ">
+<param name="Local" value="pbugp189.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About display formats ">
+<param name="Local" value="pbugp190.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with display formats">
+<param name="Local" value="pbugp191.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining display formats">
+<param name="Local" value="pbugp192.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About edit styles ">
+<param name="Local" value="pbugp193.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with edit styles">
+<param name="Local" value="pbugp194.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining edit styles">
+<param name="Local" value="pbugp195.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining a code table">
+<param name="Local" value="pbugp196.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About validation rules ">
+<param name="Local" value="pbugp197.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with validation rules">
+<param name="Local" value="pbugp198.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining validation rules">
+<param name="Local" value="pbugp199.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="How to maintain extended attributes">
+<param name="Local" value="pbugp200.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 23  Filtering, Sorting, and Grouping Rows ">
+<param name="Local" value="pbugp201.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Filtering rows ">
+<param name="Local" value="pbugp202.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Sorting rows ">
+<param name="Local" value="pbugp203.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Grouping rows ">
+<param name="Local" value="pbugp204.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 24  Highlighting Information in DataWindow Objects">
+<param name="Local" value="pbugp205.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Highlighting information ">
+<param name="Local" value="pbugp206.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Modifying properties conditionally at runtime">
+<param name="Local" value="pbugp207.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Supplying property values">
+<param name="Local" value="pbugp208.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Specifying colors">
+<param name="Local" value="pbugp209.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 25  Using Nested Reports ">
+<param name="Local" value="pbugp210.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About nested reports ">
+<param name="Local" value="pbugp211.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating a report using the Composite presentation style ">
+<param name="Local" value="pbugp212.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Placing a nested report in another report ">
+<param name="Local" value="pbugp213.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with nested reports ">
+<param name="Local" value="pbugp214.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 26  Working with Graphs ">
+<param name="Local" value="pbugp215.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About graphs ">
+<param name="Local" value="pbugp216.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using graphs in DataWindow objects ">
+<param name="Local" value="pbugp217.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the Graph presentation style">
+<param name="Local" value="pbugp218.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining a graph's properties ">
+<param name="Local" value="pbugp219.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using graphs in windows ">
+<param name="Local" value="pbugp220.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 27  Working with Crosstabs ">
+<param name="Local" value="pbugp221.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About crosstabs ">
+<param name="Local" value="pbugp222.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating crosstabs ">
+<param name="Local" value="pbugp223.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Associating data with a crosstab ">
+<param name="Local" value="pbugp224.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Previewing crosstabs ">
+<param name="Local" value="pbugp225.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Enhancing crosstabs ">
+<param name="Local" value="pbugp226.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 28  Working with TreeViews">
+<param name="Local" value="pbugp227.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="TreeView presentation style">
+<param name="Local" value="pbugp228.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating a new TreeView DataWindow">
+<param name="Local" value="pbugp229.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Adding and deleting TreeView levels">
+<param name="Local" value="pbugp230.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Selecting a tree node and navigating the tree">
+<param name="Local" value="pbugp231.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Sorting rows in a TreeView DataWindow">
+<param name="Local" value="pbugp232.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="TreeView DataWindow Design view">
+<param name="Local" value="pbugp233.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Setting properties for the TreeView DataWindow">
+<param name="Local" value="pbugp234.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="TreeView DataWindow samples">
+<param name="Local" value="pbugp235.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 29  Exporting and Importing XML Data">
+<param name="Local" value="pbugp236.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About XML">
+<param name="Local" value="pbugp237.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="XML support in the DataWindow painter">
+<param name="Local" value="pbugp238.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="The Export/Import Template view for XML">
+<param name="Local" value="pbugp239.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Editing XML templates">
+<param name="Local" value="pbugp240.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Exporting to XML">
+<param name="Local" value="pbugp241.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Importing XML">
+<param name="Local" value="pbugp242.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 30  Working with Rich Text ">
+<param name="Local" value="pbugp243.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About rich text">
+<param name="Local" value="pbugp244.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the RichText presentation style ">
+<param name="Local" value="pbugp245.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the RichTextEdit control">
+<param name="Local" value="pbugp246.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Formatting keys and toolbars">
+<param name="Local" value="pbugp247.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 31  Using OLE in a DataWindow Object ">
+<param name="Local" value="pbugp248.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About using OLE in DataWindow objects ">
+<param name="Local" value="pbugp249.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="OLE objects and the OLE presentation style ">
+<param name="Local" value="pbugp250.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using OLE columns in a DataWindow object ">
+<param name="Local" value="pbugp251.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Running Your Application">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 32  Debugging and Running Applications ">
+<param name="Local" value="pbugp252.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Overview of debugging and running applications ">
+<param name="Local" value="pbugp253.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Debugging an application">
+<param name="Local" value="pbugp254.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Running an application ">
+<param name="Local" value="pbugp255.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 33  Tracing and Profiling Applications ">
+<param name="Local" value="pbugp256.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About tracing and profiling an application">
+<param name="Local" value="pbugp257.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Collecting trace information">
+<param name="Local" value="pbugp258.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Analyzing trace information using profiling tools">
+<param name="Local" value="pbugp259.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Analyzing trace information programmatically">
+<param name="Local" value="pbugp260.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Generating a trace file without timing information">
+<param name="Local" value="pbugp261.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 34  Creating Executables and Components">
+<param name="Local" value="pbugp262.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About building PowerBuilder targets">
+<param name="Local" value="pbugp263.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating a project">
+<param name="Local" value="pbugp264.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining an executable application project">
+<param name="Local" value="pbugp265.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using dynamic libraries ">
+<param name="Local" value="pbugp266.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Distributing resources ">
+<param name="Local" value="pbugp267.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Tracing execution">
+<param name="Local" value="pbugp268.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Building an executable file and dynamic libraries">
+<param name="Local" value="pbugp269.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Building components and proxies">
+<param name="Local" value="pbugp270.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Appendixes">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Appendix A  The Extended Attribute System Tables">
+<param name="Local" value="pbugp271.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the extended attribute system tables">
+<param name="Local" value="pbugp272.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="The extended attribute system tables ">
+<param name="Local" value="pbugp273.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Edit style types for the <b>PBCatEdt</b> table">
+<param name="Local" value="pbugp274.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Appendix B  The OrcaScript Language">
+<param name="Local" value="pbugp275.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About OrcaScript">
+<param name="Local" value="pbugp276.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="OrcaScript Commands">
+<param name="Local" value="pbugp277.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Usage notes for OrcaScript commands and parameters">
+<param name="Local" value="pbugp278.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Application Techniques">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About This Book">
+<param name="Local" value="apptechp1.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+</UL><UL><LI><OBJECT type="text/sitemap">
+<param name="Name" value="Sample Applications">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 1  Using Sample Applications">
+<param name="Local" value="apptechp2.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the sample applications">
+<param name="Local" value="apptechp3.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Installing the sample applications">
+<param name="Local" value="apptechp4.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Opening the sample applications">
+<param name="Local" value="apptechp5.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the Code Examples application">
+<param name="Local" value="apptechp6.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Language Techniques">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 2  Selected Object-Oriented Programming Topics">
+<param name="Local" value="apptechp7.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Terminology review">
+<param name="Local" value="apptechp8.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="PowerBuilder techniques">
+<param name="Local" value="apptechp9.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Other techniques">
+<param name="Local" value="apptechp10.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 3  Selected PowerScript Topics ">
+<param name="Local" value="apptechp11.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Dot notation ">
+<param name="Local" value="apptechp12.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Constant declarations ">
+<param name="Local" value="apptechp13.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Controlling access for instance variables ">
+<param name="Local" value="apptechp14.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Resolving naming conflicts ">
+<param name="Local" value="apptechp15.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Return values from ancestor scripts">
+<param name="Local" value="apptechp16.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Types of arguments for functions and events ">
+<param name="Local" value="apptechp17.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Ancestor and descendent variables ">
+<param name="Local" value="apptechp18.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Optimizing expressions for DataWindow and external objects">
+<param name="Local" value="apptechp19.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Exception handling in PowerBuilder">
+<param name="Local" value="apptechp20.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Garbage collection and memory management">
+<param name="Local" value="apptechp21.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Efficient compiling and performance ">
+<param name="Local" value="apptechp22.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Reading and writing text or binary files">
+<param name="Local" value="apptechp23.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 4  Getting Information About PowerBuilder Class Definitions">
+<param name="Local" value="apptechp24.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Overview of class definition information">
+<param name="Local" value="apptechp25.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Examining a class definition">
+<param name="Local" value="apptechp26.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="User Interface Techniques">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 5  Building an MDI Application ">
+<param name="Local" value="apptechp27.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About MDI ">
+<param name="Local" value="apptechp28.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Building an MDI frame window">
+<param name="Local" value="apptechp29.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using sheets ">
+<param name="Local" value="apptechp30.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Providing MicroHelp ">
+<param name="Local" value="apptechp31.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using toolbars in MDI applications">
+<param name="Local" value="apptechp32.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Sizing the client area ">
+<param name="Local" value="apptechp33.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About keyboard support in MDI applications ">
+<param name="Local" value="apptechp34.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 6  Managing Window Instances ">
+<param name="Local" value="apptechp35.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About window instances ">
+<param name="Local" value="apptechp36.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Declaring instances of windows">
+<param name="Local" value="apptechp37.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using window arrays">
+<param name="Local" value="apptechp38.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Referencing entities in descendants">
+<param name="Local" value="apptechp39.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 7  Using Tab Controls in a Window ">
+<param name="Local" value="apptechp40.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About Tab controls ">
+<param name="Local" value="apptechp41.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining and managing tab pages">
+<param name="Local" value="apptechp42.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Customizing the Tab control ">
+<param name="Local" value="apptechp43.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using Tab controls in scripts ">
+<param name="Local" value="apptechp44.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 8  Using TreeView Controls">
+<param name="Local" value="apptechp45.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About TreeView controls">
+<param name="Local" value="apptechp46.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Populating TreeViews">
+<param name="Local" value="apptechp47.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Managing TreeView items">
+<param name="Local" value="apptechp48.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Managing TreeView pictures">
+<param name="Local" value="apptechp49.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using DataWindow information to populate a TreeView">
+<param name="Local" value="apptechp50.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 9  Using Lists in a Window">
+<param name="Local" value="apptechp51.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About presenting lists">
+<param name="Local" value="apptechp52.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using lists">
+<param name="Local" value="apptechp53.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using drop-down lists">
+<param name="Local" value="apptechp54.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using ListView controls">
+<param name="Local" value="apptechp55.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 10  Using Drag and Drop in a Window">
+<param name="Local" value="apptechp56.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About drag and drop">
+<param name="Local" value="apptechp57.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Drag-and-drop properties, events, and functions">
+<param name="Local" value="apptechp58.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Identifying the dragged control">
+<param name="Local" value="apptechp59.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 11  Providing Online Help for an Application">
+<param name="Local" value="apptechp60.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating Help files">
+<param name="Local" value="apptechp61.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Providing online Help for developers ">
+<param name="Local" value="apptechp62.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Providing online Help for users ">
+<param name="Local" value="apptechp63.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Data Access Techniques">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 12  Using Transaction Objects">
+<param name="Local" value="apptechp64.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About Transaction objects">
+<param name="Local" value="apptechp65.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with Transaction objects">
+<param name="Local" value="apptechp66.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using Transaction objects to call stored procedures">
+<param name="Local" value="apptechp67.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Supported DBMS features when calling stored procedures">
+<param name="Local" value="apptechp68.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 13  Using MobiLink Synchronization">
+<param name="Local" value="apptechp69.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About MobiLink synchronization">
+<param name="Local" value="apptechp70.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with PowerBuilder synchronization objects">
+<param name="Local" value="apptechp71.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Preparing consolidated databases">
+<param name="Local" value="apptechp72.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating remote databases">
+<param name="Local" value="apptechp73.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Synchronization techniques">
+<param name="Local" value="apptechp74.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 14  Using PowerBuilder XML Services">
+<param name="Local" value="apptechp75.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About XML and PowerBuilder">
+<param name="Local" value="apptechp76.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About PBDOM">
+<param name="Local" value="apptechp77.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="PBDOM object hierarchy">
+<param name="Local" value="apptechp78.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="PBDOM node objects">
+<param name="Local" value="apptechp79.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Adding pbdom105.pbx to your application">
+<param name="Local" value="apptechp80.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using PBDOM">
+<param name="Local" value="apptechp81.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Handling PBDOM exceptions">
+<param name="Local" value="apptechp82.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="XML namespaces">
+<param name="Local" value="apptechp83.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 15  Manipulating Graphs">
+<param name="Local" value="apptechp84.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using graphs">
+<param name="Local" value="apptechp85.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Populating a graph with data">
+<param name="Local" value="apptechp86.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Modifying graph properties">
+<param name="Local" value="apptechp87.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Accessing data properties">
+<param name="Local" value="apptechp88.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using point and click">
+<param name="Local" value="apptechp89.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 16  Implementing Rich Text ">
+<param name="Local" value="apptechp90.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using rich text in an application">
+<param name="Local" value="apptechp91.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using a RichText DataWindow object">
+<param name="Local" value="apptechp92.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using a RichTextEdit control ">
+<param name="Local" value="apptechp93.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Rich text and the end user ">
+<param name="Local" value="apptechp94.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 17  Piping Data Between Data Sources ">
+<param name="Local" value="apptechp95.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About data pipelines">
+<param name="Local" value="apptechp96.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Building the objects you need ">
+<param name="Local" value="apptechp97.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Performing some initial housekeeping ">
+<param name="Local" value="apptechp98.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Starting the pipeline ">
+<param name="Local" value="apptechp99.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Handling row errors ">
+<param name="Local" value="apptechp100.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Performing some final housekeeping ">
+<param name="Local" value="apptechp101.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Program Access Techniques">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 18  Using DDE in an Application ">
+<param name="Local" value="apptechp102.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About DDE">
+<param name="Local" value="apptechp103.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="DDE functions and events ">
+<param name="Local" value="apptechp104.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 19  Using OLE in an Application ">
+<param name="Local" value="apptechp105.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="OLE support in PowerBuilder">
+<param name="Local" value="apptechp106.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="OLE controls in a window ">
+<param name="Local" value="apptechp107.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="OLE controls and insertable objects ">
+<param name="Local" value="apptechp108.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="OLE custom controls ">
+<param name="Local" value="apptechp109.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Programmable OLE Objects ">
+<param name="Local" value="apptechp110.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="OLE objects in scripts ">
+<param name="Local" value="apptechp111.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="OLE information in the Browser ">
+<param name="Local" value="apptechp112.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Advanced ways to manipulate OLE objects ">
+<param name="Local" value="apptechp113.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 20  PowerBuilder Runtime Automation Server">
+<param name="Local" value="apptechp114.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the runtime automation server">
+<param name="Local" value="apptechp115.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using a user object as an automation server ">
+<param name="Local" value="apptechp116.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using PowerBuilder as an automation server">
+<param name="Local" value="apptechp117.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating and using a named server ">
+<param name="Local" value="apptechp118.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="More about user objects and the registry ">
+<param name="Local" value="apptechp119.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Deploying an application that uses the automation server ">
+<param name="Local" value="apptechp120.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Runtime automation server reference ">
+<param name="Local" value="apptechp120.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="PowerBuilder.Application server object">
+<param name="Local" value="apptechp120.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="CreateObject function">
+<param name="Local" value="apptechp121.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="GenerateGUID function">
+<param name="Local" value="apptechp122.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="GenerateRegFile function">
+<param name="Local" value="apptechp123.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="GenerateTypeLib function">
+<param name="Local" value="apptechp124.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Exception codes">
+<param name="Local" value="apptechp124.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Sample registry update file">
+<param name="Local" value="apptechp124.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 21  Building a Mail-Enabled Application">
+<param name="Local" value="apptechp125.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About MAPI">
+<param name="Local" value="apptechp126.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using MAPI">
+<param name="Local" value="apptechp127.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 22  Using External Functions and Other Processing Extensions">
+<param name="Local" value="apptechp128.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using external functions">
+<param name="Local" value="apptechp129.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using utility functions to manage information">
+<param name="Local" value="apptechp130.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Sending Windows messages">
+<param name="Local" value="apptechp131.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="The Message object">
+<param name="Local" value="apptechp132.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Context information ">
+<param name="Local" value="apptechp133.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Developing Distributed Applications">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 23  Distributed Application Development with PowerBuilder">
+<param name="Local" value="apptechp134.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Distributed application architecture">
+<param name="Local" value="apptechp135.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Server support">
+<param name="Local" value="apptechp136.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 24  Building an EAServer Component">
+<param name="Local" value="apptechp137.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About building an EAServer component">
+<param name="Local" value="apptechp138.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with shared and service components">
+<param name="Local" value="apptechp139.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Providing support for instance pooling">
+<param name="Local" value="apptechp140.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Providing support for transactions">
+<param name="Local" value="apptechp141.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Accessing a database from an EAServer component">
+<param name="Local" value="apptechp142.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining the component interface">
+<param name="Local" value="apptechp143.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Implementing an existing interface">
+<param name="Local" value="apptechp144.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Invoking another server component's methods">
+<param name="Local" value="apptechp145.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Accessing component properties">
+<param name="Local" value="apptechp146.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Exposing an NVO as a Web service">
+<param name="Local" value="apptechp147.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Testing and debugging the component">
+<param name="Local" value="apptechp148.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Printing data">
+<param name="Local" value="apptechp149.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Deploying a component to EAServer">
+<param name="Local" value="apptechp150.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 25  Building an EAServer Client ">
+<param name="Local" value="apptechp151.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About building an EAServer client">
+<param name="Local" value="apptechp152.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Connecting to EAServer ">
+<param name="Local" value="apptechp153.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Generating EAServer proxy objects">
+<param name="Local" value="apptechp154.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Invoking component methods">
+<param name="Local" value="apptechp155.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the JaguarORB object">
+<param name="Local" value="apptechp156.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Client- and component-demarcated transactions">
+<param name="Local" value="apptechp157.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Requesting a message back from the server">
+<param name="Local" value="apptechp158.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Handling errors ">
+<param name="Local" value="apptechp159.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Deploying the client application">
+<param name="Local" value="apptechp160.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 26  Using SSL in PowerBuilder clients">
+<param name="Local" value="apptechp161.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using secure connections with EAServer">
+<param name="Local" value="apptechp162.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="SSL connections in PowerBuilder">
+<param name="Local" value="apptechp163.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Establishing a secure connection">
+<param name="Local" value="apptechp164.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using SSL callbacks">
+<param name="Local" value="apptechp165.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Retrieving session security information">
+<param name="Local" value="apptechp166.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 27  Building a COM or COM+ Component">
+<param name="Local" value="apptechp167.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About building COM and COM+ components">
+<param name="Local" value="apptechp168.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the Component Object Model">
+<param name="Local" value="apptechp169.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining the component interface">
+<param name="Local" value="apptechp170.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Accessing a database from a COM component">
+<param name="Local" value="apptechp171.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Providing support for transactions">
+<param name="Local" value="apptechp172.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Invoking another server component's methods">
+<param name="Local" value="apptechp173.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Security issues">
+<param name="Local" value="apptechp174.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Building COM/COM+ components in the Project painter">
+<param name="Local" value="apptechp175.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="How the PowerBuilder COM object executes">
+<param name="Local" value="apptechp176.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Deploying a PowerBuilder COM server">
+<param name="Local" value="apptechp177.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Accessing PowerBuilder COM servers from clients">
+<param name="Local" value="apptechp178.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 28  Building a COM or COM+ Client">
+<param name="Local" value="apptechp179.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About building a COM or COM+ client">
+<param name="Local" value="apptechp180.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Connecting to a COM server">
+<param name="Local" value="apptechp181.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Interacting with the COM component">
+<param name="Local" value="apptechp182.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Controlling transactions from a client">
+<param name="Local" value="apptechp183.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 29  Building an EJB client ">
+<param name="Local" value="apptechp184.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About building an EJB client">
+<param name="Local" value="apptechp185.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Adding pbejbclient105.pbx to your application">
+<param name="Local" value="apptechp186.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Generating EJB proxy objects">
+<param name="Local" value="apptechp187.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating a Java VM">
+<param name="Local" value="apptechp188.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Connecting to the server">
+<param name="Local" value="apptechp189.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Invoking component methods">
+<param name="Local" value="apptechp190.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Exception handling">
+<param name="Local" value="apptechp191.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Client-managed transactions">
+<param name="Local" value="apptechp192.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Debugging the client">
+<param name="Local" value="apptechp193.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Developing Web Applications">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 30  Web Application Development with PowerBuilder">
+<param name="Local" value="apptechp194.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Building Web applications">
+<param name="Local" value="apptechp195.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Web services">
+<param name="Local" value="apptechp196.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Web targets">
+<param name="Local" value="apptechp197.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="JSP targets">
+<param name="Local" value="apptechp198.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Web DataWindow">
+<param name="Local" value="apptechp199.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="DataWindow Web control for ActiveX">
+<param name="Local" value="apptechp200.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="DataWindow plug-in">
+<param name="Local" value="apptechp201.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="PowerBuilder window plug-in">
+<param name="Local" value="apptechp202.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="PowerBuilder window ActiveX">
+<param name="Local" value="apptechp203.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 31  Building a Web Services Client">
+<param name="Local" value="apptechp204.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About Web services ">
+<param name="Local" value="apptechp205.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Importing objects from an extension file">
+<param name="Local" value="apptechp206.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Generating Web service proxy objects">
+<param name="Local" value="apptechp207.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Connecting to a SOAP server">
+<param name="Local" value="apptechp208.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Invoking the Web service method">
+<param name="Local" value="apptechp209.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using .NET Web services with custom headers">
+<param name="Local" value="apptechp210.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Exception handling">
+<param name="Local" value="apptechp211.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the UDDI Inquiry API">
+<param name="Local" value="apptechp212.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 32  Using the DataWindow Plug-in">
+<param name="Local" value="apptechp213.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the DataWindow plug-in">
+<param name="Local" value="apptechp214.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Saving a Powersoft report (PSR)">
+<param name="Local" value="apptechp215.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating an HTML page">
+<param name="Local" value="apptechp216.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Setting up the Web server">
+<param name="Local" value="apptechp217.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Setting up users' workstations">
+<param name="Local" value="apptechp218.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 33  Using the PowerBuilder Window Plug-in">
+<param name="Local" value="apptechp219.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the PowerBuilder window plug-in">
+<param name="Local" value="apptechp220.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Installing and configuring the PowerBuilder window plug-ins">
+<param name="Local" value="apptechp221.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the secure PowerBuilder window plug-in">
+<param name="Local" value="apptechp222.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Developing and deploying a PowerBuilder window plug-in application">
+<param name="Local" value="apptechp223.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating the PowerBuilder application">
+<param name="Local" value="apptechp224.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating an HTML page">
+<param name="Local" value="apptechp225.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Setting up the server">
+<param name="Local" value="apptechp226.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Setting up users' workstations">
+<param name="Local" value="apptechp227.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 34  Using the PowerBuilder Window ActiveX">
+<param name="Local" value="apptechp228.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the PowerBuilder window ActiveX">
+<param name="Local" value="apptechp229.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating the PowerBuilder application">
+<param name="Local" value="apptechp230.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating an HTML page">
+<param name="Local" value="apptechp231.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Events for the PowerBuilder window ActiveX">
+<param name="Local" value="apptechp232.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Setting up the server">
+<param name="Local" value="apptechp233.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Setting up users' workstations">
+<param name="Local" value="apptechp234.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="General Techniques">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 35  Internationalizing an Application">
+<param name="Local" value="apptechp235.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Developing international applications">
+<param name="Local" value="apptechp236.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using Unicode ">
+<param name="Local" value="apptechp237.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Internationalizing the user interface">
+<param name="Local" value="apptechp238.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Localizing the product">
+<param name="Local" value="apptechp239.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 36  Building Accessible Applications">
+<param name="Local" value="apptechp240.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Understanding accessibility challenges">
+<param name="Local" value="apptechp241.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Accessibility requirements for software and Web applications">
+<param name="Local" value="apptechp242.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating accessible software applications with PowerBuilder">
+<param name="Local" value="apptechp243.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About VPATs">
+<param name="Local" value="apptechp244.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Testing product accessibility">
+<param name="Local" value="apptechp245.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 37  Printing from an Application ">
+<param name="Local" value="apptechp246.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Printing functions ">
+<param name="Local" value="apptechp247.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Printing basics ">
+<param name="Local" value="apptechp248.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Printing a job ">
+<param name="Local" value="apptechp249.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using tabs ">
+<param name="Local" value="apptechp250.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Stopping a print job ">
+<param name="Local" value="apptechp251.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Advanced printing techniques ">
+<param name="Local" value="apptechp252.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 38  Managing Initialization Files and the Windows Registry ">
+<param name="Local" value="apptechp253.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About preferences and default settings">
+<param name="Local" value="apptechp254.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Managing information in initialization files">
+<param name="Local" value="apptechp255.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Managing information in the Windows registry">
+<param name="Local" value="apptechp256.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 39  Building InfoMaker Styles and Actions ">
+<param name="Local" value="apptechp257.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About form styles ">
+<param name="Local" value="apptechp258.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Naming the DataWindow controls in a form style">
+<param name="Local" value="apptechp259.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Building and using a form style">
+<param name="Local" value="apptechp260.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Modifying an existing style ">
+<param name="Local" value="apptechp261.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Building a style from scratch ">
+<param name="Local" value="apptechp262.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Completing the style ">
+<param name="Local" value="apptechp263.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the style">
+<param name="Local" value="apptechp264.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Deployment Techniques">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 40  Packaging an Application for Deployment">
+<param name="Local" value="apptechp265.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About deploying applications">
+<param name="Local" value="apptechp266.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating an executable version of your application">
+<param name="Local" value="apptechp267.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Delivering your application to end users">
+<param name="Local" value="apptechp268.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 41  Deploying Applications and Components">
+<param name="Local" value="apptechp269.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Deploying applications, components, and supporting files">
+<param name="Local" value="apptechp270.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="PowerBuilder Runtime Packager">
+<param name="Local" value="apptechp271.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Third-party components and deployment">
+<param name="Local" value="apptechp272.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="PowerBuilder runtime files">
+<param name="Local" value="apptechp273.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Database connections">
+<param name="Local" value="apptechp274.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Java support">
+<param name="Local" value="apptechp275.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="PowerBuilder extensions">
+<param name="Local" value="apptechp276.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="PDF and XSL-FO export">
+<param name="Local" value="apptechp277.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="DataWindow Web control for ActiveX">
+<param name="Local" value="apptechp278.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Plug-ins and PowerBuilder window ActiveX controls">
+<param name="Local" value="apptechp279.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="PowerBuilder components on EAServer ">
+<param name="Local" value="apptechp280.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="PowerBuilder COM servers">
+<param name="Local" value="apptechp281.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="PowerBuilder automation servers">
+<param name="Local" value="apptechp282.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Web DataWindow on EAServer ">
+<param name="Local" value="apptechp283.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Web DataWindow on COM+ or IIS">
+<param name="Local" value="apptechp284.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+</UL>
+<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="DataWindow Programmer's Guide">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About This Book">
+<param name="Local" value="dwprgugp1.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+</UL><UL><LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 1  About DataWindow Technology">
+<param name="Local" value="dwprgugp2.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About DataWindow objects, controls, and components">
+<param name="Local" value="dwprgugp3.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Choosing a DataWindow technology">
+<param name="Local" value="dwprgugp4.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="PowerBuilder DataWindow control">
+<param name="Local" value="dwprgugp5.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 2  Using DataWindow Objects">
+<param name="Local" value="dwprgugp6.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About using DataWindow objects">
+<param name="Local" value="dwprgugp7.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Putting a DataWindow object into a control">
+<param name="Local" value="dwprgugp8.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Accessing the database">
+<param name="Local" value="dwprgugp9.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Importing data from an external source">
+<param name="Local" value="dwprgugp10.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Manipulating data in a DataWindow control">
+<param name="Local" value="dwprgugp11.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Accessing the properties of a DataWindow object">
+<param name="Local" value="dwprgugp12.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Handling DataWindow errors">
+<param name="Local" value="dwprgugp13.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Updating the database">
+<param name="Local" value="dwprgugp14.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating reports">
+<param name="Local" value="dwprgugp15.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using nested reports">
+<param name="Local" value="dwprgugp16.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using crosstabs">
+<param name="Local" value="dwprgugp17.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Generating HTML">
+<param name="Local" value="dwprgugp18.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 3  Dynamically Changing DataWindow Objects ">
+<param name="Local" value="dwprgugp19.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About dynamic DataWindow processing ">
+<param name="Local" value="dwprgugp20.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Modifying a DataWindow object ">
+<param name="Local" value="dwprgugp21.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating a DataWindow object ">
+<param name="Local" value="dwprgugp22.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Providing query ability to users ">
+<param name="Local" value="dwprgugp23.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Providing Help buttons ">
+<param name="Local" value="dwprgugp24.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Reusing a DataWindow object ">
+<param name="Local" value="dwprgugp25.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 4  Using DataStore Objects ">
+<param name="Local" value="dwprgugp26.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About DataStores">
+<param name="Local" value="dwprgugp27.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with a DataStore ">
+<param name="Local" value="dwprgugp28.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using a custom DataStore object ">
+<param name="Local" value="dwprgugp29.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Accessing and manipulating data in a DataStore ">
+<param name="Local" value="dwprgugp30.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Sharing information ">
+<param name="Local" value="dwprgugp31.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 5  Manipulating Graphs">
+<param name="Local" value="dwprgugp32.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using graphs">
+<param name="Local" value="dwprgugp33.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Modifying graph properties">
+<param name="Local" value="dwprgugp34.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Accessing data properties">
+<param name="Local" value="dwprgugp35.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using point and click">
+<param name="Local" value="dwprgugp36.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 6  Using the Web DataWindow">
+<param name="Local" value="dwprgugp37.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="What the Web DataWindow is">
+<param name="Local" value="dwprgugp38.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the XML Web DataWindow">
+<param name="Local" value="dwprgugp39.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Designing DataWindow objects for the Web DataWindow">
+<param name="Local" value="dwprgugp40.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Setting Web DataWindow design-time control properties">
+<param name="Local" value="dwprgugp41.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Setting up database connections">
+<param name="Local" value="dwprgugp42.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Deploying DataWindow objects to the component server">
+<param name="Local" value="dwprgugp43.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating Web page templates">
+<param name="Local" value="dwprgugp44.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Writing client-side scripts">
+<param name="Local" value="dwprgugp45.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Customizing Web DataWindow generation">
+<param name="Local" value="dwprgugp46.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 7  Server-Side Processing for the Web DataWindow">
+<param name="Local" value="dwprgugp47.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Server configuration requirements">
+<param name="Local" value="dwprgugp48.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Instantiating and configuring the server component">
+<param name="Local" value="dwprgugp49.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using a custom server component">
+<param name="Local" value="dwprgugp50.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using service classes">
+<param name="Local" value="dwprgugp51.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 8  Using the DataWindow Web Control for ActiveX">
+<param name="Local" value="dwprgugp52.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the Web ActiveX">
+<param name="Local" value="dwprgugp53.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="HTML for inserting the controls on a Web page">
+<param name="Local" value="dwprgugp54.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="How to use the Web ActiveX in a Web target">
+<param name="Local" value="dwprgugp55.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="DataWindow objects for the Web ActiveX">
+<param name="Local" value="dwprgugp56.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the DataWindow Transaction Object control">
+<param name="Local" value="dwprgugp57.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Making database connections">
+<param name="Local" value="dwprgugp58.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Coding for the Web ActiveX">
+<param name="Local" value="dwprgugp59.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Deploying the Web ActiveX">
+<param name="Local" value="dwprgugp60.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Connecting to Your Database">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About This Book">
+<param name="Local" value="connpbp1.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+</UL><UL><LI><OBJECT type="text/sitemap">
+<param name="Name" value="Introduction to Database Connections">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 1  Understanding Data Connections">
+<param name="Local" value="connpbp2.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="How to find the information you need">
+<param name="Local" value="connpbp3.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Accessing data in PowerBuilder">
+<param name="Local" value="connpbp4.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Accessing the EAS Demo DB">
+<param name="Local" value="connpbp5.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using database profiles">
+<param name="Local" value="connpbp6.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="What to do next">
+<param name="Local" value="connpbp7.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with Standard Database Interfaces">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 2  Using the ODBC Interface">
+<param name="Local" value="connpbp8.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the ODBC interface">
+<param name="Local" value="connpbp9.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Preparing ODBC data sources">
+<param name="Local" value="connpbp10.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining ODBC data sources">
+<param name="Local" value="connpbp11.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining the ODBC interface">
+<param name="Local" value="connpbp12.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Sybase Adaptive Server Anywhere">
+<param name="Local" value="connpbp13.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 3  Using the JDBC Interface">
+<param name="Local" value="connpbp14.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the JDBC interface">
+<param name="Local" value="connpbp15.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Preparing to use the JDBC interface">
+<param name="Local" value="connpbp16.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining the JDBC interface">
+<param name="Local" value="connpbp17.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 4  Using the OLE DB interface">
+<param name="Local" value="connpbp18.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the OLE DB interface">
+<param name="Local" value="connpbp19.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Preparing to use the OLE DB interface">
+<param name="Local" value="connpbp20.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining the OLE DB interface">
+<param name="Local" value="connpbp21.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 5  Using the ADO.NET interface">
+<param name="Local" value="connpbp22.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About ADO.NET">
+<param name="Local" value="connpbp23.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the PowerBuilder ADO.NET database interface">
+<param name="Local" value="connpbp24.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Preparing to use the ADO.NET interface">
+<param name="Local" value="connpbp25.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Defining the ADO.NET interface">
+<param name="Local" value="connpbp26.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with Native Database Interfaces">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 6  Using Native Database Interfaces">
+<param name="Local" value="connpbp27.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About native database interfaces">
+<param name="Local" value="connpbp28.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Informix">
+<param name="Local" value="connpbp29.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Oracle">
+<param name="Local" value="connpbp30.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Adaptive Server Enterprise">
+<param name="Local" value="connpbp31.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Installing PowerBuilder stored procedures in Adaptive Server databases">
+<param name="Local" value="connpbp32.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="DirectConnect ">
+<param name="Local" value="connpbp33.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Creating the extended attribute system tables in DB2 databases">
+<param name="Local" value="connpbp34.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with Database Connections">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 7  Managing Database Connections">
+<param name="Local" value="connpbp35.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About database connections">
+<param name="Local" value="connpbp36.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Connecting to a database">
+<param name="Local" value="connpbp37.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Maintaining database profiles">
+<param name="Local" value="connpbp38.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Sharing database profiles">
+<param name="Local" value="connpbp39.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Importing and exporting database profiles">
+<param name="Local" value="connpbp40.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the PowerBuilder extended attribute system tables">
+<param name="Local" value="connpbp41.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 8  Setting Additional Connection Parameters">
+<param name="Local" value="connpbp42.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Basic steps for setting connection parameters">
+<param name="Local" value="connpbp43.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the Database Profile Setup dialog box">
+<param name="Local" value="connpbp44.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Setting database parameters">
+<param name="Local" value="connpbp45.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Setting database preferences">
+<param name="Local" value="connpbp46.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 9  Troubleshooting Your Connection">
+<param name="Local" value="connpbp47.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Overview of troubleshooting tools">
+<param name="Local" value="connpbp48.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the Database Trace tool">
+<param name="Local" value="connpbp49.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the SQL statement trace utility">
+<param name="Local" value="connpbp50.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the ODBC Driver Manager Trace">
+<param name="Local" value="connpbp51.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Using the JDBC Driver Manager Trace">
+<param name="Local" value="connpbp52.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Working with Transaction Servers">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Chapter 10  Making Database Connections in PowerBuilder Components">
+<param name="Local" value="connpbp53.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Deploying a component to EAServer">
+<param name="Local" value="connpbp54.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Deploying a COM component to COM+">
+<param name="Local" value="connpbp55.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="DBParm support for PowerBuilder components ">
+<param name="Local" value="connpbp56.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Appendix">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Appendix A  Adding Functions to the PBODB105 Initialization File">
+<param name="Local" value="connpbp57.htm">
+<param name="ImageNumber" value="5">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="About the PBODB105 initialization file">
+<param name="Local" value="connpbp58.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+<param name="Name" value="Adding functions to PBODB105.INI">
+<param name="Local" value="connpbp59.htm">
+<param name="ImageNumber" value="11">
+</OBJECT>
+</UL>
+</UL>
+</UL>
+<LI> <OBJECT type="text/sitemap">
+	<param name="Name" value="Working with Web and JSP Targets">
+	</OBJECT>
+	<OBJECT type="text/sitemap">
+		<param name="Merge" value="wbtarget105.chm::\wbtarget.hhc">
+	</OBJECT>
+</UL>
+</BODY></HTML>

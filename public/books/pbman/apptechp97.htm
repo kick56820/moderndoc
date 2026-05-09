@@ -1,0 +1,267 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Building the objects you need </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp96.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp98.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF304004411"></A><h1>Building the objects you need </h1>
+<A NAME="TI2766"></A><p>To implement data piping in an application, you need to build
+a few different objects:<A NAME="TI2767"></A>
+<ul>
+<li class=fi>A
+Pipeline object</li>
+<li class=ds>A supporting user object</li>
+<li class=ds>A window
+</li>
+</ul>
+</p>
+<A NAME="TI2768"></A><h2>Building a Pipeline object</h2>
+<A NAME="TI2769"></A><p>You must build a Pipeline object to specify the data definition
+and access aspects of the pipeline that you want your application
+to execute. Use the Data Pipeline painter in PowerBuilder to create
+this object and define the characteristics you want it to have.</p>
+<A NAME="TI2770"></A><h4>Characteristics to define</h4>
+<A NAME="TI2771"></A><p>Among the characteristics you can define in the Data Pipeline
+painter are:<A NAME="TI2772"></A>
+<ul>
+<li class=fi><i>The
+source tables</i> to access and the data to retrieve from
+them (you can also access database stored procedures as the data
+source)   </li>
+<li class=ds><i>The destination table</i> to which
+you want that data piped </li>
+<li class=ds><i>The piping operation</i> to perform
+(create, replace, refresh, append, or update)</li>
+<li class=ds><i>The frequency of commits</i> during
+the piping operation (after every <i>n</i> rows are
+piped, or after all rows are piped, or not at all&#8212;if you
+plan to code your own commit logic) </li>
+<li class=ds><i>The number of errors</i> to allow
+before the piping operation is terminated </li>
+<li class=ds><i>Whether or not to pipe extended attributes</i> to
+the destination database (from the PowerBuilder repository in the
+source database) 
+</li>
+</ul>
+</p>
+<A NAME="TI2773"></A><p>For full details on using the Data Pipeline
+painter to build your Pipeline object, see the <i>PowerBuilder
+User's Guide</i>
+.</p>
+<A NAME="TI2774"></A><h4>Example</h4>
+<A NAME="TI2775"></A><p>Here is an example of how you would use the Data Pipeline
+painter to define a Pipeline object named <b>pipe_sales_extract1</b> (one
+of two Pipeline objects employed by the <b>w_sales_extract</b> window
+in a sample order entry application).</p>
+<p><b>The source data to pipe</b>   This Pipeline object joins two tables (<b>Sales_rep</b> and <b>Sales_summary</b>)
+from the company's sales database to provide the source data
+to be piped. It retrieves just the rows from a particular quarter
+of the year (which the application must specify by supplying a value
+for the retrieval argument named <i>quarter</i>):</p>
+<br><img src="images/pippnt1.gif">
+<A NAME="TI2776"></A><p>Notice that this Pipeline object also indicates specific columns
+to be piped from each source table (<b>srep_id</b>, <b>srep_lname</b>,
+and <b>srep_fname</b> from the <b>Sales_rep</b> table,
+as well as <b>ssum_quarter</b> and <b>ssum_rep_team</b> from
+the <b>Sales_summary</b> table). In addition,
+it defines a computed column to be calculated and piped. This computed
+column subtracts the <b>ssum_rep_quota</b> column
+of the <b>Sales_summary</b> table from the <b>ssum_rep_actual</b> column:</p>
+<br><img src="images/pippnt2.gif">
+<p><b>How to pipe the data</b>   The details of how <b>pipe_sales_extract1</b> is
+to pipe its source data are specified here:</p>
+<br><img src="images/pippnt3.gif">
+<A NAME="TI2777"></A><p>Notice that this Pipeline object is defined to create a new
+destination table named <b>Quarterly_extract</b>.
+A little later you will learn how the application specifies the
+destination database in which to put this table (as well as how
+it specifies the source database in which to look for the source
+tables).</p>
+<A NAME="TI2778"></A><p>Also notice that:<A NAME="TI2779"></A>
+<ul>
+<li class=fi><i>A
+commit</i> will be performed only after all appropriate rows
+have been piped (which means that if the pipeline's execution
+is terminated early, all changes to the <b>Quarterly_extract</b> table
+will be rolled back).</li>
+<li class=ds><i>No error limit</i> is to be imposed
+by the application, so any number of rows can be in error without
+causing the pipeline's execution to terminate early.</li>
+<li class=ds><i>No extended attributes</i> are
+to be piped to the destination database.</li>
+<li class=ds><i>The primary key</i> of the <b>Quarterly_extract</b> table
+is to consist of the <b>srep_id</b> column
+and the <b>ssum_quarter</b> column.</li>
+<li class=ds><i>The computed column</i> that the
+application is to create in the <b>Quarterly_extract</b> table
+is to be named <b>computed_net</b>.
+</li>
+</ul>
+</p>
+<A NAME="TI2780"></A><h2>Building a supporting user object</h2>
+<A NAME="TI2781"></A><p>So
+far you have seen how your Pipeline object defines the details of
+the data and access for a pipeline, but a Pipeline object does not
+include the logistical supports&#8212;properties, events, and
+functions&#8212;that an application requires to handle pipeline
+execution and control.</p>
+<A NAME="TI2782"></A><h4>About the Pipeline system object</h4>
+<A NAME="TI2783"></A><p>To provide these logistical supports, you must build an appropriate
+user object inherited from the PowerBuilder <strong>Pipeline
+system object</strong>. <A HREF="apptechp97.htm#CHDDFAAB">Table 17-1</A> shows some of the system object's
+properties, events, and functions that enable your application to
+manage a Pipeline object at runtime.</p>
+<A NAME="CHDDFAAB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 17-1: Pipeline system object properties,
+events, and functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2784"></A>Properties</th>
+<th  rowspan="1"  ><A NAME="TI2785"></A>Events</th>
+<th  rowspan="1"  ><A NAME="TI2786"></A>Functions</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2787"></A>DataObject<A NAME="TI2788"></A><p>RowsRead</p><A NAME="TI2789"></A><p>RowsWritten</p><A NAME="TI2790"></A><p>RowsInError</p><A NAME="TI2791"></A><p>Syntax</p></td>
+<td  rowspan="1"  ><A NAME="TI2792"></A>PipeStart<A NAME="TI2793"></A><p>PipeMeter</p><A NAME="TI2794"></A><p>PipeEnd</p></td>
+<td  rowspan="1"  ><A NAME="TI2795"></A><b>Start</b><A NAME="TI2796"></A><p><b>Repair</b></p><A NAME="TI2797"></A><p><b>Cancel</b></p></td>
+</tr>
+</table>
+<A NAME="TI2798"></A><p>A little later in this chapter you will learn how to use most
+of these properties, events, and functions in your application.</p>
+<A NAME="TI2799"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To build the supporting user object for a pipeline: </p>
+<ol><li class=fi><p>Select Standard Class from the PB Object
+tab of the New dialog box.</p><p>The Select Standard Class Type dialog box displays, prompting
+you to specify the name of the PowerBuilder system object (class)
+from which you want to inherit your new user object:</p><br><img src="images/pipstan.gif"><br>
+</li>
+<li class=ds><p>Select pipeline and click OK.</p></li>
+<li class=ds><p>Make any changes you want to the user object (although
+none are required). This might involve coding events, functions,
+or variables for use in your application.</p><p>To learn about one particularly useful specialization
+you can make to your user object, see <A HREF="apptechp99.htm#X-REF304626868">"Monitoring pipeline
+progress"</A>.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Planning ahead for reuse</span> <A NAME="TI2800"></A>As you work on your user object, keep in mind that it can
+be reused in the future to support any other pipelines you want
+to execute. It is not automatically tied in any way to a particular
+Pipeline object you have built in the Data Pipeline painter.</p>
+<A NAME="TI2801"></A>To take advantage of this flexibility, make sure that the
+events, functions, and variables you code in the user object are
+generic enough to accommodate any Pipeline object.</p>
+</li>
+<li class=ds><p>Save the user object.</p></li></ol>
+<br><A NAME="TI2802"></A><p>For more information on working with the User
+Object painter, see the <i>PowerBuilder User's Guide</i>
+.</p>
+<A NAME="TI2803"></A><h2>Building a window</h2>
+<A NAME="TI2804"></A><p>One other object you need when piping data in your application
+is a window. You use this window to provide a user interface to
+the pipeline, enabling people to interact with it in one or more
+ways. These include:<A NAME="TI2805"></A>
+<ul>
+<li class=fi><i>Starting</i> the
+pipeline's execution</li>
+<li class=ds><i>Displaying and repairing</i> any
+errors that occur</li>
+<li class=ds><i>Canceling</i> the pipeline's
+execution if necessary
+</li>
+</ul>
+</p>
+<A NAME="TI2806"></A><h4>Required features for your window</h4>
+<A NAME="TI2807"></A><p>When you build your window, you must include a DataWindow
+control that the pipeline itself can use to display error rows (that
+is, rows it cannot pipe to the destination table for some reason).
+You do not have to associate a DataWindow object with this DataWindow
+control&#8212;the pipeline provides one of its own at runtime.</p>
+<A NAME="TI2808"></A><p>To learn how to work with this DataWindow
+control in your application, see <A HREF="apptechp99.htm#X-REF304004438">"Starting the pipeline "</A> and <A HREF="apptechp100.htm#X-REF304004456">"Handling row errors "</A>.</p>
+<A NAME="TI2809"></A><h4>Optional features for your window</h4>
+<A NAME="TI2810"></A><p>Other than including the required DataWindow control, you
+can design the window as you like. You will typically want to include
+various other controls, such as:<A NAME="TI2811"></A>
+<ul>
+<li class=fi><i>CommandButton or PictureButton controls</i> to
+let the user initiate actions (such as starting, repairing, or canceling
+the pipeline)</li>
+<li class=ds><i>StaticText controls</i> to display
+pipeline status information</li>
+<li class=ds><i>Additional DataWindow controls</i> to
+display the contents of the source and/or destination tables
+</li>
+</ul>
+</p>
+<A NAME="TI2812"></A><p>If you need assistance with building a window,
+see the <i>PowerBuilder User's Guide</i>
+.</p>
+<A NAME="TI2813"></A><h4>Example</h4>
+<A NAME="TI2814"></A><p>The following window handles the user-interface aspect of
+the data piping in the order entry application. This window is named <b>w_sales_extract</b>:</p>
+<br><img src="images/pipiwin.gif">
+<A NAME="TI2815"></A><p>Several of the controls in this window are used to implement
+particular pipeline-related capabilities. <A HREF="apptechp97.htm#CHDCHJIB">Table 17-2</A> provides more information
+about them.</p>
+<A NAME="CHDCHJIB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 17-2: Window controls to implement
+pipeline capabilities</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2816"></A>Control type</th>
+<th  rowspan="1"  ><A NAME="TI2817"></A>Control name</th>
+<th  rowspan="1"  ><A NAME="TI2818"></A>Purpose</th>
+</tr>
+<tr><td  rowspan="2"  ><A NAME="TI2819"></A>RadioButton<A NAME="TI2820"></A><p></p></td>
+<td  rowspan="1"  ><A NAME="TI2821"></A>rb_create</td>
+<td  rowspan="1"  ><A NAME="TI2822"></A>Selects <b>pipe_sales_extract1</b> as
+the Pipeline object to execute</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2823"></A>rb_insert</td>
+<td  rowspan="1"  ><A NAME="TI2824"></A>Selects <b>pipe_sales_extract2</b> as
+the Pipeline object to execute</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td  rowspan="4"  ><A NAME="TI2825"></A>CommandButton<A NAME="TI2826"></A><p></p><A NAME="TI2827"></A><p></p><A NAME="TI2828"></A><p></p></td>
+<td  rowspan="1"  ><A NAME="TI2829"></A>cb_write</td>
+<td  rowspan="1"  ><A NAME="TI2830"></A>Starts execution of the selected pipeline</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2831"></A>cb_stop</td>
+<td  rowspan="1"  ><A NAME="TI2832"></A>Cancels pipeline execution or applying
+of row repairs</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2833"></A>cb_applyfixes</td>
+<td  rowspan="1"  ><A NAME="TI2834"></A>Applies row repairs made by the user
+(in the <b>dw_pipe_errors</b> DataWindow
+control) to the destination table</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2835"></A>cb_forgofixes</td>
+<td  rowspan="1"  ><A NAME="TI2836"></A>Clears all error rows from the <b>dw_pipe_errors</b> DataWindow
+control (for use when the user decides not to make repairs)</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td  rowspan="2"  ><A NAME="TI2837"></A>DataWindow<A NAME="TI2838"></A><p></p></td>
+<td  rowspan="1"  ><A NAME="TI2839"></A>dw_review_extract</td>
+<td  rowspan="1"  ><A NAME="TI2840"></A>Displays the current contents of the destination
+table (<b>Quarterly_extract</b>)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2841"></A>dw_pipe_errors</td>
+<td  rowspan="1"  ><A NAME="TI2842"></A>(<i>Required</i>) Used
+by the pipeline itself to automatically display the PowerBuilder pipeline-error
+DataWindow (which lists rows that cannot be piped due to some error)</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td  rowspan="3"  ><A NAME="TI2843"></A>StaticText<A NAME="TI2844"></A><p></p><A NAME="TI2845"></A><p></p></td>
+<td  rowspan="1"  ><A NAME="TI2846"></A>st_status_read</td>
+<td  rowspan="1"  ><A NAME="TI2847"></A>Displays the count of rows that the pipeline
+reads from the source tables</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2848"></A>st_status_written</td>
+<td  rowspan="1"  ><A NAME="TI2849"></A>Displays the count of rows that the pipeline
+writes to the destination table or places in <b>dw_pipe_errors</b></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2850"></A>st_status_error</td>
+<td  rowspan="1"  ><A NAME="TI2851"></A>Displays the count of rows that the pipeline
+places in <b>dw_pipe_errors</b> (because
+they are in error)</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+

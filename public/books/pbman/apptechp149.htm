@@ -1,0 +1,192 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Printing data</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp148.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp150.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CEGGHJCI"></A><h1>Printing data</h1>
+<A NAME="TI5015"></A><p>You
+can use a DataStore to print data on a remote server if the server
+is running on Windows or Solaris. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Platform note</span> <A NAME="TI5016"></A>The following example
+would not work on HP-UX or AIX. On these platforms, <ABBR title = "e a server" >EAServer</ABBR> uses a windows-free version
+of the PowerBuilder runtime environment that does not provide support
+for graphical operations such as printing. Printing using DataStore
+print functions is currently supported only on Solaris. However,
+DataStore objects can be printed on all UNIX platforms using the <b>SaveAs</b> function
+with the PDF SaveAsType. </p>
+<A NAME="TI5017"></A>For more information, see <A HREF="apptechp149.htm#CEGGHBEJ">"Printing to PDF"</A>.</p>
+<A NAME="TI5018"></A><p>In this example, the server component <b>uo_employees</b> has
+a function called <b>print_employees</b>. <b>print_employees</b> generates
+an instance of the DataStore <b>ds_datastore</b>,
+and then prints the contents of this DataStore.</p>
+<A NAME="TI5019"></A><p>Here is the signature of the <b>print_employees</b> function:<p><PRE>print_employees( ) returns integer</PRE></p>
+</p>
+<A NAME="TI5020"></A><p>Here is the script for the <b>print_employees</b> function:<p><PRE> datastore ds_datastore<br>int li_rc<br>ds_datastore = create datastore<br>ds_datastore.dataobject = "d_empdata"<br>ds_datastore.SetTransObject (SQLCA)<br>ds_datastore.Retrieve()<br>li_rc = ds_datastore.Print()<br>return li_rc</PRE></p>
+<A NAME="TI5021"></A><h2>Printing on the Solaris operating system</h2>
+<A NAME="TI5022"></A><p>On Solaris, you
+can print directly to a PostScript or PCL5 file. You do not need to
+make any code changes to print reports on Solaris instead of Windows&#8212;you can
+use the same properties, functions, and events as in Windows.</p>
+<A NAME="TI5023"></A><p>To print DataStores, use the DataStore <b>Print</b> method
+or <b>PrintDataWindow</b>(<i>PrintJobName</i>, <i>DataStoreName</i>).
+If you link a DataStore to a DataWindow and print the DataWindow
+object on Solaris, the printed output has the fonts and layouts
+defined in the DataWindow object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Blank spaces</span> <A NAME="TI5024"></A>A blank space is not supported in a print job on Solaris,
+so the PBVM substitutes a hyphen for each blank space in a print
+job name before sending it to a printer.</p>
+<A NAME="TI5025"></A><h4>Using fonts</h4>
+<A NAME="TI5026"></A><p>The fonts used in printing are those provided in the dwprinter/fontmetrics directory.
+AFM and TFM files are ASCII formatted files that contain information
+about specific PostScript (AFM) and PCL (TFM) fonts. Each PostScript
+and PCL font has a corresponding font metric file. </p>
+<A NAME="TI5027"></A><p>The print mechanism reads AFM and TFM files to acquire font
+metric information. This includes such things as character widths,
+baseline location, ascender size, descender size, underline stroke
+width, and underline position. It then translates this metric information
+into the formats expected by Xlib APIs such as XTextWidth. </p>
+<A NAME="TI5028"></A><p>The best approach is to select fonts that are available on
+both Windows and Solaris when you design the DataWindow. However,
+each platform has its own font-rendering engine, so you might notice
+differences in the sizes of fonts between Windows to Solaris. You
+should test the printed output on Solaris early in the development
+process.</p>
+<A NAME="TI5029"></A><h4>Limitations</h4>
+<A NAME="TI5030"></A><p>Support for printing DataWindow objects is based on the Wind/U
+product from Bristol Technology. The Wind/U GDI library
+and Xprinter library have the following limitations:<A NAME="TI5031"></A>
+<ul>
+<li class=fi>No support for multibyte character sets (MBCS) or Unicode</li>
+<li class=ds>Xprinter is not thread safe, therefore print jobs
+are serialized
+</li>
+</ul>
+</p>
+<A NAME="TI5032"></A><h3>Setting up a printer </h3>
+<A NAME="TI5033"></A><p>To set up a printer to
+print DataWindow objects, you must add access to the printer, set
+up the <i>dwprint.ini </i>configuration file, and
+create an XPPATH environment variable.</p>
+<A NAME="TI5034"></A><h4>Adding access to the printer</h4>
+<A NAME="TI5035"></A><p>As the root user, add access to the printer on Solaris using
+the Solaris <b>admintool</b> utility. For more information,
+see the Solaris documentation.</p>
+<A NAME="TI5036"></A><h4>Setting up dwprint.ini</h4>
+<A NAME="TI5037"></A><p>The <i>dwprint.ini</i> file in the <i>$EAServer/bin</i> directory
+is the configuration file for DataWindow printing. It closely follows
+the Microsoft Windows approach to printer configuration. As a result,
+it includes [windows], [devices],
+and [ports] sections where you must provide appropriate
+entries for your printers. </p>
+<A NAME="TI5038"></A><p>You usually do not need to modify other sections in this file.
+However, some problems can be resolved by adding or changing other
+sections. For example, you can try adding an entry like the following
+to the [intl] section to change a date format:<p><PRE> [intl]<br>sShortDate=m/d/yyyy //Set the year to 4 digit.</PRE></p>
+<A NAME="TI5039"></A><p>The entries in <i>dwprint.ini</i> are based
+on entries in the <i>.WindU</i> file. For more information
+about setting up this file, see the <A HREF="http://www.bristol.com/support/windu/wu_ug/ch13.htm">Wind/U User's Guide</A></p>
+<A NAME="TI5040"></A><h4>Specifying ports</h4>
+<A NAME="TI5041"></A><p>Each line in the [ports] section of <i>dwprint.ini </i>contains
+a user-defined port name and an associated command that is used
+to spool the output file. For example, the command to send a print
+job to a printer called <b>myprinter</b> connected
+directly to your system is: <p><PRE> lp -s -d myprinter -t$XPDOCNAME</PRE></p>
+<A NAME="TI5042"></A><p>$XPDOCNAME represents the name of the output file
+sent to the printer. The <b>-s</b> option suppresses
+the display of messages sent from <b>lp</b> in the <ABBR title = "e a server" >EAServer</ABBR> Server console.</p>
+<A NAME="TI5043"></A><p>The following is an example of the [ports] section
+of the <i>dwprint.ini</i> file with two ports defined
+for remote printers called <b>prnt1</b> and <b>prnt2</b>,
+one for a local printer, and an entry for printing to a file. The
+name of the output file is enclosed in quotes. This enables file
+names with multiple words to be used. The quotes must be escaped
+for remote servers because <b>rsh</b> strips them out:<p><PRE> [ports]<br>colorpr1=rsh prntsvr lp -s -d prnt1 -t\"$XPDOCNAME\"<br>colorpr2=rsh prntsvr lp -s -d prnt2 -t\"$XPDOCNAME\"<br>LOCAL=lp -d myprinter -t"$XPDOCNAME"<br>FILE: =</PRE></p>
+<A NAME="TI5044"></A><h4>Matching a printer type to a defined port</h4>
+<A NAME="TI5045"></A><p>The [devices] section contains a list of
+all currently configured printers. Each line contains a user-defined
+alias for the printer and three arguments: the printer model, the
+printer mode (PCL4, PCL5, or PostScript), and one or more ports to
+which the printer is connected. </p>
+<A NAME="TI5046"></A><p>The printer model is the name of the printer description file
+(PPD) used by the printer. PPD files are installed in the<i> dwprinter/ppds</i> directory
+in your PBVM installation. The text file <i>filename_map.txt</i> in
+that directory maps the name of the file that contains the printer
+description to the type of printer. For example, these are the mappings
+for the <b>color_lj</b> model used in the
+rest of the examples: <p><PRE> color_lj.pcl:"HP Color LaserJet PCL Cartridge"<br>color_lj.ps:"HP Color LaserJet PS"</PRE>The printer model and mode are separated
+by a space. The mode and port are separated by a comma. For example,
+for the first device specified in the following [devices] section,
+the alias is <b>HP Color LaserJet PS</b>, the model
+is <b>color_lj</b>, the mode is <b>PostScript</b>,
+and two ports are specified: <b>FILE:</b> and <b>colorpr1</b>. <p><PRE> [devices]<br>HP Color LaserJet PS=color_lj PostScript,FILE:,colorpr1<br>HP Color LaserJet PS=color_lj PCL5,colorpr2<br>HP Color LaserJet PS=color_lj PostScript,LOCAL<br>HP LaserJet PS=NULL PostScript,FILE:<br>HP LaserJet PCL=NULL PCL,FILE:</PRE></p>
+<A NAME="TI5047"></A><h4>Specifying a default printer</h4>
+<A NAME="TI5048"></A><p>The [windows] section contains default printer
+information. Like the ports specification, each device line has
+three arguments: the name of the PPD file, the driver, and the port,
+but in the [windows] section they are all separated
+by commas.</p>
+<A NAME="TI5049"></A><p>The following example shows a default entry for printing to
+a file (when the printer file description is set to <b>NULL</b>)
+as well as two other entries. The semicolon at the beginning of
+two of the lines is a comment character, so the current default
+printer is the HP Color LaserJet printer on the port <b>colorpr1</b>.<p><PRE> [windows]<br>device=color_lj,PostScript,colorpr1<br>;device=color_lj,PostScript,colorpr2<br>;device=NULL,PostScript,FILE:</PRE></p>
+<A NAME="TI5050"></A><h4>Setting printer options</h4>
+<A NAME="TI5051"></A><p>The <i>dwprint.ini</i> file must contain a configuration
+section for each model you have defined in the [windows], [devices],
+and [ports] sections. The configuration section
+provides default setup information for the printer, including the
+number of copies, orientation, page size, and DPI. </p>
+<A NAME="TI5052"></A><p>For example, for the <b>color_lj</b> printer
+used in the preceding examples, add configuration sections like
+this:<p><PRE> [color_lj,PostScript]<br>Filename=jaguar.ps<br>Scale=1.00<br>Copies=1<br>Orientation=Portrait<br>PageSize=Letter<br>DPI=300<br> <br>[color_lj,PCL5]<br>Filename=jaguar.pcl<br>Scale=1.00<br>Copies=1<br>Orientation=Portrait<br>PageSize=Letter<br>DPI=300</PRE></p>
+<A NAME="TI5053"></A><h4>Setting the XPPATH environment variable</h4>
+<A NAME="TI5054"></A><p>Before you start a print job, set the XPPATH environment variable.
+The XPPATH variable must contain the path to a directory that includes
+printer description files and printer-specific font mapping files.
+This information is installed in the dwprinter directory in your
+PBVM installation.</p>
+<A NAME="TI5055"></A><p>For a C shell, set the path as follows: <p><PRE> setenv XPPATH $EAServer/dwprinter</PRE></p>
+<A NAME="TI5056"></A><p>For a Korn shell or a Bourne shell, set the path as follows:<p><PRE> XPPATH = $EAServer/dwprinter;export XPPATH</PRE></p>
+<A NAME="CEGGHBEJ"></A><h2>Printing to PDF</h2>
+<A NAME="TI5057"></A><p>You can use two techniques to save the data in a DataStore
+to PDF: Using the GNU Ghostscript distiller, and using the ability
+to process data using XSL Formatting Objects (XSL-FO). You can save
+the DataWindow object's data to XSL-FO or PDF, and print
+using Java printing. </p>
+<A NAME="TI5058"></A><h4>Using the GNU Ghostscript distiller</h4>
+<A NAME="TI5059"></A><p>To use the GNU Ghostscript distiller, you must make sure that
+Ghostscript files and the default PostScript printer driver and
+related files are installed on the server in the same directory
+as the PowerBuilder runtime files. The Ghostscript method is not
+supported on UNIX.</p>
+<A NAME="TI5060"></A><h4>Using XSL-FO</h4>
+<A NAME="TI5061"></A><p>To use XSL-FO, the Apache XSL Formatting Objects processor
+(FOP) must be installed on the server in the same directory as the
+PowerBuilder runtime files, and the following JAR files must be
+in the classpath:<A NAME="TI5062"></A>
+<ul>
+<li class=fi><i>fop-0.20.4\build\fop.jar</i></li>
+<li class=ds><i>fop-0.20.4\lib\batik.jar</i></li>
+<li class=ds><i>fop-0.20.4\lib\xalan-2.3.1.jar</i></li>
+<li class=ds><i>fop-0.20.4\lib\xercesImpl-2.1.0.jar</i></li>
+<li class=ds><i>fop-0.20.4\lib\xml-apis.jar</i></li>
+<li class=ds><i>fop-0.20.4\lib\avalon-framework-cvs-20020315.jar</i>
+</li>
+</ul>
+</p>
+<A NAME="TI5063"></A><p>You can add these files to the CLASSPATH environment variable
+or to <i>User_setenv.bat</i> or <i>Serverstart.bat</i>. </p>
+<A NAME="TI5064"></A><p>When you use XSL-FO with EAServer to produce a PDF file, detailed informational
+and warning messages are written to the Jaguar log. To suppress all
+these messages, set the PB_FOP_SUPPRESSLOG environment
+variable to 1. </p>
+<A NAME="TI5065"></A><p>For more information, see the chapter on enhancing DataWindow
+objects in the PowerBuilder <i>User's Guide</i>
+. </p>
+

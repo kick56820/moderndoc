@@ -1,0 +1,71 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Plug-ins and PowerBuilder window ActiveX controls</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp278.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp280.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBDGIAH"></A><h1>Plug-ins and PowerBuilder window ActiveX controls</h1>
+<A NAME="TI8333"></A><h4>Plug-ins</h4>
+<A NAME="TI8334"></A><p>The files listed in <A HREF="apptechp279.htm#BAJIBEJH">Table 41-14</A> must be deployed to users' computers
+if you are using DataWindow or window plug-ins.</p>
+<A NAME="BAJIBEJH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-14: PowerBuilder files for window
+and DataWindow plug-ins</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8335"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8336"></A>Required for</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8337"></A><i>NPPBA105.DLL</i> </td>
+<td  rowspan="1"  ><A NAME="TI8338"></A>Standard window plug-in</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8339"></A><i>NPPBS105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8340"></A>Secure window plug-in</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8341"></A><i>NPDWE105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8342"></A>DataWindow plug-in</td>
+</tr>
+</table>
+<p><b>Installed path</b>   <i>\Program Files\Sybase\PowerBuilder
+10.5\Internet Tools\Plugins</i></p>
+<p><b>Deployment path</b>   Browser plugins directory.</p>
+<p><b>Notes</b>   All plug-ins require a browser that supports plug-ins. Microsoft Internet
+Explore 5.5 Service Pack 2 and later versions do not support plug-ins. Window
+plug-ins also require the PowerBuilder runtime DLLs on users' computers.
+For more information, see <A HREF="apptechp213.htm#BFCEAFGB">Chapter 32, "Using the DataWindow Plug-in,"</A> and <A HREF="apptechp219.htm#CAIBECCC">Chapter 33, "Using the PowerBuilder
+Window Plug-in."</A></p>
+<A NAME="TI8343"></A><h4>Window ActiveX controls</h4>
+<A NAME="TI8344"></A><p>The files listed in <A HREF="apptechp279.htm#BAJJJAJC">Table 41-15</A> must be made available on users' computers
+if you are using the PowerBuilder window ActiveX.</p>
+<A NAME="BAJJJAJC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-15: PowerBuilder files for window
+ActiveX</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8345"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8346"></A>Required for</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8347"></A><i>PBRX105.OCX</i></td>
+<td  rowspan="1"  ><A NAME="TI8348"></A>Standard PowerBuilder window ActiveX</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8349"></A><i>PBRXS105.OCX</i></td>
+<td  rowspan="1"  ><A NAME="TI8350"></A>Secure PowerBuilder window ActiveX</td>
+</tr>
+</table>
+<p><b>Installed path</b>   Windows system directory.</p>
+<p><b>Deployment path</b>   Windows system directory.</p>
+<p><b>Registry entries</b>   The PowerBuilder window ActiveX controls can be made available
+on the client computer by copying them to the computer and registering
+them using the <b>REGSVR32</b> utility. Alternatively,
+include the CODEBASE attribute in the Object element in the HTML
+page on the Web server. See <A HREF="apptechp278.htm#BGBCAAEE">"About the CODEBASE attribute"</A>.</p>
+<p><b>Notes</b>   PowerBuilder window ActiveX controls require a browser that supports
+ActiveX controls. They also require that the PowerBuilder runtime DLLs
+and the Microsoft files<i> MFC42.DLL</i>, <i>MSVCRT.DLL</i>, <i>URL.DLL</i>,
+and <i>URLMON.DLL</i> be available on users' computers.
+The Microsoft files are usually already installed in the target
+computer's Windows system directory. If they are not installed,
+they can be downloaded as a CAB file from the Microsoft <A HREF="http://activex.microsoft.com/controls/vc/mfc42.cab">Internet Explorer Components Gallery</A>
+.</p>
+<A NAME="TI8351"></A><p>For more information, see <A HREF="apptechp228.htm#BABIIIJB">Chapter 34, "Using the PowerBuilder
+Window ActiveX."</A></p>
+

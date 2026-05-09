@@ -1,0 +1,75 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Web DataWindow on EAServer </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp282.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp284.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBDJAHI"></A><h1>Web DataWindow on EAServer </h1>
+<A NAME="TI8456"></A><p>You can run the Web DataWindow server component on <ABBR title = "e a server" >EAServer</ABBR> using JSP as the page server.
+The component transaction server and the page server can run on
+the same or on different computers.</p>
+<A NAME="BGBDCDAA"></A><h4>Files required on the transaction
+server</h4>
+<A NAME="TI8457"></A><p>Two types of files are required on the transaction server:<A NAME="TI8458"></A>
+<ul>
+<li class=fi>The PBLs or PBDs containing the definitions of your
+DataWindow objects <br>
+Make sure they are installed in a directory in the server's
+path. If <ABBR title = "e a server" >EAServer</ABBR> is running as
+a service, they must be on the system path or the names of the PBLs
+or PBDs must be fully qualified.<br></li>
+<li class=ds>PowerBuilder runtime files (including <i>PBVM105.DLL</i>, <i>PBSHR105.DLL</i>, <i>PBJAG105.DLL</i>,<i> </i>and <i>PBDWE105.DLL</i> on
+Windows) and <i>PBDWR105.PBD</i>, which contains the
+implementation of the DataWindow HTMLGenerator105 component<br>
+On Windows, these files are installed by default when you
+select the <ABBR title = "e a server" >EAserver</ABBR> typical or
+custom install from the installation program. For more information
+about required files, see <A HREF="apptechp280.htm#BGBBJEIE">"PowerBuilder components
+on <ABBR title = "e a server" >EAServer</ABBR> "</A>.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI8459"></A><p>You also need to create a connection cache for the database
+the component will access. For more information, see the <i>DataWindow
+Programmer's Guide</i>
+.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Custom components</span> <A NAME="TI8460"></A>You can create a custom version of the DataWindow component
+and configure its properties for more efficient reuse. For more
+information, see the <i>DataWindow Programmer's
+Guide</i>
+.</p>
+<A NAME="BGBBBEBJ"></A><h4>Files required on the dynamic
+page server</h4>
+<A NAME="TI8461"></A><p>To use JSP as the page server and connect to the <ABBR title = "e a server" >EAServer</ABBR> component using Java, you
+must have the following files on the JSP server computer:</p>
+<p><b>HTML pages, templates, and scripts</b>   These are the files that you created for your application.
+If you used a JSP target to generate these files, you can use the
+built-in deployment controller to install them. For more information,
+see <i>Working with Web and JSP Targets</i>
+. </p>
+<p><b><ABBR title = "e a server" >EAServer</ABBR> client
+software for Java</b>   The files listed in <A HREF="apptechp283.htm#BAJFDIDA">Table 41-19</A> are required on the JSP server.</p>
+<A NAME="BAJFDIDA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-19: <ABBR title = "e a server" >EAServer</ABBR> client files required
+on JSP server</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8462"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8463"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8464"></A><i>easclient.jar</i></td>
+<td  rowspan="1"  ><A NAME="TI8465"></A>Java class required for clients</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8466"></A><i>easj2ee.jar</i></td>
+<td  rowspan="1"  ><A NAME="TI8467"></A>Java class required for J2EE support</td>
+</tr>
+</table>
+<p><b>Sun Java Development Kit (JDK)</b>   Any versions of the JDK that were installed with <ABBR title = "e a server" >EAServer</ABBR> are located in the <i>Sybase\Shared\Sun</i> directory.
+The JDK that is installed with PowerBuilder is located in the <i>Sybase\Shared\PowerBuilder</i> directory.</p>
+<A NAME="TI8468"></A><p>If you are using JDK 1.2 or 1.3, make sure that the <i>JRE\bin\classic</i> subdirectory
+of the JDK is listed in the system PATH environment variable.</p>
+<A NAME="TI8469"></A><p>If you are using JDK 1.4, make sure that the <i>JRE\bin\client</i> subdirectory
+of the JDK is listed in the system PATH environment variable.</p>
+

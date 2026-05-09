@@ -1,0 +1,140 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+OLE custom controls </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp108.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp110.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF348256517"></A><h1>OLE custom controls </h1>
+<A NAME="TI3228"></A><p>The OLE control button in the Controls menu gives you the
+option of inserting an object or a custom control in an OLE container.
+When you select an OLE custom control (ActiveX control), you fix
+the container's type and contents. You cannot choose later
+to insert an object and you cannot select a different custom control.</p>
+<A NAME="TI3229"></A><p>Each ActiveX control has its own properties, events, and functions.
+Preventing the ActiveX control from being changed helps avoid errors
+later in scripts that address the properties and methods of a particular
+ActiveX control.</p>
+<A NAME="TI3230"></A><h2>Setting up the custom control</h2>
+<A NAME="TI3231"></A><p>The PowerBuilder custom control container has properties that
+apply to any ActiveX control. The ActiveX control itself has its
+own properties. This section describes the purpose of each type
+of property and how to set them.</p>
+<A NAME="TI3232"></A><h4>PowerBuilder properties</h4>
+<A NAME="TI3233"></A><p>For OLE custom controls, PowerBuilder properties have two
+purposes:</p>
+<A NAME="TI3234"></A><p><A NAME="TI3235"></A>
+<ul>
+<li class=fi>To specify appearance
+and behavior of the container, as you do for any control<br>
+You can specify position, pointer, and drag-and-drop settings,
+as well as the standard settings on the General property page (Visible,
+Enabled, and so on).<br></li>
+<li class=ds>To provide default information that the ActiveX
+control can use<br>
+Font information and the display
+name are called <strong>ambient properties</strong> in OLE
+terminology. PowerBuilder does not display text for the ActiveX control,
+so it does not use these properties directly. If the ActiveX control is
+programmed to recognize ambient properties, it can use the values PowerBuilder
+provides when it displays text or needs a name to display in a title
+bar.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI3236"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify the PowerBuilder properties for the
+custom control:</p>
+<ol><li class=fi><p>Double-click the control,
+or select Properties from the control's pop-up menu.</p><p>The OLE Custom Control property sheet displays.</p></li>
+<li class=ds><p>Give the control a name that is relevant to your
+application. You will use this name in scripts. The default name
+is ole_ followed by a number.</p></li>
+<li class=ds><p>Specify values for other properties on the General
+property page and other pages as appropriate.</p></li>
+<li class=ds><p>Click OK when you are done.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Documenting the control</span> <A NAME="TI3237"></A>Put information about the ActiveX control you are using in
+a comment for the window or in the control's Tag property.
+Later, if another developer works with your window and does not
+have the ActiveX control installed, that developer can easily find
+out what ActiveX control the window was designed to use.</p>
+<A NAME="TI3238"></A><h4>ActiveX control properties</h4>
+<A NAME="TI3239"></A><p>An ActiveX control usually has its own properties and its
+own property sheet for setting property values. These properties
+control the appearance and behavior of the ActiveX control, not
+the PowerBuilder container.</p>
+<A NAME="TI3240"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set property values for the ActiveX control
+in the control:</p>
+<ol><li class=fi><p>Select OLE Control Properties from the
+control's pop-up menu or from the General property page.</p></li>
+<li class=ds><p>Specify values for the properties and click OK
+when done.</p></li></ol>
+<br><A NAME="TI3241"></A><p>The OLE control property sheet might present only a subset
+of the properties of the ActiveX control. You can set other properties
+in a script.</p>
+<A NAME="TI3242"></A><p>For more information about the ActiveX control's
+properties, see the documentation for the ActiveX control.</p>
+<A NAME="CAICFIDB"></A><h2>Programming the ActiveX control</h2>
+<A NAME="TI3243"></A><p>You make an ActiveX control do its job by programming it in
+scripts, setting its properties, and calling its functions. Depending
+on the interface provided by the ActiveX control developer, a single
+function call might trigger a whole series of activities or individual
+property settings, and function calls may let you control every
+aspect of its actions.</p>
+<A NAME="TI3244"></A><p>An ActiveX control is always active&#8212;it does not contain
+an object that needs to be opened or activated. The user does not
+double-click and start an OLE server. However, you can program the
+DoubleClicked or any other event to call a function that starts
+ActiveX control processing.</p>
+<A NAME="TI3245"></A><h4>Setting properties in scripts</h4>
+<A NAME="TI3246"></A><p>Programming an ActiveX control is the same as programming
+automation for insertable objects. You use the container's <i>Object</i> property
+to address the properties and functions of the ActiveX control.</p>
+<A NAME="TI3247"></A><p>This syntax accesses a property value. You can use it wherever
+you use an expression. Its datatype is <b>Any</b>.
+When the expression is evaluated, its value has the datatype of
+the control property:<p><PRE><i>olecontrol</i>.<b>Object</b>.<i>ocxproperty</i></PRE></p>
+</p>
+<A NAME="TI3248"></A><p>This syntax calls a function. You can capture its return value
+in a variable of the appropriate datatype:<p><PRE>{ <i>value</i> } = <i>olecontrol</i>.<b>Object</b>.<i>ocxfunction</i> ( {<i> argumentlist </i>} )</PRE></p>
+</p>
+<A NAME="TI3249"></A><h4>Errors when accessing properties</h4>
+<A NAME="TI3250"></A><p>The PowerBuilder compiler does not know the correct syntax
+for accessing properties and functions of an ActiveX control, so
+it does not check any syntax after the Object property. This provides
+the flexibility you need to program any ActiveX control. But it
+also leaves an application open to runtime errors if the properties
+and functions are misnamed or missing.</p>
+<A NAME="TI3251"></A><p>PowerBuilder provides two events (ExternalException and Error)
+for handling OLE errors. If the ActiveX control defines a stock
+error event, the PowerBuilder OLE control container has an additional
+event, ocx_event. These events allow you to intercept and
+handle errors without invoking the SystemError event and terminating
+the application. You can also use a TRY-CATCH exception
+handler.</p>
+<A NAME="TI3252"></A><p>For more information, see <A HREF="apptechp111.htm#X-REF348260087">"Handling errors"</A>.</p>
+<A NAME="TI3253"></A><h4>Using events of the ActiveX control</h4>
+<A NAME="TI3254"></A><p>An ActiveX control has its own set of events, which PowerBuilder
+merges with the events for the custom control container. The ActiveX
+control events appear in the Event List view with the PowerBuilder
+events. You write scripts for ActiveX control events in PowerScript
+and use the Object property to refer to ActiveX control properties
+and methods, just as you do for PowerBuilder event scripts.</p>
+<A NAME="TI3255"></A><p>The only difference between ActiveX control events and PowerBuilder
+events is where to find documentation about when the events get
+triggered. The ActiveX control provider supplies the documentation
+for its events, properties, and functions.</p>
+<A NAME="TI3256"></A><p>The PowerBuilder Browser provides lists of
+the properties and methods of the ActiveX control. For more information,
+see <A HREF="apptechp112.htm#BIIDAECD">"OLE information in the Browser "</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>New versions of the ActiveX control</span> <A NAME="TI3257"></A>If you install an updated version of an ActiveX control and
+it has new events, the event list in the Window painter does not
+add the new events. To use the new events, you have to delete and
+recreate the control, along with the scripts for existing events.
+If you do not want to use the new events, you can leave the control
+as is&#8212;it will use the updated ActiveX control with the
+pre-existing events.</p>
+

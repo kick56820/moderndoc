@@ -1,0 +1,119 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Deploying a component to EAServer</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp149.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp151.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJCFEBI"></A><h1>Deploying a component to EAServer</h1>
+<A NAME="BABEJIDF"></A><h4>PowerBuilder VM must
+be available on the server</h4>
+<A NAME="TI5066"></A><p>You can deploy components to <ABBR title = "e a server" >EAServer</ABBR> hosts
+running Windows and UNIX. The version of the PowerBuilder VM on
+the development computer must also be available on the server. To
+find out which versions of <ABBR title = "e a server" >EAServer</ABBR> and
+the PowerBuilder VM are available on each UNIX platform, contact
+your sales representative or check the Sybase Web site<A HREF="www.sybase.com"></A>
+.</p>
+<A NAME="TI5067"></A><p>The PowerBuilder VM includes <i>PBVM105.DLL</i>, <i>PBJAG105.DLL</i>, <i>PBDWE105.DLL</i>,
+and other PowerBuilder files required at runtime. On UNIX, the shared
+libraries are called <i>libpbvm105x.ext</i>, <i>libdwe105x.ext</i>,
+and so forth, where <i>ext</i> is the shared library
+extension for each UNIX platform. <ABBR title = "e a server" >EAServer</ABBR> uses
+a version of the PowerBuilder runtime files, identified by the <i>x</i> at
+the end of the file name, that does not provide support for Windows
+API calls or graphical operations, including printing. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Consuming a .NET Web service from a PowerBuilder NVO </span> <A NAME="TI5068"></A>If you call a .NET Web service from a PowerBuilder component
+running in <ABBR title = "e a server" >EAServer</ABBR>, you must
+deploy the <i>Sybase.PowerBuilder.WebService.Runtime.dll</i>, <i>Sybase.PowerBuilder.WebService.RuntimeRemoteLoader.dll</i> and
+the dynamically generated .NET assembly to the <ABBR title = "e a server" >EAServer</ABBR> <i>bin</i> directory.</p>
+<A NAME="TI5069"></A><p><ABBR title = "e a server" >EAServer</ABBR> supports multiple
+versions of the PowerBuilder VM on the same server. Components built
+with different versions of PowerBuilder can coexist on the same
+server as long as the required version of the PowerBuilder VM is available
+on the server.</p>
+<A NAME="TI5070"></A><p>When you deploy a component from PowerBuilder 10 to EAServer,
+the component is associated with the version of the PowerBuilder
+VM that you are using. In <ABBR title = "e a server" >EAServer</ABBR> Manager,
+the com.sybase.jaguar.component.pb.version property is set to 105 on
+the All Properties tab page of the component's property
+sheet. </p>
+<A NAME="TI5071"></A><p>If you do not use the PowerBuilder development environment
+to deploy a PowerBuilder component to <ABBR title = "e a server" >EAServer</ABBR>,
+you can specify the correct version of the VM for the component
+on its property sheet in <ABBR title = "e a server" >EAServer</ABBR> Manager.</p>
+<A NAME="TI5072"></A><p>If you deploy a PowerBuilder component to a server that does
+not have the version of the PowerBuilder VM used in the development
+environment, the deployed component cannot be instantiated. </p>
+<A NAME="TI5073"></A><h4>About deploying <ABBR title = "e a server" >EAServer</ABBR> components</h4>
+<A NAME="TI5074"></A><p>To deploy a component to <ABBR title = "e a server" >EAServer</ABBR>,
+create a new project and build the project. The new project lists
+the objects that will be included and specifies the name of the
+output library that will contain the generated components.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Making DataWindow definitions available</span> <A NAME="TI5075"></A>If your scripts reference DataWindow objects dynamically,
+you must check the Include Unreferenced Objects in Consolidated
+PBD box in the wizard or painter to make the DataWindow definitions
+available to the component. </p>
+<A NAME="TI5076"></A><h4>How to deploy the component</h4>
+<A NAME="TI5077"></A><p>To deploy a component to <ABBR title = "e a server" >EAServer</ABBR>,
+open the project created by the wizard and select Design&gt;Build
+Project.</p>
+<A NAME="TI5078"></A><h4>What happens when you deploy to <ABBR title = "e a server" >EAServer</ABBR></h4>
+<A NAME="TI5079"></A><p>When you deploy components to <ABBR title = "e a server" >EAServer</ABBR>,
+the component generator performs these operations:<A NAME="TI5080"></A>
+<ul>
+<li class=fi>Generates CORBA IDL that describes the nonvisual objects you
+selected for deployment<br>
+The IDL is in turn used to build stubs and skeletons. The
+names of the IDL file, the stubs, and the skeletons are based upon
+the name of the object.<br><br>
+The component generator stores the new IDL in the <i>Repository</i> subdirectory
+of the <ABBR title = "e a server" >EAServer</ABBR> installation directory.<br></li>
+<li class=ds>Generates a <i>PROPS</i> file that
+describes the properties of the <ABBR title = "e a server" >EAServer</ABBR> component<br>
+The <i>PROPS</i> file is stored in the following
+subdirectory of the <ABBR title = "e a server" >EAServer</ABBR> installation
+directory: <i>Repository\Component\package-name</i>.<br></li>
+<li class=ds>Generates one or more <i>PBD</i> files
+for the deployed component <br>
+The <i>PBD</i> files are stored in the following
+subdirectory of the <ABBR title = "e a server" >EAServer</ABBR> installation
+directory: <i>Repository\Component\package\component\Ccookie</i><br><br>
+where <i>cookie</i> represents the number for
+this generation of the build. If the library name is not qualified
+(no path is specified), the component generator prepends a dollar
+sign ($) to the name. By default, <ABBR title = "e a server" >EAServer</ABBR> uses
+the most recent version of the component. <br>
+</li>
+</ul>
+</p>
+<A NAME="TI5081"></A><h4>Cleaning up the <ABBR title = "e a server" >EAServer</ABBR> repository</h4>
+<A NAME="TI5082"></A><p>You can reclaim disk space by removing directories you no
+longer need, using a service component called CookieMonster that
+can be downloaded from the Sybase Web site<A HREF="www.sybase.com"></A>
+ or
+using the following procedure.</p>
+<A NAME="TI5083"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete unwanted directories and PBD files:</p>
+<ol><li class=fi><p>Delete all directories except the most
+recent.</p></li>
+<li class=ds><p>Rename the remaining directory to <i>C1</i>.</p></li>
+<li class=ds><p>Set the value of the pb.cookie property to 1 on
+the All Properties tab page of the property sheet for the component
+in <ABBR title = "e a server" >EAServer</ABBR> Manager.</p></li>
+<li class=ds><p>Restart <ABBR title = "e a server" >EAServer</ABBR>.</p></li></ol>
+<br><A NAME="TI5084"></A><h4>Changing the component's codeset</h4>
+<A NAME="TI5085"></A><p>Any <ABBR title = "e a server" >EAServer</ABBR> component deployed by PowerBuilder
+automatically uses the code set of the server. If you want your
+component to use a different code set, set the component's
+com.sybase.jaguar.component.code.set property to an appropriate
+value. You can do this in the Component Properties dialog box in <ABBR title = "e a server" >EAServer</ABBR> Manager. Select the All
+Properties tab, add the com.sybase.jaguar.component.code.set property,
+and specify an appropriate value such as <b>big5</b> or <b>iso_1</b>.</p>
+<A NAME="TI5086"></A><p>If <ABBR title = "e a server" >EAServer</ABBR> was started using the <b>utf-8</b> codeset
+and your component returns a string containing the Euro and/or
+British pound symbol, set the code.set property to <b>cp1252</b>.</p>
+

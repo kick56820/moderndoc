@@ -1,0 +1,187 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using a user object as an automation server </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp115.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp117.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF349029352"></A><h1>Using a user object as an automation server </h1>
+<A NAME="TI3731"></A><p>Accessing a registered user object as an automation server
+involves these steps:<A NAME="TI3732"></A>
+<ol>
+</li>
+<li class=ds>Create the object you will access.</li>
+<li class=ds>Build the object's runtime library.</li>
+<li class=ds>Register the object.</li>
+<li class=ds>Write code in the client that connects to and uses
+the object.
+</li>
+</ol>
+</p>
+<A NAME="TI3733"></A><h2>Creating a class user object to be a server</h2>
+<A NAME="TI3734"></A><p>How you define user objects for an automation server depends
+mainly on your application design. The object must be a custom class
+user object. You define instance variables and functions for the
+object. The object can declare and instantiate other objects for
+its own use.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>No references to visual objects</span> <A NAME="TI3735"></A>The class user object you use as an automation server cannot
+contain any references to visual objects such as message boxes or
+windows.</p>
+<A NAME="TI3736"></A><h4>Objects on the client</h4>
+<A NAME="TI3737"></A><p>You can pass your object references to other objects in the
+client application. Those references are of type OLEObject, and
+your object can use automation syntax to access properties and methods
+of the object. (Automation accesses the object's instance
+variables as properties.)</p>
+<A NAME="TI3738"></A><h4>Testing the user object</h4>
+<A NAME="TI3739"></A><p>Before you try accessing your user object as a server, test
+its design and functions in a simpler environment. You can build
+an application for testing the user object locally.</p>
+<A NAME="TI3740"></A><h2>Building the object's runtime library</h2>
+<A NAME="TI3741"></A><p>After you have defined your object, use the Library painter
+to build a dynamic library (<i>PBD</i>) or compiled
+library (<i>DLL</i>). The reasons for choosing either
+type (Pcode or compiled machine code) are the same as for building
+any PowerBuilder application.</p>
+<A NAME="TI3742"></A><p>For more information, see <A HREF="apptechp267.htm#CDECDFAD">"Compiler basics"</A>.</p>
+<A NAME="TI3743"></A><p>You might want to use the Library painter to reorganize libraries
+so that your object and any other objects it instantiates are in
+a library by themselves. Otherwise, your library will be bigger
+than it needs to be.</p>
+<A NAME="TI3744"></A><p>Here is a quick overview of what you need to do to build your
+library in the Library painter:<A NAME="TI3745"></A>
+<ol>
+</li>
+<li class=ds>In
+the Library painter, select the library name.</li>
+<li class=ds>Select Library&gt;Build Runtime Library.</li>
+<li class=ds>Check or clear the Machine Code check box to correspond
+to your decision about <i>PBD</i>s versus <i>DLL</i>s.<br>
+Other options in the dialog box are not essential
+to this process. For information about them, click the Help button
+or see the <i>PowerBuilder User's Guide</i>
+.<br></li>
+<li class=ds>Click OK to build the library.</li>
+<li class=ds>Move the library to the directory you want it to
+be registered in.
+</li>
+</ol>
+</p>
+<A NAME="X-REF350582645"></A><h2>Registering the object</h2>
+<A NAME="TI3746"></A><p>To use your object, you have to register it in the registry.
+You can also create a type library that provides information to
+registry browser applications about your object's properties
+and functions.</p>
+<A NAME="TI3747"></A><p>For more information, see <A HREF="apptechp119.htm#X-REF349038083">"More about user objects
+and the registry "</A>.</p>
+<A NAME="TI3748"></A><p>The Automation Server project wizard makes registering and
+creating type libraries easy.</p>
+<A NAME="TI3749"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create registry information and register your
+object:</p>
+<ol><li class=fi><p>Select the Automation Server wizard from
+the Project tab in the New dialog box.</p></li>
+<li class=ds><p>Complete all the pages in the wizard. </p><p>Use <A HREF="apptechp116.htm#CHDEACAC">Table 20-1</A> to
+help you.</p><A NAME="CHDEACAC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 20-1: Automation Server wizard pages</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3750"></A>Page</th>
+<th  rowspan="1"  ><A NAME="TI3751"></A>What to specify</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3752"></A>Select component</td>
+<td  rowspan="1"  ><A NAME="TI3753"></A>Select the object you want to use as
+an automation server. You can select only one object. For when to
+specify PowerBuilder.Application, see <A HREF="apptechp118.htm#X-REF350572988">"Creating and using
+a named server "</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3754"></A>Specify Program Identifier</td>
+<td  rowspan="1"  ><A NAME="TI3755"></A>Specify an identifier for the object
+such as <b>Mycompany.Myapp</b>. Do not supply a version
+number. PowerBuilder constructs a version-dependent entry using the
+version number you specify on another screen. The identifier can
+contain up to 39 characters, must not contain any punctuation apart
+from the period between vendor and application, and must not start
+with a digit.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3756"></A>Specify Registry File and Object GUID</td>
+<td  rowspan="1"  ><A NAME="TI3757"></A>If the GUID text box is empty, click
+Generate to generate a new globally unique identifier (GUID). The
+new GUID will be the class identifier (CLSID) for your object. If
+you specified an existing programmatic identifier, the GUID will be
+filled in. You can create a new GUID if you do not want to reuse
+the existing one. For information about reusing GUIDs, see <A HREF="apptechp120.htm#BFCBDGCG">"Multiple versions and updates"</A>.<A NAME="TI3758"></A><p>The registry update file is a text file containing information for
+updating the registry. Typically it has the same name as the library,
+and the extension <i>REG</i>. </p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3759"></A>Create Type Library File</td>
+<td  rowspan="1"  ><A NAME="TI3760"></A>You need to create a type library only
+if you want OLE browsers to display information about the properties
+and methods of your object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3761"></A>Specify Build Options</td>
+<td  rowspan="1"  ><A NAME="TI3762"></A>Check the machine code <i>DLL</i> check
+box if you built a <i>DLL</i> instead of a <i>PBD</i> file.</td>
+</tr>
+</table>
+</li>
+<li class=ds><p>Select File&gt;Open from the menu bar and
+select the project created by the wizard, or double-click the Build
+Project item on the ToDo list.</p></li>
+<li class=ds><p>Select Design&gt;Build Project from the
+menu bar in the Project painter to generate the registry and type
+library files.</p></li>
+<li class=ds><p>Run the registry file to add information to the
+registry.</p></li></ol>
+<br><A NAME="TI3763"></A><p>For more information about the registry and
+writing your own registration tool, see <A HREF="apptechp119.htm#X-REF350573144">"Creating registry
+information"</A>.</p>
+<A NAME="TI3764"></A><h2>Writing client code that accesses the user object</h2>
+<A NAME="TI3765"></A><p>The client code for accessing a registered user object is
+simpler than the code for accessing PowerBuilder.Application. The
+library list and machine code properties are already determined
+and stored in the registry. All you need to do is connect to the
+object and use automation to access its properties and methods.</p>
+<A NAME="TI3766"></A><h4>PowerBuilder as client</h4>
+<A NAME="TI3767"></A><p>To establish a server automation session with your user object,
+you need code for these steps.<A NAME="TI3768"></A>
+<ol>
+</li>
+<li class=ds>Declare
+an OLEObject variable for your user object:<br>
+<p><PRE> OLEObject ole_analyze</PRE><br></li>
+<li class=ds>Connect to your object using its programmatic identifier
+(ProgID) and check that the connection was established. A status
+of 0 indicates success:<p><PRE> ole_analyze = CREATE OLEObject</PRE><PRE> li_status = ole_analyze.ConnectToNewObject &amp;<br>   ("MyCompany.Analyze")</PRE><PRE> IF li_status &lt; 0 THEN</PRE><PRE>    MessageBox("No Server", &amp;</PRE><PRE>       "Can't connect to MyCompany.Analyze.")</PRE><PRE>    RETURN</PRE><PRE> END IF</PRE></li>
+<li class=ds>Access functions or properties of the object using
+automation syntax:<p><PRE> ld_avg = ole_analyze.uof_average()</PRE><PRE> ole_analyze.Projection = TRUE</PRE><PRE> li_status = ole_analyze.uof_RTFreport(REF ls_rpt)</PRE>
+</li>
+</ol>
+</p>
+<A NAME="TI3769"></A><p>If you want to handle errors in the OLEObject ExternalException
+and Error events, use a user object inherited from OLEObject instead
+of declaring an OLEObject variable:<A NAME="TI3770"></A>
+<ol>
+</li>
+<li class=ds>Open the User Object painter
+and create a standard class user object inherited from OLEObject.</li>
+<li class=ds>Write scripts for the Error and ExternalException
+events.</li>
+<li class=ds>Use the name of the new class instead of OLEObject
+in the declaration:<p><PRE> uo_oleobject ole_analyze</PRE>
+</li>
+</ol>
+</p>
+<A NAME="TI3771"></A><h4>Visual Basic as client</h4>
+<A NAME="TI3772"></A><p>Similar code in Visual Basic connects to your registered object.<A NAME="TI3773"></A>
+<ol>
+</li>
+<li class=ds>Declare an object variable for your user object:<p><PRE> Dim ole_analyze As Object</PRE></li>
+<li class=ds>Connect to your object using its programmatic identifier
+(ProgID) and check that the connection was established:<p><PRE> Set ole_analyze = CreateObject("MyCompany.Analyze")</PRE><PRE> If ole_analyze Is Nothing Then</PRE><PRE>    REM Handle the error</PRE><PRE> End If</PRE></li>
+<li class=ds>Access functions or properties of the object using
+automation syntax:<p><PRE> ld_avg = ole_analyze.uof_average()</PRE><PRE> ole_analyze.Projection = TRUE</PRE><PRE> li_status = ole_analyze.uof_RTFreport(REF ls_rpt)</PRE>
+</li>
+</ol>
+</p>
+

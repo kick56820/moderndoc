@@ -1,0 +1,97 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+PowerBuilder DataWindow control</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp4.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp6.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIDADAJ"></A><h1>PowerBuilder DataWindow control</h1>
+<A NAME="TI153"></A><h4>Features</h4>
+<A NAME="TI154"></A><p>The PowerBuilder DataWindow control is a container for DataWindow
+objects in a PowerBuilder application. You can use it in a window
+to present an interactive display of data. The user can view and
+change data and send changes to the database.</p>
+<A NAME="TI155"></A><p>In addition to the DataWindow control, the DataStore object
+provides a nonvisual container for server applications and other
+situations where on-screen viewing is not necessary.</p>
+<A NAME="TI156"></A><p>The DataWindow supports data retrieval with retrieval arguments
+and data update. You can use edit styles, display formats, and validation
+rules for consistent data entry and display. The DataWindow provides
+many methods for manipulating the DataWindow, including Modify for
+changing DataWindow object properties. You can share a result set
+between several DataWindow controls and you can synchronize data
+between a client and server.</p>
+<A NAME="TI157"></A><h4>Development environment</h4>
+<A NAME="TI158"></A><p>You can develop both parts of your DataWindow implementation
+in PowerBuilder. You use:<A NAME="TI159"></A>
+<ul>
+<li class=fi>The DataWindow painter
+to define DataWindow objects.</li>
+<li class=ds>The Window or User Object painters to add DataWindow
+controls to windows or visual user objects. The DataWindow control
+is on the drop-down palette of controls for these painters.<br>
+In the Window or User Object painters, you can write scripts
+that control the DataWindow's behavior and manipulate the
+data it retrieves. Your scripts can also instantiate DataStore objects.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI160"></A><p>In the PowerBuilder Browser you can examine the properties,
+events, and methods of DataWindow controls and DataStore objects
+on the System tab page. If you have a library open that contains
+DataWindow objects, you can examine the internal properties of the
+DataWindow object on the Browser's DataWindow tab page.</p>
+<A NAME="TI161"></A><h4>DataWindow objects</h4>
+<A NAME="TI162"></A><p>The DataWindow control or DataStore object uses a DataWindow
+object defined with any presentation style. The DataWindow object
+determines what data is retrieved and how it is displayed. The control
+can also display Powersoft reports (PSRs), which do not need to
+retrieve data.</p>
+<A NAME="TI163"></A><h4>Database connections</h4>
+<A NAME="TI164"></A><p>The PowerBuilder DataWindow can use ODBC, JDBC, and native
+database drivers for database connectivity. Users can connect to
+a data source on any server to which they have access, including
+databases and middle-tier servers on the Internet.</p>
+<A NAME="TI165"></A><p>To make a connection, you can use the internal Transaction
+object of the DataWindow, or you can make the connection with a
+separate PowerBuilder transaction object. </p>
+<A NAME="TI166"></A><p>A PowerBuilder application provides a default Transaction
+object, <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>. You can define
+additional Transaction objects if you need to make additional connections.
+When you connect with a separate Transaction object, you can control
+when <ACRONYM title = "sequel" >SQL</ACRONYM> COMMIT and ROLLBACK
+statements occur, and you can use the same connection for multiple
+controls.</p>
+<A NAME="TI167"></A><p>For more information about using a Transaction
+object with a DataWindow, see <A HREF="dwprgugp6.htm#BIIDDADJ">Chapter 2, "Using DataWindow Objects."</A></p>
+<A NAME="TI168"></A><p>For more information about PowerBuilder Transaction
+objects, see <i>Application Techniques</i>
+ in the
+PowerBuilder documentation set.</p>
+<A NAME="TI169"></A><h4>Coding</h4>
+<A NAME="TI170"></A><p>You write scripts in the Window or User Object painter to
+connect to the database, retrieve data, process user input, and
+update data.</p>
+<A NAME="TI171"></A><p>In PowerBuilder, you can take advantage of object inheritance
+by defining a user object inherited from a DataWindow control and
+adding your own custom functionality. You can reuse the customized
+DataWindow control throughout your applications.</p>
+<A NAME="TI172"></A><p>You create DataStore objects, the nonvisual version of a DataWindow
+control, by creating them in a script and calling methods for the
+object. You can also define a user object that is inherited from
+a DataStore and customize it. For more information, see <A HREF="dwprgugp26.htm#CFHCIHDJ">Chapter 4, "Using DataStore Objects ."</A></p>
+<A NAME="TI173"></A><h4>Libraries and applications</h4>
+<A NAME="TI174"></A><p>You store DataWindow objects in PowerBuilder libraries (<ACRONYM title = "pibbles" >PBLs</ACRONYM>) during development. When you
+build your application, you can include the DataWindow objects in
+the application executable or in PowerBuilder dynamic libraries
+(PBDs). </p>
+<A NAME="TI175"></A><p>For more information about designing DataWindow objects and
+building a PowerBuilder application, see the <i>PowerBuilder
+User's Guide</i>
+ and <i>Application Techniques</i>
+.</p>
+

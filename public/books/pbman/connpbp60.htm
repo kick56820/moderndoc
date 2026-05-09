@@ -1,0 +1,37 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Deploying a COM component to COM+</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp59.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp61.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABGJDFA"></A><h1>Deploying a COM component to COM+</h1>
+<A NAME="TI1837"></A><p>If you want the COM component you are developing to take advantage
+of COM+ support for connection pooling and transaction
+management, you <i>must</i> use one of the following
+database interfaces to connect to the database: <A NAME="TI1838"></A>
+<ul>
+<li class=fi>ODBC database interface, which provides connectivity
+to a variety of databases through ODBC drivers </li>
+<li class=ds>Oracle O84, O90, and O10 database interfaces, which
+provide connectivity to Oracle8<i>i</i>, Oracle9<i>i</i>,
+and Oracle 10<i>g</i> databases.
+</li>
+</ul>
+</p>
+<A NAME="TI1839"></A><h2>Using the ODBC database interface</h2>
+<A NAME="TI1840"></A><p>If you require support for connection pooling only, you can
+use any thread-safe ODBC driver. If you also require support for
+transactions, you must use a driver that supports the Microsoft
+Distributed Transaction Coordinator (DTC), such as the Microsoft
+ODBC driver for Oracle or the Microsoft ODBC driver for <ACRONYM title = "sequel" >SQL</ACRONYM> Server.</p>
+<A NAME="TI1841"></A><h2>Using the Oracle database interface</h2>
+<A NAME="TI1842"></A><p>A component deployed to COM+ can participate in a
+database transaction only when connecting to an Oracle8<i>i</i> or
+later database server and when Oracle Services for COM+ are
+installed and configured. </p>
+

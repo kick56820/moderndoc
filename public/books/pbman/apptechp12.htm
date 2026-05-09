@@ -1,0 +1,157 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Dot notation </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp11.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp13.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF354898923"></A><h1>Dot notation </h1>
+<A NAME="TI188"></A><p>Dot notation lets you qualify the item you are referring to&#8212;instance variable,
+property, event, or function&#8212;with the object that owns
+it.</p>
+<A NAME="TI189"></A><p>Dot notation is for objects. You do not use dot notation for
+global variables and functions, because they are independent of
+any object. You do not use dot notation for shared variables either,
+because they belong to an object class, not an object instance.</p>
+<A NAME="TI190"></A><h4>Qualifying a reference</h4>
+<A NAME="TI191"></A><p>Dot notation names an object variable as a qualifier to the
+item you want to access:<p><PRE><i>objectvariable</i>.<i>item</i></PRE></p>
+</p>
+<A NAME="TI192"></A><p>The object variable name is a qualifier that identifies the
+owner of the property or other item.</p>
+<p><b>Adding a parent qualifier</b>   To fully identify an object, you can use additional dot qualifiers
+to name the parent of an object, and its parent, and so on:</p>
+<A NAME="TI193"></A><p><p><PRE><i>parent</i>.<i>objectvariable</i>.<i>item</i></PRE></p>
+</p>
+<A NAME="TI194"></A><p>A <strong>parent</strong> object contains the child
+object. It is not an ancestor-descendent relationship. For example,
+a window is a control's parent. A Tab control is the parent
+of the tab pages it contains. A Menu object is the parent of the
+Menu objects that are the items on that menu.</p>
+<p><b>Many parent levels</b>   You can use parent qualifiers up to the level of the application.
+You typically need qualifiers only up to the window level.</p>
+<A NAME="TI195"></A><p>For example, if you want to call the <b>Retrieve</b> function
+for a DataWindow control on a tab page, you might qualify the name
+like this:<p><PRE> w_choice.tab_alpha.tabpage_a.dw_names.Retrieve()</PRE></p>
+<A NAME="TI196"></A><p>Menu objects often need several qualifiers. Suppose a window <b>w_main</b> has
+a menu object <b>m_mymenu</b>, and <b>m_mymenu</b> has
+a File menu with an Open item. You can trigger the Open item's <b>Selected</b> event
+like this:<p><PRE> w_main.m_mymenu.m_file.m_open.EVENT Selected()</PRE></p>
+<A NAME="TI197"></A><p>As you can see, qualifying a name gets complex, particularly
+for menus and tab pages in a Tab control.</p>
+<p><b>How many qualifiers?</b>   You need to specify as many qualifiers as are required to
+identify the object, function, event, or property.</p>
+<A NAME="TI198"></A><p>A parent object knows about the objects it contains. In a
+window script, you do not need to qualify the names of the window's
+controls. In scripts for the controls, you can also refer to other
+controls in the window without a qualifier.</p>
+<A NAME="TI199"></A><p>For example, if the window <b>w_main</b> contains
+a DataWindow control <b>dw_data</b> and a
+CommandButton <b>cb_close</b>, a script for
+the CommandButton can refer to the DataWindow control without a
+qualifier:<p><PRE> dw_data.AcceptText()<br>dw_data.Update()</PRE></p>
+<A NAME="TI200"></A><p>If a script in another window or a user object refers to the
+DataWindow control, the DataWindow control needs to be qualified
+with the window name:<p><PRE> w_main.dw_data.AcceptText()</PRE></p>
+<A NAME="TI201"></A><h4>Referencing objects</h4>
+<A NAME="TI202"></A><p>There are three ways to qualify an element of an object in
+the object's own scripts:<A NAME="TI203"></A>
+<ul>
+<li class=fi>Unqualified:<p><PRE> li_index = SelectItem(5)</PRE><br>
+An unqualified name is unclear and might result in ambiguities
+if there are local or global variables and functions with the same
+name.<br></li>
+<li class=ds>Qualified with the object's name:<p><PRE> li_index = lb_choices.SelectItem(5)</PRE><br>
+Using the object name in the object's own script
+is unnecessarily specific.<br></li>
+<li class=ds>Qualified with a generic reference to the object:<p><PRE> li_index = This.SelectItem(5)</PRE><br>
+The pronoun <b>This</b> shows that the item belongs
+to the owning object.<br>
+</li>
+</ul>
+</p>
+<p><b>This pronoun</b>   In a script for the object, you can use the pronoun <b>This</b> as
+a generic reference to the owning object:</p>
+<A NAME="TI204"></A><p><p><PRE>This.<i>property</i></PRE></p>
+<p><PRE>This.<i>function</i></PRE></p>
+</p>
+<A NAME="TI205"></A><p>Although the property or function could stand alone in a script
+without a qualifier, someone looking at the script might not recognize
+the property or function as belonging to an object. A script that
+uses <b>This</b> is still valid if you rename the object.
+The script can be reused with less editing.</p>
+<A NAME="TI206"></A><p>You can also use <b>This</b> by itself as a reference
+to the current object. For example, suppose you want to pass a DataWindow
+control to a function in another user object:<p><PRE> uo_data.uf_retrieve(This)</PRE></p>
+<A NAME="TI207"></A><p>This example in a script for a DataWindow control sets an
+instance variable of type DataWindow so that other functions know
+the most recently used DataWindow control:<p><PRE> idw_currentdw = This</PRE></p>
+<p><b>Parent pronoun</b>   The pronoun <b>Parent</b> refers to the parent
+of an object. When you use <b>Parent</b> and you rename
+the parent object or reuse the script in other contexts, it is still
+valid.</p>
+<A NAME="TI208"></A><p>For example, in a DataWindow control script, suppose you want
+to call the <b>Resize</b> function for the window. The
+DataWindow control also has a <b>Resize</b> function,
+so you must qualify it:<p><PRE> // Two ways to call the window function<br>w_main.Resize(400, 400)<br>Parent.Resize(400, 400)</PRE></p>
+<A NAME="TI209"></A><p><p><PRE> // Three ways to call the control's function<br>Resize(400, 400)<br>dw_data.Resize(400, 400)<br>This.Resize(400, 400)</PRE></p>
+<p><b>GetParent function</b>   The <b>Parent</b> pronoun works only within dot
+notation. If you want to get a reference to the parent of an object,
+use the <b>GetParent</b> function. You might want to
+get a reference to the parent of an object other than the one that
+owns the script, or you might want to save the reference in a variable:<p><PRE> window w_save<br>w_save = dw_data.GetParent()</PRE></p>
+<A NAME="TI210"></A><p>For example, in another CommandButton's Clicked event
+script, suppose you wanted to pass a reference to the control's
+parent window to a function defined in a user object. Use <b>GetParent</b> in
+the function call:<p><PRE> uo_winmgmt.uf_resize(This.GetParent(), 400, 600)</PRE></p>
+<p><b>ParentWindow property and function</b>   Other tools for getting the parent of an object include:<A NAME="TI211"></A>
+<ul>
+<li class=fi><strong>ParentWindow property</strong> &#8211; used
+in a menu script to refer to the window that is the parent of the
+menu</li>
+<li class=ds><strong>ParentWindow function</strong> &#8211; used
+in any script to get a reference to the window that is the parent
+of a particular window
+</li>
+</ul>
+</p>
+<A NAME="TI212"></A><p>For more about these pronouns and functions,
+see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI213"></A><h4>Objects in a container object</h4>
+<A NAME="TI214"></A><p>Dot notation also allows you to reach inside an object to
+the objects it contains. To refer to an object inside a container,
+use the Object property in the dot notation. The structure of the
+object in the container determines how many levels are accessible:<p><PRE><i>control</i>.Object.<i>objectname</i>.<i>property</i></PRE></p>
+<p><PRE><i>control</i>.Object.<i>objectname</i>.Object.<i>qualifier</i>.<i>qualifier</i>.<i>property</i></PRE></p>
+</p>
+<A NAME="TI215"></A><p>Objects that you can access using the Object property are:</p>
+<A NAME="TI216"></A><p><A NAME="TI217"></A>
+<ul>
+<li class=fi>DataWindow objects
+in DataWindow controls</li>
+<li class=ds>External OLE objects in OLE controls
+</li>
+</ul>
+</p>
+<A NAME="TI218"></A><p>These expressions refer to properties of the DataWindow object
+inside a DataWindow control:<p><PRE> dw_data.Object.emp_lname.Border<br>dw_data.Object.nestedrpt[1].Object.salary.Border</PRE></p>
+<p><b>No compiler checking</b>   For objects inside the container, the compiler cannot be sure
+that the dot notation is valid. For example, the DataWindow object
+is not bound to the control and can be changed at any time. Therefore,
+the names and properties after the Object property are checked for
+validity during execution only. Incorrect references cause an execution
+error.</p>
+<p><b>For more information</b>   For more information about runtime checking, see <A HREF="apptechp19.htm#X-REF354823874">"Optimizing expressions
+for DataWindow and external objects"</A>.</p>
+<A NAME="TI219"></A><p>For more information about dot notation for properties and
+data of DataWindow objects and handling errors, see the <i>DataWindow
+Reference</i>
+.</p>
+<A NAME="TI220"></A><p>For more information about OLE objects and dot notation for
+OLE automation, see <A HREF="apptechp105.htm#CAIBCEAE">Chapter 19, "Using OLE in an Application ."</A></p>
+

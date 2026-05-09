@@ -1,0 +1,238 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Saving data in an external file</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp169.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp171.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABFGBED"></A><h1>Saving data in an external file</h1>
+<A NAME="TI5375"></A><p>While previewing, you can save the data retrieved in an external
+file. Note that the data and headers (if specified) are saved. Information
+in the footer or summary bands is not saved unless you are saving
+as PDF or as a PSR file.</p>
+<A NAME="TI5376"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To save the data in a DataWindow object in an external
+file:</p>
+<ol><li class=fi><p>Select File&gt;Save Rows As from
+the menu bar.</p><p>The Save As dialog box displays.</p></li>
+<li class=ds><p>Choose a format for the file from the Save As
+Type drop-down list.</p><p>If you want the column headers saved in the file, select a
+file format that includes headers (such as Excel With Headers).
+When you select a <i>with headers</i> format, the
+names of the database columns (not the column labels) are also saved
+in the file.</p><p>When you choose a format, PowerBuilder supplies the appropriate
+file extension.</p></li>
+<li class=ds><p>For TEXT, CSV, SQL, HTML, and DIF formats, select
+an encoding for the file.</p><p>You can select ANSI/DBCS, Unicode LE (Little-Endian),
+Unicode BE (Big-Endian), or UTF8.</p></li>
+<li class=ds><p>Name the file and click Save.</p><p>PowerBuilder saves all displayed rows in the file; all columns
+in the displayed rows are saved. Filtered rows are not saved.</p></li></ol>
+<br><A NAME="TI5377"></A><p>The rest of this section provides more information
+about saving data in PDF, HTML, and Powersoft Report (PSR) formats.</p>
+<A NAME="TI5378"></A><p>For more information about saving data as
+XML, see <A HREF="pbugp236.htm#BABBABHD">Chapter 29, "Exporting and Importing
+XML Data."</A></p>
+<A NAME="BABHAFCGJK"></A><h2>Saving the data as PDF</h2>
+<A NAME="TI5379"></A><p>PowerBuilder provides two ways to save a DataWindow object or DataStore
+in Portable Document Format (PDF). </p>
+<A NAME="TI5380"></A><h4>Using Ghostscript</h4>
+<A NAME="TI5381"></A><p>By default, when you select File&gt;Save Rows As and
+select PDF as the file type, the data is printed to a PostScript
+file and automatically distilled to PDF using Ghostscript. This
+option provides a robust solution that can save most types of DataWindow objects.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Installing Ghostscript</span> <A NAME="TI5382"></A>For licensing reasons, Ghostscript is not installed with PowerBuilder.
+You (and your users) must download and install it before you can
+use this technique. See <A HREF="pbugp170.htm#BABGIGHA">"System requirements for
+the distill method"</A>. </p>
+<A NAME="TI5383"></A><h4>Using XSL-FO and Java printing</h4>
+<A NAME="TI5384"></A><p>Building on the ability to save data as XML, PowerBuilder can
+also save the DataWindow object's data and presentation to PDF
+by generating XSL Formatting Objects (XSL-FO). This option provides
+a platform-independent solution by rendering the DataWindow using
+a Java process rather than the Microsoft GDI. It also offers the
+possibility of customizing the PDF file at the XSL-FO stage. Saving
+as PDF using XSL-FO is particularly useful if you want to
+print DataWindow objects in <ABBR title = "E A Server" >EAServer</ABBR> on
+a UNIX operating system by using Java printing. The Ghostscript
+method is not supported on UNIX.</p>
+<A NAME="TI5385"></A><p>The XSL (Extensible Stylesheet Language) W3C Recommendation
+has two parts, XSLT and XSL-FO. XSLT provides the transformation
+typically used to present XML documents as HTML in a browser. XSL-FO
+provides extensive formatting capabilities that are not dependent
+on the output format. </p>
+<A NAME="TI5386"></A><p>For more information about XSL, see the latest version of
+the <A HREF="http://www.w3.org/TR/xsl/">Extensible Stylesheet Language (XSL)</A>
+. </p>
+<A NAME="TI5387"></A><h4>Limitations</h4>
+<A NAME="TI5388"></A><p>The Ghostscript method currently does not support OLE and
+RichText DataWindow objects. The XSL-FO method currently does not support OLE, RichText, graph,
+and composite DataWindow objects.</p>
+<A NAME="TI5389"></A><h3>Saving as PDF using the distill method</h3>
+<A NAME="TI5390"></A><p>If you want to save to PDF using the distill method, you do
+not need to change any properties. The distill method is used by
+default when you select Save Rows As from the File menu in the DataWindow painter and
+select PDF as the file type, or when you use the <b>SaveAs</b> method
+with PDF! as the file type. </p>
+<A NAME="TI5391"></A><p>PowerBuilder uses a PostScript printer driver specifically designed
+for distilling purposes to configure the PDF output. You can choose
+to use a different PostScript printer driver if you want to customize
+your PostScript settings for generating PDF.</p>
+<A NAME="TI5392"></A><h4>In the DataWindow painter</h4>
+<A NAME="TI5393"></A><p>To use a custom PostScript printer driver, you must set some
+properties.</p>
+<A NAME="TI5394"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To save customized distilled PDF output in the DataWindow painter:</p>
+<ol><li class=fi><p>Select the Data Export tab in the Properties
+view for the DataWindow object.</p></li>
+<li class=ds><p>Select PDF from the Format to Configure drop-down
+list, select Distill! from the Method drop-down list, and select
+the Distill Custom PostScript check box.</p></li>
+<li class=ds><p>Select the Print Specifications tab and specify
+the name of the printer whose settings you want to use in the Printer
+Name box.</p></li>
+<li class=ds><p>Save the DataWindow object, then select File&gt;Save
+Rows As, select PDF as the Save As Type, specify a file name, and
+click Save.</p></li></ol>
+<br><A NAME="TI5395"></A><h4>In a script</h4>
+<A NAME="TI5396"></A><p>The properties you set in the DataWindow painter are saved
+with the DataWindow object and are used by default when your application
+runs, but for more control, specify the properties in a script before
+saving the DataWindow object. To specify a custom printer driver
+in a script, set the Export.PDF.Distill.CustomPostScript property
+to Yes and specify a printer with the DataWindow.Printer property:<p><PRE> int li_ret<br> <br>dw_1.Object.DataWindow.Export.PDF.Method = Distill!<br>dw_1.Object.DataWindow.Printer = "\\prntsrvr\pr-6"<br>dw_1.Object.DataWindow.Export.PDF.  &amp;<br>   Distill.CustomPostScript="Yes"<br> <br>li_ret = dw_1.SaveAs("custom.PDF", PDF!, true)</PRE></p>
+<A NAME="BABGIGHA"></A><h4>System requirements for
+the distill method</h4>
+<A NAME="TI5397"></A><p>Users must have administrative privileges to create a PDF
+file.</p>
+<A NAME="TI5398"></A><p>To support saving as PDF using Ghostscript, you must download
+and install Ghostscript files on your system as described in the <i>Installation
+Guide</i>
+<i></i>. The default PostScript printer
+driver and related files are installed in <i>Sybase\Shared\PowerBuilder\drivers</i>. </p>
+<A NAME="TI5399"></A><p>When you deploy applications that use the ability to save
+as PDF with the distill method, you must make sure your users have
+installed Ghostscript and have access to the <i>drivers</i> directory. </p>
+<A NAME="TI5400"></A><p>See the chapter on deployment in <i>Application Techniques</i>
+ for
+more information about redistributing these files.</p>
+<A NAME="TI5401"></A><h3>Saving as PDF using XSL-FO</h3>
+<A NAME="TI5402"></A><p>If you want to save to PDF using XSL-FO, you <i>must</i> set
+one or more properties before saving.</p>
+<A NAME="TI5403"></A><h4>In the DataWindow painter</h4>
+<A NAME="TI5404"></A><p>In the DataWindow painter, you set PDF export properties on the Data
+Export page in the Properties view.</p>
+<A NAME="TI5405"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To save PDF output using XSL-FO in the DataWindow painter:</p>
+<ol><li class=fi><p>Select the Data Export tab in the Properties
+view for the DataWindow object.</p></li>
+<li class=ds><p>Select PDF from the Format to Configure drop-down
+list and select XSLFOP! from the Method drop-down list.</p></li>
+<li class=ds><p>(Optional) If you want simultaneously to send
+the output directly to a printer using the Java printing option
+of the Apache FOP processor, select the Print Using XSLFOP check
+box.</p><br><img src="images/dwen34.gif"><br>
+</li>
+<li class=ds><p>Save the DataWindow object, then select File&gt;Save
+Rows As, select PDF as the Save As Type, specify a file name, and
+click Save.</p><p>PowerBuilder saves the data in the DataWindow object to the file you specified.
+If you selected the Print Using XSLFOP check box, it also sends the
+PDF file to the default printer for your system.</p></li></ol>
+<br><A NAME="TI5406"></A><h4>In a script</h4>
+<A NAME="TI5407"></A><p>In a script, set the Export.PDF.Method property to XSLFOP!
+before saving the DataWindow object as PDF using the <b>SaveAs</b> method
+with the SaveAsType PDF!. To send the PDF file directly to the default
+printer, set the Export.PDF.XSLFOP.Print property to Yes before
+saving:<p><PRE> int li_ret<br>dw_1.Modify("Export.PDF.Method = XSLFOP! ")<br>dw_1.Modify("Export.PDF.xslfop.print='Yes'")<br>li_ret = dw_1.SaveAs("printed.pdf", PDF!, true)</PRE></p>
+<A NAME="BABCJHFA"></A><h3>Saving as XSL-FO</h3>
+<A NAME="TI5408"></A><p>You can also save a DataWindow object as XSL-FO, then use the processor
+of your choice to convert the XSL-FO string to the format you want,
+applying your own customizations to the conversion. Processors such
+as the Apache XSL Formatting Objects processor (FOP) can convert
+XSL-FO documents into several output formats including PDF, PCL,
+and AWT. </p>
+<A NAME="TI5409"></A><p>In the DataWindow painter, select File&gt;Save Rows As and select
+XSL-FO as the file type. In a script, you can use the <b>SaveAs</b> method
+with the SaveAsType XSLFO!.</p>
+<A NAME="TI5410"></A><p>For a DataWindow named <i>dwemp</i>, the following
+command lines show the FOP syntax for producing a PDF, a print preview
+rendered on screen (<FONT FACE="Courier New">-awt</FONT>),
+and printable output rendered and sent to a printer (<FONT FACE="Courier New">-print</FONT>):<p><PRE> Fop dwemp.fo dwemp.pdf<br>Fop dwemp.fo -awt<br>Fop dwemp.fo -print</PRE></p>
+<A NAME="TI5411"></A><p>For more information
+about using FOP, see the <A HREF="http://xml.apache.org/fop/">FOP page of the Apache XML Project Web site</A>
+.</p>
+<A NAME="TI5412"></A><h3>System requirements for XSL-FO</h3>
+<A NAME="TI5413"></A><p>The Apache XSL Formatting Objects processor (FOP) and JDK
+1.4 are installed with PowerBuilder to support saving as XSL-FO, saving
+as PDF using XSL-FO, and Java printing. FOP is installed in <i>Sybase\Shared\PowerBuilder\fop-0.20.4</i>.
+JDK 1.4 is installed in <i>Sybase\Shared\PowerBuilder\jdk14</i>. </p>
+<A NAME="TI5414"></A><p>When you deploy applications that use XSL-FO or Java printing,
+you must deploy the <i>fop-0.20.4</i> directory and
+the Java Runtime Environment (the JRE is available in a subdirectory
+of <i>jdk14</i>) with your application. These directories must
+be deployed in the same directory as the PowerBuilder runtime files.
+For more information, see the chapter on deploying your applications
+in <i>Application Techniques</i>.</p>
+<A NAME="TI5415"></A><p>On Windows DBCS platforms, you also need to install a file
+that supports DBCS characters to the Windows font directory, for
+example, <i>C:\WINNT\fonts</i>. To
+use these fonts, the <i>userconfig.xml </i>file in
+the directory <i>Shared\PowerBuilder\fop-0.20.4\conf</i> must
+be modified to give the full path name of the files you use, for
+example:<p><PRE> &lt;font metrics-file="C:\Program%20Files\Sybase\Shared\<br>PowerBuilder\fop-0.20.4\conf\cyberbit.xml"<br>kerning="yes"embed-file="C:\WINNT\Fonts\Cyberbit.ttf"&gt;</PRE></p>
+<A NAME="TI5416"></A><p>For more information about configuring fonts, see the <A HREF="http://xml.apache.org/fop/fonts.html">Apache Web site</A>
+. </p>
+<A NAME="BFCCEFEG"></A><h2>Saving the data in HTML Table format</h2>
+<A NAME="TI5417"></A><p>HTML Table format is one of the formats in which you can choose
+to save data. When you save in HTML Table format, PowerBuilder saves
+a style sheet along with the data. If you use this format, you can
+open the saved file in a browser such as Internet Explorer or Netscape.
+Once you have the file in HTML Table format, you can continue to
+enhance the file in HTML.</p>
+<A NAME="TI5418"></A><h4>About the results</h4>
+<A NAME="TI5419"></A><p>Some presentation styles translate better into HTML than others.
+The Tabular, Group, Freeform, Crosstab, and Grid presentation styles
+produce good results. The Composite, RichText, OLE 2.0, and Graph
+presentation styles and nested reports produce HTML tables based
+on the result set (data) only and not on the presentation style. DataWindows
+with overlapping controls in them might not produce the results
+you want.</p>
+<A NAME="TI5420"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To save a report as an HTML table:</p>
+<ol><li class=fi><p>Open a DataWindow object.</p></li>
+<li class=ds><p>Open the Preview view if it is not already open.</p></li>
+<li class=ds><p>Select File&gt;Save Rows As from the menu bar.</p></li>
+<li class=ds><p>Choose the HTML Table format for the file from the Save
+As Type drop-down list.</p></li>
+<li class=ds><p>Name the file.</p><p>PowerBuilder creates a file using the name you supplied and
+the extension <i>htm</i>.</p></li>
+<li class=ds><p>Open a browser such as Netscape or Internet Explorer.</p></li>
+<li class=ds><p>Use the browser's file open command to open
+the HTML file.</p></li></ol>
+<br><A NAME="TI5421"></A><p>For more information about working with DataWindow objects
+and HTML, see the <i>DataWindow Programmer's Guide</i>
+.</p>
+<A NAME="CAICEIAE"></A><h2>Working with PSR files</h2>
+<A NAME="TI5422"></A><p>A PSR file is a special file with the extension PSR created
+by PowerBuilder, InfoMaker, or DataWindow Designer. PSR stands for
+Powersoft report.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Windows and PSR files</span> <A NAME="TI5423"></A>When PowerBuilder is installed, the PSR file type is registered
+with Windows.</p>
+<A NAME="TI5424"></A><p>A PSR file contains a report definition (source and object)
+as well as the data contained in the report when the PSR file was
+created.</p>
+<A NAME="TI5425"></A><caption><b>Figure 19-1: PSR file</b></captionls>
+<br><img src="images/dwen12.gif">
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About reports</span> <A NAME="TI5426"></A>A report is the same as a nonupdatable DataWindow object. For
+more information, see <A HREF="pbugp154.htm#CDCFBFJF">"Reports versus DataWindow
+objects"</A>.</p>
+<A NAME="TI5427"></A><p>You can use a PSR file to save a complete report (report design
+and data). This can be especially important if you need to keep
+a snapshot of data taken against a database that changes frequently.</p>
+<A NAME="TI5428"></A><p>PowerBuilder creates a PSR file when you save data in the Powersoft
+report file format. See <A HREF="pbugp170.htm#BABFGBED">"Saving data in an external
+file"</A>. PSR files are used primarily
+by InfoMaker, a reporting tool. When an InfoMaker user opens a PSR
+file, InfoMaker displays the report in the Report painter. If InfoMaker
+is not already running, opening a PSR file automatically starts
+InfoMaker.</p>
+

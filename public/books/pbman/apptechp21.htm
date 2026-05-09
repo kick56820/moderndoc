@@ -1,0 +1,148 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Garbage collection and memory management</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp20.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp22.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAICHCGE"></A><h1>Garbage collection and memory management</h1>
+<A NAME="TI384"></A><p>The PowerBuilder garbage collection mechanism checks memory automatically
+for unreferenced and orphaned objects and removes any it finds, thus
+taking care of most memory leaks. You can use garbage collection
+to destroy objects instead of explicitly destroying them using the <b>DESTROY</b> statement.
+This lets you avoid runtime errors that occur when you destroy an object
+that was being used by another process or had been passed by reference to
+a posted event or function.</p>
+<A NAME="TI385"></A><p>A reference to an object is any variable whose value is the
+object. When the variable goes out of scope, or when it is assigned
+a different value, PowerBuilder removes a reference to the object
+and counts the remaining references, and the garbage collection
+process destroys the object if no references remain. </p>
+<A NAME="TI386"></A><p>Garbage collection occurs: <A NAME="TI387"></A>
+<ul>
+<li class=fi>When the
+garbage collection interval has been exceeded and the PowerBuilder
+application becomes idle and </li>
+<li class=ds>When you explicitly call the <b>GarbageCollect</b> function. 
+</li>
+</ul>
+</p>
+<A NAME="TI388"></A><p>When PowerBuilder completes the execution of a system-triggered
+event, it makes a garbage collection pass if the set interval between
+garbage collection passes has been exceeded. The default interval
+is 0.5 seconds. Note that this system-triggered garbage collection
+pass only occurs when the PowerBuilder application is idle, therefore
+if a long computation or process is in progress when the interval
+is exceeded, garbage collection does not occur immediately. </p>
+<A NAME="TI389"></A><p>You can force immediate garbage collection by invoking the <b>GarbageCollect</b> function.
+When you use dot notation and OLEObjects, temporary variables are created.
+These temporary variables are released only during the garbage collection
+process. You might want to invoke <b>GarbageCollect</b> inside
+a loop that appears to be causing memory leaks. </p>
+<A NAME="TI390"></A><p>The garbage collection pass removes any objects and classes
+that cannot be referenced, including those containing circular references
+(otherwise unreferenced objects that reference each other). </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Posting events and functions</span> <A NAME="TI391"></A>When you post an event or function and pass an object reference,
+PowerBuilder adds an internal reference to the object to prevent
+its memory from being reclaimed by the garbage collector between
+the time of the post and the actual execution of the event or function.
+This reference is removed when the event or function is executed.</p>
+<A NAME="TI392"></A><h4>Exceptions to garbage collection</h4>
+<A NAME="TI393"></A><p>There are a few objects that are prevented from being collected:<A NAME="TI394"></A>
+<ul>
+<li class=fi><b>Visual objects</b>   Any object that is visible on your screen is not collected because
+when the object is created and displayed on your screen, an internal
+reference is added to the object. When any visual object is closed, it
+is explicitly destroyed.</li>
+<li class=ds><b>Timing objects</b>   Any Timing object that is currently running is not collected
+because the <b>Start</b> function for a Timing object
+adds an internal reference. The <b>Stop</b> function
+removes the reference.</li>
+<li class=ds><b>Shared objects </b>   Registered shared objects are not collected because the <b>SharedObjectRegister</b> function
+adds an internal reference. <b>SharedObjectUnregister</b> removes
+the internal reference.
+</li>
+</ul>
+</p>
+<A NAME="TI395"></A><h4>Controlling when garbage collection occurs</h4>
+<A NAME="TI396"></A><p>Garbage collection occurs automatically in
+PowerBuilder, but you can use functions to force immediate garbage
+collection or to change the interval between reference count checks.
+Three functions let you control when garbage collection occurs: <b>GarbageCollect</b>, <b>GarbageCollectGetTimeLimit</b>,
+and <b>GarbageCollectSetTimeLimit</b>.</p>
+<A NAME="TI397"></A><p>For information about these functions, see
+the<i> PowerScript Reference</i>
+. For an example illustrating
+their use, see the Code Examples sample application, described in <A HREF="apptechp2.htm#CCJBFJJI">Chapter 1, "Using
+Sample Applications."</A> </p>
+<A NAME="TI398"></A><h4>Performance concerns</h4>
+<A NAME="TI399"></A><p>You can use tracing and profiling to examine the effect of
+changing the garbage collection interval on performance.</p>
+<A NAME="TI400"></A><p>For information about tracing and profiling,
+see the PowerBuilder <i>User's Guide</i>
+. </p>
+<A NAME="BCGCEECG"></A><h2>Configuring memory management</h2>
+<A NAME="TI401"></A><p>You can set the PB_POOL_THRESHOLD environment
+variable to specify the threshold at which the PowerBuilder memory
+manager switches to a different memory allocation strategy.</p>
+<A NAME="TI402"></A><p>When most windows, DataWindows, DataStores, or other PowerBuilder objects
+are destroyed or reclaimed by the garbage collector, the PowerBuilder heap
+manager returns the memory allocated for each object to a global
+memory pool and records its availability on a global free list.
+The freed memory is not returned to the operating system. When a
+new object is created, PowerBuilder allocates blocks of memory from
+the global memory pool (if sufficient memory is available in the
+global free list) or from the operating system (if it is not) to a
+memory pool for the object. </p>
+<A NAME="TI403"></A><p>When the memory required by an object exceeds 256KB, PowerBuilder
+uses a different strategy. It allocates subsequent memory requirements
+from the operating system in large blocks, and returns the physical
+memory to the operating system when the object is destroyed. It
+retains the virtual memory to reduce fragmentation of the virtual
+address space. </p>
+<A NAME="TI404"></A><p>For most applications and components, the threshold of 256KB
+at which PowerBuilder switches to the "large blocks" strategy
+works well and reduces the memory required by an application when
+it is working at its peak level of activity. However, if you want
+to keep the overall physical memory usage of your application as
+low as possible, you can try setting a lower threshold. </p>
+<A NAME="TI405"></A><p>The advantage of setting a low threshold is that the size
+of the global memory pool is reduced. The application does not retain
+a lot of memory when it is inactive. The disadvantage is that large
+blocks of memory are allocated for objects that require more memory
+than the threshold value, so that when the application is running
+at its peak of activity, it might use more virtual memory than it
+would with the default threshold. </p>
+<A NAME="TI406"></A><p>Setting a low threshold can be beneficial for long-running
+client applications that use many short-lived objects, where the
+client application's memory usage varies from low (when
+idle) to high (when active). For multithreaded applications, such
+as servers, a higher threshold usually results in lower virtual memory
+utilization.</p>
+<A NAME="TI407"></A><h4>Logging heap manager output</h4>
+<A NAME="TI408"></A><p>You can record diagnostic ouput from the PowerBuilder heap
+manager in a file to help you troubleshoot memory allocation issues
+in your application. The PB_HEAP_LOGFILENAME environment
+variable specifies the name and location of the file. </p>
+<A NAME="TI409"></A><p>If you specify a file name but not a directory, the file is
+saved in the same directory as the PowerBuilder executable, or,
+for a PowerBuilder component running on <ABBR title = "e a server" >EAServer</ABBR>,
+to the <ABBR title = "e a server" >EAServer</ABBR> <i>bin</i> directory.</p>
+<A NAME="TI410"></A><p>If you specify a directory that does not exist, the file is
+not created, or, for a PowerBuilder component running on <ABBR title = "e a server" >EAServer</ABBR>, output is written to the <ABBR title = "e a server" >EAServer</ABBR> log file (<i>Jaguar.log</i>).</p>
+<A NAME="TI411"></A><p>By default, the log file is overwritten when you restart PowerBuilder
+or <ABBR title = "e a server" >EAServer</ABBR>. If you want diagnostic
+output to be appended to the file, set PB_HEAP_LOGFILE_OVERWRITE
+to <b>false</b>.</p>
+<A NAME="TI412"></A><p>You can set the variables in a batch file that launches the
+application, or as system or user environment variables on the computer
+or server on which the application or component runs.</p>
+<A NAME="TI413"></A><p>For more information about tuning memory management in PowerBuilder
+and <ABBR title = "e a server" >EAServer</ABBR>, see the technical
+document <A HREF="http://www.sybase.com/detail?id=1027319">EAServer/PowerBuilder Memory Tuning and Troubleshooting</A>
+.</p>
+

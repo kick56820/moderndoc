@@ -1,0 +1,221 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Usage notes for OrcaScript commands and parameters</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp277.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp279.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDDGAEE"></A><h1>Usage notes for OrcaScript commands and parameters</h1>
+<A NAME="TI10776"></A><p>Before calling
+any other ORCA functions, you need to open a session:<p><PRE> start session</PRE></p>
+<A NAME="TI10777"></A><p>You can start and end multiple OrcaScript sessions in the
+same batch file. </p>
+<A NAME="TI10778"></A><h4>Copying files, objects, and properties</h4>
+<A NAME="TI10779"></A><p>If you want to use OrcaScript simply to move objects among
+libraries, you do not need to set a library list or application.
+You can use the <b>copy</b> commands to copy files,
+objects, and properties. This example copies the <b>d_labels</b> DataWindow
+from the <i>source.pbl</i> library to the <i>destin.pbl</i> library:<p><PRE> copy entry "c:\\app\\source.pbl"    "d_labels" dw "c:\\app\\destin.pbl"</PRE></p>
+<A NAME="TI10780"></A><h4>Setting a library list and an application</h4>
+<A NAME="TI10781"></A><p>If you want to use OrcaScript to build targets or deploy components
+(or set product and version information using the set exeinfo command)
+you must first set the library list and the current application.
+You can set the library list and current application only once in
+an OrcaScript session. To use another library list and application,
+end the OrcaScript session and start a new session. The following
+OrcaScript commands build target libraries and compile an executable
+file.</p>
+<A NAME="TI10782"></A><p><p><PRE> start session<br>set liblist ".\qadbtest\qadbtest.pbl;.\shared_obj\shared_obj.pbl;.\datatypes\datatype.pbl;.\chgreqs\chgreqs.pbl"<br>set application ".\qadbtest\qadbtest.pbl" "qadbtest"<br>build library ".\shared_obj\shared_obj.pbl" "" pbd<br>build library ".\datatypes\datatype.pbl" "" pbd<br>build library ".\chgreqs\chgreqs.pbl" "" pbd<br>build executable  ".\qadbtest\qadbtest.exe" ".\emp.ico" ".\qadbtest.pbr" "nyyy"<br>file copy ".\qadbtest\qadbtest.exe" ".\bin\qadbtest.exe"<br>file copy ".\chgreqs\chgreqs.pbd" ".\bin\chgreqs.pbd"<br>file copy ".\datatypes\datatype.pbd" ".\bin\datatype.pbd"<br>file copy ".\shared_obj\shared_obj.pbd" ".\bin\shared_obj.pbd"<br>end session</PRE></p>
+<A NAME="TI10783"></A><p>You can use relative paths when you generate PBDs with the "PBD" option, but
+the PBD always gets generated in the same directory as the <ACRONYM title = "pibble" >PBL</ACRONYM>.  To actually run the executable,
+you might have to move the PBDs to a "BIN" directory.
+The above example calls several <b>file copy</b> commands
+to accomplish this.</p>
+<A NAME="TI10784"></A><p>If you select 32 as the last argument in a <b>build
+library</b> command, you must use the full path for the <ACRONYM title = "pibble" >PBL</ACRONYM> or PBR name included in that
+call.</p>
+<A NAME="TI10785"></A><h4>Source control example</h4>
+<A NAME="TI10786"></A><p>You can use OrcaScript source control commands instead of
+the commands to set the library list and application. The following
+is an example of an OrcaScript session that builds the same libraries
+as the previous example, but uses the target properties to set a
+library list and application:<p><PRE> start session<br>scc get connect properties "testbld\testbld.pbw"<br>scc connect <br>scc set target "c:\testbld\qadbtest\qadbtest.pbt" "outofdate exclude_checkout"<br>scc refresh target "incremental"<br>build library ".\shared_obj\shared_obj.pbl" "" pbd<br>build library ".\datatypes\datatype.pbl" "" pbd<br>build library ".\chgreqs\chgreqs.pbl" "" pbd<br>build executable  ".\qadbtest\qadbtest.exe" ".\emp.ico" ".\qadbtest.pbr" "nyyy" <br>scc close<br>end session</PRE></p>
+<A NAME="TI10787"></A><p>You can call the <b>scc connect</b> command only
+after getting connection properties, and you must call it before
+you set or refresh the source-controlled targets. You must call
+the <b>scc close</b> command before you end your OrcaScript
+session.</p>
+<A NAME="TI10788"></A><h4>Shared library example</h4>
+<A NAME="TI10789"></A><p>If you have another target that shares libraries with a target
+that you already refreshed, you can use the OrcaScript <b>exclude</b> command
+to quickly reconstitute your target. The following example excludes
+the shared libraries <i>shared_obj.pbl</i>, <i>datatype.pbl</i>,
+and <i>chgreqs.pbl</i> that were refreshed in the previous
+example. It also demonstrates the use of variables for refresh options and
+build type. Set statements define variables that can be used throughout
+an OrcaScript session wherever the parser expects a string token. <p><PRE> start session<br>set refresh_flags = "outofdate"</PRE><PRE> set refresh_flags += "exclude_checkout"<br>set build_type = "incremental"<br>scc get connect properties "c:\testbld\testbld.pbw"<br>scc connect <br>scc set target ".\dbauto\dbauto.pbt" refresh_flags<br>scc exclude liblist ".\shared_obj\shared_obj.pbl" ".\datatypes\datatype.pbl" ".\chgreqs\chgreqs.pbl"<br>scc refresh target  build_type <br>build executable ".\dbauto\dbauto.exe" ".\emp.ico" "" "nyyy" <br>scc close<br>end session</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Defining variables from the command line</span> <A NAME="TI10790"></A>Instead of defining variables in the OrcaScript session, you
+can define them from the command line when you call your script.
+If you saved the OrcaScript example in the previous script in a
+file named <i>MyExample.dat</i>, you could set the
+same variables by typing the following at a command line prompt:<p><PRE> Orcascr105 /D refresh_flags="outofdate exclude_checkout"<br>/D build_type="incremental"  MyExample.dat</PRE></p>
+<A NAME="TI10791"></A><h4>SCC connection properties</h4>
+<A NAME="TI10792"></A><p>The SCC <b>get connect properties</b> command
+is an easy way to populate the Orca SCC connection structure with
+the source control properties of a local workspace. However, to
+create OrcaScript batch files that are portable from one workstation
+to another, the recommended technique is to set each property explicitly.
+Many of these properties are vendor specific. The best way to obtain correct
+values is to copy them directly from the SCC log file for your PowerBuilder
+workspace.</p>
+<A NAME="TI10793"></A><p>After you have obtained the values you need from the SCC log
+file, you can create portable batch files by setting the required
+connection properties and using relative directories and URLs for
+path information. The following example shows portable OrcaScript
+batch file commands for a workspace that connects to PBNative:<p><PRE> start session<br>scc set connect property provider "PB Native" <br>scc set connect property userid "Jane"<br>scc set connect property localprojpath ".\"<br>scc set connect property project "\\network_machine\PBNative_Archive\qadb"<br>scc set connect property logfile ".\MyPortableExample.log"<br>scc set connect property logappend "FALSE"<br>scc set connect property deletetempfiles "FALSE"<br>scc connect<br>; Perform refresh and build operations<br>scc close<br>end session</PRE></p>
+<A NAME="TI10794"></A><h4>Using OrcaScript with source control targets offline</h4>
+<A NAME="TI10795"></A><p>You can call <b>scc connect offline</b> to build
+source control targets offline. When you use this command, you must
+specify ImportOnly as a refresh option. If you also specify the
+Refresh_all option or the OutOfDate or Exclude_checkout refresh
+types, no connection is made to source control. </p>
+<A NAME="TI10796"></A><p>For the OutOfDate refresh type, the object source residing
+in the PBL is compared with the object source on the local project
+path.  If these object sources are different, the object source
+on the local project path is imported and compiled. </p>
+<A NAME="TI10797"></A><p>For the Exclude_checkout refresh type, the workspace
+PBC file is used to determine current status.  In order for the
+offline exclude_checkout processing to locate the PBC file,
+you must use the <b>scc get connect properties</b> <i>workspaceName</i> command
+at the beginning of the script. Objects marked as checked out to
+the current user in the PBC file will not be imported into the PBLs
+during target processing.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Applicable scc connect properties for offline processing</span> <A NAME="TI10798"></A>When <b>scc connect offline</b> is used, only
+the following connect properties apply: <A NAME="TI10799"></A>
+<ul>
+<li class=fi><b>scc set connect property localprojpath</b> <i>localProjectPath</i></li>
+<li class=ds><b>scc set connect property logfile</b> <i>logFileName</i></li>
+<li class=ds><b>scc set connect property logappend  &lt;true | false&gt;</b>
+</li>
+</ul>
+</p>
+<A NAME="BCEDHHEJ"></A><h4>Setting refreshType and
+refreshOption values</h4>
+<A NAME="TI10800"></A><p>When you set up a target with a source control connection,
+you can use <i>refreshType</i> and <i>refreshOption</i> options
+in various combinations. You can even combine these values in the
+same string if the values are separated by a blank space. For example:<p><PRE> scc set target ".\dbauto\dbauto.pbt" "refresh_all   importonly"</PRE></p>
+<p><b>Refresh_all option</b>   Refresh_all performs no comparisons and imports all applicable
+objects. Refresh_all behavior varies depending on whether ImportOnly
+is set. If ImportOnly is off, Refresh All issues an <b>SccGetLatestVersion</b> call
+to obtain the tip revision of the PBT file specified in the <b>scc
+set target</b> command. From the PBT file, it obtains the
+library list for the target. It then calls <b>SccGetLatestVersion</b> to
+obtain the tip revision of the PBG file associated with each PBL. </p>
+<A NAME="TI10801"></A><p>Each PBG file contains a list of objects registered under
+source control that reside in the associated PBL. Refresh All then
+issues SccGetLatestVersion to obtain the tip revision of each object
+and imports these objects into the PBL. </p>
+<A NAME="TI10802"></A><p>In offline processing, ImportOnly must be set to on. If you
+also set the Refresh_all option, the PBT file that already
+exists on the local project path is used to obtain the library list
+for the target. The PBG file that also exists on the local project
+path is then read to obtain a list of objects associated with each PBL.
+ Refresh_all then processes the PBG lists, importing source
+entries residing on the local project path into the appropriate
+PBL. </p>
+<p><b>ImportOnly option</b>   When ImportOnly is on, the expectation is that the user has
+already populated the local project path with the desired revision
+of each object. ImportOnly is used to build a target from a previous
+milestone, such as a version label or a promotion model that does
+not represent the tip revision of each object. Therefore, no <b>SccGetLatestVersion</b> calls
+are issued. The desired revisions of the PBT, PBG, and object source
+files must already exist on the local project path and they are
+used to import objects into the PBLs. You must use this option if
+you are building a source controlled target while you are offline.</p>
+<p><b>OutOfDate option</b>   OutOfDate processing behaves differently depending on whether
+ImportOnly is set. When ImportOnly is off, OutOfDate issues an <b>SccGetLatestVersion</b> call
+to obtain the tip revision of the PBT and PBG files. It then compares
+each object in the target PBLs with the tip revision in the SCC repository
+and imports the SCC source files into the PBLs for the objects that are
+out of sync.</p>
+<A NAME="TI10803"></A><p>With ImportOnly turned on, OrcaScript never performs <b>GetLatestVersion</b> since the
+desired revision of all objects already exists on the local project
+path. In this case, OutOfDate processing compares source code in
+the PBL against object source on the local project path to decide
+which objects, if any, need to be reimported. Using ImportOnly with
+OutOfDate processing works the same whether you are online or offline.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Advantage of using OutOfDate with ImportOnly option</span> <A NAME="TI10804"></A>Combining the OutOfDate option with the ImportOnly option
+is particularly useful if you perform nightly builds of a project
+that has several promotion models defined. If the volume of changes
+is low, it may be more efficient to use OutOfDate processing rather
+than Refresh All. In one PowerBuilder workspace, you build the "development" view
+of the project that includes all development work in progress. In
+another workspace, you build the "maintenance" view
+of the project, which includes bug fixes waiting for QA verification.
+Elsewhere, you build a "production" view of the
+project containing only verified bug fixes.</p>
+<A NAME="TI10805"></A>Each PowerBuilder workspace connects to the same SCC project,
+but uses a different local project path.You use your vendor-specific
+SCC administration tool to synchronize the local project path with
+the desired revision of each object belonging to each promotion
+model. Then you launch OrcaScript to refresh the PBLs in each workspace.
+This results in a nightly rebuild of all three promotion models,
+which development team members can download each morning from a
+shared network drive. </p>
+<p><b>Exclude_checkout option</b>   The Exclude_checkout option excludes from the import
+list all objects that are currently checked out by the current user,
+no matter what other refresh options are used. When connected to
+SCC, this option requires an additional call to <b>SccQueryInfo</b> for
+each object in the target. Therefore, it is not recommended on a
+nightly build machine. However, it is highly recommended when a
+developer uses OrcaScript on his or her own workstation. </p>
+<A NAME="TI10806"></A><p>If you use Exclude_checkout processing while offline,
+the workspace PBC file is used to determine current status, so you
+must specify the <b>set get connect properties</b> <b>workspaceName</b> command.
+Objects marked as checked out to the current user in the PBC file
+will not be imported into the PBLs during target processing.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>How the current user is determined for Exclude_checkout
+processing</span> <A NAME="TI10807"></A>For online SCC connections, Exclude_checkout calls <b>scc
+connect property userid </b><i>userID</i> or
+the <b>scc get connect properties</b> <i>workspaceName</i> to
+determine the current user.  The runtime processing makes actual <b>SccQueryInfo</b> calls
+to the SCC provider to determine check out status, so the information
+in the PBC file (from the prior SCC connection) is ignored. Objects
+checked out to the current user are not imported and replaced in
+the target library list.   </p>
+<A NAME="TI10808"></A>For <b>scc connect offline</b>, the <b>scc
+connect property userid</b> command is completely ignored.
+OrcaScript must rely on information from the prior SCC connection. Each
+PBC file entry contains a bit flag that indicates "checked
+out to current user". This flag determines whether the
+object is imported or excluded. The current user at the time the
+PBC file was created is the user who last connected to this workspace
+through the PowerBuilder IDE on this workstation. </p>
+<A NAME="TI10809"></A><h4>Build command failures</h4>
+<A NAME="TI10810"></A><p>OrcaScript build commands for an executable or a library fail
+if the executable or library already exists in the build directory.
+To prevent an OrcaScript batch file containing these commands from
+failing, move or delete existing executables and libraries from
+the build directory before running the batch script.</p>
+<A NAME="TI10811"></A><h4>Escape characters for string variables</h4>
+<A NAME="TI10812"></A><p>OrcaScript, like PowerScript, uses the tilde ( ~ ) as an escape
+character. If you need to include a special character, such as a
+quotation mark, inside a string, you must place a tilde in front
+of it. A character in an OrcaScript batch file with a tilde in front
+of it is processed as a literal character.</p>
+<A NAME="TI10813"></A><h4>Ending an OrcaScript session</h4>
+<A NAME="TI10814"></A><p>You must close an OrcaScript session after you finish calling
+other OrcaScript commands. You close an OrcaScript session by calling:<p><PRE> end session</PRE></p>
+<A NAME="TI10815"></A><p>Property values are deleted during end-session processing.
+If an OrcaScript program starts numerous sessions, each individual
+session must contain statements to specify property values, such
+as those assigned in <b>set exeinfo</b> or <b>scc
+set connect</b> commands. However, variables that you set
+on a batch script command line using the /D parameter,
+or inside a batch file using the <b>set <i>variable_name</i>="value"</b> syntax,
+remain valid for the entire multisession program. </p>

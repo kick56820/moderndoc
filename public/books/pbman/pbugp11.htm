@@ -1,0 +1,116 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Building workspaces</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp10.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp12.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CEGJEBBB"></A><h1>Building workspaces</h1>
+<A NAME="TI303"></A><p>You can build and deploy workspaces while you are working
+in PowerBuilder, and from a command line.</p>
+<A NAME="TI304"></A><h2>In the development environment</h2>
+<A NAME="TI305"></A><p>In the development environment, you can specify how you want
+the targets in your workspace to be built and deployed. Then you
+can build individual targets or all the targets in the workspace. <A HREF="pbugp11.htm#CEGHIFHH">Table 1-3</A> summarizes where
+you set up build and deploy options, and how you start builds.</p>
+<A NAME="CEGHIFHH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 1-3: Building and deploying targets
+and workspaces</caption>
+<tr><th  rowspan="1"  ><A NAME="TI306"></A>To do this</th>
+<th  rowspan="1"  ><A NAME="TI307"></A>Do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI308"></A>Set deploy options for a PowerScript
+target</td>
+<td  rowspan="1"  ><A NAME="TI309"></A>Select Properties from the pop-up menu
+for the target and select the Deploy tab. Check the box next to
+a project to build it when you select Deploy from the target's
+pop-up menu. Use the arrows to set the order in which projects are
+built.<A NAME="TI310"></A><p>Set options for each project in the target in the Project painter. </p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI311"></A>Set build and deploy options for a Web
+target</td>
+<td  rowspan="1"  ><A NAME="TI312"></A>Set up and activate deployment controllers
+on the Deploy page of the target's properties dialog box.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI313"></A>Set build and deploy options for the workspace</td>
+<td  rowspan="1"  ><A NAME="TI314"></A>Select Properties from the pop-up menu
+for the workspace and select the order in which targets should be built.
+You can check which projects and deploy configurations are currently
+selected on the Deploy Preview page.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI315"></A>Build, migrate, or deploy a selected
+PowerScript target</td>
+<td  rowspan="1"  ><A NAME="TI316"></A>Select Incremental Build, Full Build,
+Migrate, or Deploy from the pop-up menu for the target. Deploy builds
+the projects in the target in the order listed on the Deploy page
+of the target's properties dialog box.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI317"></A>Build or deploy a selected Web target</td>
+<td  rowspan="1"  ><A NAME="TI318"></A>Select Incremental Build or Full Build
+from the pop-up menu for the target to check HTML files for broken
+links and populate a build directory with their data, and copy other
+files to the build directory. Select Deploy to deploy the target
+using the deployment controllers marked as active on the Deploy
+page of the target's properties dialog box.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI319"></A>Build or deploy all the targets in the
+workspace</td>
+<td  rowspan="1"  ><A NAME="TI320"></A>Select Incremental Build, Full Build,
+or Deploy from the pop-up menu for the workspace, from the Run menu,
+or from the PowerBar.</td>
+</tr>
+</table>
+<A NAME="BABDDFCJ"></A><h2>From a command line</h2>
+<A NAME="TI321"></A><p>When you deploy or build a workspace from a command line,
+PowerBuilder starts, completes the build, and exits as soon as the
+operation is completed. To retain a log file for the session, you
+can send the contents of the Output window to a file. <A HREF="pbugp11.htm#CEGFHDBD">Table 1-4</A> shows command-line
+options for building and deploying targets and workspaces.</p>
+<A NAME="CEGFHDBD"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 1-4: Command-line
+options for building and deploying</caption>
+<tr><th  rowspan="1"  ><A NAME="TI322"></A>Option</th>
+<th  rowspan="1"  ><A NAME="TI323"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI324"></A><b>/workspace</b> <i>workspacepath</i></td>
+<td  rowspan="1"  ><A NAME="TI325"></A>Open the workspace <i>workspacepath</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI326"></A><b>/target</b><i> targetpath</i></td>
+<td  rowspan="1"  ><A NAME="TI327"></A>Open the target <i>targetpath</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI328"></A><b>/deploy</b></td>
+<td  rowspan="1"  ><A NAME="TI329"></A>Deploy the workspace and exit</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI330"></A><b>/fullbuild</b></td>
+<td  rowspan="1"  ><A NAME="TI331"></A>Fully build the workspace and exit</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI332"></A><b>/incrementalbuild</b></td>
+<td  rowspan="1"  ><A NAME="TI333"></A>Incrementally build the workspace and
+exit</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI334"></A><b>/output</b> <i>outputpath</i></td>
+<td  rowspan="1"  ><A NAME="TI335"></A>Log the contents of the Output window
+to <i>outputpath</i></td>
+</tr>
+</table>
+<A NAME="TI336"></A><p>As with other command-line options, you need only use the
+initial letter or letters of the option name as long as the option
+is uniquely identified. The <b>deploy</b>, <b>fullbuild</b>,
+and <b>incrementalbuild</b> options can be used only
+with the <b>workspace</b> option. You need to create
+projects and specify build and deploy options for the workspace
+in PowerBuilder before you start a build from the command line.
+Deploy builds the projects in the target in the order listed on
+the Deploy page of the target's properties dialog box. </p>
+<A NAME="TI337"></A><h4>Example</h4>
+<A NAME="TI338"></A><p>This example assumes that the location of the PowerBuilder
+executable file is in your system path. It opens the workspace called
+CDShop, builds and deploys the targets in the workspace according
+to your specifications in the workspace and target properties, records
+the content of the Output window in the file <i>D:\tmp\cdshop.out</i>,
+and exits PowerBuilder:<p><PRE> pb105 /w D:\CDShop\CDShop.pbw /d /out D:\tmp\cdshop.out</PRE></p>
+<A NAME="TI339"></A><p>There are additional command-line options you can use to start
+PowerBuilder. See <A HREF="pbugp16.htm#BFCBHECD">"Using command line arguments"</A>.</p>
+

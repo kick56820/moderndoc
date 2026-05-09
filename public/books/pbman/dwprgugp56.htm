@@ -1,0 +1,125 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+DataWindow objects for the Web ActiveX</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp55.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp57.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBBADHJ"></A><h1>DataWindow objects for the Web ActiveX</h1>
+<A NAME="TI2369"></A><p>The DataWindow Web control for ActiveX requires either of
+these:<A NAME="TI2370"></A>
+<ul>
+<li class=fi>A DataWindow object stored in a <ACRONYM title = "pibble" >PBL</ACRONYM> or PBD</li>
+<li class=ds>A PSR that was saved with data
+</li>
+</ul>
+</p>
+<A NAME="TI2371"></A><p>Properties for the Web ActiveX identify the DataWindow object
+that you want to display in the control.</p>
+<A NAME="TI2372"></A><p>This section describes considerations for:<A NAME="TI2373"></A>
+<ul>
+<li class=fi>Defining
+DataWindow objects</li>
+<li class=ds>Building libraries</li>
+<li class=ds>Identifying the DataWindow object or PSR by setting
+Web page properties
+</li>
+</ul>
+</p>
+<A NAME="TI2374"></A><h2>What the DataWindow object can include</h2>
+<A NAME="TI2375"></A><p>You define DataWindow objects in PowerBuilder. The Web ActiveX
+supports all DataWindow presentation styles except RichText.</p>
+<A NAME="TI2376"></A><p>You can use all edit styles, including DropDownDataWindow.
+Properties can have conditional expressions (written in PowerScript)
+and computed fields can use any of the functions available to a
+standard DataWindow.</p>
+<A NAME="TI2377"></A><p>In the Web page, you can include scripts (written in JScript
+or other ECMAScript-compatible scripting languages) to manipulate
+DataWindow presentation and data.</p>
+<A NAME="TI2378"></A><h2>Managing DataWindow objects in PowerBuilder libraries</h2>
+<A NAME="TI2379"></A><h4>Types of libraries</h4>
+<A NAME="TI2380"></A><p>The Web ActiveX can use DataWindow objects that are stored
+in <ACRONYM title = "pibbles" >PBLs</ACRONYM> or PBDs.</p>
+<A NAME="TI2381"></A><h4>When to use a PBD</h4>
+<A NAME="TI2382"></A><p>The Web browser downloads the library specified for the Web
+ActiveX and stores it in a temporary cache. If you do not want your
+DataWindow object source code to be available to the user (who could
+copy it from the cache), convert a <ACRONYM title = "pibble" >PBL</ACRONYM> to
+a PBD before deploying it.</p>
+<A NAME="TI2383"></A><p>Because the library will be downloaded, you should make it
+as small as possible&#8212;another good reason to convert a <ACRONYM title = "pibble" >PBL</ACRONYM> to a PBD.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>PowerBuilder version</span> <A NAME="TI2384"></A><ACRONYM title = "pibbles" >PBLs</ACRONYM> must be migrated
+to Version 10 or later.</p>
+<A NAME="TI2385"></A><h4>Grouping DataWindow objects into libraries</h4>
+<A NAME="TI2386"></A><p>A <ACRONYM title = "pibble" >PBL</ACRONYM> or PBD is downloaded
+in its entirety from the Web server; therefore, you should make
+sure your library includes only those objects needed on your Web
+pages. You can group DataWindow objects that are used on different
+Web pages in a single library; however, you should avoid forcing
+users to download objects used on pages they will not view.When
+choosing how to group DataWindow objects into libraries, make the
+set of objects in the library correspond to the typical set of pages
+the user will view. Although a single download saves a lot of communications
+overhead, it is worthwhile for users only if they view the pages
+that use the objects. </p>
+<A NAME="TI2387"></A><h4>Using other resources in the DataWindow object</h4>
+<A NAME="TI2388"></A><p>A DataWindow object can use external resources such as bitmaps
+or cursors. You can use a resource file when you build a PBD to
+include these resources in the library. You can also store these
+resources on the Web server. A relative path in the DataWindow object
+can point to the file's location on the Web server. The
+browser retrieves the resource as needed.</p>
+<A NAME="TI2389"></A><p>A DataWindow object can use other DataWindow objects, such
+as drop-down DataWindows. Make sure these objects are included in
+the downloaded library.</p>
+<A NAME="BGBCDJFJ"></A><h2>Specifying a DataWindow object for the control</h2>
+<A NAME="TI2390"></A><p>To identify the DataWindow object you want to display in the
+control, you specify values for two properties: <A NAME="TI2391"></A>
+<ul>
+<li class=fi>SourceFileName </li>
+<li class=ds>DataWindowObject
+</li>
+</ul>
+</p>
+<A NAME="TI2392"></A><p>You enter their values on the General page of the Sybase DataWindow
+Web Control Properties dialog box.</p>
+<A NAME="TI2393"></A><h4>About SourceFileName</h4>
+<A NAME="TI2394"></A><p>The value for SourceFileName is the name of the library that
+contains the DataWindow object for the control. It can be a URL
+or a file path. These examples illustrate some typical variations:<A NAME="TI2395"></A>
+<ul>
+<li class=fi>Absolute
+URL:<p><PRE> http://www.domain.com/dwlibraries/financedws.pbd</PRE></li>
+<li class=ds>Relative URLs:<p><PRE> financedws.pbd</PRE><PRE> dwlibraries/financedws.pbd</PRE></li>
+<li class=ds>Absolute file path (can be useful while developing
+pages):<p><PRE> d:/web project/dwlibraries/financedws.pbd</PRE>
+</li>
+</ul>
+</p>
+<A NAME="TI2396"></A><p>In the Web ActiveX property sheet, when you use the Browse
+button to look for the library, you browse the file system, not
+URLs. After the full path is inserted in the field, you probably
+should edit it so that it is valid when your Web pages are deployed. </p>
+<p><b>Web targets</b>   If you are working in a PowerBuilder Web target, it is a good idea
+to include both the library and the Web page in the workspace. If
+you do, SourceFileName can be a relative path that is valid in both
+your design and deployment environments.</p>
+<p><b>Changing SourceFileName during execution</b>   You can change the value of SourceFileName in a script. If
+you do, you also have to specify a value for DataWindowObject that
+is valid in the new library. You must also call SetTransObject again
+if you are using a separate transaction object.</p>
+<A NAME="TI2397"></A><h4>About DataWindowObject</h4>
+<A NAME="TI2398"></A><p>The value for DataWindowObject is the name of a DataWindow
+object that is in the library specified in SourceFileName.</p>
+<A NAME="TI2399"></A><p>If the library is accessible in the development environment
+(for example, it is part of the PowerBuilder workspace and you specify
+a relative URL), then the property sheet displays a drop-down list
+of the DataWindow objects contained in the library.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Displaying Powersoft reports</span> <A NAME="TI2400"></A>To display a PSR file instead of a DataWindow object, specify
+its URL as the value for the DataWindowObject and leave the SourceFileName
+blank.</p>
+

@@ -1,0 +1,313 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About source control systems</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp23.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp25.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABBIAEI"></A><h1>About source control systems</h1>
+<A NAME="TI731"></A><p>This section provides an overview of source control systems
+and describes the PowerBuilder interface (API) to such systems.</p>
+<A NAME="TI732"></A><h4>What source control systems do</h4>
+<A NAME="TI733"></A><p>Source control systems (version control systems) track and
+store the evolutionary history of software components. They are
+particularly useful if you are working with other developers on
+a large application, in that they can prevent multiple developers
+from modifying the same component at the same time. You can make
+sure you are working with the latest version of a component or object
+by synchronizing the copy of the object you are working on with
+the last version of the object checked into the source control system.</p>
+<A NAME="TI734"></A><h4>Why use a source control system</h4>
+<A NAME="TI735"></A><p>Most source control systems provide disaster recovery protection
+and functions to help manage complex development processes. With
+a source control system, you can track the development history of
+objects in your PowerBuilder workspace, maintain archives, and restore
+previous revisions of objects if necessary.</p>
+<A NAME="TI736"></A><h4>Source control interfaces</h4>
+<A NAME="TI737"></A><p>You work with a source control system through a source control
+interface. PowerBuilder supports
+source control interfaces based on the Microsoft Common Source Code
+Control Interface Specification, Version 0.99.0823. You can use
+the PowerBuilder SCC API with any source control system that implements
+features defined in the Microsoft specification. </p>
+<A NAME="TI738"></A><p>PowerBuilder institutes source control at the object level.
+This gives you a finer grain of control than if you copied your <ACRONYM title = "pibbles" >PBLs</ACRONYM> directly to source control
+outside of the PowerBuilder SCC API. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>No other interfaces</span> <A NAME="TI739"></A>PowerBuilder does not support working with source control
+systems through proprietary interfaces provided by source control
+vendors. To work with source control systems from your PowerBuilder
+workspace, you must use the PowerBuilder SCC API. PowerBuilder also
+uses this API to connect to the PowerBuilder Native check in/check
+out utility that installs with the product.</p>
+<A NAME="TI740"></A><h2>Using your source control manager</h2>
+<A NAME="TI741"></A><p>The PowerBuilder SCC API works with your source control system
+to perform certain source control operations and functions described
+in the next section. Other source control operations must be performed
+directly from the source control management tool. After you have
+defined a source control connection profile for your PowerBuilder
+workspace, you can open your source control manager from the Library
+painter. </p>
+<A NAME="TI742"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To start your source control manager from PowerBuilder</p>
+<ol><li class=fi><p>Select Entry&gt;Source Control&gt;Run <i>Source
+Control Manager</i> from the Library painter menu bar.</p><p>The menu item name varies depending on the source control
+system you selected in the source control connection profile for
+your current workspace. There is no manager tool for the PBNative check
+in/check out utility.</p><p>For information on configuring a source control connection
+profile, see <A HREF="pbugp25.htm#BABCGDIB">"Setting up a connection
+profile"</A>.</p></li></ol>
+<br><A NAME="TI743"></A><h4>Which tool to use</h4>
+<A NAME="TI744"></A><p>The following table shows which source control functions you
+should perform from your source control manager and which you can
+perform from PowerBuilder:</p>
+<A NAME="TI745"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 3-1: Where to perform source control operations</caption>
+<tr><th  rowspan="1"  ><A NAME="TI746"></A>Tool or interface</th>
+<th  rowspan="1"  ><A NAME="TI747"></A>Use for this
+source control functionality </th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI748"></A>Source control manager </td>
+<td  rowspan="1"  ><A NAME="TI749"></A><A NAME="TI750"></A>
+<ul>
+<li class=fi>Setting
+up a project*</li>
+<li class=ds>Assigning access permissions</li>
+<li class=ds>Retrieving earlier revisions of objects*</li>
+<li class=ds>Assigning revision labels*</li>
+<li class=ds>Running reports*</li>
+<li class=ds><A HREF="pbugp27.htm#BABCHHHJ">Editing the PBG file for
+a source-controlled target</A>*
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI751"></A>PowerBuilder SCC API</td>
+<td  rowspan="1"  ><A NAME="TI752"></A><A NAME="TI753"></A>
+<ul>
+<li class=fi><A HREF="pbugp25.htm#BABCGDIB">Setting up a connection
+profile</A></li>
+<li class=ds><A HREF="pbugp25.htm#BABBIJBJ">Viewing the status of source-controlled
+objects</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABBGEJE">Adding objects to source
+control</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABDJDCH">Checking objects out from
+source control</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABDJADB">Checking objects in to source
+control</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABBAAED">Clearing the checked-out
+status of objects</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABEAGGB">Synchronizing objects with
+the source control server</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABCDGEA">Refreshing the status of
+objects</A></li>
+<li class=ds><A HREF="pbugp26.htm#CAIBICCG">Comparing local objects
+with source control versions</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABBGCFC">Displaying the source control
+version history</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABDIHCF">Removing objects from source
+control</A>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+<A NAME="TI754"></A><p>*    You can perform these source
+control operations from PowerBuilder for some source control systems.</p>
+<A NAME="CIHDIIAC"></A><h2>Using PBNative</h2>
+<A NAME="TI755"></A><p>PowerBuilder provides minimal in-the-box source control through
+the PBNative check in/check out utility. PBNative allows
+you to lock the current version of PowerBuilder objects and prevents
+others from checking out these objects while you are working on
+them. It provides minimal versioning functionality, and does not
+allow you to add comments or labels to objects that you add or check
+in to the PBNative project directory.</p>
+<A NAME="TI756"></A><h4>Connecting to PBNative</h4>
+<A NAME="TI757"></A><p>You connect to PBNative from PowerBuilder in the same way
+you connect to all other source control systems: through the PowerBuilder
+SCC API. You use the same menu items to add, check out, check in,
+or get the latest version of objects on the source control server.
+However, any menu item that calls a source control management tool
+is unavailable when you select PBNative as your source control system. </p>
+<A NAME="TI758"></A><p>Because there is no separate management tool for PBNative,
+if you need to edit project PBG files that get out of sync, you
+can open them directly on the server without checking them out of
+source control.</p>
+<A NAME="TI759"></A><p>For more information about PBG files, see <A HREF="pbugp27.htm#BABCHHHJ">"Editing the PBG file for
+a source-controlled target"</A>.</p>
+<A NAME="TI760"></A><h4>PRP files</h4>
+<A NAME="TI761"></A><p>PBNative creates files with an extra PRP extension for every
+object registered in the server storage location. If an object with
+the same file name (minus the additional extension) has been checked
+out, a PRP file provides the user name of the person who has placed
+a lock on the object. PRP files are created on the server, not in
+the local path.</p>
+<A NAME="TI762"></A><p>PowerBuilder also adds a version number to the PRP file for
+an object in the PBNative archive directory when you register that
+object with PBNative source control. PowerBuilder increments the
+version number when you check in a new revision. The version number
+is visible in the Show History dialog box that you open from the
+pop-up menu for the object, or in the Library painter when you display
+the object version numbers.</p>
+<A NAME="TI763"></A><p>For more information on the Show History dialog box, see <A HREF="pbugp26.htm#BABBGCFC">"Displaying the source control
+version history"</A>. For information
+on displaying the version number in the Library painter, see <A HREF="pbugp52.htm#BGBDFFEA">"Controlling columns that
+display in the List view"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using Show Differences functionality with PBNative</span> <A NAME="TI764"></A>PBNative has an option that allows you to see differences
+between an object on the server and an object on the local machine using a
+32-bit visual difference utility that you must install separately.
+For information on setting up a visual difference utility for use
+with PBNative, see <A HREF="pbugp26.htm#CAIBICCG">"Comparing local objects
+with source control versions"</A>.</p>
+<A NAME="TI765"></A><h2>Constraints of a multi-user environment</h2>
+<A NAME="TI766"></A><p>Any object added or checked into source control should be
+usable by all developers who have access permissions to that object
+in source control. This requires that the local paths for objects
+on different machines be the same in relation to the local root
+directory where the PowerBuilder workspace resides.</p>
+<A NAME="CBBDIEHJ"></A><h4>Project manager's tasks</h4>
+<A NAME="TI767"></A><p>Before developers can start work on PowerBuilder objects in
+a workspace under source control, a project manager usually performs
+the following tasks:<A NAME="TI768"></A>
+<ul>
+<li class=fi>Sets up source control
+projects (and archive databases) </li>
+<li class=ds>Assigns each developer permission to access the
+new project</li>
+<li class=ds>Sets up the directory structure for all targets
+in a project<br>
+Ideally, the project manager should create a subdirectory
+for each target. Whatever directory structure is used, it should be copied to
+all machines used to check out source-controlled objects.<br></li>
+<li class=ds>Distributes the initial set of <ACRONYM title = "pibbles" >PBLs</ACRONYM> and target (PBT) files to all
+developers working on the project or provides a network location
+from which these files and their directory structure can be copied.
+</li>
+</ul>
+</p>
+<A NAME="TI769"></A><p>PowerScript targets require that all <ACRONYM title = "pibbles" >PBLs</ACRONYM> listed
+in a target library list be present on the local machine. For source
+control purposes, all <ACRONYM title = "pibbles" >PBLs</ACRONYM> in
+a target should be in the same local root path, although they could
+be saved in separate subdirectories. PBWs and <ACRONYM title = "pibbles" >PBLs</ACRONYM> are
+not stored in source control unless they are added from outside
+the PowerBuilder SCC API. They cannot be checked into or out of
+source control using the PowerBuilder SCC API.</p>
+<A NAME="TI770"></A><p>If you are sharing <ACRONYM title = "pibbles" >PBLs</ACRONYM> in
+multiple targets, you can include the shared <ACRONYM title = "pibbles" >PBLs</ACRONYM> in
+a workspace and in targets of their own, and create a separate source
+control project for the shared objects. After adding (registering)
+the shared <ACRONYM title = "pibble" >PBL</ACRONYM> objects to this
+project, you can copy the shared targets to other workspaces, but the
+shared targets should not be registered with the corresponding projects
+for these other workspaces. In this case, the icons indicating source
+control status for the shared objects should be different depending
+on which workspace is the current workspace. </p>
+<A NAME="TI771"></A><p>For small projects, instead of requiring the project manager
+to distribute <ACRONYM title = "pibbles" >PBLs</ACRONYM> and target
+files, developers can create targets in their local workspaces having the
+same name as targets under source control. After creating a source
+control connection profile for the workspace, a developer can get
+the latest version of all objects in the workspace targets from
+the associated project on the source control server, overwriting
+any target and object files in the local root path. </p>
+<A NAME="TI772"></A><p>Unfortunately, this does not work well for large PowerScript
+projects with multiple <ACRONYM title = "pibbles" >PBLs</ACRONYM> and
+complicated inheritance schemes, but it can be used for Web targets.
+A better way for developers to add source-controlled Web targets to
+their workspaces is to use the Source Controlled Web Target wizard
+on the Target page of the New dialog box. </p>
+<A NAME="TI773"></A><p>Ongoing maintenance tasks of a project manager typically include:<A NAME="TI774"></A>
+<ul>
+<li class=fi>Distributing any target (PBT) files and <ACRONYM title = "pibbles" >PBLs</ACRONYM> that are added to the workspace
+during the course of development, or maintaining them on a network
+directory in an appropriate hierarchical file structure</li>
+<li class=ds>Making sure the <ACRONYM title = "pibble" >PBL</ACRONYM> mapping
+files (PBGs) do not get out of sync<br>
+For information about the PBG files, see <A HREF="pbugp27.htm#BABCHHHJ">"Editing the PBG file for
+a source-controlled target"</A>.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI775"></A><p>Connections from each development machine to the source control
+project can be defined on the workspace after the initial setup
+tasks are performed.</p>
+<A NAME="TI776"></A><h4>Developers' tasks</h4>
+<A NAME="TI777"></A><p>Each user can define a local root directory in a workspace
+connection profile. Although the local root directory can be anywhere
+on a local machine, the directory structure below the root directory
+must be the same on all machines that are used to connect to the
+source control repository. Only relative path names are used to
+describe the location of objects in the workspace below the root
+directory level. </p>
+<A NAME="TI778"></A><p>After copying the directory structure for source-controlled
+PowerScript targets to the local root path, developers can add these
+targets to their local workspaces. The target objects can be synchronized
+in PowerBuilder, although for certain complex targets, it might
+be better to do the initial synchronization through the source control
+client tool or on a nightly build machine before adding the targets
+to PowerBuilder. (Otherwise, the target <ACRONYM title = "pibbles" >PBLs</ACRONYM> may
+need to be manually rebuilt and regenerated.)</p>
+<A NAME="TI779"></A><p>Developers can use the Source Controlled Web Target wizard
+to add Web targets to their workspaces. The wizard creates subdirectories
+in the local root path and populates the subdirectories with the
+latest version of the Web target source files from the source control
+server.</p>
+<A NAME="TI780"></A><p>For more information about getting the latest version of objects
+in source control, see <A HREF="pbugp26.htm#BABEAGGB">"Synchronizing objects with
+the source control server"</A>.</p>
+<A NAME="CIHDAGBB"></A><h2>Extension to the SCC API</h2>
+<A NAME="TI781"></A><h4>Status determination by version number</h4>
+<A NAME="TI782"></A><p>PowerBuilder provides third-party SCC providers with an extension
+to the SCC API that allows them to enhance the integration of their
+products with PowerBuilder. Typically, calls to the <b>SccDiff</b> method
+are required to determine if an object is out of sync with the SCC
+repository. (This is not required for Perforce and ClearCase.) </p>
+<A NAME="TI783"></A><p>However, SCC providers can implement <b>SccQueryInfoEx</b> as
+a primary file comparison method instead of <b>SccDiff</b>.
+The <b>SccQueryInfoEx</b> method returns the most recent
+version number for each object requested.  This allows PowerBuilder
+to compare the version number associated with the object in the <ACRONYM title = "pibble" >PBL</ACRONYM> with the version number of the
+tip revision in the SCC repository in order to determine whether
+an object is in sync.  </p>
+<A NAME="TI784"></A><p>Since <b>SccQueryInfoEx</b> is a much simpler
+request than <b>SccDiff</b>, the performance of the
+PowerBuilder IDE improves noticeably when this feature is implemented
+by the SCC provider. For these providers, the <b>SccDiff</b> call
+is  used as a backup strategy only when a version number is not
+returned on an object in the repository. Also for these providers,
+the version number for registered files can be displayed in the
+Library painter.</p>
+<A NAME="TI785"></A><p>For more information on viewing the version number, see <A HREF="pbugp52.htm#BGBDFFEA">"Controlling columns that
+display in the List view"</A>.</p>
+<A NAME="TI786"></A><p>Once the new API method is implemented in an SCC provider
+DLL and exported,  PowerBuilder automatically begins to use the <b>SCCQueryInfoEx</b> call with
+that provider. The <b>SccQueryInfoEx</b> method is currently
+used by PBNative. </p>
+<A NAME="TI787"></A><h4>Overriding the version number</h4>
+<A NAME="TI788"></A><p>For source control systems that support the <b>SccQueryInfoEx</b> 
+method, you can manually override the version number of local files,
+but only for PowerScript objects, and only when you are connected
+to source control. </p>
+<A NAME="TI789"></A><p>This can be useful with source control systems that allow
+you to check out a version of an object that is not the tip revision.
+However, the source control system alone decides the version number
+of the tip revision when you check a file back into source control.
+It is the version returned by the source control system that gets
+added to the PBC file for the workspace and to the <ACRONYM title = "pibbles" >PBLs</ACRONYM> in the local directory.</p>
+<A NAME="TI790"></A><p>For more information about the PBC file, see <A HREF="pbugp25.htm#CIHBEICE">"Working in offline mode"</A>.</p>
+<A NAME="TI791"></A><p>You change the local version number for a source-controlled
+PowerScript object in its Properties dialog box, which you access
+ from the object's pop-up menu in the System Tree
+or the Library painter.  If the source control system for the workspace
+supports the  <b>SccQueryInfoEx</b>  method and you
+are connected to source control, the Properties dialog box for a
+source-controlled PowerScript object (other than a PBT) has an editable
+SCC Version text box. The SCC Version text box is grayed if the
+source control system does not support the <b>SccQueryInfoEx</b> 
+method or if you are not connected to source control.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Local change only</span> <A NAME="TI792"></A>The version number that you manually enter for an object is
+discarded on check-in. Only the source control provider decides
+what number the tip revision is assigned.</p>
+

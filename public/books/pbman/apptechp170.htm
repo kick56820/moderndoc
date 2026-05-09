@@ -1,0 +1,178 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining the component interface</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp169.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp171.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABEBABB"></A><h1>Defining the component interface</h1>
+<A NAME="TI5643"></A><p>When you build a PowerBuilder custom class user object as
+a COM component, the functions and optionally the instance variables
+defined for the object appear in the component interface. PowerBuilder
+generates an IDL file that defines a COM class and a single interface
+for each custom class user object contained in the server, as well
+as a type library name and an associated ID for the PowerBuilder
+COM server. </p>
+<A NAME="TI5644"></A><h2>Methods and datatypes</h2>
+<A NAME="TI5645"></A><h4>Functions</h4>
+<A NAME="TI5646"></A><p>Each PowerBuilder COM object supports a single interface that
+exposes a method for each user-defined public function in the custom
+class user object. </p>
+<A NAME="TI5647"></A><p>The function's return value is represented by an
+additional retval argument. For example, if an object has these
+user object functions:<p><PRE> f_addtwo (long al_num1, long al_num2) returns long<br>f_getinfo (REF string as_name, REF integer ai_age, <br>    REF character ac_gender) returns integer</PRE></p>
+<A NAME="TI5648"></A><p>These member functions are generated in the IDL file:<p><PRE> HRESULT f_addtwo( [in] long al_num1, <br>    [in] long al_num2, [out, retval] long * retval );<br>HRESULT f_getinfo( [in, out] BSTR * as_name, <br>    [in, out] short * ai_age, [in, out] unsigned<br>    char * ac_gender, [out, retval] short * retval );</PRE></p>
+<A NAME="BABCDGFH"></A><h4>Instance variables</h4>
+<A NAME="TI5649"></A><p>Since COM objects never expose their data, public instance
+variables in the custom class user object can be represented in
+the COM object as interface methods for getting and setting the
+variable value. To specify that variable accessor methods will be
+exposed in the interface, you can use the Project wizard or the
+Objects property page in the Project painter.</p>
+<A NAME="TI5650"></A><p> If the public variable is writable, the put method will be
+exposed. For private and protected variables and variables declared
+as privateread or protectedread and privatewrite or protectedwrite,
+no methods are generated. If the variable is publicly readable,
+the get method will be exposed. For example, if an object has these
+instance variables:<p><PRE> public string is_name<br>private integer ii_a<br>public privatewrite string is_label <br>constant real lr_pi = 3.14159265</PRE></p>
+<A NAME="TI5651"></A><p>These are the methods that are generated in the IDL file:<p><PRE> [id(4), propget] HRESULT is_name([out,retval] <br>    BSTR *is_name);<br>[id(4), propput] HRESULT is_name([in] <br>    BSTR is_name);<br>[id(1), propget] HRESULT is_label([out,retval] <br>    BSTR *is_label);<br>[id(6), propget] HRESULT lr_pi( [out,retval] <br>    float * lr_pi);</PRE></p>
+<A NAME="TI5652"></A><h4>Datatype mappings</h4>
+<A NAME="TI5653"></A><p>PowerBuilder datatypes map to COM datatypes as shown in <A HREF="apptechp170.htm#CEGGCAJJ">Table 27-2</A>.</p>
+<A NAME="CEGGCAJJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 27-2: PowerBuilder and COM datatype
+mapping</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5654"></A>PowerBuilder datatype</th>
+<th  rowspan="1"  ><A NAME="TI5655"></A>COM datatype (variants)</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5656"></A>Boolean</td>
+<td  rowspan="1"  ><A NAME="TI5657"></A>Variant_BOOL</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5658"></A>Character</td>
+<td  rowspan="1"  ><A NAME="TI5659"></A>Unsigned char</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5660"></A>Integer</td>
+<td  rowspan="1"  ><A NAME="TI5661"></A>Short</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5662"></A>UnsignedInteger</td>
+<td  rowspan="1"  ><A NAME="TI5663"></A>Unsigned short</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5664"></A>Long</td>
+<td  rowspan="1"  ><A NAME="TI5665"></A>Long</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5666"></A>UnsignedLong</td>
+<td  rowspan="1"  ><A NAME="TI5667"></A>Unsigned long</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5668"></A>Real</td>
+<td  rowspan="1"  ><A NAME="TI5669"></A>Float</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5670"></A>Double</td>
+<td  rowspan="1"  ><A NAME="TI5671"></A>Double</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5672"></A>Decimal</td>
+<td  rowspan="1"  ><A NAME="TI5673"></A>Double</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5674"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI5675"></A>BSTR</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5676"></A>Date</td>
+<td  rowspan="1"  ><A NAME="TI5677"></A>DATE</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5678"></A>Time</td>
+<td  rowspan="1"  ><A NAME="TI5679"></A>DATE</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5680"></A>DateTime</td>
+<td  rowspan="1"  ><A NAME="TI5681"></A>DATE</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5682"></A>Blob</td>
+<td  rowspan="1"  ><A NAME="TI5683"></A>SAFEARRAY (Unsigned char)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5684"></A>Arrays (PowerBuilder datatype)</td>
+<td  rowspan="1"  ><A NAME="TI5685"></A>SAFEARRAY (COM datatype)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5686"></A>ResultSet</td>
+<td  rowspan="1"  ><A NAME="TI5687"></A>LPDISPATCH</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5688"></A>Custom class user objects*</td>
+<td  rowspan="1"  ><A NAME="TI5689"></A>LPDISPATCH</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5690"></A>Any</td>
+<td  rowspan="1"  ><A NAME="TI5691"></A><i>Not supported</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5692"></A>Global structures</td>
+<td  rowspan="1"  ><A NAME="TI5693"></A><i>Not supported</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5694"></A>OLEObjects</td>
+<td  rowspan="1"  ><A NAME="TI5695"></A><i>Not supported</i></td>
+</tr>
+</table>
+<A NAME="TI5696"></A><p>*  Custom class user
+objects must be created within the same client in the same COM apartment (that
+is, in the same thread)</p>
+<A NAME="TI5697"></A><h2>Restrictions on coding</h2>
+<A NAME="TI5698"></A><p>There are some elements that you cannot use in your code when
+you plan to deploy a user object as a COM component.</p>
+<A NAME="TI5699"></A><h4>No overloaded functions</h4>
+<A NAME="TI5700"></A><p>COM does not support overloaded functions in an interface
+to a COM object. Each function in the user object (and its ancestors)
+must have a unique name. PowerBuilder COM objects have a single
+interface, and multiple functions with the same name but different
+signatures would require multiple interfaces. </p>
+<A NAME="TI5701"></A><h4>How ancestor variables and ancestor functions
+are represented</h4>
+<A NAME="TI5702"></A><p>When you generate a PowerBuilder COM object from a descendent
+user object, the public instance variables and functions of both
+the ancestor and the descendant are represented in the COM object.
+The fact that some of the component methods were derived from the
+ancestor object is transparent. Because of the restriction on overloaded
+functions described above, functions in descendent objects can override
+functions in the ancestor, but they cannot overload them. </p>
+<A NAME="TI5703"></A><h4>Datatypes for arguments and return values</h4>
+<A NAME="TI5704"></A><p>The methods associated with a nonvisual object that you deploy
+as a COM object can take arguments that use the following datatypes:<A NAME="TI5705"></A>
+<ul>
+<li class=fi>Standard OLE automation datatypes</li>
+<li class=ds>Custom class (nonvisual) user objects
+</li>
+</ul>
+</p>
+<A NAME="TI5706"></A><p>COM component methods cannot take arguments or return values
+that use PowerBuilder structures or the <b>Any</b> datatype.
+Functions defined on a PowerBuilder nonvisual object that take an <b>Any</b> variable
+as an argument or return an <b>Any</b> variable can
+be called from code that is local to that object; however, these
+functions cannot be accessed by clients or other COM components.</p>
+<A NAME="TI5707"></A><p>The arguments to a component method cannot include visual
+objects (such as windows or menus) or most system types (such as
+the Transaction object or the DataStore object). The only system
+type supported is the ResultSet object.</p>
+<A NAME="TI5708"></A><p>The return value of a component method can be of any standard
+datatype. The return value can also be a custom class (nonvisual)
+user object.</p>
+<A NAME="BABCBDAC"></A><h4>COM validation</h4>
+<A NAME="TI5709"></A><p>If you are designing a custom class user object that you plan
+to deploy as a COM component, you can have PowerBuilder warn you
+when you use code elements that are not valid in COM.</p>
+<A NAME="TI5710"></A><p>COM validation checks for overloaded functions and checks
+public instance variables and public functions for system types,
+visual types, structures, and Any variables.</p>
+<A NAME="TI5711"></A><p>In the User Object painter, make sure the Design&gt;COM
+Validation menu item is checked. When you save the object, the Output
+window lists warnings such as the following:<p><PRE>Information C0197: Component Validation<br>Warning C0198: illegal COM type: 'any' arg type for function: 'of_badfunc' <br>Warning C0198: illegal COM type: 'window' arg type for function: 'of_badfunc' </PRE></p>
+</p>
+<A NAME="TI5712"></A><p>Validation is associated with the object you are editing,
+not with the User Object painter. When you reopen an object, it
+has the same validation state as when you closed it. New COM objects
+are created with COM validation checked.</p>
+<A NAME="CHDDFDGC"></A><h2>Recording errors in a log file</h2>
+<A NAME="TI5713"></A><p>To record errors generated by COM objects running in COM+ to
+the Windows system application log, create an instance of the ErrorLogging
+service context object and invoke its log method. For example: <p><PRE> ErrorLogging el<br>this.GetContextService("ErrorLogging", el)<br>el.log("Write this string to log")</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Automatic recording of exception information</span> <A NAME="TI5714"></A>Information about the exception type and location of an exception
+caused by a PowerBuilder component running on the server is recorded
+automatically in the server log. It is no longer necessary to invoke
+the error logging service to obtain minimal information about these
+exceptions.</p>
+

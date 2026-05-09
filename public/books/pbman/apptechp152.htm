@@ -1,0 +1,65 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About building an EAServer client</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp151.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp153.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDCDEJ"></A><h1>About building an EAServer client</h1>
+<A NAME="TI5101"></A><p>A PowerBuilder application can act as a client to an <ABBR title = "e a server" >EAServer</ABBR> component. To access a
+method associated with a component on the server, the PowerBuilder
+client needs to connect to the server, instantiate the component,
+and invoke the component method. </p>
+<A NAME="TI5102"></A><p>In general, you use an instance of a Connection object to
+connect to <ABBR title = "e a server" >EAServer</ABBR>. If you want
+to create a CORBA-compatible client, you can use the JaguarORB object
+to establish the connection to the server. By using the JaguarORB
+object, a PowerBuilder client can access <ABBR title = "e a server" >EAServer</ABBR> in
+the same way that a C++ client would. </p>
+<A NAME="TI5103"></A><p>You can use the techniques described in this chapter to build
+clients for EJB components running in <ABBR title = "e a server" >EAServer</ABBR>.
+For information about building a client for EJB components on <ABBR title = "e a server" >EAServer</ABBR> and other J2EE-compliant servers,
+see <A HREF="apptechp184.htm#CDECHFKM">Chapter 29, "Building an EJB client ."</A></p>
+<A NAME="TI5104"></A><h2>About using the wizards</h2>
+<A NAME="TI5105"></A><p>PowerBuilder provides two wizards to facilitate the development
+of EAServer clients:<A NAME="TI5106"></A>
+<ul>
+<li class=fi><b>Connection
+Object wizard </b>   Adds code required to connect to the server</li>
+<li class=ds><b><ABBR title = "e a server" >EAServer</ABBR> Proxy
+wizard</b>    Helps you create projects for building proxy objects for
+the <ABBR title = "e a server" >EAServer</ABBR> components you want
+to access from the client
+</li>
+</ul>
+</p>
+<A NAME="TI5107"></A><h2>About the development process</h2>
+<A NAME="TI5108"></A><h4>Steps for building an <ABBR title = "e a server" >EAServer</ABBR> client</h4>
+<A NAME="TI5109"></A><p>To build and deploy an <ABBR title = "e a server" >EAServer</ABBR> client,
+you need to complete the following steps:<A NAME="TI5110"></A>
+<ol>
+</li>
+<li class=ds>Use the <ABBR title = "e a server" >EAServer</ABBR> Connection
+Object Wizard to create a standard class user object inherited from
+the Connection object. You can then use this object in a script
+to establish a connection.<br>
+If you use the Template Application Start Wizard to create
+the client application, you can create the Connection object in
+that wizard.<br></li>
+<li class=ds>Use the <ABBR title = "e a server" >EAServer</ABBR> Proxy
+Wizard to create a project for building proxy objects. Then generate
+the proxy objects.</li>
+<li class=ds>Create the windows, menus, and scripts required
+to implement the user interface.</li>
+<li class=ds>Write the code required to create the <ABBR title = "e a server" >EAServer</ABBR> component instance and call
+one or more component methods from the client.</li>
+<li class=ds>Test and debug the client.</li>
+<li class=ds>Deploy the application.
+</li>
+</ol>
+</p>
+

@@ -1,0 +1,342 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using Quick Select</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp157.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp159.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCDBCEF"></A><h1>Using Quick Select</h1>
+<A NAME="TI4849"></A><p>The
+easiest way to define a data source is using Quick Select. </p>
+<A NAME="TI4850"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define the data using Quick Select:</p>
+<ol><li class=fi><p>Click Quick Select in the Choose Data Source
+dialog box in the wizard and click Next.</p></li>
+<li class=ds><p>Select the table that you will use in the DataWindow object.</p><p>For more information, see <A HREF="pbugp158.htm#CDCHEEIJ">"Selecting a table"</A>.</p></li>
+<li class=ds><p>Select the columns to be retrieved from the database.</p><p>For more information, see <A HREF="pbugp158.htm#CDCFDGCH">"Selecting columns"</A>.</p></li>
+<li class=ds><p>(Optional) Sort the rows before you retrieve data.</p><p>For more information, see <A HREF="pbugp158.htm#CFHBCJBJ">"Specifying sorting criteria"</A>.</p></li>
+<li class=ds><p>(Optional) Select what data to retrieve.</p><p>For more information, see <A HREF="pbugp158.htm#CFHDACCF">"Specifying selection criteria"</A>.</p></li>
+<li class=ds><p>Click the OK button in the Quick Select dialog
+box.</p><p>You return to the wizard to complete the definition of the DataWindow object.</p></li></ol>
+<br><A NAME="TI4851"></A><h4>Quick Select limitations</h4>
+<A NAME="TI4852"></A><p>When you choose Quick Select as your data source, you cannot:<A NAME="TI4853"></A>
+<ul>
+<li class=fi>Specify grouping before rows
+are retrieved</li>
+<li class=ds>Include computed columns</li>
+<li class=ds>Specify retrieval arguments for the <b>SELECT</b> statement
+that are supplied at runtime.
+</li>
+</ul>
+</p>
+<A NAME="TI4854"></A><p>To use these options when you create a DataWindow object, choose <ACRONYM title = "sequel" >SQL</ACRONYM> Select as your data source. If
+you decide later that you want to use retrieval arguments, you can
+define them by modifying the data source. For more information,
+see <A HREF="pbugp167.htm#CAICGCGD">Chapter 19, "Enhancing DataWindow Objects ."</A></p>
+<A NAME="CDCHEEIJ"></A><h2>Selecting a table</h2>
+<A NAME="TI4855"></A><p>When you choose Quick Select, the Quick Select dialog box
+displays. The Tables box lists tables and views in the current database.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Displaying table comments</span> <A NAME="TI4856"></A>To display a comment about a table, position the pointer on
+the table and click the right mouse button or select the table.</p>
+<A NAME="TI4857"></A><h4>Which tables and views display?</h4>
+<A NAME="TI4858"></A><p>The DBMS determines what tables and views display. For some
+DBMSs, all tables and views display, whether or not you have authorization.
+If you select a table or view you are not authorized to access,
+the DBMS issues a message.</p>
+<A NAME="TI4859"></A><p>For ODBC databases, the tables and views that display depend
+on the driver for the data source. Adaptive Server Anywhere does not restrict
+the display, so all tables and views display, whether or not you
+have authorization.</p>
+<A NAME="TI4860"></A><h4>Tables with key relationships</h4>
+<A NAME="TI4861"></A><p>When you select a table, the table's column names
+display in the Columns box, and any tables having a key relationship
+with the selected table display in the Tables box. These tables
+are indented and marked with an arrow to show their relationship
+to the selected table. You can select any of these related tables
+if you want to include columns from them in the DataWindow object.</p>
+<br><img src="images/defin27.gif">
+<A NAME="TI4862"></A><h4>Meaning of the up and down arrows</h4>
+<A NAME="TI4863"></A><p>An arrow displays next to a table to indicate its relationship
+to the selected table. The arrow always points in the <i>many</i> direction
+of the relationship&#8212;toward the selected table (up) if the
+selected table contains a foreign key in the relationship and away
+from the selected table (down) if the selected table contains a
+primary key in the relationship:</p>
+<br><img src="images/defin28.gif">
+<A NAME="TI4864"></A><p>In this preceding illustration, the selected table is <b>sales_order</b>.
+The Up arrows indicate that a foreign key in the <b>sales_order</b> table
+is mapped to the primary key in the <b>customer</b> and <b>fin_code</b> tables.
+The Down arrow indicates that the <b>sales_order_items</b> table
+contains a foreign key mapped to the primary key in the <b>sales_order</b> table.</p>
+<A NAME="TI4865"></A><h4>How columns from additional tables display</h4>
+<A NAME="TI4866"></A><p>The column names of selected tables display in the Columns
+box. If you select more than one table, the column names are identified
+as:<p><PRE><i>tablename.columnname</i></PRE></p>
+</p>
+<A NAME="TI4867"></A><p>For example, <b>department.dept_name</b> and <b>employee.emp_id</b> display
+when the <b>Employee</b> table and the <b>Department</b> table
+are selected.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>To return to the original table list</span> <A NAME="TI4868"></A>Click the table you first selected at the top of the table
+list.</p>
+<A NAME="CDCFDGCH"></A><h2>Selecting columns</h2>
+<A NAME="TI4869"></A><p>You can select columns from the primary table and from its
+related tables. Select the table whose columns you want to use in
+the Tables box, and add columns from the Columns box:<A NAME="TI4870"></A>
+<ul>
+<li class=fi>To add a column, select it
+in the Columns box.</li>
+<li class=ds>To add all the columns that display in the Columns
+box, click Add All.</li>
+<li class=ds>To remove a column, deselect it in the Columns box.</li>
+<li class=ds>To view comments that describe a table or column,
+position the pointer on a table or column name, and press and hold
+the right mouse button.
+</li>
+</ul>
+</p>
+<A NAME="TI4871"></A><p>As you select columns, they display in the grid at the bottom
+of the dialog box in the order in which you select them. If you
+want the columns to display in a different order in the DataWindow object,
+select a column name you want to move in the grid and drag it to
+the new location.</p>
+<A NAME="CFHBCJBJ"></A><h2>Specifying sorting criteria</h2>
+<A NAME="TI4872"></A><p>In the grid at the bottom of the Quick Select dialog box,
+you can specify if you want the retrieved rows to be sorted. As
+you specify sorting criteria, PowerBuilder builds an <b>ORDER
+BY</b> clause for the <b>SELECT</b> statement.</p>
+<A NAME="TI4873"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To sort retrieved rows on a column:</p>
+<ol><li class=fi><p>Click in the Sort row for the column you
+want to sort on.</p><p>PowerBuilder displays a drop-down list:</p><br><img src="images/defin29.gif"><br>
+</li>
+<li class=ds><p>Select the sorting order for the rows: Ascending
+or Descending.</p></li></ol>
+<br><A NAME="TI4874"></A><h4>Multilevel sorts</h4>
+<A NAME="TI4875"></A><p>You can specify as many columns for sorting as you want. PowerBuilder processes
+the sorting criteria left to right in the grid: the first column
+with Ascending or Descending specified becomes the highest level
+sorting column, the next column with Ascending or Descending specified
+becomes the next level sorting column, and so on.</p>
+<A NAME="TI4876"></A><p>If you want to do a multilevel sort that does not match the
+column order in the grid, drag the columns to the correct order
+and then specify the columns for sorting.</p>
+<A NAME="CFHDACCF"></A><h2>Specifying selection criteria</h2>
+<A NAME="TI4877"></A><p>You can enter selection criteria in the grid to specify which
+rows to retrieve. For example, instead of retrieving data about
+all employees, you might want to limit the data to employees in
+Sales and Marketing, or to employees in Sales who make more than $80,000.</p>
+<A NAME="TI4878"></A><p>As you specify selection criteria, PowerBuilder builds a <b>WHERE</b> clause
+for the <b>SELECT</b> statement.</p>
+<A NAME="TI4879"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify selection criteria:</p>
+<ol><li class=fi><p>Click the Criteria row below the first
+column for which you want to select the data to retrieve.</p></li>
+<li class=ds><p>Enter an expression, or if the column has an edit
+style, select or enter a value.</p><p>If the column is too narrow for the criterion, drag the grid
+line to enlarge the column. This enlargement does not affect the
+column size in a DataWindow object.</p></li>
+<li class=ds><p>Enter additional expressions until you have specified
+the data you want to retrieve.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About edit styles</span> <A NAME="TI4880"></A>If a column has an edit style associated with it in the extended
+attribute system tables (that is, the association was made in the Database painter),
+if possible, the edit style is used in the grid. Drop-down list
+boxes are used for columns with code tables and columns using the
+CheckBox and RadioButton edit styles.</p>
+<A NAME="TI4881"></A><h4><ACRONYM title = "sequel" >SQL</ACRONYM> operators supported
+in Quick Select</h4>
+<A NAME="TI4882"></A><p>You can use these <ACRONYM title = "sequel" >SQL</ACRONYM> relational
+operators in the retrieval criteria:</p>
+<A NAME="TI4883"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 18-2: <ACRONYM title = "sequel" >SQL</ACRONYM> relational operators
+used in retrieval criteria</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4884"></A>Operator</th>
+<th  rowspan="1"  ><A NAME="TI4885"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4886"></A>=</td>
+<td  rowspan="1"  ><A NAME="TI4887"></A>Is equal to (default operator)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4888"></A>&gt;</td>
+<td  rowspan="1"  ><A NAME="TI4889"></A>Is greater than</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4890"></A>&lt;</td>
+<td  rowspan="1"  ><A NAME="TI4891"></A>Is less than</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4892"></A>&lt; &gt;</td>
+<td  rowspan="1"  ><A NAME="TI4893"></A>Is not equal to</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4894"></A>&gt; =</td>
+<td  rowspan="1"  ><A NAME="TI4895"></A>Is greater than or equal to</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4896"></A>&lt; =</td>
+<td  rowspan="1"  ><A NAME="TI4897"></A>Is less than or equal to</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4898"></A>LIKE</td>
+<td  rowspan="1"  ><A NAME="TI4899"></A>Matches this pattern </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4900"></A>NOT LIKE</td>
+<td  rowspan="1"  ><A NAME="TI4901"></A>Does not match this pattern</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4902"></A>IN</td>
+<td  rowspan="1"  ><A NAME="TI4903"></A>Is in this set of values</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4904"></A>NOT IN</td>
+<td  rowspan="1"  ><A NAME="TI4905"></A>Is not in this set of values</td>
+</tr>
+</table>
+<A NAME="TI4906"></A><p>Because = is the default operator, you can enter
+the value <FONT FACE="Courier New">100</FONT> instead of <FONT FACE="Courier New">= 100</FONT>, or
+the value <FONT FACE="Courier New">New Hampshire</FONT> instead
+of <FONT FACE="Courier New">= New Hampshire</FONT>.</p>
+<A NAME="TI4907"></A><h4>Comparison operators</h4>
+<A NAME="TI4908"></A><p>You can use the <b>LIKE</b>, <b>NOT LIKE</b>, <b>IN</b>,
+and <b>NOT IN</b> operators to compare expressions.</p>
+<A NAME="TI4909"></A><p>Use <b>LIKE</b> to search for strings that match
+a predetermined pattern. Use <b>NOT LIKE</b> to find
+strings that do not match a predetermined pattern. When you use <b>LIKE</b> or <b>NOT
+LIKE</b>, you can use wildcards:<A NAME="TI4910"></A>
+<ul>
+<li class=fi>The percent sign (%), like the wildcard
+asterisk (*) used in many applications, matches multiple
+characters. For example, <FONT FACE="Courier New">Good%</FONT> matches
+all names that begin with <FONT FACE="Courier New">Good</FONT>.</li>
+<li class=ds>The underscore character (_) matches a
+single character. For example, <FONT FACE="Courier New">Good _ _ _</FONT> matches
+all seven-letter names that begin with <FONT FACE="Courier New">Good</FONT>.
+</li>
+</ul>
+</p>
+<A NAME="TI4911"></A><p>Use <b>IN</b> to
+compare and include a value that is in a set of values. Use <b>NOT
+IN</b> to compare and include values that are not in a set
+of values. For example, the following clause selects all employees
+in department 100, 200, or 500:<p><PRE> SELECT * from employee<br>WHERE dept_id<i> IN (100, 200, 500)</i></PRE></p>
+<A NAME="TI4912"></A><p>Using <b>NOT IN</b> in this clause would exclude
+employees in those departments.</p>
+<A NAME="TI4913"></A><h4>Connection operators</h4>
+<A NAME="TI4914"></A><p>You can use the <b>OR</b> and <b>AND</b> logical
+operators to connect expressions.</p>
+<A NAME="TI4915"></A><p>PowerBuilder makes some assumptions based on how you specify
+selection criteria. When you specify:<A NAME="TI4916"></A>
+<ul>
+<li class=fi>Criteria for more than one column on one line<br>
+PowerBuilder assumes a logical <b>AND</b> between
+the criteria. A row from the database is retrieved if <i>all</i> criteria
+in the line are met.<br></li>
+<li class=ds>Two or more lines of selection criteria<br>
+PowerBuilder assumes a logical <b>OR</b>. A row
+from the database is retrieved if the criterion in <i>any</i> of
+the lines is met.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI4917"></A><p>To override these defaults, begin an expression with the <b>AND</b> or <b>OR</b> operator:</p>
+<A NAME="TI4918"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI4919"></A>Operator</th>
+<th  rowspan="1"  ><A NAME="TI4920"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4921"></A><b>OR</b></td>
+<td  rowspan="1"  ><A NAME="TI4922"></A>The row is selected if one expression <b>OR</b> another
+expression is true</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4923"></A><b>AND</b></td>
+<td  rowspan="1"  ><A NAME="TI4924"></A>The row is selected if one expression <b>AND</b> another
+expression are true</td>
+</tr>
+</table>
+<A NAME="TI4925"></A><p>This technique is particularly handy when you want to retrieve
+a range of values in a column. See example 6 below.</p>
+<A NAME="TI4926"></A><h3>SQL expression
+examples</h3>
+<A NAME="TI4927"></A><p>The first six examples in this section all refer to a grid
+that contains three columns: <b>EmpId</b>, <b>DeptId</b>,
+and <b>Salary</b>. </p>
+<A NAME="TI4928"></A><h4>Example 1</h4>
+<A NAME="TI4929"></A><p>The expression <FONT FACE="Courier New">&gt;50000</FONT> in
+the Criteria row in the <b>Salary</b> column in the
+grid retrieves information for employees whose salaries are less
+than $50,000.</p>
+<br><img src="images/defin30.gif">
+<A NAME="TI4930"></A><p>The <b>SELECT</b> statement that PowerBuilder creates
+is:<p><PRE> SELECT emp_id, dept_id, salary<br>FROM employee<br>WHERE salary &lt; 50000</PRE></p>
+<A NAME="TI4931"></A><h4>Example 2</h4>
+<A NAME="TI4932"></A><p>The expression <FONT FACE="Courier New">100</FONT> in
+the Criteria row in the <b>DeptId</b> column in the
+grid retrieves information for employees who belong to department
+100.</p>
+<br><img src="images/defin31.gif">
+<A NAME="TI4933"></A><p>The <b>SELECT</b> statement that PowerBuilder creates
+is:<p><PRE> SELECT emp_id, dept_id, salary<br>FROM employee<br>WHERE dept_id = 100</PRE></p>
+<A NAME="TI4934"></A><h4>Example 3</h4>
+<A NAME="TI4935"></A><p>The expression <FONT FACE="Courier New">&gt;300</FONT> in
+the Criteria row in the <b>EmpId</b> column and the expression <FONT FACE="Courier New">&lt;50000</FONT> in
+the Criteria row in the <b>Salary</b> column in the
+grid retrieve information for any employee whose employee ID is
+greater than 300 <i>and</i> whose salary is less than $50,000.</p>
+<br><img src="images/defin32.gif">
+<A NAME="TI4936"></A><p>The <b>SELECT</b> statement that PowerBuilder creates
+is:<p><PRE> SELECT emp_id, dept_id, salary<br>FROM employee<br>WHERE emp_id &gt;300 AND salary &lt;50000</PRE></p>
+<A NAME="TI4937"></A><h4>Example 4</h4>
+<A NAME="TI4938"></A><p>The expressions <FONT FACE="Courier New">100</FONT> in
+the Criteria row and <FONT FACE="Courier New">&gt;300</FONT> in
+the Or row for the <b>DeptId</b> column, together
+with the expression <FONT FACE="Courier New">&lt;50000</FONT> in
+the Criteria row in the <b>Salary</b> column, retrieve
+information for employees who belong to:<A NAME="TI4939"></A>
+<ul>
+<li class=fi>Department 100 <i>and</i> have a salary
+less than $50,000<br>
+<i>or</i><br></li>
+<li class=ds>A department whose ID is greater than 300, no matter
+what their salaries
+</li>
+</ul>
+</p>
+<br><img src="images/defin33.gif">
+<A NAME="TI4940"></A><p>The <b>SELECT</b> statement that PowerBuilder creates
+is:<p><PRE> SELECT emp_id, dept_id, salary<br>FROM employee<br>WHERE (dept_id = 100 AND salary &lt; 50000)<br>OR dept_id &gt; 300</PRE></p>
+<A NAME="TI4941"></A><h4>Example 5</h4>
+<A NAME="TI4942"></A><p>The expression <FONT FACE="Courier New">IN(100, 200, 500)</FONT> in
+the Criteria row in the <b>DeptId</b> column in the
+grid retrieves information for employees who are in department 100 <i>or</i> 200 <i>or</i> 500.</p>
+<br><img src="images/defin34.gif">
+<A NAME="TI4943"></A><p>The <b>SELECT</b> statement that PowerBuilder creates
+is:<p><PRE> SELECT emp_id, dept_id, salary<br>FROM employee<br>WHERE dept_id IN (100, 200, 500)</PRE></p>
+<A NAME="TI4944"></A><h4>Example 6</h4>
+<A NAME="TI4945"></A><p>This example shows the use of the word <b>AND</b> in
+the Or criteria row. In the Criteria row, <FONT FACE="Courier New">&gt;=500 </FONT>is
+in the <b>EmpId</b> column and <FONT FACE="Courier New">&gt;=30000 </FONT>is
+in the <b>Salary</b> column. In the Or row, <FONT FACE="Courier New">AND &lt;=1000 </FONT>is
+in the <b>EmpId</b> column and <FONT FACE="Courier New">AND &lt;=50000 </FONT>is
+in the <b>Salary</b> column. These criteria retrieve
+information for employees who have an employee ID from 500 to 1000
+and a salary from $30,000 to $50,000.</p>
+<br><img src="images/defin35.gif">
+<A NAME="TI4946"></A><p>The <b>SELECT</b> statement that PowerBuilder creates
+is:<p><PRE> SELECT emp_id, dept_id, salary<br>FROM employee<br>WHERE (emp_id &gt;= 500 AND emp_id &lt;= 1000)<br>AND (salary &gt;= 30000 AND salary &lt;= 50000)</PRE></p>
+<A NAME="TI4947"></A><h4>Example 7</h4>
+<A NAME="TI4948"></A><p>In a grid with three columns: <b>Emp Last Name</b>, <b>Emp
+First Name</b>, and <b>Salary</b>, the expressions <FONT FACE="Courier New">LIKE
+C%</FONT> in the Criteria row and <FONT FACE="Courier New">LIKE
+G%</FONT> in the Or row in the <b>Emp Last
+Name</b> column retrieve information for employees who have
+last names that begin with C or G.</p>
+<br><img src="images/defin36.gif">
+<A NAME="TI4949"></A><p>The <b>SELECT</b> statement that PowerBuilder creates
+is:<p><PRE> SELECT emp_last_name, emp_first_name, salary<br>FROM employee<br>WHERE emp_last_name LIKE 'C%'<br>OR emp_last_name LIKE 'G%'</PRE></p>
+<A NAME="TI4950"></A><h4>Providing <ACRONYM title = "sequel" >SQL</ACRONYM> functionality
+to users</h4>
+<A NAME="TI4951"></A><p>You can allow your users to specify selection criteria in
+a DataWindow object using these techniques at runtime:<A NAME="TI4952"></A>
+<ul>
+<li class=fi>You can automatically pop
+up a window prompting users to specify criteria each time, just
+before data is retrieved.<br>
+For more information, see <A HREF="pbugp167.htm#CAICGCGD">Chapter 19, "Enhancing DataWindow Objects ."</A><br></li>
+<li class=ds>You can place the DataWindow object in query mode
+using the <b>Modify</b> method.
+</li>
+</ul>
+</p>
+<A NAME="TI4953"></A><p>For more information, see the <i>DataWindow Programmer's
+Guide</i>
+.</p>
+

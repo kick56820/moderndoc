@@ -1,0 +1,78 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Developing and deploying a PowerBuilder window plug-in application</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp222.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp224.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCBFDAG"></A><h1>Developing and deploying a PowerBuilder window plug-in application</h1>
+<A NAME="TI6739"></A><h4>Basic steps</h4>
+<A NAME="TI6740"></A><p>There are four main tasks involved in developing a plug-in
+application.</p>
+<A NAME="TI6741"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create and deploy a PowerBuilder window plug-in
+application:</p>
+<ol><li class=fi><p>Create, test, and build the PowerBuilder
+application.</p></li>
+<li class=ds><p>Create an HTML page that embeds your PowerBuilder
+application window.</p></li>
+<li class=ds><p>Configure the Web server by registering the appropriate
+content type (MIME type) and copying the HTML page and PBD files
+for the application to appropriate directories.</p></li>
+<li class=ds><p>On all client workstations, install the standard
+or secure PowerBuilder window plug-in DLL and the PowerBuilder deployment
+DLLs.</p></li></ol>
+<br><A NAME="TI6742"></A><h4>Resulting components</h4>
+<A NAME="TI6743"></A><p>When everything is set up, the various computers have the
+components in <A HREF="apptechp223.htm#CHDHABBD">Table 33-4</A>.</p>
+<A NAME="CHDHABBD"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-4: Server and client configuration
+for PowerBuilder window plug-in</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6744"></A>Computer</th>
+<th  rowspan="1"  ><A NAME="TI6745"></A>Component</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6746"></A>Server</td>
+<td  rowspan="1"  ><A NAME="TI6747"></A>MIME type registered.<A NAME="TI6748"></A><p>For instructions, see <A HREF="apptechp226.htm#X-REF363896716">"Specifying the
+MIME type"</A>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6749"></A></td>
+<td  rowspan="1"  ><A NAME="TI6750"></A>HTML page with an Embed element for the
+PBD.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6751"></A></td>
+<td  rowspan="1"  ><A NAME="TI6752"></A>One or more PBDs containing your Application
+objects.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6753"></A>Client</td>
+<td  rowspan="1"  ><A NAME="TI6754"></A>PowerBuilder window plug-in DLL in the
+browser's Plugins directory.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6755"></A></td>
+<td  rowspan="1"  ><A NAME="TI6756"></A>PowerBuilder deployment DLLs installed
+using the Deployment Kit for your platform.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6757"></A></td>
+<td  rowspan="1"  ><A NAME="TI6758"></A>Directory for the PowerBuilder deployment
+DLLs listed in the system path.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6759"></A></td>
+<td  rowspan="1"  ><A NAME="TI6760"></A>Any additional software required by the
+plug-in application, such as database connection software or OLE
+servers and custom controls.</td>
+</tr>
+</table>
+<A NAME="TI6761"></A><h4>What's next</h4>
+<A NAME="TI6762"></A><p>The rest of this chapter describes the four steps for creating
+and deploying a PowerBuilder window plug-in application:<A NAME="TI6763"></A>
+<ul>
+<li class=fi><A HREF="apptechp224.htm#X-REF363985202">Creating the PowerBuilder
+application</A></li>
+<li class=ds><A HREF="apptechp225.htm#X-REF363896741">Creating an HTML page</A></li>
+<li class=ds><A HREF="apptechp226.htm#X-REF364063144">Setting up the server</A></li>
+<li class=ds><A HREF="apptechp227.htm#X-REF364047747">Setting up users' workstations</A>
+</li>
+</ul>
+</p>
+

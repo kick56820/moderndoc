@@ -1,0 +1,123 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using a RichText DataWindow object</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp91.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp93.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF372616667"></A><h1>Using a RichText DataWindow object</h1>
+<A NAME="TI2556"></A><p>This section discusses:</p>
+<A NAME="TI2557"></A><p><A NAME="TI2558"></A>
+<ul>
+<li class=fi>How scrolling differs
+from other DataWindow styles</li>
+<li class=ds>Problems you may encounter with default values for
+new rows</li>
+<li class=ds>What happens when the user makes changes
+</li>
+</ul>
+</p>
+<A NAME="TI2559"></A><h4>Scrolling</h4>
+<A NAME="TI2560"></A><p>In a RichText DataWindow object, the rich text can consist
+of more than one page. A row of data can be associated with several
+pages, making a row larger than a page. In other DataWindow styles,
+a page consists of one or more than one row&#8212;a page is larger
+than a row.</p>
+<A NAME="TI2561"></A><p>For a RichText DataWindow object, the scrolling functions
+behave differently because of this different meaning for a page:<A NAME="TI2562"></A>
+<ul>
+<li class=fi><b>ScrollNextRow</b> and <b>ScrollPriorRow</b> still
+scroll from row to row so that another row's data is displayed
+within the document template.</li>
+<li class=ds><b>ScrollNextPage</b> and <b>ScrollPriorPage</b> scroll
+among pages of the document rather than pages of rows.
+</li>
+</ul>
+</p>
+<p><b>Page flow</b>   As you scroll, the pages appear to flow from one row to the
+next. Scrolling to the next page when you are on the last page of
+the document takes you to the first page for the next row. The user
+gets the effect of scrolling through many instances of the document.</p>
+<A NAME="TI2563"></A><h4>New rows: default data and validation rules</h4>
+<A NAME="TI2564"></A><p>Input fields are invisible when they have no value. Before
+data is retrieved, PowerBuilder displays question marks (??) in
+fields to make them visible. For new rows, PowerBuilder assigns
+an initial value based on the datatype.</p>
+<A NAME="TI2565"></A><p>If you have specified an initial value for the column, PowerBuilder
+uses that value; if no value is specified, PowerBuilder uses spaces
+for string columns or zero for numeric columns.</p>
+<p><b>Possible validation errors</b>   If the default initial value provided by PowerBuilder <i>does
+not satisfy</i> the validation rule, the user gets a validation error
+as soon as the new row is inserted. To avoid this, you should specify initial
+values that meet your validation criteria.</p>
+<A NAME="TI2566"></A><h4>When the user makes changes</h4>
+<p><b>Display only</b>   When you check Display Only on the General property page for
+the Rich Text Object, the user cannot make any changes to the data
+or the rich text.</p>
+<A NAME="TI2567"></A><p>If you leave the pop-up menu enabled, the user can turn off
+the display-only setting and make the DataWindow object editable.</p>
+<p><b>Input fields</b>   In an editable DataWindow object, users change the value of
+a column input field by displaying the input field's property
+sheet and editing the Data Value text box. For a computed field
+input field, the Data Value text box is read-only.</p>
+<A NAME="TI2568"></A><p>You can let the user display input field names instead of
+data. You might do this if you were providing an editing environment
+in which users were developing their own RichText DataWindow object.
+However, the RichTextEdit control is better suited to a task like
+this, because you have more scripting control over the user's
+options.</p>
+<p><b>Rich text</b>   If users edit the text or formatting, they are changing the
+document template. The changes are seen for every row.</p>
+<A NAME="TI2569"></A><p>The changes apply to that session only, unless you take extra
+steps to save the changes and restore them.</p>
+<A NAME="TI2570"></A><p>To save the changes, you can write a script that uses the <b>CopyRTF</b> function
+to get all the text, including the named input fields but not the
+row data, and save the contents of that string in a file or database.
+Whenever users view the RichText DataWindow object, you can restore
+their latest version or let them return to the original definition
+of the DataWindow object's text.</p>
+<A NAME="TI2571"></A><h4>Functions for RichText DataWindow objects</h4>
+<A NAME="TI2572"></A><p>The DataWindow control has many functions.</p>
+<p><b>Functions that behave the same</b>   DataWindow control functions that operate on data, such as <b>Update</b> or <b>Retrieve</b>,
+have the same behavior for all types of DataWindow objects.</p>
+<A NAME="TI2573"></A><p>When the object in the control is a RichText DataWindow object,
+some of the functions do not apply or they behave differently.</p>
+<p><b>Functions that do not apply</b>   Some functions are not applicable when the object is a RichText
+DataWindow object. The following functions return an error or have
+no effect:</p>
+<A NAME="TI2574"></A><p><A NAME="TI2575"></A>
+<ul>
+<li class=fi>Functions for graph
+and crosstab DataWindow objects</li>
+<li class=ds>Functions for grouping: <b>GroupCalc</b>, <b>FindGroupChange</b></li>
+<li class=ds>Functions for code tables: <b>GetValue</b>, <b>SetValue</b></li>
+<li class=ds>Functions for selecting rows: <b>SelectRow</b>, <b>SetRowFocusIndicator</b>, <b>GetSelectedRow</b></li>
+<li class=ds>Functions that affect column and detail band appearance: <b>SetBorderStyle</b>, <b>SetDetailHeight</b></li>
+<li class=ds><b>ObjectAtPointer</b></li>
+<li class=ds><b>OLEActivate</b>
+</li>
+</ul>
+</p>
+<p><b>Functions that behave differently</b>   Some functions have different behavior when the object is
+a RichText DataWindow object:</p>
+<A NAME="TI2576"></A><p><A NAME="TI2577"></A>
+<ul>
+<li class=fi>Functions for the
+clipboard: <b>Copy</b>, <b>Clear</b>, and
+so on</li>
+<li class=ds>Functions for editable text (they apply to the edit
+control in other DataWindow styles): <b>LineCount</b>, <b>Position</b>, <b>SelectText</b>,
+and so on</li>
+<li class=ds><b>Find</b> and <b>FindNext</b> (the
+arguments you specify for <b>Find</b> determine whether you
+want the general DataWindow <b>Find</b> function or
+the RichText version)</li>
+<li class=ds>Scrolling
+</li>
+</ul>
+</p>
+

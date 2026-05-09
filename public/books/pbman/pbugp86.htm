@@ -1,0 +1,125 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Types of windows </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp85.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp87.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF298578355"></A><h1>Types of windows </h1>
+<A NAME="TI2284"></A><p>PowerBuilder provides the following types of windows: main,
+pop-up, child, response, Multiple Document Interface (MDI) frame,
+and MDI frame with MicroHelp.</p>
+<A NAME="TI2285"></A><h2>Main
+windows</h2>
+<A NAME="TI2286"></A><p>Main windows are standalone windows that are independent of
+all other windows. They can overlap other windows and can be overlapped
+by other windows.</p>
+<A NAME="TI2287"></A><p>You use a main window as the anchor for your application.
+The first window your application opens is a main window unless
+you are building a Multiple Document Interface (MDI) application,
+in which case the first window is an MDI frame.</p>
+<A NAME="TI2288"></A><p>For more on building MDI applications, see <i>Application
+Techniques</i>
+.</p>
+<A NAME="TI2289"></A><h4>Using main windows</h4>
+<A NAME="TI2290"></A><p>Define your independent windows as main windows. For example,
+assume that your application contains a calculator or scratch pad
+window that you want to have always available to the user. Make
+it a main window, which can be displayed at any time anywhere on
+the screen. As a main window, it can overlap other windows on the
+screen.</p>
+<A NAME="TI2291"></A><h2>Pop-up windows</h2>
+<A NAME="TI2292"></A><p>Pop-up windows are typically opened from another window, which
+in most cases becomes the pop-up window's parent. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the application's Open event</span> <A NAME="TI2293"></A>If you open a pop-up window from the application's
+Open event, the pop-up window does not have a parent and works the
+same way a main window works.</p>
+<A NAME="TI2294"></A><p>A pop-up window can display outside its parent window. It
+cannot be overlaid by its parent. A pop-up window is hidden when
+its parent is minimized and when its parent is closed. When you
+minimize a pop-up window, the icon for the window displays at the
+bottom of the desktop.</p>
+<A NAME="TI2295"></A><h4>Using pop-up windows</h4>
+<A NAME="TI2296"></A><p>Pop-up windows are often used as supporting windows. For example,
+say you have a window containing master information, such as film
+listings. You can use a pop-up window to allow a user to see details
+of a particular entry.</p>
+<A NAME="TI2297"></A><h4>Explicitly naming a parent</h4>
+<A NAME="TI2298"></A><p>In most cases, the window that opens a pop-up window becomes
+that window's parent. For example, if a script in <b>w_go</b> has
+this statement, <b>w_go</b> is the parent of <b>w_popup</b>:<p><PRE> Open(w_popup)</PRE></p>
+<A NAME="TI2299"></A><p>You can also explicitly name a pop-up window's parent
+when you use Open in this way:<p><PRE>Open (<i>popupwindow, parentwindow</i>)</PRE></p>
+</p>
+<A NAME="TI2300"></A><p>For example, the following statement opens <b>w_popup</b> and
+makes <b>w_parent</b> its parent:<p><PRE> Open(w_popup, w_parent)</PRE></p>
+<A NAME="TI2301"></A><p>However, there are also other considerations regarding which
+window becomes the parent of an opened window.</p>
+<A NAME="TI2302"></A><p>For more information, see the Open function
+in the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI2303"></A><h2>Child windows</h2>
+<A NAME="TI2304"></A><p>Child windows are always opened from within a main or pop-up
+window, which becomes the child window's parent.</p>
+<A NAME="TI2305"></A><p>A child window exists only within its parent. You can move
+the child window within the parent window, but not outside the parent.
+When you move a portion of a child window beyond the parent, PowerBuilder
+clips the child so that only the portion within the parent window
+is visible. When you move the parent window, the child window moves
+with the parent and maintains the same position relative to the
+parent.</p>
+<A NAME="TI2306"></A><p>Child windows cannot have menus and are never considered the
+active window. They can have title bars and can be minimizable,
+maximizable, and resizable. When they are maximized, they fill the
+space of their parent; when they are minimized, their icon displays
+at the bottom of their parent.</p>
+<A NAME="TI2307"></A><p>The initial position of the child is relative to the parent
+and not to the entire screen. A child window closes when you close
+its parent.</p>
+<A NAME="TI2308"></A><h4>Using child windows</h4>
+<A NAME="TI2309"></A><p>Child windows are used by the PowerBuilder window plug-in
+and PowerBuilder window ActiveX tools. These are tools you can use
+when you are building applications for the Internet. You will probably
+not use child windows very often in other applications. Typically,
+if you want to display windows inside other windows, you will write
+MDI applications, where much of the window management happens automatically.</p>
+<A NAME="TI2310"></A><p>For more on the plug-in and ActiveX tools
+and on building MDI applications, see <i>Application Techniques</i>
+.</p>
+<A NAME="TI2311"></A><h2>Response windows</h2>
+<A NAME="TI2312"></A><p>Response windows request information from the user. They are
+always opened from within another window (its parent). Typically,
+a response window is opened after some event occurs in the parent
+window.</p>
+<A NAME="TI2313"></A><p>Response windows are application modal. That is, when a response
+window displays, it is the active window (it has focus) and no other
+window in the application is accessible until the user responds
+to the response window. The user <i>can</i> go to
+other applications, but when the user returns to the application, the
+response window is still active. Response windows act like modal
+pop-up windows.</p>
+<A NAME="TI2314"></A><h4>Using response windows</h4>
+<A NAME="TI2315"></A><p>For example, if you want to display a confirmation window
+when a user tries to close a window with unsaved changes, use a
+response window. The user is not allowed to proceed until the response
+window is closed.</p>
+<A NAME="TI2316"></A><h4>Using message boxes</h4>
+<A NAME="TI2317"></A><p>PowerBuilder also provides message boxes, which are predefined
+windows that act like response windows in that they are application
+modal. You open message boxes using the PowerScript <b>MessageBox</b> function.</p>
+<A NAME="TI2318"></A><p>For more information, see MessageBox in the <i>PowerScript
+Reference</i>
+.</p>
+<A NAME="TI2319"></A><h2>MDI
+frames</h2>
+<A NAME="TI2320"></A><p>An MDI window is a frame window in which you can open multiple
+document windows (sheets) and move among the sheets. There are two
+types of MDI frame windows: MDI frame and MDI frame with MicroHelp.</p>
+<A NAME="TI2321"></A><p>For more on building MDI applications, see <i>Application
+Techniques</i>
+.</p>
+

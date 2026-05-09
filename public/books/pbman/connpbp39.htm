@@ -1,0 +1,140 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Sharing database profiles</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp38.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp40.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJCEIDC"></A><h1>Sharing database profiles</h1>
+<A NAME="TI1306"></A><p>When you work in PowerBuilder, you can share database profiles
+among users.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Sharing database profiles between Sybase tools</span> <A NAME="TI1307"></A>Since the database profiles used by PowerBuilder, InfoMaker,
+and DataWindow Designer are stored in a common registry location,
+database profiles you create in any of these tools are automatically
+available for use by the others, if the tools are running on the
+same computer.</p>
+<A NAME="TI1308"></A><p>This section describes what you need to know to set up, use,
+and maintain shared database profiles in PowerBuilder.</p>
+<A NAME="TI1309"></A><h2>About shared database profiles</h2>
+<A NAME="TI1310"></A><h4>What you can do</h4>
+<A NAME="TI1311"></A><p>You can share database profiles in the PowerBuilder development
+environment by specifying the location of a file containing the
+profiles you want to share. You specify this location in the Database
+Preferences property sheet in the Database painter.</p>
+<A NAME="TI1312"></A><h4>Where to store a shared profile file</h4>
+<A NAME="TI1313"></A><p>To share database profiles among all PowerBuilder users at your
+site, store a profile file on a network file server accessible to
+all users.</p>
+<A NAME="TI1314"></A><h4>What happens</h4>
+<A NAME="TI1315"></A><p>When you share database profiles, PowerBuilder displays shared
+database profiles from the file you specify as well as those from
+your registry. </p>
+<A NAME="TI1316"></A><p>Shared database profiles are read-only. You can select a shared
+profile to connect to a database&#8212;but you <i>cannot</i> edit,
+save, or delete profiles that are shared. (You can, however, make
+changes to a shared profile and save it on your computer, as described
+in <A HREF="connpbp39.htm#CCJCAGAI">"Making local changes to
+shared database profiles"</A>.)</p>
+<A NAME="TI1317"></A><h4>How to do it</h4>
+<A NAME="TI1318"></A><p>To set up shared database profiles in PowerBuilder, you specify
+the location of the file containing shared profiles in the Database
+painter's Database Preferences property sheet.</p>
+<A NAME="TI1319"></A><p>For instructions, see <A HREF="connpbp39.htm#CCJBICHJ">"Setting up shared database
+profiles"</A>.</p>
+<A NAME="CCJBICHJ"></A><h2>Setting up shared database profiles</h2>
+<A NAME="TI1320"></A><h4>What you do</h4>
+<A NAME="TI1321"></A><p>You set up shared database profiles in the Database Preferences
+property sheet. </p>
+<A NAME="TI1322"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set up shared database profiles:</p>
+<ol><li class=fi><p>In the Database painter, select Design&gt;Options
+from the menu bar.</p><p>The Database Preferences property sheet displays. If necessary,
+click the General tab to display the General property page.</p></li>
+<li class=ds><p>In the Shared Database Profiles box, specify the
+location of the file containing the database profiles you want to
+share. Do this in either of the following ways:<A NAME="TI1323"></A>
+<ul>
+<li class=fi>Type the location (path name)
+in the Shared Database Profiles box.</li>
+<li class=ds>Click the Browse button to navigate to the file
+location and display it in the Shared Database Profiles box. 
+</li>
+</ul>
+
+                      </p><p>In the following example,<i> c:\work\share.ini</i> is
+the location of the file containing the database profiles to be
+shared:</p><br><img src="images/cn6share.gif"><br>
+</li>
+<li class=ds><p>Do one of the following:<A NAME="TI1324"></A>
+<ul>
+<li class=fi>Click
+Apply to apply the Shared Database Profiles setting to the current
+connection and all future connections without closing the Database
+Preferences property sheet.</li>
+<li class=ds>Click OK to apply the Shared Database Profiles setting
+to the current connection and all future connections and close the
+Database Preferences property sheet.
+</li>
+</ul>
+
+                      </p><p>PowerBuilder saves your Shared Database Profiles setting in
+the registry.</p></li></ol>
+<br><A NAME="TI1325"></A><h2>Using shared database profiles to connect</h2>
+<A NAME="TI1326"></A><p>You select a shared database profile to connect to a database
+the same way you select a profile stored in your registry. You can
+select the shared profile in the Database Profiles dialog box or
+from the File&gt;Connect menu.</p>
+<A NAME="TI1327"></A><h4>Database Profiles dialog box</h4>
+<A NAME="TI1328"></A><p>You can select and connect to a shared database profile in
+the Database Profiles dialog box.</p>
+<A NAME="TI1329"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select a shared database profile in the Database
+Profiles dialog box:</p>
+<ol><li class=fi><p>Click the Database Profile button in the
+PowerBar</p><p><i>or</i></p><p>Select Tools&gt;Database Profile from the menu
+bar.</p><p>The Database Profiles dialog box displays, listing both shared
+and local profiles. Shared profiles are denoted by a network icon
+and the word <i>(Shared)</i>.</p><br><img src="images/cnw6.gif"><br>
+</li>
+<li class=ds><p>Select the name of the shared profile you want
+to access and click Connect.</p><p>PowerBuilder connects to the selected database and returns you
+to the painter workspace.</p></li></ol>
+<br><A NAME="CCJCAGAI"></A><h2>Making local changes to shared database profiles</h2>
+<A NAME="TI1330"></A><p>Because shared database profiles can be accessed by multiple
+users running PowerBuilder, you should not make changes to these profiles.
+However, if you want to modify and save a copy of a shared database
+profile <i>for your own use</i>, you can edit the
+profile and save the modified copy in your computer's registry.</p>
+<A NAME="TI1331"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To save changes to a shared database profile in
+your registry:</p>
+<ol><li class=fi><p>In the Database Profiles dialog box, select
+the shared profile you want to edit and click the Edit button.</p></li>
+<li class=ds><p>In the Database Profile Setup dialog box that
+displays, edit the profile values as needed and click OK.</p><p>A message box displays, asking if you want to save a copy
+of the modified profile to your computer.</p></li>
+<li class=ds><p>Click Yes.</p><p>PowerBuilder saves the modified profile in your computer's
+registry.</p></li></ol>
+<br><A NAME="TI1332"></A><h2>Maintaining shared database profiles</h2>
+<A NAME="TI1333"></A><p>If you maintain the database profiles for PowerBuilder at your
+site, you might need to update shared database profiles from time
+to time and make these changes available to your users.</p>
+<A NAME="TI1334"></A><p>Because shared database profiles can be accessed by multiple
+users running PowerBuilder, it is <i>not</i> a good
+idea to make changes to the profiles over a network. Instead, you
+should make any changes locally and then provide the updated profiles
+to your users.</p>
+<A NAME="TI1335"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To maintain shared database profiles at your site:</p>
+<ol><li class=fi><p>Make and save required changes to the shared
+profiles on your own computer. These changes are saved in your registry.</p><p>For instructions, see <A HREF="connpbp39.htm#CCJCAGAI">"Making local changes to
+shared database profiles"</A>.</p></li>
+<li class=ds><p>Export the updated profile entries from your registry
+to the existing file containing shared profiles. </p><p>For instructions, see <A HREF="connpbp40.htm#CADDEJBJ">"Importing and exporting
+database profiles"</A>.</p></li>
+<li class=ds><p>If they have not already done so, have users specify
+the location of the new profiles file in the Database Preferences
+property sheet so that they can access the updated shared profiles
+on their computer.</p><p>For instructions, see <A HREF="connpbp39.htm#CCJBICHJ">"Setting up shared database
+profiles"</A>.</p></li></ol>
+<br>

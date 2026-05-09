@@ -1,0 +1,60 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using utility functions to manage information</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp129.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp131.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299420582"></A><h1>Using utility functions to manage information</h1>
+<A NAME="TI4232"></A><p>The utility functions provide a way to obtain and pass Windows
+information to external functions and can be used as arguments in
+the PowerScript <b>Send</b> function. <A HREF="apptechp130.htm#BABBEJJG">Table 22-1</A> describes the PowerScript
+utility functions.</p>
+<A NAME="TI4233"></A><h4>Five utility functions</h4>
+<A NAME="BABBEJJG"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 22-1: Utility functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4234"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI4235"></A>Return value</th>
+<th  rowspan="1"  ><A NAME="TI4236"></A>Purpose</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4237"></A><b>Handle</b></td>
+<td  rowspan="1"  ><A NAME="TI4238"></A><b>UnsignedInt</b></td>
+<td  rowspan="1"  ><A NAME="TI4239"></A>Returns the handle to a specified object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4240"></A><b>IntHigh</b></td>
+<td  rowspan="1"  ><A NAME="TI4241"></A><b>UnsignedInt</b></td>
+<td  rowspan="1"  ><A NAME="TI4242"></A>Returns the high word of the specified <b>Long</b> value.<A NAME="TI4243"></A><p><b>IntHigh</b> is used to decode Windows values
+returned by external functions or the LongParm attribute of the Message
+object.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4244"></A><b>IntLow</b></td>
+<td  rowspan="1"  ><A NAME="TI4245"></A><b>UnsignedInt</b></td>
+<td  rowspan="1"  ><A NAME="TI4246"></A>Returns the low word of the specified <b>Long</b> value.<A NAME="TI4247"></A><p><b>IntLow</b> is used to decode Windows values
+returned by external functions or the LongParm attribute of the Message
+object.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4248"></A><b>Long</b></td>
+<td  rowspan="1"  ><A NAME="TI4249"></A><b>Long</b></td>
+<td  rowspan="1"  ><A NAME="TI4250"></A>Combines the low word and high word into
+a <b>Long</b>.<A NAME="TI4251"></A><p>The <b>Long</b> function is used to pass values
+to external functions.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4252"></A><b>LongLong</b></td>
+<td  rowspan="1"  ><A NAME="TI4253"></A><b>LongLong</b></td>
+<td  rowspan="1"  ><A NAME="TI4254"></A>Combines the low word and high word into
+a <b>LongLong</b>.<A NAME="TI4255"></A><p>The <b>LongLong</b> function is used to pass values
+to external functions.</p></td>
+</tr>
+</table>
+<A NAME="TI4256"></A><h4>Examples</h4>
+<A NAME="TI4257"></A><p>This script uses the external function <b>IsZoomed</b> to
+test whether the current window is maximized. It uses the <b>Handle</b> function
+to pass a window handle to <b>IsZoomed</b>. It then
+displays the result in a SingleLineEdit named <b>sle_output</b>:<p><PRE> boolean Maxed</PRE><PRE> Maxed = IsZoomed(Handle(parent))</PRE><PRE> if Maxed then sle_output.Text = "Is maxed"</PRE><PRE> if not Maxed then sle_output.Text = "Is normal"</PRE></p>
+<A NAME="TI4258"></A><p>This script passes the handle of a window object to the external
+function <b>FlashWindow</b> to change the title bar
+of a window to inactive and then active:<p><PRE> // Declare loop counter and handle to window object</PRE><PRE> int  nLoop</PRE><PRE> uint hWnd</PRE><PRE> // Get the handle to the PowerBuilder window.</PRE><PRE> hWnd = handle(This)</PRE><PRE> // Make the title bar inactive.</PRE><PRE> FlashWindow (hWnd, TRUE)</PRE><PRE> //Wait ...</PRE><PRE> For nLoop = 1 to 300</PRE><PRE> Next</PRE><PRE> // Return the title bar to its active color.</PRE><PRE> FlashWindow (hWnd, FALSE)</PRE></p>
+

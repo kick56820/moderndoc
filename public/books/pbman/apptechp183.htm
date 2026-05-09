@@ -1,0 +1,40 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Controlling transactions from a client</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp182.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp184.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDDDEIH"></A><h1>Controlling transactions from a client</h1>
+<A NAME="TI5896"></A><p>PowerBuilder clients can exercise explicit control of a transaction
+on a COM+ server by using a variable of type OleTxnObject
+instead of OLEObject to connect to the COM object. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Requires COM+ installation</span> <A NAME="TI5897"></A>The <b>ConnectToNewObject</b> call on an OleTxnObject
+fails if COM+ is not installed on the client computer. </p>
+<A NAME="TI5898"></A><p>The OleTxnObject object, derived from the OLEObject object,
+provides two additional functions (<b>SetComplete</b> and <b>SetAbort</b>)
+that enable the client to participate in transaction control. When
+the client calls <b>SetComplete</b>, the transaction
+is committed if no other participant in the transaction has called <b>SetAbort</b> or
+otherwise failed. If the client calls <b>SetAbort</b>,
+the transaction is always aborted. </p>
+<p><b>Example</b>   In this example, the clicked event on a button creates a variable
+of type OleTxnObject, connects to a PowerBuilder COM object on a
+server, and calls some methods on the object. When all the methods
+have returned, the client calls <b>SetComplete</b> and
+disconnects from the object. <p><PRE> integer li_rc<br>OleTxnObject lotxn_obj<br> <br>lotxn_obj = CREATE OleTxnObject<br>li_rc = lotxn_obj.ConnectToNewObject("pbcom.n_test")<br>IF li_rc &lt;&gt; 0 THEN<br>    Messagebox( "Connect Error", string(li_rc) )<br>    HALT<br>END IF<br> <br>lotxn_obj.f_dowork()<br>lotxn_obj.f_domorework()<br> <br>lotxn_obj.SetComplete()<br>lotxn_obj.DisconnectObject()</PRE></p>
+<A NAME="TI5899"></A><p>This <b>f_dowork</b> function on the
+PowerBuilder COM object on the server creates an instance of the
+transaction context service and calls its <b>DisableCommit</b> method
+to prevent the transaction from committing prematurely between method
+calls. After completing some work, the function calls <b>SetAbort</b> if
+the work was not successfully completed and <b>SetComplete</b> if
+it was.   <p><PRE> TransactionServer txninfo_one<br>integer li_rc<br> <br>li_rc = GetContextService( "TransactionServer",  &amp;<br>    txninfo_one )<br>txninfo_one.DisableCommit()<br> <br>// do some work and return a return code<br>IF li_rc &lt;&gt; 0 THEN<br>    txninfo_one.SetAbort()<br>    return -1<br>ELSE<br>    txninfo_one.SetComplete()<br>    return 1<br>END IF</PRE></p>
+<A NAME="TI5900"></A><p>The <b>SetComplete</b> call on the client commits
+the transaction if <i>all</i> of the methods in the
+transaction called <b>SetComplete</b> or <b>EnableCommit</b>.</p>
+

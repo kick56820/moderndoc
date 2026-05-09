@@ -1,0 +1,76 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Working with indexes</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp137.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp139.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCDAGAJ"></A><h1>Working with indexes</h1>
+<A NAME="TI4262"></A><p>You can create as many single- or multi-valued indexes for
+a database table as you need, and you can drop indexes that are
+no longer needed.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Update limitation</span> <A NAME="TI4263"></A>You can update a table in a DataWindow object only if it has a unique
+index or primary key.</p>
+<A NAME="BDCBIBBC"></A><h4>Creating an index</h4>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>In Adaptive Server Anywhere databases</span> <A NAME="TI4264"></A>In SQL Anywhere databases, you should not define an index
+on a column that is defined as a foreign key, because foreign keys
+are already optimized for quick reference.</p>
+<A NAME="TI4265"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create an index:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI4266"></A>
+<ul>
+<li class=fi>Highlight
+the table for which you want to create an index and click the Create
+Index drop-down toolbar button in PainterBar1..</li>
+<li class=ds>Select Object&gt;Insert&gt;Index from
+the main menu or New&gt;Index from the pop-up menu.</li>
+<li class=ds>Expand the table's tree view, right-click
+on Indexes, and select New Index from the pop-up menu. 
+</li>
+</ul>
+
+                      </p><p>The Index's properties display in the Object Details
+view. </p></li>
+<li class=ds><p>Enter a name for the index in the Index box.</p></li>
+<li class=ds><p>Select whether or not to allow duplicate values
+for the index.</p></li>
+<li class=ds><p>Specify any other information required for your
+database</p><p>For example, in Adaptive Server Enterprise specify whether
+the index is clustered, and in Adaptive Server Anywhere specify the order of the
+index.</p></li>
+<li class=ds><p>Click the names of the columns that make up the
+index.</p></li>
+<li class=ds><p>Select Save Changes from the pop-up menu.</p></li>
+<li class=ds><p>Right-click on the Object Details view and select
+Save Changes from the pop-up menu. </p><p>Any changes you made in the view are immediately saved to
+the table definition. </p></li></ol>
+<br><A NAME="TI4267"></A><h4>Modifying an index</h4>
+<A NAME="TI4268"></A><p>You can modify an index.</p>
+<A NAME="TI4269"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify an index:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI4270"></A>
+<ul>
+<li class=fi>Highlight
+the index listed in the table's expanded tree view and
+click the Properties button.</li>
+<li class=ds>Select Properties from the Object or pop-up menu.</li>
+<li class=ds>Drag the index icon and drop it in the Object Details
+view. 
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>In the Object Details view, select or deselect
+columns as needed.</p></li>
+<li class=ds><p>Right-click on the Object Details view and select
+Save Changes from the pop-up menu. </p><p>Any changes you made in the view are immediately saved to
+the table definition. </p></li></ol>
+<br><A NAME="TI4271"></A><h4>Dropping an index</h4>
+<A NAME="TI4272"></A><p>Dropping an index removes it from the database.</p>
+<A NAME="TI4273"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To drop an index from a table:</p>
+<ol><li class=fi><p>In the Database painter workspace, display the
+pop-up menu for the index you want to drop.</p></li>
+<li class=ds><p>Select Drop Index and click Yes.</p></li></ol>
+<br>

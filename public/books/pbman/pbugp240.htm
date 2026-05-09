@@ -1,0 +1,293 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Editing XML templates</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp239.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp241.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CIHGFCDD"></A><h1>Editing XML templates</h1>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using templates for data import</span> <A NAME="TI8342"></A>If you use a template created for data export, DataWindow expressions,
+text, comments, and processing instructions are ignored when data
+is imported. If you are creating a template specifically for import,
+do not add any of these items. You need only map column names to
+element and attribute names.</p>
+<A NAME="TI8343"></A><p>Every item in
+the Export/Import Template view has a pop-up menu from
+which you can perform actions appropriate to that item, such as
+editing or deleting the item, adding or editing attributes, adding
+child elements or other items, and inserting elements, processing
+instructions, CDATA sections, and so forth, before the current item.</p>
+<br><img src="images/menu1.gif">
+<A NAME="TI8344"></A><p>If an element has no attributes, you can edit its tag in the
+Export/Import Template view by selecting it and left-clicking
+the tag or pressing F2. Literal text nodes can be edited in the
+same way. You can delete items (and their children) by pressing
+the Delete key. </p>
+<A NAME="TI8345"></A><p>The examples in this section show the delimiters used in the
+XML document. When you edit the template in dialog boxes opened
+from the Export/Import Template view for XML, you do not
+need to type these delimiters in text boxes. </p>
+<A NAME="TI8346"></A><p>The rest of this section describes some of the items in the
+template. For more information, see the <A HREF="http://www.w3.org/TR/REC-xml">XML specification</A>
+.</p>
+<A NAME="BABHCBFD"></A><h2>XML declaration</h2>
+<A NAME="TI8347"></A><p>The XML declaration specifies the version of XML being used.
+You may need to change this value for a future version of XML. It
+can also contain an encoding declaration and a standalone document
+declaration. From the pop-up menu, you can edit the declaration,
+and, if the document is well-formed, delete it. If you have deleted
+the XML declaration, you can insert one from the Insert Before item
+on the pop-up menu for the next item in the template.</p>
+<A NAME="TI8348"></A><h4>Encoding declaration</h4>
+<A NAME="TI8349"></A><p>The encoding declaration specifies the character-set encoding
+used in the document, such as UTF-16 or ISO-10646-UCS-4. </p>
+<A NAME="TI8350"></A><p>If there is no encoding declaration, the value defaults to
+UTF-16LE encoding in ASCII environments. In DBCS environments, the
+default is the default system encoding on the computer where the
+XML document is generated. This ensures that the document displays
+correctly as a plain text file. However, since the DBCS data is
+serialized to Unicode, XML documents that use UTF-16LE, UTF-16 Big
+Endian, or UTF-16 Little Endian can all be parsed or generated correctly
+on DBCS systems.</p>
+<A NAME="TI8351"></A><p>Several other encodings are available, including ASCII, UCS4
+Big Endian, UCS4 Little Endian, EBCDIC code pages IBM037 and IBM1140,
+ISO Latin-1, and Latin 1 Windows (code page 1252). You
+can select these values from a drop-down list box in the XML Declaration
+dialog box.</p>
+<A NAME="TI8352"></A><h4>Standalone document declaration</h4>
+<A NAME="TI8353"></A><p>The standalone document declaration specifies whether the
+document contains no external markup that needs to be processed
+and can therefore stand alone (Yes), or that there are, or might
+be, external markup declarations in the document (No). The value
+in the default template is No, and if there is no standalone document
+declaration, the value is assumed to be No. </p>
+<A NAME="TI8354"></A><h4>Example</h4>
+<A NAME="TI8355"></A><p>This is an XML declaration that specifies XML version 1.0,
+UTF-16LE encoding, and that the document can stand alone:<p><PRE> &lt;?xml version="1.0" encoding="UTF-16LE" standalone="yes"?&gt;</PRE></p>
+<A NAME="BABGIGJD"></A><h2>Document type declaration</h2>
+<A NAME="TI8356"></A><p>The document type declaration contains or points to markup
+declarations that provide a grammar for a class of documents. This
+grammar is known as a document type definition, or DTD. The document
+type declaration defines constraints on the sequence and nesting
+of tags, attribute values, names and formats of external references,
+and so forth. You
+can edit the document type declaration to change its name, but the
+name must always be the same as the name of the root element. Changing
+the name in either the document type declaration or the root element
+automatically changes the name in the other.</p>
+<A NAME="TI8357"></A><h4>Adding DTDs</h4>
+<A NAME="TI8358"></A><p>You can add an identifier pointing to an external DTD subset,
+and you can add an internal DTD subset. If you supply both external
+and internal subsets, entity and attribute-list declarations in
+the internal subset take precedence over those in the external subset.</p>
+<A NAME="TI8359"></A><h4>Public identifiers</h4>
+<A NAME="TI8360"></A><p>An external identifier can include a public identifier that
+an XML processor can use to generate an alternative URI. If an alternative
+URI cannot be generated, the URI provided in the system identifier
+is used. External identifiers without a public identifier are preceded
+by the keyword <b>SYSTEM</b>. External identifiers with
+a public identifier are preceded by the keyword <b>PUBLIC</b>. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Exporting metadata</span> <A NAME="TI8361"></A>If you specify a system or public identifier and/or
+an internal subset in the Document Type Declaration dialog box,
+a DTD cannot be generated when the data is exported to XML. A MetaDataType
+of XMLDTD! is ignored. For more information about the properties
+that control the export of metadata, see <A HREF="pbugp241.htm#CIHJICJE">"Exporting metadata"</A>.</p>
+<A NAME="TI8362"></A><h4>Examples</h4>
+<A NAME="TI8363"></A><p>These are examples of valid document type declarations.</p>
+<A NAME="TI8364"></A><p>An external system identifier:<p><PRE> &lt;!DOCTYPE d_dept_listing SYSTEM "d_dept_listing.dtd"&gt;</PRE></p>
+<A NAME="TI8365"></A><p>An external system identifier with a public identifier:<p><PRE> &lt;!DOCTYPE d_test PUBLIC "-//MyOrg//DTD Test//EN"<br>"http://www.mysite.org/mypath/mytest.dtd"&gt;</PRE></p>
+<A NAME="TI8366"></A><p>An external system identifier with an internal DTD. The internal
+DTD is enclosed in square brackets:<p><PRE> &lt;!DOCTYPE d_orders <br>   SYSTEM "http://www.acme.com/dtds/basic.dtd"[<br>   &lt;!ELEMENT Order (Date, CustID, OrderID, Items*)&gt;<br>   &lt;!ELEMENT Date (#PCDATA)&gt;<br>   &lt;!ELEMENT CustID (#PCDATA)&gt;<br>   &lt;!ELEMENT OrderID (#PCDATA)&gt;<br>   &lt;!ELEMENT Items (ItemID, Quantity)&gt;<br>   &lt;!ELEMENT ItemID (#PCDATA)&gt;<br>   &lt;!ELEMENT Quantity (#PCDATA)&gt;<br>]&gt;</PRE></p>
+<A NAME="BABCHDIA"></A><h2>Root element</h2>
+<A NAME="TI8367"></A><p>You can change the name of the root element, add attributes
+and children, and insert comments, instructions, and, if they do
+not already exist, XML and/or document type declarations
+before it.</p>
+<A NAME="TI8368"></A><p>Changing the name of the root element changes the name of
+its start and end tags. You can change the name using the Edit menu
+item, or in the Element Attributes dialog box. Changing the name
+of the document type declaration, if it exists, also changes the
+name of the root element, and vice versa. The root element name
+is always the same as the document type declaration name.</p>
+<A NAME="TI8369"></A><p>You can add the following kinds of children to the root element:<A NAME="TI8370"></A>
+<ul>
+<li class=fi>Elements</li>
+<li class=ds>Text</li>
+<li class=ds>Control references</li>
+<li class=ds>DataWindow expressions (including column references)</li>
+<li class=ds>CDATA sections</li>
+<li class=ds>Comments</li>
+<li class=ds>Processing instructions
+</li>
+</ul>
+</p>
+<A NAME="CIHEFJGA"></A><h2>Controls</h2>
+<A NAME="TI8371"></A><p>Adding a DataWindow control reference opens a dialog box containing
+a list of the columns, computed fields, report controls, and text
+controls in the document.</p>
+<A NAME="TI8372"></A><p>Control references can also be added to empty attribute values
+or element contents using drag-and-drop from the Control List view.
+Column references can also be added using drag-and-drop from the
+Column Specifications view.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Drag-and-drop cannot replace</span> <A NAME="TI8373"></A>You cannot drag-and-drop an item on top of another item to
+replace it. For example, if you want to replace one control reference
+with another control reference, or with a DataWindow expression, you first
+need to delete the control reference you want to replace.</p>
+<A NAME="BJFEIJIE"></A><h2>DataWindow expressions</h2>
+<A NAME="TI8374"></A><p>Adding a DataWindow expression opens the Modify Expression dialog box. This
+enables you to create references to columns from the data source
+of the DataWindow object. It also enables the calling of global functions. One
+use of this feature is to return a fragment of XML to embed, providing
+another level of dynamic XML generation.</p>
+<A NAME="TI8375"></A><h4>Using Date and DateTime with strings</h4>
+<A NAME="TI8376"></A><p>If you use a control reference or a DataWindow expression that does not include
+a string to represent Date and DateTime columns in a template, the XML
+output conforms to ISO 8601 date and time formats. For example, consider
+a date that displays as <FONT FACE="Courier New">12/27/2004 </FONT>in
+the DataWindow object, using the display format <FONT FACE="Courier New">mm/dd/yyyy</FONT>.
+If the export template does not use an expression that includes
+a string, the date is exported to XML as <FONT FACE="Courier New">2004-12-27</FONT>.</p>
+<A NAME="TI8377"></A><p>However, if the export template uses an expression that combines
+a column with a Date or DateTime datatype with a string, the entire
+expression is exported as a string and the regional settings in
+the Windows registry are used to format the date and time. </p>
+<A NAME="TI8378"></A><p>Using the previous example, if the short date format in the
+registry is <FONT FACE="Courier New">MM/dd/yy</FONT>,
+and the DataWindow expression is: <FONT FACE="Courier New">"Start Date is " + start_date</FONT>,
+the XML output is <FONT FACE="Courier New">Start Date is 12/27/04</FONT>.</p>
+<A NAME="BJFIEGAA"></A><h2>Attributes</h2>
+<A NAME="TI8379"></A><p>Controls or expressions can also be referenced for element
+attribute values. Select Edit/Add Attribute from the pop-up
+menu for elements to edit an existing attribute or add a new one.</p>
+<A NAME="TI8380"></A><p>For each attribute specified, you can select a control reference
+from the drop-down list or enter a literal text value.
+A literal text value takes precedence over a control reference.
+You can also use the expression button to the right of the Text
+box to enter an expression.</p>
+<A NAME="TI8381"></A><p></p>
+<br><img src="images/xmlattr1.gif">
+<A NAME="TI8382"></A><p>The expression button and entry operates similarly to DataWindow object properties
+in the Properties view. The button shows a green equals sign if
+an expression has been entered, and a red not-equals sign if not.
+A control reference or text value specified in addition to the expression
+is treated as a default value. In the template, this combination
+is stored with the control reference or text value, followed by
+a tab, preceding the expression. For example:<p><PRE><i>attribute_name</i>=~"<i>text_val</i>~~t<i>dw_expression</i>~"</PRE></p>
+</p>
+<A NAME="CIHHEIFE"></A><h2>Composite and nested reports</h2>
+<A NAME="TI8383"></A><p>Report controls can be referenced in the Detail section of
+export templates as children of an element. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Nested reports supported for XML export only</span> <A NAME="TI8384"></A>Import does not support nested reports. If you attempt to
+import data in any format, including XML, CSV, DBF, and TXT, that
+contains a nested report, the nested report is not imported and
+the import may fail with errors.</p>
+<A NAME="TI8385"></A><h4>Composite reports</h4>
+<A NAME="TI8386"></A><p>For composite reports that use the Composite presentation
+style, the default template has elements that reference each of
+its nested reports.</p>
+<A NAME="TI8387"></A><p>If a composite DataWindow contains two reports that have columns
+with identical names, you must use the procedure that follows if
+you want to generate an XML document with a DTD or schema. If you
+do not follow the procedure, you will receive a parsing error such
+as "Element '<i>identical_column_name</i>' has
+already been declared."<A NAME="TI8388"></A>
+<ol>
+</li>
+<li class=ds>Create
+a template in the first report and select this template in the Use Template
+list on the Data Export property page.</li>
+<li class=ds>Create a template in the second report.</li>
+<li class=ds>If any element name is used in the template in the
+first report, change it to another name in the template in the second
+report.</li>
+<li class=ds>Select the template for the second report in the
+Use Template list.</li>
+<li class=ds>Generate the XML document.
+</li>
+</ol>
+</p>
+<A NAME="TI8389"></A><p>These steps are necessary because you cannot use a given element
+name more than once in a valid DTD or schema. </p>
+<A NAME="TI8390"></A><h4>Nested reports</h4>
+<A NAME="TI8391"></A><p>For report controls added to the detail band of a base report
+that is related to the inserted report with retrieval arguments
+or criteria, the report control is available to the export template
+in two ways:<A NAME="TI8392"></A>
+<ul>
+<li class=fi>Select an element in the template
+or add a new element, then select Add Child&gt;DataWindow
+Control Reference. Any report controls inserted in the detail band
+are available for selection in the dialog box that displays. </li>
+<li class=ds>Drag a report control from the Control List view
+and drop it on an existing empty element.
+</li>
+</ul>
+</p>
+<A NAME="TI8393"></A><p>When you export XML using a template that has a reference
+to a report control, the export template assigned to the nested
+report with the Use Template property is used, if it exists, to
+expand the XML for the nested report. If no template is specified
+for the nested report, the default template is used.</p>
+<A NAME="TI8394"></A><p>The relationship between the nested report and the base report,
+for example a Master/Detail relationship, is reflected
+in the exported XML.</p>
+<A NAME="CIHCEACF"></A><h2>CDATA sections</h2>
+<A NAME="TI8395"></A><p>You can export the name of a column in a CDATA section using
+the syntax <FONT FACE="Courier New">&lt;![CDATA[<i>columnname</i>]]&gt;</FONT>.
+You can export the value of a column using the syntax <FONT FACE="Courier New">&lt;![CDATA[~t <i>columnname</i>]]&gt;</FONT>.
+The ~t is used to introduce a DataWindow expression, in the same
+way that it is used in the <b>Modify</b> method. You
+can also use an expression such as <FONT FACE="Courier New">~t <i>columnname</i>*<i>columnname</i></FONT> to
+export a computed value to the XML. </p>
+<A NAME="TI8396"></A><p>You can import a value into a column using the syntax <FONT FACE="Courier New">&lt;![CDATA[ <i>columnname</i>]]&gt;</FONT>.
+Note that this syntax in a template has different results for import
+and export: it imports the column value but exports the column name.</p>
+<A NAME="TI8397"></A><p>You <i>cannot</i> import an XML file that has
+a ~t expression in a CDATA section.</p>
+<A NAME="TI8398"></A><p>Everything else inside a CDATA section is ignored by the parser.
+If text contains characters such as less than or greater than signs
+(&lt; or &gt;) or ampersands (&amp;) that are significant
+to the parser, it should be defined as a CDATA section. A CDATA
+section starts with <FONT FACE="Courier New">&lt;![CDATA[</FONT> and
+ends with <FONT FACE="Courier New">]]&gt;</FONT>. CDATA
+sections cannot be nested, and there can be no white space characters inside
+the <FONT FACE="Courier New">]]&gt;</FONT> delimiter&#8212;for
+example, you cannot put a space between the two square brackets.</p>
+<A NAME="TI8399"></A><h4>Example</h4>
+<A NAME="TI8400"></A><p><p><PRE> &lt;![CDATA[<br>   do not parse me<br>]]&gt;</PRE></p>
+<A NAME="TI8401"></A><p>This syntax in an export template exports the value of the
+column <b>emp_salary</b>:<p><PRE> &lt;![CDATA[~t emp_salary]]&gt;</PRE></p>
+<A NAME="TI8402"></A><p>This syntax in an import template imports the value of the
+column <b>emp_salary</b>:<p><PRE> &lt;![CDATA[emp_salary]]&gt;</PRE></p>
+<A NAME="BABFJJGA"></A><h2>Comments</h2>
+<A NAME="TI8403"></A><p>Comments can appear anywhere in a document outside other markup.
+They can also appear within the document type declaration in specific
+locations defined by the XML specification. </p>
+<A NAME="TI8404"></A><p>Comments begin with <FONT FACE="Courier New">&lt;!--</FONT> and
+end with<FONT FACE="Courier New"> --&gt;</FONT>. You
+cannot use the string<FONT FACE="Courier New"> --</FONT> (a
+double hyphen) in a comment, and parameter entity references are
+not recognized in comments.</p>
+<A NAME="TI8405"></A><h4>Example</h4>
+<A NAME="TI8406"></A><p><p><PRE> &lt;!-- this is a comment --&gt;</PRE></p>
+<A NAME="BABEBCGG"></A><h2>Processing instructions</h2>
+<A NAME="TI8407"></A><p>Processing instructions (PIs) enable you to provide information
+to the application that uses the processed XML. Processing instructions
+are enclosed in <FONT FACE="Courier New">&lt;?</FONT> and <FONT FACE="Courier New">?&gt;</FONT> delimiters
+and must have a name, called the target, followed by optional data
+that is processed by the application that uses the XML. Each application
+that uses the XML must process the targets that it recognizes and ignore
+any other targets. </p>
+<A NAME="TI8408"></A><p>The <A HREF="pbugp240.htm#BABHCBFD">XML declaration</A> at
+the beginning of an XML document is an example of a processing instruction.
+You cannot use the string <FONT FACE="Courier New">xml</FONT> as
+the name of any other processing instruction target.</p>
+<A NAME="TI8409"></A><h4>Example</h4>
+<A NAME="TI8410"></A><p>In this example, <FONT FACE="Courier New">usething</FONT> is
+the name of the target, and <FONT FACE="Courier New">thing=this.thing</FONT> is
+the data to be processed by the receiving application:<p><PRE> &lt;?usething thing=this.thing?&gt;</PRE></p>
+

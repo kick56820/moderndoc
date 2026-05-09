@@ -1,0 +1,199 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Updating the database</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp13.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp15.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF377435567"></A><h1>Updating the database</h1>
+<A NAME="TI556"></A><p>After users have made changes to data in a DataWindow control,
+you can use the Update method to save the changes in the database.
+Update sends to the database all inserts, changes, and deletions
+made in the DataWindow since the last Update or Retrieve method
+was executed.</p>
+<A NAME="TI557"></A><h2>How the DataWindow control updates the database</h2>
+<A NAME="TI558"></A><p>When updating the database, the DataWindow control determines
+the type of SQL statements to generate by looking at the status
+of each of the rows in the DataWindow buffers.</p>
+<A NAME="TI559"></A><p>There are four DataWindow item statuses, two of which apply
+only to rows:</p>
+<A NAME="TI560"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-8: DataWindow item status for rows and columns</caption>
+<tr><th  rowspan="1"  ><A NAME="TI561"></A><i>Status</i></th>
+<th  rowspan="1"  ><A NAME="TI562"></A><i>Applies to</i></th>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><th  rowspan="1"  ><A NAME="TI563"></A>PowerBuilder name</th>
+<th  rowspan="1"  ><A NAME="TI564"></A>Web DataWindow name</th>
+<th  rowspan="1"  ><A NAME="TI565"></A>Numeric value</th>
+<th  rowspan="1"  ><A NAME="TI566"></A></th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI567"></A>New!</td>
+<td  rowspan="1"  ><A NAME="TI568"></A>New</td>
+<td  rowspan="1"  ><A NAME="TI569"></A>2</td>
+<td  rowspan="1"  ><A NAME="TI570"></A>Rows</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI571"></A>NewModified!</td>
+<td  rowspan="1"  ><A NAME="TI572"></A>NewModified</td>
+<td  rowspan="1"  ><A NAME="TI573"></A>3</td>
+<td  rowspan="1"  ><A NAME="TI574"></A>Rows</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI575"></A>NotModified!</td>
+<td  rowspan="1"  ><A NAME="TI576"></A>NotModified</td>
+<td  rowspan="1"  ><A NAME="TI577"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI578"></A>Rows and columns</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI579"></A>DataModified!</td>
+<td  rowspan="1"  ><A NAME="TI580"></A>DataModified</td>
+<td  rowspan="1"  ><A NAME="TI581"></A>1</td>
+<td  rowspan="1"  ><A NAME="TI582"></A>Rows and columns</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Named or numeric constants</span> <A NAME="TI583"></A>The constants shown in the table are used differently in each
+environment: </p>
+<p><b>PowerBuilder</b>   The named values are values of the enumerated datatype dwItemStatus.
+You must use the named values, which end in an exclamation point.</p>
+<p><b>Web DataWindow</b>   You can use a string value with or without the exclamation
+point</p>
+<p><b>Web ActiveX</b>   Named values are not defined; use the numeric values. </p>
+<A NAME="TI584"></A>This discussion uses the PowerBuilder names.</p>
+<A NAME="TI585"></A><h4>How statuses are set</h4>
+<p><b>When data is retrieved</b>   When data is retrieved into a DataWindow, all rows and columns
+initially have a status of NotModified!.</p>
+<A NAME="TI586"></A><p>After data has changed in a column in a particular row, either
+because the user changed the data or the data was changed programmatically,
+such as through the SetItem method, the column status for that column
+changes to DataModified!. Once the status for any column in a retrieved
+row changes to DataModified!, the row status also changes to DataModified!.</p>
+<p><b>When rows are inserted</b>   When a row is inserted into a DataWindow, it initially has
+a row status of New!, and all columns in that row initially have
+a column status of NotModified!. After data has changed in a column
+in the row, either because the user changed the data or the data
+was changed programmatically, such as through the SetItem method,
+the column status changes to DataModified!. Once the status for
+any column in the inserted row changes to DataModified!, the row
+status changes to NewModified!.</p>
+<A NAME="TI587"></A><p>When a DataWindow column has a default value, the column's
+status does not change to DataModified! until the user makes at
+least one actual change to a column in that row.</p>
+<A NAME="TI588"></A><h4>When Update is called</h4>
+<p><b>For rows in the Primary and Filter buffers</b>   When the Update method is called, the DataWindow control generates<ACRONYM title = "sequel" > SQL</ACRONYM> INSERT and UPDATE statements
+for rows in the Primary and/or Filter buffers based upon
+the following row statuses:</p>
+<A NAME="TI589"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-9: Row status after INSERT and UPDATE statements</caption>
+<tr><th  rowspan="1"  ><A NAME="TI590"></A>Row status</th>
+<th  rowspan="1"  ><A NAME="TI591"></A><ACRONYM title = "sequel" >SQL</ACRONYM> statement
+generated</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI592"></A>NewModified!</td>
+<td  rowspan="1"  ><A NAME="TI593"></A>INSERT</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI594"></A>DataModified!</td>
+<td  rowspan="1"  ><A NAME="TI595"></A>UPDATE</td>
+</tr>
+</table>
+<A NAME="TI596"></A><p>A column is included in an UPDATE statement only if the following
+two conditions are met:<A NAME="TI597"></A>
+<ul>
+<li class=fi>The
+column is on the updatable column list maintained by the DataWindow
+object<br>
+For more information about setting the update
+characteristics of the DataWindow object, see the <i>PowerBuilder
+User's Guide</i>
+.<br></li>
+<li class=ds>The column has a column status of DataModified!
+</li>
+</ul>
+</p>
+<A NAME="TI598"></A><p>The DataWindow control includes all columns in INSERT statements
+it generates. If a column has no value, the DataWindow attempts
+to insert a NULL. This causes a database error if the database does
+not allow NULLs in that column.</p>
+<p><b>For rows in the Delete buffer</b>   The DataWindow control generates SQL DELETE statements for
+any rows that were moved into the Delete buffer using the DeleteRow
+method. (But if a row has a row status of New! or NewModified! before
+DeleteRow is called, no DELETE statement is issued for that row.)</p>
+<A NAME="TI599"></A><h2>Changing row or column status programmatically</h2>
+<A NAME="TI600"></A><p>You might need to change the status of a row or column programmatically. Typically,
+you do this to prevent the default behavior from taking place. For example,
+you might copy a row from one DataWindow to another; and after the user
+modifies the row, you might want to issue an UPDATE statement instead of
+an INSERT statement.</p>
+<A NAME="TI601"></A><p>You use the SetItemStatus method to programmatically change
+a DataWindow's row or column status information. Use the
+GetItemStatus method to determine the status of a specific row or
+column.</p>
+<A NAME="TI602"></A><h4>Changing column status</h4>
+<A NAME="TI603"></A><p>You use SetItemStatus to change the column status from DataModified!
+to NotModified!, or the reverse.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Change column status when you change row status</span> <A NAME="TI604"></A>Changing the row status changes the status of all columns
+in that row to NotModified!, so if the Update method is called,
+no SQL update is produced. You must change the status of columns
+to be updated after you change the row status.</p>
+<A NAME="TI605"></A><h4>Changing row status</h4>
+<A NAME="TI606"></A><p>Changing row status is a little more complicated. The following
+table illustrates the effect of changing from one row status to
+another:</p>
+<A NAME="TI607"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-10: Effects of changing from one row status
+to another</caption>
+<tr><th  rowspan="2"  ><A NAME="TI608"></A><i>Original
+status</i></th>
+<th  rowspan="1"  ><A NAME="TI609"></A><i>Specified
+status</i></th>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><th  rowspan="1"  ><A NAME="TI610"></A>New!</th>
+<th  rowspan="1"  ><A NAME="TI611"></A>NewModified!</th>
+<th  rowspan="1"  ><A NAME="TI612"></A>DataModified!</th>
+<th  rowspan="1"  ><A NAME="TI613"></A>NotModified!</th>
+<td>&nbsp;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI614"></A>New!</td>
+<td  rowspan="1"  ><A NAME="TI615"></A>-</td>
+<td  rowspan="1"  ><A NAME="TI616"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI617"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI618"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI619"></A>NewModified!</td>
+<td  rowspan="1"  ><A NAME="TI620"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI621"></A>-</td>
+<td  rowspan="1"  ><A NAME="TI622"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI623"></A>New!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI624"></A>DataModified!</td>
+<td  rowspan="1"  ><A NAME="TI625"></A>NewModified!</td>
+<td  rowspan="1"  ><A NAME="TI626"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI627"></A>-</td>
+<td  rowspan="1"  ><A NAME="TI628"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI629"></A>NotModified!</td>
+<td  rowspan="1"  ><A NAME="TI630"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI631"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI632"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI633"></A>-</td>
+</tr>
+</table>
+<A NAME="TI634"></A><p>In the preceding table, <i>Yes</i> means the
+change is valid. For example, issuing SetItemStatus on a row that
+has the status NotModified! to change the status to New! does change
+the status to New!. <i>No</i> means that the change
+is not valid and the status is not changed.</p>
+<A NAME="TI635"></A><p>Issuing SetItemStatus to change a row status from NewModified!
+to NotModified! actually changes the status to New!. Issuing SetItemStatus
+to change a row status from DataModified! to New! actually changes
+the status to NewModified!.</p>
+<A NAME="TI636"></A><p>Changing a row's status to NotModified! or New! causes
+all columns in that row to be assigned a column status of NotModified!.
+Change the column's status to DataModified! to ensure that
+an update results in a SQL Update.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Changing status indirectly</span> <A NAME="TI637"></A>When you cannot change to the desired status directly, you
+can usually do it indirectly. For example, change New! to DataModified!
+to NotModified!.</p>
+

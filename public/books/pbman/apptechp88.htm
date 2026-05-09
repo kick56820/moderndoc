@@ -1,0 +1,132 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Accessing data properties</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp87.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp89.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF377543569"></A><h1>Accessing data properties</h1>
+<A NAME="TI2462"></A><p>To access properties related to a graph's data during
+execution, you use PowerScript graph functions. The graph functions related
+to data fall into several categories:<A NAME="TI2463"></A>
+<ul>
+<li class=fi>Functions that provide information about a graph's
+data</li>
+<li class=ds>Functions that save data from a graph</li>
+<li class=ds>Functions that change the color, fill patterns,
+and other visual properties of data
+</li>
+</ul>
+</p>
+<A NAME="TI2464"></A><h4>How to use the functions</h4>
+<A NAME="TI2465"></A><p>To call functions for a graph in a graph control, use the
+following syntax:<p><PRE><i>graphControlName.FunctionName</i> ( <i>Arguments</i> )</PRE></p>
+</p>
+<A NAME="TI2466"></A><p>For example, to get a count of the categories in the window
+graph <b>gr_printer</b>, code:<p><PRE> Ccount = gr_printer.CategoryCount()</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Different syntax for graphs in DataWindows</span> <A NAME="TI2467"></A>The syntax for the same functions is more complex when the
+graph is in a DataWindow, like this:<p><PRE><i>DataWindowName.FunctionName</i> ( "<i>graphName</i>", <i>otherArguments...</i> )</PRE></p>
+</p>
+<A NAME="TI2468"></A>For more information, see the <i>DataWindow Programmer's
+Guide</i>
+.</p>
+<A NAME="TI2469"></A><h2>Getting information about the data</h2>
+<A NAME="TI2470"></A><p>The PowerScript functions in <A HREF="apptechp88.htm#CEGDFBCJ">Table 15-3</A> allow you to get information about data
+in a graph at runtime.</p>
+<A NAME="CEGDFBCJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 15-3: PowerScript functions for information
+at runtime</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2471"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI2472"></A>Information provided</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2473"></A><b>CategoryCount</b></td>
+<td  rowspan="1"  ><A NAME="TI2474"></A>The number of categories in a graph</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2475"></A><b>CategoryName</b></td>
+<td  rowspan="1"  ><A NAME="TI2476"></A>The name of a category, given its number</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2477"></A><b>DataCount</b></td>
+<td  rowspan="1"  ><A NAME="TI2478"></A>The number of data points in a series</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2479"></A><b>FindCategory</b></td>
+<td  rowspan="1"  ><A NAME="TI2480"></A>The number of a category, given its name</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2481"></A><b>FindSeries</b></td>
+<td  rowspan="1"  ><A NAME="TI2482"></A>The number of a series, given its name</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2483"></A><b>GetData</b></td>
+<td  rowspan="1"  ><A NAME="TI2484"></A>The value of a data point, given its
+series and position (superseded by <b>GetDataValue</b>,
+which is more flexible)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2485"></A><b>GetDataPieExplode</b></td>
+<td  rowspan="1"  ><A NAME="TI2486"></A>The percentage by which a pie slice is
+exploded</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2487"></A><b>GetDataStyle</b></td>
+<td  rowspan="1"  ><A NAME="TI2488"></A>The color, fill pattern, or other visual
+property of a specified data point</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2489"></A><b>GetDataValue</b></td>
+<td  rowspan="1"  ><A NAME="TI2490"></A>The value of a data point, given its
+series and position</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2491"></A><b>GetSeriesStyle</b></td>
+<td  rowspan="1"  ><A NAME="TI2492"></A>The color, fill pattern, or other visual
+property of a specified series</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2493"></A><b>ObjectAtPointer</b></td>
+<td  rowspan="1"  ><A NAME="TI2494"></A>The graph element over which the mouse
+was positioned when it was clicked</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2495"></A><b>SeriesCount</b></td>
+<td  rowspan="1"  ><A NAME="TI2496"></A>The number of series in a graph</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2497"></A><b>SeriesName</b></td>
+<td  rowspan="1"  ><A NAME="TI2498"></A>The name of a series, given its number</td>
+</tr>
+</table>
+<A NAME="TI2499"></A><h2>Saving graph data</h2>
+<A NAME="TI2500"></A><p>The PowerScript functions in <A HREF="apptechp88.htm#CEGCHEBB">Table 15-4</A> allow you to save data from the graph.</p>
+<A NAME="CEGCHEBB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 15-4: PowerScript functions for saving
+graph data</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2501"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI2502"></A>Action</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2503"></A><b>Clipboard</b></td>
+<td  rowspan="1"  ><A NAME="TI2504"></A>Copies a bitmap image of the specified
+graph to the clipboard</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2505"></A><b>SaveAs</b></td>
+<td  rowspan="1"  ><A NAME="TI2506"></A>Saves the data in the underlying graph
+to the clipboard or to a file in one of a number of formats</td>
+</tr>
+</table>
+<A NAME="TI2507"></A><h2>Modifying colors, fill patterns, and other data</h2>
+<A NAME="TI2508"></A><p>The PowerScript functions in <A HREF="apptechp88.htm#CEGDCFBG">Table 15-5</A> allow you to modify the appearance of
+data in a graph.</p>
+<A NAME="CEGDCFBG"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 15-5: PowerScript functions for changing
+appearance of data</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2509"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI2510"></A>Action</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2511"></A><b>ResetDataColors</b></td>
+<td  rowspan="1"  ><A NAME="TI2512"></A>Resets the color for a specific data
+point</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2513"></A><b>SetDataPieExplode</b></td>
+<td  rowspan="1"  ><A NAME="TI2514"></A>Explodes a slice in a pie graph</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2515"></A><b>SetDataStyle</b></td>
+<td  rowspan="1"  ><A NAME="TI2516"></A>Sets the color, fill pattern, or other
+visual property for a specific data point</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2517"></A><b>SetSeriesStyle</b></td>
+<td  rowspan="1"  ><A NAME="TI2518"></A>Sets the color, fill pattern, or other
+visual property for a series</td>
+</tr>
+</table>
+

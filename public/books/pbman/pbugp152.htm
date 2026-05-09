@@ -1,0 +1,54 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Pipeline examples </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp151.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp153.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BCDDJHEI"></A><h1>Pipeline examples </h1>
+<A NAME="TI4693"></A><h4>Updating data in a destination table</h4>
+<A NAME="TI4694"></A><p>You might want to pipe data and then update the data often.</p>
+<A NAME="TI4695"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To update a destination table:</p>
+<ol><li class=fi><p>Click the Pipeline button, select an existing
+pipeline that you executed before, and click OK.</p><p>The pipeline definition displays. Since this pipeline has
+been executed before, the table exists in the destination database.</p></li>
+<li class=ds><p>Select the Update option in the pipeline definition.</p></li>
+<li class=ds><p>Execute the pipeline.</p><p>The destination table is updated with current data from the
+source database.</p></li></ol>
+<br><A NAME="TI4696"></A><h4>Reproducing a table definition with no data</h4>
+<A NAME="TI4697"></A><p>You can force a pipeline to create a table definition and
+not pipe data. To do this, you must use Quick Select, <ACRONYM title = "sequel" >SQL</ACRONYM> Select, or Query as the data
+source. It is easiest to do it using <ACRONYM title = "sequel" >SQL</ACRONYM> Select.</p>
+<A NAME="TI4698"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To reproduce a table definition with no data:</p>
+<ol><li class=fi><p>Click the Pipeline button, click New, select <ACRONYM title = "sequel" >SQL</ACRONYM> Select as the data source and
+specify the source and destination databases, and click OK.</p></li>
+<li class=ds><p>In the Select painter, open the table you want
+to reproduce and select all columns.</p></li>
+<li class=ds><p>On the Where tab page, type an expression that
+will never evaluate to true, such as 1 = 2.</p></li>
+<li class=ds><p>Click the <ACRONYM title = "sequel" >SQL</ACRONYM> Select
+button to create the pipeline definition.</p></li>
+<li class=ds><p>Select the Extended Attributes check box.</p></li>
+<li class=ds><p>Click the Execute button to execute the pipeline.</p><p>The table definition is piped to the destination database,
+but no rows of data are piped. You can open the new table in the
+Database painter and then click the Grid, Table, or Freeform button
+to view the data. As specified, there is no data.</p></li></ol>
+<br><A NAME="TI4699"></A><p>If you use a data source other than <ACRONYM title = "sequel" >SQL</ACRONYM> Select,
+you can follow the previous procedure, but you need to edit the
+data source of the pipeline to open the Select painter in step 2.</p>
+<A NAME="TI4700"></A><h4>Piping a table to many databases</h4>
+<A NAME="TI4701"></A><p>In the Data Pipeline painter workspace, you can execute a
+pipeline many times with a different destination database each time.</p>
+<A NAME="TI4702"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To pipe a table to many databases:</p>
+<ol><li class=fi><p>Select File&gt;Destination Connect
+from the menu bar to change the destination to the database you
+want.</p></li>
+<li class=ds><p>Execute the pipeline.</p></li>
+<li class=ds><p>Repeat steps 1 and 2 for each database you want.</p></li></ol>
+<br><A NAME="TI4703"></A><A NAME="TI4704"></A><p>This part describes how to build DataWindow objects
+to retrieve, present, and manipulate data in your applications.</p>
+

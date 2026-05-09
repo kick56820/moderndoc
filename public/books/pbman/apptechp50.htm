@@ -1,0 +1,68 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using DataWindow information to populate a TreeView</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp49.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp51.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CDECBFBJ"></A><h1>Using DataWindow information to populate a TreeView</h1>
+<A NAME="TI1214"></A><p>A useful
+implementation of the TreeView control is to populate it with information
+that you retrieve from a DataWindow. To do this your application must:</p>
+<A NAME="TI1215"></A><p><A NAME="TI1216"></A>
+<ul>
+<li class=fi>Declare and instantiate
+a DataStore and assign a DataWindow object</li>
+<li class=ds>Retrieve information as needed</li>
+<li class=ds>Use the retrieved information to populate the TreeView</li>
+<li class=ds>Destroy the DataStore instance when you have finished
+</li>
+</ul>
+</p>
+<A NAME="TI1217"></A><p>Because a TreeView can display different types of information
+at different levels, you will probably define additional DataWindows,
+one for each level. Those DataWindows usually refer to different
+but related tables. When an item is expanded, the item becomes a
+retrieval argument for getting child items.</p>
+<A NAME="TI1218"></A><h4>Populating the first level</h4>
+<A NAME="TI1219"></A><p>This example populates a TreeView with a list of composers.
+The second level of the TreeView displays music by each composer. In the database
+there are two tables: composer names and music titles (with composer
+name as a foreign key).</p>
+<A NAME="TI1220"></A><p>This example declares two DataStore instance variables for
+the window containing the TreeView control:<p><PRE> datastore ids_data, ids_info</PRE></p>
+<A NAME="TI1221"></A><p>This example uses the TreeView control's Constructor
+event to:</p>
+<A NAME="TI1222"></A><p><A NAME="TI1223"></A>
+<ul>
+<li class=fi>Instantiate the DataStore</li>
+<li class=ds>Associate it with a DataWindow and retrieve information</li>
+<li class=ds>Use the retrieved data to populate the root level
+of the TreeView:<p><PRE> //Constructor event for tv_1</PRE><PRE> treeviewitem tvi1, tvi2</PRE><PRE> long ll_lev1, ll_lev2, ll_rowcount, ll_row</PRE><PRE> </PRE><PRE> //Create instance variable datastore</PRE><PRE> ids_data = CREATE datastore</PRE><PRE> ids_data.DataObject = "d_composers"</PRE><PRE> ids_data.SetTransObject(SQLCA)</PRE><PRE> ll_rowcount = ids_data.Retrieve()</PRE><PRE> </PRE><PRE> //Create the first level of the TreeView</PRE><PRE> tvi1.PictureIndex = 1</PRE><PRE> tvi1.Children = TRUE</PRE><PRE> //Populate the TreeView with</PRE><PRE> //data retrieved from the datastore</PRE><PRE> FOR ll_row = 1 to ll_rowcount</PRE><PRE>       tvi1.Label = ids_data.GetItemString(ll_row, &amp;</PRE><PRE>       'name')</PRE><PRE>       This.InsertItemLast(0, tvi1)</PRE><PRE> NEXT</PRE>
+</li>
+</ul>
+</p>
+<A NAME="TI1224"></A><h4>Populating the second level</h4>
+<A NAME="TI1225"></A><p>When the user expands a root level item, the ItemPopulate
+event occurs. This script for the event:</p>
+<A NAME="TI1226"></A><p><A NAME="TI1227"></A>
+<ul>
+<li class=fi>Instantiates a second
+DataStore<br>
+Its DataWindow uses the composer name as a retrieval argument
+for the music titles table.<br></li>
+<li class=ds>Inserts music titles as child items for the selected
+composer<br>
+The handle argument of ItemPopulate will be the parent of
+the new items:<p><PRE> //ItemPopulate event for tv_1</PRE><PRE> TreeViewItem tvi1, tvi2</PRE><PRE> long ll_row, ll_rowcount</PRE><PRE> </PRE><PRE> //Create instance variable datastore</PRE><PRE> ids_info = CREATE datastore</PRE><PRE> ids_info.DataObject = "d_music"</PRE><PRE> ids_info.SetTransObject(SQLCA)</PRE><PRE> </PRE><PRE> //Use the label of the item being populated </PRE><PRE> // as the retrieval argument</PRE><PRE> This.GetItem(handle, tvi1)</PRE><PRE> ll_rowcount = ids_info.Retrieve(tvi1.Label)</PRE><PRE> </PRE><PRE> //Use information retrieved from the database</PRE><PRE> //to populate the expanded item</PRE><PRE> FOR ll_row = 1 to ll_rowcount</PRE><PRE>       This.InsertItemLast(handle, &amp;</PRE><PRE>       ids_info.GetItemString(ll_row, &amp;</PRE><PRE>       music_title'), 2)</PRE><PRE> LOOP</PRE><br>
+</li>
+</ul>
+</p>
+<A NAME="TI1228"></A><h4>Destroying DataStore instances</h4>
+<A NAME="TI1229"></A><p>When the window containing the TreeView control closes, this
+example destroys the DataStore instances:<p><PRE> //Close event for w_treeview</PRE><PRE> DESTROY ids_data</PRE><PRE> DESTROY ids_info</PRE></p>
+

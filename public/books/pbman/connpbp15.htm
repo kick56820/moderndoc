@@ -1,0 +1,163 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About the JDBC interface</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp14.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp16.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CJAEHDHD"></A><h1>About the JDBC interface</h1>
+<A NAME="TI376"></A><p>You can access a wide variety of databases through JDBC in PowerBuilder.
+This section describes what you need to know to use JDBC connections
+to access your data in PowerBuilder.</p>
+<A NAME="TI377"></A><h2>What is JDBC?</h2>
+<A NAME="TI378"></A><h4>The JDBC API</h4>
+<A NAME="TI379"></A><p>Java Database Connectivity (JDBC) is a standard application programming
+interface (API) that allows a Java application to access any database
+that supports Structured Query Language (<ACRONYM title = "sequel" >SQL</ACRONYM>)
+as its standard data access language. </p>
+<A NAME="TI380"></A><p>The JDBC API includes classes for common <ACRONYM title = "sequel" >SQL</ACRONYM> database
+activities that allow you to open connections to databases, execute <ACRONYM title = "sequel" >SQL</ACRONYM> commands, and process results.
+Consequently, Java programs have the capability to use the familiar <ACRONYM title = "sequel" >SQL</ACRONYM> programming model of issuing <ACRONYM title = "sequel" >SQL</ACRONYM> statements and processing the
+resulting data. The JDBC classes are included in Java 1.1+ and
+Java 2 as the java.sql package.</p>
+<A NAME="TI381"></A><p>The JDBC API defines the following:</p>
+<A NAME="TI382"></A><p><A NAME="TI383"></A>
+<ul>
+<li class=fi>A library of JDBC function calls that
+connect to a database, execute <ACRONYM title = "sequel" >SQL</ACRONYM> statements,
+and retrieve results</li>
+<li class=ds>A standard way to connect and log in to a DBMS</li>
+<li class=ds><ACRONYM title = "sequel" >SQL</ACRONYM> syntax based
+on the X/Open <ACRONYM title = "sequel" >SQL</ACRONYM> Call
+Level Interface or X/Open and <ACRONYM title = "sequel" >SQL</ACRONYM> Access
+Group (SAG) CAE specification (1992)</li>
+<li class=ds>A standard representation for datatypes</li>
+<li class=ds>A standard set of error codes
+</li>
+</ul>
+</p>
+<A NAME="TI384"></A><h4>How JDBC APIs are implemented</h4>
+<A NAME="TI385"></A><p>JDBC API implementations fall into two broad categories: those
+that communicate with an existing ODBC driver (a JDBC-ODBC bridge)
+and those that communicate with a native database API (a JDBC driver
+that converts JDBC calls into the communications protocol used by
+the specific database vendor). The PowerBuilder implementation of
+the JDBC interface can be used to connect to any database for which
+a JDBC-compliant driver exists. </p>
+<A NAME="TI386"></A><h4>The PowerBuilder JDB interface</h4>
+<A NAME="TI387"></A><p>A Java Virtual Machine (JVM) is required to interpret and
+execute the bytecode of a Java program. The PowerBuilder JDB interface
+supports the Sun Java Runtime Environment (JRE) versions 1.2 and
+later. </p>
+<A NAME="TI388"></A><h2>Using the JDBC interface</h2>
+<A NAME="TI389"></A><p>You can use the JDBC interface to develop several types of
+components and/or applications in PowerBuilder: <A NAME="TI390"></A>
+<ul>
+<li class=fi><b>Thin client/server applications</b>   If a client is already running a JVM (in a running Web browser
+or inside the operating system), the use of the JDBC interface to
+access a database does not require the client-side installation
+and administration of a database driver, which is required when
+using ODBC. </li>
+<li class=ds><b>DataWindow objects to be used in a
+DataWindow Web control for ActiveX </b>   Using the JDBC interface does not require the installation
+of a database driver on the client, since the JDBC driver can be
+downloaded with the Web ActiveX in a CAB file. </li>
+<li class=ds><b>Transactional components to be deployed
+on <ACRONYM title = "E A Server" >EAServer</ACRONYM> that access a
+database through the <ACRONYM title = "E A Server" >EAServer</ACRONYM> JDBC
+interface</b>   Using the JDBC interface allows a PowerBuilder transactional
+component to share the same transaction as another component. 
+</li>
+</ul>
+</p>
+<A NAME="TI391"></A><h2>Components of a JDBC connection</h2>
+<A NAME="TI392"></A><h4>How a JDBC connection is made</h4>
+<A NAME="TI393"></A><p>In PowerBuilder when you access a database through the JDBC
+interface, your connection goes through several layers before reaching
+the database. It is important to understand that each layer represents
+a separate component of the connection, and that each component
+might come from a different vendor.</p>
+<A NAME="TI394"></A><p>Because JDBC is a standard API, PowerBuilder uses the same interface
+to access every JDBC-compliant database driver. </p>
+<A NAME="TI395"></A><p><A HREF="connpbp15.htm#BABFICEI">Figure 3-1</A> shows
+the general components of a JDBC connection.</p>
+<A NAME="BABFICEI"></A><caption><b>Figure 3-1: Components of a JDBC connection</b></captionls>
+<br><img src="images/cnw3jdbc.gif">
+<A NAME="TI396"></A><h4>The JDBC DLL</h4>
+<A NAME="TI397"></A><p>PowerBuilder provides the <i>pbjdb105.dll</i>.
+This DLL runs with the Sun Java Runtime Environment (JRE) versions
+1.1 and later. </p>
+<A NAME="TI398"></A><h4>PowerBuilder Java package </h4>
+<A NAME="TI399"></A><p>PowerBuilder includes a small package of Java classes that gives
+the JDBC interface the level of error-checking and efficiency (<ACRONYM title = "sequel" >SQL</ACRONYM>Exception catching) found in other PowerBuilder interfaces.
+The package is called <i>pbjdbc12105.jar</i> and is
+found in <i>Sybase\Shared\PowerBuilder</i>. </p>
+<A NAME="TI400"></A><h4>The Java Virtual Machine</h4>
+<A NAME="TI401"></A><p>The Java Virtual Machine (JVM) is a component of Java development software.
+When you install PowerBuilder, the Sun Java Development Kit (JDK),
+including the Java Runtime Environment (JRE), is installed on your system
+in <i>Sybase\Shared\PowerBuilder</i>.
+For PowerBuilder 10.5, JDK 1.4 is installed. This version
+of the JVM is started when you use a JDBC connection or any other
+process that requires a JVM and is used throughout the PowerBuilder session.</p>
+<A NAME="TI402"></A><p>If you need to use a different JVM, see the instructions in <A HREF="connpbp16.htm#BFCDCFDD">"Preparing to use the JDBC
+interface"</A>. For more
+information about how the JVM is started, see the chapter on deploying
+your application in <i>Application Techniques</i>
+.</p>
+<A NAME="TI403"></A><h4>The JDBC drivers</h4>
+<A NAME="TI404"></A><p>The JDBC interface can communicate with any JDBC-compliant
+driver including Sybase jConnect&#153; for JDBC and the Oracle
+and IBM Informix JDBC drivers. These drivers are native-protocol,
+all-Java drivers&#8212;that is, they convert JDBC calls into
+the <ACRONYM title = "sequel" >SQL</ACRONYM> syntax supported by
+the databases. </p>
+<A NAME="BABGDCEBX"></A><h4>Accessing Unicode data</h4>
+<A NAME="TI405"></A><p>Using the ODBC interface, PowerBuilder can connect, save, and
+retrieve data in both ANSI/DBCS and Unicode databases but
+does not convert data between Unicode and ANSI/DBCS. When
+character data or command text is sent to the database, PowerBuilder sends
+a Unicode string. The driver must guarantee that the data is saved
+as Unicode data correctly. When PowerBuilder retrieves character data,
+it assumes the data is Unicode.</p>
+<A NAME="TI406"></A><p>A Unicode database is a database whose character set is set
+to a Unicode format, such as UTF-8, UTF-16, UCS-2, or UCS-4. All
+data must be in Unicode format, and any data saved to the database
+must be converted to Unicode data implicitly or explicitly.</p>
+<A NAME="TI407"></A><p>A database that uses ANSI (or DBCS) as its character set might
+use special datatypes to store Unicode data. Columns with these
+datatypes can store <i>only</i> Unicode data. Any
+data saved into such a column must be converted to Unicode explicitly.
+This conversion must be handled by the database server or client.</p>
+<A NAME="TI408"></A><h2>JDBC registry entries</h2>
+<A NAME="TI409"></A><p>When you access data through the PowerBuilder JDBC interface, PowerBuilder uses
+an internal registry to maintain definitions of <ACRONYM title = "sequel" >SQL</ACRONYM> syntax, DBMS-specific function
+calls, and default DBParm parameter settings for the back-end DBMS.
+This internal registry currently includes subentries for Adaptive Server Anywhere,
+Adaptive Server Enterprise, and Oracle databases. </p>
+<A NAME="TI410"></A><p>In most cases you do not need to modify the JDBC entries.
+However, if you do need to customize the existing entries or add
+new entries, you can make changes to the system registry by editing
+the registry directly or executing a registry file. Changes you
+introduce in the system registry override the PowerBuilder internal
+registry entries. See the <i>egreg.txt</i> file in <i>Sybase\Shared\PowerBuilder</i> for
+an example of a registry file you could execute to change entry
+settings.</p>
+<A NAME="X-REF354483650"></A><h2>Supported versions for JDBC</h2>
+<A NAME="TI411"></A><p>The PowerBuilder JDBC interface uses the <i>pbjdb105.dll</i> to
+access a database through a JDBC driver.</p>
+<A NAME="TI412"></A><p>To use the JDBC interface to access the jConnect driver, use
+jConnect Version 4.2 or higher or jConnect Version 5.2 or higher.
+For information on jConnect, see your Sybase documentation.</p>
+<A NAME="TI413"></A><p>To use the JDBC interface to access the Oracle JDBC driver,
+use Oracle 8 JDBC driver Version 8.0.4 or higher. For information
+on the Oracle JDBC driver, see your Oracle documentation.</p>
+<A NAME="TI414"></A><h2>Supported JDBC datatypes</h2>
+<A NAME="TI415"></A><p>Like ODBC, the JDBC interface compiles, sorts, presents, and
+uses a list of datatypes that are native to the back-end database
+to emulate as much as possible the behavior of a native interface. </p>
+

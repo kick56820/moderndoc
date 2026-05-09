@@ -1,0 +1,143 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Examining a class definition</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp25.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp27.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAICCBAI"></A><h1>Examining a class definition</h1>
+<A NAME="TI533"></A><p>This section illustrates how to access a class definition
+object and how to examine its properties to get information about
+the class, its scripts, and its variables.</p>
+<A NAME="CCJDEFBC"></A><h2>Getting a class definition object</h2>
+<A NAME="TI534"></A><p>To work with class information, you need a class definition
+object. There are two ways to get a ClassDefinition object containing
+class definition information.</p>
+<A NAME="TI535"></A><h4>For an instantiated object in your application</h4>
+<A NAME="TI536"></A><p>Use its ClassDefinition property.</p>
+<A NAME="TI537"></A><p>For example, in a script for a button, this code gets the
+class definition for the parent window:<p><PRE> ClassDefinition cd_windef<br>cd_windef = Parent.ClassDefinition</PRE></p>
+<A NAME="TI538"></A><h4>For an object stored in a <ACRONYM title = "pibble" >PBL</ACRONYM></h4>
+<A NAME="TI539"></A><p>Call FindClassDefinition.</p>
+<A NAME="TI540"></A><p>For example, in a script for a button, this code gets the
+class definition for the window named <b>w_genapp_frame</b> from
+a library on the application's library list:<p><PRE> ClassDefinition cd_windef<br>cd_windef = FindClassDefinition("w_genapp_frame")</PRE></p>
+<A NAME="CCJDEAIC"></A><h2>Getting detailed information about the class</h2>
+<A NAME="TI541"></A><p>This section has code fragments illustrating how to get information
+from a ClassDefinition object called <b>cd_windef</b>.</p>
+<A NAME="TI542"></A><p>For examples of assigning a value to <b>cd_windef</b>,
+see <A HREF="apptechp26.htm#CCJDEFBC">"Getting a class definition
+object."</A></p>
+<A NAME="TI543"></A><h4>Library</h4>
+<A NAME="TI544"></A><p>The LibraryName property reports the name of the library a
+class has been loaded from:<p><PRE> s = cd_windef.LibraryName</PRE></p>
+<A NAME="TI545"></A><h4>Ancestor</h4>
+<A NAME="TI546"></A><p>The Ancestor property reports the name of the class from which
+this class is inherited. All objects are inherited from PowerBuilder
+system objects, so the Ancestor property can hold a ClassDefinition
+object for a PowerBuilder class. The Ancestor property contains
+a null object reference when the ClassDefinition is for PowerObject,
+which is the top of the inheritance hierarchy.</p>
+<A NAME="TI547"></A><p>This example gets a ClassDefinition object for the ancestor
+of the class represented by <b>cd_windef</b>:<p><PRE> ClassDefinition cd_ancestorwindef<br>cd_ancestorwindef = cd_windef.Ancestor</PRE></p>
+<A NAME="TI548"></A><p>This example gets the ancestor name. Note that this code would
+cause an error if <b>cd_windef</b> held the
+definition of PowerObject, because the Ancestor property would be
+NULL:<p><PRE> ls_name = cd_windef.Ancestor.Name</PRE></p>
+<A NAME="TI549"></A><p>Use the <b>IsValid</b> function to test that the
+object is not NULL.</p>
+<A NAME="TI550"></A><p>This example walks back up the inheritance hierarchy for the
+window <b>w_genapp_frame</b> and
+displays a list of its ancestors in a MultiLineEdit:<p><PRE> string s, lineend<br>ClassDefinition cd<br>lineend = "~r~n"<br> <br>cd = cd_windef<br>s = "Ancestor tree:" + lineend<br> <br>DO WHILE IsValid(cd)<br>   s = s + cd.Name + lineend<br>   cd = cd.Ancestor<br>LOOP<br> <br>mle_1.Text = s</PRE></p>
+<A NAME="TI551"></A><p>The list might look like this:</p>
+<A NAME="TI552"></A><p><p><PRE> Ancestor tree:<br>w_genapp_frame<br>window<br>graphicobject<br>powerobject</PRE></p>
+<A NAME="TI553"></A><h4>Parent</h4>
+<A NAME="TI554"></A><p>The ParentClass property of the ClassDefinition object reports
+the parent (its container) specified in the object's definition:<p><PRE> ClassDefinition cd_parentwindef<br>cd_parentwindef = cd_windef.ParentClass</PRE></p>
+<A NAME="TI555"></A><p>If the class has no parent, ParentClass is a null object reference.
+This example tests that ParentClass is a valid object before checking
+its Name property:<p><PRE> IF IsValid(cd_windef.ParentClass) THEN<br>   ls_name = cd_windef.ParentClass.Name<br>END IF</PRE></p>
+<A NAME="TI556"></A><h4>Nested or child classes</h4>
+<A NAME="TI557"></A><p>The ClassDefinition object's NestedClassList array
+holds the classes the object contains.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>NestedClassList array includes ancestors and descendants</span> <A NAME="TI558"></A>The NestedClassList array can include classes of ancestor
+objects. For example, a CommandButton defined on an ancestor window
+and modified in a descendent window appears twice in the array for
+the descendent window, once for the window and once for its ancestor.</p>
+<A NAME="TI559"></A><p>This script produces a list of the controls and structures
+defined for the window represented in <b>cd_windef</b>.<p><PRE> string s, lineend<br>integer li<br>lineend = "~r~n"<br> <br>s = s + "Nested classes:" + lineend<br> <br>FOR li = 1 to UpperBound(cd_windef.NestedClassList)<br>   s = s + cd_windef.NestedClassList[li].Name &amp;<br>      + lineend<br>NEXT<br>mle_1.Text = s</PRE></p>
+<A NAME="TI560"></A><p>This script searches the NestedClassList array in the ClassDefinition
+object <b>cd_windef</b> to find a nested
+DropDownListBox control:<p><PRE> integer li<br>ClassDefinition nested_cd<br> <br>FOR li = 1 to UpperBound(cd_windef.NestedClassList)<br>   IF cd_windef.NestedClassList[li].DataTypeOf &amp;<br>      = "dropdownlistbox" THEN<br>      nested_cd = cd_windef.NestedClassList[li]<br>      EXIT<br>   END IF<br>NEXT</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Class definitions for object instances as distinct
+from object references</span> <A NAME="TI561"></A>Getting a ClassDefinition object for an instantiated object,
+such as an ancestor or nested object, does not give you a reference
+to instances of the parent or child classes. Use standard PowerBuilder
+programming techniques to get and store references to your instantiated
+objects.</p>
+<A NAME="CCJBCIBG"></A><h2>Getting information about a class's scripts</h2>
+<A NAME="TI562"></A><p>This section has code fragments illustrating how to get script
+information from a ClassDefinition object called <b>cd_windef</b>.</p>
+<A NAME="TI563"></A><p>For examples of assigning a value to <b>cd_windef</b>,
+see <A HREF="apptechp26.htm#CCJDEFBC">"Getting a class definition
+object"</A>.</p>
+<A NAME="TI564"></A><h4>List of scripts</h4>
+<A NAME="TI565"></A><p>The ScriptList array holds ScriptDefinition objects for all
+the functions and events defined for a class. If a function is overloaded,
+it will appear in the array more than once with different argument
+lists. If a function or event has code at more than one level in
+the hierarchy, it will appear in the array for each coded version.</p>
+<A NAME="TI566"></A><p>This example loops through the ScriptList array and builds
+a list of script names. All objects have a few standard functions,
+such as ClassName and PostEvent, because all objects are inherited
+from PowerObject:<p><PRE> string s, lineend<br>integer li<br>ScriptDefinition sd<br>lineend = "~r~n"<br> <br>FOR li = 1 to UpperBound(cd_windef.ScriptList)<br>   sd = cd_windef.ScriptList[li]<br>   s = s + sd.Name + " " + lineend<br>NEXT<br>mle_1.Text = s</PRE></p>
+<A NAME="TI567"></A><p>This example amplifies on the previous one and accesses various
+properties in the ScriptDefinition object. It reports whether the
+script is a function or event, whether it is scripted locally, what
+its return datatype and arguments are, and how the arguments are
+passed:<p><PRE> string s, lineend<br>integer li, lis, li_bound<br>ScriptDefinition sd<br>lineend = "~r~n"<br>FOR li = 1 to UpperBound(cd_windef.ScriptList)<br>   sd = cd_windef.ScriptList[li]<br>   s = s + sd.Name + " "<br> <br>   CHOOSE CASE sd.Kind<br>   CASE ScriptEvent!<br>      // Events have three relevant properties<br>      // regarding where code is defined<br>      s = s + "Event, "<br>      <br>        IF sd.IsScripted = TRUE then<br>         s = s + "scripted, "<br>      END If<br>      IF sd.IsLocallyScripted = TRUE THEN<br>         s = s + "local, "<br>      END IF<br>      IF sd.IsLocallyDefined = TRUE THEN<br>         s = s + "local def,"<br>      END IF<br> <br>   CASE ScriptFunction!<br>      // Functions have one relevant property<br>      // regarding where code is defined<br>      s = s + "Function, "<br>      IF sd.IsLocallyScripted = TRUE THEN<br>         s = s + "local, "<br>      END IF<br>   END CHOOSE<br> <br>   s = s + "returns " + &amp;<br>       sd.ReturnType.DataTypeOf + "; "<br>   s = s + "Args: "<br> <br>   li_bound = UpperBound(sd.ArgumentList)<br>   IF li_bound = 0 THEN s = s + "None"<br> <br>   FOR lis = 1 to li_bound<br>   CHOOSE CASE sd.ArgumentList[lis]. &amp;<br>      CallingConvention<br>      CASE ByReferenceArgument!<br>      s = s + "REF "<br>      CASE ByValueArgument!<br>      s = s + "VAL "<br>      CASE ReadOnlyArgument!<br>      s = s + "READONLY "<br>      CASE ELSE<br>      s = s + "BUILTIN "<br>   END CHOOSE<br> <br>   s = s + sd.ArgumentList[lis].Name + ", "<br>   NEXT<br> <br>   s = s + lineend<br>NEXT<br>mle_1.text = s</PRE></p>
+<p><b>Where the code is in the inheritance hierarchy </b>   You can check the IsLocallyScripted property to find out whether
+a script has code at the class's own level in the inheritance
+hierarchy. By walking back up the inheritance hierarchy using the
+Ancestor property, you can find out where the code is for a script.</p>
+<A NAME="TI568"></A><p>This example looks at the scripts for the class associated
+with the ClassDefinition <b>cd_windef</b>,
+and if a script's code is defined at this level, the script's
+name is added to a drop-down list. It also saves the script's
+position in the ScriptList array in the instance variable <i>ii_localscript_idx</i>.
+The DropDownListBox is not sorted, so the positions in the list
+and the array stay in sync:<p><PRE> integer li_pos, li<br> <br>FOR li = 1 to UpperBound(cd_windef.ScriptList)<br>   IF cd_windef.ScriptList[li].IsLocallyScripted &amp;<br>      = TRUE<br>   THEN<br>      li_pos = ddlb_localscripts.AddItem( &amp;<br>         cd_windef.ScriptList[li].Name)<br>      ii_localscript_idx[li_pos] = li<br>   END IF<br>NEXT</PRE></p>
+<A NAME="TI569"></A><h4>Matching function signatures</h4>
+<A NAME="TI570"></A><p>When a class has overloaded functions, you can call <b>FindMatchingFunction</b> to find
+out what function is called for a particular argument list.</p>
+<A NAME="TI571"></A><p>For an example, see <b>FindMatchingFunction</b> in
+the <i>PowerScript Reference</i>
+.</p>
+<A NAME="CCJCBICG"></A><h2>Getting information about variables</h2>
+<A NAME="TI572"></A><p>This section has code fragments illustrating how to get information
+about variables from a ClassDefinition object called <b>cd_windef</b>.
+For examples of assigning a value to <b>cd_windef</b>,
+see <A HREF="apptechp26.htm#CCJDEFBC">"Getting a class definition
+object"</A>.</p>
+<p><b>List of variables </b>   Variables associated with a class are listed in the VariableList
+array of the ClassDefinition object. When you examine that array, you
+find not only variables you have defined explicitly but also PowerBuilder object
+properties and nested objects, which are instance variables.</p>
+<A NAME="TI573"></A><p>This example loops through the VariableList array and builds
+a list of variable names. PowerBuilder properties appear first,
+followed by nested objects and your own instance and shared variables:<p><PRE> string s, lineend<br>integer li<br>VariableDefinition vard<br>lineend = "~r~n"<br> <br>FOR li = 1 to UpperBound(cd_windef.VariableList)<br>   vard = cd_windef.VariableList[li]<br>   s = s + vard.Name + lineend<br>NEXT<br>mle_1.Text = s</PRE></p>
+<A NAME="TI574"></A><h4>Details about variables</h4>
+<A NAME="TI575"></A><p>This example looks at the properties of each variable in the
+VariableList array and reports its datatype, cardinality, and whether
+it is global, shared, or instance. It also checks whether an instance
+variable overrides an ancestor declaration:<p><PRE> string s<br>integer li<br>VariableDefinition vard<br>lineend = "~r~n"<br> <br>FOR li = 1 to UpperBound(cd_windef.VariableList)<br>   vard = cd_windef.VariableList[li]<br>   s = s + vard.Name + ", "<br>   s = s + vard.TypeInfo.DataTypeOf<br> <br>   CHOOSE CASE vard.Cardinality.Cardinality<br>   CASE ScalarType!<br>      s = s + ", scalar"<br>   CASE UnboundedArray!, BoundedArray!<br>      s = s + ", array"<br>   END CHOOSE<br> <br>   CHOOSE CASE vard.Kind<br>   CASE VariableGlobal!<br>      s = s + ", global"<br>   CASE VariableShared!<br>      s = s + ", shared"<br>   CASE VariableInstance!<br>      s = s + ", instance"<br>      IF vard.OverridesAncestorValue = TRUE THEN<br>         s = s + ", override"<br>      END IF<br>   END CHOOSE<br>      s = s + lineend<br>NEXT<br>mle_1.text = s</PRE></p>
+<A NAME="TI576"></A><A NAME="TI577"></A><p>This part presents a collection of techniques you can
+use to implement user interface features in the applications you
+develop with PowerBuilder. It includes building an MDI application,
+using drag and drop in a window, and providing online Help for an
+application.</p>
+

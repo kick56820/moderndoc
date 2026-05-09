@@ -1,0 +1,113 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About form styles </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp257.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp259.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF306081717"></A><h1>About form styles </h1>
+<A NAME="TI7656"></A><p>InfoMaker comes with built-in form styles with which users
+can build sophisticated forms. You can create your own form styles
+in PowerBuilder and provide them to InfoMaker users. With these
+custom form styles, you can enforce certain standards in your forms
+and provide extra functionality to your InfoMaker users. For example,
+you might want to:<A NAME="TI7657"></A>
+<ul>
+<li class=fi>Include
+your organization's logo in each form<br>
+You can do this by creating custom form styles that have the
+logo in place.<br></li>
+<li class=ds>Reconfigure the toolbar that is provided with the
+built-in form styles<br>
+You can do this by modifying a built-in form style and saving
+it as a custom form style.<br></li>
+<li class=ds>Use drag and drop in forms</li>
+<li class=ds>Include picture buttons, edit controls, and other
+controls in forms
+</li>
+</ul>
+</p>
+<A NAME="TI7658"></A><p>Almost anything you can do in a PowerBuilder window you can
+do in a custom form style.</p>
+<A NAME="TI7659"></A><h4>What a form style is</h4>
+<A NAME="TI7660"></A><p>InfoMaker users use forms to maintain data. Users can view,
+add, delete, and update data in a form. Each form is based on a
+form style, which specifies:</p>
+<A NAME="TI7661"></A><p><A NAME="TI7662"></A>
+<ul>
+<li class=fi>The way the data is
+presented (for example, in a freeform, grid, or master/detail
+presentation)</li>
+<li class=ds>The menu and toolbar that are available when users
+run a form</li>
+<li class=ds>Actions that users can attach to command buttons
+in the form
+</li>
+</ul>
+</p>
+<A NAME="TI7663"></A><h4>How form styles are constructed</h4>
+<A NAME="TI7664"></A><p>You build form styles in PowerBuilder. A form style consists
+of:</p>
+<A NAME="TI7665"></A><p><A NAME="TI7666"></A>
+<ul>
+<li class=fi>A window</li>
+<li class=ds>A menu
+</li>
+</ul>
+</p>
+<A NAME="TI7667"></A><caption><b>Figure 39-1: PowerBuilder form style</b></captionls>
+<br><img src="images/bdsty01.gif">
+<p><b>About the window</b>   The window serves as the foundation of the form. It contains
+one or more DataWindow controls with special names. It is these DataWindow
+controls that are the heart of the form style. The user views and changes
+data in the form through the special DataWindow controls.</p>
+<A NAME="TI7668"></A><p>This chapter refers to the special DataWindow controls as
+the <strong>central</strong> <strong>DataWindow controls</strong>.
+You must name the central DataWindow controls using one of a set
+of supported names.</p>
+<A NAME="TI7669"></A><p>In addition to the central DataWindow controls, the window
+can contain any other controls that you can place in a window in
+PowerBuilder (such as CommandButtons, RadioButtons, user objects,
+and pictures).</p>
+<p><b>About the menu</b>   When users run forms, they can pick items off a menu. You build
+the menu in the Menu painter and associate it with the window that
+the form style is based on.</p>
+<A NAME="TI7670"></A><p>When building the menu, you can specify which menu items should
+display in a toolbar when a form is run. The toolbar works like
+all PowerBuilder toolbars.</p>
+<p><b>About actions</b>   Form styles contain actions that users can attach to command buttons
+in the form and that you can call in scripts.</p>
+<A NAME="TI7671"></A><p>Each public window function you define in the window for the
+form style is available as an action to users of the form style.</p>
+<A NAME="TI7672"></A><h4>Looking at an example</h4>
+<A NAME="TI7673"></A><p>For example, the built-in form style Freeform consists of:</p>
+<A NAME="TI7674"></A><p><A NAME="TI7675"></A>
+<ul>
+<li class=fi>A window named <b>w_pbstyle_freeform</b></li>
+<li class=ds>A menu named <b>m_pbstyle_freeform</b>
+</li>
+</ul>
+</p>
+<p><b>About w_pbstyle_freeform</b>   The window <b>w_pbstyle_freeform</b> contains
+a DataWindow control named <b>dw_freeform</b> and
+contains no other controls.</p>
+<A NAME="TI7676"></A><p>The PowerBuilder window defines many window-level functions:</p>
+<br><img src="images/bdsty02.gif">
+<A NAME="TI7677"></A><p>Each of these window functions is available as an action in
+InfoMaker to users of the Freeform form style:</p>
+<br><img src="images/bdsty03.gif">
+<p><b>About m_pbstyle_freeform</b>   The menu named <b>m_pbstyle_freeform</b> provides the
+menu items and toolbar items available to users when they run forms
+based on the Freeform style.</p>
+<A NAME="TI7678"></A><p>For example, <b>m_pbstyle_freeform</b> contains
+the item Specify Criteria on the Rows menu; the item also displays
+on the toolbar:</p>
+<br><img src="images/bdsty04.gif">
+<A NAME="TI7679"></A><p>When InfoMaker users run the form, they can select Specify
+Criteria to enter selection criteria that are used in retrieving
+rows in the form.</p>
+

@@ -1,0 +1,177 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using OLE columns in a DataWindow object </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp250.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp252.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCDFGDJ"></A><h1>Using OLE columns in a DataWindow object </h1>
+<A NAME="TI8957"></A><p>You can create OLE columns in a DataWindow
+object. An OLE column allows you to:<A NAME="TI8958"></A>
+<ul>
+<li class=fi>Store blob (binary large-object) data, such as Microsoft Excel
+worksheets or Microsoft Word documents, in the database</li>
+<li class=ds>Retrieve blob data from a database into a DataWindow
+object</li>
+<li class=ds>Use an OLE server application, such as Microsoft
+Excel or Microsoft Word, to modify the data</li>
+<li class=ds>Store the modified data back in the database
+</li>
+</ul>
+</p>
+<A NAME="TI8959"></A><p>You can modify the document in the server, then update the
+data in the DataWindow object. When the database is updated, the
+OLE column, which contains the modified document, is stored in the
+database.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Database support for OLE columns</span> <A NAME="TI8960"></A>If your database supports a blob datatype, then you can implement
+OLE columns in a DataWindow object. The name of the datatype that supports
+blob data varies. For information on which datatypes your DBMS supports,
+see your DBMS documentation.</p>
+<A NAME="TI8961"></A><h2>Creating an OLE column</h2>
+<A NAME="TI8962"></A><p>This section describes how to create an OLE column in a DataWindow object. The
+steps are illustrated using a table that you can create in the Database painter.
+It must contain at least two columns, <b>id</b> and <b>object</b>:<A NAME="TI8963"></A>
+<ul>
+<li class=fi>The <b>id</b> column
+is an <b>integer</b> and serves as the table's
+key.</li>
+<li class=ds>The <b>object</b> column is a <b>blob</b> datatype
+and contains OLE objects associated with several OLE servers.
+</li>
+</ul>
+</p>
+<A NAME="TI8964"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create the database table:</p>
+<ol><li class=fi><p>In the Database painter, create a table
+to hold the blob (binary large-object) data. </p><p>The table must have at least two columns: a key column and
+a column with the <b>blob</b> datatype. The actual
+datatype you choose depends on your DBMS. For example, in SQL Anywhere,
+choose long binary as the datatype for the blob column. For information
+about datatypes, see your DBMS documentation.</p></li>
+<li class=ds><p>Define the blob columns as allowing <b>NULLs</b> (this
+allows you to store a row that does not contain a blob).</p></li></ol>
+<br><A NAME="TI8965"></A><h4>Adding a blob column to the DataWindow object</h4>
+<A NAME="TI8966"></A><p>The following procedure describes how to add a blob column
+to a DataWindow object.</p>
+<A NAME="TI8967"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a blob column to a new DataWindow object:</p>
+<ol><li class=fi><p>Create a new DataWindow object.</p></li>
+<li class=ds><p>Specify the table containing the blob as the data
+source for the DataWindow object. </p><p>Be sure to include the key column in the data source. You
+cannot include the blob column in the data source; if you try, a
+message tells you that its datatype requires the use of an embedded <ACRONYM title = "sequel" >SQL</ACRONYM> statement. You add the blob column
+later in the DataWindow painter workspace. (If you use Quick Select, the
+blob column is not listed in the dialog box.)</p></li>
+<li class=ds><p>Select Insert&gt;Control&gt;OLE Database
+Blob and click where you want the blob column in the Design view.</p><p>The Database Binary/Text Large Object dialog box
+displays:</p><br><img src="images/oleblob1.gif"><br>
+</li></ol>
+<br><A NAME="TI8968"></A><h4>Setting properties for the blob column</h4>
+<A NAME="TI8969"></A><p>The following procedure describes the properties you need
+to set for the blob column.</p>
+<A NAME="TI8970"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set properties for a blob column:</p>
+<ol><li class=fi><p>(Optional) Enter the client class in the
+Client Class box. The default is DataWindow.</p><p>This value is used in some OLE server applications to build
+the title that displays at the top of the server window.</p></li>
+<li class=ds><p>(Optional) Enter the client name in the Client
+Name box. The default is Untitled.</p><p>This value is used in some OLE server applications to build
+the title that displays in the title bar of the server window.</p></li>
+<li class=ds><p>In the Table box, select the database table that
+contains the blob database column you want to place in the DataWindow object.</p><p>The names of the columns in the selected table display in
+the Large Binary/Text Columns list.</p></li>
+<li class=ds><p>In the Large Binary/Text Columns box,
+select the column that contains the blob datatype from the list.</p></li>
+<li class=ds><p>If necessary, change the default key clause in
+the Key Clause box.</p><p>PowerBuilder uses the key clause to build the <b>WHERE</b> clause
+of the <b>SELECT</b> statement used to retrieve and
+update the blob column in the database. It can be any valid <b>WHERE</b> clause.</p><p>Use colon variables to specify DataWindow columns. For example,
+if you enter this key clause:<p><PRE> id = :id</PRE></p><p>the <b>WHERE</b> clause will be:<p><PRE> WHERE id = :id</PRE></p></li>
+<li class=ds><p>Identify the OLE server application by doing one
+of the following:<A NAME="TI8971"></A>
+<ul>
+<li class=fi>If you
+always want to open the same file in the OLE server application,
+enter the name of the file in the File Template box.<br>
+For example, to specify a particular Microsoft Word document,
+enter the name of the <i>DOC</i> file. If the file
+is not on the current path, enter the fully qualified name.<br><br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Use the Browse button to find the file</span> <A NAME="TI8972"></A>If you do not know the name of the file you want to use, click
+the Browse button to display a list of available files. Select the
+file you want from the resulting window.
+<br>
+</li>
+<li class=ds>If you do not want to open the same file each time,
+select an OLE server application from the OLE Class: Description
+drop-down list.<br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>When the server does not match the OLE blob data</span> <A NAME="TI8973"></A>If you specify a server that does not match the OLE blob object
+or if your database contains objects belonging to different servers,
+the OLE mechanism can usually handle the situation. It looks for
+the server specified in the object and starts it instead of the
+server you specified.
+<br>
+
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>Enter text or an expression that evaluates to
+a string in the Client Name Expression box.</p><p>The server might use this expression in the title of the window
+in the OLE server application. The expression you specify can identify
+the current row in the DataWindow object.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Use an expression to make sure the name is unique</span> <A NAME="TI8974"></A>To make sure the name is unique, you should use an expression.
+For example, you might enter the following expression to identify
+a document (where <b>id</b> is the integer key column):<p><PRE> "Document " + String(id)</PRE></p>
+</li>
+<li class=ds><p>Click OK.</p><p>PowerBuilder closes the dialog box. The blob column is represented
+by a box labeled Blob in the Design view.</p></li>
+<li class=ds><p>Save the DataWindow object.</p></li></ol>
+<br><A NAME="TI8975"></A><p>The following screenshot shows what a completed Definition
+page for a Blob object in a table called <b>ole</b> looks
+like in the Properties view:</p>
+<br><img src="images/oleblob2.gif">
+<A NAME="TI8976"></A><h4>Making the blob column visible</h4>
+<A NAME="TI8977"></A><p>If the blob column is invisible in the DataWindow object until you
+activate the OLE server, you can make it easy to find the blob column
+by adding a border to the object.</p>
+<A NAME="TI8978"></A><h4>Previewing an OLE column</h4>
+<A NAME="TI8979"></A><p>Before using the DataWindow object in an application, you should
+preview it in the Preview view or in preview mode to see how it
+works.</p>
+<A NAME="TI8980"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To preview an OLE column in preview mode:</p>
+<ol><li class=fi><p>Select File&gt;Run/Preview
+from the menu bar and select the DataWindow object.</p></li>
+<li class=ds><p>Click the Insert Row button.</p><p>PowerBuilder adds a blank row.</p></li>
+<li class=ds><p>In the blank row, enter a value in the key column.</p></li>
+<li class=ds><p>Double-click the column that contains the blob
+datatype.</p><p>The OLE server application starts and displays the file you
+specified in the File Template box, or an empty workspace if you
+specified only the OLE server name.</p></li>
+<li class=ds><p>Review the file in the OLE server application
+and make changes if you want.</p><p>When you use an OLE column to access an OLE server application,
+the server application adds an item to its File menu that allows
+you to update the data in the server application and in the client
+(the DataWindow object). The text of the menu item depends on the
+OLE server application. In most applications, it is Update.</p></li>
+<li class=ds><p>Select the menu item in the OLE server that updates
+the OLE client with the modifications. </p><p>In the example, you would select Update from the File menu
+in Microsoft Word. The OLE server application sends the updated
+information to the DataWindow object.</p></li>
+<li class=ds><p>Close the file in the server application (typically
+by selecting Close from the File menu).</p></li>
+<li class=ds><p>To save the blob data in the database, click the
+Save Changes button in the PainterBar.</p><p>The new row, including the key value and the blob, is stored
+in the database..</p></li></ol>
+<br><A NAME="TI8981"></A><p>Later, after you retrieve the rows from the database, you
+can view and edit the blob by double-clicking it, which invokes
+the OLE server application and opens the stored document. If you
+make changes and then update the database, all the modified OLE
+columns are stored in the database.</p>
+<A NAME="TI8982"></A><A NAME="TI8983"></A><p>This part describes the ways in which your application
+can be run. The first chapter describes how to run your application
+from within PowerBuilder: in debug mode, where you can set breakpoints
+and examine the state of your application as it executes, and in
+regular mode, where the application runs until you stop it or an
+error occurs. The second chapter describes how to collect trace information
+so that you can analyze performance and evaluate your application's
+structure. The third chapter describes how to build your application
+for distribution to users.</p>
+

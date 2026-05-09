@@ -1,0 +1,47 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Populating a graph with data</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp85.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp87.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDBEDAH"></A><h1>Populating a graph with data</h1>
+<A NAME="TI2429"></A><p>This section shows how you can populate an empty graph with
+data.</p>
+<A NAME="TI2430"></A><h4>Using AddSeries</h4>
+<A NAME="TI2431"></A><p>You use <b>AddSeries</b> to create a series. <b>AddSeries</b> has
+this syntax:<p><PRE><i>graphName</i>.<b>AddSeries</b> ( <i>seriesName</i> )</PRE></p>
+</p>
+<A NAME="TI2432"></A><p><b>AddSeries</b> returns an integer that identifies
+the series that was created. The first series is numbered 1, the
+second is 2, and so on. Typically you use this number as the first
+argument in other graph functions that manipulate the series.</p>
+<A NAME="TI2433"></A><p>So to create a series named <b>Stellar</b>,
+code:<p><PRE> int SNum<br>SNum = gr_1.AddSeries("Stellar")</PRE></p>
+<A NAME="TI2434"></A><h4>Using AddData</h4>
+<A NAME="TI2435"></A><p>You use <b>AddData</b> to add data points to a
+specified series. <b>AddData</b> has this syntax:<p><PRE><i>graphName</i>.<b>AddData</b> ( <i>seriesNumber, value</i>, <i>categoryLabel</i> )</PRE></p>
+</p>
+<A NAME="TI2436"></A><p>The first argument to <b>AddData</b> is the number
+assigned by PowerBuilder to the series. So to add two data points
+to the <b>Stellar</b> series, whose number is stored by
+the variable <i>SNum</i> (as shown above), code:<p><PRE> gr_1.AddData(SNum, 12, "Q1") // Category is Q1<br>gr_1.AddData(SNum, 14, "Q2") // Category is Q2</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Getting a series number</span> <A NAME="TI2437"></A>You can use the <b>FindSeries</b> function to
+determine the number PowerBuilder has assigned to a series. <b>FindSeries</b> returns
+the series number. This is useful when you write general-purpose
+functions to manipulate graphs.</p>
+<A NAME="TI2438"></A><h4>An example</h4>
+<A NAME="TI2439"></A><p>Say you want to graph quarterly printer sales. Here is a script
+that populates the graph with data:<p><PRE> gr_1.Reset( All! ) // Resets the graph.</PRE><PRE> // Create first series and populate with data.</PRE><PRE> </PRE><PRE> int SNum<br>SNum = gr_1.AddSeries("Stellar")<br>gr_1.AddData(SNum, 12, "Q1") // Category is Q1.</PRE><PRE> gr_1.AddData(SNum, 14, "Q2") // Category is Q2.<br>gr_1.Adddata(SNum, 18, "Q3") // Category is Q3.<br>gr_1.AddData(SNum, 25, "Q4") // Category is Q4.</PRE><PRE> // Create second series and populate with data.<br>SNum = gr_1.AddSeries("Cosmic")</PRE><PRE> <br>// Use the same categories as for series 1 so the data<br>// appears next to the series 1 data.<br>gr_1.AddData(SNum, 18, "Q1") <br>gr_1.AddData(SNum, 24, "Q2") <br>gr_1.Adddata(SNum, 38, "Q3")<br>gr_1.AddData(SNum, 45, "Q4")<br> <br>// Create third series and populate with data.<br>SNum = gr_1.AddSeries("Galactic")<br>gr_1.AddData(SNum, 44, "Q1")<br>gr_1.AddData(SNum, 44, "Q2")<br>gr_1.Adddata(SNum, 58, "Q3")<br>gr_1.AddData(SNum, 65, "Q4")</PRE></p>
+<A NAME="TI2440"></A><p>Here is the resulting graph:</p>
+<br><img src="images/dagr02.gif">
+<A NAME="TI2441"></A><p>You can add, modify, and delete data in a graph in a window
+through graph functions anytime during execution.</p>
+<A NAME="TI2442"></A><h4>For more information</h4>
+<A NAME="TI2443"></A><p>For complete information about each graph function, see the <i>PowerScript Reference</i>
+.</p>
+

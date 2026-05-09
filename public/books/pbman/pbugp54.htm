@@ -1,0 +1,38 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Optimizing libraries</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp53.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp55.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF345205685"></A><h1>Optimizing libraries</h1>
+<A NAME="TI1683"></A><p>You should optimize your libraries regularly. Optimizing removes
+gaps in libraries and defragments the storage of objects, thus improving
+performance.</p>
+<A NAME="TI1684"></A><p>Optimizing affects only layout on disk; it does not affect
+the contents of the objects. Objects are not recompiled when you
+optimize a library.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Once a week</span> <A NAME="TI1685"></A>For the best performance, you should optimize libraries you
+are actively working on about once a week.</p>
+<A NAME="TI1686"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To optimize a library:</p>
+<ol><li class=fi><p>In either Tree view or List view, choose
+the library you want to optimize.</p></li>
+<li class=ds><p>Select Entry&gt;Library&gt;Optimize
+from the menu bar or select Optimize from the library's
+pop-up menu.</p><p>PowerBuilder reorganizes the library structure to optimize
+object and data storage and index locations. Note that PowerBuilder
+does not change the modification date for the library entries. PowerBuilder
+saves the unoptimized version as a backup file in the same directory.</p><p>The optimized file is created with the default permissions
+for the drive where it is stored. On some systems new files are
+not shareable by default. If you see "save of object failed" or "link
+error messages after optimizing," check the permissions
+assigned to the <ACRONYM title = "pibble" >PBL</ACRONYM>. </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you do not want a backup file</span> <A NAME="TI1687"></A>If you do not want to save a backup copy of the library, clear
+the Save Optimized Backups check box in the Library painter's
+Design&gt;Options dialog box. If you clear this option, the
+new setting will remain in effect until you change it.</p>
+</li></ol>
+<br>

@@ -1,0 +1,96 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About native database interfaces</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp27.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp29.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF289083822"></A><h1>About native database interfaces</h1>
+<A NAME="TI659"></A><p>The native database interfaces provide native connections
+to many databases and DBMSs. This section describes how the native
+database interfaces access these databases.</p>
+<A NAME="TI660"></A><p>The native database interfaces are not provided with the Desktop
+and Professional editions of PowerBuilder. You can upgrade to PowerBuilder Enterprise
+to use the native database interfaces.</p>
+<A NAME="TI661"></A><p>For a complete list of the supported native
+database interfaces, see "Supported Database Interfaces" in
+online Help.</p>
+<A NAME="TI662"></A><h2>What is a native database interface?</h2>
+<A NAME="TI663"></A><p>A native database interface is a direct connection to your
+data in PowerBuilder.</p>
+<A NAME="TI664"></A><p>Each native database interface uses its own interface DLL
+to communicate with a specified database through a vendor-specific
+database API. For example, the Adaptive Server interface uses a
+DLL named <i>PBSYC105.DLL</i> to access the database,
+whereas the Oracle 10<i>g</i> database interface accesses
+the database through <i>PBO10105.DLL</i>.</p>
+<A NAME="TI665"></A><p>In contrast, a standard database interface uses a standard
+API to communicate with the database. For example, PowerBuilder can
+use a single-interface DLL (<i>PBODB105.DLL</i>)
+to communicate with the ODBC Driver Manager and corresponding driver
+to access any ODBC data source.</p>
+<A NAME="TI666"></A><h2>Components of a database interface connection</h2>
+<A NAME="TI667"></A><p>When you use a native database interface to access a database,
+your connection goes through several layers before reaching the
+data. Each layer is a separate component of the connection and each
+component might come from a different vendor.</p>
+<A NAME="TI668"></A><caption><b>Figure 6-1: Components of a database connection</b></captionls>
+<br><img src="images/cnw5ovr.gif">
+<A NAME="TI669"></A><p>For diagrams showing the specific components
+of your connection, see "Basic software components" in
+the section in this chapter for your native database interface.</p>
+<A NAME="TI670"></A><h2>Using a native database interface</h2>
+<A NAME="TI671"></A><p>You perform several basic steps to use a native database interface
+to access a database. </p>
+<A NAME="TI672"></A><h4>About preparing to use the database</h4>
+<A NAME="TI673"></A><p>The
+first step in connecting to a database through a native database
+interface is to prepare to use the database. Preparing the database
+ensures that you will be able to access and use your data in PowerBuilder.</p>
+<A NAME="TI674"></A><p>You must prepare the database <i>outside</i> PowerBuilder <i>before</i> you
+start the product, then define the database interface and connect
+to it. The requirements differ for each database&#8212;but in
+general, preparing a database involves four basic steps.</p>
+<A NAME="TI675"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To prepare to use your database with PowerBuilder:</p>
+<ol><li class=fi><p>Make sure the required database server
+software is properly installed and configured at your site.</p></li>
+<li class=ds><p>If network software is required, make sure it
+is properly installed and configured at your site and on the client
+computer so that you can connect to the database server.</p></li>
+<li class=ds><p>Make sure the required database client software
+is properly installed and configured on the client computer. (Typically,
+the client computer is the one running PowerBuilder.)</p><p>You must obtain the client software from your database vendor
+and make sure that the version you install supports <i>all</i> of
+the following:<A NAME="TI676"></A>
+<ul>
+<li class=fi>The operating
+system running on the client computer</li>
+<li class=ds>The version of the database that you want to access</li>
+<li class=ds>The version of PowerBuilder that you are running
+</li>
+</ul>
+</p></li>
+<li class=ds><p>Verify that you can connect to the server and
+database you want to access outside PowerBuilder.</p></li></ol>
+<br><A NAME="TI677"></A><p>For specific instructions to use with your
+database, see "Preparing to use the database" in
+the section in this chapter for your native database interface.</p>
+<A NAME="TI678"></A><h4>About installing native database interfaces</h4>
+<A NAME="TI679"></A><p>After you prepare to use the database, you must install the
+native database interface that accesses the database. See the instructions
+for each interface for more information.</p>
+<A NAME="TI680"></A><h4>About defining native database interfaces</h4>
+<A NAME="TI681"></A><p>Once you are ready to access the database, you start PowerBuilder and
+define the database interface. To define a database interface, you
+must create a database profile by completing the Database Profile
+Setup dialog box for that interface.</p>
+<A NAME="TI682"></A><p>For general instructions, see <A HREF="connpbp6.htm#X-REF298585259">"About creating database
+profiles"</A>. For instructions
+about defining database interface parameters unique to a particular database,
+see "Preparing to use the database" in the section
+in this chapter for your database interface. </p>
+

@@ -1,0 +1,63 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using rich text in an application</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp90.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp92.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF372616647"></A><h1>Using rich text in an application</h1>
+<A NAME="TI2543"></A><p>Rich text format (RTF) is a standard for specifying formatting
+instructions and document content in a single ASCII document. An
+editor that supports rich text format interprets the formatting
+instructions and displays the text with formatting. </p>
+<A NAME="TI2544"></A><p>In an application, you may want to:<A NAME="TI2545"></A>
+<ul>
+<li class=fi>Provide
+a window for preparing rich text documents<br>
+Although not a full-fledged word processor, the RichTextEdit
+control allows the user to apply formatting to paragraphs, words,
+and characters.<br></li>
+<li class=ds>Create a mail-merge application<br>
+You or the user can set up boilerplate text with input fields
+associated with database data.<br></li>
+<li class=ds>Display reports with formatted text<br>
+A RichText DataWindow object is designed for viewing data,
+rather than entering data. It does not have the edit styles of other
+DataWindow presentation styles.<br></li>
+<li class=ds>Store rich text as a string in a database and display
+it in a RichTextEdit control
+</li>
+</ul>
+</p>
+<A NAME="X-REF372618158"></A><h2>Sources of rich text</h2>
+<A NAME="TI2546"></A><h4>Any word processor</h4>
+<A NAME="TI2547"></A><p>You can prepare rich text in any word processor that can save
+or export rich text format.</p>
+<A NAME="TI2548"></A><h4>Input fields in PowerBuilder only</h4>
+<A NAME="TI2549"></A><p>Although many word processors support some kinds of fields,
+the fields are usually incompatible with other rich text interpreters.
+If you want to specify input fields for a PowerBuilder application,
+you will have to insert them using the PowerBuilder RichTextEdit
+control.</p>
+<A NAME="TI2550"></A><h4>Rich text in the database</h4>
+<A NAME="TI2551"></A><p>Since rich text is represented by ASCII characters, you can
+also store rich text in a string database column or string variable.
+You can retrieve rich text from a string database column and use
+the <b>PasteRTF</b> function to display the text with formatting
+in a RichTextEdit control.</p>
+<A NAME="TI2552"></A><h2>Deploying a rich text application</h2>
+<A NAME="TI2553"></A><p>When you deploy a rich text application to a server or client
+machine, you must also copy the rich text DLL and OCX files in the <i>Sybase\Shared\PowerBuilder\RTC</i> directory
+to the PowerBuilder VM directory on the deployment machine or to
+a directory in the application's path. <A HREF="apptechp273.htm#BAJFAHDA">Table 41-4</A> provides
+the list of files you must copy.</p>
+<A NAME="TI2554"></A><p>You can use the PowerBuilder Runtime Packager to deploy the
+required rich text files with your application. However, you must
+also register the <i>tp4ole11.ocx</i> file on the
+deployment machine.</p>
+<A NAME="TI2555"></A><p>For more information on the runtime packager, see <A HREF="apptechp271.htm#BAJDBEAB">"PowerBuilder Runtime Packager"</A>.</p>
+

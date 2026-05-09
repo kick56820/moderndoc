@@ -1,0 +1,762 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Debugging an application</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp253.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp255.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIDAJEC"></A><h1>Debugging an application</h1>
+<A NAME="TI9000"></A><p>Sometimes an application does not behave the way you think
+it will. Perhaps a variable is not being assigned the value you
+expect, or a script does not perform as desired. In these situations,
+you can examine your application by running it in debug mode.</p>
+<A NAME="TI9001"></A><p>When you run the application in debug mode, PowerBuilder stops
+execution before it executes a line containing a breakpoint (stop).
+You can then step through the application and examine its state.</p>
+<A NAME="TI9002"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To debug an application:</p>
+<ol><li class=fi><p>Open the debugger.</p></li>
+<li class=ds><p>Set breakpoints at places in the application where
+you have a problem.</p></li>
+<li class=ds><p>Run the application in debug mode.</p></li>
+<li class=ds><p>When execution is suspended at a breakpoint, look
+at the values of variables, examine the properties of objects in
+memory and the call stack, or change the values of variables.</p></li>
+<li class=ds><p>Step through the code line by line.</p></li>
+<li class=ds><p>As needed, add or modify breakpoints as you run
+the application.</p></li>
+<li class=ds><p>When you uncover a problem, fix your code and
+run it in the debugger again.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Debugging distributed applications</span> <A NAME="TI9003"></A>You can debug a PowerBuilder component deployed to <ACRONYM title = "E A Server" >EAServer</ACRONYM>. For more information,
+see the chapter on building <ACRONYM title = "E A Server" >EAServer</ACRONYM> components
+in <i>Application Techniques</i>
+.</p>
+<A NAME="TI9004"></A><h2>Starting the debugger</h2>
+<A NAME="TI9005"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To open the debugger:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI9006"></A>
+<ul>
+<li class=fi>In
+the System Tree, highlight a target and select Debug from the pop-up
+menu </li>
+<li class=ds>Click the Debug or Select and Debug button on the
+PowerBar</li>
+<li class=ds>Select Run&gt;Debug or Run&gt;Select
+and Debug from the menu bar
+</li>
+</ul>
+
+                      </p><p>The Debug button opens the debugger for the last debugged
+or run target. The name of the current target is displayed in the
+Debug button tool tip. The Select and Debug button opens a dialog
+box that lets you select the target to be debugged.</p></li></ol>
+<br><A NAME="TI9007"></A><h4>Views in the debugger</h4>
+<A NAME="TI9008"></A><p>The debugger contains several views. Each view shows a different
+kind of information about the current state of your application
+or the debugging session. <A HREF="pbugp254.htm#CACBCHGA">Table 32-1</A> summarizes what each view shows and
+what you can do from that view.</p>
+<A NAME="CACBCHGA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 32-1: Views in the debugger</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9009"></A>View</th>
+<th  rowspan="1"  ><A NAME="TI9010"></A>What it shows</th>
+<th  rowspan="1"  ><A NAME="TI9011"></A>What you can do</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9012"></A>Breakpoints</td>
+<td  rowspan="1"  ><A NAME="TI9013"></A>A list of breakpoints with indicators
+showing whether the breakpoints are currently active or inactive</td>
+<td  rowspan="1"  ><A NAME="TI9014"></A>Set, enable, disable, and clear breakpoints,
+set a condition for a breakpoint, and show source for a breakpoint
+in the Source view.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9015"></A>Call Stack</td>
+<td  rowspan="1"  ><A NAME="TI9016"></A>The sequence of function calls leading
+up to the function that was executing at the time of the breakpoint,
+shown as the script and line number from which the function was called</td>
+<td  rowspan="1"  ><A NAME="TI9017"></A>Examine the context of the application
+at any line in the call stack.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9018"></A>Instances</td>
+<td  rowspan="1"  ><A NAME="TI9019"></A>Instances of remote objects and their
+current status</td>
+<td  rowspan="1"  ><A NAME="TI9020"></A>Change the context of the debugging session
+to a different instance. This view has content only if you are debugging
+a remote component.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9021"></A>Objects in Memory</td>
+<td  rowspan="1"  ><A NAME="TI9022"></A>An expandable list of objects currently
+in memory</td>
+<td  rowspan="1"  ><A NAME="TI9023"></A>View the names and memory locations of
+instances of each memory object and property values of each instance.
+This view is not used if you are debugging a remote component.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9024"></A>Source</td>
+<td  rowspan="1"  ><A NAME="TI9025"></A>The full text of a script</td>
+<td  rowspan="1"  ><A NAME="TI9026"></A>Go to a specific line in a script, find
+a string, open another script, including ancestor and descendent scripts,
+manage breakpoints, and use TipWatch and QuickWatch.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9027"></A>Source Browser</td>
+<td  rowspan="1"  ><A NAME="TI9028"></A>An expandable hierarchy of objects in
+your application</td>
+<td  rowspan="1"  ><A NAME="TI9029"></A>Select any script in your application
+and display it in the Source view.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9030"></A>Source History</td>
+<td  rowspan="1"  ><A NAME="TI9031"></A>A list of the scripts that have been
+displayed in the Source view</td>
+<td  rowspan="1"  ><A NAME="TI9032"></A>Select any script in the Source History
+and display it in the Source view.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9033"></A>Variables</td>
+<td  rowspan="1"  ><A NAME="TI9034"></A>An expandable list of all the variables
+in scope</td>
+<td  rowspan="1"  ><A NAME="TI9035"></A>Select which kinds of variables are shown
+in the view, change the value of a variable, and set a breakpoint
+when a variable changes. You cannot change the value of a variable
+in a remote component.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9036"></A>Watch</td>
+<td  rowspan="1"  ><A NAME="TI9037"></A>A list of variables you have selected
+to watch as the application proceeds</td>
+<td  rowspan="1"  ><A NAME="TI9038"></A>Change the value of a variable, set a
+breakpoint when a variable changes, and add an arbitrary expression
+to the Watch view.</td>
+</tr>
+</table>
+<A NAME="TI9039"></A><h4>Changing Variable views</h4>
+<A NAME="TI9040"></A><p>The default debugger layout contains a separate view for each
+variable type in a stacked pane. You can combine two or more Variables
+views in a single pane. For example, you might want to combine local
+and global variables in a single view that you keep at the top of
+the stacked pane.</p>
+<A NAME="TI9041"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display multiple variable types in a single
+view:</p>
+<ol><li class=fi><p>Display the pop-up menu for a pane that
+contains a Variables view you want to change.</p></li>
+<li class=ds><p>Click the names of the variable types you want
+to display.</p><p>A checkmark displays next to selected variable types. The
+pop-up menu closes each time you select a variable type or clear
+a checkmark, so you need to reopen the menu to select an additional
+variable type.</p><p>When you select or clear variable types, the tab for the pane
+changes to show the variable types displayed on that pane.</p><br><img src="images/rundbg04.gif"><br>
+</li></ol>
+<br><A NAME="CAIBJEIG"></A><h2>Setting breakpoints</h2>
+<A NAME="TI9042"></A><p>A breakpoint is a point in your application code where you
+want to interrupt the normal execution of the application while
+you are debugging. If you suspect a problem is occurring in a particular
+script or function call, set a breakpoint at the beginning of the
+script or at the line where the function is called.</p>
+<A NAME="TI9043"></A><p>When you close the debugger, any breakpoints you set are written
+to a file called <i>targetname</i>.<i>usr</i>.<i>opt</i> in
+the same directory as the target, where <i>targetname</i> is the
+name of the target. The breakpoints are available when you
+reopen the debugger. When you clear breakpoints, they are permanently removed from the <i>usr.opt</i> file (if it is not marked readonly).</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Sharing targets</span> <A NAME="TI9044"></A>If multiple developers use the same target without using source
+control (a practice that is not recommended) individual developers
+can save the breakpoints they set in a separate file by adding the
+following entry to the [pb] section of their <i>pb.ini</i> file:<p><PRE> UserOptionFileExt=<i>abc</i></PRE></p>
+<A NAME="TI9045"></A>where <i>abc</i> might be the developer's
+name or initials. Breakpoints set by the developer would be saved
+in a file called <i>appname_abc</i>.<i>usr</i>.<i>opt</i>.</p>
+<A NAME="TI9046"></A><h4>Setting a simple breakpoint</h4>
+<A NAME="TI9047"></A><p>This procedure describes setting a breakpoint in the Source
+view in the debugger. You can also set a breakpoint by selecting
+Add Breakpoint from the pop-up menu in the Script view when you
+are not running the debugger.</p>
+<A NAME="TI9048"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set a breakpoint on a line in a script:</p>
+<ol><li class=fi><p>Display the script in a Source view and
+place the cursor where you want to set the breakpoint.</p><p>For how to change the script shown in the
+Source view, see <A HREF="pbugp254.htm#X-REF379091997">"Using the Source view"</A>.</p></li>
+<li class=ds><p>Double-click the line or select Add Breakpoint
+from the pop-up menu.</p><p>PowerBuilder sets a breakpoint and a red circle displays at
+the beginning of the line. If you select a line that does not contain
+executable code, PowerBuilder sets the breakpoint at the beginning
+of the next executable statement.</p></li></ol>
+<br><A NAME="TI9049"></A><h4>Setting special breakpoints</h4>
+<A NAME="TI9050"></A><p>Breakpoints can be triggered when a statement has been executed
+a specified number of times (an occasional breakpoint), when a specified
+expression is true (a conditional breakpoint), or when the value
+of a variable changes.</p>
+<A NAME="TI9051"></A><p>You use the Edit Breakpoints dialog box to set and edit occasional
+and conditional breakpoints. You can also use it to set a breakpoint
+when the value of a variable changes. The Edit Breakpoints dialog
+box opens when you:<A NAME="TI9052"></A>
+<ul>
+<li class=fi>Click the Edit Stop button
+on the PainterBar</li>
+<li class=ds>Select Breakpoints from the pop-up menu in the Source,
+Variables, Watch, or Breakpoints view</li>
+<li class=ds>Select Edit&gt;Breakpoints from the menu bar</li>
+<li class=ds>Double-click a line in the Breakpoints view
+</li>
+</ul>
+</p>
+<A NAME="TI9053"></A><h4>Setting occasional and conditional breakpoints</h4>
+<A NAME="TI9054"></A><p>If you want to check the progress of a loop without interrupting
+execution in every iteration, you can set an occasional breakpoint
+that is triggered only after a specified number of iterations. To
+specify that execution stops only when conditions you specify are
+met, set a conditional breakpoint. You can also set both occasional
+and conditional breakpoints at the same location.</p>
+<A NAME="TI9055"></A><p><A NAME="TI9056"></A>
+<ul>
+<li class=fi><b>If you
+specify an occurrence</b>   Each time PowerBuilder passes through the specified location,
+it increments a counter by one. When the counter reaches the number
+specified, it triggers the breakpoint and resets the counter to
+zero.</li>
+<li class=ds><b>If you specify a condition</b>   Each time PowerBuilder passes through the specified location,
+it evaluates the expression. When the expression is true, it triggers
+the breakpoint.</li>
+<li class=ds><b>If you specify both an occurrence and
+a condition</b>   Each time PowerBuilder passes through the specified location,
+it evaluates the expression. When the expression is true, it increments
+the counter. When the counter reaches the number specified, it triggers
+the breakpoint and resets the counter to zero.<br>
+For example, if you specify an occurrence of 3 and the condition <FONT FACE="Courier New">notisNull(val)</FONT>,
+PowerBuilder checks whether <b>val</b> is <b>NULL</b> each
+time the statement is reached. The breakpoint is triggered on the
+third occurrence of a non-<b>NULL</b> val, then again
+on the sixth occurrence, and so forth.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI9057"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set an occasional or conditional breakpoint:</p>
+<ol><li class=fi><p>On the Location tab in the Edit Breakpoints
+dialog box, specify the script and line number where you want the
+breakpoint.</p><p>You can select an existing location or select New to enter
+a new location.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Set a simple breakpoint first</span> <A NAME="TI9058"></A>You must specify a line that contains executable code. Set
+a simple breakpoint on the line before opening the Edit Breakpoints
+dialog box to ensure the format and line number are correct.</p>
+</li>
+<li class=ds><p>Specify an integer occurrence, a condition, or
+both.</p><p>The condition must be a valid boolean PowerScript expression
+(if it is not, the breakpoint is always triggered). PowerBuilder
+displays the breakpoint expression in the Edit Breakpoints dialog
+box and in the Breakpoints view. When PowerBuilder reaches the location
+where the breakpoint is set, it evaluates the breakpoint expression
+and triggers the breakpoint only when the expression is true.</p></li></ol>
+<br><A NAME="TI9059"></A><h4>Setting a breakpoint when a variable changes</h4>
+<A NAME="TI9060"></A><p>You can interrupt execution every time the value of a variable
+changes. The variable must be in scope when you set the breakpoint.</p>
+<A NAME="TI9061"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set a breakpoint when a variable changes:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI9062"></A>
+<ul>
+<li class=fi>Select
+the variable in the Variables view or Watch view and select Break
+on Change from the pop-up menu.</li>
+<li class=ds>Drag the variable from the Variables view or Watch
+view to the Breakpoints view.</li>
+<li class=ds>Select New on the Variable tab in the Edit Breakpoints
+dialog box and specify the name of a variable in the Variable box.
+</li>
+</ul>
+
+                        </p><p>The new breakpoint displays in the Breakpoints view and in
+the Edit Breakpoints dialog box if it is open. PowerBuilder watches
+the variable at runtime and interrupts execution when the value
+of the variable changes.</p></li></ol>
+<br><A NAME="TI9063"></A><h4>Disabling and clearing breakpoints</h4>
+<A NAME="TI9064"></A><p>If you want to bypass a breakpoint for a specific debugging
+session, you can disable it and then enable it again later. If you
+no longer need a breakpoint, you can clear it.</p>
+<A NAME="TI9065"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To disable a breakpoint:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI9066"></A>
+<ul>
+<li class=fi>Click
+the red circle next to the breakpoint in the Breakpoints view or Edit
+Breakpoints dialog box</li>
+<li class=ds>Select Disable Breakpoint from the pop-up menu in
+the Source view</li>
+<li class=ds>Select Disable from the pop-up menu in the Breakpoints
+view
+</li>
+</ul>
+
+                        </p><p>The red circle next to the breakpoint is replaced with a white
+circle.</p><p>You can enable a disabled breakpoint from the pop-up menus
+or by clicking the white circle.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Disabling all breakpoints</span> <A NAME="TI9067"></A>To disable all breakpoints, select Disable All from the pop-up
+menu in the Breakpoints view.</p>
+<A NAME="TI9068"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To clear a breakpoint:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI9069"></A>
+<ul>
+<li class=fi>Double-click
+the line containing the breakpoint in the Source view</li>
+<li class=ds>Select Clear Breakpoint from the pop-up menu in
+the Source view</li>
+<li class=ds>Select Clear from the pop-up menu in the Breakpoints
+view</li>
+<li class=ds>Select the breakpoint in the Edit Breakpoints dialog
+box and select Clear
+</li>
+</ul>
+
+                        </p><p>The red circle next to the breakpoint disappears.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Clearing all breakpoints</span> <A NAME="TI9070"></A>To clear all breakpoints, select Clear All in the Edit Breakpoints
+dialog box or from the pop-up menu in the Breakpoints view.</p>
+<A NAME="TI9071"></A><h2>Running in debug mode</h2>
+<A NAME="TI9072"></A><p>After you have set some breakpoints, you can run the application
+in debug mode. The application executes normally until it reaches
+a statement containing a breakpoint. At this point it stops so that
+you can examine the application. After you do so, you can single-step
+through the application, continue execution until execution reaches
+another breakpoint, or stop the debugging run so that you can close
+the debugger and change the code.</p>
+<A NAME="TI9073"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To run an application in debug mode:</p>
+<ol><li class=fi><p>If necessary, open the debugger by clicking
+the Debug or Select and Debug button.</p><p>The Debug button opens the debugger for the target you last
+ran or debugged. Use the Select and Debug button if you want to
+debug a different target in the workspace.</p></li>
+<li class=ds><p>Click the Start button in the PainterBar or select
+Debug&gt;Start from the menu bar.</p><p>The application starts and runs until it reaches a breakpoint.
+PowerBuilder displays the debugger, with the line containing the
+breakpoint displayed in the Source view. The yellow arrow cursor
+indicates that this line contains the next statement to be executed.
+You can now examine the application using debugger views and tools.</p><p>For more information, see <A HREF="pbugp254.htm#CAIDACEF">"Examining an application
+at a breakpoint"</A> and <A HREF="pbugp254.htm#CAIBJFGE">"Stepping through an application"</A>.</p></li></ol>
+<br><A NAME="TI9074"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To continue execution from a breakpoint:</p>
+<ol><li class=fi><p>Click the Continue button in the PainterBar
+or select Debug&gt;Continue from the menu bar</p><p>Execution begins at the statement indicated by the yellow
+arrow cursor and continues until the next breakpoint is hit or until
+the application terminates normally.</p></li></ol>
+<br><A NAME="TI9075"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To terminate a debugging run at a breakpoint:</p>
+<ol><li class=fi><p>Click the Stop Debugging button in the
+PainterBar or select Debug&gt;Stop from the menu bar</p><p>PowerBuilder resets the state of the application and all the
+debugger views to their state at the beginning of the debugging
+run. You can now begin another run in debug mode, or close the debugger.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Cleaning up</span> <A NAME="TI9076"></A>When you terminate a debugging run or close the debugger without terminating
+the run, PowerBuilder executes the application's close
+event and destroys any objects, such as autoinstantiated local variables,
+that it would have destroyed if the application had continued to
+run and exited normally. </p>
+<A NAME="CAIDACEF"></A><h2>Examining an application at a breakpoint</h2>
+<A NAME="TI9077"></A><p>When an application is suspended at a breakpoint, use QuickWatch,
+TipWatch, and the Variables, Watch, Call Stack, and Objects in Memory
+views to examine its state.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About icons used in debugging views</span> <A NAME="TI9078"></A>The Variables, Watch, and Objects in Memory views use many
+of the icons used in the PowerBuilder Browser as well as some additional
+icons: I represents an Instance; F, a field; A, an array; and E,
+an expression.</p>
+<A NAME="TI9079"></A><h3>Examining variable values</h3>
+<A NAME="TI9080"></A><p>The debugger provides three different ways to examine the
+values of variables: TipWatch, QuickWatch, and the Variables view.</p>
+<A NAME="TI9081"></A><h4>TipWatch</h4>
+<A NAME="TI9082"></A><p>TipWatch is a quick way to get the current value of a variable
+of a simple datatype. When execution stops at a breakpoint, you
+can place the edit cursor over a variable in the Source view to
+display a pop-up tip window that shows the current value of that
+variable. You can also select a simple expression to display its
+current value. </p>
+<A NAME="TI9083"></A><p>TipWatch has some limitations: if the variable you select
+is an object type, the tip window shows only an internal identifier.
+For array types, it shows <FONT FACE="Courier New">{...}</FONT> to
+indicate that more information is available. To show complete information for
+object type and array type variables, use QuickWatch instead.</p>
+<A NAME="TI9084"></A><p>TipWatch does not evaluate function, assignment, or variable
+value modification expressions. If TipWatch cannot parse the string
+you select, the pop-up window does not display. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Remote debugging</span> <A NAME="TI9085"></A>When you are debugging a remote component, Tip Watch does
+not evaluate expressions or indirect variables. </p>
+<A NAME="CACFEAJD"></A><h4>QuickWatch</h4>
+<A NAME="TI9086"></A><p>QuickWatch provides the current value of simple variables
+and detailed information about object variables, including the values
+of all fields in the variable. QuickWatch can also evaluate function
+expressions, and you can use it to change the values of variables,
+evaluate expressions, and add variables and expressions to the Watch
+view.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Exercise caution when evaluating expressions</span> <A NAME="TI9087"></A>QuickWatch evaluates all kinds of expressions, including functions,
+in local debugging. If you select a function and activate QuickWatch,
+the function is executed. This may have unexpected results. For
+example, if you select <FONT FACE="Courier New">dw_1.print() </FONT>and
+activate QuickWatch, the DataWindow is printed.</p>
+<A NAME="TI9088"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To open the QuickWatch dialog box:</p>
+<ol><li class=fi><p>When execution stops at a breakpoint, move
+the edit cursor to a variable or select an expression in the Source
+view, and do one of the following:<A NAME="TI9089"></A>
+<ul>
+<li class=fi>Select QuickWatch
+from the Debug or pop-up menu</li>
+<li class=ds>Press Shift+F9
+</li>
+</ul>
+
+                          </p></li></ol>
+<br><A NAME="TI9090"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the value of a variable from the QuickWatch
+dialog box:</p>
+<ol><li class=fi><p>Select an item in the tree view and do
+one of the following:<A NAME="TI9091"></A>
+<ul>
+<li class=fi>Click Change Value</li>
+<li class=ds>Double-click the tree view item
+</li>
+</ul>
+
+                          </p></li>
+<li class=ds><p>In the Modify Variable dialog box, type a new
+value for the variable in the New Value box, or select the Null
+check box to set the value of the variable to <b>null</b>,
+and click OK.</p></li>
+<li class=ds><p>Close the QuickWatch dialog box and continue debugging
+the application with the variable set to the new value.</p></li></ol>
+<br><A NAME="TI9092"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To evaluate an expression in the QuickWatch dialog
+box and add it to the Watch view:</p>
+<ol><li class=fi><p>Change the variable or expression in the
+Expression box.</p></li>
+<li class=ds><p>Click Reevaluate to display the new value in the
+tree view.</p></li>
+<li class=ds><p>(Optional) Click Add Watch to add the expression
+to the Watch view.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Remote debugging</span> <A NAME="TI9093"></A>When you are debugging a remote component, expressions and
+indirect variables are not evaluated, and you cannot modify variable
+values.</p>
+<A NAME="TI9094"></A><h4>Using Variables views</h4>
+<A NAME="TI9095"></A><p>Each Variables view shows one or more types of variables in
+an expandable outline. Double-click the variable names or click
+on the plus and minus signs next to them to expand and contract
+the hierarchy. If you open a new Variables view, it shows all variable
+types.</p>
+<A NAME="TI9096"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 32-2: Variable views in the debugger</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9097"></A>Variable type</th>
+<th  rowspan="1"  ><A NAME="TI9098"></A>What the Variables view
+shows</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9099"></A>Local</td>
+<td  rowspan="1"  ><A NAME="TI9100"></A>Values of variables that are local to
+the current script or function</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9101"></A>Global</td>
+<td  rowspan="1"  ><A NAME="TI9102"></A>Values of all global variables defined
+for the application and properties of all objects (such as windows)
+that are open</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9103"></A>Instance</td>
+<td  rowspan="1"  ><A NAME="TI9104"></A>Properties of the current object instance
+(the object to which the current script belongs) and values of instance
+variables defined for the current object</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9105"></A>Parent</td>
+<td  rowspan="1"  ><A NAME="TI9106"></A>Properties of the parent of the current
+instance</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9107"></A>Shared</td>
+<td  rowspan="1"  ><A NAME="TI9108"></A>Objects, such as application, window,
+and menu objects, that have been opened and the shared variables
+associated with them</td>
+</tr>
+</table>
+<A NAME="TI9109"></A><h4>About Instance and Parent variables</h4>
+<A NAME="TI9110"></A><p>In the following illustration, an application has stopped
+at a breakpoint in the script for the Clicked event for the Close
+menu item on a frame's File menu. The Instance Variables
+view shows the properties of the current instance of the Close menu
+item. The Parent Variables view shows the properties of its parent, an
+instance of the File menu. Navigating through the hierarchy in the
+Global Variables view shows the same objects.</p>
+<br><img src="images/rundbg07.gif">
+<A NAME="TI9111"></A><h3>Watching variables and expressions</h3>
+<A NAME="TI9112"></A><p>The Watch view lets you monitor the values of selected variables
+and expressions as the application runs.</p>
+<A NAME="TI9113"></A><p>If the variable or expression is in scope, the Watch view
+shows its value. Empty quotes indicate that the variable is in scope
+but has not been initialized. A pair of glasses in the Watch view
+indicates that the variable or expression is not in scope.</p>
+<br><img src="images/rundbg06.gif">
+<A NAME="TI9114"></A><h4>Setting variables and expressions in the Watch
+view</h4>
+<A NAME="TI9115"></A><p>You can select variables you want to watch as the application
+runs by copying them from a Variables view. You can also set a watch
+on any PowerScript expression. When you close the debugger, any
+watch variables and expressions you set are saved.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using QuickWatch</span> <A NAME="TI9116"></A>You can also add variables and expressions to the Watch view
+from the QuickWatch dialog box. See <A HREF="pbugp254.htm#CACFEAJD">"QuickWatch"</A>.</p>
+<A NAME="TI9117"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a variable to the Watch view:</p>
+<ol><li class=fi><p>Select the variable in the Variables view.</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI9118"></A>
+<ul>
+<li class=fi>Drag
+the variable to the Watch view</li>
+<li class=ds>Click the Add Watch button on the PainterBar</li>
+<li class=ds>Select Debug&gt;Add Watch from the menu bar
+</li>
+</ul>
+
+                          </p><p>PowerBuilder adds the variable to the watch list.</p></li></ol>
+<br><A NAME="TI9119"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add an expression to the Watch view:</p>
+<ol><li class=fi><p>Select Insert from the pop-up menu.</p></li>
+<li class=ds><p>Type any valid PowerScript expression in the New
+Expression dialog box and click OK.</p><p>PowerBuilder adds the expression to the watch list.</p></li></ol>
+<br><A NAME="TI9120"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To edit a variable in the Watch view:</p>
+<ol><li class=fi><p>Select the variable you want to edit.</p></li>
+<li class=ds><p>Double-click the variable, or select Edit Variable
+from the pop-up menu.</p></li>
+<li class=ds><p>Type the new value for the variable in the Modify
+Variable dialog box and click OK.</p></li></ol>
+<br><A NAME="TI9121"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To edit an expression in the Watch view:</p>
+<ol><li class=fi><p>Select the expression you want to edit.</p></li>
+<li class=ds><p>Double-click the expression, or select Edit Expression
+from the pop-up menu.</p></li>
+<li class=ds><p>Type the new expression in the Edit Expression
+dialog box and click OK.</p></li></ol>
+<br><A NAME="TI9122"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To clear variables and expressions from the Watch
+view:</p>
+<ol><li class=fi><p>Select the variable or expression you want
+to delete.</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI9123"></A>
+<ul>
+<li class=fi>Select
+Clear from the pop-up menu</li>
+<li class=ds>Click the Remove Watch button on the PainterBar</li>
+<li class=ds>Select Debug&gt;Remove Watch from the menu
+bar
+</li>
+</ul>
+
+                          </p></li></ol>
+<br><A NAME="TI9124"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To clear all variables and expressions from the
+Watch view:</p>
+<ol><li class=fi><p>Select Clear All from the pop-up menu</p></li></ol>
+<br><A NAME="TI9125"></A><h3>Monitoring the call stack</h3>
+<A NAME="TI9126"></A><p>The Call Stack view shows the sequence of function calls leading
+up to the script or function that was executing at the time of the
+breakpoint. Each line in the Call Stack view displays the name of
+the script and the line number from which the call was made. The
+yellow arrow shows the script and line where execution was suspended.</p>
+<A NAME="TI9127"></A><p>You can examine the context of the application at any line
+in the call stack.</p>
+<A NAME="TI9128"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To show a different context from the Call Stack
+view:</p>
+<ol><li class=fi><p>Select a line in the Call Stack view.</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI9129"></A>
+<ul>
+<li class=fi>Double-click
+the line</li>
+<li class=ds>Select Set Context from the pop-up menu</li>
+<li class=ds>Drag the line into the Source view
+</li>
+</ul>
+
+                        </p><p>A green arrow indicates the script that you selected. The
+Source view shows the script and line number you selected, and the
+Variables and Watch views show the variables and expressions in
+scope in that context.</p><br><img src="images/rundbg09.gif"><br>
+</li></ol>
+<br><A NAME="TI9130"></A><h3>Examining objects in memory</h3>
+<A NAME="TI9131"></A><p>The Objects in Memory view shows an expandable list of objects
+currently in memory. Double-click the name of an object or click
+the plus sign next to it to view the names and memory locations
+of instances of each object and property values of each instance.</p>
+<br><img src="images/rundbg10.gif">
+<A NAME="X-REF379091997"></A><h3>Using the Source view</h3>
+<A NAME="TI9132"></A><p>The Source view displays the full text of a script. As you
+run or step through the application, the Source view is updated
+to show the current script with a yellow arrow indicating the next
+statement to be executed.</p>
+<A NAME="TI9133"></A><h4>Multiple Source views</h4>
+<A NAME="TI9134"></A><p>You can open more than one source view. If there are multiple
+source views open, only the first one opened is updated to show
+the current script when the context of an application changes.</p>
+<A NAME="TI9135"></A><h4>Copying from the Source view</h4>
+<A NAME="TI9136"></A><p>When text is selected in the Source view, you can select Copy
+from the pop-up menu in the Source view to copy the string to the
+clipboard. You can then paste the string into another dialog box
+to search for the string, insert a watch, or add a conditional breakpoint.</p>
+<A NAME="TI9137"></A><h4>Changing the Source view</h4>
+<A NAME="TI9138"></A><p>From the pop-up menu, you can navigate backward and forward
+through the scripts that have been opened so far, open ancestor
+and dependent scripts, and go to a specific line in the current
+script. There are several other ways to change the script from other
+views or from the menu bar.</p>
+<A NAME="TI9139"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the script displayed in a Source view:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI9140"></A>
+<ul>
+<li class=fi>Drag
+the name of a script to the Source view from the Call Stack, Source
+Browser, or Source History views</li>
+<li class=ds>Select a line and then select Open Source from the
+pop-up menu in the Breakpoints, Source Browser, or Source History
+views</li>
+<li class=ds>Select Edit&gt;Select Script from the menu
+bar
+</li>
+</ul>
+
+                        </p></li></ol>
+<br><A NAME="TI9141"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To find a specified string in the Source view:</p>
+<ol><li class=fi><p>Select Find from the pop-up menu, or select
+Edit&gt;Find from the menu bar.</p><p>The Find Text dialog box opens.</p></li>
+<li class=ds><p>Type the string in the Find box and check the
+search options you want.</p></li></ol>
+<br><A NAME="TI9142"></A><h3>Using the Source Browser view</h3>
+<A NAME="TI9143"></A><p>The Source Browser shows all the objects in your application
+in an expandable hierarchy. It provides a view of the structure
+of the application and a quick way to open any script in the Source
+view.</p>
+<A NAME="TI9144"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To open a script from the Source Browser:</p>
+<ol><li class=fi><p>Double-click the object that the script
+belongs to or click the plus sign next to the object to expand it.</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI9145"></A>
+<ul>
+<li class=fi>Double-click
+the script</li>
+<li class=ds>Select the script and select Open Source from the
+pop-up menu</li>
+<li class=ds>Drag the script onto a Source view
+</li>
+</ul>
+
+                        </p><p>When you double-click or select Open Source, a new Source
+view opens if there was none open. If several Source views are open,
+the script displays in the view that was used last.</p></li></ol>
+<br><A NAME="TI9146"></A><h3>Using the Source History view</h3>
+<A NAME="TI9147"></A><p>The Source History view lists all the scripts that have been
+opened in the current debugging session. Use the same techniques
+as in the Source Browser view to display a selected script in the
+Source view.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Source History limit</span> <A NAME="TI9148"></A>The Source History view shows up to 100 scripts and is <i>not</i> cleared
+at the end of each debugging run. It is cleared when you close the
+debugger, or you can clear the list from the pop-up menu.</p>
+<A NAME="CAIBJFGE"></A><h2>Stepping through an application</h2>
+<A NAME="TI9149"></A><p>When you have stopped execution at a breakpoint, you can use
+several commands to step through your application code and use the
+views to examine the effect of each statement. As you step through
+the code, the debugger views change to reflect the current context
+of your application and a yellow arrow cursor indicates the next
+statement to be executed.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Updating the Source view</span> <A NAME="TI9150"></A>When the context of your application changes to another script,
+the Source view is updated with the new context. If you have multiple
+Source views open, only the first one opened is updated.</p>
+<A NAME="TI9151"></A><h4>Single-stepping through an application</h4>
+<A NAME="TI9152"></A><p>You can use either Step In or Step Over to step through an
+application one statement at a time. They have the same result except
+when the next statement contains a call to a function. Use Step
+In if you want to step into a function and examine the effects of
+each statement in the function. Use Step Over to execute the function
+as a single statement.</p>
+<A NAME="TI9153"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To step through an application entering functions:</p>
+<ol><li class=fi><p>Click the Step In button in the PainterBar,
+or select Debug&gt;Step In from the menu bar.</p></li></ol>
+<br><A NAME="TI9154"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To step through an application without entering
+functions:</p>
+<ol><li class=fi><p>Click the Step Over button in the PainterBar,
+or select Debug&gt;Step Over from the menu bar.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using shortcut keys</span> <A NAME="TI9155"></A>To make it easier to step through your code, the debugger
+has standard keyboard shortcuts for Step In, Step Out, Step Over,
+Run To Cursor, and Continue. If you prefer to use different shortcut
+key combinations, select Tools&gt;Keyboard Shortcuts to define
+your own.</p>
+<A NAME="TI9156"></A><h4>Stepping out of a function</h4>
+<A NAME="TI9157"></A><p>If you step into a function where you do not need to step
+into each statement, use Step Out to continue execution until the
+function returns.</p>
+<A NAME="TI9158"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To step out of a function:</p>
+<ol><li class=fi><p>Click the Step Out button in the PainterBar,
+or s<i></i>elect Debug&gt;Step Out from the
+menu bar.</p></li></ol>
+<br><A NAME="TI9159"></A><h4>Stepping through multiple statements</h4>
+<A NAME="TI9160"></A><p>As you step through an application, you might reach sections
+of code that you are not interested in examining closely. The code
+might contain a large loop, or it might be well-tested code that
+you are confident is free of errors. You can use Run To Cursor to
+select a statement further down in a script or in a subsequent script
+where you want execution to stop.</p>
+<A NAME="TI9161"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To step through multiple statements:</p>
+<ol><li class=fi><p>Click on the line in the script where you
+want to resume single stepping.</p></li>
+<li class=ds><p>Click the Run To Cursor button in the PainterBar,
+or select Debug&gt;Run To Cursor from the menu bar.</p><p>PowerBuilder executes all intermediate statements and the
+yellow arrow cursor displays at the line where you set the cursor.</p></li></ol>
+<br><A NAME="TI9162"></A><h4>Bypassing statements</h4>
+<A NAME="TI9163"></A><p>You can use Set Next Statement to bypass a section of code
+that contains a bug, or to test part of an application using specific
+values for variables. Execution continues from the statement where
+you place the cursor. Be cautious when you use Set Next Statement,
+because results may be unpredictable if, for example, you skip code
+that initializes a variable.</p>
+<A NAME="TI9164"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set the next statement to be executed:</p>
+<ol><li class=fi><p>Click on the line in the script where you
+want to continue execution.</p></li>
+<li class=ds><p>Click the Set Next Statement button in the PainterBar,
+or select <br>Debug&gt;Set Next Statement from the menu
+bar.</p></li>
+<li class=ds><p>If necessary, change the values of variables.</p></li>
+<li class=ds><p>Continue execution using Continue, Step In, or
+Step Over.</p><p>If you select Continue, PowerBuilder begins execution at the
+statement you specified and continues to the next breakpoint. If
+you select Step In or Step Over, PowerBuilder sets the next statement
+and displays the yellow arrow cursor at the line where you set the
+cursor.</p></li></ol>
+<br><A NAME="TI9165"></A><h4>Changing a variable's value</h4>
+<A NAME="TI9166"></A><p>As you step through the application, you can change the values
+of variables that are in scope. You may want to do this to examine
+different flows through the application, to simulate a condition
+that is difficult to reach in normal testing, or if you are skipping
+code that sets a variable's value.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Limitations</span> <A NAME="TI9167"></A>You cannot change the values of enumerated variables, and
+you cannot change the value of any variable when you are debugging
+a remote component.</p>
+<A NAME="TI9168"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the value of a variable:</p>
+<ol><li class=fi><p>Select the variable in the Variables view
+or the Watch view.</p></li>
+<li class=ds><p>From the pop-up menu, select Edit Variable.</p></li>
+<li class=ds><p>Type a value for the variable or select the Null
+check box and click OK.</p><p>The value you enter must conform to the type of the variable.
+If the variable is a string, do not enclose the string in quotes.
+When you continue execution, the new value is used.</p></li></ol>
+<br><A NAME="TI9169"></A><h4>Fixing your code</h4>
+<A NAME="TI9170"></A><p>If you find an error in a script or function during a debugging
+session, you must close the debugger before you fix it. After you
+have fixed the problem, you can reopen the debugger and run the
+application again in debug mode. The breakpoints and watchpoints
+set in your last session are still defined.</p>
+<A NAME="TI9171"></A><h2>Debugging windows opened as local variables</h2>
+<A NAME="TI9172"></A><p>One way to open a window is by declaring a local variable
+of type window and opening it through a string. For example:<p><PRE> window mywin<br>string named_window<br>named_window = sle_1.Text<br>Open(mywin, named_window)</PRE></p>
+<A NAME="TI9173"></A><h4>The problem</h4>
+<A NAME="TI9174"></A><p>Normally, you cannot debug windows opened this way after the
+script ends because the local variable (<b>mywin</b> in
+the preceding script) goes out of scope when the script ends.</p>
+<A NAME="TI9175"></A><h4>The solution</h4>
+<A NAME="TI9176"></A><p>If you want to debug windows opened this way, you can declare
+a global variable of type window and assign it the local variable.
+If, for example, <b>GlobalWindow</b> is a global window
+of type window, you could add the following line to the end of the
+preceding script:<p><PRE> GlobalWindow = mywin</PRE></p>
+<A NAME="TI9177"></A><p>You can look at and modify the opened window through the global
+variable. When you have finished debugging the window, you can remove
+the global variable and the statement assigning the local to the
+global.</p>
+<A NAME="CAIDHFFE"></A><h2>Just-in-time debugging</h2>
+<A NAME="TI9178"></A><p>If you are running your application in regular mode (using
+the Run button) and you notice that the application is behaving
+incorrectly, just-in-time debugging lets you switch to debug mode
+without terminating the application.</p>
+<A NAME="TI9179"></A><p>When you open the debugger while running an application, the
+application <i>does not</i> stop executing. The Source,
+Variables, Call Stack, and Objects in Memory views are all empty
+because the debugger does not have any context. To suspend execution
+and examine the context in a problem area, open an appropriate script
+and set breakpoints, then initiate the action that calls the script.</p>
+<A NAME="TI9180"></A><p>If just-in-time debugging is enabled and a system error occurs
+while an application is running in regular mode, the debugger opens
+automatically, showing the context where the error occurred.</p>
+<A NAME="TI9181"></A><p>You can also use the <b>DebugBreak</b> function
+to break into the debugger.</p>
+<A NAME="TI9182"></A><p>You must enable just-in-time debugging before you run your
+application to take advantage of this feature.</p>
+<A NAME="TI9183"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To enable just-in-time debugging:</p>
+<ol><li class=fi><p>Select Tools&gt;System Options.</p></li>
+<li class=ds><p>Check the Just In Time Debugging check box and
+click OK.</p></li></ol>
+<br><A NAME="TI9184"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To debug an application while running in regular
+mode:</p>
+<ol><li class=fi><p>Enable just-in-time debugging.</p></li>
+<li class=ds><p>Run the application.</p></li>
+<li class=ds><p>Click the PowerBuilder button on the Windows Taskbar.</p></li>
+<li class=ds><p>Click the Debug button in the dialog box that
+displays.</p></li>
+<li class=ds><p>Open a script in the Source view and set breakpoints.</p><p>The application is suspended when it hits a breakpoint and
+the Source, Variable, Call Stack, and Objects in Memory views show
+the current context. You can now debug the application.</p></li></ol>
+<br>

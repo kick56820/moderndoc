@@ -1,0 +1,496 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+PBDOM node objects</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp78.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp80.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABDHIIH"></A><h1>PBDOM node objects</h1>
+<A NAME="TI2136"></A><p>This section describes the PBDOM_OBJECT class and
+all of the classes that descend from it:<A NAME="TI2137"></A>
+<ul>
+<li class=fi><A HREF="apptechp79.htm#BABDHJID">PBDOM_OBJECT</A></li>
+<li class=ds><A HREF="apptechp79.htm#BABJJAEF">PBDOM_DOCUMENT</A></li>
+<li class=ds><A HREF="apptechp79.htm#BABFDEAE">PBDOM_DOCTYPE</A></li>
+<li class=ds><A HREF="apptechp79.htm#BABFIJGI">PBDOM_ELEMENT</A></li>
+<li class=ds><A HREF="apptechp79.htm#BABBBAGE">PBDOM_ATTRIBUTE</A></li>
+<li class=ds><A HREF="apptechp79.htm#BABGFBEA">PBDOM_ENTITYREFERENCE</A></li>
+<li class=ds><A HREF="apptechp79.htm#BABBDDEI">PBDOM_CHARACTERDATA</A></li>
+<li class=ds><A HREF="apptechp79.htm#BABBFBDF">PBDOM_TEXT</A></li>
+<li class=ds><A HREF="apptechp79.htm#BABCDADC">PBDOM_CDATA</A></li>
+<li class=ds><A HREF="apptechp79.htm#BABDHDHE">PBDOM_COMMENT</A></li>
+<li class=ds><A HREF="apptechp79.htm#BABGEFFG">PBDOM_PROCESSINGINSTRUCTION</A>
+</li>
+</ul>
+</p>
+<A NAME="TI2138"></A><p>For detailed descriptions of PBDOM class methods, see the <i>PowerBuilder Extension
+Reference.</i>
+</p>
+<A NAME="BABDHJID"></A><h2>PBDOM_OBJECT</h2>
+<A NAME="TI2139"></A><p>The PBDOM_OBJECT class represents any node in an
+XML node tree and serves as the base class for specialized PBDOM
+classes that represent specific node types. The DOM class that corresponds
+to PBDOM_OBJECT is the Node object. PBDOM_OBJECT
+contains all the basic features required by derived classes. A node
+can be an element node, a document node, or any of the node types
+listed above that derive from PBDOM_OBJECT.</p>
+<A NAME="TI2140"></A><h4>Methods</h4>
+<A NAME="TI2141"></A><p>The PBDOM_OBJECT base class has the following methods:<A NAME="TI2142"></A>
+<ul>
+<li class=fi><b>AddContent</b>, <b>GetContent</b>, <b>InsertContent</b>, <b>RemoveContent</b>,
+and <b>SetContent</b> to allow you to manipulate the
+children of the PBDOM_OBJECT</li>
+<li class=ds><b>Clone</b> to allow you to make shallow
+or deep clones of the PBDOM_OBJECT</li>
+<li class=ds><b>Detach</b> to detach the PBDOM_OBJECT
+from its parent</li>
+<li class=ds><b>Equals</b> to test for equality with
+another PBDOM_OBJECT</li>
+<li class=ds><b>GetName</b> and <b>SetName</b> to
+get and set the name of the PBDOM_OBJECT</li>
+<li class=ds><b>GetObjectClass</b> and <b>GetObjectClassString</b> to
+identify the class of the PBDOM_OBJECT</li>
+<li class=ds><b>GetOwnerDocumentObject</b> to identify
+the owner PBDOM_DOCUMENT of the current PBDOM_OBJECT</li>
+<li class=ds><b>GetParentObject</b> and <b>SetParentObject</b> to
+get and set the parent of the PBDOM_OBJECT</li>
+<li class=ds><b>GetText</b>, <b>GetTextNormalize</b>,
+and <b>GetTextTrim</b> to obtain the text data of the PBDOM_OBJECT</li>
+<li class=ds><b>HasChildren</b> to determine whether
+the PBDOM_OBJECT has any children</li>
+<li class=ds><b>IsAncestorObjectOf</b> to determine
+whether the PBDOM_OBJECT is the ancestor of another PBDOM_OBJECT
+</li>
+</ul>
+</p>
+<A NAME="BABBIGHG"></A><h4>PBDOM_OBJECT inheritance</h4>
+<A NAME="TI2143"></A><p>The PBDOM_OBJECT class is similar to a virtual class
+in C++ in that it is not expected to be directly
+instantiated and used. For example, although a PBDOM_OBJECT
+can be created using the PowerScript <b>CREATE</b> statement, its
+methods cannot be used directly:<p><PRE> PBDOM_OBJECT pbdom_obj<br>pbdom_obj = CREATE PBDOM_OBJECT<br>pbdom_obj.SetName("VIRTUAL_PBDOM_OBJ") //exception!</PRE>The
+third line of code above throws an exception because it attempts
+to directly access the <b>SetName</b> method for the
+base class PBDOM_OBJECT. A similar implementation is valid,
+however, when the <b>SetName</b> method is accessed
+from a derived class, such as PBDOM_ELEMENT:<p><PRE> PBDOM_OBJECT pbdom_obj<br>pbdom_obj = CREATE PBDOM_ELEMENT<br>pbdom_obj.SetName ("VIRTUAL_PBDOM_OBJ")</PRE></p>
+<A NAME="TI2144"></A><h4>Using the base PBDOM_OBJECT as a placeholder</h4>
+<A NAME="TI2145"></A><p>The PBDOM_OBJECT class can be used as a placeholder
+for an object of a derived class:</p>
+<A NAME="TI2146"></A><p><p><PRE> PBDOM_DOCUMENT pbdom_doc<br>PBDOM_OBJECT pbdom_obj<br> <br>pbdom_doc = CREATE PBDOM_DOCUMENT<br>pbdom_doc.NewDocument ("", "", &amp;<br>   "Root_Element_From_Doc_1", "", "")<br>pbdom_obj = pbdom_doc.GetRootElement<br>pbdom_obj.SetName &amp;<br>   ("Root_Element_From_Doc_1_Now_Changed")</PRE></p>
+<A NAME="TI2147"></A><p>The instantiated PBDOM_OBJECT <b>pbdom_obj</b> is
+assigned to a PBDOM_DOCUMENT object, which holds the return
+value of the <b>GetRootElement</b> method. Here, <b>pbdom_obj</b> holds
+a reference to a PBDOM_ELEMENT and can be operated on legally
+like any object of a class derived from PBDOM_OBJECT.</p>
+<A NAME="TI2148"></A><h4>Standalone objects</h4>
+<A NAME="TI2149"></A><p>A PBDOM_OBJECT can be created as a self-contained
+object independent of any document or parent PBDOM_OBJECT.
+Such a PBDOM_OBJECT is known as a standalone object. For
+example:</p>
+<A NAME="TI2150"></A><p><p><PRE> PBDOM_ELEMENT pbdom_elem_1<br>pbdom_elem_1 = Create PBDOM_ELEMENT<br>pbdom_elem_1.SetName("pbdom_elem_1")</PRE></p>
+<A NAME="TI2151"></A><p><b>pbdom_elem_1</b> is instantiated
+in the derived class PBDOM_ELEMENT using the <b>Create</b> keyword.
+The <b>SetName</b> method can then be invoked from the <b>pbdom_elem_1</b> object,
+which is a standalone object not contained within any document.Standalone
+objects can perform any legal PBDOM operations, but standalone status
+does not give the object any special advantages or disadvantages.</p>
+<A NAME="TI2152"></A><h4>Parent-owned and document-owned objects</h4>
+<A NAME="TI2153"></A><p>A PBDOM_OBJECT can be assigned a parent by appending
+it to another standalone PBDOM_OBJECT, as in the following
+example:</p>
+<A NAME="TI2154"></A><p><p><PRE> PBDOM_ELEMENT pbdom_elem_1<br>PBDOM_ELEMENT pbdom_elem_2<br> <br>pbdom_elem_1 = Create PBDOM_ELEMENT<br>pbdom_elem_2 = Create PBDOM_ELEMENT<br> <br>pbdom_elem_1.SetName("pbdom_elem_1")<br>pbdom_elem_2.SetName("pbdom_elem_2")<br>pbdom_elem_1.AddContent(pbdom_elem_2)</PRE></p>
+<A NAME="TI2155"></A><p>Two PBDOM_ELEMENT objects, <b>pbdom_elem_1</b> and <b>pbdom_elem_2</b>,
+are instantiated. The <b>pbdom_elem_2</b> object
+is appended as a child object of <b>pbdom_elem_1</b> using
+the <b>AddContent</b> method. In this example, neither <b>pbdom_elem_1</b> nor <b>pbdom_elem_2</b> is
+owned by any document, and the <b>pbdom_elem_1</b> object
+is still standalone. If <b>pbdom_elem_1</b> were
+assigned to a parent PBDOM_OBJECT owned by a document, <b>pbdom_elem_1</b> would
+cease to be a standalone object.</p>
+<A NAME="BABJJAEF"></A><h2>PBDOM_DOCUMENT</h2>
+<A NAME="TI2156"></A><p>The PBDOM_DOCUMENT class derives from PBDOM_OBJECT
+and represents an XML DOM document. The PBDOM_DOCUMENT
+methods allow access to the root element, processing instructions,
+and other document-level information.</p>
+<A NAME="TI2157"></A><h4>Methods</h4>
+<A NAME="TI2158"></A><p>In addition to the methods inherited from PBDOM_OBJECT,
+the PBDOM_DOCUMENT class has the following methods:<A NAME="TI2159"></A>
+<ul>
+<li class=fi><b>DetachRootElement</b>, <b>GetRootElement</b>, <b>HasRootElement</b>,
+and <b>SetRootElement</b> to manipulate the root element
+of the PBDOM_DOCUMENT </li>
+<li class=ds><b>GetDocType</b> and <b>SetDocType</b> to
+get and set the DOCTYPE declaration of the XML document</li>
+<li class=ds><b>NewDocument</b> to build a new PBDOM_DOCUMENT
+from scratch</li>
+<li class=ds><b>SaveDocument</b> to save the content
+of the DOM tree in the PBDOM_DOCUMENT to a file
+</li>
+</ul>
+</p>
+<A NAME="BABFDEAE"></A><h2>PBDOM_DOCTYPE</h2>
+<A NAME="TI2160"></A><p>The PBDOM_DOCTYPE class represents the document type
+declaration object of an XML DOM document. The PBDOM_DOCTYPE
+methods allow access to the root element name, the internal subset,
+and the system and public IDs.</p>
+<A NAME="TI2161"></A><h4>Methods</h4>
+<A NAME="TI2162"></A><p>In addition to the methods inherited from PBDOM_OBJECT,
+the PBDOM_DOCTYPE class has the following methods:<A NAME="TI2163"></A>
+<ul>
+<li class=fi><b>GetPublicID</b>, <b>SetPublicID</b>, <b>GetSystemID</b>,
+and <b>SetSystemID</b> to get and set the public and
+system IDs of an externally-referenced ID declared in the PBDOM_DOCTYPE </li>
+<li class=ds><b>GetInternalSubset</b> and <b>SetInternalSubset</b> to
+get and set the internal subset data of the PBDOM_DOCTYPE
+</li>
+</ul>
+</p>
+<A NAME="BABFIJGI"></A><h2>PBDOM_ELEMENT</h2>
+<A NAME="TI2164"></A><p>The PBDOM_ELEMENT represents an XML element modeled
+in PowerScript. The PBDOM_ELEMENT methods allow access
+to element attributes, children, and text.</p>
+<A NAME="TI2165"></A><h4>Methods</h4>
+<A NAME="TI2166"></A><p>In addition to the methods inherited from PBDOM_OBJECT,
+the PBDOM_ELEMENT class has the following methods:<A NAME="TI2167"></A>
+<ul>
+<li class=fi><b>AddNamespaceDeclaration</b> and <b>RemoveNamespaceDeclaration</b> to
+add namespace declarations to and remove them from the PBDOM_ELEMENT</li>
+<li class=ds><b>GetAttribute</b>, <b>GetAttributes</b>, <b>GetAttributeValue</b><b></b><b>, </b><b>HasAttributes</b>, <b>RemoveAttribute</b>, <b>SetAttribute</b>,
+and <b>SetAttributes</b> to manipulate the attributes
+of the PBDOM_ELEMENT </li>
+<li class=ds><b>GetChildElement</b>, <b>GetChildElements</b>, <b></b><b>HasChildElements</b>, <b>RemoveChildElement</b>,
+and <b>RemoveChildElements</b> to manipulate the children
+of the PBDOM_ELEMENT</li>
+<li class=ds><b>GetNamespacePrefix</b> and <b>GetNamespaceURI</b> to
+get the prefix and URI of the namespace associated with the PBDOM_ELEMENT</li>
+<li class=ds><b>GetQualifiedName</b><b></b> to
+get the full name of the PBDOM_ELEMENT including the prefix
+(if any)</li>
+<li class=ds><b>SetDocument</b><b></b> to
+set a PBDOM_DOCUMENT as the parent of the PBDOM_ELEMENT</li>
+<li class=ds><b>SetNamespace</b><b></b> to
+set the namespace of the PBDOM_ELEMENT</li>
+<li class=ds><b>SetText</b><b></b> to
+set the text content of the PBDOM_ELEMENT
+</li>
+</ul>
+</p>
+<A NAME="TI2168"></A><h4>The relationship between PBDOM_ELEMENT and PBDOM_ATTRIBUTE</h4>
+<A NAME="TI2169"></A><p>In PBDOM, an XML element's attributes are not its
+children. They are properties of elements rather than having a separate
+identity from the elements they are associated with. </p>
+<A NAME="TI2170"></A><p>Consider the following simple XML document :<p><PRE> &lt;root attr="value1"&gt;<br>   &lt;child attr_1="value1" attr_2="value2"/&gt;<br>&lt;/root&gt;</PRE></p>
+<A NAME="TI2171"></A><p>The equivalent PBDOM tree is shown in <A HREF="apptechp79.htm#BABDBIAH">Figure 14-2</A>:</p>
+<A NAME="BABDBIAH"></A><caption><b>Figure 14-2: Relationship between PBDOM_ELEMENTs
+and PBDOM_ATTRIBUTEs</b></captionls>
+<br><img src="images/attrs.gif">
+<A NAME="TI2172"></A><p>The solid line joining <b>root</b> with <b>child</b> represents
+a parent-child relationship. The dashed lines represent a "property-of"
+relationship between an attribute and its owner element.</p>
+<A NAME="TI2173"></A><p>The PBDOM_ELEMENT content management methods do not
+apply to PBDOM_ATTRIBUTE objects. There are separate get,
+set, and remove methods for attributes.</p>
+<A NAME="TI2174"></A><p>Because they are not children of their owner elements, PBDOM
+does not consider attributes as part of the overall PBDOM document
+tree, but they are linked to it through their owner elements.</p>
+<A NAME="TI2175"></A><p>An attribute can contain child objects (XML text and entity
+reference nodes), so an attribute forms a subtree of its own.</p>
+<A NAME="TI2176"></A><p>Because an element's attributes are not considered
+its children, they have no sibling relationship among themselves
+as child objects do. In the sample XML document and in <A HREF="apptechp79.htm#BABDBIAH">Figure 14-2</A>, <b>attr_1</b> and <b>attr_2</b> are
+not siblings. The order of appearance of attributes inside its owner
+element has no significance.</p>
+<A NAME="TI2177"></A><h4>Attribute setting and creation</h4>
+<A NAME="TI2178"></A><p>In PBDOM, an XML element's attribute is set using
+the PBDOM_ELEMENT <b>SetAttribute </b>and <b>SetAttributes </b>methods.
+These methods always attempt to create new attributes for the PBDOM_ELEMENT
+and attempt to replace existing attributes with the same name and
+namespace URI.</p>
+<A NAME="TI2179"></A><p>If the PBDOM_ELEMENT already contains an existing
+attribute with the same name and namespace URI, these methods first
+remove the existing attribute and then insert a new attribute into
+the PBDOM_ELEMENT. Calling the <b>SetAttribute</b> method
+can cause a PBDOM_ATTRIBUTE (representing an existing attribute
+of the PBDOM_ELEMENT) to become detached from its owner
+PBDOM_ELEMENT.</p>
+<A NAME="TI2180"></A><p>For example, consider the following element:<p><PRE> &lt;an_element an_attr="some_value"/&gt;</PRE></p>
+<A NAME="TI2181"></A><p>If a PBDOM_ELEMENT object <b>pbdom_an_elem</b> represents
+the element <b>an_element</b> and the following
+statement is issued, the method first attempts to create a new attribute
+for the <b>an_element</b> element:<p><PRE> pbdom_an_elem.SetAttribute("an_attr", "some_other_value")</PRE></p>
+<A NAME="TI2182"></A><p>Then, because <b>an_element</b> already
+contains an attribute with the name <b>an_attr</b>, the
+attribute is removed. If there is an existing PBDOM_ATTRIBUTE
+object that represents the original <b>an_attr</b> attribute,
+this PBDOM_ATTRIBUTE is detached from its owner element
+(<b>an_element</b>).</p>
+<A NAME="TI2183"></A><p>For more information about attributes and namespaces, see <A HREF="apptechp83.htm#BABDAIDD">"XML namespaces"</A>.</p>
+<A NAME="BABBBAGE"></A><h2>PBDOM_ATTRIBUTE</h2>
+<A NAME="TI2184"></A><p>The PBDOM_ATTRIBUTE class represents an XML attribute
+modeled in PowerScript. The PBDOM_ATTRIBUTE methods allow
+access to element attributes and namespace information.</p>
+<A NAME="TI2185"></A><h4>Methods</h4>
+<A NAME="TI2186"></A><p>In addition to the methods inherited from PBDOM_OBJECT,
+the PBDOM_ATTRIBUTE class has the following methods:<A NAME="TI2187"></A>
+<ul>
+<li class=fi><b>GetBooleanValue</b>, <b>SetBooleanValue</b>, <b>GetDateValue</b>, <b>SetDateValue</b>, <b>GetDateTimeValue</b>, <b>SetDateTimeValue</b>, <b>GetDoubleValue</b>, <b>SetDoubleValue</b>, <b>GetIntValue</b>, <b>SetIntValue</b>, <b>GetLongValue</b>, <b>SetLongValue</b>, <b>GetRealValue</b>, <b>SetRealValue</b>, <b>GetTimeValue</b>, <b>SetTimeValue</b>, <b>GetUIntValue</b>, <b>SetUintValue</b>, <b>GetULongValue</b>,and <b>SetULongValue</b> to
+get and set the value of the PBDOM_ATTRIBUTE as the specified
+datatype</li>
+<li class=ds><b>GetNamespacePrefix</b> and <b>GetNamespaceURI</b> to
+get the prefix and URI of the namespace associated with the PBDOM_ATTRIBUTE</li>
+<li class=ds><b>GetOwnerElementObject</b><b></b> and SetOwnerElementObject to
+get and set the owner PBDOM_ELEMENT of the PBDOM_ATTRIBUTE </li>
+<li class=ds><b>GetQualifiedName</b><b></b> to
+get the full name of the PBDOM_ATTRIBUTE including the
+prefix, if any</li>
+<li class=ds><b>SetNamespace</b><b></b> to
+set the namespace of the PBDOM_ATTRIBUTE</li>
+<li class=ds><b>SetText</b><b></b> to
+set the text content of the PBDOM_ATTRIBUTE
+</li>
+</ul>
+</p>
+<A NAME="TI2188"></A><h4>Child PBDOM_OBJECTs</h4>
+<A NAME="TI2189"></A><p>A PBDOM_ATTRIBUTE contains a subtree of child PBDOM_OBJECTs.
+The child objects can be a combination of PBDOM_TEXT and PBDOM_ENTITYREFERENCE
+objects.</p>
+<A NAME="TI2190"></A><p>The following example produces a PBDOM_ELEMENT named <b>elem</b> that contains
+a PBDOM_ATTRIBUTE named <b>attr</b>:</p>
+<A NAME="TI2191"></A><p><p><PRE> PBDOM_ATTRIBUTE pbdom_attr<br>PBDOM_TEXT pbdom_txt<br>PBDOM_ENTITYREFERENCE pbdom_er<br>PBDOM_ELEMENT pbdom_elem<br> <br>pbdom_elem  = Create PBDOM_ELEMENT <br>pbdom_elem.SetName ("elem")<br> <br>pbdom_attr = Create PBDOM_ATTRIBUTE<br>pbdom_attr.SetName("attr")<br>pbdom_attr.SetText("Part 1 ")<br> <br>pbdom_txt = Create PBDOM_TEXT<br>pbdom_txt.SetText (" End.")<br> <br>pbdom_er = Create PBDOM_ENTITYREFERENCE <br>pbdom_er.SetName("ER")<br> <br>pbdom_attr.AddContent(pbdom_er)<br>pbdom_attr.AddContent(pbdom_txt)<br> <br>pbdom_elem.SetAttribute(pbdom_attr)</PRE></p>
+<A NAME="TI2192"></A><p>The element tag in the XML looks like this:<p><PRE> &lt;elem attr="Part 1 &amp;ER; End."&gt;</PRE></p>
+<A NAME="TI2193"></A><p>In <A HREF="apptechp79.htm#BABIEIIF">Figure 14-3</A>,
+the arrows indicate a parent-child relationship between the PBDOM_ATTRIBUTE
+and the other PBDOM_OBJECTs:</p>
+<A NAME="BABIEIIF"></A><caption><b>Figure 14-3: PBDOM_ATTRIBUTE
+subtree example</b></captionls>
+<br><img src="images/attrs2.gif">
+<A NAME="TI2194"></A><h4>The Default PBDOM_TEXT child</h4>
+<A NAME="TI2195"></A><p>A PBDOM_ATTRIBUTE generally always contains at least
+one PBDOM_TEXT child that might contain an empty string.
+This is the case unless the <b>RemoveContent</b> method
+has been called to remove all contents of the PBDOM_ATTRIBUTE.</p>
+<A NAME="TI2196"></A><p>The following examples show how a PBDOM_TEXT object
+with an empty string can become the child of a PBDOM_ATTRIBUTE.</p>
+<p><b>Example 1</b>   The following example uses the PBDOM_ELEMENT <b>SetAttribute</b> method.
+The name of the PBDOM_ATTRIBUTE is set to <b>attr</b> but the
+text value is an empty string. The PBDOM_ATTRIBUTE will
+have one child PBDOM_TEXT that will contain an empty string:</p>
+<A NAME="TI2197"></A><p><p><PRE> PBDOM_DOCUMENT  pbdom_doc<br>PBDOM_ATTRIBUTE  pbdom_attr<br>PBDOM_OBJECT    pbdom_obj_array[]<br> <br>try<br> <br>  pbdom_doc = Create PBDOM_DOCUMENT<br>  pbdom_doc.NewDocument("root")<br> <br>  // Note that the name of the attribute is set to<br>  // "attr" and its text value is the empty string ""<br>  pbdom_doc.GetRootElement().SetAttribute("attr", "")<br>  <br>  pbdom_attr = &amp;<br>     pbdom_doc.GetRootElement().GetAttribute("attr")<br> <br>  MessageBox ("HasChildren", &amp;<br>     string(pbdom_attr.HasChildren()))<br>  <br>catch(PBDOM_EXCEPTION pbdom_except)<br>  MessageBox ("PBDOM_EXCEPTION", &amp;<br>     pbdom_except.GetMessage())<br>end try</PRE></p>
+<A NAME="TI2198"></A><p>When you use the <b>SaveDocument</b> method to
+render <b>pbdom_doc</b> as XML, it looks
+like this:<p><PRE> &lt;root attr="" /&gt;</PRE></p>
+<p><b>Example 2</b>   The following example creates a PBDOM_ATTRIBUTE and
+sets its name to <b>attr</b>. No text value is set,
+but a PBDOM_TEXT object is automatically created and attached
+to the PBDOM_ATTRIBUTE. This is the default behavior for
+every PBDOM_ATTRIBUTE created in this way:</p>
+<A NAME="TI2199"></A><p><p><PRE> PBDOM_DOCUMENT  pbdom_doc<br>PBDOM_ATTRIBUTE  pbdom_attr<br> <br>try<br>  pbdom_doc = Create PBDOM_DOCUMENT<br>  pbdom_doc.NewDocument("root")<br>  <br>  // Create a PBDOM_ATTRIBUTE and set its name to "attr"<br>  pbdom_attr = Create PBDOM_ATTRIBUTE<br>  pbdom_attr.SetName("attr")<br> <br>  pbdom_doc.GetRootElement().SetAttribute(pbdom_attr)<br>  <br>  MessageBox ("HasChildren", &amp;<br>     string(pbdom_attr.HasChildren()))<br>  <br>catch(PBDOM_EXCEPTION pbdom_except)<br>  MessageBox ("PBDOM_EXCEPTION", &amp;<br>     pbdom_except.GetMessage())<br>end try</PRE></p>
+<A NAME="TI2200"></A><p>When you call the <b>SetText</b> method (or any
+of the other <b>Set</b>* methods except <b>SetNamespace</b>),
+the default PBDOM_TEXT is replaced by a new PBDOM_TEXT.
+If you call the <b>SetContent</b> method, you can replace
+the default PBDOM_TEXT by a combination of PBDOM_TEXT
+and PBDOM_ENTITYREFERENCE objects.</p>
+<A NAME="BABGFBEA"></A><h2>PBDOM_ENTITYREFERENCE</h2>
+<A NAME="TI2201"></A><p>The PBDOM_ENTITYREFERENCE class defines behavior
+for an XML entity reference node. It is a simple class intended
+primarily to help you insert entity references within element nodes
+as well as attribute nodes.When the PBDOM_BUILDER class
+parses an XML document and builds up the DOM tree, it completely
+expands entities as they are encountered in the DTD. Therefore,
+immediately after a PBDOM_DOCUMENT object is built using
+any of the PBDOM_BUILDER build methods, there are no entity reference
+nodes in the resulting document tree.</p>
+<A NAME="TI2202"></A><p>A PBDOM_ENTITYREFERENCE object can be created at
+any time and inserted into any document whether or not there is
+any corresponding DOM entity node representing the referenced entity
+in the document. </p>
+<A NAME="TI2203"></A><h4>Methods</h4>
+<A NAME="TI2204"></A><p>The PBDOM_ENTITYREFERENCE class has only methods
+that are inherited from PBDOM_OBJECT.</p>
+<A NAME="BABBDDEI"></A><h2>PBDOM_CHARACTERDATA</h2>
+<A NAME="TI2205"></A><p>The PBDOM_CHARACTERDATA class derives from PBDOM_OBJECT and
+represents character-based content (not markup) within an XML document.
+The PBDOM_CHARACTERDATA class extends PBDOM_OBJECT
+with methods specifically designed for manipulating character data.</p>
+<A NAME="TI2206"></A><h4>Methods</h4>
+<A NAME="TI2207"></A><p>In addition to the methods inherited from PBDOM_OBJECT,
+the PBDOM_CHARACTERDATA class has the following methods:<A NAME="TI2208"></A>
+<ul>
+<li class=fi><b>Append</b> to append a text string
+or the text data of a PBDOM_CHARACTERDATA object to the
+text in the current object</li>
+<li class=ds><b>SetText</b><b></b> to
+set the text content of the PBDOM_CHARACTERDATA object
+</li>
+</ul>
+</p>
+<A NAME="TI2209"></A><h4>Parent of three classes</h4>
+<A NAME="TI2210"></A><p>The PBDOM_CHARACTERDATA class is the parent class
+of three other PBDOM classes:</p>
+<A NAME="TI2211"></A><p><A NAME="TI2212"></A>
+<ul>
+<li class=fi>PBDOM_TEXT</li>
+<li class=ds>PBDOM_CDATA</li>
+<li class=ds>PBDOM_COMMENT
+</li>
+</ul>
+</p>
+<A NAME="TI2213"></A><p>The PBDOM_CHARACTERDATA class, like its parent class PBDOM_OBJECT,
+is a "virtual" class (similar to a virtual C++ class)
+in that it is not expected to be directly instantiated and used.
+For example, creating a PBDOM_CHARACTERDATA with the <b>CREATE</b> statement
+is legal in PowerScript, but operating on it directly by calling
+its <b>SetText</b> method is not. The last line in this
+code raises an exception:</p>
+<A NAME="TI2214"></A><p><p><PRE> PBDOM_CHARACTERDATA pbdom_chrdata<br>pbdom_chrdata = CREATE PBDOM_CHARACTERDATA<br> <br>pbdom_chrdata.SetText("character string") //exception!</PRE></p>
+<A NAME="TI2215"></A><p>In this example, <b>pbdom_chrdata</b> is
+declared as a PBDOM_CHARACTERDATA but is instantiated as
+a PBDOM_TEXT. Calling <b>SetText</b> on <b>pbdom_chrdata</b> 
+is equivalent to calling the PBDOM_TEXT <b>SetText</b> method:</p>
+<A NAME="TI2216"></A><p><p><PRE> PBDOM_CHARACTERDATA pbdom_chrdata<br>pbdom_chrdata = CREATE PBDOM_TEXT<br> <br>pbdom_chrdata.SetText("character string")</PRE></p>
+<A NAME="BABBFBDF"></A><h2>PBDOM_TEXT</h2>
+<A NAME="TI2217"></A><p>The PBDOM_TEXT class derives from PBDOM_CHARACTERDATA
+and represents a DOM text node in an XML document.</p>
+<A NAME="TI2218"></A><h4>Methods</h4>
+<A NAME="TI2219"></A><p>The PBDOM_TEXT class has no methods that are not
+inherited from PBDOM_OBJECT or PBDOM_CHARACTERDATA.</p>
+<A NAME="TI2220"></A><h4>Using PBDOM_TEXT objects</h4>
+<A NAME="TI2221"></A><p>PBDOM_TEXT objects are commonly used to represent
+the textual content of a PBDOM_ELEMENT or a PBDOM_ATTRIBUTE.
+Although PBDOM_TEXT objects are not delimited by angle
+brackets, they are objects and <i>do not</i> form
+the value of a parent PBDOM_ELEMENT.</p>
+<A NAME="TI2222"></A><p>A PBDOM_TEXT object represented in graphical form
+in a PBDOM tree is a leaf node and contains no child objects. For
+example, <A HREF="apptechp79.htm#BABEJAFB">Figure 14-4</A> represents the
+following PBDOM_ELEMENT:<p><PRE> &lt;parent_element&gt;some text&lt;/parent_element&gt;</PRE></p>
+<A NAME="BABEJAFB"></A><caption><b>Figure 14-4: PBDOM_TEXT parent-child
+relationship </b></captionls>
+<br><img src="images/domtext2.gif">
+<A NAME="TI2223"></A><p>The arrow indicates a parent-child relationship. </p>
+<A NAME="TI2224"></A><h4>Occurrence of PBDOM_TEXTs</h4>
+<A NAME="TI2225"></A><p>When an XML document is first parsed, if there is no markup
+inside an element's content, the text within the element
+is represented as a single PBDOM_TEXT object. This PBDOM_TEXT
+object is the only child of the element. If there is markup, it
+is parsed into a list of PBDOM_ELEMENT objects and PBDOM_TEXT
+objects that form the list of children of the element.</p>
+<A NAME="TI2226"></A><p>For example, parsing the following XML produces one PBDOM_ELEMENT that
+represents <FONT FACE="Courier New">&lt;element_1&gt;</FONT> and
+one PBDOM_TEXT that represents the textual content <FONT FACE="Courier New">Some
+Text</FONT>:<p><PRE> &lt;root&gt;<br>  &lt;element_1&gt;Some Text&lt;/element_1&gt;<br>&lt;/root&gt;</PRE></p>
+<A NAME="TI2227"></A><p>The<FONT FACE="Courier New"> &lt;element_1&gt;</FONT> PBDOM_ELEMENT
+has the PBDOM_TEXT object as its only child.</p>
+<A NAME="TI2228"></A><p>Consider this document:</p>
+<A NAME="TI2229"></A><p><p><PRE> &lt;root&gt;<br>  &lt;element_1&gt;<br>  Some Text<br>    &lt;element_1_1&gt;Sub Element Text&lt;/element_1_1&gt;<br>    More Text<br>    &lt;element_1_2/&gt;<br>  Yet More Text<br>  &lt;/element_1&gt;<br>&lt;/root&gt;</PRE></p>
+<A NAME="TI2230"></A><p>Parsing this XML produces a PBDOM_ELEMENT that represents <FONT FACE="Courier New">&lt;element_1&gt;</FONT> and
+its five children:<A NAME="TI2231"></A>
+<ul>
+<li class=fi>A PBDOM_TEXT representing <FONT FACE="Courier New">Some
+Text</FONT></li>
+<li class=ds>A PBDOM_ELEMENT representing <FONT FACE="Courier New">&lt;element_1_1/&gt;</FONT></li>
+<li class=ds>A PBDOM_TEXT representing <FONT FACE="Courier New">More
+Text</FONT></li>
+<li class=ds>A PBDOM_ELEMENT representing <FONT FACE="Courier New">&lt;element_1_2/&gt;</FONT></li>
+<li class=ds>A PBDOM_TEXT representing <FONT FACE="Courier New">Yet
+More Text</FONT>
+</li>
+</ul>
+</p>
+<A NAME="TI2232"></A><h4>Adjacent PBDOM_TEXT objects</h4>
+<A NAME="TI2233"></A><p>You can create adjacent PBDOM_TEXT objects that represent
+the contents of a given element without any intervening markup.
+For example, suppose you start with this document:</p>
+<A NAME="TI2234"></A><p><p><PRE> &lt;root&gt;<br>  &lt;element_1&gt;Some Text&lt;/element_1&gt;<br>&lt;/root&gt;</PRE></p>
+<A NAME="TI2235"></A><p>Calling <FONT FACE="Courier New">AddContent("More Text")</FONT> on
+the <b>element_1</b> PBDOM_ELEMENT produces
+the following result:</p>
+<A NAME="TI2236"></A><p><p><PRE> &lt;root&gt;<br>  &lt;element_1&gt;Some TextMore Text&lt;/element_1&gt;<br>&lt;/root&gt;</PRE></p>
+<A NAME="TI2237"></A><p>There are now two PBDOM_TEXT objects representing
+"Some Text" and "More Text" that are adjacent to each other. There
+is nothing between them, and there is no way to represent the separation
+between them.</p>
+<A NAME="TI2238"></A><h4>Persistence of PBDOM_TEXT objects</h4>
+<A NAME="TI2239"></A><p>The separation of adjacent PBDOM_TEXT objects does
+not usually persist between DOM editing sessions. When the document
+produced by adding "More Text" shown in the preceding example is
+reopened and reparsed, only one PBDOM_TEXT object represents
+"Some TextMore Text".</p>
+<A NAME="BABCDADC"></A><h2>PBDOM_CDATA</h2>
+<A NAME="TI2240"></A><p>The PBDOM_CDATA class derives from PBDOM_TEXT
+and represents an XML DOM CDATA section.</p>
+<A NAME="TI2241"></A><h4>Methods</h4>
+<A NAME="TI2242"></A><p>The PBDOM_CDATA class has no methods that are not
+inherited from PBDOM_OBJECT or PBDOM_CHARACTERDATA.</p>
+<A NAME="TI2243"></A><h4>Using CDATA objects</h4>
+<A NAME="TI2244"></A><p>You can think of a PBDOM_CDATA object as an extended
+PBDOM_TEXT object. A PBDOM_CDATA object is used
+to hold text that can contain characters that are prohibited in
+XML, such as &lt; and &amp;. Their primary purpose is
+to allow you to include these special characters inside a large
+block of text without using entity references.</p>
+<A NAME="TI2245"></A><p>This example contains a PBDOM_CDATA object:</p>
+<A NAME="TI2246"></A><p><p><PRE> &lt;some_text&gt;<br>&lt;![CDATA[ (x &lt; y) &amp; (y &lt; z) =&gt; x &lt; z ]]&gt;<br>&lt;/some_text&gt;</PRE></p>
+<A NAME="TI2247"></A><p>To express the same textual content as a PBDOM_TEXT
+object, you would need to write this:<p><PRE> &lt;some_text&gt;<br>(x &amp;lt; y) &amp;amp; (y &amp;lt; z) =&amp;gt; x &amp;lt; z<br>&lt;/some_text&gt;</PRE></p>
+<A NAME="TI2248"></A><p>Although the PBDOM_CDATA class is derived from PBDOM_TEXT,
+a PBDOM_CDATA object cannot always be inserted where a
+PBDOM_TEXT can be inserted. For example, a PBDOM_TEXT
+object can be added as a child of a PBDOM_ATTRIBUTE, but
+a PBDOM_CDATA object cannot.</p>
+<A NAME="BABDHDHE"></A><h2>PBDOM_COMMENT</h2>
+<A NAME="TI2249"></A><p>The PBDOM_COMMENT class represents a DOM comment
+node within an XML document. The PBDOM_COMMENT class is
+derived from the PBDOM_CHARACTERDATA class.</p>
+<A NAME="TI2250"></A><h4>Methods</h4>
+<A NAME="TI2251"></A><p>The PBDOM_COMMENT class has no methods that are not
+inherited from PBDOM_OBJECT or PBDOM_CHARACTERDATA.</p>
+<A NAME="TI2252"></A><h4>Using comments</h4>
+<A NAME="TI2253"></A><p>Comments are useful for annotating parts of an XML document
+with user-readable information.</p>
+<A NAME="TI2254"></A><p>When a document is parsed, any comments found within the document
+persist in memory as part of the DOM tree. A PBDOM_COMMENT
+created at runtime also becomes part of the DOM tree.</p>
+<A NAME="TI2255"></A><p>An XML comment does not usually form part of the content model
+of a document. The presence or absence of comments has no effect
+on a document's validity, and there is no requirement that
+comments be declared in a DTD.</p>
+<A NAME="BABGEFFG"></A><h2>PBDOM_PROCESSINGINSTRUCTION</h2>
+<A NAME="TI2256"></A><p>The PBDOM_PROCESSINGINSTRUCTION class represents
+an XML processing instruction (PI). The PBDOM_PROCESSINGINSTRUCTION methods
+allow access to the processing instruction target and its data.
+The data can be accessed as a string or, where appropriate, as name/value
+pairs.</p>
+<A NAME="TI2257"></A><p>The actual processing instruction of a PI is a string. This
+is so even if the instruction is cut up into separate <FONT FACE="Courier New">name="value"</FONT> pairs.
+PBDOM, however, does support such a PI format. If the PI data does
+contain these pairs, as is commonly the case, then PBDOM_PROCESSINGINSTRUCTION
+parses them into an internal list of name/value pairs. </p>
+<A NAME="TI2258"></A><h4>Methods</h4>
+<A NAME="TI2259"></A><p>In addition to the methods inherited from PBDOM_OBJECT,
+the PBDOM_PROCESSINGINSTRUCTION class has the following
+methods:<A NAME="TI2260"></A>
+<ul>
+<li class=fi><b>GetData</b> and <b>SetData</b> to
+get and set the raw data of the PBDOM_PROCESSINGINSTRUCTION
+object</li>
+<li class=ds><b>GetNames</b><b></b> to
+get a list of names taken from the part of the PBDOM_PROCESSINGINSTRUCTION
+data that is separated into name="value" pairs</li>
+<li class=ds><b>GetValue</b>, RemoveValue, and <b>SetValue</b> to
+get, remove, and set the value of a specified name/value
+pair in the PBDOM_PROCESSINGINSTRUCTION object</li>
+<li class=ds><b>GetTarget</b><b></b> to
+get the target of a PBDOM_PROCESSINGINSTRUCTION. For example,
+the target of the XML declaration, which is a special processing
+instruction, is the string <FONT FACE="Courier New">xml</FONT>.
+</li>
+</ul>
+</p>
+

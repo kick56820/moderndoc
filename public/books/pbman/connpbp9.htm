@@ -1,0 +1,294 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About the ODBC interface</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp8.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp10.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJBAIJJ"></A><h1>About the ODBC interface</h1>
+<A NAME="TI183"></A><p>You can access a wide variety of ODBC data sources in PowerBuilder. This
+section describes what you need to know to use ODBC connections to
+access your data in PowerBuilder.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>ODBC drivers and data sources</span> <A NAME="TI184"></A>For a complete list of the ODBC drivers supplied
+with PowerBuilder and the data sources they access, see "Database
+Interfaces" in online Help.</p>
+<A NAME="TI185"></A><h2>What is ODBC?</h2>
+<A NAME="TI186"></A><h4>The ODBC API</h4>
+<A NAME="TI187"></A><p><strong>Open Database Connectivity</strong> (<strong>ODBC</strong>)
+is a standard application programming interface (API) developed
+by Microsoft. It allows a single application to access a variety
+of data sources for which ODBC-compliant drivers exist. The application
+uses Structured Query Language (SQL) as the standard data access language.</p>
+<A NAME="TI188"></A><p>The ODBC API defines the following:<A NAME="TI189"></A>
+<ul>
+<li class=fi>A library of ODBC function calls that connect to the data
+source, execute SQL statements, and retrieve results</li>
+<li class=ds>A standard way to connect and log in to a DBMS</li>
+<li class=ds>SQL syntax based on the X/Open and SQL
+Access Group (SAG) CAE specification (1992)</li>
+<li class=ds>A standard representation for datatypes</li>
+<li class=ds>A standard set of error codes
+</li>
+</ul>
+</p>
+<A NAME="TI190"></A><h4>Accessing ODBC data sources</h4>
+<A NAME="TI191"></A><p>Applications that provide an ODBC interface, like PowerBuilder,
+can access data sources for which an ODBC driver exists. An <strong>ODBC
+data source driver</strong> is a dynamic link library (DLL) that
+implements ODBC function calls. The application invokes the ODBC
+driver to access a particular data source.</p>
+<A NAME="BABGDCEB"></A><h4>Accessing Unicode data</h4>
+<A NAME="TI192"></A><p>Using the ODBC interface, PowerBuilder can connect, save, and
+retrieve data in both ANSI/DBCS and Unicode databases but
+does not convert data between Unicode and ANSI/DBCS. When
+character data or command text is sent to the database, PowerBuilder sends
+a Unicode string. The driver must guarantee that the data is saved
+as Unicode data correctly. When PowerBuilder retrieves character data,
+it assumes the data is Unicode.</p>
+<A NAME="TI193"></A><p>A Unicode database is a database whose character set is set
+to a Unicode format, such as UTF-8, UTF-16, UCS-2, or UCS-4. All
+data must be in Unicode format, and any data saved to the database
+must be converted to Unicode data implicitly or explicitly.</p>
+<A NAME="TI194"></A><p>A database that uses ANSI (or DBCS) as its character set might
+use special datatypes to store Unicode data. Columns with these
+datatypes can store <i>only</i> Unicode data. Any
+data saved into such a column must be converted to Unicode explicitly.
+This conversion must be handled by the database server or client.</p>
+<A NAME="TI195"></A><h2>Using ODBC in PowerBuilder</h2>
+<A NAME="TI196"></A><h4>What you can do</h4>
+<A NAME="TI197"></A><p>The following ODBC connectivity features are available in PowerBuilder:<A NAME="TI198"></A>
+<ul>
+<li class=fi>Connect
+to an ASA standalone database (including the <ACRONYM title = "E A S" >EAS</ACRONYM> Demo
+DB) using the ASA ODBC driver and the ODBC interface</li>
+<li class=ds>Create and delete local ASA databases<br>
+For instructions, see the <i>User's
+Guide</i>
+<i></i>
+<i></i>
+.<br></li>
+<li class=ds>Use Sybase-supplied DataDirect ODBC drivers to access
+your data<br>
+For a list of the ODBC drivers supplied, see "Database
+Interfaces" in online Help.<br></li>
+<li class=ds>In all editions <i>except</i> PowerBuilder
+Desktop, use Level 1 or later ODBC-compliant drivers obtained
+from vendors other than Sybase to access your data<br>
+See <A HREF="connpbp9.htm#CCJCBJCC">"Obtaining ODBC drivers"</A>.<br></li>
+<li class=ds>Use Microsoft's ODBC Data Source Administrator
+to define ODBC data sources<br>
+See <A HREF="connpbp11.htm#CCJBICIG">"Defining ODBC data sources"</A>.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI199"></A><h2>Components of an ODBC connection</h2>
+<A NAME="TI200"></A><h4>How an ODBC connection is made</h4>
+<A NAME="TI201"></A><p>When you access an ODBC data source in PowerBuilder, your connection
+goes through several layers before reaching the data source. It
+is important to understand that each layer represents a separate
+component of the connection, and that each component might come
+from a different vendor.</p>
+<A NAME="TI202"></A><p>Because ODBC is a standard API, PowerBuilder uses the same interface
+to access every ODBC data source. As long as a driver is ODBC compliant, PowerBuilder can
+access it through the ODBC interface to the ODBC Driver Manager.
+The development environment and the ODBC interface work together
+as the application component.</p>
+<A NAME="TI203"></A><p><A HREF="connpbp9.htm#BABJHBCD">Figure 2-1</A> shows
+the general components of an ODBC connection. </p>
+<A NAME="BABJHBCD"></A><caption><b>Figure 2-1: Components of an ODBC connection</b></captionls>
+<br><img src="images/cnw2odb.gif">
+<A NAME="TI204"></A><h4>Component descriptions</h4>
+<A NAME="TI205"></A><p><A HREF="connpbp9.htm#BABJEDJH">Table 2-1</A> gives
+the provider and a brief description of each ODBC component shown
+in the diagram.</p>
+<A NAME="BABJEDJH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-1: Provider and function of ODBC
+connection components</caption>
+<tr><th  rowspan="1"  ><A NAME="TI206"></A>Component</th>
+<th  rowspan="1"  ><A NAME="TI207"></A>Provider</th>
+<th  rowspan="1"  ><A NAME="TI208"></A>What it does</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI209"></A>Application</td>
+<td  rowspan="1"  ><A NAME="TI210"></A>Sybase</td>
+<td  rowspan="1"  ><A NAME="TI211"></A>Calls ODBC functions to submit SQL statements,
+catalog requests, and retrieve results from a data source.<A NAME="TI212"></A><p>PowerBuilder uses the same ODBC interface to access all ODBC
+data sources.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI213"></A>ODBC Driver Manager</td>
+<td  rowspan="1"  ><A NAME="TI214"></A>Microsoft</td>
+<td  rowspan="1"  ><A NAME="TI215"></A>Installs, loads, and unloads drivers
+for an application.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI216"></A>Driver</td>
+<td  rowspan="1"  ><A NAME="TI217"></A>Driver vendor</td>
+<td  rowspan="1"  ><A NAME="TI218"></A>Processes ODBC function calls, submits
+SQL requests to a particular data source, and returns results to
+an application.<A NAME="TI219"></A><p>If necessary, translates an application's request so
+that it conforms to the SQL syntax supported by the back-end database.
+See <A HREF="connpbp9.htm#CCJBHAJC">"Types of ODBC drivers"</A>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI220"></A>Data source</td>
+<td  rowspan="1"  ><A NAME="TI221"></A>DBMS or database vendor</td>
+<td  rowspan="1"  ><A NAME="TI222"></A>Stores and manages data for an application. Consists
+of the data to be accessed and its associated DBMS, operating system,
+and (if present) network software that accesses the DBMS.</td>
+</tr>
+</table>
+<A NAME="CCJBHAJC"></A><h2>Types of ODBC drivers</h2>
+<A NAME="TI223"></A><p>When PowerBuilder is connected to an ODBC data source, you might
+see messages from the ODBC driver that include the words <i>single-tier</i> or <i>multiple-tier</i>.
+These terms refer to the two types of drivers defined by the ODBC
+standard.</p>
+<A NAME="TI224"></A><h4>Single-tier driver</h4>
+<A NAME="TI225"></A><p>A <strong>single-tier ODBC driver</strong> processes
+both ODBC functions and SQL statements. In other words, a single-tier
+driver includes the data access software required to manage the
+data source file and catalog tables. An example of a single-tier
+ODBC driver is the DataDirect dBASE ODBC driver.</p>
+<A NAME="TI226"></A><caption><b>Figure 2-2: Single-tier ODBC driver</b></captionls>
+<br><img src="images/cnw2drv.gif">
+<A NAME="TI227"></A><h4>Multiple-tier driver</h4>
+<A NAME="TI228"></A><p>A <strong>multiple-tier ODBC driver</strong> processes
+ODBC functions, but sends SQL statements to the database engine
+for processing. Unlike the single-tier driver, a multiple-tier driver
+does not include the data access software required to manage the
+data directly.</p>
+<A NAME="TI229"></A><p>An example of a multiple-tier ODBC driver is the Sybase ASA
+driver.</p>
+<A NAME="TI230"></A><caption><b>Figure 2-3: Multi-tier ODBC driver</b></captionls>
+<br><img src="images/cnw2drs.gif">
+<A NAME="TI231"></A><h2>Ensuring the proper ODBC driver conformance levels</h2>
+<A NAME="TI232"></A><p>You can access data in PowerBuilder Enterprise or PowerBuilder
+Professional with ODBC drivers obtained from vendors <i>other</i> than
+Sybase, such as DBMS vendors.</p>
+<A NAME="TI233"></A><p>An ODBC driver obtained from another vendor must meet certain conformance
+requirements to ensure that it works properly with PowerBuilder. This
+section describes how to make sure your driver meets these requirements.</p>
+<A NAME="TI234"></A><h3>What are ODBC conformance levels?</h3>
+<A NAME="TI235"></A><p>PowerBuilder can access many data sources for which ODBC-compliant drivers
+exist. However, ODBC drivers manufactured by different vendors might
+vary widely in the functions they provide.</p>
+<A NAME="TI236"></A><p>To ensure a standard level of compliance with the ODBC interface,
+and to provide a means by which application vendors can determine
+whether a specific driver provides the functions they need, ODBC
+defines conformance levels for drivers in two areas:<A NAME="TI237"></A>
+<ul>
+<li class=fi><b>API</b>   Deals with supported ODBC function calls</li>
+<li class=ds><b>SQL grammar</b>   Deals with supported SQL statements and SQL datatypes
+</li>
+</ul>
+</p>
+<A NAME="TI238"></A><h4>API conformance levels</h4>
+<A NAME="TI239"></A><p>ODBC defines three API conformance levels, in order of increasing functionality:<A NAME="TI240"></A>
+<ul>
+<li class=fi><b>Core</b>   A set of core API functions that corresponds to the functions
+in the ISO Call Level Interface (CLI) and X/Open CLI specification </li>
+<li class=ds><b>Level 1</b>   Includes all Core API functions and several extended functions usually
+available in an OLTP relational DBMS</li>
+<li class=ds><b>Level 2</b>   Includes all Core and Level 1 API functions and additional extended
+functions
+</li>
+</ul>
+</p>
+<A NAME="TI241"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To ensure the proper ODBC driver API conformance
+level:</p>
+<ol><li class=fi><p>Sybase recommends that the ODBC drivers
+you use with PowerBuilder meet <i>Level 1 or higher</i> API
+conformance requirements. However, PowerBuilder might also work with
+drivers that meet Core level API conformance requirements.</p></li></ol>
+<br><A NAME="TI242"></A><h4>SQL conformance levels</h4>
+<A NAME="TI243"></A><p>ODBC defines three SQL grammar conformance levels, in order
+of increasing functionality:<A NAME="TI244"></A>
+<ul>
+<li class=fi><b>Minimum</b>   A set of SQL statements and datatypes that meets a basic level of
+ODBC conformance </li>
+<li class=ds><b>Core</b>   Includes all Minimum SQL grammar and additional statements and
+datatypes that roughly correspond to the X/Open and SAG
+CAE specification (1992) </li>
+<li class=ds><b>Extended</b>   Includes all Minimum and Core SQL grammar and an extended
+set of statements and datatypes that support common DBMS extensions
+to SQL
+</li>
+</ul>
+</p>
+<A NAME="TI245"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To ensure the proper ODBC driver SQL conformance
+level:</p>
+<ol><li class=fi><p>Sybase recommends that the ODBC drivers
+you use with PowerBuilder meet <i>Core or higher</i> SQL
+conformance requirements. However, PowerBuilder might also work with
+drivers that meet Minimum level SQL conformance requirements.</p></li></ol>
+<br><A NAME="CCJCBJCC"></A><h2>Obtaining ODBC drivers</h2>
+<A NAME="TI246"></A><h4>Two sources</h4>
+<A NAME="TI247"></A><p>There are two ways that you can obtain ODBC drivers for use
+with PowerBuilder: <A NAME="TI248"></A>
+<ul>
+<li class=fi><b>From Sybase (recommended)</b>   Install one or more of the ODBC drivers shipped with PowerBuilder.
+You can do this when you first install PowerBuilder, or later. </li>
+<li class=ds><b>From another vendor</b>   PowerBuilder Enterprise and PowerBuilder Professional let
+you access data with <i>any</i> Level 1 or higher ODBC-compliant
+drivers obtained from a vendor other than Sybase. In most cases,
+these drivers will work with PowerBuilder.
+</li>
+</ul>
+</p>
+<A NAME="TI249"></A><h2>Using ODBC drivers with PowerBuilder Desktop</h2>
+<A NAME="TI250"></A><h4>Using ODBC drivers that come with Desktop</h4>
+<A NAME="TI251"></A><p>If you are using PowerBuilder Desktop, you can access data
+using only the ODBC drivers that are shipped with the product. For
+a list of these drivers, see ODBC drivers in the online Help. Unlike
+PowerBuilder Enterprise and PowerBuilder Professional, with PowerBuilder
+Desktop you <i>cannot</i> use an ODBC driver obtained
+from another vendor.</p>
+<A NAME="TI252"></A><h4>Using existing Microsoft ODBC drivers</h4>
+<A NAME="TI253"></A><p>If you already have version 2.0 or later of any of the following
+Microsoft ODBC drivers installed and properly configured, you <i>can</i> use
+these drivers with PowerBuilder Desktop to connect to your data
+source:<A NAME="TI254"></A>
+<ul>
+<li class=fi>Microsoft Access (*.MDB)</li>
+<li class=ds>Microsoft Btrieve (*.DDF)</li>
+<li class=ds>Microsoft dBASE (*.DBF)</li>
+<li class=ds>Microsoft Excel (*.XLS)</li>
+<li class=ds>Microsoft FoxPro (*.DBF)</li>
+<li class=ds>Microsoft Paradox (*.DB)</li>
+<li class=ds>Microsoft Text (*.CSV, *.TXT)
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using DataDirect drivers is recommended</span> <A NAME="TI255"></A>PowerBuilder Desktop comes with DataDirect ODBC drivers for
+several of these data sources. You should use the DataDirect drivers
+whenever possible to access these data sources.</p>
+<A NAME="CCJDBHFG"></A><h2>Getting help with ODBC drivers</h2>
+<A NAME="TI256"></A><p>To ensure that you have up-to-date and accurate information
+about using your ODBC driver with PowerBuilder, get help as needed
+by doing one or more of the following: </p>
+<A NAME="TI257"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI258"></A>To get help on</th>
+<th  rowspan="1"  ><A NAME="TI259"></A>Do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI260"></A>Using the ODBC Data Source Administrator </td>
+<td  rowspan="1"  ><A NAME="TI261"></A>Click the Help button on each tab. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI262"></A>Completing the ODBC setup dialog box
+for your driver</td>
+<td  rowspan="1"  ><A NAME="TI263"></A>Click the Help button (if present) in
+the ODBC setup dialog box for your driver.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI264"></A>Using ASA</td>
+<td  rowspan="1"  ><A NAME="TI265"></A>See the ASA documentation.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI266"></A>Using an ODBC driver obtained from a
+vendor other than Sybase</td>
+<td  rowspan="1"  ><A NAME="TI267"></A>See the vendor's documentation
+for that driver.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI268"></A>Troubleshooting your ODBC connection</td>
+<td  rowspan="1"  ><A NAME="TI269"></A>Check for a technical document that describes
+how to connect to your ODBC data source. Updated information about
+connectivity issues is available on the <A HREF="http://support.sybase.com">Sybase Customer Service and Support Web site</A>
+.</td>
+</tr>
+</table>
+

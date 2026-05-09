@@ -1,0 +1,362 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Advanced ways to manipulate OLE objects </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp112.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp114.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF307127741"></A><h1>Advanced ways to manipulate OLE objects </h1>
+<A NAME="TI3566"></A><p>In addition to OLE objects in controls and objects for automation, PowerBuilder
+provides an interface to the underpinnings of OLE data storage.</p>
+<A NAME="TI3567"></A><p>OLE data is stored in objects called <strong>streams</strong>,
+which live in objects called <strong>storages</strong>. Streams
+and storages are analogous to the files and directories of a file
+system. By opening, reading, writing, saving, and deleting streams
+and storages, you can create, combine, and delete your OLE objects.
+PowerBuilder provides access to storages and streams with the OLEStorage
+and OLEStream object types.</p>
+<A NAME="TI3568"></A><p>When you define OLE controls and OLEObject variables, you
+have full access to the functionality of server applications and
+automation, which already provide you with much of OLE's
+power. You might never need to use PowerBuilder's storage
+and stream objects unless you want to construct complex combinations
+of stored data.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Storage files from other applications</span> <A NAME="TI3569"></A>This section discusses OLE storage files that a PowerBuilder
+application has built. Other PowerBuilder applications will be able
+to open the objects in a storage file built by PowerBuilder. Although
+Excel, Word, and other server applications store their native data
+in OLE storages, these files have their own special formats, and
+it is not advisable to open them directly as storage files. Instead,
+you should always insert them in a control (<b>InsertFile</b>)
+or connect to them for automation (<b>ConnectToObject</b>).</p>
+<A NAME="TI3570"></A><h2>Structure of an OLE storage</h2>
+<A NAME="TI3571"></A><p>An OLE storage is a repository of OLE data. A storage is like
+the directory structure on a disk. It can be an OLE object and can
+contain other OLE objects, each contained within the storage, or
+within a substorage within the storage. The substorages can be separate
+OLE objects&#8212;unrelated pieces like the files in a directory&#8212;or
+they can form a larger OLE object, such as a document that includes
+pictures as shown in <A HREF="apptechp113.htm#CEGEJCID">Figure 19-3</A>.</p>
+<A NAME="CEGEJCID"></A><caption><b>Figure 19-3: OLE storage structure</b></captionls>
+<br><img src="images/oleap05.gif">
+<A NAME="TI3572"></A><p>A storage or substorage that contains an OLE object has identifying information
+that tags it as belonging to a particular server application. Below that
+level, the individual parts should be manipulated only by that server application.
+You can open a storage that is a server's object to extract
+an object within the storage, but you should not change the storage.</p>
+<A NAME="TI3573"></A><p>A storage that is an OLE object has presentation information
+for the object. OLE does not need to start the server in order to
+display the object, because a rendering is part of the storage.</p>
+<A NAME="TI3574"></A><p>A storage might not contain an OLE object&#8212;it might
+exist simply to contain other storages. In this case, you cannot
+open the storage in a control (because there would be no object
+to insert).</p>
+<A NAME="TI3575"></A><h2>Object types for storages and streams</h2>
+<A NAME="TI3576"></A><p>PowerBuilder has two object types that are the equivalent
+of the storages and streams stored in OLE files. They are:<A NAME="TI3577"></A>
+<ul>
+<li class=fi>OLEStorage </li>
+<li class=ds>OLEStream 
+</li>
+</ul>
+</p>
+<A NAME="TI3578"></A><p>These objects are class user objects, like a Transaction or
+Message object. You declare a variable, instantiate it, and open
+the storage. When you are through with the storage, you close it
+and destroy the variable, releasing the OLE server and the memory
+allocated for the variable.</p>
+<A NAME="TI3579"></A><p>Opening a storage associates an OLEStorage variable with a
+file on disk, which can be a temporary file for the current session
+or an existing file that already contains an OLE object. If the
+file does not exist, PowerBuilder creates it.</p>
+<A NAME="TI3580"></A><p>You can put OLE objects in a storage with the <b>SaveAs</b> function.
+You can establish a connection between an OLE control in a window
+and a storage by calling the <b>Open</b> function for
+the OLE control.</p>
+<A NAME="TI3581"></A><p>A stream is not an OLE object and cannot be opened in a control.
+However, streams allow you to put your own information in a storage
+file. You can open a stream within a storage or substorage and read
+and write data to the stream, just as you might to a file.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Performance tip</span> <A NAME="TI3582"></A>Storages provide an efficient means of displaying OLE data.
+When you insert a file created by a server application into a control,
+OLE has to start the server application to display the object. When
+you open an object in an OLE storage, there is no overhead for starting
+the server&#8212;OLE uses the stored presentation information
+to display the object. There is no need to start the server if the
+user never activates the object. </p>
+<A NAME="X-REF307716618"></A><h2>Opening and saving storages</h2>
+<A NAME="TI3583"></A><p>PowerBuilder provides several functions for managing storages.
+The most important are <b>Open</b>, <b>Save</b>,
+and <b>SaveAs</b>.</p>
+<A NAME="TI3584"></A><h4>Using the Open function</h4>
+<A NAME="TI3585"></A><p>When you want to access OLE data in a file, call the <b>Open</b> function.
+Depending on the structure of the storage file, you might need to
+call <b>Open</b> more than once.</p>
+<A NAME="TI3586"></A><p>This code opens the root storage in the file into the control.
+For this syntax of <b>Open</b>, the root storage must
+be an OLE object, rather than a container that only holds other
+storages. (Always check the return code to see if an OLE function succeeded.)<p><PRE> result = ole_1.Open("MYFILE.OLE")</PRE></p>
+<A NAME="TI3587"></A><p>If you want to open a substorage in the file into the control,
+you have to call <b>Open</b> twice: once to open the
+file into an OLEStorage variable, and a second time to open the
+substorage into the control. <i>stg_data</i> is
+an OLEStorage variable that has been declared and instantiated using <b>CREATE</b>:<p><PRE> result = stg_data.Open("MYFILE.OLE")<br>result = ole_1.Open(stg_data, "mysubstorage")</PRE></p>
+<A NAME="TI3588"></A><h4>Using the Save function</h4>
+<A NAME="TI3589"></A><p>If the user activates the object in the control and edits
+it, then the server saves changes to the data in memory and sends
+a DataChange event to your PowerBuilder application. Then your application
+needs to call <b>Save</b> to make the changes in the
+storage file:<p><PRE> result = ole_1.Save()<br>IF result = 0 THEN result = stg_data.Save()</PRE></p>
+<A NAME="TI3590"></A><h4>Using the SaveAs function</h4>
+<A NAME="TI3591"></A><p>You can save an object in a control to another storage variable
+or file with the <b>SaveAs</b> function. The following code opens a storage
+file into a control, then opens another storage file, opens a substorage
+within that file, and saves the original object in the control as
+a substorage nested at a third level:<p><PRE> OLEStorage stg_data, stg_subdata<br>stg_data = CREATE OLEStorage<br>stg_subdata = CREATE OLEStorage<br>ole_1.Open("FILE_A.OLE")<br>stg_data.Open("FILE_B.OLE")<br>stg_subdata.Open("subdata", stgReadWrite!, &amp;<br>   stgExclusive!, stg_data)<br>ole_1.SaveAs(stg_subdata, "subsubdata")</PRE></p>
+<A NAME="TI3592"></A><p>The diagram illustrates how to open the nested storages so
+that you can perform the <b>SaveAs</b>. If any of the
+files or storages do not exist, <b>Open</b> and <b>SaveAs</b> create them.
+Note that if you call <b>Save</b> for the control before
+you call <b>SaveAs</b>, the control's object
+is saved in <i>FILE_A</i>. After calling <b>SaveAs</b>,
+subsequent calls to <b>Save</b> save the object in subsubdata
+in <i>FILE_B</i>.</p>
+<A NAME="CEGEDECG"></A><caption><b>Figure 19-4: Nested OLE storages</b></captionls>
+<br><img src="images/oleap06.gif">
+<A NAME="TI3593"></A><p>The following example shows a simpler way to create a sublevel
+without creating a storage at the third level. You do not need to
+nest storages at the third level, nor do you need to open the substorage
+to save to it:<p><PRE> OLEStorage stg_data, stg_subdata<br>stg_data = CREATE OLEStorage<br>stg_subdata = CREATE OLEStorage<br>ole_1.Open("FILE_A.OLE")<br>stg_data.Open("FILE_B.OLE")<br>ole_1.SaveAs(stg_data, "subdata")</PRE></p>
+<A NAME="TI3594"></A><h3>Getting information about storage members</h3>
+<A NAME="TI3595"></A><p>When a storage is open, you can use one of the Member functions
+to get information about the substorages and streams in that storage
+and change them.</p>
+<A NAME="TI3596"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-10: OLE storage Member functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3597"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI3598"></A>Result</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3599"></A><b>MemberExists</b></td>
+<td  rowspan="1"  ><A NAME="TI3600"></A>Checks to see if the specified member
+exists in a storage.<A NAME="TI3601"></A><p>Members can be either storages or streams. Names of members
+must be unique&#8212;you cannot have a storage and a stream with
+the same name. A member can exist but be empty.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3602"></A><b>MemberDelete</b></td>
+<td  rowspan="1"  ><A NAME="TI3603"></A>Deletes a member from a storage.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3604"></A><b>MemberRename</b></td>
+<td  rowspan="1"  ><A NAME="TI3605"></A>Renames a member in a storage.</td>
+</tr>
+</table>
+<A NAME="TI3606"></A><p>This code checks whether the storage subdata exists in <i>stg_data</i> before
+it opens it. (The code assumes that <i>stg_data</i> and <i>stg_subdata</i> have
+been declared and instantiated.)<p><PRE> boolean lb_exists<br>result = stg_data.MemberExists("subdata", lb_exists)<br>IF result = 0 AND lb_exists THEN<br>   result = stg_subdata.Open(stg_data, "subdata")<br>END IF</PRE></p>
+<A NAME="TI3607"></A><p>To use <b>MemberExists</b> with the storage member
+IOle10Native, use the following construction:<p><PRE> ole_storage.memberexists(char(1) + 'Ole10Native', &amp;<br>   lb_boolean)</PRE></p>
+<A NAME="TI3608"></A><p>The <FONT FACE="Courier New">char(1)</FONT> is required
+because the "I" in IOle10Native is not an I, as
+you see if you look at the storage with a utility such as Microsoft's
+DocFile Viewer.</p>
+<A NAME="TI3609"></A><p>You need to use a similar construction to open the stream.
+For example:<p><PRE> ole_stream.open(ole_storage, char(1) + 'Ole10Native', &amp;<br>   StgReadWrite!, StgExclusive!)</PRE></p>
+<A NAME="X-REF307386863"></A><h3>Example: building a storage</h3>
+<A NAME="TI3610"></A><p>Suppose you have several drawings of products and you want
+to display the appropriate image for each product record in a DataWindow
+object. The database record has an identifier for its drawing. In
+an application, you could call <b>InsertFile</b> using
+the identifier as the file name. However, calling the server application
+to display the picture is relatively slow.</p>
+<A NAME="TI3611"></A><p>Instead you could create a storage file that holds all the
+drawings, as shown in the diagram. Your application could open the
+appropriate substorage when you want to display an image.</p>
+<A NAME="TI3612"></A><caption><b>Figure 19-5: OLE storage file</b></captionls>
+<br><img src="images/oleap07.gif">
+<A NAME="TI3613"></A><p>The advantage of using a storage file like this one (as opposed
+to inserting files from the server application into the control)
+is both speed and the convenience of having all the pictures in
+a single file. Opening the pictures from a storage file is fast,
+because a single file is open and the server application does not
+need to start up to display each picture.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>OLE objects in the storage</span> <A NAME="TI3614"></A>Although this example illustrates a storage file that holds
+drawings only, the storages in a file do not have to belong to the
+same server application. Your storage file can include objects from
+any OLE server application, according to your application's
+needs.</p>
+<A NAME="TI3615"></A><p>This example is a utility application for building the storage
+file. The utility application is a single window that includes a
+DataWindow object and an OLE control. </p>
+<A NAME="TI3616"></A><p>The DataWindow object, called <b>dw_prodid</b>,
+has a single column of product identifiers. You should set up the
+database table so that the identifiers correspond to the file names
+of the product drawings. The OLE control, called <b>ole_product</b>,
+displays the drawings.</p>
+<A NAME="TI3617"></A><h4>List of scripts for the example</h4>
+<A NAME="TI3618"></A><p>The example has three main scripts:<A NAME="TI3619"></A>
+<ul>
+<li class=fi>The window's Open event script instantiates
+the storage variable, opens the storage file, and retrieves data
+for the DataWindow object. (Note that the application's
+Open event connects to the database.)</li>
+<li class=ds>The RowFocusChanged event of the DataWindow object
+opens the drawing and saves it in the storage file.</li>
+<li class=ds>The window's Close event script saves the
+storage file and destroys the variable.
+</li>
+</ul>
+</p>
+<A NAME="TI3620"></A><h4>Add controls to the window</h4>
+<A NAME="TI3621"></A><p>First, add the <b>dw_prodid</b> and <b>ole_product</b> controls
+to the window.</p>
+<A NAME="TI3622"></A><h4>Application Open event script</h4>
+<A NAME="TI3623"></A><p>In the application's Open event, connect to the database
+and open the window.</p>
+<A NAME="TI3624"></A><h4>Instance variable</h4>
+<A NAME="TI3625"></A><p>Declare an OLEStorage variable as an instance variable of
+the window:<p><PRE> OLEStorage stg_prod_pic</PRE></p>
+<A NAME="TI3626"></A><h4>Window Open event script</h4>
+<A NAME="TI3627"></A><p>The following code in the window's Open event instantiates
+an OLEStorage variable and opens the file <i>PICTURES.OLE</i> in
+that variable:<p><PRE> integer result<br>stg_prod_pic = CREATE OLEStorage<br>result = stg_prod_pic.Open("PICTURES.OLE")<br>dw_prod.SetTransObject(SQLCA)<br>dw_prod.Retrieve()</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Retrieve triggers the RowFocusChanged event</span> <A NAME="TI3628"></A>It is important that the code for creating the storage variable
+and opening the storage file comes before <b>Retrieve</b>. <b>Retrieve</b> triggers
+the RowFocusChanged event, and the RowFocusChanged event refers
+to the OLEStorage variable, so the storage must be open before you
+call <b>Retrieve</b>.</p>
+<A NAME="TI3629"></A><h4>RowFocusChanged event script</h4>
+<A NAME="TI3630"></A><p>The <b>InsertFile</b> function displays the drawing
+in the OLE control. This code in the RowFocusChanged event gets
+an identifier from the <b>prod_id</b> column
+in a DataWindow object and uses that to build the drawing's
+file name before calling <b>InsertFile</b>. The code
+then saves the displayed drawing in the storage:<p><PRE> integer result<br>string prodid<br>//Get the product identifier from the DataWindow.<br>prodid = this.Object.prod_id[currentrow]<br> <br>// Use the id to build the file name. Insert the <br>// file's object in the control.<br>result = ole_product.InsertFile( &amp;<br>   GetCurrentDirectory() + "\" + prodid + ".gif")<br> <br>// Save the OLE object to the storage. Use the <br>// same identifier to name the storage.<br>result = ole_product.SaveAs( stg_prod_pic, prodid)</PRE></p>
+<A NAME="TI3631"></A><h4>Close event script</h4>
+<A NAME="TI3632"></A><p>This code in the window's Close event saves the storage,
+releases the OLE storage from the server, and releases the memory
+used by the OLEStorage variable:<p><PRE> integer result<br>result = stg_prod_pic.Save()<br>DESTROY stg_prod_pic</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Check the return values</span> <A NAME="TI3633"></A>Be sure to check the return values when calling OLE functions.
+Otherwise, your application will not know if the operation succeeded.
+The sample code returns if a function fails, but you can display
+a diagnostic message instead.</p>
+<A NAME="TI3634"></A><h4>Running the utility application</h4>
+<A NAME="TI3635"></A><p>After you have set up the database table with the identifiers
+of the product pictures and created a drawing for each product identifier,
+run the application. As you scroll through the DataWindow object,
+the application opens each file and saves the OLE object in the
+storage.</p>
+<A NAME="TI3636"></A><h4>Using the storage file</h4>
+<A NAME="TI3637"></A><p>To use the images in an application, you can include the <b>prod_id</b> column
+in a DataWindow object and use the identifier to open the storage
+within the <i>PICTURES.OLE</i> file. The following
+code displays the drawing for the current row in the OLE control <b>ole_product</b> (typically,
+this code would be divided between several events, as it was in
+the sample utility application above):<p><PRE> OLEStorage stg_prod_pic<br>//Instantiate the storage variable and open the file<br>stg_prod_pic = CREATE OLEStorage<br>result = stg_prod_pic.Open("PICTURES.OLE")<br> <br>// Get the storage name from the DataWindow<br>// This assumes it has been added to the DataWindow's<br>// rowfocuschanging event<br>prodid = this.Object.prod_id[newrow]<br>//Open the picture into the control<br>result = ole_product.Open( stg_prod_pic, prodid )</PRE></p>
+<A NAME="TI3638"></A><p>The application would also include code to close the open
+storages and destroy the storage variable.</p>
+<A NAME="TI3639"></A><h2>Opening streams</h2>
+<A NAME="TI3640"></A><p>Streams contain the raw data of an OLE object. You would not
+want to alter a stream created by a server application. However,
+you can add your own streams to storage files. These streams can
+store information about the storages. You can write streams that
+provide labels for each storage or write a stream that lists the
+members of the storage.</p>
+<A NAME="TI3641"></A><p>To access a stream in an OLE storage file, you define a stream
+variable and instantiate it. Then you open a stream from a storage
+that has already been opened. Opening a stream establishes a connection
+between the stream variable and the stream data within a storage.</p>
+<A NAME="TI3642"></A><p>The following code declares and creates OLEStorage and OLEStream variables,
+opens the storage, and then opens the stream:<p><PRE> integer result<br>OLEStorage stg_pic<br>OLEStream stm_pic_label<br>/***************************************************<br>Allocate memory for the storage and stream variables<br>***************************************************/<br>stg_pic = CREATE OLEStorage<br>stm_pic_label = CREATE OLEStream<br>/***************************************************<br>Open the storage and check the return value<br>***************************************************/<br>result = stg_prod_pic.Open("picfile.ole")<br>IF result &lt;&gt; 0 THEN RETURN<br>/***************************************************<br>Open the stream and check the return value<br>***************************************************/<br>result = stm_pic_label.Open(stg_prod_pic, &amp;<br>   "pic_label", stgReadWrite!)<br>IF result &lt;&gt; 0 THEN RETURN</PRE></p>
+<A NAME="TI3643"></A><p>PowerBuilder has several stream functions for opening and
+closing a stream and for reading and writing information to and
+from the stream.</p>
+<A NAME="TI3644"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-11: Stream functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3645"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI3646"></A>Result</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3647"></A><b>Open</b></td>
+<td  rowspan="1"  ><A NAME="TI3648"></A>Opens a stream into the specified OLEStream
+variable. You must have already opened the storage that contains
+the stream.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3649"></A><b>Length</b> </td>
+<td  rowspan="1"  ><A NAME="TI3650"></A>Obtains the length of the stream in bytes.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3651"></A><b>Seek</b> </td>
+<td  rowspan="1"  ><A NAME="TI3652"></A>Positions the read/write pointer
+within the stream. The next read or write operation takes place
+at the pointer.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3653"></A><b>Read</b></td>
+<td  rowspan="1"  ><A NAME="TI3654"></A>Reads data from the stream beginning
+at the read/write pointer.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3655"></A><b>Write</b></td>
+<td  rowspan="1"  ><A NAME="TI3656"></A>Writes data to the stream beginning at
+the read/write pointer.<A NAME="TI3657"></A><p>If the pointer is not at the end, <b>Write</b> overwrites
+existing data. If the data being written is longer than the current
+length of the stream, the stream's length is extended.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3658"></A><b>Close</b></td>
+<td  rowspan="1"  ><A NAME="TI3659"></A>Closes the stream, breaking the connection
+between it and the OLEStream variable.</td>
+</tr>
+</table>
+<A NAME="TI3660"></A><h4>Example: writing and reading streams</h4>
+<A NAME="TI3661"></A><p>This example displays a picture of a product in the OLE control <b>ole_product</b> when
+the DataWindow object <b>dw_product</b> displays
+that product's inventory data. It uses the file constructed
+with the utility application described in the earlier example (see <A HREF="apptechp113.htm#X-REF307386863">"Example: building
+a storage"</A>). The
+pictures are stored in an OLE storage file, and the name of each
+picture's storage is also the product identifier in a database
+table. This example adds label information for each picture, stored
+in streams whose names are the product ID plus the suffix <b>_lbl</b>. </p>
+<A NAME="TI3662"></A><p><A HREF="apptechp113.htm#CEGEDCAD">Figure 19-6</A> shows
+the structure of the file.</p>
+<A NAME="CEGEDCAD"></A><caption><b>Figure 19-6: OLE storage file structure</b></captionls>
+<br><img src="images/oleap08.gif">
+<A NAME="TI3663"></A><p>The example has three scripts:<A NAME="TI3664"></A>
+<ul>
+<li class=fi>The window's Open event script opens the storage
+file and retrieves data for the DataWindow object. (Note that the
+application's Open event connects to the database.)</li>
+<li class=ds>The RowFocusChanged event of the DataWindow object
+displays the picture. It also opens a stream with a label for the
+picture and displays that label in a StaticText. The name of the
+stream is the product identifier plus the suffix<b> _lbl</b>.<br>
+If the label is empty (its length is zero), the script writes
+a label. To keep things simple, the data being written is the same
+as the stream name. (Of course, you would probably write the labels
+when you build the file and read them when you display it. For the
+sake of illustration, reading and writing the stream are both shown
+here.)<br></li>
+<li class=ds>The window's Close event script saves the
+storage file and destroys the variable.
+</li>
+</ul>
+</p>
+<A NAME="TI3665"></A><p>The OLEStorage variable <i>stg_prod_pic</i> is
+an instance variable of the window:<p><PRE> OLEStorage stg_prod_pic</PRE></p>
+<A NAME="TI3666"></A><p>The script for the window's Open event is:<p><PRE> integer result<br>stg_prod_pic = CREATE OLEStorage<br>result = stg_prod_pic.Open( is_ole_file)</PRE></p>
+<A NAME="TI3667"></A><p>The script for the RowFocusChanged event of <b>dw_prod</b> is:<p><PRE> integer result<br>string prodid, labelid, ls_data<br>long ll_stmlength<br>OLEStream stm_pic_label<br>/***************************************************<br>Create the OLEStream variable.<br>***************************************************/<br>stm_pic_label = CREATE OLEStream<br>/***************************************************<br>Get the product id from the DataWindow.<br>***************************************************/<br>this.Object.prod_id[currentrow]<br>/***************************************************<br>Open the picture in the storage file into the<br>control. The name of the storage is the product id.<br>***************************************************/<br>result = ole_prod.Open(stg_prod_pic, prodid)<br>IF result &lt;&gt; 0 THEN RETURN<br>/***************************************************<br>Construct the name of the product label stream and<br>open the stream.<br>***************************************************/<br> <br>labelid = prodid + "_lbl"<br>result = stm_pic_label.Open( stg_prod_pic, &amp;<br>   labelid, stgReadWrite! )<br>IF result &lt;&gt; 0 THEN RETURN<br>/***************************************************<br>Get the length of the stream. If there is data<br>(length &gt; 0), read it. If not, write a label.<br>***************************************************/<br>result = stm_pic_label.Length(ll_stmlength)<br>IF ll_stmlength &gt; 0 THEN<br>   result = stm_pic_label.Read(ls_data)<br>   IF result &lt;&gt; 0 THEN RETURN<br>   // Display the stream data in st_label<br>   st_label.Text = ls_data<br>ELSE<br>   result = stm_pic_label.Write( labelid )<br>   IF result &lt; 0 THEN RETURN<br>   // Display the written data in st_label<br>   st_label.Text = labelid<br>END IF<br>/****************************************************<br>Close the stream and release the variable's memory.<br>***************************************************/<br>result = stm_pic_label.Close()<br>DESTROY stm_pic_label</PRE></p>
+<A NAME="TI3668"></A><p>The script for the window's Close event is:<p><PRE> integer result<br>result = stg_prod_pic.Save()<br>DESTROY stg_prod_pic</PRE></p>
+<A NAME="TI3669"></A><h2>Strategies for using storages</h2>
+<A NAME="TI3670"></A><p>Storing data in a storage is not like storing data in a database.
+A storage file does not enforce any particular data organization;
+you can organize each storage any way you want. You can design a
+hierarchical system with nested storages, or you can simply put
+several substorages at the root level of a storage file to keep
+them together for easy deployment and backup. The storages in a single
+file can be from the different OLE server applications.</p>
+<A NAME="TI3671"></A><p>If your DBMS does not support a blob datatype or if your database administrator
+does not want large blob objects in a database log, you can use storages
+as an alternative way of storing OLE data.</p>
+<A NAME="TI3672"></A><p>It is up to you to keep track of the structure of a storage.
+You can write a stream at the root level that lists the member names
+of the storages and streams in a storage file. You can also write
+streams that contain labels or database keys as a way of documenting
+the storage.</p>
+

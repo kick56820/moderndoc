@@ -1,0 +1,45 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About validation rules </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp196.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp198.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF301085948"></A><h1>About validation rules </h1>
+<A NAME="TI6550"></A><p>When users enter data in a DataWindow object, you want to be
+sure the data is valid before using it to update the database. Validation
+rules provide one way to do this.</p>
+<A NAME="TI6551"></A><p>You usually define validation rules in the Database painter. To
+use a validation rule, you associate it with a column in the Database painter or DataWindow painter.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Another technique</span> <A NAME="TI6552"></A>You can also perform data validation through code tables,
+which are implemented through a column's edit style.</p>
+<A NAME="TI6553"></A>For more information, see <A HREF="pbugp193.htm#BFCBBIBJ">"About edit styles "</A>.</p>
+<A NAME="TI6554"></A><h2>Understanding validation rules</h2>
+<A NAME="TI6555"></A><p>Validation rules are criteria that a DataWindow object uses to validate
+data entered into a column by users. They are PowerBuilder-specific
+and therefore not enforced by the DBMS. </p>
+<A NAME="TI6556"></A><p>Validation rules assigned in the Database painter are used by default
+when you place columns in a DataWindow object. You can override the default
+rules in the DataWindow painter.</p>
+<A NAME="TI6557"></A><p>A validation rule is an expression that evaluates to either <b>TRUE</b> or <b>FALSE</b>.
+If the expression evaluates to <b>TRUE</b> for an entry
+into a column, PowerBuilder accepts the entry. If the expression evaluates
+to <b>FALSE</b>, the entry is not accepted and the ItemError
+event is triggered. By default, PowerBuilder displays a message box
+to the user. You can customize the message displayed when a value
+is rejected.</p>
+<A NAME="TI6558"></A><p>You can also code the ItemError event to cause different processing
+to happen.</p>
+<A NAME="TI6559"></A><p>For more information, see the chapter on using DataWindow objects
+in the<i> DataWindow Programmer's Guide</i>
+.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>At runtime</span> <A NAME="TI6560"></A>In scripts, you can use the <b>GetValidate</b> method
+to obtain the validation rule for a column and the <b>SetValidate</b> method
+to change the validation rule for a column.</p>
+<A NAME="TI6561"></A>For information about the <b>GetValidate</b> and <b>SetValidate</b> methods,
+see the online help.</p>
+

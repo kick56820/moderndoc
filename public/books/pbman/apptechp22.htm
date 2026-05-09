@@ -1,0 +1,26 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Efficient compiling and performance </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp21.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp23.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF356035643"></A><h1>Efficient compiling and performance </h1>
+<A NAME="TI414"></A><p>The way you write functions and define variables affects your
+productivity and your application's performance.</p>
+<A NAME="TI415"></A><h4>Short scripts for faster compiling</h4>
+<A NAME="TI416"></A><p>If you plan to build machine code dynamic libraries for your
+deployed application, keep scripts for functions and events short.
+Longer scripts take longer to compile. Break the scripts up so that
+instead of one long script, you have a script that makes calls to
+several other functions. Consider defining functions in user objects
+so that other objects can call the same functions. </p>
+<A NAME="TI417"></A><h4>Local variables for faster performance</h4>
+<A NAME="TI418"></A><p>The scope of variables affects performance. When you have
+a choice, use local variables, which provide the fastest performance.
+Global variables have the biggest negative impact on performance. </p>
+

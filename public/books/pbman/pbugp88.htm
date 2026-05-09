@@ -1,0 +1,333 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Building a new window</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp87.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp89.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF361718469"></A><h1>Building a new window</h1>
+<A NAME="TI2332"></A><p>This section describes how to build windows from scratch.
+You use this technique to create windows that are not based on existing
+windows.</p>
+<A NAME="TI2333"></A><h2>Creating a new window</h2>
+<A NAME="TI2334"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new window:</p>
+<ol><li class=fi><p>Open the New dialog box.</p></li>
+<li class=ds><p>On the PB Object tab page, select Window.</p></li>
+<li class=ds><p>Click OK.</p><p>The Window painter opens. The new window displays in the Window painter's
+Layout view and its default properties display in the Properties view. </p></li></ol>
+<br><A NAME="CHDCIHIE"></A><h2>Defining the window's properties</h2>
+<A NAME="TI2335"></A><p>Every window and control has a style that determines how it
+appears to the user. You define a window's style by choosing
+settings in the Window painter's Properties view. A window's style encompasses
+its:<A NAME="TI2336"></A>
+<ul>
+<li class=fi>Type</li>
+<li class=ds>Basic appearance</li>
+<li class=ds>Initial position on the screen</li>
+<li class=ds>Icon when minimized</li>
+<li class=ds>Pointer
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About defining a window's style</span> <A NAME="TI2337"></A>When you define a window's style in the Window painter,
+you are actually assigning values to the properties for the window.
+You can programmatically change a window's style during
+execution by setting its properties in scripts. For a complete list
+of window properties, see <i>Objects and Controls</i>
+.</p>
+<A NAME="TI2338"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify window properties:</p>
+<ol><li class=fi><p>Click
+the window's background to display the window's
+properties in the Properties view.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Another way to display window properties</span> <A NAME="TI2339"></A>You can also select the window name in the Control List view.</p>
+</li>
+<li class=ds><p>Choose the tab appropriate to the property you
+want to specify:</p></li></ol>
+<br><A NAME="TI2340"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI2341"></A>To specify the window's</th>
+<th  rowspan="1"  ><A NAME="TI2342"></A>Choose this tab</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2343"></A>Name, type, state, color, and whether
+a menu is associated with it</td>
+<td  rowspan="1"  ><A NAME="TI2344"></A>General</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2345"></A>Icon to represent the window when you
+minimize it</td>
+<td  rowspan="1"  ><A NAME="TI2346"></A>General</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2347"></A>Position and size when it displays at
+execution time</td>
+<td  rowspan="1"  ><A NAME="TI2348"></A>Other</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2349"></A>Default cursor whenever the mouse moves
+over the window</td>
+<td  rowspan="1"  ><A NAME="TI2350"></A>Other</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2351"></A>Horizontal and vertical scroll bar placement</td>
+<td  rowspan="1"  ><A NAME="TI2352"></A>Scroll</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2353"></A>Toolbar placement</td>
+<td  rowspan="1"  ><A NAME="TI2354"></A>Toolbar</td>
+</tr>
+</table>
+<A NAME="TI2355"></A><h3>Using the General property page</h3>
+<A NAME="TI2356"></A><p>Use the General property page to specify the following window
+information:</p>
+<A NAME="TI2357"></A><p><A NAME="TI2358"></A>
+<ul>
+<li class=fi>Window type</li>
+<li class=ds>Title bar text</li>
+<li class=ds>Menu name</li>
+<li class=ds>Color
+</li>
+</ul>
+</p>
+<A NAME="TI2359"></A><h4>Specifying the window's type</h4>
+<A NAME="TI2360"></A><p>The first thing you should do is specify the type of window
+you are creating. </p>
+<A NAME="TI2361"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the window's type:</p>
+<ol><li class=fi><p>In the Properties view for the window,
+select the General tab.</p></li>
+<li class=ds><p>Scroll down the property page and select the appropriate
+window type from the WindowType drop-down list.</p><br><img src="images/win6.gif"><br>
+</li></ol>
+<br><A NAME="TI2362"></A><p>Depending on the type of window, PowerBuilder enables or disables
+certain check boxes that specify other properties of the window.
+For example, if you are creating a main window, the Title Bar check
+box is disabled. Main windows <i>always</i> have title
+bars, so you cannot clear the Title Bar check box.</p>
+<A NAME="TI2363"></A><h4>Specifying other basic window properties</h4>
+<A NAME="TI2364"></A><p>By selecting and clearing check boxes on the General property
+page, you can specify whether the window is resizable or minimizable,
+is enabled, has a border, and so on.</p>
+<A NAME="TI2365"></A><p>Note the following:</p>
+<A NAME="TI2366"></A><p><A NAME="TI2367"></A>
+<ul>
+<li class=fi>A main window must
+have a title bar.</li>
+<li class=ds>A child window cannot have a menu.</li>
+<li class=ds>A response window cannot have a menu, Minimize box,
+or Maximize box
+</li>
+</ul>
+.</p>
+<A NAME="TI2368"></A><h4>Associating a menu with the window</h4>
+<A NAME="TI2369"></A><p>Many of your windows will have a menu associated with them.</p>
+<A NAME="TI2370"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To associate a menu with the window:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI2371"></A>
+<ul>
+<li class=fi>Enter
+the name of the menu in the Menu Name text box on the General property
+page</li>
+<li class=ds>Click the Browse button and select the menu from
+the Select Object dialog box, which displays a list of all menus
+available to the application
+</li>
+</ul>
+
+                          </p></li>
+<li class=ds><p>Click the Preview button in the PainterBar to
+see the menu.</p><p>For information about preview, see <A HREF="pbugp89.htm#X-REF298578397">"Viewing your work "</A>.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Changing the menu</span> <A NAME="TI2372"></A>You can change a menu associated with a window during execution
+using the <b>ChangeMenu</b> function. For more information,
+see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI2373"></A><h4>Choosing a window color</h4>
+<A NAME="TI2374"></A><p>You can change the background color of your window.</p>
+<A NAME="TI2375"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the color of a window:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI2376"></A>
+<ul>
+<li class=fi>Specify the color of the window from the BackColor
+drop-down list on the General property page.</li>
+<li class=ds>If the window is an MDI window, specify a color
+in the MDI Client Color drop-down list
+</li>
+</ul>
+.</p></li></ol>
+<br><A NAME="TI2377"></A><h4>Changing default window colors</h4>
+<A NAME="TI2378"></A><p>For main, child, pop-up, and response windows, the default
+color is ButtonFace if you are defining a 3D window, and white if
+you are not. If you or the user specified different display colors
+in the Windows Control Panel, a 3D window will display in the color
+that is set for the window background.</p>
+<A NAME="TI2379"></A><p>You can change the default for windows that are not 3D in
+the Application painter Properties view. To do so, click the Additional
+Properties button on the General page and modify the Background
+color on the Text Font tab page. New windows that are not 3D will
+have the new color you specified.</p>
+<A NAME="TI2380"></A><p>For more about using colors in windows, including
+how to define your own custom colors, see <A HREF="pbugp93.htm#CHDBECGD">Chapter 12, "Working with Controls ."</A></p>
+<A NAME="TI2381"></A><h4>Choosing the window icon</h4>
+<A NAME="TI2382"></A><p>If the window can be minimized, you can specify an icon to
+represent the minimized window. If you do not choose an icon, PowerBuilder
+uses the application icon for the minimized window.</p>
+<A NAME="TI2383"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To choose the window icon:</p>
+<ol><li class=fi><p>Click the window's background
+so the Properties view displays window properties.</p></li>
+<li class=ds><p>Select the General tab.</p></li>
+<li class=ds><p>Choose the icon from the Icon drop-down list or
+use the Browse (...) button to select an icon (.<i>ICO</i>)
+file.</p><p>The icon you chose displays in the Icon list.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Changing the icon during execution</span> <A NAME="TI2384"></A>You can change the window icon during execution by assigning
+in code the name of the icon file to the window's Icon
+property, window.Icon.</p>
+<A NAME="TI2385"></A><h3>Choosing the window's size and position</h3>
+<A NAME="TI2386"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To resize a window in the Layout view:</p>
+<ol><li class=fi><p>Drag the edge of the window in the Window
+painter's Layout view.</p></li></ol>
+<br><A NAME="TI2387"></A><p>Resizing a window is easiest using the Layout view, but you
+can also change the window's width and height properties
+in the Properties view.</p>
+<A NAME="TI2388"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a window's position and size:</p>
+<ol><li class=fi><p>Click the window's background
+so the Properties view displays window properties.</p></li>
+<li class=ds><p>Select the Other tab.</p></li>
+<li class=ds><p>Enter values for x and y locations in PowerBuilder
+units.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About x and y values</span> <A NAME="TI2389"></A>For main, pop-up, response, and MDI frame windows, x and y
+locations are relative to the upper-left corner of the screen. For
+child windows, x and y are relative to the parent.</p>
+</li>
+<li class=ds><p>Enter values for width and height in PowerBuilder
+units.</p><p>The size of the window changes in the Layout view.</p></li>
+<li class=ds><p>To see the position of the window, click the Preview
+button in the PainterBar (not the Preview button on the PowerBar).</p></li>
+<li class=ds><p>To return to PowerBuilder, close the window.</p><p>For information about preview, see <A HREF="pbugp89.htm#X-REF298578397">"Viewing your work "</A>.</p></li></ol>
+<br><A NAME="TI2390"></A><h4>About PowerBuilder units</h4>
+<A NAME="TI2391"></A><p>All window measurements are in PowerBuilder units (PBUs).
+Using these units, you can build applications that look similar
+on different resolution screens. A PBU is defined in terms of logical
+inches. The size of a logical inch is defined by your operating
+system as a specific number of pixels. The number is dependent on
+the display device. Windows typically uses 96 pixels per logical
+inch for small fonts and 120 pixels per logical inch for large fonts. </p>
+<A NAME="TI2392"></A><p>Almost all sizes in the Window painter and in scripts are
+expressed as PowerBuilder units. The two exceptions are text size,
+which is expressed in points, and grid size in the Window and DataWindow
+painters, which is in pixels.</p>
+<A NAME="TI2393"></A><p>For more about PowerBuilder units, see the <i>PowerScript
+Reference</i>
+.</p>
+<A NAME="TI2394"></A><h3>Choosing the window's pointer</h3>
+<A NAME="TI2395"></A><p>The default pointer used when the mouse is over a window is
+an arrow. You can change this default on the Other page in the properties
+view. </p>
+<A NAME="TI2396"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To choose the window pointer:</p>
+<ol><li class=fi><p>Click the window's background
+so the Properties view displays window properties.</p></li>
+<li class=ds><p>Select the Other tab.</p></li>
+<li class=ds><p>At the bottom of the property page, choose the
+pointer from the Pointer drop-down list or use the Browse (...)
+button to select a cursor (.<i>CUR</i>) file.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Specifying the pointer for a control</span> <A NAME="TI2397"></A>You can specify the pointer that displays when the mouse is
+over an individual control. Select the control to display the Properties
+view for the control, then specify the Pointer property on the Other
+page.</p>
+<A NAME="TI2398"></A><h3>Specifying window scrolling</h3>
+<A NAME="TI2399"></A><p>If your window is resizable, it is possible that not all the
+window's contents will be visible during execution. In
+such cases, you should make the window scrollable by providing vertical
+and horizontal scroll bars. You do this on the Scroll property page.</p>
+<A NAME="TI2400"></A><p>By default, PowerBuilder controls scrolling when scroll bars
+are present. You can control the amount of scrolling.</p>
+<A NAME="TI2401"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify window scrolling:</p>
+<ol><li class=fi><p>Click the window's background
+so the Properties view displays window properties.</p></li>
+<li class=ds><p>Select the Scroll tab.</p></li>
+<li class=ds><p>Indicate which scroll bars you want to display
+by selecting the HScrollBar and VScrollBar check boxes.</p></li>
+<li class=ds><p>Specify scrolling characteristics as follows:</p><A NAME="TI2402"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI2403"></A>Option</th>
+<th  rowspan="1"  ><A NAME="TI2404"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2405"></A>UnitsPerLine </td>
+<td  rowspan="1"  ><A NAME="TI2406"></A>The number of PowerBuilder units to scroll
+up or down when the user clicks the up or down arrow in the vertical scroll
+bar. When the value is 0 (the default), it scrolls 1/100 the
+height of the window.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2407"></A>UnitsPerColumn </td>
+<td  rowspan="1"  ><A NAME="TI2408"></A>The number of PowerBuilder units to scroll
+right or left when the user clicks the right or left arrow in the
+horizontal scroll bar. When the value is 0 (the default), it scrolls
+1/100 the width of the window.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2409"></A>ColumnsPerPage </td>
+<td  rowspan="1"  ><A NAME="TI2410"></A>The number of columns to scroll when
+the user clicks the horizontal scroll bar itself. When the value
+is 0 (the default), it scrolls 10 columns.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2411"></A>LinesPerPage </td>
+<td  rowspan="1"  ><A NAME="TI2412"></A>The number of lines to scroll when the
+user clicks the vertical scroll bar itself. When the value is 0
+(the default), it scrolls 10 lines.</td>
+</tr>
+</table>
+</li></ol>
+<br><A NAME="TI2413"></A><h3>Specifying toolbar properties</h3>
+<A NAME="TI2414"></A><p>You can specify whether or not you want to display a menu
+toolbar (if the menu you associate with your window assigns toolbar
+buttons to menu objects) in your window. If you choose to display
+the toolbar, you can specify the location for it.</p>
+<A NAME="TI2415"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify toolbar properties:</p>
+<ol><li class=fi><p>Click the window's background
+so the Properties view displays window properties.</p></li>
+<li class=ds><p>Select the Toolbar tab.</p></li>
+<li class=ds><p>To display the toolbar with your window, select
+the ToolbarVisible check box.</p></li>
+<li class=ds><p>Set the location of the toolbar by selecting an
+alignment option from the ToolbarAlignment drop-down list.</p></li>
+<li class=ds><p>If you choose Float as your toolbar alignment,
+you must set the following values:</p><p><A NAME="TI2416"></A>
+<ul>
+<li class=fi>X and Y coordinates
+for the toolbar</li>
+<li class=ds>Width and Height for the toolbar
+</li>
+</ul>
+</p></li></ol>
+<br><A NAME="TI2417"></A><p>For more information about defining toolbars,
+see <A HREF="pbugp115.htm#CFHCHJCB">Chapter 14, "Working with Menus and Toolbars."</A></p>
+<A NAME="CHDDAGDE"></A><h2>Adding controls</h2>
+<A NAME="TI2418"></A><p>When you build a window, you place controls, such as CheckBox, CommandButton,
+and MultiLineEdit controls, in the window to request and receive
+information from the user and to present information to the user.</p>
+<A NAME="TI2419"></A><p>After you place a control in the window, you can define its
+style, move and resize it, and write scripts to determine how the
+control responds to events.</p>
+<A NAME="TI2420"></A><p>For more information, see <A HREF="pbugp93.htm#CHDBECGD">Chapter 12, "Working with Controls ."</A></p>
+<A NAME="CHDBHCGB"></A><h2>Adding nonvisual objects</h2>
+<A NAME="TI2421"></A><p>You can
+automatically create nonvisual objects in a window by inserting
+a nonvisual object in the window. You do this if you want the services
+of a nonvisual object available to your window. The nonvisual object
+you insert can be a custom class or standard class user object. </p>
+<A NAME="TI2422"></A><p>You insert a nonvisual object in a window
+in the same way you insert one in a user object. For more information,
+see <A HREF="pbugp129.htm#BABBGAEH">"Using class user objects"</A>.</p>
+<A NAME="TI2423"></A><h2>Saving the window</h2>
+<A NAME="TI2424"></A><p>You can save the window you are working on at any time.</p>
+<A NAME="TI2425"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To save a window:</p>
+<ol><li class=fi><p>Select File&gt;Save from the menu
+bar.</p><p>If you have previously saved the window, PowerBuilder saves
+the new version in the same library and returns you to the Window
+painter workspace.</p><p>If you have not previously saved the window, PowerBuilder
+displays the Save Window dialog box.</p></li>
+<li class=ds><p>Name the window in the Windows text box (see below).</p></li>
+<li class=ds><p>Type comments in the Comments text box to describe
+the window.</p><p>These comments display in the Select Window window and in
+the Library painter. It is a good idea to use comments so you and
+others can easily remember the purpose of the window later.</p></li>
+<li class=ds><p>Specify the library where you want to save the
+window.</p></li>
+<li class=ds><p>Click OK.</p></li></ol>
+<br><A NAME="TI2426"></A><h4>Naming the window</h4>
+<A NAME="TI2427"></A><p>The window name can be any valid PowerBuilder identifier of
+up to 40 characters. For information about PowerBuilder identifiers,
+see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI2428"></A><p>A commonly used convention is to preface all window names
+with <b>w_</b> and use a suffix that helps
+you identify the particular window. For example, you might name
+a window that displays employee data <b>w_empdata</b>.</p>
+

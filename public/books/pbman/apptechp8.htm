@@ -1,0 +1,87 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Terminology review</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp7.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp9.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF355156063"></A><h1>Terminology review</h1>
+<A NAME="TI96"></A><h4>Classes, properties, and methods</h4>
+<A NAME="TI97"></A><p>In object-oriented programming, you create reusable <strong>classes</strong> to
+perform application processing. These classes include <strong>properties</strong> and <strong>methods</strong> that
+define the class's behavior. To perform application processing,
+you create <strong>instances</strong> of these classes. PowerBuilder
+implements these concepts as follows:<A NAME="TI98"></A>
+<ul>
+<li class=fi><b>Classes</b>   PowerBuilder objects (such as windows, menus, window controls,
+and user objects)</li>
+<li class=ds><b>Properties</b>   Object variables and instance variables</li>
+<li class=ds><b>Methods</b>   Events and functions
+</li>
+</ul>
+</p>
+<A NAME="TI99"></A><p>The remaining discussions in this chapter use this PowerBuilder terminology.</p>
+<A NAME="TI100"></A><h4>Fundamental principles</h4>
+<A NAME="TI101"></A><p>Object-oriented programming tools support three fundamental
+principles: inheritance, encapsulation, and polymorphism.</p>
+<p><b>Inheritance</b>   Objects can be derived from existing objects, with access
+to their visual component, data, and code. Inheritance saves coding
+time, maximizes code reuse, and enhances consistency. A descendent
+object is also called a <strong>subclass</strong>.</p>
+<p><b>Encapsulation</b>   An object contains its own data and code, allowing outside access
+as appropriate. This principle is also called <i>information
+hiding</i>. PowerBuilder enables and supports encapsulation
+by giving you tools that can enforce it, such as access and scope.
+However, PowerBuilder itself does not require or automatically enforce
+encapsulation.</p>
+<p><b>Polymorphism</b>   Functions with the same name behave differently, depending on
+the referenced object. Polymorphism enables you to provide a consistent interface
+throughout the application and within all objects.</p>
+<A NAME="TI102"></A><h4>Visual objects</h4>
+<A NAME="TI103"></A><p>Many current applications make heavy use of object-oriented
+features for visual objects such as windows, menus, and visual user
+objects. This allows an application to present a consistent, unified
+look and feel.</p>
+<A NAME="TI104"></A><h4>Nonvisual objects</h4>
+<A NAME="TI105"></A><p>To fully benefit from PowerBuilder's object-oriented
+capabilities, consider implementing class user objects, also known
+as nonvisual user objects:</p>
+<p><b>Standard class user objects</b>   Inherit their definitions from built-in PowerBuilder system
+objects, such as Transaction, Message, or Error. The <b>nvo_transaction</b> Transaction
+object in the Code Examples sample application is an example of
+a subclassed standard class user object. Creating customized standard
+class user objects allows you to provide powerful extensions to built-in
+PowerBuilder system objects.</p>
+<p><b>Custom class user objects</b>   Inherit
+their definitions from the PowerBuilder NonVisualObject class. Custom
+class user objects encapsulate data and code. This type of class
+user object allows you to define an object class from scratch. The <b>u_business_object</b> user
+object in the Code Examples sample application is an example of
+a custom class user object. To make the most of PowerBuilder's object-oriented
+capabilities, you must use custom class user objects. Typical uses
+include:<A NAME="TI106"></A>
+<ul>
+<li class=fi><b>Global
+variable container</b>   The custom class user object contains variables and functions
+for use across your application. You encapsulate these variables
+as appropriate for your application, allowing access directly or
+through object functions.</li>
+<li class=ds><b>Service object</b>   The custom class user object contains functions and variables
+that are useful either in a specific context (such as a DataWindow)
+or globally (such as a collection of string-handling functions).</li>
+<li class=ds><b>Business rules</b>   The custom class user object contains functions and variables
+that implement business rules. You can either create one object for
+all business rules or create multiple objects for related groups
+of business rules.</li>
+<li class=ds><b>Distributed computing</b>   The custom class user object contains functions that run on
+a server or cluster of servers.<br>
+For more information, see Part 6, "Distributed Application
+Techniques."<br>
+</li>
+</ul>
+</p>
+

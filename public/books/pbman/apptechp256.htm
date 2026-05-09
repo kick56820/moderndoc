@@ -1,0 +1,65 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Managing information in the Windows registry</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp255.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp257.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF355583794"></A><h1>Managing information in the Windows registry</h1>
+<A NAME="TI7617"></A><h4>Functions for accessing the Registry</h4>
+<A NAME="TI7618"></A><p>PowerBuilder provides several functions you can use to manage
+application settings in the Windows registry.</p>
+<A NAME="TI7619"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 38-2: PowerBuilder registry setting functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7620"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI7621"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7622"></A>RegistryDelete</td>
+<td  rowspan="1"  ><A NAME="TI7623"></A>Deletes a key or a value in a key in
+the Windows registry.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7624"></A>RegistryGet</td>
+<td  rowspan="1"  ><A NAME="TI7625"></A>Gets a value from the Windows registry.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7626"></A>RegistryKeys</td>
+<td  rowspan="1"  ><A NAME="TI7627"></A>Obtains a list of the keys that are child
+items (subkeys) one level below a key in the Windows registry.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7628"></A>RegistrySet</td>
+<td  rowspan="1"  ><A NAME="TI7629"></A>Sets the value for a key and value name
+in the Windows registry. If the key or value name does not exist,
+RegistrySet creates a new key or value name.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7630"></A>RegistryValues</td>
+<td  rowspan="1"  ><A NAME="TI7631"></A>Obtains a list of named values associated
+with a key.</td>
+</tr>
+</table>
+<A NAME="TI7632"></A><p>For the complete information for these functions,
+see the <i>PowerScript Reference</i>
+. </p>
+<A NAME="TI7633"></A><h4>Overriding initialization files</h4>
+<A NAME="TI7634"></A><p>You can use the <b>ProfileString</b> functions
+to obtain information from the registry instead of from an initialization
+file. Create a new key called <i>INIFILEMAPPING</i> at
+the following location: <p><PRE>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion</PRE></p>
+</p>
+<A NAME="TI7635"></A><p>To override the <i>WIN.INI</i> file, create
+a subkey in <i>INIFILEMAPPING</i> called <i>WIN.INI</i> with
+the following value:<p><PRE>                  #usr:software\microsoft\windows\currentversion\extensions</PRE></p>
+<A NAME="TI7636"></A><p>The examples that follow use the registry to keep track of
+database connection parameters. The connection parameters are maintained
+in the registry in the <i>MyCo\MyApp\database</i> branch
+under <i>HKEY_CURRENT_USER\Software</i>.</p>
+<A NAME="TI7637"></A><h4>Reading values from the registry </h4>
+<A NAME="TI7638"></A><p>The following script retrieves values for the default Transaction
+object from the registry.</p>
+<A NAME="TI7639"></A><p><p><PRE> RegistryGet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>   "dbms", sqlca.DBMS)<br>RegistryGet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "database", sqlca.database)<br>RegistryGet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "userid", sqlca.userid)<br>RegistryGet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "dbpass", sqlca.dbpass)<br>RegistryGet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "logid", sqlca.logid)<br>RegistryGet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "logpass", sqlca.logpass)<br>RegistryGet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "servername", sqlca.servername)<br>RegistryGet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "dbparm", sqlca.dbparm)</PRE></p>
+<A NAME="TI7640"></A><h4>Setting values in the registry </h4>
+<A NAME="TI7641"></A><p>The following script stores the values for the Transaction
+object in the registry:</p>
+<A NAME="TI7642"></A><p><p><PRE> RegistrySet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "dbms", sqlca.DBMS)<br>RegistrySet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "database", sqlca.database)<br>RegistrySet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "userid", sqlca.userid)<br>RegistrySet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "dbpass", sqlca.dbpass)<br>RegistrySet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "logid", sqlca.logid)<br>RegistrySet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "logpass", sqlca.logpass)<br>RegistrySet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "servername", sqlca.servername)<br>RegistrySet("HKEY_CURRENT_USER\Software\MyCo\MyApp\database", &amp;<br>    "dbparm", sqlca.dbparm)</PRE></p>
+

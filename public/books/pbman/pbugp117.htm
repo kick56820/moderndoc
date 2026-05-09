@@ -1,0 +1,148 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the Menu painter</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp116.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp118.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CACDIAEFB"></A><h1>Using the Menu painter</h1>
+<A NAME="TI3218"></A><p>The Menu painter has several
+views where you can specify menu items and how they look and behave.
+For general information about views, how you use them, and how they
+are related, see <A HREF="pbugp40.htm#CAICBJFC">"Views in painters that edit
+objects"</A>. </p>
+<A NAME="TI3219"></A><p>In addition to customizing the style of a menu in the Menu
+painter, you can also customize the style of a toolbar associated
+with a menu. For information, see <A HREF="pbugp120.htm#CACDIAEFE">"Providing toolbars "</A>.</p>
+<A NAME="BGEDFDEG"></A><h2>Menu painter views</h2>
+<A NAME="TI3220"></A><p>You use two views to specify menu items that display in the
+menu bar and under menu bar items:</p>
+<A NAME="TI3221"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 14-1: Views in the Menu painter</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3222"></A>This view</th>
+<th  rowspan="1"  ><A NAME="TI3223"></A>Displays</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3224"></A>Tree Menu view</td>
+<td  rowspan="1"  ><A NAME="TI3225"></A>All the menu items at the same time when
+the tree is fully expanded. To fully expand the tree or collapse
+the expanded tree, press Ctrl+Shift+*.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3226"></A>WYSIWYG Menu view</td>
+<td  rowspan="1"  ><A NAME="TI3227"></A>The menu as you will see it and use it
+in your application, with the exception of invisible menu items
+that do display.</td>
+</tr>
+</table>
+<A NAME="TI3228"></A><p>The Tree Menu view and the WYSIWYG Menu view are equivalent.
+You can use either view to insert new menu items on the menu bar
+or on drop-down or cascading menus, or to modify existing menu items.
+The menus in both views change when you make a change in either
+view.</p>
+<A NAME="TI3229"></A><p>You specify menu properties in two views:</p>
+<A NAME="TI3230"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 14-2: Views in the Menu painter</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3231"></A>This view</th>
+<th  rowspan="1"  ><A NAME="TI3232"></A>Displays</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3233"></A>Properties view (for the top-level menu
+object)</td>
+<td  rowspan="1"  ><A NAME="TI3234"></A>General and Appearance tab pages for
+setting menu-wide properties</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3235"></A>Properties view (for submenu items)</td>
+<td  rowspan="1"  ><A NAME="TI3236"></A>General and Toolbar tab pages for setting
+properties for submenu items and toolbars</td>
+</tr>
+</table>
+<A NAME="TI3237"></A><h4>Views for the top level menu object</h4>
+<A NAME="TI3238"></A><p>This Menu painter layout is for the top level menu object,
+m_pbapp_frame. The Tree Menu view is in the top
+left and the WYSIWYG Menu view is in the top middle. The General
+and Appearance tab pages display in the Properties view on the right.
+For more information about these properties, see <A HREF="pbugp119.htm#BGEHBCAC">"Setting menu style properties
+for contemporary menus"</A>.</p>
+<br><img src="images/menu03.gif">
+<A NAME="TI3239"></A><h4>Views for submenu items</h4>
+<A NAME="TI3240"></A><p>This Menu painter layout is for a menu item under the top
+level, in this case the Open menu item. The Tree Menu view is in
+the top left and the WYSIWYG Menu view is in the top middle. The
+General and Toolbar tab pages display in the Properties view on
+the right. For more information about these properties, see <A HREF="pbugp119.htm#BGEFJDHB">"Setting General properties for menu items"</A>.</p>
+<br><img src="images/menu04.gif">
+<A NAME="BGEGHHHB"></A><h2>Menu styles</h2>
+<A NAME="TI3241"></A><p>A menu can have a contemporary or traditional style.</p>
+<A NAME="TI3242"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI3243"></A>Menu style</th>
+<th  rowspan="1"  ><A NAME="TI3244"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3245"></A>Contemporary</td>
+<td  rowspan="1"  ><A NAME="TI3246"></A>A 3D-style menu similar to Microsoft
+Office 2003 and Visual Studio 2005 menus</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3247"></A>Traditional</td>
+<td  rowspan="1"  ><A NAME="TI3248"></A>Window default menu style which has a
+flat appearance</td>
+</tr>
+</table>
+<A NAME="TI3249"></A><p>Menus that you import or migrate from earlier versions of
+PowerBuilder have the traditional style, and new menus use the traditional
+menu style by default. The new contemporary menu style has a three-dimensional
+menu appearance that can include images and menu title bands. With
+a contemporary menu, you can set the MenuAnimation, MenuImage, and
+MenuTitleText at runtime using scripts. </p>
+<A NAME="TI3250"></A><p>You select a menu style on the Appearance tab of the Properties
+view for the top-level menu object in the Menu painter. You must
+select the top-level menu object in the Tree Menu view of the Menu
+painter to display its Properties view.</p>
+<A NAME="TI3251"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the menu style:</p>
+<ol><li class=fi><p>Select the top-level menu object.</p></li>
+<li class=ds><p>In the Appearance tab page, select the menu style
+you want, contemporarymenu! or traditionalmenu!</p></li></ol>
+<br><img src="images/genapp.gif">
+<br><A NAME="TI3252"></A><p>If you select <FONT FACE="Courier New">contemporarymenu!</FONT> in
+the Menu Style drop-down list, you can customize the display properties
+for that style and have them apply to all menu items in the current
+menu. If you select <FONT FACE="Courier New">traditionalmenu!</FONT> the
+rest of the menu style properties are grayed. </p>
+<A NAME="TI3253"></A><h4>Images for menus and toolbars</h4>
+<A NAME="TI3254"></A><p>Contemporary menus can include images. You can use icons,
+bitmaps, GIF files, and JPEG files for both contemporary menus and
+traditional and contemporary toolbars. </p>
+<A NAME="TI3255"></A><p>All stock icons have a transparent background. Other icon
+and GIF files with transparent backgrounds are always displayed
+with a transparent background. If you want a bitmap to display with
+a transparent background, the bitmap must use button face as its
+background color. This applies whatever the background color of
+the menu or toolbar is set to. There is currently no property that
+allows you to specify that an image has a transparent background.</p>
+<A NAME="TI3256"></A><h4>When an icon file includes several images</h4>
+<A NAME="TI3257"></A><p>With
+the contemporary menu style and toolbar style, when an icon file
+includes several images, PowerBuilder uses the following image selection
+rules:</p>
+<A NAME="TI3258"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI3259"></A>If the images . . .</th>
+<th  rowspan="1"  ><A NAME="TI3260"></A>PowerBuilder displays . . .</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3261"></A>Are all the same size</td>
+<td  rowspan="1"  ><A NAME="TI3262"></A>8 bit, 16 bit, 24 bit, 32 bit, and 4
+bit images in that order. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3263"></A>Include 16 bit*16 bit images and
+also other sized images</td>
+<td  rowspan="1"  ><A NAME="TI3264"></A>16 bit*16 bit images. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3265"></A>Do not include 16 bit*16 bit images</td>
+<td  rowspan="1"  ><A NAME="TI3266"></A>The image with the image size closest
+to 16 bit. For example, if one icon file contains 24*24
+bit images and another icon file contains 32*32 bit images,
+then PowerBuilder selects the 24*24 bit images.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3267"></A>Are greater than 16 bit images</td>
+<td  rowspan="1"  ><A NAME="TI3268"></A>The image as 16*16 bit or 32*32
+bit. If the icon image is 16*16, then it displays as 16*16.
+If the icon image is larger than 16*16, it will be displayed
+as 32*32.</td>
+</tr>
+</table>
+

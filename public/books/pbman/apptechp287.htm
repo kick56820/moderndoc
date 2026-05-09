@@ -1,0 +1,162 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+PowerBuilder components on EAServer </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp286.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp288.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBBJEIE"></A><h1>PowerBuilder components on EAServer </h1>
+<A NAME="TI8339"></A><p>To run PowerBuilder components in <ABBR title = "e a server" >EAServer</ABBR>,
+the runtime libraries for the version and build number of PowerBuilder
+in which the components were developed must be available on the
+server. When you install a maintenance release of PowerBuilder and
+deploy new or updated components to <ABBR title = "e a server" >EAServer</ABBR>, make
+sure that the PowerBuilder VM on the servers is also updated. </p>
+<A NAME="TI8340"></A><p>The files listed in <A HREF="apptechp287.htm#BAJJCDBI">Table 41-16</A> are required on the <ABBR title = "e a server" >EAServer</ABBR> host on which components
+generated in PowerBuilder will run. If PowerBuilder components do
+not use a feature or database interface listed in the table, the
+file does not need to be installed on the server. The PowerBuilder
+VM also requires the EAServer <i>LIBJCC</i> file and
+its dependent files. In the UNIX column of the table, <i>ext</i> represents
+the platform-specific extension for library names; for example,
+on Solaris this file is <i>libpbvm105x.so</i>.</p>
+<A NAME="BAJJCDBI"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-16: PowerBuilder files required on <ABBR title = "e a server" >EAServer</ABBR> host</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8341"></A>Windows</th>
+<th  rowspan="1"  ><A NAME="TI8342"></A>UNIX</th>
+<th  rowspan="1"  ><A NAME="TI8343"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8344"></A><i>PBVM105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8345"></A><i>libpbvm105x</i>.<i>ext</i><br></td>
+<td  rowspan="1"  ><A NAME="TI8346"></A>PowerBuilder virtual machine (required
+for all PowerBuilder components)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8347"></A><i>PBSHR105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8348"></A><i>pbshr105</i>.<i>ext</i></td>
+<td  rowspan="1"  ><A NAME="TI8349"></A>Required by PowerBuilder virtual machine</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8350"></A><i>PBDWE105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8351"></A><i>libpbdwe105x</i>.<i>ext</i></td>
+<td  rowspan="1"  ><A NAME="TI8352"></A>DataStore support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8353"></A><i>PBJAG105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8354"></A><i>libpbjag105x</i>.<i>ext</i>, <i>pbjag105</i>.<i>ext</i></td>
+<td  rowspan="1"  ><A NAME="TI8355"></A>PowerBuilder support in <ABBR title = "e a server" >EAServer</ABBR></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8356"></A><i>PBDWR105.PBD</i></td>
+<td  rowspan="1"  ><A NAME="TI8357"></A><i>pbdwr105.pbd</i></td>
+<td  rowspan="1"  ><A NAME="TI8358"></A>Web DataWindow support (requires PBDWE)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8359"></A><i>htmldw.js</i></td>
+<td  rowspan="1"  ><A NAME="TI8360"></A><i>htmldw.js</i></td>
+<td  rowspan="1"  ><A NAME="TI8361"></A>Web DataWindow support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8362"></A><i>PBRTC105.DLL</i> and additional
+runtime files listed in <A HREF="apptechp280.htm#BAJFAHDA">Table 41-4</A></td>
+<td  rowspan="1"  ><A NAME="TI8363"></A>&#8212;</td>
+<td  rowspan="1"  ><A NAME="TI8364"></A>RichText support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8365"></A><i>PBXerces105.dll</i>, <br><i>xerces-c_2_6.dll</i>,<i> <br>xerces-depdom_2_6.dll</i></td>
+<td  rowspan="1"  ><A NAME="TI8366"></A><i>libxerces105x.</i><i>ext</i>, <i>libxerces-c_2_1_0.</i><i>ext</i></td>
+<td  rowspan="1"  ><A NAME="TI8367"></A>XML support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8368"></A><i>pbdom105.pbx </i></td>
+<td  rowspan="1"  ><A NAME="TI8369"></A><i>libpbdom105x.</i><i>ext</i></td>
+<td  rowspan="1"  ><A NAME="TI8370"></A>PBDOM support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8371"></A><i>EasySoap105.dll</i>, <i>ExPat105.dll</i>,<br><i>libeay32.dll</i>, <i>ssleay32.dll</i>, <i>pbsoapclient105.pbx</i>,<br><i>pbwsclient105.pbx</i>,<br><i>pbnetwsruntime105.dll</i>,<br><i>xerces-c_2_6.dll</i>,<i> <br>xerces-depdom_2_6.dll</i>, <i>Sybase.PowerBuilder.WebService.Runtime.dll</i>,<br><i>Sybase.PowerBuilder.WebService.RuntimeRemoteLoader.dll</i></td>
+<td  rowspan="1"  ><A NAME="TI8372"></A>&#8212;</td>
+<td  rowspan="1"  ><A NAME="TI8373"></A>SOAP clients for EasySoap and .NET Web
+services (for .NET Web services, the two <i>Sybase.PowerBuilder</i> <i>DLL</i> files
+must be deployed to the <i>EAServer\Bin</i> directory) </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8374"></A><i>PBO84105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8375"></A><i>libpbo84105x</i>.<i>ext</i></td>
+<td  rowspan="1"  ><A NAME="TI8376"></A>Oracle 8.0.x and Oracle8<i>i</i> 8.1.x
+database driver</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8377"></A><i>PBO90105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8378"></A><i>libpbo90105x</i>.<i>ext</i> (Solaris
+and Linux only)</td>
+<td  rowspan="1"  ><A NAME="TI8379"></A>Oracle9<i>i</i> database
+driver</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8380"></A><i>PBO10105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8381"></A><i>libpbo10105x</i>.<i>ext</i> (Solaris
+and Linux only)</td>
+<td  rowspan="1"  ><A NAME="TI8382"></A>Oracle 10<i>g</i> database
+driver</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8383"></A><i>PBODB105.INI</i></td>
+<td  rowspan="1"  ><A NAME="TI8384"></A><i>pbodb105</i>.<i>ini</i></td>
+<td  rowspan="1"  ><A NAME="TI8385"></A>PowerBuilder ODBC initialization file</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8386"></A><i>PBODB105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8387"></A><i>libpbodb105x</i>.<i>ext</i></td>
+<td  rowspan="1"  ><A NAME="TI8388"></A>PowerBuilder ODBC interface</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8389"></A><i>PBSYJ105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8390"></A><i>libpbsyj105x</i>.<i>ext</i></td>
+<td  rowspan="1"  ><A NAME="TI8391"></A>Adaptive Server Enterprise native database
+interface</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8392"></A><i>PBJDB105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8393"></A><i>libjdb105x</i>.<i>ext</i></td>
+<td  rowspan="1"  ><A NAME="TI8394"></A>JDBC database driver for Sun Java VM
+JRE 1.1 or later</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8395"></A>&#8212;</td>
+<td  rowspan="1"  ><A NAME="TI8396"></A><i>libpbwfr105</i>.<i>ext</i></td>
+<td  rowspan="1"  ><A NAME="TI8397"></A>PowerBuilder UNIX extension library</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8398"></A><i>pbjdbc12105.jar</i></td>
+<td  rowspan="1"  ><A NAME="TI8399"></A><i>pbjdbc12105.jar</i></td>
+<td  rowspan="1"  ><A NAME="TI8400"></A>Java classes for PowerBuilder JDBC drivers
+(required for JRE 1.2 or later)</td>
+</tr>
+</table>
+<A NAME="TI8401"></A><h4>On Windows</h4>
+<A NAME="TI8402"></A><p>You can use the PowerBuilder VM installer, available in the
+PBVM folder on the CD, to install the files listed in <A HREF="apptechp287.htm#BAJJCDBI">Table 41-16</A>. The PBVM setup
+program also installs the PowerBuilder 10.5 version of the Web DataWindow
+server component (HTMLGenerator105) and the PBDebugBroker10 component required
+for remote debugging. </p>
+<A NAME="TI8403"></A><p>You can use other database drivers with <ABBR title = "e a server" >EAServer</ABBR> components,
+but you must use one of the drivers listed in the table above if
+you want to take advantage of <ABBR title = "e a server" >EAServer</ABBR> support
+for transaction management and instance pooling.</p>
+<A NAME="TI8404"></A><h4>On UNIX</h4>
+<A NAME="TI8405"></A><p>If the files listed in <A HREF="apptechp287.htm#BAJJCDBI">Table 41-16</A> were not installed when you installed <ABBR title = "e a server" >EAServer</ABBR>, they might be available
+for your platform from the Sybase Downloads site on the <A HREF="http://downloads.sybase.com/">EBFs/Maintenance page</A>
+.</p>
+<A NAME="TI8406"></A><p>PowerBuilder components deployed to <ABBR title = "e a server" >EAServer</ABBR> on
+a UNIX platform can have neither graphical dependencies nor dependencies
+on the Windows application programming interface. The shared libraries
+must be installed in the <ABBR title = "e a server" >EAServer</ABBR> <i>lib</i> directory
+on the UNIX server. The Java classes required for the PowerBuilder
+JDBC driver must be installed in the <ABBR title = "e a server" >EAServer</ABBR> <i>html/classes/com/sybase/powerbuilder/jdbc</i> directory.</p>
+<p><b>Connection caches on UNIX</b>   PowerBuilder components require the database drivers listed
+in<A HREF="apptechp287.htm#BAJJCDBI">Table 41-16</A> in order
+to use connection caches. When a PowerBuilder component uses a connection
+cache, the appropriate PowerBuilder driver is loaded.</p>
+<A NAME="TI8407"></A><p>To create a connection cache for an Informix or DB2 database,
+you can use a DataDirect ODBC driver that is included with <ABBR title = "e a server" >EAServer</ABBR>. After creating an ODBC
+data source using the file shown in <A HREF="apptechp287.htm#BAJIGICH">Table 41-17</A>, create an <ABBR title = "e a server" >EAServer</ABBR> connection
+cache to the ODBC data source.</p>
+<A NAME="BAJIGICH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-17: PowerBuilder DataDirect ODBC
+files for UNIX</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8408"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8409"></A>Database</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8410"></A><i>PBinf914</i>.<i>ext</i></td>
+<td  rowspan="1"  ><A NAME="TI8411"></A>Informix 7.x, 9.x by means of Informix-Client
+SDK 2.x</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8412"></A><i>PBdb214</i>.<i>ext</i></td>
+<td  rowspan="1"  ><A NAME="TI8413"></A>DB2 Universal Database (UDB)</td>
+</tr>
+</table>
+

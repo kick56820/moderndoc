@@ -1,0 +1,60 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About data pipelines</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp95.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp97.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF304004393"></A><h1>About data pipelines</h1>
+<A NAME="TI2758"></A><p>PowerBuilder provides a feature called the <strong>data
+pipeline</strong> that you can use to migrate data between database
+tables. This feature makes it possible to copy rows from one or
+more source tables to a new or existing destination table&#8212;either
+within a database, or across databases, or even across DBMSs.</p>
+<A NAME="TI2759"></A><h4>Two ways to use data pipelines</h4>
+<A NAME="TI2760"></A><p>You can take advantage of data pipelines in two different
+ways:<A NAME="TI2761"></A>
+<ul>
+<li class=fi><b>As a utility
+service for developers</b>   <br>
+While working in the PowerBuilder development environment,
+you might occasionally want to migrate data for logistical reasons
+(such as to create a small test table from a large production table).
+In this case, you can use the Data Pipeline painter interactively
+to perform the migration immediately.<br><br>
+For more information on using the Data Pipeline
+painter this way, see the <i>PowerBuilder User's
+Guide</i>
+.<br></li>
+<li class=ds><b>To implement data migration capabilities
+in an application</b>   <br>
+If you are building an application whose requirements call
+for migrating data between tables, you can design an appropriate
+data pipeline in the Data Pipeline painter, save it, and then enable
+users to execute it from within the application.<br><br>
+This technique can be useful in many different situations,
+such as: when you want the application to download local copies
+of tables from a database server to a remote user, or when you want
+it to roll up data from individual transaction tables to a master
+transaction table.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI2762"></A><h4>Walking through the basic steps</h4>
+<A NAME="TI2763"></A><p>If you determine that you need to use a data pipeline in your
+application, you must determine what steps this involves. At the
+most general level, there are five basic steps that you typically
+have to perform.</p>
+<A NAME="TI2764"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To pipe data in an application:</p>
+<ol><li class=fi><p>Build the objects you need.</p></li>
+<li class=ds><p>Perform some initial housekeeping.</p></li>
+<li class=ds><p>Start the pipeline.</p></li>
+<li class=ds><p>Handle row errors.</p></li>
+<li class=ds><p>Perform some final housekeeping.</p></li></ol>
+<br><A NAME="TI2765"></A><p>The remainder of this chapter gives you the details of each
+step.</p>
+

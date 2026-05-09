@@ -1,0 +1,114 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using structures </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp82.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp84.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BEGBEICC"></A><h1>Using structures </h1>
+<A NAME="TI2219"></A><p>After you define the structure, you can:<A NAME="TI2220"></A>
+<ul>
+<li class=fi>Reference an instance of the structure in scripts
+and functions</li>
+<li class=ds>Pass the structure to functions</li>
+<li class=ds>Display and paste information about structures by
+using the Browser
+</li>
+</ul>
+</p>
+<A NAME="TI2221"></A><h2>Referencing structures</h2>
+<A NAME="TI2222"></A><p>When you define a structure, you are defining a new datatype.
+You can use this new datatype in scripts and user-defined functions
+as long as the structure definition is stored in a library in the
+application's library search path.</p>
+<A NAME="TI2223"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use a structure in a script or user-defined
+function:</p>
+<ol><li class=fi><p>Declare a variable of the structure type.</p></li>
+<li class=ds><p>Reference the variable in the structure.</p></li></ol>
+<br><A NAME="TI2224"></A><h4>Referencing global structures</h4>
+<A NAME="TI2225"></A><p>The variables in a structure are similar to the properties
+of a PowerBuilder object. To reference a global structure's
+variable, use dot notation: <p><PRE><i>structure.variable</i></PRE></p>
+</p>
+<p><b>Example</b>   Assume that <b>s_empdata</b> is a global
+structure with the variables <b>emp_id</b>, <b>emp_dept</b>, <b>emp_fname</b>, <b>emp_lname</b>,
+and <b>emp_salary</b>. To use this structure
+definition, declare a variable of type <b>s_empdata</b> and
+use dot notation to reference the structure's variables,
+as shown in the following script:<p><PRE> s_empdata   lstr_emp1, lstr_emp2 // Declare 2 variables<br>                                 // of type emp_data.<br> <br>lstr_emp1.emp_id = 100       // Assign values to the<br>lstr_emp1.emp_dept = 200     // structure variables.<br>lstr_emp1.emp_fname = "John"<br>lstr_emp1.emp_lname = "Paul-Jones"<br>lstr_emp1.emp_salary = 99908.23<br> <br>// Retrieve the value of a structure variable.<br>lstr_emp2.emp_salary = lstr_emp1.emp_salary * 1.05<br> <br>// Use a structure variable in a<br>// PowerScript function.<br>MessageBox ("New Salary", &amp;<br>   String(lstr_emp2.emp_salary,"$###,##0.00"))</PRE></p>
+<A NAME="TI2226"></A><h4>Referencing object-level structures</h4>
+<A NAME="TI2227"></A><p>You reference object-level structures in scripts for the object
+itself exactly as you do global structures: declare a variable of
+the structure type, then use dot notation:<p><PRE><i>structure.variable</i></PRE></p>
+</p>
+<p><b>Example</b>   Assume that the structure <b>str_custdata</b> is
+defined for the window <b>w_history</b> and
+you are writing a script for a CommandButton in the window. To use
+the structure definition in the script, you write:<p><PRE> str_custdata lstr_cust1<br>lstr_cust1.name = "Joe"</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>No access to object-level structures outside the object</span> <A NAME="TI2228"></A>You cannot make object-level structures accessible outside
+the object because object-level structures are implicitly private.</p>
+<A NAME="TI2229"></A><h2>Copying structures</h2>
+<A NAME="TI2230"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To copy the values of a structure to another structure
+of the same type:</p>
+<ol><li class=fi><p>Assign the structure to be copied to the
+other structure using this syntax:</p><p><p><PRE><i>struct1 = struct2</i></PRE></p>
+</p><p>PowerBuilder copies all the variable values from <i>struct2</i> to <i>struct1</i>.</p></li></ol>
+<br><p><b>Example</b>   These statements copy the values in <b>lstr_emp2</b> to <b>lstr_emp1</b>:<p><PRE> str_empdata lstr_emp1, lstr_emp2<br>...<br>lstr_emp1 = lstr_emp2</PRE></p>
+<A NAME="TI2231"></A><h2>Using structures with functions</h2>
+<A NAME="TI2232"></A><p>You can pass structures as arguments in user-defined functions.
+Simply name the structure as the datatype when defining the argument. Similarly, user-defined
+functions can return structures. Name the structure as the return type
+for the function. </p>
+<A NAME="TI2233"></A><p>You can also define external functions that take structures
+as arguments.</p>
+<p><b>Example</b>   Assume the following:</p>
+<A NAME="TI2234"></A><p><A NAME="TI2235"></A>
+<ul>
+<li class=fi>Revise is an external
+function that expects a structure as its argument.</li>
+<li class=ds><b>lstr_empdata</b> is a
+declared variable of a structure datatype.
+</li>
+</ul>
+</p>
+<A NAME="TI2236"></A><p>You can call the function as follows:</p>
+<A NAME="TI2237"></A><p><p><PRE> Revise(lstr_empdata)</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Declare the function first</span> <A NAME="TI2238"></A>The external function must be declared before you can reference
+it in a script.</p>
+<A NAME="TI2239"></A><p>For more about passing arguments to external
+functions, see <i>Application Techniques</i>
+.</p>
+<A NAME="TI2240"></A><h2>Displaying and
+pasting structure information</h2>
+<A NAME="TI2241"></A><p>You can display the names and variables of defined structures
+in the Browser. You can also paste these entries into a script.</p>
+<A NAME="TI2242"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display information about a global structure
+in the Browser:</p>
+<ol><li class=fi><p>Select the Structure tab and select a structure.</p></li>
+<li class=ds><p>Double-click the properties folder in the right
+pane.</p><p>The properties folder expands to show the structure variables
+as properties of the structure.</p></li></ol>
+<br><A NAME="TI2243"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display information about an object-level structure
+in the Browser:</p>
+<ol><li class=fi><p>Select the tab for the type of object for
+which the structure is defined.</p></li>
+<li class=ds><p>Select the object that contains the structure.</p></li>
+<li class=ds><p>Double-click the structure folder in the right
+pane.</p><p>The structure folder expands to display the structure variables
+using dot notation.</p></li></ol>
+<br><A NAME="TI2244"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To paste the information into a script:</p>
+<ol><li class=fi><p>Scroll to the structure variable you want
+to paste.</p></li>
+<li class=ds><p>Select Copy from the variable's pop-up
+menu.</p></li>
+<li class=ds><p>Insert the cursor in the script where you want
+to paste the variable and select Paste from the pop-up menu.</p><p>The variable name displays at the insertion point in the script.</p></li></ol>
+<br><A NAME="TI2245"></A><A NAME="TI2246"></A><p>This part describes how to create windows for your application.
+It covers the properties of windows, the controls you can place
+in windows, how to use inheritance to save time and effort, and
+how to define menus. It also introduces user objects.</p>
+

@@ -1,0 +1,496 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Modifying general DataWindow object properties </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp170.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp172.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIDEEDG"></A><h1>Modifying general DataWindow object properties </h1>
+<A NAME="TI5429"></A><p>This section describes the general DataWindow object properties that
+you can modify. </p>
+<A NAME="CAIBHFBD"></A><h2>Changing the DataWindow object style</h2>
+<A NAME="TI5430"></A><p>The general style properties for a DataWindow object include:<A NAME="TI5431"></A>
+<ul>
+<li class=fi>The unit of measure used in the DataWindow object</li>
+<li class=ds>A timer interval for events in the DataWindow object</li>
+<li class=ds>A background color for the DataWindow object
+</li>
+</ul>
+</p>
+<A NAME="TI5432"></A><p>PowerBuilder assigns defaults when it generates the basic DataWindow object. You
+can change the defaults.</p>
+<A NAME="TI5433"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the default style properties:</p>
+<ol><li class=fi><p>Position the pointer in the background
+of the DataWindow object, display the pop-up menu, and select Properties.</p><p>The Properties view displays with the General page on top.</p></li>
+<li class=ds><p>Click the unit of measure you want to use to specify
+distances when working with the DataWindow object:<A NAME="TI5434"></A>
+<ul>
+<li class=fi>PowerBuilder units (PBUs)</li>
+<li class=ds>Pixels (smallest element on the display monitor)</li>
+<li class=ds>Thousandths of an inch</li>
+<li class=ds>Thousandths of a centimeter
+</li>
+</ul>
+
+                      </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Choosing the unit of measure</span> <A NAME="TI5435"></A>If you plan to print the contents of the DataWindow object at runtime, change
+the unit of measure to inches or centimeters to make it easier to specify
+the margin measurements.</p>
+</li>
+<li class=ds><p>Specify the number of milliseconds you want between
+internal timer events in the DataWindow object.</p><p>This value determines how often PowerBuilder updates the time
+fields in the DataWindow object. (Enter 60,000 milliseconds to specify
+one minute.)</p></li>
+<li class=ds><p>Select a background color from the Color drop-down
+list and click OK. The default color is the window background color.</p></li></ol>
+<br><A NAME="BFCDAHDE"></A><h2>Setting colors in a DataWindow object</h2>
+<A NAME="TI5436"></A><p>You can set different colors for each element of a DataWindow object to enhance
+the display of information.</p>
+<A NAME="TI5437"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set the background color in a DataWindow object:</p>
+<ol><li class=fi><p>Position the mouse on an empty spot in
+the DataWindow object, display the pop-up menu, and select Properties. </p></li>
+<li class=ds><p>On the General page in the Properties view for
+the DataWindow object, select a color from the Color drop-down list.</p></li></ol>
+<br><A NAME="TI5438"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set the color of a band in a DataWindow object:</p>
+<ol><li class=fi><p>Position the mouse pointer on the bar that
+represents the band, display the pop-up menu, then select Properties. </p></li>
+<li class=ds><p>On the General page in the band's Properties
+view, select a color from the Color drop-down list. </p><p>The choice you make here overrides the background color for
+the DataWindow object.</p></li></ol>
+<br><A NAME="TI5439"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set colors in controls in a DataWindow object:</p>
+<ol><li class=fi><p>Position the mouse pointer on the control,
+display the pop-up menu, then select Properties. </p><p>For controls that use text, you can set colors for background
+and text on the Font page in the Properties view. For drawing controls,
+you can set colors on the General page in the Properties view.</p></li></ol>
+<br><A NAME="BFCCFJDB"></A><h2>Specifying properties of a grid DataWindow object</h2>
+<A NAME="TI5440"></A><p>In grid DataWindow objects, you can specify:<A NAME="TI5441"></A>
+<ul>
+<li class=fi>When grid lines are displayed</li>
+<li class=ds>How users can interact with the DataWindow object at
+runtime
+</li>
+</ul>
+</p>
+<A NAME="TI5442"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify basic grid DataWindow object properties:</p>
+<ol><li class=fi><p>Position the mouse pointer on the background
+in a grid DataWindow object, display the pop-up menu, and select Properties.</p></li>
+<li class=ds><p>Select the options you want in the Grid section
+on the General page in the Properties view as described in <A HREF="pbugp171.htm#BABJBJGF">Table 19-3</A>.</p><A NAME="BABJBJGF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-3: Options for grid DataWindow objects</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5443"></A>Option</th>
+<th  rowspan="1"  ><A NAME="TI5444"></A>Result</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5445"></A>On</td>
+<td  rowspan="1"  ><A NAME="TI5446"></A>Grid lines always display</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5447"></A>Off</td>
+<td  rowspan="1"  ><A NAME="TI5448"></A>Grid lines never display (users cannot
+resize columns at runtime)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5449"></A>Display Only</td>
+<td  rowspan="1"  ><A NAME="TI5450"></A>Grid lines display only when the DataWindow object displays online</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5451"></A>Print Only</td>
+<td  rowspan="1"  ><A NAME="TI5452"></A>Grid lines display only when the contents
+of the DataWindow object are printed</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5453"></A>Column Moving</td>
+<td  rowspan="1"  ><A NAME="TI5454"></A>Columns can be moved at runtime</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5455"></A>Mouse Selection</td>
+<td  rowspan="1"  ><A NAME="TI5456"></A>Data can be selected at runtime (and,
+for example, copied to the clipboard)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5457"></A>Row Resize</td>
+<td  rowspan="1"  ><A NAME="TI5458"></A>Rows can be resized at runtime</td>
+</tr>
+</table>
+</li></ol>
+<br><A NAME="BFCBJBBI"></A><h2>Specifying pointers for a DataWindow object</h2>
+<A NAME="TI5459"></A><p>Just as with colors, you can specify different pointers to
+use when the mouse is over a particular area of the DataWindow object. For
+example, you might want to change the pointer when the mouse is
+over a column whose data cannot be changed.</p>
+<A NAME="TI5460"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the mouse pointer used at runtime:</p>
+<ol><li class=fi><p>Position the mouse over the element of
+the DataWindow object whose pointer you want to define, display the pop-up
+menu, and select Properties to display the appropriate Properties
+view.</p><p>You can set a pointer for the entire DataWindow object, specific
+bands, and specific controls.</p></li>
+<li class=ds><p>Select the Pointer tab.</p></li>
+<li class=ds><p>Either choose the pointer from the Stock Pointers
+list or, if you have a file containing pointer definitions (CUR
+files), enter a pointer file name.</p><p>You can use the Browse button to search for the file.</p></li>
+<li class=ds><p>Click OK.</p></li></ol>
+<br><A NAME="BFCBAGDA"></A><h2>Defining print specifications for a DataWindow object</h2>
+<A NAME="TI5461"></A><p>When you are satisfied with the look of the DataWindow object, you
+can define its print specifications.</p>
+<A NAME="TI5462"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define print specifications for a DataWindow object:</p>
+<ol><li class=fi><p>In the DataWindow painter, select Properties from
+the DataWindow object's pop-up menu to display the DataWindow object's
+Properties view.</p></li>
+<li class=ds><p>In the Units box on the General page, select a
+unit of measure.</p><p>It is easier to specify the margins when the unit of measure
+is inches or centimeters.</p></li>
+<li class=ds><p>Select the Print Specifications tab.</p><p>The Print Specifications page uses the units of measure you
+specified on the General page. </p></li>
+<li class=ds><p>Specify print specifications for the current DataWindow object. </p><p>See <A HREF="pbugp171.htm#BABHGFIG">Table 19-4</A> for
+more information.</p></li></ol>
+<A NAME="BABHGFIG"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-4: Setting print specifications
+for DataWindow objects</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5463"></A>Setting</th>
+<th  rowspan="1"  ><A NAME="TI5464"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5465"></A>Document Name</td>
+<td  rowspan="1"  ><A NAME="TI5466"></A>Specify a name to be used in the print
+queue to identify the report.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5467"></A>Printer Name</td>
+<td  rowspan="1"  ><A NAME="TI5468"></A>Specify the name of a printer to which
+this report should be sent. If this box is empty, the report is
+sent to the default system printer. If the specified printer cannot
+be found, the report is sent to the default system printer if the
+Can Use Default Printer check box is selected. If the specified printer
+cannot be found and the Can Use Default Printer check box is not
+selected, an error is returned.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5469"></A>Margins</td>
+<td  rowspan="1"  ><A NAME="TI5470"></A>Specify top, bottom, left, and right
+margins. You can also change margins in the Preview view while you
+are actually looking at data. If you change margins in the Preview
+view, the changes are reflected here on the Print Specifications page.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5471"></A>Paper Orientation</td>
+<td  rowspan="1"  ><A NAME="TI5472"></A>Choose one of the following:<A NAME="TI5473"></A>
+<ul>
+<li class=fi>Default: Uses the default printer setup.</li>
+<li class=ds>Portrait: Prints the contents of the DataWindow object across
+the width of the paper.</li>
+<li class=ds>Landscape: Prints the contents of the DataWindow object across
+the length of the paper.
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5474"></A>Paper Size</td>
+<td  rowspan="1"  ><A NAME="TI5475"></A>Choose a paper size or leave blank to
+use the default.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5476"></A>Paper Source</td>
+<td  rowspan="1"  ><A NAME="TI5477"></A>Choose a paper source or leave blank
+to use the default.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5478"></A>Prompt Before Printing</td>
+<td  rowspan="1"  ><A NAME="TI5479"></A>Select to display the standard Print
+Setup dialog box each time users make a print request.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5480"></A>Can Use Default Printer</td>
+<td  rowspan="1"  ><A NAME="TI5481"></A>Clear this check box if a printer has
+been specified in the Printer Name box and you do not want the report
+to be sent to the default system printer if the specified printer
+cannot be found. This box is checked by default if a printer name is
+specified. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5482"></A>Display Buttons - Print Preview</td>
+<td  rowspan="1"  ><A NAME="TI5483"></A>Select to display Button controls in
+Print Preview. The default is to hide them. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5484"></A>Display Buttons - Print</td>
+<td  rowspan="1"  ><A NAME="TI5485"></A>Select to display Button controls when
+you print the report. The default is to hide them. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5486"></A>Clip Text</td>
+<td  rowspan="1"  ><A NAME="TI5487"></A>Select to clip static text to the dimensions
+of a text field when the text field has no visible border setting.
+The text is always clipped if the text field has visible borders.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5488"></A>Override Print Job</td>
+<td  rowspan="1"  ><A NAME="TI5489"></A>When you print a series of reports using
+the <b>PrintOpen</b>, <b>PrintDataWindow</b>,
+and <b>PrintClose</b> methods, all the reports in the
+print job use the layout, fonts, margins, and other print specifications
+defined for the computer. Select this check box to override the
+default print job settings and use the print settings defined for
+this report.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5490"></A>Collate Copies</td>
+<td  rowspan="1"  ><A NAME="TI5491"></A>Select to collate copies when printing.
+Collating increases print time because the print operation is repeated
+to produce collated sets. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5492"></A>Newspaper Columns Across and Width</td>
+<td  rowspan="1"  ><A NAME="TI5493"></A>If you want a multiple-column report
+where the data fills one column on a page, then the second, and
+so on, as in a newspaper, select the number and width of the columns
+in the Newspaper Columns boxes. See <A HREF="pbugp171.htm#BFCDJAJF">"Printing with newspaper-style
+columns"</A>.</td>
+</tr>
+</table>
+<br><A NAME="BFCDJAJF"></A><h3>Printing with newspaper-style columns</h3>
+<A NAME="TI5494"></A><p>When you define a DataWindow object, you can specify that it print
+in multiple columns across the page, like a newspaper. A typical
+use of newspaper-style columns is a phone list, where you want to
+have more than one column of names on a printed page. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Use Print Preview to see the printed output</span> <A NAME="TI5495"></A>Newspaper-style columns are used only when the DataWindow object is printed.
+They do not appear when a DataWindow object executes (or in Preview). Therefore,
+to see them in PowerBuilder, use Print Preview in the DataWindow painter.</p>
+<A NAME="TI5496"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define newspaper-style columns for a DataWindow object:</p>
+<ol><li class=fi><p>Build a tabular DataWindow object with the data
+you want.</p></li>
+<li class=ds><p>Select Properties from the DataWindow object's
+pop-up menu.</p></li>
+<li class=ds><p>Select the Print Specifications tab.</p></li>
+<li class=ds><p>Specify the number of columns across the page
+and the width of columns in the Newspaper Columns Across and Newspaper
+Columns Width properties.</p></li>
+<li class=ds><p>For each control in the DataWindow object that you do <i>not</i> want
+to have appear multiple times on the page (such as headers), select
+Properties from the control's pop-up menu and select the
+HideSnaked check box on the General page in the Properties view.</p></li></ol>
+<br><A NAME="TI5497"></A><h4>Example</h4>
+<A NAME="TI5498"></A><p>This example describes how to create a newspaper-style DataWindow object using
+the <b>Employee</b> table in the <b>EAS Demo DB</b>.<A NAME="TI5499"></A>
+<ol>
+</li>
+<li class=ds>Create a tabular DataWindow object,
+selecting the last name, first name, and phone number columns, and
+add a title, page number, and date. <br>
+The <b>Emp_Fname</b> column and the
+text control holding a comma are defined as Slide Left, so they
+display just to the right of the <b>Emp_Lname</b> column.<br><br><img src="images/dwen18.gif">
+</li>
+<li class=ds>On the Print Specifications page of the DataWindow object's
+Properties view, specify two columns across and a column width of
+3.5 inches in the Newspaper Columns boxes. (Make sure that Units
+is set to inches on the General property page.)</li>
+<li class=ds>To view the DataWindow object as it will be printed, place
+the pointer in the Preview view and select File&gt;PrintPreview.<br>
+The DataWindow object displays the result set in two columns. Everything above
+the column headers (which includes page number, title, and date) also
+shows twice because of the 2-column specification. This information should
+appear only once per page.<br></li>
+<li class=ds>To specify that page number, title, and date appear
+only once on the page, you need to suppress printing after the first
+column. For each of these controls, select Properties from the control's
+pop-up menu. Then select the HideSnaked check box.
+</li>
+</ol>
+</p>
+<A NAME="TI5500"></A><p>The finished DataWindow object has one set of page heading information
+and two columns of column header and detail information.</p>
+<br><img src="images/dwen17.gif">
+<A NAME="BFCCJHJC"></A><h2>Modifying text in a DataWindow object</h2>
+<A NAME="TI5501"></A><p>When PowerBuilder initially generates the basic DataWindow object,
+it uses the following attributes and fonts:<A NAME="TI5502"></A>
+<ul>
+<li class=fi>For the text and alignment
+of column headings and labels, PowerBuilder uses the extended column
+attributes made in the Database painter.</li>
+<li class=ds>For fonts, PowerBuilder uses the definitions made
+in the Database painter for the table. If you did not specify fonts
+for the table, PowerBuilder uses the defaults set in the Application
+painter.
+</li>
+</ul>
+</p>
+<A NAME="TI5503"></A><p>You can override any of these defaults in a particular DataWindow object.</p>
+<A NAME="TI5504"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change text in a DataWindow object:</p>
+<ol><li class=fi><p>Select the text.</p><p>The first box in the StyleBar is now active.</p></li>
+<li class=ds><p>Type the new text. </p><p>Use <FONT FACE="Courier New">~n~r</FONT> to embed a newline
+character in the text.</p></li></ol>
+<br><A NAME="TI5505"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the text properties for a text control
+in a DataWindow object:</p>
+<ol><li class=fi><p>Select the text control.</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI5506"></A>
+<ul>
+<li class=fi>Change the text properties in the StyleBar. </li>
+<li class=ds>Select the Font page in the control's Properties
+view and change the properties there.
+</li>
+</ul>
+
+                      </p></li></ol>
+<br><A NAME="BFCDECGDKJ"></A><h2>Defining the tab order in a DataWindow object</h2>
+<A NAME="TI5507"></A><p>When PowerBuilder generates the basic DataWindow object, it assigns columns
+a default tab order, the default sequence in which focus moves from column
+to column when a user presses the Tab key at runtime. PowerBuilder assigns
+tab values in increments of 10 in left-to-right and top-to-bottom
+order.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Tab order is not used in the Design view</span> <A NAME="TI5508"></A>Tab order is used when a DataWindow object is executed, but it is
+not used in the DataWindow painter Design view. In the Design view, the
+Tab key moves to the controls in the DataWindow object in the order in
+which the controls were placed in the Design view.</p>
+<A NAME="TI5509"></A><h4>If the DataWindow object contains columns from more than
+one table</h4>
+<A NAME="TI5510"></A><p>If you are defining a DataWindow object with more than one table, PowerBuilder assigns
+each column a tab value of 0, meaning the user cannot tab to the
+column. This is because, by default, multitable DataWindow objects are
+not updatable&#8212;users cannot modify data in them. You can
+change the tab values to nonzero values to allow tabbing in these DataWindow objects.</p>
+<A NAME="TI5511"></A><p>For more about controlling updates in a DataWindow object,
+see <A HREF="pbugp179.htm#BHBJIJJE">Chapter 21, "Controlling Updates in DataWindow Objects."</A></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Tab order changes have no effect in grid DataWindow objects</span> <A NAME="TI5512"></A>In a grid DataWindow object, the tab sequence is always left to right
+(except on right-to-left operating systems). Changing the tab value
+to any number other than 0 has no effect.</p>
+<A NAME="TI5513"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the tab order:</p>
+<ol><li class=fi><p>Select Format&gt;Tab Order from the
+menu bar or click the Tab Order button  on PainterBar2.</p><p>The current tab order displays.</p></li>
+<li class=ds><p>Use the mouse or the Tab key to move the pointer
+to the tab value you want to change.</p></li>
+<li class=ds><p>Enter a new tab value in the range 0 to 9999.</p><p>0 removes the column from the tab order (the user cannot tab
+to the column). It does not matter exactly what value you use (other
+than 0); all that matters is relative value. For example, if you
+want the user to tab to column B after column A but before column
+C, set the tab value for column B so it is between the value for
+column A and the value for column C.</p></li>
+<li class=ds><p>Repeat the procedure until you have the tab order
+you want.</p></li>
+<li class=ds><p>Select Format&gt;Tab Order from the menu
+bar or click the Tab Order button again.</p><p>PowerBuilder saves the tab order.</p></li></ol>
+<br><A NAME="TI5514"></A><p>Each time you select Tab Order, PowerBuilder reassigns tab values
+to include any columns that have been added to the DataWindow object and
+to allow space to insert new columns in the tab order.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Changing tab order at runtime</span> <A NAME="TI5515"></A>To change tab order programmatically at runtime, use the <b>SetTabOrder</b> method. </p>
+<A NAME="BFCDBBEJ"></A><h2>Naming controls in a DataWindow object</h2>
+<A NAME="TI5516"></A><p>You use names to identify columns and other controls in validation
+rules, filters, PowerScript functions, and DataWindow expression functions. </p>
+<A NAME="TI5517"></A><p>The DataWindow painter automatically generates names for all controls
+in a DataWindow object. To name columns, labels, and headings, the DataWindow painter uses
+database and extended attribute information. To name all other controls,
+it uses a system of prefixes. You can control the prefixes used
+for automatic name generation and you can specify the name of any
+control explicitly.</p>
+<A NAME="TI5518"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify prefixes for naming controls systematically
+in a DataWindow object:</p>
+<ol><li class=fi><p>Select Design&gt;Options from the
+menu bar and then select the Prefixes tab.</p></li>
+<li class=ds><p>Change prefixes as desired and click OK.</p></li></ol>
+<br><A NAME="TI5519"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a name of a control in a DataWindow object:</p>
+<ol><li class=fi><p>Select Properties from the control's
+pop-up menu and then select the General tab in the Properties view.</p></li>
+<li class=ds><p>Type the name in the Name box.</p></li></ol>
+<br><A NAME="BFCDJJGC"></A><h2>Using borders in a DataWindow object</h2>
+<A NAME="TI5520"></A><p>You can place borders around text, columns, graphs, and crosstabs
+to enhance their appearance. PowerBuilder provides six types of borders:
+Underline, Box, ResizeBorder, ShadowBox, Raised, and Lowered:</p>
+<br><img src="images/dwen23.gif">
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Border appearance varies</span> <A NAME="TI5521"></A>Changing the border style may not have the same effect on
+all Windows platforms.</p>
+<A NAME="TI5522"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a border to a control in a DataWindow object:</p>
+<ol><li class=fi><p>Select one or more controls.</p></li>
+<li class=ds><p>Select the border you want from the Border drop-down
+toolbar in the PainterBar.</p><p>PowerBuilder places the border around the selected controls.</p></li></ol>
+<br><A NAME="TI5523"></A><p>You can also specify a border for one or more controls in
+the Properties view on the General page. </p>
+<A NAME="BFCCFEED"></A><h2>Specifying variable-height bands in a DataWindow object</h2>
+<A NAME="TI5524"></A><p>Sometimes DataWindow objects contain columns whose data is of variable length.
+For example, a Memo column in a table might be a character column that
+can take up to several thousand characters. Reserving space for
+that much information for the column in the detail band would make
+the detail band's height very large, meaning users could
+see few rows at a time.</p>
+<A NAME="TI5525"></A><p>The detail band can resize based on the data in the Memo column.
+If the Memo column has only one line of text, the detail band should
+be one line. If the Memo column has 20 lines of text, the detail
+band should be 20 lines high.</p>
+<A NAME="TI5526"></A><p>To provide a band that resizes as needed, specify that the
+variable-length columns and the band have Autosize Height. All bands in the DataWindow can be
+resized, but nested report overflow is supported only in the Detail
+band. If autosizing would preclude the display of at least one Detail
+band row per page, other bands cannot be autosized. Autosizing is
+not supported with the Graph, RichText, OLE, or Label presentation
+styles.</p>
+<A NAME="TI5527"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a resizable band in a DataWindow object:</p>
+<ol><li class=fi><p>Select Properties from the pop-up menu
+of a column that should resize based on the amount of data.</p></li>
+<li class=ds><p>Select the Autosize Height check box on the Position
+page.</p></li>
+<li class=ds><p>Clear the Auto Horz Scroll check box on the Edit
+page.</p><p>PowerBuilder wraps text in the Preview view instead of displaying
+text on one scrollable line.</p></li>
+<li class=ds><p>Repeat steps 1 to 3 for any other columns that
+should resize.</p></li>
+<li class=ds><p>Select Properties from the band's pop-up
+menu.</p></li>
+<li class=ds><p>Select the Autosize Height check box on the General
+page.</p><p>In the Preview view, the band resizes based on the contents
+of the columns you defined as having Autosize Height.</p></li></ol>
+<br><A NAME="TI5528"></A><h4>Using the RowHeight function with Autosize Height</h4>
+<A NAME="TI5529"></A><p>When a detail band has Autosize Height set to <b>true</b>,
+you should avoid using the <b>RowHeight</b> DataWindow expression function to
+set the height of any element in the row. Doing so can result in
+a logical inconsistency between the height of the row and the height
+of the element. If you need to use <b>RowHeight</b>,
+you must set the Y coordinate of the element to 0 on the Position
+page in the Properties view, otherwise the bottom of the element
+might be clipped. You must do this for every element that uses such
+an expression. If you move any elements in the band, make sure that
+their Y coordinates are still set to 0. </p>
+<A NAME="TI5530"></A><p>You should not use an expression whose runtime value is greater
+than the value returned by <b>RowHeight</b>. For example,
+you should not set the height of a column to <FONT FACE="Courier New">rowheight() + 30</FONT>.
+Such an expression produces unpredictable results at runtime.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Clipping columns</span> <A NAME="TI5531"></A>You can have Autosize Height columns without an Autosize Height
+detail band. If such a column expands beyond the size of the detail
+band in the Preview view, it is clipped.</p>
+<A NAME="CAICFEBG"></A><h2>Modifying the data source of a DataWindow object</h2>
+<A NAME="TI5532"></A><p>When modifying a DataWindow object, you might realize that you have
+not included all the columns you need, or you might need to define
+retrieval arguments. You can modify the data source from the DataWindow painter. How
+you do it depends on the data source.</p>
+<A NAME="TI5533"></A><h3>Modifying SQL SELECT
+statements</h3>
+<A NAME="TI5534"></A><p>If the data source is <ACRONYM title = "sequel" >SQL</ACRONYM> (such
+as Quick Select, <ACRONYM title = "sequel" >SQL</ACRONYM> Select,
+or Query), you can graphically modify the <ACRONYM title = "sequel" >SQL</ACRONYM> <b>SELECT</b> statement.</p>
+<A NAME="TI5535"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify a <ACRONYM title = "sequel" >SQL</ACRONYM> data
+source:</p>
+<ol><li class=fi><p>Select Design&gt;Data Source from
+the menu bar.</p><p>PowerBuilder returns you to the SQL Select painter. (If you used Quick Select
+to define the data source, this might be the first time you have
+seen the SQL Select painter.)</p></li>
+<li class=ds><p>Modify the <b>SELECT</b> statement
+graphically using the same techniques as when creating it. </p><p>For more information, see <A HREF="pbugp159.htm#CFHDDDHF">"Using <ACRONYM title = "sequel" >SQL</ACRONYM> Select"</A>.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Modifying the statement syntactically</span> <A NAME="TI5536"></A>Select Design&gt;Convert to Syntax from the menu bar
+to modify the <b>SELECT</b> statement syntactically.</p>
+</li>
+<li class=ds><p>Click the Return button to return to the painter.</p></li></ol>
+<br><A NAME="TI5537"></A><p>Some changes you make (such as adding or removing columns)
+require PowerBuilder to modify the update capabilities of the DataWindow object.</p>
+<A NAME="TI5538"></A><p>For more information about controlling updates
+in a DataWindow object, see <A HREF="pbugp179.htm#BHBJIJJE">Chapter 21, "Controlling Updates in DataWindow Objects."</A></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Changing the table</span> <A NAME="TI5539"></A>If you change the table referenced in the <b>SELECT</b> statement, PowerBuilder maintains
+the columns in the Design view (now from a different table) only
+if they match the data types and order of the columns in the original
+table.</p>
+<A NAME="TI5540"></A><h4>Modifying the retrieval arguments</h4>
+<A NAME="TI5541"></A><p>You can add, modify, or delete retrieval arguments when modifying
+your data source.</p>
+<A NAME="TI5542"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify the retrieval arguments:</p>
+<ol><li class=fi><p>In the SQL Select painter, select Design&gt;Retrieval
+Arguments from the menu bar.</p><p>The Specify Retrieval Arguments dialog box displays, listing
+the existing arguments.</p></li>
+<li class=ds><p>Add, modify, or delete the arguments.</p></li>
+<li class=ds><p>Click OK.</p><p>You return to the SQL Select painter, or to the text window displaying
+the <b>SELECT</b> statement if you are modifying the <ACRONYM title = "sequel" >SQL</ACRONYM> syntactically.</p></li>
+<li class=ds><p>Reference any new arguments in the <b>WHERE</b> or <b>HAVING</b> clause
+of the <b>SELECT</b> statement.</p></li></ol>
+<br><A NAME="TI5543"></A><p>For more information about retrieval arguments,
+see <A HREF="pbugp153.htm#BFCDDADG">Chapter 18, "Defining DataWindow Objects ."</A></p>
+<A NAME="TI5544"></A><h3>Modifying the result set</h3>
+<A NAME="TI5545"></A><p>If the data source is External or Stored Procedure, you can
+modify the result set description.</p>
+<A NAME="TI5546"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify a result set:</p>
+<ol><li class=fi><p>If the Column Specification view is not open,
+select View&gt;Column Specifications from the menu bar.</p></li>
+<li class=ds><p>Review the specifications and make any necessary changes.</p></li></ol>
+<br><A NAME="TI5547"></A><h4>If the data source is a stored procedure</h4>
+<A NAME="TI5548"></A><p>If you are modifying the result set for a DataWindow object whose
+data source is a stored procedure, the pop-up menu for the Column
+Specification view contains the menu item Stored Procedure.</p>
+<A NAME="TI5549"></A><p>Select Stored Procedure from the Column Specification view's
+pop-up menu to edit the Execute statement, select another stored
+procedure, or add retrieval arguments. For more information about
+editing the Execute statement, see <A HREF="pbugp162.htm#CACEBEGC">"Using Stored Procedure"</A>.</p>
+

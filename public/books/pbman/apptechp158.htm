@@ -1,0 +1,119 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Requesting a message back from the server</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp157.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp159.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABCDFGA"></A><h1>Requesting a message back from the server</h1>
+<A NAME="TI5277"></A><h4>Simulating server push</h4>
+<A NAME="TI5278"></A><p>A client application <i>cannot</i> pass a PowerBuilder
+object reference to <ABBR title = "e a server" >EAServer</ABBR>. Therefore,
+you cannot use a PowerBuilder object reference to push messages from
+the server back to a PowerBuilder client. However, you can simulate
+this behavior by using a shared object on the client to communicate
+with <ABBR title = "e a server" >EAServer</ABBR>. This technique
+can be thought of as <strong>client pull</strong>, because
+the shared object on the client pulls data back from the server. </p>
+<A NAME="TI5279"></A><h4>How it works</h4>
+<A NAME="TI5280"></A><p>To simulate server push, the client uses the <b>SharedObjectRegister</b> and <b>SharedObjectGet</b> functions
+to create a shared object. Once the object has been created, the
+main thread on the client makes an asynchronous call to a method on
+the shared object, passing it a callback object that should be notified
+when processing has finished on the server. The method on the shared
+object makes a synchronous call to the <ABBR title = "e a server" >EAServer</ABBR> component
+method that performs processing. Since the shared object is running
+in a separate thread on the client, the main thread on the client
+can proceed with other work while the process is running on the
+server.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Asynchronous processing in <ABBR title = "e a server" >EAServer</ABBR></span> <A NAME="TI5281"></A>In this example, <b>POST</b> is used to make an
+asynchronous call to a method on a shared object on the client.
+Using <b>POST</b> is <i>not</i> supported
+in the context of calls to <ABBR title = "e a server" >EAServer</ABBR> components.
+For information about asynchronous processing in <ABBR title = "e a server" >EAServer</ABBR>, see the <ABBR title = "e a server" >EAServer</ABBR> documentation for the ThreadManager
+and MessageService modules.</p>
+<A NAME="TI5282"></A><h2>Example</h2>
+<A NAME="TI5283"></A><p>This example shows how you might use a shared object to make
+an asynchronous request against an <ABBR title = "e a server" >EAServer</ABBR> component
+method and return data to a client application window.</p>
+<A NAME="TI5284"></A><h3>Client application window</h3>
+<A NAME="TI5285"></A><p>The client application has a window called <b>w_employee</b> that
+displays employee data in a DataWindow control. When the user clicks
+the Retrieve button in the window, the client creates a shared object
+that communicates with <ABBR title = "e a server" >EAServer</ABBR>. In
+addition, it creates an instance of a user object that is used to
+handle callbacks from the shared object.</p>
+<A NAME="TI5286"></A><h4>Instance variables</h4>
+<A NAME="TI5287"></A><p>The <b>w_employee</b> window has these
+instance variables defined: <p><PRE> uo_sharedobject iuo_sharedobject</PRE><PRE> uo_callback iuo_callback</PRE></p>
+<A NAME="TI5288"></A><h4>Retrieve button</h4>
+<A NAME="TI5289"></A><p>The Retrieve button creates the shared object that will communicate
+with <ABBR title = "e a server" >EAServer</ABBR>. In addition, it
+creates an instance of the user object that will be used to handle
+callbacks from the shared object. To allow the callback object to notify
+the window of the completion of processing, the script calls a function called <b>PassObject</b> on
+the callback object, passing it a reference to the window. Finally,
+it makes an asynchronous call to the <b>RetrieveData</b> function
+on the shared object, passing it a reference to the callback object.</p>
+<A NAME="TI5290"></A><p>The Retrieve button has the following script:<p><PRE> long ll_rv<br> <br>SharedObjectRegister("uo_sharedobject","myshare")<br>SharedObjectGet("myshare",iuo_sharedobject)<br> <br>iuo_callback = CREATE uo_callback<br>iuo_callback.passobject (parent)<br> <br>iuo_sharedobject.post retrievedata(iuo_callback)</PRE></p>
+<A NAME="TI5291"></A><h4>SetDW function</h4>
+<A NAME="TI5292"></A><p>The <b>SetDW</b> function applies the contents
+of the DataWindow <b>Blob</b> returned from the <ABBR title = "e a server" >EAServer</ABBR> component to a DataWindow
+control in the window. The <b>SetDW</b> function takes
+the argument <b>ablb_data</b>, which is of
+type <b>Blob</b>, and returns a <b>Long</b> value.
+The function has the following script:<p><PRE> long ll_rv<br> <br>ll_rv = dw_employee.SetFullState(ablb_data)<br>if ll_rv = -1 then<br>    MessageBox("Error", "SetFullState call failed!")<br>end if<br> <br>return ll_rv</PRE></p>
+<A NAME="TI5293"></A><h3>EAServer component</h3>
+<A NAME="TI5294"></A><p>The <ABBR title = "e a server" >EAServer</ABBR> component is
+a PowerBuilder user object called <b>uo_employee</b>. The <b>uo_employee</b> object
+has a function called <b>RetrieveData</b> that uses
+a DataStore to retrieve employee rows from the database.</p>
+<A NAME="TI5295"></A><h4>Instance variables</h4>
+<A NAME="TI5296"></A><p>The <b>uo_employee</b> object has these
+instance variables defined:<p><PRE> protected TransactionServer txnsrv<br>protected DataStore ids_datastore</PRE></p>
+<A NAME="TI5297"></A><h4>RetrieveData function</h4>
+<A NAME="TI5298"></A><p>The <b>RetrieveData</b> function takes the argument <b>ablb_data</b>,
+which is of type <b>Blob</b>, and returns a <b>Long</b> value.
+The function has the following script:<p><PRE> long ll_rv<br>ll_rv = ids_datastore.Retrieve()<br>ll_rv = ids_datastore.GetFullState(ablb_data)<br>txnsrv.SetComplete()<br>return ll_rv</PRE></p>
+<A NAME="TI5299"></A><h3>Shared object definition</h3>
+<A NAME="TI5300"></A><p>The client application uses a shared object called <b>uo_sharedobject</b> to communicate
+with the <ABBR title = "e a server" >EAServer</ABBR> component. The
+shared object has a single function called <b>RetrieveData</b>.</p>
+<A NAME="TI5301"></A><h4>Instance variables</h4>
+<A NAME="TI5302"></A><p>The <b>uo_sharedobject</b> object has
+these instance variables defined:<p><PRE> uo_employee iuo_employee<br>n_jagclnt_connect myconnect</PRE></p>
+<A NAME="TI5303"></A><h4>Constructor event</h4>
+<A NAME="TI5304"></A><p>The Constructor event uses a custom Connection object called n_jagclnt_connect
+to connect to the server. Then it creates an instance of the <ABBR title = "e a server" >EAServer</ABBR> component:<p><PRE> long ll_rc, ll_rv<br>myconnect = create n_jagclnt_connect<br>ll_rc = myconnect.ConnectToServer()<br>ll_rv = myconnect.CreateInstance(iuo_employee, &amp;<br>    "uo_employee")</PRE></p>
+<A NAME="TI5305"></A><h4>RetrieveData function</h4>
+<A NAME="TI5306"></A><p>The <b>RetrieveData</b> function makes a synchronous
+call to the <b>RetrieveData</b> function on the <ABBR title = "e a server" >EAServer</ABBR> component. When the function
+completes processing, it calls the <b>Notify</b> function
+on the callback object, passing it the DataWindow <b>Blob</b> returned
+from the server component.</p>
+<A NAME="TI5307"></A><p>The <b>RetrieveData</b> function takes an argument
+called <b>auo_callback</b>, which is of type <b>uo_callback</b>:<p><PRE> blob lblb_data<br>long ll_rv<br>ll_rv = iuo_employee.retrievedata(lblb_data)<br>auo_callback.notify(lblb_data)<br>return ll_rv</PRE></p>
+<A NAME="TI5308"></A><h3>Callback object definition</h3>
+<A NAME="TI5309"></A><p>When the <ABBR title = "e a server" >EAServer</ABBR> component
+has finished processing, the shared object notifies a user object
+called <b>uo_callback</b>, which in turn
+notifies the <b>w_employee</b> window. The <b>uo_callback</b> object
+has two functions, <b>Notify</b> and <b>PassObject</b>.</p>
+<A NAME="TI5310"></A><h4>Notify function</h4>
+<A NAME="TI5311"></A><p>The <b>Notify</b> function calls a function called <b>SetDW</b> on
+the <b>w_employee</b> window, passing it
+the DataWindow <b>Blob</b> returned from the server
+component. The <b>Notify</b> function takes the argument <b>ablb_data</b>,
+which is of type <b>Blob</b>, and returns a <b>Long</b> value.
+The function has the following script:<p><PRE> long ll_rv<br>ll_rv = iw_employee.setdw(ablb_data)<br>if ll_rv = -1 then<br>    MessageBox("Error", "SetDW call failed!")<br>end if<br>return ll_rv</PRE></p>
+<A NAME="TI5312"></A><h4>PassObject function</h4>
+<A NAME="TI5313"></A><p>The <b>PassObject</b> function caches a reference
+to the <b>w_employee</b> window in the <i>iw_employee</i> instance
+variable. The function takes the argument <b>aw_employee</b>, which
+is of type <b>w_employee</b>, and returns
+a <b>Long</b> value:<p><PRE> iw_employee = aw_employee<br>return 1</PRE></p>
+

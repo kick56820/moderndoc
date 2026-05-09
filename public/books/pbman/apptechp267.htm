@@ -1,0 +1,521 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating an executable version of your application</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp266.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp268.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF295101268"></A><h1>Creating an executable version of your application</h1>
+<A NAME="TI7789"></A><p>The next few sections tell you more about the packaging process
+and provide information to help you make choices about the resulting
+application. They cover:<A NAME="TI7790"></A>
+<ul>
+<li class=fi>Compiler
+basics</li>
+<li class=ds>What can go in the package</li>
+<li class=ds>How to choose a packaging model</li>
+<li class=ds>How to implement your packaging model</li>
+<li class=ds>How to test the executable application you create
+</li>
+</ul>
+</p>
+<A NAME="CDECDFAD"></A><h2>Compiler basics</h2>
+<A NAME="TI7791"></A><p>When you plan an application, one of the fundamental topics
+to think about is the compiler format in which you want that application
+generated. PowerBuilder offers two alternatives: <strong>Pcode</strong> and <strong>machine
+code</strong>.</p>
+<A NAME="TI7792"></A><h4>Pcode</h4>
+<A NAME="TI7793"></A><p>Pcode (short for pseudocode) is an interpreted language that
+is supported on all PowerBuilder platforms. This is the same format
+that PowerBuilder uses in libraries (PBL files) to store individual
+objects in an executable state. Advantages of Pcode include its
+size, reliability, and portability.</p>
+<A NAME="TI7794"></A><h4>Machine code</h4>
+<A NAME="TI7795"></A><p>PowerBuilder generates and compiles code to create a machine
+code executable or dynamic library. The key advantage of machine
+code is speed of execution. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>PowerBuilder DLLs cannot be called</span> <A NAME="TI7796"></A>PowerBuilder machine code DLLs cannot be called from other
+applications.</p>
+<A NAME="TI7797"></A><h4>Deciding which one to use</h4>
+<A NAME="TI7798"></A><p>Here are some guidelines to help you decide whether Pcode
+or machine code is right for your project:</p>
+<A NAME="TI7799"></A><p><A NAME="TI7800"></A>
+<ul>
+<li class=fi><b>Speed</b>   If your application does intensive script processing, you
+might want to consider using machine code. It will perform better
+than Pcode if your code makes heavy use of looping constructs, floating
+point or integer arithmetic, or function calls. If your application
+does not have these characteristics, machine code does not perform
+noticeably better than Pcode. If you think your application might
+benefit from the use of machine code, perform some benchmark testing
+to find out.<br>
+Pcode is faster to generate than machine code. Even if you
+plan to distribute your application using machine code, you might
+want to use Pcode when you want to quickly create an executable
+version of an application for testing.<br></li>
+<li class=ds><b>Size</b>   The files generated for Pcode are smaller than those generated
+for machine code. If your application is to be deployed on computers
+where file size is a major issue, or if you deploy it using a Web
+download or file transfer, then you might decide to give up the
+speed of machine code and choose Pcode instead.
+</li>
+</ul>
+</p>
+<A NAME="BJFBGHBG"></A><h2>Learning what can go in the package</h2>
+<A NAME="TI7801"></A><p>No
+matter which compiler format you pick, an application that you create
+in PowerBuilder can consist of one or more of the following pieces:</p>
+<A NAME="TI7802"></A><p><A NAME="TI7803"></A>
+<ul>
+<li class=fi>An executable file</li>
+<li class=ds>Dynamic libraries</li>
+<li class=ds>Resources
+</li>
+</ul>
+</p>
+<A NAME="TI7804"></A><p>To decide which of these pieces are required for your particular
+project, you need to know something about them.</p>
+<A NAME="TI7805"></A><h4>About the executable file</h4>
+<A NAME="TI7806"></A><p>If you are building a single- or two-tier application that
+you will distribute to users as an executable file, rather than
+as a server component or a Web application, you always create an
+executable (EXE) file. </p>
+<A NAME="TI7807"></A><p>At minimum, the executable file contains code that enables
+your application to run as a native application on its target platform.
+That means, for example, that when users want to start your application,
+they can double-click the executable file's icon on their
+desktop.</p>
+<p><b>What else can go in the executable file</b>   Depending on the packaging model you choose for your application,
+the executable file also contains one or more of the following: </p>
+<A NAME="TI7808"></A><p><A NAME="TI7809"></A>
+<ul>
+<li class=fi><i>Compiled
+versions of objects</i> from your application's
+libraries<br>
+You can choose to put all of your objects in the executable
+file so that you have only one file to deliver, or you can choose
+to split your application into one executable file and one or more
+dynamic libraries. For more information, see <A HREF="apptechp267.htm#BJFIDDEE">"About dynamic libraries"</A>.<br></li>
+<li class=ds><i>An execution library list</i> that
+the PowerBuilder execution system uses to find objects and resources
+in any dynamic libraries you have packaged for the application</li>
+<li class=ds><i>Resources</i> that your application
+uses (such as bitmaps)
+</li>
+</ul>
+</p>
+<A NAME="TI7810"></A><caption><b>Figure 40-1: Executable file contents</b></captionls>
+<br><img src="images/dplyp01.gif">
+<A NAME="BJFIDDEE"></A><h4>About dynamic libraries</h4>
+<A NAME="TI7811"></A><p>As an alternative to putting your entire application in one
+large executable file, you can deliver some (or even all) of its
+objects in one or more dynamic libraries. The way PowerBuilder implements
+dynamic libraries depends on the compiler format you choose.</p>
+<A NAME="TI7812"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 40-1: PowerBuilder dynamic libraries</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7813"></A>If
+you are generating</th>
+<th  rowspan="1"  ><A NAME="TI7814"></A>Your dynamic libraries
+will be</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7815"></A>Machine code</td>
+<td  rowspan="1"  ><A NAME="TI7816"></A>DLL files (dynamic link libraries). <A NAME="TI7817"></A><p>Machine-code dynamic libraries are given the extension .dll.
+These dynamic libraries are like any other standard shared libraries
+in your operating environment. The only caveat is that they are
+not intended to be called from external programs.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7818"></A>Pcode</td>
+<td  rowspan="1"  ><A NAME="TI7819"></A>PBD files (PowerBuilder dynamic libraries).<A NAME="TI7820"></A><p>These dynamic libraries are similar to DLLs in that they are
+linked to your application at runtime. They are not interchangeable
+with DLLs, however, because they have a different internal format.</p><A NAME="TI7821"></A><p>You cannot mix the two different kinds of dynamic libraries
+(DLLs and PBDs) in one application.</p></td>
+</tr>
+</table>
+<A NAME="TI7822"></A><p>As with an executable file, only <i>compiled</i> versions
+of objects (and not their sources) go into dynamic libraries.</p>
+<A NAME="TI7823"></A><caption><b>Figure 40-2: Compiled objects in dynamic libraries</b></captionls>
+<br><img src="images/dply02.gif">
+<p><b>What else can go in dynamic libraries</b>   Unlike your executable file, dynamic libraries do not include
+any start-up code. They cannot be executed independently. Instead,
+they are accessed as an application executes when it cannot find
+the objects it requires in the executable file.</p>
+<A NAME="TI7824"></A><p>Dynamic libraries can include resources such as bitmaps. You
+might want to put any resources needed by a dynamic library's
+objects in its DLL or PBD file. This makes the dynamic library a
+self-contained unit that can easily be reused. If performance is
+your main concern, however, be aware that resources are loaded faster
+at runtime when they are in the executable file.</p>
+<A NAME="TI7825"></A><caption><b>Figure 40-3: Resources in dynamic libraries</b></captionls>
+<br><img src="images/dplyp03.gif">
+<p><b>Why use them</b>   <A HREF="apptechp267.htm#BJFDACHB">Table 40-2</A> lists
+several reasons why you might want to use dynamic libraries.</p>
+<A NAME="BJFDACHB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 40-2: Reasons to use dynamic libraries</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7826"></A>Reason</th>
+<th  rowspan="1"  ><A NAME="TI7827"></A>Details</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7828"></A>Modularity</td>
+<td  rowspan="1"  ><A NAME="TI7829"></A>They let you break up your application
+into smaller, more modular files that are easier to manage. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7830"></A>Maintainability</td>
+<td  rowspan="1"  ><A NAME="TI7831"></A>They enable you to deliver application
+components separately. To provide users with a bug fix, you can
+often give them the particular dynamic library that was affected.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7832"></A>Reusability</td>
+<td  rowspan="1"  ><A NAME="TI7833"></A>They make it possible for multiple applications
+to reuse the same components because dynamic libraries can be shared
+among applications as well as among users.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7834"></A>Flexibility</td>
+<td  rowspan="1"  ><A NAME="TI7835"></A>They enable you to provide your application
+with objects that it references only dynamically at runtime (such
+as a window object referenced only through a string variable).<A NAME="TI7836"></A><p>You cannot put such objects in your executable file (unless
+they are DataWindow objects).</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7837"></A>Efficiency</td>
+<td  rowspan="1"  ><A NAME="TI7838"></A>They can help a large application use
+memory efficiently because:<A NAME="TI7839"></A><p><A NAME="TI7840"></A>
+<ul>
+<li class=fi>PowerBuilder does
+not load an entire dynamic library into memory at once. Instead,
+it loads individual objects from the dynamic library only when needed.</li>
+<li class=ds>Your executable file can remain small, making it
+faster to load and less obtrusive.
+</li>
+</ul>
+</p></td>
+</tr>
+</table>
+<p><b>Organizing them</b>   Once you decide to use a dynamic library, you need to tell PowerBuilder
+which library (PBL file) to create it from. PowerBuilder then places
+compiled versions of <i>all</i> objects from that
+PBL file into the DLL or PBD file.</p>
+<A NAME="TI7841"></A><p>If your application uses only some of those objects, you might
+not want the dynamic library to include the superfluous ones, which
+only make the file larger. The solution is to:</p>
+<A NAME="TI7842"></A><p><A NAME="TI7843"></A>
+<ol>
+</li>
+<li class=ds><i>Create a
+new PBL file</i> and copy only the objects you want into
+it.</li>
+<li class=ds><i>Use this new PBL file</i> as the
+source of your dynamic library.
+</li>
+</ol>
+</p>
+<A NAME="BABDGJAJ"></A><h4>About resources</h4>
+<A NAME="TI7844"></A><p>In addition to PowerBuilder objects such as windows and menus,
+applications also use various resources. Examples of resources include:</p>
+<A NAME="TI7845"></A><p><A NAME="TI7846"></A>
+<ul>
+<li class=fi><i>Bitmaps</i> that
+you might display in Picture or PictureButton controls</li>
+<li class=ds><i>Custom pointers</i> that you might
+assign to windows
+</li>
+</ul>
+</p>
+<A NAME="TI7847"></A><p>When you use resources, you need to deliver them as part of
+the application along with your PowerBuilder objects.</p>
+<p><b>What kinds there are</b>   A PowerBuilder application can employ several different kinds
+of resources. <A HREF="apptechp267.htm#BJFCIBHJ">Table 40-3</A> lists
+resources according to the specific objects in which they might
+be needed.</p>
+<A NAME="BJFCIBHJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 40-3: PowerBuilder objects and resources</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7848"></A>These objects</th>
+<th  rowspan="1"  ><A NAME="TI7849"></A>Can use
+these kinds of resources</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7850"></A>Window objects and user objects</td>
+<td  rowspan="1"  ><A NAME="TI7851"></A>Icons (ICO files)<A NAME="TI7852"></A><p>Pictures (BMP, GIF, JPEG, RLE, and WMF files)</p><A NAME="TI7853"></A><p>Pointers (CUR files)</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7854"></A>DataWindow objects</td>
+<td  rowspan="1"  ><A NAME="TI7855"></A>Pictures (BMP, GIF, JPEG, RLE, and WMF
+files)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7856"></A>Menu objects (when in an MDI application)</td>
+<td  rowspan="1"  ><A NAME="TI7857"></A>Pictures (BMP, GIF, JPEG, RLE, and WMF
+files)</td>
+</tr>
+</table>
+<p><b>Delivering them</b>   When deciding how to package the resources that need to accompany
+your application, you can choose from the following approaches: </p>
+<A NAME="TI7858"></A><p><A NAME="TI7859"></A>
+<ul>
+<li class=fi><i>Include
+them in the executable file.</i><br>
+Whenever you create an executable file, PowerBuilder automatically examines
+the objects it places in that file to see if they explicitly reference any
+resources (icons, pictures, pointers). It then copies all such resources right
+into the executable file.<br><br>
+PowerBuilder does not automatically copy in resources that
+are dynamically referenced (through string variables). To get such
+resources into the executable file, you must use a <strong>resource
+(PBR) file</strong>. This is simply a text file in which you
+list existing ICO, BMP, GIF, JPEG, RLE, WMF, and CUR files.<br><br>
+Once you have a PBR file, you can tell PowerBuilder to read
+from it when creating the executable file to determine which additional
+resources to copy in. (This might even include resources used by
+the objects in your dynamic libraries, if you decide to put most
+or all resources in the executable file for performance reasons.)<br></li>
+<li class=ds><i>Include them in dynamic libraries.</i><br>
+You might often need to include resources directly in one
+or more dynamic libraries, but PowerBuilder does not automatically
+copy any resources into a dynamic library that you create even if
+they are explicitly referenced by objects in that file. You need
+to produce a PBR file that tells PowerBuilder which resources you
+want in this particular DLL or PBD file.<br><br>
+Use a different PBR file for each dynamic library in which
+you want to include resources. (When appropriate, you can even use
+this approach to generate a dynamic library that contains only resources
+and no objects. Simply start with an empty PBL file as the source.)<br></li>
+<li class=ds><i>Deliver them as separate files.</i><br>
+This means that when you deploy the application, you give
+users various image files in addition to the application's
+executable file and any dynamic libraries. As long as you do not
+mind delivering a lot of files, this can be useful if you expect
+to revise some of them in the future.<br><br>
+Keep in mind that this is not the fastest approach at runtime,
+because it requires more searching. Whenever your application needs
+a resource, it searches the executable file and then the dynamic
+libraries. If the resource is not found, the application searches
+for a separate file.<br><br>
+Make sure that your application can find where these separate
+files are stored, otherwise it cannot display the corresponding
+resources.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI7860"></A><p>You can use one of these approaches or any combination of
+them when packaging a particular application.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using a PBR file to include a dynamically referenced
+DataWindow object</span> <A NAME="TI7861"></A>You might occasionally want to include a dynamically referenced DataWindow
+object (one that your application knows about only through a string
+variable) in the executable file you are creating. To do that, you
+must list its name in a PBR file along with the names of the resources
+you want PowerBuilder to copy into that executable file.</p>
+<A NAME="TI7862"></A>You <i>do not</i> need to do this when creating
+a dynamic library, because PowerBuilder automatically includes every
+DataWindow object from the source library (PBL file) in your new
+DLL or PBD file. </p>
+<A NAME="TI7863"></A><h2>Creating a PowerBuilder resource file</h2>
+<A NAME="TI7864"></A><p>A PBR file is an ASCII text file in which you list resource
+names (such as BMP, CUR, ICO, RLE, and WMF files) and DataWindow
+objects. To create a PBR file, use a text editor. List the name
+of each resource, one resource on each line, then save the list
+as a file with the extension PBR. Here is a sample PBR file:<p><PRE> ct_graph.ico<br>document.ico<br>codes.ico<br>button.bmp<br>next1.bmp<br>prior1.bmp</PRE></p>
+<A NAME="TI7865"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create and use a PowerBuilder resource file:</p>
+<ol><li class=fi><p>Using a text editor, create a text file
+that lists all resource files referenced dynamically in your application
+(see below for information about creating the file). </p><p>When creating a resource file for a dynamic library, list <i>all</i> resources
+used by the dynamic library, not just those assigned dynamically
+in a script.</p></li>
+<li class=ds><p>Specify the resource files in the Project painter.
+The executable file can have a resource file attached to it, as
+can each of the dynamic libraries.</p><p>When PowerBuilder builds the project, it includes all resources
+specified in the PBR file in the executable file or dynamic library.
+You no longer have to distribute your dynamically assigned resources
+separately; they are in the application.</p></li></ol>
+<br><A NAME="TI7866"></A><h4>Naming resources</h4>
+<A NAME="TI7867"></A><p>If the resource file is in the current directory, you can
+simply list the file, such as:<p><PRE> FROWN.BMP</PRE></p>
+<A NAME="TI7868"></A><p>If the resource file is in a different directory, include
+the path to the file, such as:<p><PRE> C:\BITMAPS\FROWN.BMP</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Paths in PBR files and scripts must match exactly</span> <A NAME="TI7869"></A>The file name specified in the PBR file must exactly match
+the way the resource is referenced in scripts. </p>
+<A NAME="TI7870"></A><p>If the reference in a script uses a path, you must specify
+the same path in the PBR file. If the resource file is not qualified
+with a path in the script, it must not be qualified in the PBR file.</p>
+<A NAME="TI7871"></A><p>For example, if the script reads:<p><PRE> p_logo.PictureName = "FROWN.BMP"</PRE></p>
+<A NAME="TI7872"></A><p>then the PBR file must read:<p><PRE> FROWN.BMP</PRE></p>
+<A NAME="TI7873"></A><p>If the PBR file says something like:<p><PRE> C:\MYAPP\FROWN.BMP</PRE></p>
+<A NAME="TI7874"></A><p>and the script does not specify the path, PowerBuilder cannot
+find the resource at runtime. That is because PowerBuilder does
+a simple string comparison at runtime. In the preceding example,
+when PowerBuilder executes the script, it looks for the object identified
+by the string <FONT FACE="Courier New">FROWN.BMP</FONT> in
+the executable file. It cannot find it, because the resource is
+identified in the executable file as <FONT FACE="Courier New">C:\MYAPP\FROWN.BMP</FONT>.</p>
+<A NAME="TI7875"></A><p>In this case, the picture does not display at runtime; the
+control is empty in the window. </p>
+<A NAME="TI7876"></A><h4>Including DataWindows
+objects in a PBR file</h4>
+<A NAME="TI7877"></A><p>To include a DataWindow object in the list, enter the name
+of the library (with extension PBL) followed by the DataWindow object
+name enclosed in parentheses. For example:<p><PRE> sales.pbl(d_emplist)</PRE></p>
+<A NAME="TI7878"></A><p>If the DataWindow library is not in the directory that is
+current when the executable is built, fully qualify the reference
+in the PBR file. For example:<p><PRE> c:\myapp\sales.pbl(d_emplist)</PRE></p>
+<A NAME="TI7879"></A><h2>Choosing a packaging model</h2>
+<A NAME="TI7880"></A><p>As indicated in the previous section, you have many options
+for packaging an executable version of an application. Here are
+several of the most common packaging models you might consider.</p>
+<A NAME="TI7881"></A><h4>A standalone executable file</h4>
+<A NAME="TI7882"></A><p>In this model, you include everything (all objects and resources)
+in the executable file, so that there is just one file to deliver.</p>
+<p><b>Illustration</b>   <A HREF="apptechp267.htm#BJFICFBF">Figure 40-4</A> shows
+a sample of what this model can look like.</p>
+<A NAME="BJFICFBF"></A><caption><b>Figure 40-4: Standalone executable model</b></captionls>
+<br><img src="images/dplyp04.gif">
+<p><b>Use</b>   This model is good for small, simple applications&#8212;especially
+those that are likely not to need a lot of maintenance. For such
+projects, this model ensures the best performance and the easiest
+delivery.</p>
+<A NAME="TI7883"></A><h4>An executable file and external resources</h4>
+<A NAME="TI7884"></A><p>In this model, you include all objects and most resources
+in the executable file, but you deliver separate files for particular
+resources.</p>
+<p><b>Illustration</b>   <A HREF="apptechp267.htm#BJFBBGBC">Figure 40-5</A> shows
+a sample of what this model can look like.</p>
+<A NAME="BJFBBGBC"></A><caption><b>Figure 40-5: Executable with external
+resources model</b></captionls>
+<br><img src="images/dplyp05.gif">
+<p><b>Use</b>   This model is also for small, simple applications, but it
+differs from the preceding model in that it facilitates maintenance
+of resources that are subject to change. In other words, it lets
+you give users revised copies of specific resources without forcing
+you to deliver a revised copy of the executable file.</p>
+<A NAME="TI7885"></A><p>You can also use this model to deal with resources that must
+be shared by other applications or that are large and infrequently
+needed.</p>
+<A NAME="TI7886"></A><h4>An executable file and dynamic libraries</h4>
+<A NAME="TI7887"></A><p>In this model, you split up your application into an executable
+file and one or more dynamic library files (DLLs or PBDs). When
+doing so, you can organize your objects and resources in various
+ways. <A HREF="apptechp267.htm#BJFICCAE">Table 40-4</A> shows
+some of these techniques.</p>
+<A NAME="BJFICCAE"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 40-4: Object and resource organization
+with dynamic libraries</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7888"></A>To organize</th>
+<th  rowspan="1"  ><A NAME="TI7889"></A>You can</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7890"></A>Objects</td>
+<td  rowspan="1"  ><A NAME="TI7891"></A>Place them all in dynamic libraries so
+that there are none in the executable file, which facilitates maintenance, <i>or</i><A NAME="TI7892"></A><p>Place a few of the most frequently accessed ones in the executable file
+to optimize access to them and place all the rest in dynamic libraries.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7893"></A>Resources</td>
+<td  rowspan="1"  ><A NAME="TI7894"></A>Place most or all of them in dynamic
+libraries along with the objects that use them, which facilitates
+reuse, <i>or</i><A NAME="TI7895"></A><p>Place most or all of them in the executable file to optimize
+access to them.</p></td>
+</tr>
+</table>
+<p><b>Illustration</b>   <A HREF="apptechp267.htm#BJFGAGAA">Figure 40-6</A> shows
+a sample of what this model can look like.</p>
+<A NAME="BJFGAGAA"></A><caption><b>Figure 40-6: Executable with dynamic libraries
+model</b></captionls>
+<br><img src="images/dplyp06.gif">
+<p><b>Use</b>   This model is good for most substantial projects because it
+gives you flexibility in organizing and maintaining your applications.</p>
+<A NAME="TI7896"></A><p>For instance, it enables you to make revisions to a particular
+part of an application in one dynamic library. However, you must
+always rebuild the entire application and deliver all the dynamic
+libraries to customers whenever you make a revision to any library. </p>
+<A NAME="TI7897"></A><h4>An executable file, dynamic libraries, and external
+resources</h4>
+<A NAME="TI7898"></A><p>This model is just like the preceding one except that you
+deliver separate files for particular resources (instead of including
+all of them in your executable file and dynamic libraries).</p>
+<p><b>Illustration</b>   <A HREF="apptechp267.htm#BJFCCJJG">Figure 40-7</A> shows
+a sample of what this model can look like.</p>
+<A NAME="BJFCCJJG"></A><caption><b>Figure 40-7: Executable with dynamic libraries
+and external resources model</b></captionls>
+<br><img src="images/dplyp07.gif">
+<p><b>Use</b>   This model is good for substantial applications, particularly
+those that call for flexibility in handling certain resources. Such
+flexibility may be needed if a resource:</p>
+<A NAME="TI7899"></A><p><A NAME="TI7900"></A>
+<ul>
+<li class=fi>Might have to be revised</li>
+<li class=ds>Must be shared by other applications</li>
+<li class=ds>Is large and infrequently used
+</li>
+</ul>
+</p>
+<A NAME="TI7901"></A><h2>Implementing your packaging model</h2>
+<A NAME="TI7902"></A><p>When you have decided which is the appropriate packaging model
+for your application, you can use the packaging facilities in PowerBuilder
+to implement it. For the most part, this involves working in the <strong>Project
+painter</strong>. You can use the Project painter
+to build components, proxy libraries, and HTML files as well as
+executable applications.</p>
+<A NAME="TI7903"></A><h4>Using the Project painter for executable applications</h4>
+<A NAME="TI7904"></A><p>The Project painter for executable applications orchestrates
+all aspects of the packaging job by enabling you to:<A NAME="TI7905"></A>
+<ul>
+<li class=fi>Specify the <i>executable file</i> to
+create</li>
+<li class=ds>Specify any <i>dynamic libraries</i> (DLL
+or PBD files) to create</li>
+<li class=ds>Specify the <i>resources you want included</i> in
+the executable file or in each particular dynamic library (by using
+appropriate PBR files that indicate where to get those resources)</li>
+<li class=ds>Choose <i>machine code or Pcode</i> as
+the compiler format to generate<br>
+With machine code, you can also specify a variety of code
+generation options (such as optimization, trace information, and
+error context information).<br></li>
+<li class=ds>Choose <i>build options</i>, including
+whether you want the Project painter to do a full or incremental
+rebuild of your application's objects when generating the
+executable application</li>
+<li class=ds>Save all of these specifications as a <strong>project
+object</strong> that you can use whenever necessary to rebuild
+the whole package
+</li>
+</ul>
+</p>
+<A NAME="TI7906"></A><p>For more information on using the Project
+painter, see the <i>PowerBuilder User's Guide</i>
+. </p>
+<A NAME="TI7907"></A><h4>Building individual dynamic libraries</h4>
+<A NAME="TI7908"></A><p>When you make revisions to an existing application, your changes
+might not affect all its dynamic libraries. You can rebuild individual
+dynamic libraries from the pop-up menu in the System Tree or the
+Library painter. </p>
+<A NAME="TI7909"></A><p>If changes are isolated and do not affect inherited objects
+in other PBLs, you might be able to distribute individual PBDs to
+your users to provide an upgrade or bug fix. However, Sybase recommends
+that you always perform a full rebuild and distribute the executable
+file and all the application's dynamic libraries whenever
+you revise an application.</p>
+<A NAME="TI7910"></A><h2>Testing the executable application</h2>
+<A NAME="TI7911"></A><p>Once you create the executable version of your application,
+test how it runs before proceeding with delivery. You may have already
+executed the application many times within the PowerBuilder development
+environment, but it is still very important to run the executable
+version as an <i>independent</i> application&#8212;just
+the way end users will.</p>
+<A NAME="TI7912"></A><p>To do this, you:<A NAME="TI7913"></A>
+<ol>
+</li>
+<li class=ds>Leave
+PowerBuilder and go to your operating system environment.</li>
+<li class=ds>Make sure that the PowerBuilder runtime libraries
+are accessible to the application.<br>
+You can do this by verifying that the location of the PowerBuilder
+virtual machine and other runtime files is in your PATH environment
+variable, or you can create a registry entry for the application
+that specifies the path.<br></li>
+<li class=ds>Run the application's executable file as
+you run any native application.
+</li>
+</ol>
+</p>
+<A NAME="TI7914"></A><h4>Tracing the application's execution</h4>
+<A NAME="TI7915"></A><p>To help you track down problems, PowerBuilder provides <strong>tracing
+and profiling</strong> facilities<strong></strong> that
+you can use in the development environment and when running the
+executable version of an application. Even if your application's executable
+is problem free, you might consider using this facility to generate an
+audit trail of its operation. For more information
+on tracing execution, see the <i>PowerBuilder User's
+Guide</i>
+.</p>
+

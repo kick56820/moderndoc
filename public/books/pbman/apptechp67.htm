@@ -1,0 +1,215 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using Transaction objects to call stored procedures</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp66.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp68.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF355519525"></A><h1>Using Transaction objects to call stored procedures</h1>
+<A NAME="TI1756"></A><p><ACRONYM title = "sequel c a" >SQLCA</ACRONYM> is a built-in
+global variable of type transaction that is used in all PowerBuilder
+applications. In your application, you can define a specialized version
+of <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> that performs certain
+processing or calculations on your data.</p>
+<A NAME="TI1757"></A><p>If your database supports stored procedures, you might already
+have defined remote stored procedures to perform these operations.
+You can use the remote procedure call (RPC) technique to define
+a customized version of the Transaction object that calls these
+database stored procedures in your application.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Result sets</span> <A NAME="TI1758"></A>You <i>cannot</i> use the RPC technique to access
+result sets returned by stored procedures. If the stored procedure
+returns one or more result sets, PowerBuilder ignores the values
+and returns the output parameters and return value. If your stored
+procedure returns a result set, you can use the embedded <ACRONYM title = "sequel" >SQL</ACRONYM> <b>DECLARE Procedure</b> statement
+to call it.</p>
+<A NAME="TI1759"></A>For information about the <b>DECLARE
+Procedure</b> statement, see the chapter on <ACRONYM title = "sequel" >SQL</ACRONYM> statements in the <i>PowerScript
+Reference</i>
+.</p>
+<A NAME="TI1760"></A><h4>Overview of the RPC procedure</h4>
+<A NAME="TI1761"></A><p>To call database stored procedures from within your PowerBuilder
+application, you can use the remote procedure call technique and
+PowerScript dot notation (<i>object</i>.<i>function</i>)
+to define a customized version of the Transaction object that calls
+the stored procedures.</p>
+<A NAME="TI1762"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To call database stored procedures in your application:</p>
+<ol><li class=fi><p>From the Objects tab in the New dialog
+box, define a standard class user object inherited from the built-in
+Transaction object.</p></li>
+<li class=ds><p>In the Script view in the User Object painter,
+use the <b>RPCFUNC</b> keyword to declare the stored
+procedure as an external function or subroutine for the user object.</p></li>
+<li class=ds><p>Save the user object.</p></li>
+<li class=ds><p>In the Application painter, specify the user object
+you defined as the default global variable type for <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>.</p></li>
+<li class=ds><p>Code your PowerBuilder application to use the
+user object.</p></li></ol>
+<br><A NAME="TI1763"></A><p>For instructions on using the User Object
+and Application painters and the Script view in PowerBuilder, see
+the <i>PowerBuilder User's Guide</i>
+.</p>
+<A NAME="TI1764"></A><h4>Understanding the example</h4>
+<p><b>u_trans_database user object</b>   The following sections give step-by-step instructions for
+using a Transaction object to call stored procedures in your application.
+The example shows how to define and use a standard class user object
+named <b>u_trans_database</b>.</p>
+<A NAME="TI1765"></A><p>The <b>u_trans_database</b> user
+object is a descendant of (inherited from) the built-in
+Transaction object <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>.
+A <strong>descendant</strong> is an object that inherits functionality
+(properties, variables, functions, and event scripts) from an ancestor
+object. A descendent object is also called a <strong>subclass</strong>.</p>
+<p><b>GIVE_RAISE stored procedure</b>   The <b>u_trans_database</b> user
+object calls an Oracle database stored procedure named <b>GIVE_RAISE</b> that
+calculates a five percent raise on the current salary. Here is the
+Oracle syntax to create the <b>GIVE_RAISE</b> stored
+procedure:</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded><ACRONYM title = "sequel" >SQL</ACRONYM> terminator
+character</span> <A NAME="TI1766"></A>The syntax shown here for creating an Oracle stored procedure
+assumes that the <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+terminator character is ` (backquote).</p>
+<A NAME="TI1767"></A><p><p><PRE> // Create GIVE_RAISE function for Oracle </PRE><PRE> // SQL terminator character is ` (backquote).</PRE><PRE> CREATE OR REPLACE FUNCTION give_raise</PRE><PRE> (salary IN OUT NUMBER)</PRE><PRE> return NUMBER</PRE><PRE> IS rv NUMBER;</PRE><PRE> BEGIN</PRE><PRE>    salary := salary * 1.05;</PRE><PRE>    rv := salary;</PRE><PRE>    return rv;</PRE><PRE> END; `</PRE><PRE> // Save changes.</PRE><PRE> COMMIT WORK`</PRE><PRE> // Check for errors.</PRE><PRE> SELECT * FROM all_errors`</PRE></p>
+<A NAME="CAIDIJJD"></A><h2>Step 1: define the standard class user object</h2>
+<A NAME="TI1768"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define the standard class user object:</p>
+<ol><li class=fi><p>Start PowerBuilder.</p></li>
+<li class=ds><p>Connect to a database that supports stored procedures.</p><p>The rest of this procedure assumes you are connected to an
+Oracle database that contains remote stored procedures on the database
+server.</p><p>For instructions on connecting to an Oracle
+database in PowerBuilder and using Oracle stored procedures, see <i>Connecting
+to Your Database</i>
+.</p></li>
+<li class=ds><p>Click the New button in the PowerBar, or select
+File&gt;New from the menu bar.</p><p>The New dialog box displays.</p></li>
+<li class=ds><p>On the Object tab, select the Standard Class icon
+and click OK to define a new standard class user object. </p><p>The Select Standard Class Type dialog box displays:</p><br><img src="images/datrnsct.gif"><br>
+</li>
+<li class=ds><p>Select <i>transaction</i> as the
+built-in system type that you want your user object to inherit from,
+and click OK. </p><p>The User Object painter workspace displays so that you can
+assign properties (instance variables) and functions to your user
+object:</p></li></ol>
+<br><A NAME="CAICDFFC"></A><h2>Step 2: declare the stored procedure as an external function</h2>
+<A NAME="TI1769"></A><h4>FUNCTION or SUBROUTINE declaration</h4>
+<A NAME="TI1770"></A><p>You can declare a non-result-set database stored procedure
+as an external function or external subroutine in a PowerBuilder
+application. If the stored procedure has a return value, declare
+it as a function (using the <b>FUNCTION</b> keyword).
+If the stored procedure returns nothing or returns <b>VOID</b>,
+declare it as a subroutine (using the <b>SUBROUTINE</b> keyword).</p>
+<A NAME="TI1771"></A><h4>RPCFUNC and ALIAS FOR keywords</h4>
+<A NAME="TI1772"></A><p>You <i>must</i> use the <b>RPCFUNC</b> keyword
+in the function or subroutine declaration to indicate that this
+is a remote procedure call (RPC) for a database stored procedure
+rather than for an external function in a dynamic library. Optionally, you
+can use the <b>ALIAS FOR "<i>spname</i>"</b> expression
+to supply the name of the stored procedure as it appears in the
+database if this name differs from the one you want to use in your
+script.</p>
+<A NAME="TI1773"></A><p>For complete information about the syntax
+for declaring stored procedures as remote procedure calls, see the
+chapter on calling functions and events in the <i>PowerScript
+Reference</i>
+.</p>
+<A NAME="TI1774"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To declare stored procedures as external functions
+for the user object:</p>
+<ol><li class=fi><p>In the Script view in the User Object painter,
+select [Declare] from the first list and Local
+External Functions from the second list.</p></li>
+<li class=ds><p>Place your cursor in the Declare Local External
+Functions view. From the pop-up menu or the Edit menu, select Paste
+Special&gt;<ACRONYM title = "sequel" >SQL</ACRONYM>&gt;Remote
+Stored Procedures.</p><p>PowerBuilder loads the stored procedures from your database
+and displays the Remote Stored Procedures dialog box. It lists the
+names of stored procedures in the current database.</p><br><img src="images/datrnsp.gif"><br>
+</li>
+<li class=ds><p>Select the names of one or more stored procedures
+that you want to declare as functions for the user object, and click
+OK.</p><p>PowerBuilder retrieves the stored procedure declarations from
+the database and pastes each declaration into the view.</p><p>For example, here is the declaration that displays on one
+line when you select <b>sp_addlanguage</b>:<p><PRE> function long sp_addlanguage()</PRE><PRE> RPCFUNC ALIAS FOR "dbo.sp_addlanguage"</PRE></p></li>
+<li class=ds><p>Edit the stored procedure declaration as needed
+for your application.</p><p>Use either of the following syntax formats to declare the
+database remote procedure call (RPC) as an external function or
+external subroutine (for details about the syntax, see the <i>PowerScript
+Reference</i>
+): <p><PRE><b>FUNCTION</b> <i>rtndatatype</i> <i>functionname</i> ( { { <b>REF</b> } <i>datatype1</i> <i>arg1</i>, ..., <br>   { <b>REF</b> } <i>datatypen</i> <i>argn</i> } ) <b>RPCFUNC</b> { <b>ALIAS FOR</b> "<i>spname</i>" }</PRE></p>
+<p><PRE><b>SUBROUTINE</b> <i>functionname</i> ( { { <b>REF</b> } <i>datatype1 arg1</i> , ..., <br>   { <b>REF</b> } <i>datatypen argn</i> } ) <b>RPCFUNC</b> { <b>ALIAS FOR </b>"<i>spname</i>" }</PRE></p>
+</p><p>Here is the edited RPC function declaration for <b>sp_addlanguage</b>:<p><PRE> FUNCTION long sp_addlanguage()</PRE><PRE>        RPCFUNC ALIAS FOR "addlanguage_proc"</PRE></p></li></ol>
+<br><A NAME="CAIBGADC"></A><h2>Step 3: save the user object</h2>
+<A NAME="TI1775"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To save the user object:</p>
+<ol><li class=fi><p>In the User Object painter, click the Save
+button, or select
+File&gt;Save from the menu bar.</p><p>The Save User Object dialog box displays.</p></li>
+<li class=ds><p>Specify the name of the user object, comments
+that describe its purpose, and the library in which to save the
+user object. </p></li>
+<li class=ds><p>Click OK to save the user object.</p><p>PowerBuilder saves the user object with the name you specified
+in the selected library.</p></li></ol>
+<br><A NAME="CAIDEIGG"></A><h2>Step 4: specify the default global variable type for SQLCA</h2>
+<A NAME="TI1776"></A><p>In the Application painter, you must specify the user object
+you defined as the default global variable type for <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>. When you execute your
+application, this tells PowerBuilder to use your standard class
+user object instead of the built-in system Transaction object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using your own Transaction object instead of <ACRONYM title = "sequel c a" >SQLCA</ACRONYM></span> <A NAME="TI1777"></A>This procedure assumes that your application uses the default
+Transaction object <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>,
+but you can also declare and create an instance of your own Transaction
+object and then write code that calls the user object as a property of
+your Transaction object. For instructions, see the chapter on working
+with user objects in the <i>PowerBuilder User's
+Guide</i>
+.</p>
+<A NAME="TI1778"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the default global variable type for <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>:</p>
+<ol><li class=fi><p>Click the Open button in the PowerBar,
+or select File&gt;Open from the menu bar.</p><p>The Open dialog box displays.</p></li>
+<li class=ds><p>Select Applications from the Object Type drop-down
+list. Choose the application where you want to use your new user
+object and click OK. </p><p>The Application painter workspace displays. </p></li>
+<li class=ds><p>Select the General tab in the Properties view.
+Click the Additional Properties button. </p><p>The Additional Properties dialog box displays.</p></li>
+<li class=ds><p>Click the Variable Types tab to display the Variable
+Types property page.</p></li>
+<li class=ds><p>In the <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> box,
+specify the name of the standard class user object you defined in
+Steps 1 through 3:</p><br><img src="images/datrnapp.gif"><br>
+</li>
+<li class=ds><p>Click OK or Apply.</p><p>When you execute your application, PowerBuilder will use the
+specified standard class user object instead of the built-in system
+object type it inherits from.</p></li></ol>
+<br><A NAME="CAIBHCCI"></A><h2>Step 5: code your application to use the user object</h2>
+<p><b>What you have done so far</b>   In the previous steps, you defined the <b>GIVE_RAISE</b> remote
+stored procedure as an external function for the <b>u_trans_database</b> standard
+class user object. You then specified <b>u_trans_database</b> as
+the default global variable type for <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>.
+These steps give your PowerBuilder application access to the properties
+and functions encapsulated in the user object.</p>
+<p><b>What you do now</b>   You now need to write code that uses the user object to perform
+the necessary processing. </p>
+<A NAME="TI1779"></A><p>In your application script, you can use PowerScript dot notation
+to call the stored procedure functions you defined for the user
+object, just as you do when using <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> for
+all other PowerBuilder objects. The dot notation syntax is:<p><PRE><i>object.function</i> ( <i>arguments</i> )</PRE></p>
+</p>
+<A NAME="TI1780"></A><p>For example, you can call the <b>GIVE_RAISE</b> stored
+procedure with code similar to the following:<p><PRE> SQLCA.give_raise(salary)</PRE></p>
+<A NAME="TI1781"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To code your application to use the user object:</p>
+<ol><li class=fi><p>Open the object or control for which you
+want to write a script.</p></li>
+<li class=ds><p>Select the event for which you want to write the
+script.</p><p>For instructions on using the Script view,
+see the <i>PowerBuilder User's Guide</i>
+.</p></li>
+<li class=ds><p>Write code that uses the user object to do the
+necessary processing for your application.</p><p>Here is a simple code example that connects to an Oracle database,
+calls the <b>GIVE_RAISE</b> stored procedure
+to calculate the raise, displays a message box with the new salary,
+and disconnects from the database:<p><PRE> // Set Transaction object connection properties.</PRE><PRE> SQLCA.DBMS="OR7"</PRE><PRE> SQLCA.LogID="scott"</PRE><PRE> SQLCA.LogPass="xxyyzz"</PRE><PRE> SQLCA.ServerName="@t:oracle:testdb"</PRE><PRE> SQLCA.DBParm="sqlcache=24,pbdbms=1"</PRE><PRE> </PRE><PRE> // Connect to the Oracle database.</PRE><PRE> CONNECT USING SQLCA ;</PRE><PRE> </PRE><PRE> // Check for errors.</PRE><PRE> IF SQLCA.sqlcode &lt;&gt; 0 THEN</PRE><PRE>       MessageBox ("Connect Error",SQLCA.SQLErrText)</PRE><PRE>       return</PRE><PRE> END IF</PRE><PRE> </PRE><PRE> // Set 20,000 as the current salary.</PRE><PRE> DOUBLE val = 20000</PRE><PRE> DOUBLE rv</PRE><PRE> </PRE><PRE> // Call the GIVE_RAISE stored procedure to</PRE><PRE> // calculate the raise.</PRE><PRE> // Use dot notation to call the stored procedure</PRE><PRE> <i>rv = SQLCA.give_raise(val)</i></PRE><PRE> </PRE><PRE> // Display a message box with the new salary.</PRE><PRE> MessageBox("The new salary is",string(rv))</PRE><PRE> </PRE><PRE> // Disconnect from the Oracle database.</PRE><PRE> DISCONNECT USING SQLCA;</PRE></p></li>
+<li class=ds><p>Compile the script to save your changes.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using error checking</span> <A NAME="TI1782"></A>An actual script would include error checking after the <b>CONNECT</b> statement, <b>DISCONNECT</b> statement,
+and call to the <b>GIVE_RAISE</b> procedure.
+For details, see <A HREF="apptechp66.htm#X-REF356210949">"Error handling after
+a <ACRONYM title = "sequel" >SQL</ACRONYM> statement"</A>.</p>
+

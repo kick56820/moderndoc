@@ -1,0 +1,510 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+OLE controls and insertable objects </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp107.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp109.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF348256501"></A><h1>OLE controls and insertable objects </h1>
+<A NAME="TI3071"></A><p>The OLE control contains an insertable OLE object. You can
+change the object in the control in the painter or in a script.
+You specify what is allowed in the control by setting PowerBuilder
+properties.</p>
+<A NAME="TI3072"></A><h2>Setting up the OLE control</h2>
+<A NAME="TI3073"></A><p>When you create an OLE control and insert an object, PowerBuilder
+activates the server application to allow you to modify the object.
+After you deactivate it (by clicking outside the object's
+borders in the Layout view), you can use the control's
+property sheets to set up the control.</p>
+<A NAME="TI3074"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the control's appearance and
+behavior:</p>
+<ol><li class=fi><p>Double-click the control,
+or select Properties from the control's pop-up menu.</p></li>
+<li class=ds><p>In the Properties view, give the control a name
+that is relevant to your application. </p><p>You will use this name in scripts. The default name is <b>ole_</b> followed
+by a number.</p></li>
+<li class=ds><p>Specify a value for Display Name for use by the
+OLE server. The OLE server can use this name in window title bars.</p></li>
+<li class=ds><p>Specify the control's appearance and
+behavior by choosing appropriate settings in the Properties view.</p><p>In addition to the standard Visible, Enabled, Focus Rectangle,
+and Border properties, which are available for most controls, there
+are several options that control the object's interaction
+with the server:</p><A NAME="TI3075"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI3076"></A>Option</th>
+<th  rowspan="1"  ><A NAME="TI3077"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3078"></A>Activation</td>
+<td  rowspan="1"  ><A NAME="TI3079"></A>How the user activates the control.<A NAME="TI3080"></A><p>Options are:</p><A NAME="TI3081"></A><p><A NAME="TI3082"></A>
+<ul>
+<li class=fi>Double Click &#8211; When
+the user double-clicks the control, the server application is activated.</li>
+<li class=ds>Get Focus &#8211; When the user clicks or tabs
+to the control, the server is activated. If you also write a script
+for the GetFocus event, do not call <b>MessageBox</b> or
+any function that results in a change in focus.</li>
+<li class=ds>Manual &#8211; The control can be activated only programmatically
+with the <b>Activate</b> function.
+</li>
+</ul>
+</p><A NAME="TI3083"></A><p>The control can always be activated programmatically, regardless
+of the Activation setting.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3084"></A>Display Type</td>
+<td  rowspan="1"  ><A NAME="TI3085"></A>What the control displays.<A NAME="TI3086"></A><p>Options are:</p><A NAME="TI3087"></A><p><A NAME="TI3088"></A>
+<ul>
+<li class=fi>Contents &#8211; Display
+a representation of the object, reduced to fit within the control.</li>
+<li class=ds>Icon &#8211; Display the icon associated with
+the data. This is usually an icon provided by the server application.</li>
+<li class=ds>ActiveX document &#8211; Display as an ActiveX
+document. ActiveX documents fill the space of the container and
+have access to all the features of the server application.
+</li>
+</ul>
+</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3089"></A>Contents</td>
+<td  rowspan="1"  ><A NAME="TI3090"></A>What the user can insert in the
+control at runtime.<A NAME="TI3091"></A><p>Options are:</p><A NAME="TI3092"></A><p><A NAME="TI3093"></A>
+<ul>
+<li class=fi>Any &#8211; The
+user can insert either a linked or embedded object.</li>
+<li class=ds>Embedded &#8211; The user can insert an embedded
+object.</li>
+<li class=ds>Linked &#8211; The user can insert a linked object.
+</li>
+</ul>
+</p><A NAME="TI3094"></A><p>Setting Contents changes the value of the ContentsAllowed property.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3095"></A>Link Update</td>
+<td  rowspan="1"  ><A NAME="TI3096"></A>When the object in the control is linked,
+the method for updating link information.<A NAME="TI3097"></A><p>Options are:</p><A NAME="TI3098"></A><p><A NAME="TI3099"></A>
+<ul>
+<li class=fi>Automatic &#8211; If
+the link is broken and PowerBuilder cannot find the linked file,
+it displays a dialog box in which the user can specify the file.</li>
+<li class=ds>Manual &#8211; If the link is broken, the object
+cannot be activated. You can re-establish the link in a script using
+the <b>LinkTo</b> or <b>UpdateLinksDialog</b> function.
+</li>
+</ul>
+</p><A NAME="TI3100"></A><p>Setting Link Update changes the value of the LinkUpdateOptions
+property.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3101"></A>Size Mode</td>
+<td  rowspan="1"  ><A NAME="TI3102"></A>How the object is displayed in the container.<A NAME="TI3103"></A><p>Options are:</p><A NAME="TI3104"></A><p><A NAME="TI3105"></A>
+<ul>
+<li class=fi>Clip &#8211; The
+object's image displays full size. If it is larger than
+the OLE control, it is clipped by the control's borders.</li>
+<li class=ds>Stretch &#8211; The object's image is
+resized to fit into and fill the OLE control (default).
+</li>
+</ul>
+</p></td>
+</tr>
+</table>
+</li></ol>
+<br><A NAME="TI3106"></A><h3>Activating the object in the painter</h3>
+<A NAME="TI3107"></A><p>The object in the OLE control needs to be activated so that
+the server application can manipulate it. For the user, double-clicking
+is the default method for activating the object. You can choose
+other methods by setting the control's Activation property,
+as described in the preceding table. During development, you activate
+the object in the Window painter.</p>
+<A NAME="TI3108"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To activate an OLE object in the Window painter:</p>
+<ol><li class=fi><p>Select Open from the control's
+pop-up menu.</p><p>If the control is empty, Open is unavailable. You must select
+Insert to assign an object to the control first.</p><p>PowerBuilder invokes the server application and activates
+the object offsite.</p></li>
+<li class=ds><p>Use the server application to modify the object.</p></li>
+<li class=ds><p>When you have finished, deactivate the object
+by clicking outside its hatched border.</p><p>You can also choose Exit or Return on the server's
+File menu, if available.</p></li></ol>
+<br><A NAME="TI3109"></A><h3>Changing the object in the control</h3>
+<A NAME="TI3110"></A><p>In the painter, you can change or remove the object in the
+control.</p>
+<A NAME="TI3111"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete the object in the control:</p>
+<ol><li class=fi><p>Select Delete from the
+control's pop-up menu. </p><p>The control is now empty and cannot be activated. Do not select
+Clear&#8212;it deletes the control from the window. </p></li></ol>
+<br><A NAME="TI3112"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To insert a different object in the control:</p>
+<ol><li class=fi><p>Select Insert from the
+control's pop-up menu.</p><p>PowerBuilder displays the Insert Object dialog box.</p></li>
+<li class=ds><p>Select Create New and select a server application,
+or select Create from File and specify a file, as you did when you
+defined the control.</p></li>
+<li class=ds><p>Click OK.</p></li></ol>
+<br><A NAME="TI3113"></A><h4>During execution</h4>
+<A NAME="TI3114"></A><p>You can insert a different object in the control by calling
+the <b>InsertObject</b>, <b>InsertFile</b>, <b>InsertClass</b>,
+or <b>LinkTo</b> function. You can delete the object
+in the control by calling <b>Cut</b> or <b>Clear</b>.</p>
+<A NAME="TI3115"></A><h3>How the user interacts with the control</h3>
+<A NAME="TI3116"></A><p>When the window containing the OLE control opens, the data
+is displayed using the information stored with the control in the <i>PBL</i> (or <i>PBD</i> or <i>EXE</i> file if
+the application has been built).</p>
+<A NAME="TI3117"></A><p>When the object is activated, either because the user double-clicks
+or tabs to it or because a script calls <b>Activate</b>,
+PowerBuilder starts the server application and enables in-place
+editing if possible. If not, it enables offsite editing.</p>
+<A NAME="TI3118"></A><p>As the user changes the object, the data in the control is
+kept up to date with the changes. This is obvious when the object
+is being edited in place, but it is also true for offsite editing.
+Because some server applications update the object periodically,
+rather than continually, the user might see only periodic changes to
+the contents of the control. Most servers also do a final update
+automatically when you end the offsite editing session. However,
+to be safe, the user should select the server's <b>Update</b> command
+before ending the offsite editing session.</p>
+<A NAME="X-REF351280201"></A><h2>Linking versus embedding</h2>
+<A NAME="TI3119"></A><p>An OLE object can be linked or embedded in your application.
+The method you choose depends on how you want to maintain the data.</p>
+<A NAME="TI3120"></A><h4>Embedding data</h4>
+<A NAME="TI3121"></A><p>The data for an <strong>embedded</strong> object is
+stored in your application. During development, it is stored in
+your application's <i>PBL</i>. When you build
+your application, it is stored in the <i>EXE</i> or <i>PBD</i> file.
+This data is a template or a starting point for the user. Although
+the user can edit the data during a session, the changes cannot
+be saved because the embedded object is stored as part of your application.</p>
+<A NAME="TI3122"></A><p>Embedding is suitable for data that will not change (such
+as the body of a form letter) or as a starting point for data that
+will be changed and stored elsewhere.</p>
+<A NAME="TI3123"></A><p>To save the data at runtime, you can use the <b>SaveAs</b> and <b>Open</b> functions
+to save the user's data to a file or OLE storage.</p>
+<A NAME="TI3124"></A><h4>Linking data</h4>
+<A NAME="TI3125"></A><p>When you <strong>link</strong> an object, your application
+contains a reference to the data, not the data itself. The application
+also stores an image of the data for display purposes. The server
+application handles the actual data, which is usually saved in a
+file. Other applications can maintain links to the same data. If
+any application changes the data, the changes appear in all the
+documents that have links to it.</p>
+<A NAME="TI3126"></A><p>Linking is useful for two reasons:<A NAME="TI3127"></A>
+<ul>
+<li class=fi>More than one application can access the data.</li>
+<li class=ds>The server manages the saving of the data, which
+is useful even if your PowerBuilder application is the only one
+using the data.
+</li>
+</ul>
+</p>
+<p><b>Maintaining link information</b>   The server, not PowerBuilder, maintains the link information.
+Information in the OLE object tells PowerBuilder what server to
+start and what data file and item within the file to use. From then
+on, the server services the data: updating it, saving it back to
+the data file, updating information about the item (for example,
+remembering that you inserted a row in the middle of the range of
+linked rows).</p>
+<p><b>Fixing a broken link</b>   Because the server maintains the link, you can move and manipulate
+an OLE object within your application without worrying about whether
+it is embedded or linked.</p>
+<A NAME="TI3128"></A><p>If the link is broken because the file has been moved, renamed,
+or deleted, the Update setting of the control determines how the
+problem is handled. When Update is set to Automatic, PowerBuilder
+displays a dialog box that prompts the user to find the file. You
+can call the <b>UpdateLinksDialog</b> function in a
+script to display the same dialog box. You can establish a link
+in a script without involving the user by calling the <b>LinkTo</b> function.</p>
+<A NAME="TI3129"></A><p>PowerBuilder displays a control with a linked object with
+the same shading that is used for an open object.</p>
+<A NAME="TI3130"></A><h2>Offsite or in-place activation</h2>
+<A NAME="TI3131"></A><p>During execution, when a user activates the object in the
+OLE control, PowerBuilder tries to activate an embedded object <strong>in
+place</strong>, meaning that the user interacts with the object
+inside the PowerBuilder window. The menus provided by the server
+application are merged with the PowerBuilder application's
+menus. You can control how the menus are merged in the Menu painter
+(see <A HREF="apptechp108.htm#X-REF307046612">"Menus for in-place
+activation"</A>).</p>
+<A NAME="TI3132"></A><p>When the control is active in place, it has a wide hatched
+border:</p>
+<br><img src="images/oleap01.gif">
+<A NAME="TI3133"></A><p><strong>Offsite</strong> activation means that the server
+application opens and the object becomes an open document in the
+server's window. All the server's menus are available.
+The control itself is displayed with shading, indicating that the
+object is open in the server application.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Limits to in-place activation</span> <A NAME="TI3134"></A>The server's capabilities determine whether PowerBuilder
+can activate the object in place. OLE 1.0 objects cannot be activated
+in place. In addition, the OLE 2.0 standards specify that linked
+objects are activated offsite, not in place.</p>
+<A NAME="TI3135"></A>From the Window painter, the object is always activated offsite.</p>
+<A NAME="TI3136"></A><h4>Changing the default behavior</h4>
+<A NAME="TI3137"></A><p>You can change the default behavior in a script by calling
+the <b>Activate</b> function and choosing whether to
+activate an object in place or offsite. If you set the control's
+Activation setting to Manual, you can write a script that calls
+the <b>Activate</b> function for the DoubleClicked event
+(or some other event):<p><PRE> ole_1.Activate(Offsite!)</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>When the control will not activate</span> <A NAME="TI3138"></A>You cannot activate an empty control (a control that does
+not have an OLE object assigned to it). If you want the user to
+choose the OLE object, you can write a script that calls the <b>InsertObject</b> function.</p>
+<A NAME="TI3139"></A>If the object in the control is linked and the linked file
+is missing, the user cannot activate the control. If the Update
+property is set to Automatic, PowerBuilder displays a dialog box
+so that the user can find the file.</p>
+<A NAME="TI3140"></A>If the Update property is set to Manual, a script can call
+the <b>UpdateLinksDialog</b> function to display the
+dialog box, or call <b>LinkTo</b> to replace the contents
+with another file.</p>
+<A NAME="X-REF307046612"></A><h2>Menus for in-place activation</h2>
+<A NAME="TI3141"></A><p>When an object is activated in place, menus for its server
+application are merged with the menus in your PowerBuilder application.
+The Menu Merge Option settings in the Menu painter let you control
+how the menus of the two applications are merged. The values are
+standard menu names, as well as the choices Merge and Exclude.</p>
+<A NAME="TI3142"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To control what happens to a menu in your application
+when an OLE object is activated:</p>
+<ol><li class=fi><p>Open the menu in the Menu painter.</p></li>
+<li class=ds><p>Select a menu item that appears on the menu bar.
+Menu Merge Option settings apply only to items on the menu bar,
+not items on drop-down menus.</p></li>
+<li class=ds><p>On the Style property page, choose the appropriate
+Menu Merge Option setting. <A HREF="apptechp108.htm#CEGFJDHI">Table 19-1</A> lists these settings.</p><A NAME="CEGFJDHI"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-1: Menu Merge Option settings</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3143"></A>You can choose</th>
+<th  rowspan="1"  ><A NAME="TI3144"></A>Meaning</th>
+<th  rowspan="1"  ><A NAME="TI3145"></A>Source
+of menu in resulting menu bar</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3146"></A>File</td>
+<td  rowspan="1"  ><A NAME="TI3147"></A>The menu from the container application (your
+PowerBuilder application) that will be leftmost on the menu bar.
+The server's File menu never displays.</td>
+<td  rowspan="1"  ><A NAME="TI3148"></A>Container</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3149"></A>Edit</td>
+<td  rowspan="1"  ><A NAME="TI3150"></A>The menu identified as Edit never displays.
+The server's Edit menu displays.</td>
+<td  rowspan="1"  ><A NAME="TI3151"></A>Server</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3152"></A>Window</td>
+<td  rowspan="1"  ><A NAME="TI3153"></A>The menu from the container application that
+has the list of open sheets. The server's Window menu never
+displays.</td>
+<td  rowspan="1"  ><A NAME="TI3154"></A>Container</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3155"></A>Help</td>
+<td  rowspan="1"  ><A NAME="TI3156"></A>The menu identified as Help never displays.
+The server's Help menu displays.</td>
+<td  rowspan="1"  ><A NAME="TI3157"></A>Server</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3158"></A>Merge</td>
+<td  rowspan="1"  ><A NAME="TI3159"></A>The menu will be displayed after the
+first menu of the server application.</td>
+<td  rowspan="1"  ><A NAME="TI3160"></A>Container</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3161"></A>Exclude</td>
+<td  rowspan="1"  ><A NAME="TI3162"></A>The menu will be removed while the object
+is active.</td>
+<td  rowspan="1"  ><A NAME="TI3163"></A></td>
+</tr>
+</table>
+</li>
+<li class=ds><p>Repeat steps 2 and 3 for each item on the menu
+bar.</p></li></ol>
+<br><A NAME="TI3164"></A><h4>Standard assignments for standard menus</h4>
+<A NAME="TI3165"></A><p>In general, you should assign the File, Edit, Window, and
+Help Menu Merge options to the File, Edit, Window, and Help menus.
+Because the actual menu names might be different in an international
+application, you use the Menu Merge Option settings to make the
+correct associations.</p>
+<A NAME="TI3166"></A><h4>Resulting menu bar for activated object</h4>
+<A NAME="TI3167"></A><p>The effect of the Menu Merge Option settings is that the menu
+bar displays the container's File and Window menus and
+the server's Edit and Help menus. Any menus that you label
+as Merge are included in the menu bar at the appropriate place.
+The menu bar also includes other menus that the server has decided
+are appropriate.</p>
+<A NAME="X-REF307127727"></A><h2>Modifying an object in an OLE control</h2>
+<A NAME="TI3168"></A><p>When an OLE object is displayed in the OLE control, the user
+can interact with that object and the application that created it
+(the server). You can also program scripts that do the same things
+the user might do. This section describes how to:</p>
+<A NAME="TI3169"></A><p><A NAME="TI3170"></A>
+<ul>
+<li class=fi>Activate the OLE object
+and send general commands to the server</li>
+<li class=ds>Change and save the object in the control</li>
+<li class=ds>Find out when data or properties have changed by
+means of events
+</li>
+</ul>
+</p>
+<A NAME="TI3171"></A><p>For information about automation for the control,
+see <A HREF="apptechp111.htm#X-REF348432491">"OLE objects in scripts "</A>.</p>
+<A NAME="TI3172"></A><h3>Activating the OLE object</h3>
+<A NAME="TI3173"></A><p>Generally, the OLE control is set so that the user can activate
+the object by double-clicking. You can also call the <b>Activate</b> function
+to activate the object in a script. If the control's Activation
+property is set to Manual, you have to call <b>Activate</b> to
+start a server editing session:<p><PRE> ole_1.Activate(InPlace!)</PRE></p>
+<A NAME="TI3174"></A><p>You can initiate general OLE actions by calling the <b>DoVerb</b> function.
+A <strong>verb</strong> is an integer value that specifies
+an action to be performed. The server determines what each integer
+value means. The default action, specified as 0, is usually Edit,
+which also activates the object.</p>
+<A NAME="TI3175"></A><p>For example, if <b>ole_1</b> contains
+a Microsoft Excel spreadsheet, the following statement activates
+the object for editing:<p><PRE> ole_1.DoVerb(0)</PRE></p>
+<A NAME="TI3176"></A><p>Check the server's documentation to see what verbs
+it supports. OLE verbs are a relatively limited means of working
+with objects; automation provides a more flexible interface. OLE
+1.0 servers support verbs but not automation.</p>
+<A NAME="TI3177"></A><h3>Changing the object in an OLE control</h3>
+<A NAME="TI3178"></A><p>PowerBuilder provides several functions for changing the object
+in an OLE control. The function you choose depends on whether you
+want the user to choose an object and whether the object should
+be linked or embedded, as shown in <A HREF="apptechp108.htm#CEGEEHEE">Table 19-2</A>.</p>
+<A NAME="CEGEEHEE"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-2: Functions for changing object
+in OLE control</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3179"></A>When you want
+to</th>
+<th  rowspan="1"  ><A NAME="TI3180"></A>Choose this function</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3181"></A>Let the user choose an object and, if
+the control's Contents property is set to Any, whether
+to link or embed it.</td>
+<td  rowspan="1"  ><A NAME="TI3182"></A><b>InsertObject</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3183"></A>Create a new object for a specified server
+and embed it in the control.</td>
+<td  rowspan="1"  ><A NAME="TI3184"></A><b>InsertClass</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3185"></A>Embed a copy of an existing object in
+the control.</td>
+<td  rowspan="1"  ><A NAME="TI3186"></A><b>InsertFile</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3187"></A>Link to an existing object in the control.</td>
+<td  rowspan="1"  ><A NAME="TI3188"></A><b>LinkTo</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3189"></A>Open an existing object from a file or
+storage. Information in the file determines whether the object is linked
+or embedded.</td>
+<td  rowspan="1"  ><A NAME="TI3190"></A><b>Open</b> </td>
+</tr>
+</table>
+<A NAME="TI3191"></A><p><A HREF="apptechp108.htm#CEGDFDIC">Figure 19-1</A> illustrates
+the behavior of the three functions that do not allow a choice of
+linking or embedding.</p>
+<A NAME="CEGDFDIC"></A><caption><b>Figure 19-1: Functions that do not allow
+a choice of linking or embedding</b></captionls>
+<br><img src="images/oleap02.gif">
+<A NAME="TI3192"></A><p>You can also assign OLE object data stored in a blob to the
+ObjectData property of the OLE control:<p><PRE> blob myblob<br>... // Code to assign OLE data to the blob<br>ole_1.ObjectData = myblob</PRE></p>
+<A NAME="TI3193"></A><p>The Contents property of the control specifies whether the
+control accepts embedded and/or linked objects. It determines
+whether the user can choose to link or embed in the InsertObject
+dialog box. It also controls what the functions can do. If you call
+a function that chooses a method that the Contents property does
+not allow, the function will fail.</p>
+<A NAME="TI3194"></A><h4>OLE information in the Browser</h4>
+<A NAME="TI3195"></A><p>Use the Browser to find out the registered names of the OLE
+server applications installed on your system. You can use any of
+the names listed in the Browser as the argument for the <b>InsertClass</b> function,
+as well as the <b>ConnectToObject</b> and <b>ConnectToNewObject</b> functions
+(see <A HREF="apptechp110.htm#X-REF307046708">"Programmable OLE Objects "</A>).</p>
+<A NAME="TI3196"></A><p>For more information about OLE and the Browser,
+see <A HREF="apptechp112.htm#BIIDAECD">"OLE information in the Browser "</A>.</p>
+<A NAME="TI3197"></A><h4>Using the clipboard</h4>
+<A NAME="TI3198"></A><p>Using the <b>Cut</b>, <b>Copy</b>,
+and <b>Paste</b> functions in menu scripts lets you
+provide clipboard functionality for your user. Calling <b>Cut</b> or <b>Copy</b> for
+the OLE control puts the OLE object it contains on the clipboard.
+The user can also choose Cut or Copy in the server application to
+place data on the clipboard. (Of course, you can use these functions
+in any script, not just those associated with menus.)</p>
+<A NAME="TI3199"></A><p>There are several <b>Paste</b> functions that
+can insert an object in the OLE control. The difference is whether
+the pasted object is linked or embedded.</p>
+<A NAME="TI3200"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-3: Paste functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3201"></A>When you want to</th>
+<th  rowspan="1"  ><A NAME="TI3202"></A>Choose this function</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3203"></A>Embed the object on the clipboard in
+the control</td>
+<td  rowspan="1"  ><A NAME="TI3204"></A><b>Paste</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3205"></A>Paste and link the object on the clipboard</td>
+<td  rowspan="1"  ><A NAME="TI3206"></A><b>PasteLink</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3207"></A>Allow the user to choose whether to embed
+or link the pasted object</td>
+<td  rowspan="1"  ><A NAME="TI3208"></A><b>PasteSpecial</b></td>
+</tr>
+</table>
+<A NAME="TI3209"></A><p>If you have a general <b>Paste</b> function, you
+can use code like the following to invoke <b>PasteSpecial</b> (or <b>PasteLink</b>)
+when the target of the paste operation is the OLE control:<p><PRE> graphicobject lg_obj<br>datawindow ldw_dw<br>olecontrol lole_ctl<br> <br>// Get the object with the focus<br>lg_obj = GetFocus()<br> <br>// Insert clipboard data based on object type<br>CHOOSE CASE TypeOf(lg_obj)<br>   CASE DataWindow!<br>      ldw_dw = lg_obj<br>   ldw_dw.Paste()<br>   ...<br>   CASE OLEControl!<br>   lole_ctl = lg_obj<br>   lole_ctl.PasteSpecial()<br>END CHOOSE</PRE></p>
+<A NAME="TI3210"></A><h4>Saving an embedded object</h4>
+<A NAME="TI3211"></A><p>If you embed an OLE object when
+you are designing a window, PowerBuilder saves the object in the
+library with the OLE control. However, when you embed an object
+during execution, that object cannot be saved with the control because
+the application's executable and libraries are read-only.
+If you need to save the object, you save the data in a file or in
+the database.</p>
+<A NAME="TI3212"></A><p>For example, the following script uses <b>SaveAs</b> to
+save the object in a file. It prompts the user for a file name and
+saves the object in the control as an OLE data file, not as native
+data of the server application. You can also write a script to open
+the file in the control in another session:<p><PRE> string myf<br>ilename, mypathname<br>integer result<br>GetFileSaveName("Select File", mypathname, &amp;<br>   myfilename, "OLE", &amp;<br>   "OLE Files (*.OLE),*.OLE")<br>result = ole_1.SaveAs(myfilename)</PRE></p>
+<A NAME="TI3213"></A><p>When you save OLE data in a file, you will generally not be
+able to open that data directly in the server application. However,
+you can open the object in PowerBuilder and activate the server
+application.</p>
+<A NAME="TI3214"></A><p>When you embed an object in a control, the actual data is
+stored as a blob in the control's ObjectData property.
+If you want to save an embedded object in a database for later retrieval,
+you can save it as a blob. To transfer data between a blob variable
+and the control, assign the blob to the control's ObjectData property
+or vice versa:<p><PRE> blob myblob<br>myblob = ole_1.ObjectData</PRE></p>
+<A NAME="TI3215"></A><p>You can use the embedded SQL statement <b>UPDATEBLOB</b> to
+put the blob data in the database (see the <i>PowerScript
+Reference</i>
+).</p>
+<A NAME="TI3216"></A><p>You can also use <b>SaveAs</b> and <b>Save</b> to
+store OLE objects in PowerBuilder's OLEStorage variables
+(see <A HREF="apptechp113.htm#X-REF307716618">"Opening and saving
+storages"</A>).</p>
+<A NAME="TI3217"></A><p>When the user saves a linked object in the server, the link
+information is not affected and you do not need to save the open
+object. However, if the user renames the object or affects the range
+of a linked item, you need to call the <b>Save</b> function
+to save the link information.</p>
+<A NAME="TI3218"></A><h3>Events for the OLE control</h3>
+<A NAME="TI3219"></A><p>There are several events that let PowerBuilder know when actions
+take place in the server application that affect the OLE object.</p>
+<A NAME="TI3220"></A><h4>Events for data</h4>
+<A NAME="TI3221"></A><p>Events that have to do with data are:<A NAME="TI3222"></A>
+<ul>
+<li class=fi><b>DataChange</b>   The data has been changed</li>
+<li class=ds><b>Rename</b>   The object has been renamed</li>
+<li class=ds><b>Save, SaveObject</b>   The data has been saved</li>
+<li class=ds><b>ViewChange</b>   The user has changed the view of the data
+</li>
+</ul>
+</p>
+<A NAME="TI3223"></A><p>When these events occur, the changes are reflected automatically
+in the control. If you need to perform additional processing when
+the object is renamed, saved, or changed, you can write the appropriate
+scripts.</p>
+<A NAME="TI3224"></A><p>Because of the architecture of OLE, you often cannot interact
+with the OLE object within these events. Trying to do so can generate
+a runtime error. A common workaround is to use the <b>PostEvent</b> function
+to post the event to an asynchronous event handler. You do not need
+to post the SaveObject event, which is useful if you want to save
+the data in the object to a file whenever the server application
+saves the object.</p>
+<A NAME="TI3225"></A><h4>Events for properties</h4>
+<A NAME="TI3226"></A><p>If the server supports property notifications, then when values
+for properties of the server change, the PropertyRequestEdit and
+PropertyChanged events will occur. You can write scripts that cancel
+changes, save old values, or read new values.</p>
+<A NAME="TI3227"></A><p>For more information about property notification,
+see <A HREF="apptechp111.htm#X-REF348258892">"Creating hot links"</A>.</p>
+

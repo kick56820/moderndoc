@@ -1,0 +1,40 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Specifying update when key is modified</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp185.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp187.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BHBCHGBI"></A><h1>Specifying update when key is modified</h1>
+<A NAME="TI6012"></A><p>The Key Modification property determines the <ACRONYM title = "sequel" ></ACRONYM><ACRONYM title = "sequel" >SQL</ACRONYM> statements PowerBuilder generates
+whenever a key column&#8212;a column you specified in the Unique
+Key Columns box&#8212;is changed. The options are:<A NAME="TI6013"></A>
+<ul>
+<li class=fi>Use <b>DELETE</b> then <b>INSERT</b> (default)</li>
+<li class=ds>Use <b>UPDATE</b>
+</li>
+</ul>
+</p>
+<A NAME="TI6014"></A><h4>How to choose a setting</h4>
+<A NAME="TI6015"></A><p>Consider the following when choosing the Key Modification
+setting:<A NAME="TI6016"></A>
+<ul>
+<li class=fi>If multiple rows
+are changed, <b>DELETE</b> and <b>INSERT</b> always
+work. In some DBMSs, <b>UPDATE</b> fails if the user
+modifies two keys and sets the value in one row to the original
+value of the other row.</li>
+<li class=ds>You might choose the setting here based on your
+DBMS triggers. For example, if there is an Insert trigger, select
+Use Delete then Insert.</li>
+<li class=ds>If only one row can be modified by the user before
+the database is updated, use <b>UPDATE</b> because it
+is faster.
+</li>
+</ul>
+</p>
+

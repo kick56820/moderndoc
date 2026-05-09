@@ -1,0 +1,552 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Running an application </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp254.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp256.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIDIADH"></A><h1>Running an application </h1>
+<A NAME="TI9185"></A><p>When the application seems to be working correctly, you are
+ready to run it in regular mode. In regular mode, the application
+responds to user interaction and continues to run until the user
+exits the application or a runtime error occurs. You can rely on
+the default runtime error reporting by PowerBuilder or write a script
+that specifies your own error processing. You can also generate
+a diagnostic trace of your application's execution.</p>
+<A NAME="TI9186"></A><p>For how to analyze your application's
+logic and performance, see <A HREF="pbugp256.htm#CAICJCMK">Chapter 33, "Tracing and Profiling Applications ."</A></p>
+<A NAME="TI9187"></A><h2>Running the application</h2>
+<A NAME="TI9188"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To run an application:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI9189"></A>
+<ul>
+<li class=fi>In
+the System Tree, highlight a target and select Run from the pop-up menu</li>
+<li class=ds>Click the Run or Select and Run button on the PowerBar</li>
+<li class=ds>Select Run&gt;Run or Run&gt;Select and
+Run from the menu bar
+</li>
+</ul>
+
+                      </p><p>The Run button runs the last run or debugged target. The name
+of the current target is displayed in the Run button tool tip. The
+Select and Run button opens a dialog box that lets you select the
+target to run.</p><p>PowerBuilder becomes minimized and a button displays on the
+Taskbar. Your application executes.</p></li></ol>
+<br><A NAME="TI9190"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To stop a running application:</p>
+<ol><li class=fi><p>End the application normally, or double-click
+the minimized PowerBuilder button or icon to open a response window
+from which you can terminate the application.</p></li></ol>
+<br><A NAME="CAIBBEHG"></A><h2>Handling errors at runtime</h2>
+<A NAME="TI9191"></A><p>A serious error at runtime (such as attempting to access a
+window that has not been opened) will trigger the SystemError event
+in the Application object if you have not added exception handling
+code to take care of the error.</p>
+<A NAME="TI9192"></A><h4>If there is no SystemError script</h4>
+<A NAME="TI9193"></A><p>If you do not write a SystemError script to handle these errors,
+PowerBuilder displays a message box containing the following information:<A NAME="TI9194"></A>
+<ul>
+<li class=fi>The number and text of the
+error message</li>
+<li class=ds>The line number, event, and object in which the
+error occurred
+</li>
+</ul>
+</p>
+<A NAME="TI9195"></A><p>There is also an OK button that closes the message box and
+stops the application.</p>
+<A NAME="TI9196"></A><h4>If there is a SystemError script</h4>
+<A NAME="TI9197"></A><p>If there is a script for the SystemError event, PowerBuilder
+executes the script and does not display the message box. Whether
+or not you have added <b>TRY</b>/<b>CATCH</b> blocks
+to your code to trap errors, it is a good idea to build an application-level
+script for the SystemError event to trap and process any runtime
+errors that have not been handled, as described in <A HREF="pbugp255.htm#X-REF355687295">"Using the Error
+object"</A>.</p>
+<A NAME="TI9198"></A><p>For more information about handling exceptions, see <i>Application
+Techniques</i>
+.</p>
+<A NAME="X-REF355687295"></A><h4>Using the Error
+object</h4>
+<A NAME="TI9199"></A><p>In the script for the SystemError event, you can access the
+built-in Error object to determine which error occurred and where
+it occurred. The Error object contains the properties shown in <A HREF="pbugp255.htm#CACICCFI">Table 32-3</A>.</p>
+<A NAME="CACICCFI"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 32-3: Properties of the Error object</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9200"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI9201"></A>Data type</th>
+<th  rowspan="1"  ><A NAME="TI9202"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9203"></A>Number</td>
+<td  rowspan="1"  ><A NAME="TI9204"></A>Integer</td>
+<td  rowspan="1"  ><A NAME="TI9205"></A>Identifies the PowerBuilder error.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9206"></A>Text</td>
+<td  rowspan="1"  ><A NAME="TI9207"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI9208"></A>Contains the text of the error message.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9209"></A>WindowMenu</td>
+<td  rowspan="1"  ><A NAME="TI9210"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI9211"></A>Contains the name of the window or menu
+in which the error occurred.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9212"></A>Object</td>
+<td  rowspan="1"  ><A NAME="TI9213"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI9214"></A>Contains the name of the object in which
+the error occurred. If the error occurred in a window or menu, the
+Object property will be the same as the WindowMenu property</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9215"></A>ObjectEvent</td>
+<td  rowspan="1"  ><A NAME="TI9216"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI9217"></A>Contains the event for which the error
+occurred.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9218"></A>Line</td>
+<td  rowspan="1"  ><A NAME="TI9219"></A>Integer</td>
+<td  rowspan="1"  ><A NAME="TI9220"></A>Identifies the line in the script at
+which the error occurred.</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Defining your own Error object</span> <A NAME="TI9221"></A>You can customize your own version of the Error object by
+defining a class user object inherited from the built-in Error object.
+You can add properties and define object-level functions for your
+Error object to allow for additional processing. In the Application
+painter, you can then specify that you want to use your user object
+inherited from Error as the global Error object in your application.
+For more information, see <A HREF="pbugp127.htm#X-REF351800893">"Building a standard
+class user object"</A>.</p>
+<A NAME="TI9222"></A><h4>Runtime error numbers</h4>
+<A NAME="TI9223"></A><p><A HREF="pbugp255.htm#CACDDBBJ">Table 32-4</A> lists
+the runtime error numbers returned in the Number property of the
+Error object and the meaning of each number:</p>
+<A NAME="CACDDBBJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 32-4: PowerBuilder runtime errors</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9224"></A>Number</th>
+<th  rowspan="1"  ><A NAME="TI9225"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9226"></A>1</td>
+<td  rowspan="1"  ><A NAME="TI9227"></A>Divide by zero.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9228"></A>2</td>
+<td  rowspan="1"  ><A NAME="TI9229"></A>Null object reference.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9230"></A>3</td>
+<td  rowspan="1"  ><A NAME="TI9231"></A>Array boundary exceeded.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9232"></A>4</td>
+<td  rowspan="1"  ><A NAME="TI9233"></A>Enumerated value is out of range for
+function.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9234"></A>5</td>
+<td  rowspan="1"  ><A NAME="TI9235"></A>Negative value encountered in function.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9236"></A>6</td>
+<td  rowspan="1"  ><A NAME="TI9237"></A>Invalid DataWindow row/column
+specified.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9238"></A>7</td>
+<td  rowspan="1"  ><A NAME="TI9239"></A>Unresolvable external when linking reference.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9240"></A>8</td>
+<td  rowspan="1"  ><A NAME="TI9241"></A>Reference of array with null subscript.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9242"></A>9</td>
+<td  rowspan="1"  ><A NAME="TI9243"></A>DLL function not found in current application.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9244"></A>10</td>
+<td  rowspan="1"  ><A NAME="TI9245"></A>Unsupported argument type in DLL function.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9246"></A>11</td>
+<td  rowspan="1"  ><A NAME="TI9247"></A>Object file is out of date and must be
+converted to current version.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9248"></A>12</td>
+<td  rowspan="1"  ><A NAME="TI9249"></A>DataWindow column type does not match
+GetItem type.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9250"></A>13</td>
+<td  rowspan="1"  ><A NAME="TI9251"></A>Unresolved property reference.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9252"></A>14</td>
+<td  rowspan="1"  ><A NAME="TI9253"></A>Error opening DLL library for external
+function.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9254"></A>15</td>
+<td  rowspan="1"  ><A NAME="TI9255"></A>Error calling external function <i>name.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9256"></A>16</td>
+<td  rowspan="1"  ><A NAME="TI9257"></A>Maximum string size exceeded.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9258"></A>17</td>
+<td  rowspan="1"  ><A NAME="TI9259"></A>DataWindow referenced in DataWindow object
+does not exist.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9260"></A>18</td>
+<td  rowspan="1"  ><A NAME="TI9261"></A>Function does not return value.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9262"></A>19</td>
+<td  rowspan="1"  ><A NAME="TI9263"></A>Cannot convert <i>name</i> in
+Any variable to <i>name.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9264"></A>20</td>
+<td  rowspan="1"  ><A NAME="TI9265"></A>Database command not successfully prepared.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9266"></A>21</td>
+<td  rowspan="1"  ><A NAME="TI9267"></A>Bad runtime function reference.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9268"></A>22</td>
+<td  rowspan="1"  ><A NAME="TI9269"></A>Unknown object type.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9270"></A>23</td>
+<td  rowspan="1"  ><A NAME="TI9271"></A>Cannot assign object of type <i>name</i> to
+variable of type <i>name.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9272"></A>24</td>
+<td  rowspan="1"  ><A NAME="TI9273"></A>Function call does not match its definition.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9274"></A>25</td>
+<td  rowspan="1"  ><A NAME="TI9275"></A>Double or Real expression has overflowed.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9276"></A>26</td>
+<td  rowspan="1"  ><A NAME="TI9277"></A>Field <i>name</i> assignment
+not supported.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9278"></A>27</td>
+<td  rowspan="1"  ><A NAME="TI9279"></A>Cannot take a negative to a noninteger
+power.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9280"></A>28</td>
+<td  rowspan="1"  ><A NAME="TI9281"></A>VBX Error: <i>name.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9282"></A>29</td>
+<td  rowspan="1"  ><A NAME="TI9283"></A>Nonarray expected in ANY variable.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9284"></A>30</td>
+<td  rowspan="1"  ><A NAME="TI9285"></A>External object does not support data
+type <i>name.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9286"></A>31</td>
+<td  rowspan="1"  ><A NAME="TI9287"></A>External object data type <i>name </i><i></i>not
+supported.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9288"></A>32</td>
+<td  rowspan="1"  ><A NAME="TI9289"></A>Name not found calling external object
+function <i>name</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9290"></A>33</td>
+<td  rowspan="1"  ><A NAME="TI9291"></A>Invalid parameter type calling external
+object function <i>name.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9292"></A>34</td>
+<td  rowspan="1"  ><A NAME="TI9293"></A>Incorrect number of parameters calling
+external object function <i>name</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9294"></A>35</td>
+<td  rowspan="1"  ><A NAME="TI9295"></A>Error calling external object function <i>name.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9296"></A>36</td>
+<td  rowspan="1"  ><A NAME="TI9297"></A>Name not found accessing external object
+property <i>name.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9298"></A>37</td>
+<td  rowspan="1"  ><A NAME="TI9299"></A>Type mismatch accessing external object
+property <i>name.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9300"></A>38</td>
+<td  rowspan="1"  ><A NAME="TI9301"></A>Incorrect number of subscripts accessing
+external object property <i>name.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9302"></A>39</td>
+<td  rowspan="1"  ><A NAME="TI9303"></A>Error accessing external object property <i>name</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9304"></A>40</td>
+<td  rowspan="1"  ><A NAME="TI9305"></A>Mismatched ANY data types in expression.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9306"></A>41</td>
+<td  rowspan="1"  ><A NAME="TI9307"></A>Illegal ANY data type in expression.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9308"></A>42</td>
+<td  rowspan="1"  ><A NAME="TI9309"></A>Specified argument type differs from
+required argument type at runtime in DLL function <i>name.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9310"></A>43</td>
+<td  rowspan="1"  ><A NAME="TI9311"></A>Parent object does not exist.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9312"></A>44</td>
+<td  rowspan="1"  ><A NAME="TI9313"></A>Function has conflicting argument or
+return type in ancestor.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9314"></A>45</td>
+<td  rowspan="1"  ><A NAME="TI9315"></A>Internal table overflow; maximum number
+of objects exceeded.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9316"></A>46</td>
+<td  rowspan="1"  ><A NAME="TI9317"></A>Null object reference cannot be assigned
+or passed to a variable of this type.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9318"></A>47</td>
+<td  rowspan="1"  ><A NAME="TI9319"></A>Array expected in ANY variable.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9320"></A>48</td>
+<td  rowspan="1"  ><A NAME="TI9321"></A>Size mismatch in array-to-object conversion.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9322"></A>49</td>
+<td  rowspan="1"  ><A NAME="TI9323"></A>Type mismatch in array-to-object conversion.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9324"></A>50</td>
+<td  rowspan="1"  ><A NAME="TI9325"></A>Distributed Service Error: <i>name</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9326"></A>51</td>
+<td  rowspan="1"  ><A NAME="TI9327"></A>Bad argument list for function/event: <i>name</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9328"></A>52</td>
+<td  rowspan="1"  ><A NAME="TI9329"></A>Distributed Communications Error: <i>name</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9330"></A>53</td>
+<td  rowspan="1"  ><A NAME="TI9331"></A>The server <i>name</i> could
+not be located. It was probably not started.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9332"></A>54</td>
+<td  rowspan="1"  ><A NAME="TI9333"></A>The server <i>name</i> is
+rejecting new messages. It is in the process of shutting down.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9334"></A>55</td>
+<td  rowspan="1"  ><A NAME="TI9335"></A>The request caused an abnormal termination.
+The connection has been closed.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9336"></A>56</td>
+<td  rowspan="1"  ><A NAME="TI9337"></A>A message was not fully transmitted.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9338"></A>57</td>
+<td  rowspan="1"  ><A NAME="TI9339"></A>This connection object is not connected
+to a server.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9340"></A>58</td>
+<td  rowspan="1"  ><A NAME="TI9341"></A>Object instance does not exist.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9342"></A>59</td>
+<td  rowspan="1"  ><A NAME="TI9343"></A>Invalid column range.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9344"></A>60</td>
+<td  rowspan="1"  ><A NAME="TI9345"></A>Invalid row range.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9346"></A>61</td>
+<td  rowspan="1"  ><A NAME="TI9347"></A>Invalid conversion of <i>number</i> dimensional
+array to object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9348"></A>62</td>
+<td  rowspan="1"  ><A NAME="TI9349"></A>The server <i>name</i> is
+busy and not accepting new connections.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9350"></A>63</td>
+<td  rowspan="1"  ><A NAME="TI9351"></A>Function/event with no return
+value used in expression.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9352"></A>64</td>
+<td  rowspan="1"  ><A NAME="TI9353"></A>Object array expected on left side of
+assignment.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9354"></A>65</td>
+<td  rowspan="1"  ><A NAME="TI9355"></A>Dynamic function not found. Possible
+causes include: pass by value/reference mismatch.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9356"></A>66</td>
+<td  rowspan="1"  ><A NAME="TI9357"></A>Invalid subscript for array index operation.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9358"></A>67</td>
+<td  rowspan="1"  ><A NAME="TI9359"></A>Null object reference cannot be assigned
+or passed to an autoinstantiate.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9360"></A>68</td>
+<td  rowspan="1"  ><A NAME="TI9361"></A>Null object reference cannot be passed
+to external DLL function <i>name</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9362"></A>69</td>
+<td  rowspan="1"  ><A NAME="TI9363"></A>Function <i>name</i> cannot
+be called from a secured runtime session.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9364"></A>70</td>
+<td  rowspan="1"  ><A NAME="TI9365"></A>External DLL function <i>name</i> cannot
+be called from a secured runtime session.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9366"></A>71</td>
+<td  rowspan="1"  ><A NAME="TI9367"></A>General protection fault occurred.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9368"></A>72</td>
+<td  rowspan="1"  ><A NAME="TI9369"></A><i>name</i> failed with
+an operating system error code of <i>number.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9370"></A>73</td>
+<td  rowspan="1"  ><A NAME="TI9371"></A>Reference parameters cannot be passed
+to an asynchronous shared/remote object method.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9372"></A>74</td>
+<td  rowspan="1"  ><A NAME="TI9373"></A>Reference parameters cannot be passed
+to a shared object method.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9374"></A>75</td>
+<td  rowspan="1"  ><A NAME="TI9375"></A>The server has forced the client to disconnect.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9376"></A>76</td>
+<td  rowspan="1"  ><A NAME="TI9377"></A>Passing null as a parameter to external
+function <i>name</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9378"></A>77</td>
+<td  rowspan="1"  ><A NAME="TI9379"></A>Object passed to shared/remote
+object method is not a nonvisual user object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9380"></A>78</td>
+<td  rowspan="1"  ><A NAME="TI9381"></A>Listening works only in the Enterprise
+version of PowerBuilder.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9382"></A>79</td>
+<td  rowspan="1"  ><A NAME="TI9383"></A>The argument to <i>name</i> must
+be an array.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9384"></A>80</td>
+<td  rowspan="1"  ><A NAME="TI9385"></A>The server has timed out the client connection.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9386"></A>81</td>
+<td  rowspan="1"  ><A NAME="TI9387"></A>Function argument file creator must be
+a four-character string.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9388"></A>82</td>
+<td  rowspan="1"  ><A NAME="TI9389"></A>Function argument file type must be a
+four-character string.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9390"></A>83</td>
+<td  rowspan="1"  ><A NAME="TI9391"></A>Attempt to invoke a function or event
+that is not accessible.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9392"></A>84</td>
+<td  rowspan="1"  ><A NAME="TI9393"></A>Wrong number of arguments passed to function/event
+call.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9394"></A>85</td>
+<td  rowspan="1"  ><A NAME="TI9395"></A>Error in reference argument passed in
+function/event call.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9396"></A>86</td>
+<td  rowspan="1"  ><A NAME="TI9397"></A>Ambiguous function/event reference.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9398"></A>87</td>
+<td  rowspan="1"  ><A NAME="TI9399"></A>The connection to the server has been
+lost.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9400"></A>88</td>
+<td  rowspan="1"  ><A NAME="TI9401"></A>Cannot ask for ClassDefinition Information
+on open painter: <i>name.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9402"></A>89</td>
+<td  rowspan="1"  ><A NAME="TI9403"></A>5.0 style proxy objects are not supported.
+Copy the new style proxy that was generated at migration time.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9404"></A>90</td>
+<td  rowspan="1"  ><A NAME="TI9405"></A>Cannot assign array of type <i>name</i> to
+variable of type array of <i>name.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9406"></A>91</td>
+<td  rowspan="1"  ><A NAME="TI9407"></A>Cannot convert <i>name</i> in
+Any variable to <i>name</i>. Possible cause: uninitialized
+value.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9408"></A>92</td>
+<td  rowspan="1"  ><A NAME="TI9409"></A>Required property <i>name</i> is
+missing.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9410"></A>93</td>
+<td  rowspan="1"  ><A NAME="TI9411"></A>CORBA User Exception: <i>exceptionname.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9412"></A>94</td>
+<td  rowspan="1"  ><A NAME="TI9413"></A>CORBA System Exception: <i>exceptionname.</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9414"></A>95</td>
+<td  rowspan="1"  ><A NAME="TI9415"></A>CORBA Objects cannot be created locally.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9416"></A>96</td>
+<td  rowspan="1"  ><A NAME="TI9417"></A>Exception Thrown has not been handled.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9418"></A>97</td>
+<td  rowspan="1"  ><A NAME="TI9419"></A>Cannot save <i>name</i> because
+of a circular reference problem. Possible causes: <A NAME="TI9420"></A>
+<ol>
+</li>
+<li class=ds>This object references another class, which in turn
+references this object.</li>
+<li class=ds>Some other circular reference is pointing back to
+this object, causing a deadlock condition.
+</li>
+</ol>
+<A NAME="TI9421"></A><p>Suggested actions:<A NAME="TI9422"></A>
+<ol>
+</li>
+<li class=ds>Temporarily
+remove the circular reference from the referenced object.</li>
+<li class=ds>Make your required changes to this object to refer
+to that object.</li>
+<li class=ds>Add back the circular reference you removed in step
+1.</li>
+<li class=ds>Perform a full rebuild (recommended).
+</li>
+</ol>
+</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9423"></A>98</td>
+<td  rowspan="1"  ><A NAME="TI9424"></A>Obsolete object reference.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9425"></A>99</td>
+<td  rowspan="1"  ><A NAME="TI9426"></A>Error calling method of a PBNI object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9427"></A>100</td>
+<td  rowspan="1"  ><A NAME="TI9428"></A>Error loading library containing a PBNI
+object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9429"></A>101</td>
+<td  rowspan="1"  ><A NAME="TI9430"></A>Error unloading library containing a
+PBNI object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9431"></A>102</td>
+<td  rowspan="1"  ><A NAME="TI9432"></A>Error creating a PBNI object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9433"></A>103</td>
+<td  rowspan="1"  ><A NAME="TI9434"></A>Error destroying a PBNI object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9435"></A>104</td>
+<td  rowspan="1"  ><A NAME="TI9436"></A>Error calling PowerBuilder system function <i>functionname</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9437"></A>105</td>
+<td  rowspan="1"  ><A NAME="TI9438"></A>Executing a HALT statement in a server
+component is strictly forbidden.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9439"></A>106</td>
+<td  rowspan="1"  ><A NAME="TI9440"></A>Function is reserved or not yet implemented.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9441"></A>107</td>
+<td  rowspan="1"  ><A NAME="TI9442"></A>Argument is out of range.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9443"></A>108</td>
+<td  rowspan="1"  ><A NAME="TI9444"></A>Not enough memory to execute the operation.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9445"></A>109</td>
+<td  rowspan="1"  ><A NAME="TI9446"></A>Cannot assign a null value to array variables.</td>
+</tr>
+</table>
+<A NAME="TI9447"></A><p>Some errors terminate the application immediately. They do
+not trigger the SystemError event.</p>
+<A NAME="TI9448"></A><h4>SystemError event scripts</h4>
+<A NAME="TI9449"></A><p>A typical script for the SystemError event includes a <b>CHOOSE
+CASE</b> control structure to handle specific errors. To stop
+the application, include a <b>HALT</b> statement in
+the SystemError script.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Caution</span> <A NAME="TI9450"></A>You can continue your application after a SystemError event,
+but doing so can cause unpredictable and undesirable effects. Where
+the application will resume depends on what caused the error. Typically,
+you are better off reporting the problem to the user, then stopping
+the application with <b>HALT</b>.</p>
+<A NAME="TI9451"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To test the SystemError event script:</p>
+<ol><li class=fi><p>Assign values to the properties of the
+Error object with the <b>PopulateError</b> function.</p></li>
+<li class=ds><p>Call the <b>SignalError</b> function
+to trigger the SystemError event.</p><p>The script for the SystemError event executes.</p></li></ol>
+<br>

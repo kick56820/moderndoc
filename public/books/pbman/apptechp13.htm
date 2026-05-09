@@ -1,0 +1,28 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Constant declarations </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp12.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp14.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF354898943"></A><h1>Constant declarations </h1>
+<A NAME="TI221"></A><p>To declare a constant, add the keyword <b>CONSTANT</b> to
+a standard variable declaration:<p><PRE>CONSTANT { <i>access</i> } <i>datatype</i> <i>constname</i> = <i>value</i></PRE></p>
+</p>
+<A NAME="TI222"></A><p>Only a datatype that accepts an assignment in its declaration
+can be a constant. For this reason, blobs cannot be constants.</p>
+<A NAME="TI223"></A><p>Even though identifiers in PowerScript are not case sensitive,
+the declarations shown here use uppercase as a convention for constant
+names:<p><PRE> CONSTANT integer GI_CENTURY_YEARS = 100<br>CONSTANT string IS_ASCENDING = "a"</PRE></p>
+<A NAME="TI224"></A><h4>Advantages of constants</h4>
+<A NAME="TI225"></A><p>If you try to assign a value to the constant anywhere other
+than in the declaration, you get a compiler error. A constant is
+a way of assuring that the declaration is used the way you intend.</p>
+<A NAME="TI226"></A><p>Constants are also efficient. Because the value is established
+during compilation, the compiled code uses the value itself, rather
+than referring to a variable that holds the value.</p>
+

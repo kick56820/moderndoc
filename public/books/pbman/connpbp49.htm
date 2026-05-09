@@ -1,0 +1,449 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the Database Trace tool</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp48.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp50.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABBFBJF"></A><h1>Using the Database Trace tool</h1>
+<A NAME="TI1553"></A><p>This section describes how to use the Database Trace tool. </p>
+<A NAME="X-REF304725087"></A><h2>About the Database Trace tool</h2>
+<A NAME="TI1554"></A><p>The Database Trace tool records the internal commands that PowerBuilder executes
+while accessing a database. You can trace a database connection
+in the development environment or in a PowerBuilder application
+that connects to a database.</p>
+<A NAME="TI1555"></A><p>PowerBuilder writes the output of Database Trace to a log file
+named <i>DBTRACE.LOG</i> (by default) or to a nondefault
+log file that you specify. When you enable database tracing for
+the first time, PowerBuilder creates the log file on your computer.
+Tracing continues until you disconnect from the database.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the Database Trace tool with one connection</span> <A NAME="TI1556"></A>You can use the Database Trace tool for only one DBMS at a
+time and for one database connection at a time.</p>
+<A NAME="TI1557"></A>For example, if your application connects to both an ODBC
+data source and an Adaptive Server Enterprise database, you can
+trace either the ODBC connection or the Adaptive Server Enterprise
+connection, but not both connections at the same time.</p>
+<A NAME="TI1558"></A><h3>How you can use the Database Trace tool</h3>
+<A NAME="TI1559"></A><p>You can use information from the Database Trace tool to understand
+what PowerBuilder is doing <i>internally</i> when you
+work with your database. Examining the information in the log file
+can help you:<A NAME="TI1560"></A>
+<ul>
+<li class=fi>Understand how PowerBuilder interacts with your database</li>
+<li class=ds>Identify and resolve problems with your database
+connection</li>
+<li class=ds>Provide useful information to Technical Support
+if you call them for help with your database connection
+</li>
+</ul>
+</p>
+<A NAME="TI1561"></A><p>If you are familiar with PowerBuilder and your DBMS, you can
+use the information in the log to help troubleshoot connection problems
+on your own. If you are less experienced or need help, run the Database
+Trace tool <i>before</i> you call Technical Support.
+You can then report or send the results of the trace to the Technical
+Support representative who takes your call.</p>
+<A NAME="CJACGIFC"></A><h3>Contents of the Database Trace log</h3>
+<A NAME="TI1562"></A><h4>Default contents of the trace file</h4>
+<A NAME="TI1563"></A><p>By default, the Database Trace tool records the following
+information in the log file when you trace a database connection:<A NAME="TI1564"></A>
+<ul>
+<li class=fi>Parameters used to connect to the database</li>
+<li class=ds>Time to perform each database operation (in microseconds)</li>
+<li class=ds>The internal commands executed to retrieve and display
+table and column information from your database. Examples include:<A NAME="TI1565"></A>
+<ul>
+<li class=fi>Preparing and executing <ACRONYM title = "sequel" >SQL</ACRONYM> statements such as <b>SELECT</b>, <b>INSERT</b>, <b>UPDATE</b>,
+and <b>DELETE</b></li>
+<li class=ds>Getting column descriptions</li>
+<li class=ds>Fetching table rows</li>
+<li class=ds>Binding user-supplied values to columns (if your
+database supports bind variables)</li>
+<li class=ds>Committing and rolling back database changes
+</li>
+</ul>
+</li>
+<li class=ds>Disconnecting from the database</li>
+<li class=ds>Shutting down the database interface
+</li>
+</ul>
+</p>
+<A NAME="TI1566"></A><p>You can opt to include the names of DBI commands and the time
+elapsed from the last database connection to the completion of processing
+for each log entry. You can exclude binding and timing information
+as well as the data from all fetch requests.</p>
+<A NAME="TI1567"></A><h4>Database Trace dialog box selections</h4>
+<A NAME="TI1568"></A><p>The Database Trace dialog box lets you select the following
+items for inclusion in or exclusion from a database trace file:<A NAME="TI1569"></A>
+<ul>
+<li class=fi><b>Bind variables</b>   Metadata about the result set columns obtained from the database</li>
+<li class=ds><b>Fetch buffers</b>   Data values returned from each fetch request</li>
+<li class=ds><b>DBI names</b>   Database interface commands that are processed</li>
+<li class=ds><b>Time to implement request</b>   Time required to process DBI commands; the interval is measured
+in thousandths of milliseconds (microseconds) </li>
+<li class=ds><b>Cumulative time</b>   Cumulative total of timings since the database connection
+began; the timing measurement is in thousandths of milliseconds
+</li>
+</ul>
+</p>
+<A NAME="TI1570"></A><h4>Registry settings for DBTrace</h4>
+<A NAME="TI1571"></A><p>The selections made in the Database Trace dialog box are saved
+to the registry of the machine from which the database connections
+are made. Windows registry settings for the database trace utility
+configuration are stored under the <i>HKEY_CURRENT_USER\Software\Sybase\<i>PowerBuilder</i>\10.5\DBTrace</i> key. Registry
+strings under this key are: ShowBindings, FetchBuffers, ShowDBINames,
+Timing, SumTiming, LogFileName, and ShowDialog. Except for the LogFileName
+string to which you can assign a full file name for the trace output
+file, all strings can be set to either 0 or 1.</p>
+<A NAME="TI1572"></A><p>The ShowDialog registry string can be set to prevent display
+of the Database Trace dialog box when a database connection is made
+with tracing enabled. This is the only one of the trace registry
+strings that you cannot change from the Database Trace dialog box.
+You must set ShowDialog to 0 in the registry to keep the configuration
+dialog box from displaying. </p>
+<A NAME="TI1573"></A><h4>Error messages</h4>
+<A NAME="TI1574"></A><p>If the database trace utility cannot open the trace output
+file with write access, an error message lets you know that the
+specified trace file could not be created or opened. If the trace
+utility driver cannot be loaded successfully, a message box informs
+you that the selected Trace DBMS is not supported in your current installation.</p>
+<A NAME="TI1575"></A><h3>Format of the Database Trace log</h3>
+<A NAME="TI1576"></A><p>The specific content of the Database Trace log file depends
+on the database you are accessing and the operations you are performing.
+However, the log uses the following basic format to display output:</p>
+<A NAME="TI1577"></A><p><p><PRE><i>COMMAND</i><b>:</b> (<i>time</i>)</PRE></p>
+<p><PRE>   {<i>additional_information</i>}</PRE></p>
+</p>
+<A NAME="TI1578"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI1579"></A>Parameter</th>
+<th  rowspan="1"  ><A NAME="TI1580"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1581"></A><i>COMMAND</i></td>
+<td  rowspan="1"  ><A NAME="TI1582"></A>The internal command that PowerBuilder executes to
+perform the database operation.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1583"></A><i>time</i></td>
+<td  rowspan="1"  ><A NAME="TI1584"></A>The number of microseconds it takes PowerBuilder to
+perform the database operation. The precision used depends on your
+operating system's timing mechanism.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1585"></A><i>additional_information</i></td>
+<td  rowspan="1"  ><A NAME="TI1586"></A>(Optional) Additional information about
+the command. The information provided depends on the database operation.</td>
+</tr>
+</table>
+<A NAME="TI1587"></A><h4>Example</h4>
+<A NAME="TI1588"></A><p>The following portion of the log file shows the commands PowerBuilder executes
+to fetch two rows from an Adaptive Server&#174; Anywhere database table:</p>
+<A NAME="TI1589"></A><p><p><PRE> FETCH NEXT: (0.479 MS)</PRE><PRE>  COLUMN=400         COLUMN=Marketing     COLUMN=Evans</PRE><PRE> FETCH NEXT: (0.001 MS)</PRE><PRE>  COLUMN=500     COLUMN=Shipping COLUMN=Martinez</PRE></p>
+<A NAME="TI1590"></A><p>If you opt to include DBI Names and Sum Time
+information in the trace log file, the log for the same two rows
+might look like this:</p>
+<A NAME="TI1591"></A><p><p><PRE> FETCH NEXT:(DBI_FETCHNEXT) (1.459 MS / 3858.556 MS)</PRE><PRE>  COLUMN=400         COLUMN=Marketing     COLUMN=Evans</PRE><PRE> FETCH NEXT:(DBI_FETCHNEXT) (0.001 MS / 3858.557 MS)</PRE><PRE>  COLUMN=500     COLUMN=Shipping COLUMN=Martinez</PRE></p>
+<A NAME="TI1592"></A><p>For a more complete example of Database Trace
+output, see <A HREF="connpbp49.htm#X-REF304635496">"Sample Database Trace
+output"</A>.</p>
+<A NAME="X-REF304628164"></A><h2>Starting the Database Trace tool</h2>
+<A NAME="TI1593"></A><p>By default, the Database Trace tool is turned off in PowerBuilder.
+You can start it in the PowerBuilder development environment or in
+a PowerBuilder application to trace your database connection.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Turning tracing on and off</span> <A NAME="TI1594"></A>To turn tracing on or off you must reconnect. Setting and
+resetting are not sufficient. </p>
+<A NAME="CCJDDIEF"></A><h3>Starting Database Trace in the development environment</h3>
+<A NAME="TI1595"></A><p>To start the Database Trace tool in the PowerBuilder development environment,
+edit the database profile for the connection you want to trace,
+as described in the following procedure.</p>
+<A NAME="TI1596"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To start the Database Trace tool by editing a
+database profile:</p>
+<ol><li class=fi><p>Open the Database Profile Setup dialog
+box for the connection you want to trace. </p></li>
+<li class=ds><p>On the Connection tab, select the Generate Trace
+check box and click OK or Apply. (The Generate Trace check box is
+located on the System tab in the OLE DB Database Profile Setup dialog
+box.)</p><p>The Database Profiles dialog box displays with the name of
+the edited profile highlighted.</p><p>For example, here is the relevant portion of a database profile
+entry for Adaptive Server 12.5 Test. The setting that starts Database
+Trace is DBMS:</p><p><p><PRE> [Default]     [value not set]</PRE><PRE> AutoCommit    "FALSE"</PRE><PRE> Database      "qadata"</PRE><PRE> DatabasePassword  "00"</PRE><PRE> DBMS          "TRACE SYC Adaptive Server Enterprise"</PRE><PRE> DbParm        "Release='12.5'"</PRE><PRE> Lock          ""</PRE><PRE> LogId         "qalogin"</PRE><PRE> LogPassword   "00171717171717"</PRE><PRE> Prompt        "FALSE"</PRE><PRE> ServerName    "Host125"</PRE><PRE> UserID        ""</PRE></p></li>
+<li class=ds><p>Click Connect in the Database Profiles dialog
+box to connect to the database.</p><p>The Database Trace dialog box displays, indicating that database
+tracing is enabled. You can enter the file location where PowerBuilder writes
+the trace output. By default, PowerBuilder writes Database Trace output
+to a log file named <i>DBTRACE.LOG</i>. You can change
+the log file name and location in the Database Trace dialog box.</p><p>The Database Trace dialog box also lets you select the level
+of tracing information that you want in the database trace file.</p></li>
+<li class=ds><p>Select the types of items you want to include
+in the trace file and click OK.</p><p>PowerBuilder connects to the database and starts tracing the
+connection.</p></li></ol>
+<br><A NAME="TI1597"></A><h3>Starting Database Trace in a PowerBuilder application</h3>
+<A NAME="TI1598"></A><p>In a PowerBuilder application that connects to a database, you
+must specify the required connection parameters in the appropriate
+script. For example, you might specify them in the script that opens
+the application.</p>
+<A NAME="TI1599"></A><p>To trace a database connection in a PowerBuilder script, you
+specify the name of the DBMS preceded by the word <i>trace</i> and
+a single space. You can do this by:<A NAME="TI1600"></A>
+<ul>
+<li class=fi>Copying the PowerScript DBMS trace syntax from the Preview
+tab in the Database Profile Setup dialog box into your script</li>
+<li class=ds>Coding PowerScript to set a value for the DBMS property
+of the Transaction object</li>
+<li class=ds>Reading the DBMS value from an external text file
+</li>
+</ul>
+</p>
+<A NAME="TI1601"></A><p>For more about using Transaction objects to
+communicate with a database in a PowerBuilder application, see <i>Application
+Techniques</i>
+.</p>
+<A NAME="TI1602"></A><h4>Copying DBMS trace syntax from the Preview tab</h4>
+<A NAME="TI1603"></A><p>One way to start Database Trace in a PowerBuilder application
+script is to copy the PowerScript DBMS trace syntax from the Preview
+tab in the Database Profile Setup dialog box into your script, modifying
+the default Transaction object name (<ACRONYM title = "sequel CA" >SQLCA</ACRONYM>)
+if necessary.</p>
+<A NAME="TI1604"></A><p>As you complete the Database Profile Setup dialog box in the
+development environment, PowerBuilder generates the correct connection
+syntax on the Preview tab for each selected option, including Generate
+Trace. Therefore, copying the syntax directly from the Preview tab
+ensures that it is accurate in your script.</p>
+<A NAME="TI1605"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To copy DBMS trace syntax from the Preview tab
+into your script:</p>
+<ol><li class=fi><p>On the Connection tab (or System tab in
+the case of OLE DB) in the Database Profile Setup dialog box for
+your connection, select the Generate Trace check box to turn on
+Database Trace.</p><p>For instructions, see <A HREF="connpbp49.htm#CCJDDIEF">"Starting Database Trace in
+the development environment"</A>.</p></li>
+<li class=ds><p>Click Apply to save your changes to the Connection
+tab without closing the Database Profile Setup dialog box.</p></li>
+<li class=ds><p>Click the Preview tab.</p><p>The correct PowerScript connection syntax for the Generate
+Trace and other selected options displays in the Database Connection
+Syntax box. </p></li>
+<li class=ds><p>Select the <ACRONYM title = "sequel C A dot D B M S" >SQLCA.DBMS</ACRONYM> line
+and any other syntax you want to copy to your script and click Copy.</p><p>PowerBuilder copies the selected text to the clipboard.</p></li>
+<li class=ds><p>Click OK to close the Database Profile Setup dialog
+box.</p></li>
+<li class=ds><p>Paste the selected text from the Preview tab into
+your script, modifying the default Transaction object name (<ACRONYM title = "sequel C A" >SQLCA</ACRONYM>) if necessary.</p></li></ol>
+<br><A NAME="TI1606"></A><h4>Coding PowerScript to set a value for the DBMS property</h4>
+<A NAME="TI1607"></A><p>Another way to start the Database Trace tool in a PowerBuilder script
+is to specify it as part of the DBMS property of the Transaction
+object. The <strong>Transaction object</strong> is a special
+nonvisual object that PowerBuilder uses to communicate with the database.
+The default Transaction object is named <ACRONYM title = "sequel C A" >SQLCA</ACRONYM>,
+which stands for <ACRONYM title = "sequel" >SQL</ACRONYM> Communications
+Area.</p>
+<A NAME="TI1608"></A><p><ACRONYM title = "sequel C A" >SQLCA</ACRONYM> has 15 properties,
+10 of which are used to connect to your database. One of the 10
+connection properties is DBMS. The DBMS property contains the name
+of the database to which you want to connect.</p>
+<A NAME="TI1609"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To start the Database Trace tool by specifying
+the DBMS property:</p>
+<ol><li class=fi><p>Use the following PowerScript syntax to
+specify the DBMS property. (This syntax assumes you are using the
+default Transaction object <ACRONYM title = "sequel C A" >SQLCA</ACRONYM>,
+but you can also define your own Transaction object.)</p><p><p><PRE><b>SQLCA.DBMS</b> = "<b>trace</b> <i>DBMS_name</i>"</PRE></p>
+</p><p>For example, the following statements in a PowerBuilder script
+set the <ACRONYM title = "sequel C A" >SQLCA</ACRONYM> properties
+required to connect to an Adaptive Server database named Test. The
+keyword <i>trace</i> in the DBMS property indicates
+that you want to trace the database connection.<p><PRE> <i>SQLCA.DBMS</i>         = "<i>trace SYC"</i></PRE><PRE> SQLCA.database     = "Test"</PRE><PRE> SQLCA.logId        = "Frans"</PRE><PRE> SQLCA.LogPass      = "xxyyzz"</PRE><PRE> SQLCA.ServerName   = "Tomlin"</PRE></p></li></ol>
+<br><A NAME="TI1610"></A><h4>Reading the DBMS value from an external text file
+or the registry</h4>
+<A NAME="TI1611"></A><p>As an
+alternative to setting the DBMS property in your PowerBuilder application
+script, you can use the PowerScript <b>ProfileString</b> function
+to read the DBMS value from a specified section of an external text
+file, such as an application-specific initialization file, or from
+an application settings key in the registry.</p>
+<A NAME="TI1612"></A><p>The following procedure assumes that the DBMS value read from
+the database section in your initialization file uses the following
+syntax to enable database tracing:<p><PRE><b>DBMS</b> = <b>trace</b> <i>DBMS_name</i></PRE></p>
+</p>
+<A NAME="TI1613"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To start the Database Trace tool by reading the
+DBMS value from an external text file:</p>
+<ol><li class=fi><p>Use the following PowerScript syntax to
+specify the <b>ProfileString</b> function with the DBMS
+property:</p><p><p><PRE><b>SQLCA.DBMS = ProfileString</b>(<i>file</i>, <i>section</i>, <i>variable</i>, <i>default_value</i>)</PRE></p>
+</p><p>For example, the following statement in a PowerBuilder script
+reads the DBMS value from the [Database] section
+of the <i>APP.INI</i> file:<p><PRE> SQLCA.DBMS=ProfileString("APP.INI","Database",<br>   "DBMS","")</PRE></p></li></ol>
+<br><A NAME="TI1614"></A><p>For how to get a value from a registry file instead, see <A HREF="connpbp46.htm#BABBFAEJ">"Getting values from the
+registry"</A>.</p>
+<A NAME="BABCIIGB"></A><h3>Starting a trace in PowerScript with the PBTrace parameter</h3>
+<A NAME="TI1615"></A><p>Instead of tracing all database commands from the start of
+a database connection, you can start and end a trace programmatically
+for specific database queries. To start a trace, you can assign
+the string value pair "PBTrace=1" to
+the transaction object DBParm property; to end a trace, you assign
+the string value pair "PBTrace=0". For
+example, if you wanted data to be logged to the trace output for
+a single retrieve command, you could disable tracing from the start
+of the connection and then surround the retrieve call with DBParm
+property assignments as follows:<p><PRE> SQLCA.DBMS = "TRACE ODBC"</PRE><PRE> SQLCA.DBParm="PBTrace=0"</PRE><PRE> Connect using SQLCA;</PRE><PRE> ...</PRE><PRE> SQLCA.DBParm="PBTrace=1"</PRE><PRE> dw_1.Retrieve ( )</PRE><PRE> SQLCA.DBParm="PBTrace=0"</PRE></p>
+<A NAME="TI1616"></A><p>When you first connect to a database after setting the DBMS
+parameter to "Trace <i>DBMSName"</i>,
+a configuration dialog box displays. The configuration parameters
+that you set in this dialog box are saved to the registry. Configuration
+parameters are retrieved from the registry when you begin tracing
+by assigning the DBParm parameter to "PBTrace=1".</p>
+<A NAME="TI1617"></A><p>You can start and stop the SQL statement trace utility in
+the same way if you set the DBMS value to "TRS <i>DBMSName</i>" instead
+of "Trace <i>DBMSName</i>". For
+information about the SQL statement trace utility, see <A HREF="connpbp50.htm#CJAJIACJ">"Using the SQL statement
+trace utility"</A>.</p>
+<A NAME="X-REF304629360"></A><h2>Stopping the Database Trace tool</h2>
+<A NAME="TI1618"></A><p>Once you start tracing a particular database connection, PowerBuilder continues
+sending trace output to the log until you do one of the following:<A NAME="TI1619"></A>
+<ul>
+<li class=fi>Reconnect to the same database
+with tracing stopped</li>
+<li class=ds>Connect to another database for which you have not
+enabled tracing
+</li>
+</ul>
+</p>
+<A NAME="TI1620"></A><h3>Stopping Database Trace in the development environment</h3>
+<A NAME="TI1621"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To stop the Database Trace tool by editing a database
+profile:</p>
+<ol><li class=fi><p>In the Database Profile Setup dialog box
+for the database you are tracing, clear the Generate Trace check
+box on the Connection tab.</p></li>
+<li class=ds><p>Click OK in the Database Profile Setup dialog
+box.</p><p>The Database Profiles dialog box displays with the name of
+the edited profile highlighted.</p></li>
+<li class=ds><p>Right-click on the connected database and select
+Re-connect from the drop-down menu in the Database Profiles dialog
+box.</p><p>PowerBuilder connects to the database and stops tracing the
+connection.</p></li></ol>
+<br><A NAME="TI1622"></A><h3>Stopping Database Trace in a PowerBuilder application</h3>
+<A NAME="TI1623"></A><p>To stop Database Trace in a PowerBuilder application script,
+you must delete the word <i>trace</i> from the DBMS
+property. You can do this by:<A NAME="TI1624"></A>
+<ul>
+<li class=fi>Editing
+the value of the DBMS property of the Transaction object</li>
+<li class=ds>Reading the DBMS value from an external text file
+</li>
+</ul>
+</p>
+<A NAME="TI1625"></A><p>You must reconnect for the change to take effect.</p>
+<A NAME="EDITDBMSPROP"></A><h4>Editing the DBMS property</h4>
+<A NAME="TI1626"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To stop Database Trace by editing the DBMS value
+in a PowerBuilder script:</p>
+<ol><li class=fi><p>Delete the word <i>trace</i> from
+the DBMS connection property in your application script.</p><p>For example, here is the DBMS connection property in a PowerBuilder script
+that enables the Database Trace. (This syntax assumes you are using the
+default Transaction object <ACRONYM title = "sequel C A" >SQLCA</ACRONYM>,
+but you can also define your own Transaction object.)<p><PRE> SQLCA.DBMS  = "<i>trace</i> SYC"</PRE></p><p>Here is how the same DBMS connection property should look
+after you edit it to stop tracing:<p><PRE> SQLCA.DBMS  = "SYC"</PRE></p></li></ol>
+<br><A NAME="TI1627"></A><h4>Reading the DBMS value from an external text file</h4>
+<A NAME="TI1628"></A><p>As an alternative to editing the DBMS property in your PowerBuilder application
+script, you can use the PowerScript <b>ProfileString</b> function
+to read the DBMS value from a specified section of an external text
+file, such as an application-specific initialization file.</p>
+<A NAME="TI1629"></A><p>This assumes that the DBMS value read from your initialization
+file <i>does not include</i> the word <i>trace</i>,
+as shown in the preceding example in <A HREF="connpbp49.htm#EDITDBMSPROP">"Editing the DBMS property."</A></p>
+<A NAME="X-REF304725221"></A><h2>Using the Database Trace log</h2>
+<A NAME="TI1630"></A><p>PowerBuilder writes the output of the Database Trace tool to
+a file named <i>DBTRACE.LOG</i> (by default) or to
+a nondefault log file that you specify. To use the trace log, you
+can do the following anytime:<A NAME="TI1631"></A>
+<ul>
+<li class=fi>View the Database Trace log with any text editor</li>
+<li class=ds>Annotate the Database Trace log with your own comments</li>
+<li class=ds>Delete the Database Trace log or clear its contents
+when it becomes too large
+</li>
+</ul>
+</p>
+<A NAME="TI1632"></A><h3>Viewing the Database Trace log</h3>
+<A NAME="TI1633"></A><p>You can display the contents of the log file anytime during a PowerBuilder session.</p>
+<A NAME="TI1634"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To view the contents of the log file:</p>
+<ol><li class=fi><p>Open the log file in one of the following
+ways:<A NAME="TI1635"></A>
+<ul>
+<li class=fi>Use the File Editor
+in PowerBuilder. (For instructions, see the <i>User's Guide</i>
+.)</li>
+<li class=ds>Use any text editor outside PowerBuilder.
+</li>
+</ul>
+
+                        </p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Leaving the log file open</span> <A NAME="TI1636"></A>If you leave the log file open as you work in PowerBuilder,
+the Database Trace tool <i>does not update</i> the
+log.</p>
+<A NAME="TI1637"></A><h3>Annotating the Database Trace log</h3>
+<A NAME="TI1638"></A><p>When you use the Database Trace log as a troubleshooting tool,
+it might be helpful to add your own comments or notes to the file.
+For example, you can specify the date and time of a particular connection,
+the versions of database server and client software you used, or
+any other useful information.</p>
+<A NAME="TI1639"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To annotate the log file:</p>
+<ol><li class=fi><p>Open the <i>DBTRACE.LOG</i> file
+in one of the following ways:<A NAME="TI1640"></A>
+<ul>
+<li class=fi>Use
+the File Editor in PowerBuilder. (For instructions, see the <i>User's Guide</i>
+.)</li>
+<li class=ds>Use any text editor outside PowerBuilder.
+</li>
+</ul>
+
+                        </p></li>
+<li class=ds><p>Edit the log file with your comments.</p></li>
+<li class=ds><p>Save your changes to the log file.</p></li></ol>
+<br><A NAME="TI1641"></A><h3>Deleting or clearing the Database Trace log</h3>
+<A NAME="TI1642"></A><p>Each time you connect to a database with tracing enabled, PowerBuilder appends
+the trace output of your connection to the existing log. As a result,
+the log file can become very large over time, especially if you
+frequently enable tracing when connected to a database.</p>
+<A NAME="TI1643"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To keep the size of the log file manageable:</p>
+<ol><li class=fi><p>Do either of the following periodically:</p><p><A NAME="TI1644"></A>
+<ul>
+<li class=fi>Open the log file,
+clear its contents, and save the empty file.<br>
+Provided that you use the default <i>DBTRACE.LOG</i> or
+the same nondefault file the next time you connect to a database
+with tracing enabled, PowerBuilder will write to this empty file.<br></li>
+<li class=ds>Delete the log file.<br>
+PowerBuilder will automatically create a new log file the next
+time you connect to a database with tracing enabled.<br>
+</li>
+</ul>
+</p></li></ol>
+<br><A NAME="X-REF304635496"></A><h2>Sample Database Trace output</h2>
+<A NAME="TI1645"></A><p>This section gives an example of Database Trace output that
+you might see in the log file and briefly explains each portion
+of the output.</p>
+<A NAME="TI1646"></A><p>The example traces a connection with Sum Timing enabled. The
+output was generated while running a PowerBuilder application that
+displays information about authors in a publications database. The <b>SELECT</b> statement
+shown retrieves information from the <b>Author</b> table.</p>
+<A NAME="TI1647"></A><p>The precision (for example, microseconds) used when Database
+Trace records internal commands depends on your operating system's
+timing mechanism. Therefore, the timing precision in your Database
+Trace log might vary from this example.</p>
+<A NAME="TI1648"></A><h4>Connect to database</h4>
+<A NAME="TI1649"></A><p><p><PRE> CONNECT TO TRACE SYC Adaptive Server Enterprise:</PRE><PRE> DATABASE=pubs2</PRE><PRE> LOGID=bob</PRE><PRE> SERVER=HOST12</PRE><PRE> DPPARM=Release='12.5.2',StaticBind=0</PRE></p>
+<A NAME="TI1650"></A><h4>Prepare SELECT statement</h4>
+<A NAME="TI1651"></A><p><p><PRE> PREPARE: </PRE><PRE> SELECT  authors.au_id, authors.au_lname, authors.state     FROM authors </PRE><PRE> WHERE ( authors.state not in ( 'CA' ) )  </PRE><PRE> ORDER BY authors.au_lname ASC (3.386 MS / 20.349 MS)</PRE></p>
+<A NAME="TI1652"></A><h4>Get column descriptions</h4>
+<A NAME="TI1653"></A><p><p><PRE> DESCRIBE: (0.021 MS / 20.370 MS)</PRE><PRE> name=au_id,len=12,type=CHAR,pbt=1,dbt=1,ct=0,prec=0,<br>  scale=0</PRE><PRE> name=au_lname,len=41,type=CHAR,pbt=1,dbt=1,ct=0,<br>  prec=0,scale=0</PRE><PRE> name=state,len=3,type=CHAR,pbt=1,dbt=1,ct=0,prec=0,<br>  scale=0</PRE></p>
+<A NAME="TI1654"></A><h4>Bind memory buffers to columns</h4>
+<A NAME="TI1655"></A><p><p><PRE> BIND SELECT OUTPUT BUFFER (DataWindow): </PRE><PRE>   (0.007 MS / 20.377 MS)</PRE><PRE> name=au_id,len=12,type=CHAR,pbt=1,dbt=1,ct=0,prec=0,<br>  scale=0</PRE><PRE> name=au_lname,len=41,type=CHAR,pbt=1,dbt=1,ct=0,<br>  prec=0,scale=0</PRE><PRE> name=state,len=3,type=CHAR,pbt=1,dbt=1,ct=0,prec=0,<br>  scale=0</PRE></p>
+<A NAME="TI1656"></A><h4>Execute SELECT statement</h4>
+<A NAME="TI1657"></A><p><p><PRE> EXECUTE: (0.001 MS / 20.378 MS)</PRE></p>
+<A NAME="TI1658"></A><h4>Fetch rows from result set</h4>
+<A NAME="TI1659"></A><p><p><PRE> FETCH NEXT: (0.028 MS / 20.406 MS)</PRE><PRE>  au_id=648-92-1872     au_lname=Blotchet-Hall state=OR</PRE><PRE> FETCH NEXT: (0.012 MS / 20.418 MS)</PRE><PRE>  au_id=722-51-5454     au_lname=DeFrance     state=IN</PRE><PRE> ...</PRE><PRE> FETCH NEXT: (0.010 MS / 20.478 MS)</PRE><PRE> au_id=341-22-1782 au_lname=Smith     state=KS</PRE><PRE> FETCH NEXT: (0.025 MS / 20.503 MS)</PRE><PRE> *** DBI_FETCHEND *** (rc 100)</PRE></p>
+<A NAME="TI1660"></A><h4>Update and commit database changes</h4>
+<A NAME="TI1661"></A><p><p><PRE> PREPARE:</PRE><PRE> UPDATE authors SET state = 'NM' </PRE><PRE> WHERE au_id = '648-92-1872' AND au_lname = 'Blotchet-Halls' AND state = 'OR'  (3.284 MS / 23.787 MS)</PRE><PRE> EXECUTE: (0.001 MS / 23.788 MS)</PRE><PRE> GET AFFECTED ROWS: (0.001 MS / 23.789 MS)</PRE><PRE> ^ 1 Rows Affected</PRE><PRE> COMMIT: (1.259 MS / 25.048 MS)</PRE></p>
+<A NAME="TI1662"></A><h4>Disconnect from database</h4>
+<A NAME="TI1663"></A><p><p><PRE> DISCONNECT: (0.764 MS / 25.812 MS)</PRE></p>
+<A NAME="TI1664"></A><h4>Shut down database interface</h4>
+<A NAME="TI1665"></A><p><p><PRE> SHUTDOWN DATABASE INTERFACE: (0.001 MS / 25.813 MS)</PRE></p>
+

@@ -1,0 +1,119 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Accessing a database from a COM component</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp170.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp172.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDBIABF"></A><h1>Accessing a database from a COM component</h1>
+<A NAME="TI5715"></A><p>To take advantage of COM+ support for transaction
+management, you need to use one of the database interfaces supported
+by COM+ to connect to your database. For more information
+about database connections for components developed in PowerBuilder,
+see <i>Connecting to Your Database</i>
+.</p>
+<A NAME="TI5716"></A><p>COM components developed in PowerBuilder can use DataStores
+to interact with the database. DataStores are nonvisual DataWindow
+controls that act just like DataWindow controls except that they
+do not have visual attributes. They can be useful in a distributed
+application: they give you the ability to perform database processing
+on a remote server instead of on each client computer.</p>
+<A NAME="TI5717"></A><p>For more information about using DataStores for database access
+in a transaction server environment, see <A HREF="apptechp142.htm#BABCBHHC">"Using DataStores"</A>.</p>
+<A NAME="BABDACEE"></A><h2>Passing result sets</h2>
+<A NAME="TI5718"></A><p>PowerBuilder provides three system objects to handle getting
+result sets from components running in transaction server environments
+and returning result sets from PowerBuilder user objects running
+as transaction server components. These system objects, ResultSet,
+ResultSets, and ADOResultSet, are designed to simplify the conversion
+of transaction server result sets to and from DataStore objects
+and do not contain any state information. They are not designed
+to be used for database updates. You can use ADOResultSet only with COM
+components. </p>
+<A NAME="TI5719"></A><p>COM+ uses ActiveX Data Objects (ADO) RecordSet objects
+to return result sets. An ADO Recordset object consists of records
+(rows) and fields (columns) and represents the set of records in
+a database table. </p>
+<A NAME="TI5720"></A><h4>ADO Recordsets and PowerBuilder system objects</h4>
+<A NAME="TI5721"></A><p>In PowerBuilder you use functions on the PowerBuilder ADOResultSet system
+object to get and set data that is passed in an ADO Recordset. PowerBuilder
+clients use OLEObjects to handle ADO Recordsets. You use the <b>CreateFrom</b> and <b>GenerateResultSet</b> functions
+on the DataStore object to convert the result sets stored in ResultSet
+objects to and from DataStore objects. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About GenerateResultSet</span> <A NAME="TI5722"></A><b>GenerateResultSet</b> has an alternative syntax
+used for returning result sets when using MASP (Method as Stored
+Procedure) with <ABBR title = "e a server" >EAServer</ABBR>.</p>
+<A NAME="TI5723"></A><p><A HREF="apptechp171.htm#CEGCADDB">Table 27-3</A> summarizes
+how these objects interact.</p>
+<A NAME="CEGCADDB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 27-3: Result set objects</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5724"></A>Use
+a variable of this type</th>
+<th  rowspan="1"  ><A NAME="TI5725"></A>In this
+way</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5726"></A>ResultSet</td>
+<td  rowspan="1"  ><A NAME="TI5727"></A>As the return value of a method (function)
+defined for a COM component. The data is marshaled as an ADO Recordset.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5728"></A>OLEObject</td>
+<td  rowspan="1"  ><A NAME="TI5729"></A>To hold the ADO Recordset returned from
+a method on a COM component that returns a ResultSet. The OLEObject
+can be manipulated using ADO Recordset functions such as <b>MoveFirst</b>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5730"></A>ADOResultSet</td>
+<td  rowspan="1"  ><A NAME="TI5731"></A>Use <b>SetResultSet</b> to
+populate an ADOResultSet object with data from a ResultSet object. <A NAME="TI5732"></A><p>Use <b>SetRecordSet</b> to populate an ADOResultSet
+object with data from an OLEObject that holds an ADO Recordset.</p><A NAME="TI5733"></A><p>Use <b>GetRecordSet</b> to populate an OLEObject
+with data from an ADOResultSet. The OLEObject can be manipulated
+using ADO Recordset functions such as <b>MoveFirst</b>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5734"></A>DataStore</td>
+<td  rowspan="1"  ><A NAME="TI5735"></A>Use <b>CreateFrom</b> to
+create a DataStore from an object of type ResultSet or ADOResultSet.<A NAME="TI5736"></A><p>Use <b>GenerateResultSet</b> to generate a ResultSet
+object from a DataStore object in a method on a transaction server.
+The ResultSet object can be returned to a client.</p></td>
+</tr>
+</table>
+<A NAME="TI5737"></A><h4>Accessing result sets in COM components from
+PowerBuilder clients</h4>
+<A NAME="TI5738"></A><p>When a PowerBuilder client calls a COM component method that
+returns an ADO Recordset, the data returned is stored in an OLEObject
+object. You can manipulate the data in the ADO Recordset using <b>Recordset</b> functions,
+as described in <A HREF="apptechp171.htm#BABDGBCI">"Using ADO Recordsets
+in PowerBuilder"</A>.</p>
+<A NAME="TI5739"></A><p>To use the data stored in the OLEObject object to populate
+a DataStore object, create an ADOResultSet object and then call
+its <b>SetRecordSet</b> function to populate it with
+data stored in the OLEObject object.</p>
+<A NAME="TI5740"></A><p>The data in the ADOResultSet object can be used to populate
+a DataStore object using the <b>CreateFrom</b> DataStore
+function:<p><PRE> OLEObject loo_mycomponent<br>OLEObject loo_ADOrecordset<br>ADOresultset lrs_ADOresultset<br>datastore ds_local<br>integer li_rc<br>loo_mycomponent = CREATE OLEObject<br> <br>li_rc = loo_mycomponent.ConnectToNewObject("PB.Test")<br>if li_rc &lt;&gt; 0 then<br>    MessageBox("Connect Failed", string(li_rc) )<br>    Return<br>end if<br> <br>// Use an OLEObject to hold ADO Recordset<br>// returned from method on COM component<br>loo_ADOrecordset = loo_mycomponent.GetTestResult()<br> <br>// Create an ADOResultSet and get its data<br>// from OLEObject holding passed ADO Recordset<br>lrs_ADOresultset = CREATE ADOResultSet<br>lrs_ADOresultset.SetRecordSet(loo_ADOrecordset)<br> <br>// Use CreateFrom to populate DataStore <br>// from ADOResultSet object<br>ds_local = CREATE datastore<br>ds_local.createfrom(lrs_ADOresultset)</PRE></p>
+<A NAME="BABDGBCI"></A><h4>Using ADO Recordsets
+in PowerBuilder</h4>
+<A NAME="TI5741"></A><p>If you want to manipulate an ADO Recordset in PowerBuilder
+using ADO Recordset methods such as <b>MoveFirst</b> or <b>MoveNext</b>,
+you can use the <b>SetResultSet</b> and <b>GetRecordSet</b> functions.
+Use <b>SetResultSet</b> to populate a new ADOResultSet
+object with data from a ResultSet object, then use <b>GetRecordSet</b> to
+return the ADO Recordset.</p>
+<A NAME="TI5742"></A><p>This example generates a result set in a ResultSet object
+from an existing DataStore object. The ResultSet object is used
+to populate a new ADOResultSet object. The <b>GetRecordSet</b> function
+on the ADOResultSet object is used to return an ADO Recordset as
+an OLEObject that can be used with ADO <b>Recordset</b> methods.<p><PRE> ResultSet lrs_resultset<br>ADOresultset lrs_ADOresultset<br>OLEObject loo_ADOrecordset<br> <br>// Generate a result set from an existing DataStore<br>ds_source.GenerateResultSet(lrs_resultset)<br> <br>// Create a new ADOResultSet object and populate it<br>// from the generated result set<br>lrs_ADOresultset = CREATE ADOResultSet<br>lrs_ADOResultset.SetResultSet(lrs_resultset)<br>// Pass the data in the ADOResultSet object<br> <br>// to an OLEObject you can use as an ADO Recordset<br>loo_ADOrecordset = CREATE OLEObject<br>lrs_ADOResultset.GetRecordSet(loo_ADOrecordset)<br> <br>// Call native ADO Recordset methods on the OLEObject<br>loo_ADOrecordset.MoveFirst()</PRE></p>
+<A NAME="TI5743"></A><h4>Returning result sets from COM and COM+ components</h4>
+<A NAME="TI5744"></A><p>To pass or return result sets from a PowerBuilder user object
+that will be deployed to COM or COM+, set the datatype
+of a function's argument or return value to <b>ResultSet</b>.
+When the <b>GenerateResultSet</b> function is called
+to create a result set from a DataStore object in COM or COM+,
+the result set is marshaled and returned to the client as an ADO
+Recordset. </p>
+<A NAME="TI5745"></A><p>In this example, a DataStore object is created and data is
+retrieved into it, and then the <b>GenerateResultSet</b> function
+is used to create a result set that can be returned to a client:<p><PRE> datastore ds_datastoreresultset lrs_resultset <br>integer li_rc<br> <br>ds_datastore = create datastore<br>ds_datastore.dataobject = "d_empdata"<br>ds_datastore.SetTransObject (SQLCA)<br>IF ds_datastore.Retrieve() = -1 THEN<br>    // report error and return<br>END IF<br> <br>li_rc = ds_datastore.generateresultset(lrs_resultset)<br>IF li_rc &lt;&gt; 1 THEN<br>    // report error and return<br>END IF<br>return lrs_resultset</PRE></p>
+

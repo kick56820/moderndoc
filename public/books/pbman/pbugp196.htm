@@ -1,0 +1,148 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining a code table</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp195.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp197.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCDHGFC"></A><h1>Defining a code table</h1>
+<A NAME="TI6510"></A><p>To reduce storage needs, frequently you might want to store
+short, encoded values in the database, but these encoded values
+might not be meaningful to users. To make DataWindow objects easy to use,
+you can define code tables.</p>
+<A NAME="TI6511"></A><p>Each row in a code table is a pair of corresponding values:
+a display value and a data value. The display values are those users see at
+runtime. The data values are those that are saved in the database.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Limit on size of data value</span> <A NAME="TI6512"></A>The data value you specify for the Checkbox, DropDownListBox,
+Edit, EditMask, and RadioButtons edit styles is limited to 255 characters.</p>
+<A NAME="TI6513"></A><h2>How code tables are implemented</h2>
+<A NAME="TI6514"></A><p>You can define a code table as a property of the following
+column edit styles:<A NAME="TI6515"></A>
+<ul>
+<li class=fi>Edit</li>
+<li class=ds>DropDownListBox</li>
+<li class=ds>RadioButtons</li>
+<li class=ds>DropDownDataWindow</li>
+<li class=ds>EditMask, using spin control
+</li>
+</ul>
+</p>
+<A NAME="TI6516"></A><p>The steps to specify the code table property for each edit
+style are similar: you begin by defining a new edit style in the Database painter.
+Once you select an edit style, use the specific procedure that follows
+to define the code table property.</p>
+<A NAME="TI6517"></A><p>For how to create an edit style, see <A HREF="pbugp193.htm#BFCBBIBJ">"About edit styles "</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Allowing null values</span> <A NAME="TI6518"></A>An internal PowerBuilder code, NULL!, indicates null values
+are allowed. To use this code, specify NULL! as the data value,
+then specify a display format for nulls for the column.</p>
+<A NAME="TI6519"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a code table as a property of the Edit
+edit style:</p>
+<ol><li class=fi><p>Select the Use Code Table check box.</p></li>
+<li class=ds><p>Enter the display and data values for the code
+table.</p></li>
+<li class=ds><p>If you want to restrict input in the column to
+values in the code table, select the Validate check box.</p><p>For more information, see <A HREF="pbugp196.htm#BFCBDGEI">"Validating user input"</A>.</p></li></ol>
+<br><A NAME="TI6520"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a code table as a property of the DropDownListBox
+edit style:</p>
+<ol><li class=fi><p>Enter the display and data values for the
+code table.</p></li>
+<li class=ds><p>If you want to restrict input in the column to
+values in the code table, clear the Allow Editing check box.</p><p>For more information, see <A HREF="pbugp196.htm#BFCBDGEI">"Validating user input"</A>.</p></li></ol>
+<br><A NAME="TI6521"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a code table as a property of the RadioButtons
+edit style:</p>
+<ol><li class=fi><p>Enter the display and data values for the
+code table.</p></li></ol>
+<br><A NAME="TI6522"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a code table as a property of the DropDownDataWindow
+edit style:</p>
+<ol><li class=fi><p>Specify the column that provides the display
+values in the Display Column box.</p></li>
+<li class=ds><p>Specify the column that provides the data values
+in the Data Column box.</p></li>
+<li class=ds><p>If you want to restrict input to values in the
+code table, clear the Allow Editing check box.</p></li></ol>
+<br><A NAME="TI6523"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a code table as a property of the EditMask
+edit style:</p>
+<ol><li class=fi><p>Select the Spin Control check box.</p></li>
+<li class=ds><p>Select the Code Table check box.</p></li>
+<li class=ds><p>Enter the display and data values for the code
+table.</p></li></ol>
+<br><A NAME="TI6524"></A><h2>How code tables are processed</h2>
+<A NAME="TI6525"></A><p>When data is retrieved into a DataWindow object column with a code
+table, processing begins at the top of the data value column. If
+the data matches a data value, the corresponding display value displays.
+If there is no match, the actual value displays.</p>
+<A NAME="TI6526"></A><p>Consider the example in <A HREF="pbugp196.htm#BHAEEGGF">Table 22-10</A>.</p>
+<A NAME="BHAEEGGF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 22-10: Data values and display values</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6527"></A>Display
+values</th>
+<th  rowspan="1"  ><A NAME="TI6528"></A>Data
+values</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6529"></A>Massachusetts</td>
+<td  rowspan="1"  ><A NAME="TI6530"></A><ABBR title = "capital M capital A" >MA</ABBR></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6531"></A>Massachusetts</td>
+<td  rowspan="1"  ><A NAME="TI6532"></A><ABBR title = "lowercase m lowercase a" >ma</ABBR></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6533"></A><ABBR title = "lowercase m lowercase a" >ma</ABBR></td>
+<td  rowspan="1"  ><A NAME="TI6534"></A><ABBR title = "capital M capital A" >MA</ABBR></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6535"></A><ABBR title = "capital M lowercase a s s" >Mass</ABBR></td>
+<td  rowspan="1"  ><A NAME="TI6536"></A><ABBR title = "capital M capital A" >MA</ABBR></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6537"></A>Rhode Island</td>
+<td  rowspan="1"  ><A NAME="TI6538"></A><ABBR title = "capital R capital I" >RI</ABBR></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6539"></A><ABBR title = "capital R capital I" >RI</ABBR></td>
+<td  rowspan="1"  ><A NAME="TI6540"></A><ABBR title = "capital R capital I" >RI</ABBR></td>
+</tr>
+</table>
+<A NAME="TI6541"></A><p>If the data is MA or ma, the corresponding display value (Massachusetts) displays.
+If the data is Ma, there is no match, so Ma displays.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Case sensitivity</span> <A NAME="TI6542"></A>Code table processing is case sensitive.</p>
+<A NAME="TI6543"></A><p>If the code table is in a DropDownListBox edit style, and
+if the column has a code table that contains duplicate display values,
+then each value displays only once. Therefore, if this code table
+is defined for a column in a DataWindow object that has a DropDownListBox
+edit style, Massachusetts and Rhode Island display in the ListBox
+portion of the DropDownListBox.</p>
+<A NAME="BFCBDGEI"></A><h2>Validating user input</h2>
+<A NAME="TI6544"></A><p>When users enter data into a column in a DataWindow object,
+processing begins at the top of the display value column of the
+associated code table.</p>
+<A NAME="TI6545"></A><p>If the data matches a display value, the corresponding data
+value is put in the internal buffer. For each display value, the
+first data value is used. Using the sample code table, if the user
+enters Massachusetts, ma, or Mass, the data value is MA.</p>
+<A NAME="TI6546"></A><p>You can specify that <i>only</i> the values
+in the code table are acceptable:<A NAME="TI6547"></A>
+<ul>
+<li class=fi>For a column using the Edit edit style, select the Validate
+check box.<br>
+If you have selected the Validate check box for the Edit edit
+style, an ItemError event is triggered whenever a user enters a
+value not in the code table. Otherwise, the entered value is validated
+using the column's validation rule, if any, and put in
+the DataWindow buffer. <br></li>
+<li class=ds>For the DropDownListBox and DropDownDataWindow edit
+styles, clear the Allow Editing check box: users cannot type
+a value.<br>
+Although users cannot type a value when you clear the Allow
+Editing check box, they can search for a row in the drop-down list
+or DataWindow by typing in the initial character for the row display
+value. The search is case sensitive. For the DropDownDataWindow
+edit style, the initial character for a search cannot be an asterisk
+or a question mark. This restriction does not apply to the DropDownListBox
+edit style.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI6548"></A><p>When the code table processing is complete, the ItemChanged
+or ItemError event is triggered. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Code table data</span> <A NAME="TI6549"></A>The data values in the code table must pass validation for
+the column and must have the same datatype as the column.</p>
+

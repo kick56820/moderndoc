@@ -1,0 +1,361 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Setting database preferences</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp45.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp47.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF346966539"></A><h1>Setting database preferences</h1>
+<A NAME="TI1443"></A><h4>How to set</h4>
+<A NAME="TI1444"></A><p>The way you set connection-related database preferences in PowerBuilder varies,
+as summarized in the following table (AutoCommit and Lock are the only
+database preferences that you can set in a PowerBuilder application script). </p>
+<A NAME="TI1445"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 8-1: Database preferences and where they can be set</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1446"></A>Database preference</th>
+<th  rowspan="1"  ><A NAME="TI1447"></A>Set in development environment
+by editing</th>
+<th  rowspan="1"  ><A NAME="TI1448"></A>Set in PowerBuilder application
+by editing</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1449"></A>AutoCommit</td>
+<td  rowspan="1"  ><A NAME="TI1450"></A>Database Profile Setup dialog box for
+your connection</td>
+<td  rowspan="1"  ><A NAME="TI1451"></A>Application script</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1452"></A>Lock</td>
+<td  rowspan="1"  ><A NAME="TI1453"></A>Database Profile Setup dialog box for
+your connection</td>
+<td  rowspan="1"  ><A NAME="TI1454"></A>Application script</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1455"></A>Shared Database Profiles</td>
+<td  rowspan="1"  ><A NAME="TI1456"></A>Database Preferences property sheet</td>
+<td  rowspan="1"  ><A NAME="TI1457"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1458"></A>Connect to Default Profile</td>
+<td  rowspan="1"  ><A NAME="TI1459"></A>Database Preferences property sheet</td>
+<td  rowspan="1"  ><A NAME="TI1460"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1461"></A>Read Only</td>
+<td  rowspan="1"  ><A NAME="TI1462"></A>Database Preferences property sheet</td>
+<td  rowspan="1"  ><A NAME="TI1463"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1464"></A>Keep Connection Open</td>
+<td  rowspan="1"  ><A NAME="TI1465"></A>Database Preferences property sheet</td>
+<td  rowspan="1"  ><A NAME="TI1466"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1467"></A>Use Extended Attributes</td>
+<td  rowspan="1"  ><A NAME="TI1468"></A>Database Preferences property sheet</td>
+<td  rowspan="1"  ><A NAME="TI1469"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1470"></A><ACRONYM title = "sequel" >SQL</ACRONYM> Terminator Character</td>
+<td  rowspan="1"  ><A NAME="TI1471"></A>Database Preferences property sheet</td>
+<td  rowspan="1"  ><A NAME="TI1472"></A>&#8212;</td>
+</tr>
+</table>
+<A NAME="TI1473"></A><p>The following sections give the steps for setting database
+preferences in the development environment and (for AutoCommit and
+Lock) in a PowerBuilder application script.</p>
+<A NAME="TI1474"></A><h4>For more information</h4>
+<A NAME="TI1475"></A><p>For information about using a specific database preference,
+see its description in the online Help.</p>
+<A NAME="TI1476"></A><h2>Setting database preferences in the development
+environment</h2>
+<A NAME="TI1477"></A><p>There are two ways to set database preferences in the PowerBuilder development
+environment on <i>all</i> supported development platforms,
+depending on the preference you want to set:<A NAME="TI1478"></A>
+<ul>
+<li class=fi>Set AutoCommit and Lock (Isolation Level) in the
+Database Profile Setup dialog box for your connection<br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>ADO.NET</span> <A NAME="TI1479"></A>For ADO.NET, Isolation is a database parameter.
+<br>
+</li>
+<li class=ds>Set all other database preferences in the Database
+Preferences property sheet in the Database painter
+</li>
+</ul>
+</p>
+<A NAME="X-REF350078942"></A><h3>Setting AutoCommit and Lock in the database profile</h3>
+<A NAME="TI1480"></A><p>The AutoCommit and Lock (Isolation Level) preferences are
+properties of the default Transaction object, <ACRONYM title = "sequel C A" >SQLCA</ACRONYM>. For AutoCommit and Lock
+to take effect in the PowerBuilder development environment, you must
+specify them <i>before</i> you connect to a database.
+Changes to these preferences after the connection occurs have no
+effect on the current connection.</p>
+<A NAME="TI1481"></A><p>To set AutoCommit and Lock before PowerBuilder connects to your
+database, you specify their values in the Database Profile Setup
+dialog box for your connection.</p>
+<A NAME="TI1482"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set AutoCommit and Lock (Isolation Level) in
+a database profile:</p>
+<ol><li class=fi><p>Display the Database Profiles dialog box.</p></li>
+<li class=ds><p>Click the plus sign (+) to the left of
+the interface you are using</p><p><i>or</i></p><p>Double-click the interface name.</p><p>The list expands to display the database profiles defined
+for your interface.</p></li>
+<li class=ds><p>Select the name of the profile you want and click
+Edit.</p><p>The Database Profile Setup dialog box for the selected profile
+displays.</p></li>
+<li class=ds><p>On the Connection tab page, supply values for
+one or both of the following:<A NAME="TI1483"></A>
+<ul>
+<li class=fi><b>Isolation
+Level</b>   If your database supports the use of locking and isolation
+levels, select the isolation level you want to use for this connection
+from the Isolation Level drop-down list. (The Isolation Level drop-down
+list contains valid lock values for your interface.) </li>
+<li class=ds><b>AutoCommit Mode</b>   The setting of AutoCommit controls whether PowerBuilder issues <ACRONYM title = "sequel" >SQL</ACRONYM> statements outside (True) or
+inside (False) the scope of a transaction. <i>If your database
+supports it</i>, select the AutoCommit Mode check box to
+set AutoCommit to True or clear the AutoCommit Mode check box (the
+default) to set AutoCommit to False.
+</li>
+</ul>
+
+                        </p><p>For example, in addition to values for basic connection parameters (Server,
+Login ID, Password, and Database), the Connection tab page for the
+following Sybase Adaptive Server Enterprise profile named Sales shows
+nondefault settings for Isolation Level and AutoCommit Mode.</p></li>
+<li class=ds><p>(Optional) In PowerBuilder, click the Preview
+tab if you want to see the PowerScript connection syntax generated
+for Lock and AutoCommit.</p><p>PowerBuilder generates correct PowerScript connection syntax
+for each option you set in the Database Profile Setup dialog box.
+You can copy this syntax directly into a PowerBuilder application
+script.</p><p>For instructions, see <A HREF="connpbp45.htm#CCJDDFHH">"Copying DBParm syntax
+from the Preview tab"</A>.</p></li>
+<li class=ds><p>Click OK to close the Database Profile Setup dialog
+box.</p><p>PowerBuilder saves your settings in the database profile entry
+in the registry.</p></li></ol>
+<br><A NAME="X-REF350168098"></A><h3>Setting preferences in the Database Preferences property sheet</h3>
+<A NAME="TI1484"></A><p>To set the following connection-related database preferences,
+complete the Database Preferences property sheet in the PowerBuilder Database
+painter:<A NAME="TI1485"></A>
+<ul>
+<li class=fi>Shared Database Profiles</li>
+<li class=ds>Connect to Default Profile</li>
+<li class=ds>Read Only</li>
+<li class=ds>Keep Connection Open</li>
+<li class=ds>Use Extended Attributes</li>
+<li class=ds><ACRONYM title = "sequel" >SQL</ACRONYM> Terminator
+Character
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Other database preferences</span> <A NAME="TI1486"></A>The Database Preferences property sheet also lets you set
+other database preferences that affect the behavior of the Database
+painter itself. For information about the other preferences you
+can set in the Database Preferences property sheet, see the <i>User's
+Guide</i>
+.</p>
+<A NAME="TI1487"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set connection-related preferences in the Database
+Preferences property sheet:</p>
+<ol><li class=fi><p>Open the Database painter.</p></li>
+<li class=ds><p>Select Design&gt;Options from the menu bar.</p><p>The Database Preferences dialog box displays. If necessary,
+click the General tab to display the General property page.</p></li>
+<li class=ds><p>Specify values for one or more of the connection-related
+database preferences in the following table.</p><A NAME="TI1488"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 8-2: Connection-related
+database preferences</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1489"></A>Preference</th>
+<th  rowspan="1"  ><A NAME="TI1490"></A>Description</th>
+<th  rowspan="1"  ><A NAME="TI1491"></A>For details, see</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1492"></A>Shared Database Profiles</td>
+<td  rowspan="1"  ><A NAME="TI1493"></A>Specifies the pathname of the file containing
+the database profiles you want to share. You can type the pathname
+or click Browse to display it.</td>
+<td  rowspan="1"  ><A NAME="TI1494"></A><A HREF="connpbp39.htm#CCJCEIDC">"Sharing database profiles"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1495"></A>Connect to Default Profile</td>
+<td  rowspan="1"  ><A NAME="TI1496"></A>Controls whether the Database painter
+establishes a connection to a database using a default profile when
+the painter is invoked. If not selected, the Database painter opens
+without establishing a connection to a database.</td>
+<td  rowspan="1"  ><A NAME="TI1497"></A>Connect to Default Profile in online
+Help</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1498"></A>Read Only</td>
+<td  rowspan="1"  ><A NAME="TI1499"></A>Specifies whether PowerBuilder should update
+the extended attribute system tables and any other tables in your
+database. Select or clear the Read Only check box as follows:<A NAME="TI1500"></A>
+<ul>
+<li class=fi><b>Select the check
+box</b>   Does not update the extended attribute system tables or any
+other tables in your database. You <i>cannot</i> modify
+(update) information in the extended attribute system tables or any
+other database tables from the DataWindow painter when the Read
+Only check box is selected.</li>
+<li class=ds><b>Clear the check box</b>   (Default) Updates the extended attribute system tables and
+any other tables in your database.
+</li>
+</ul>
+</td>
+<td  rowspan="1"  ><A NAME="TI1501"></A>Read Only in the online Help</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1502"></A>Keep Connection Open</td>
+<td  rowspan="1"  ><A NAME="TI1503"></A>When you connect to a database in PowerBuilder without
+using a database profile, specifies when PowerBuilder closes the connection.
+Select or clear the Keep Connection Open check box as follows:<A NAME="TI1504"></A>
+<ul>
+<li class=fi><b>Select the check
+box</b>   (Default) Stays connected to the database throughout your
+session and closes the connection when you exit</li>
+<li class=ds><b>Clear the check box</b>   Opens the connection only when a painter requests it and closes
+the connection when you close a painter or finish compiling a script
+</li>
+</ul>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Not used with profile</span> <A NAME="TI1505"></A>This preference has no effect when you connect using a database
+profile.</p>
+</td>
+<td  rowspan="1"  ><A NAME="TI1506"></A>Keep Connection Open in the online Help</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1507"></A>Use Extended Attributes</td>
+<td  rowspan="1"  ><A NAME="TI1508"></A>Specifies whether PowerBuilder should create
+and use the extended attribute system tables. Select or clear the Use
+Extended Attributes check box as follows:<A NAME="TI1509"></A>
+<ul>
+<li class=fi><b>Select the check box</b>   (Default) Creates and uses the extended attribute system tables</li>
+<li class=ds><b>Clear the check box</b>   Does <i>not</i> create the extended attribute
+system tables
+</li>
+</ul>
+</td>
+<td  rowspan="1"  ><A NAME="TI1510"></A>Use Extended Attributes in the online
+Help</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1511"></A>Columns in Table Display</td>
+<td  rowspan="1"  ><A NAME="TI1512"></A>Specify the number of table columns to
+be displayed when InfoMaker displays a table graphically. The default
+is eight.</td>
+<td  rowspan="1"  ><A NAME="TI1513"></A></td>
+</tr>
+</table>
+</li>
+<li class=ds><p>Do one of the following:<A NAME="TI1514"></A>
+<ul>
+<li class=fi>Click Apply to apply the preference settings to
+the current connection without closing the Database Preferences
+property sheet.</li>
+<li class=ds>Click OK to apply the preference settings to the
+current connection and close the Database Preferences property sheet.
+</li>
+</ul>
+
+                        </p><p>PowerBuilder saves your preference settings in the database
+section of <i></i><i>PB.INI</i><i></i>.</p></li></ol>
+<br><A NAME="TI1515"></A><h2>Setting AutoCommit and Lock in a PowerBuilder application
+script</h2>
+<A NAME="TI1516"></A><p>If you are developing a PowerBuilder application that connects
+to a database, you must specify the required connection parameters
+in the appropriate script as properties of the default Transaction
+object (<ACRONYM title = "sequel C A" >SQLCA</ACRONYM>) or a Transaction object
+that you create. For example, you might specify connection parameters in
+the script that opens the application. </p>
+<A NAME="TI1517"></A><p>AutoCommit and Lock are properties of <ACRONYM title = "sequel C A" >SQLCA</ACRONYM>. As such, they are the <i>only</i> database
+preferences you can set in a PowerBuilder script. You can do this
+by:<A NAME="TI1518"></A>
+<ul>
+<li class=fi><i>(Recommended)</i> Copying
+PowerScript syntax for AutoCommit and Lock from the Preview tab
+in the Database Profile Setup dialog box into your script</li>
+<li class=ds>Coding PowerScript to set values for the AutoCommit
+and Lock properties of the Transaction object</li>
+<li class=ds>Reading AutoCommit and Lock values from an external
+text file
+</li>
+</ul>
+</p>
+<A NAME="TI1519"></A><p>For more about using Transaction objects to
+communicate with a database in a PowerBuilder application, see <i>Application
+Techniques</i>
+.</p>
+<A NAME="TI1520"></A><h3>Copying AutoCommit and Lock syntax from the Preview
+tab</h3>
+<A NAME="TI1521"></A><p>The easiest way to specify AutoCommit and Lock in a PowerBuilder application
+script is to copy the PowerScript syntax from the Preview tab in
+the Database Profile Setup dialog box into your script, modifying
+the default Transaction object name (<ACRONYM title = "sequel C A" >SQLCA</ACRONYM>)
+if necessary.</p>
+<A NAME="TI1522"></A><p>As you complete the Database Profile Setup dialog box in the
+development environment, PowerBuilder generates the correct connection
+syntax on the Preview tab for each selected option. Therefore, copying
+the syntax directly from the Preview tab ensures that you use the
+correct PowerScript syntax in your script.</p>
+<A NAME="TI1523"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To copy AutoCommit and Lock syntax from the Preview
+tab into your script:</p>
+<ol><li class=fi><p>On the Connection tab in the Database Profile
+Setup dialog box for your connection, supply values for AutoCommit
+and Lock (Isolation Level) as required.</p><p>For instructions, see <A HREF="connpbp46.htm#X-REF350078942">"Setting AutoCommit
+and Lock in the database profile"</A>.</p><p>For example, in addition to values for basic connection parameters (Server,
+Login ID, Password, and Database), the Connection tab for the following
+Adaptive Server profile named Sales shows nondefault settings for
+Isolation Level and AutoCommit Mode.</p><p>For information about the DBParm parameters
+for your interface and the values to supply, click Help.</p></li>
+<li class=ds><p>Click Apply to save your changes to the current
+tab without closing the Database Profile Setup dialog box.</p></li>
+<li class=ds><p>Click the Preview tab.</p><p>The correct PowerScript syntax for each selected option displays
+in the Database Connection Syntax box. For example:</p><br><img src="images/cn7syc2v.gif"><br>
+</li>
+<li class=ds><p>Select one or more lines of text in the Database
+Connection Syntax box and click Copy.</p><p>PowerBuilder copies the selected text to the clipboard.</p></li>
+<li class=ds><p>Click OK to close the Database Profile Setup dialog
+box.</p></li>
+<li class=ds><p>Paste the selected text from the Preview tab into
+your script, modifying the default Transaction object name (<ACRONYM title = "sequel C A" >SQLCA</ACRONYM>) if necessary.</p></li></ol>
+<br><A NAME="TI1524"></A><h3>Coding PowerScript to set values for AutoCommit
+and Lock</h3>
+<A NAME="TI1525"></A><p>Another way to specify the AutoCommit and Lock properties
+in a script is by coding PowerScript to assign values to the AutoCommit
+and Lock properties of the Transaction object. PowerBuilder uses a
+special nongraphic object called a <strong>Transaction object</strong> to
+communicate with the database. The default Transaction object is
+named <ACRONYM title = "sequel C A" >SQLCA</ACRONYM>, which stands
+for <ACRONYM title = "sequel" >SQL</ACRONYM> Communications Area. </p>
+<A NAME="TI1526"></A><p><ACRONYM title = "sequel C A" >SQLCA</ACRONYM> has 15 properties,
+10 of which are used to connect to your database. Two of the connection
+properties are AutoCommit and Lock, which you can set as described
+in the following procedure.</p>
+<A NAME="TI1527"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set the AutoCommit and Lock properties in a PowerBuilder script:</p>
+<ol><li class=fi><p>Open the application script in which you
+want to set connection properties.</p><p>For instructions, see the<i> User's
+Guide</i>
+.</p></li>
+<li class=ds><p>Use the following PowerScript syntax to set the
+AutoCommit and Lock properties. (This syntax assumes you are using
+the default Transaction object <ACRONYM title = "sequel C A" >SQLCA</ACRONYM>,
+but you can also define your own Transaction object.)</p><p><p><PRE><b>SQLCA.AutoCommit</b> = <i>value</i></PRE></p>
+<p><PRE><b>SQLCA.Lock</b> = "<i>value</i>"</PRE></p>
+</p><p>For example, the following statements in a PowerBuilder script
+use the default Transaction object <ACRONYM title = "sequel C A" >SQLCA</ACRONYM> to
+connect to a Sybase Adaptive Server Enterprise database named Test. <ACRONYM title = "sequel C A dot Auto Commit" >SQLCA.AutoCommit</ACRONYM> is
+set to True and <ACRONYM title = "sequel C A dot Lock" >SQLCA.Lock</ACRONYM> is
+set to isolation level 3 (Serializable transactions).<p><PRE> SQLCA.DBMS       = "SYC"</PRE><PRE> SQLCA.Database   = "Test"</PRE><PRE> SQLCA.LogID      = "Frans"</PRE><PRE> SQLCA.LogPass    = "xxyyzz"</PRE><PRE> SQLCA.ServerName = "HOST1"</PRE><PRE> SQLCA.AutoCommit = True</PRE><PRE> SQLCA.Lock       = "3"</PRE></p><p>For more information, see AutoCommit or Lock
+in the online Help.</p></li>
+<li class=ds><p>Compile the script to save your changes.</p><p>For instructions, see the<i> User's
+Guide</i>
+.</p></li></ol>
+<br><A NAME="TI1528"></A><h3>Reading AutoCommit and Lock values from an external
+text file</h3>
+<A NAME="TI1529"></A><p>As an alternative to setting the AutoCommit and Lock properties
+in a PowerBuilder application script, you can use the PowerScript <b>ProfileString</b> function
+to read the AutoCommit and Lock values from a specified section
+of an external text file, such as an application-specific initialization
+file. </p>
+<A NAME="TI1530"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To read AutoCommit and Lock values from an external
+text file:</p>
+<ol><li class=fi><p>Open the application script in which you
+want to set connection properties.</p><p>For instructions, see the<i> User's
+Guide</i>
+.</p></li>
+<li class=ds><p>Use the following PowerScript syntax to specify
+the <b>ProfileString</b> function with the<ACRONYM title = "sequel C A dot Lock" > SQLCA.Lock</ACRONYM> property:</p><p><p><PRE><b>SQLCA.Lock</b> = <b>ProfileString</b> ( <i>file</i>, <i>section</i>, <i>key</i>, <i>default</i> )</PRE></p>
+</p><p>The AutoCommit property is a boolean, so you need to convert
+the string returned by <b>ProfileString</b> to a boolean.
+For example, the following statements in a PowerBuilder script read
+the AutoCommit and Lock values from the [Database] section
+of the <i>APP.INI</i> file:<p><PRE> string ls_string<br>ls_string=Upper(ProfileString("APP.INI","Database",<br>   "Autocommit",""))<br>if ls_string = "TRUE" then<br>   SQLCA.Autocommit = TRUE<br>else<br>   SQLCA.Autocommit = FALSE<br>end if<br>SQLCA.Lock=ProfileString("APP.INI","Database",<br>   "Lock","")</PRE></p></li>
+<li class=ds><p>Compile the script to save your changes.</p></li></ol>
+<br><A NAME="BABBFAEJ"></A><h3>Getting values from the registry</h3>
+<A NAME="TI1531"></A><p>If the AutoCommit and Lock values are stored in an application
+settings key in the registry, use the <b>RegistryGet</b> function
+to obtain them. For example:<p><PRE> string ls_string<br>RegistryGet("HKEY_CURRENT_USER\Software\MyCo\MyApp", &amp;<br>   "Autocommit", RegString!, ls_string)<br>if Upper(ls_string) = "TRUE" then<br>   SQLCA.Autocommit = TRUE <br>else<br>   SQLCA.Autocommit = FALSE<br>end if<br>RegistryGet("HKEY_CURRENT_USER\Software\MyCo\MyApp", &amp;<br>   "Lock", RegString!, ls_string)<br></PRE></p>
+

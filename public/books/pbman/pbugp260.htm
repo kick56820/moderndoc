@@ -1,0 +1,342 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Analyzing trace information programmatically</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp259.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp261.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAICHJFH"></A><h1>Analyzing trace information programmatically</h1>
+<A NAME="TI9657"></A><p>PowerBuilder provides three ways to analyze trace information
+using built-in system objects and functions:</p>
+<A NAME="TI9658"></A><p><A NAME="TI9659"></A>
+<ul>
+<li class=fi>Analyze performance
+by building a call graph model<br>
+A call graph model contains information about all the routines
+in the trace file: how many times each routine was called, which
+routines called it and which routines it called, and the execution
+time taken by the routine itself and any routines it called.<br></li>
+<li class=ds>Analyze program structure and logical flow by building
+a trace tree model<br>
+A trace tree model contains information about all recorded
+activities in the trace file in chronological order, with the elapsed
+time for each activity.<br></li>
+<li class=ds>Access the data in the trace file directly<br>
+Trace objects and functions let you build your own model and
+analysis tools by giving you access to all the data in the trace
+file.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI9660"></A><p>The profiling tools use the first two ways. The Class and
+Routine views are based on a call graph model, and the Trace view
+is based on a trace tree model.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Supporting files needed</span> <A NAME="TI9661"></A>To create a profile from a trace file, PowerBuilder must also
+access the <ACRONYM title = "pibble" >PBL</ACRONYM>, PBD, or executable
+file used to create the trace file, and the <ACRONYM title = "pibble" >PBL</ACRONYM>,
+PBD, or executable file must be in the same location as when the
+trace file was created.</p>
+<A NAME="TI9662"></A><h2>Analyzing performance with a call graph model</h2>
+<A NAME="TI9663"></A><p>You use the PowerScript functions and PowerBuilder objects
+listed in <A HREF="pbugp260.htm#BABFAICA">Table 33-8</A> to
+analyze the performance of an application.</p>
+<A NAME="BABFAICA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-8: Functions for analyzing performance</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9664"></A>Use this function</th>
+<th  rowspan="1"  ><A NAME="TI9665"></A>With this object</th>
+<th  rowspan="1"  ><A NAME="TI9666"></A>To do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9667"></A><b>SetTraceFileName</b></td>
+<td  rowspan="1"  ><A NAME="TI9668"></A>Profiling</td>
+<td  rowspan="1"  ><A NAME="TI9669"></A>Set the name of the trace file to be analyzed.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9670"></A><b>BuildModel</b></td>
+<td  rowspan="1"  ><A NAME="TI9671"></A>Profiling</td>
+<td  rowspan="1"  ><A NAME="TI9672"></A>Build a call graph model based on the trace
+file. You can pass optional parameters that let you track the progress
+of the build.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9673"></A><b>RoutineList</b></td>
+<td  rowspan="1"  ><A NAME="TI9674"></A>Profiling and ProfileClass</td>
+<td  rowspan="1"  ><A NAME="TI9675"></A>Get a list of routines in the model or in
+a class.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9676"></A><b>ClassList</b></td>
+<td  rowspan="1"  ><A NAME="TI9677"></A>Profiling</td>
+<td  rowspan="1"  ><A NAME="TI9678"></A>Get a list of classes in the model.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9679"></A><b>SystemRoutine</b></td>
+<td  rowspan="1"  ><A NAME="TI9680"></A>Profiling</td>
+<td  rowspan="1"  ><A NAME="TI9681"></A>Get the name of the routine node that represents
+the root of the model.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9682"></A><b>IncomingCallList</b></td>
+<td  rowspan="1"  ><A NAME="TI9683"></A>ProfileRoutine</td>
+<td  rowspan="1"  ><A NAME="TI9684"></A>Get a list of routines that called a specific
+routine.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9685"></A><b>OutgoingCallList</b></td>
+<td  rowspan="1"  ><A NAME="TI9686"></A>ProfileRoutine and ProfileLine</td>
+<td  rowspan="1"  ><A NAME="TI9687"></A>Get a list of routines called by a specific
+routine or from a specific line.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9688"></A><b>LineList</b></td>
+<td  rowspan="1"  ><A NAME="TI9689"></A>ProfileRoutine</td>
+<td  rowspan="1"  ><A NAME="TI9690"></A>Get a list of lines in the routine in
+line order.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9691"></A><b>DestroyModel</b></td>
+<td  rowspan="1"  ><A NAME="TI9692"></A>Profiling</td>
+<td  rowspan="1"  ><A NAME="TI9693"></A>Destroy the current performance analysis
+model and all the objects associated with it.</td>
+</tr>
+</table>
+<A NAME="TI9694"></A><p>Each of these functions returns a value of the enumerated
+datatype <b>ErrorReturn</b>. The objects contain information
+such as the number of times a line or routine was executed, and
+the amount of time spent in a line or routine and in any routines
+called from that line or routine.</p>
+<A NAME="CAIDCCAH"></A><h3>Using the BuildModel function to build a call graph model</h3>
+<A NAME="TI9695"></A><p>The call graph model that you create with the <b>BuildModel</b> function
+contains all the routines in the trace file and can take a long
+time to build. If you want to monitor the progress of the build
+or you want to be able to interrupt it while the model is being
+built, you can pass optional arguments to <b>BuildModel</b>.</p>
+<A NAME="TI9696"></A><h4>BuildModel arguments</h4>
+<A NAME="TI9697"></A><p><b>BuildModel</b> takes three arguments: the name
+of an object of type PowerObject, the name of a user event, and
+a long value representing how often the user event should be triggered
+as a percentage of the build completed.</p>
+<A NAME="TI9698"></A><p>The user event returns a boolean value and has two arguments:
+the number of the current activity, and the total number of activities
+in the trace file.</p>
+<A NAME="TI9699"></A><h4>Destroying existing models</h4>
+<A NAME="TI9700"></A><p>Before you call <b>BuildModel</b>, you can call <b>DestroyModel</b> to
+clean up any objects remaining from an existing model.</p>
+<A NAME="TI9701"></A><h4>Example: building a call graph model</h4>
+<A NAME="TI9702"></A><p>In the following example, the user event argument to <b>BuildModel</b> is
+called <b>ue_progress</b> and is triggered
+each time five percent of the activities have been processed. The
+progress of the build is shown in a window called <b>w_progress</b> that
+has a cancel button.</p>
+<A NAME="TI9703"></A><p><p><PRE> Profiling lpro_model<br>lpro_model = CREATE Profiling<br>ib_cancel = FALSE<br>lpro_model.SetTraceFileName(is_fileName )<br> <br>open(w_progress)<br>// call the of_init window function to initialize<br>// the w_progress window<br>w_progress.of_init(lpro_model.numberofactivities, &amp;<br>   'Building Model', this, 'ue_cancel')<br> <br>// Build the call graph model<br>lpro_model.BuildModel(this, 'ue_progress', 5)<br> <br>// clicking the cancel button in w_progress<br>// sets ib_cancel to TRUE and<br>// returns FALSE to ue_progress<br>IF ib_cancel THEN &amp;<br>   close(w_progress)<br>   RETURN -1<br>END IF</PRE></p>
+<A NAME="TI9704"></A><h3>Extracting information from the call graph model</h3>
+<A NAME="TI9705"></A><p>After you have built a call graph model of the application,
+you can extract detailed information from it.</p>
+<A NAME="TI9706"></A><p>For routines and lines, you can extract the timing information
+shown in <A HREF="pbugp260.htm#BABCHEEH">Table 33-9</A> from
+the ProfileRoutine and ProfileLine objects.</p>
+<A NAME="BABCHEEH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-9: Timing information in the call
+graph model</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9707"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI9708"></A>What it means</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9709"></A>AbsoluteSelfTime</td>
+<td  rowspan="1"  ><A NAME="TI9710"></A>The time spent in the routine or line
+itself. If the routine or line was executed more than once, this
+is the total time spent in the routine or line itself.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9711"></A>MinSelfTime</td>
+<td  rowspan="1"  ><A NAME="TI9712"></A>The shortest time spent in the routine
+or line itself. If the routine or line was executed only once, this
+is the same as AbsoluteSelfTime.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9713"></A>MaxSelfTime</td>
+<td  rowspan="1"  ><A NAME="TI9714"></A>The longest time spent in the routine
+or line itself. If the routine or line was executed only once, this
+is the same as AbsoluteSelfTime.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9715"></A>AbsoluteTotalTime</td>
+<td  rowspan="1"  ><A NAME="TI9716"></A>The time spent in the routine or line
+and in routines or lines called from the routine or line. If the
+routine or line was executed more than once, this is the total time
+spent in the routine or line and in called routines or lines.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9717"></A>MinTotalTime</td>
+<td  rowspan="1"  ><A NAME="TI9718"></A>The shortest time spent in the routine
+or line and in called routines or lines. If the routine or line
+was executed only once, this is the same as AbsoluteTotalTime.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9719"></A>MaxTotalTime</td>
+<td  rowspan="1"  ><A NAME="TI9720"></A>The longest time spent in the routine
+or line and in called routines or lines. If the routine or line
+was executed only once, this is the same as AbsoluteTotalTime.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9721"></A>PercentSelfTime</td>
+<td  rowspan="1"  ><A NAME="TI9722"></A>AbsoluteSelfTime as a percentage of the
+total time tracing was active.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9723"></A>PercentTotalTime</td>
+<td  rowspan="1"  ><A NAME="TI9724"></A>AbsoluteTotalTime as a percentage of
+the total time tracing was active.</td>
+</tr>
+</table>
+<A NAME="TI9725"></A><h4>Example: extracting information from a call graph
+model</h4>
+<A NAME="TI9726"></A><p>The following function extracts information from a call graph
+model about the routines called from a specific routine. You would
+use similar functions to extract information about the routines
+that called the given routine and about the routine itself. </p>
+<A NAME="TI9727"></A><p>The function takes a ProfileCall object and an index as arguments
+and returns a structure containing the number of times the called
+routine was executed and execution times for the called routine.<p><PRE> str_func_detail lstr_result<br>ProfileClass lproclass_class<br>ProfileRoutine lprort_routine<br> <br>// get the name of the called routine<br>// from the calledroutine property of<br>// the ProfileCall object passed to the function<br>lprort_routine = a_pcall.Calledroutine<br>lstr_result.Name = ""<br>lproclass_class = a_pcall.Class<br>IF isValid(lproclass_class) THEN &amp;<br>   lstr_result.Name += lproclass_class.Name + "."<br>lstr_result.name += a_pcall.Name<br> <br>lstr_result.hits = a_pcall.HitCount<br>lstr_result.selfTime = a_pcall. &amp;<br>   AbsoluteSelfTime * timeScale<br>lstr_result.totalTime = a_pcall. &amp;<br>   AbsoluteTotalTime * timeScale<br>lstr_result.percentSelf = a_pcall.PercentSelfTime<br>lstr_result.percentTotal= a_pcall.PercentTotalTime<br>lstr_result.index = al_index<br> <br>RETURN lstr_result</PRE></p>
+<A NAME="TI9728"></A><h2>Analyzing structure and flow using a trace tree
+model</h2>
+<A NAME="TI9729"></A><p>You use the PowerScript functions and PowerBuilder objects
+listed in <A HREF="pbugp260.htm#BABHGAJG">Table 33-10</A> to
+build a nested trace tree model of an application.</p>
+<A NAME="BABHGAJG"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-10: Functions for analyzing program
+structure and flow</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9730"></A>Use this function</th>
+<th  rowspan="1"  ><A NAME="TI9731"></A>With this object</th>
+<th  rowspan="1"  ><A NAME="TI9732"></A>To do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9733"></A><b>SetTraceFileName</b></td>
+<td  rowspan="1"  ><A NAME="TI9734"></A>TraceTree</td>
+<td  rowspan="1"  ><A NAME="TI9735"></A>Set the name of the trace file to be
+analyzed.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9736"></A><b>BuildModel</b></td>
+<td  rowspan="1"  ><A NAME="TI9737"></A>TraceTree</td>
+<td  rowspan="1"  ><A NAME="TI9738"></A>Build a trace tree model based on the
+trace file. You can pass optional parameters that let you track
+the progress of the build.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9739"></A><b>EntryList</b></td>
+<td  rowspan="1"  ><A NAME="TI9740"></A>TraceTree</td>
+<td  rowspan="1"  ><A NAME="TI9741"></A>Get a list of the top-level entries in
+the trace tree model.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9742"></A><b>GetChildrenList</b></td>
+<td  rowspan="1"  ><A NAME="TI9743"></A>TraceTreeRoutine, TraceTreeObject, and TraceTreeGarbageCollect</td>
+<td  rowspan="1"  ><A NAME="TI9744"></A>Get a list of the children of the routine
+or object&#8212;that is, all the routines called directly by
+the routine, or the destructor called as a result of the object's deletion.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9745"></A><b>DestroyModel</b></td>
+<td  rowspan="1"  ><A NAME="TI9746"></A>TraceTree</td>
+<td  rowspan="1"  ><A NAME="TI9747"></A>Destroy the current trace tree model
+and all the objects associated with it.</td>
+</tr>
+</table>
+<A NAME="TI9748"></A><p>Each of these functions returns a value of type <b>ErrorReturn</b>.</p>
+<A NAME="TI9749"></A><p>Each TraceTreeNode object returned by the <b>EntryList</b> and <b>GetChildrenList</b> functions
+represents a single node in the trace tree model and contains information
+about the parent of the node and the type of activity it represents.</p>
+<A NAME="TI9750"></A><h4>Inherited objects</h4>
+<A NAME="TI9751"></A><p>The following objects inherit from TraceTreeNode and contain
+additional information, including timer values:<A NAME="TI9752"></A>
+<ul>
+<li class=fi>TraceTreeError</li>
+<li class=ds><ACRONYM title = "trace tree e sequel" >TraceTreeESQL</ACRONYM></li>
+<li class=ds>TraceTreeGarbageCollect</li>
+<li class=ds>TraceTreeLine</li>
+<li class=ds>TraceTreeObject</li>
+<li class=ds>TraceTreeRoutine</li>
+<li class=ds>TraceTreeUser
+</li>
+</ul>
+</p>
+<A NAME="TI9753"></A><h3>Using <b>BuildModel</b> to build a trace
+tree model</h3>
+<A NAME="TI9754"></A><p>You use the same approach to building a trace tree model as
+you do to building a call graph model, except that you build a model
+of type TraceTree instead of type Profiling.</p>
+<A NAME="TI9755"></A><p>For example:<p><PRE> TraceTree ltct_treemodel<br>ltct_treemodel = CREATE TraceTree<br>ltct_treeModel.SetTraceFileName(is_fileName )<br> <br>ltct_treeModel.BuildModel(this, 'ue_progress', 1)</PRE></p>
+<A NAME="TI9756"></A><p>For more about using <b>BuildModel</b>,
+see <A HREF="pbugp260.htm#CAIDCCAH">"Using the BuildModel function
+to build a call graph model"</A>.</p>
+<A NAME="TI9757"></A><h3>Extracting information from the trace tree model</h3>
+<A NAME="TI9758"></A><p>To extract information from a tree model, you can use the <b>EntryList</b> function
+to create a list of top-level entries in the model and then loop
+through the list, extracting information about each node. For each
+node, determine its activity type using the <b>TraceActivity</b> enumerated
+datatype, and then use the appropriate TraceTree object to extract
+information.</p>
+<A NAME="TI9759"></A><h4>Example: trace tree model</h4>
+<A NAME="TI9760"></A><p>The following simple example extracts information from an
+existing trace tree model and stores it in a structure:<p><PRE> TraceTreeNode ltctn_list[], ltctn_node<br>long ll_index, ll_limit<br>string ls_line <br>str_node lstr_node<br> <br>ltct_treemodel.EntryList(ltctn_list)<br>ll_limit = UpperBound(ltctn_list)<br>FOR ll_index = 1 to ll_limit   <br>   ltctn_node = ltctn_list[ll_index]<br>   of_dumpnode(ltctn_node, lstr_node)<br>   // insert code to handle display of<br>   // the information in the structure here<br>   ...<br>NEXT</PRE></p>
+<A NAME="TI9761"></A><p>The <b>of_dumpnode</b> function takes
+a TraceTreeNode object and a structure as arguments and populates
+the structure with information about each node. The following code
+shows part of the function:<p><PRE> string ls_exit, ls_label, ls_routinename<br>long ll_node_cnt<br>TraceTreeNode ltctn_list[]<br>errorreturn l_err<br> <br>astr_node.Children = FALSE<br>astr_node.Label = ''<br>IF NOT isvalid(atctn_node) THEN RETURN<br>CHOOSE CASE atctn_node.ActivityType<br>   CASE ActRoutine!<br>     TraceTreeRoutine ltctrt_routin   <br>     ltctrt_routine = atctn_node<br>     IF ltctrt_routine.Classname = '' THEN &amp;<br>        ls_routinename = ltctrt_routine.ClassName + "."<br>     END IF   <br>     ls_routinename += ltctrt_routine.Name<br>     ltctrt_routine.GetChildrenList(ltctn_list)<br>     ll_node_cnt = UpperBound(ltctn_list)<br> <br>     ls_label = "Execute " + ls_routinename + ' :' + &amp;<br>         space(ii_offset) + String(l_timescale * &amp;<br>         (ltctrt_routine.ExitTimerValue - &amp;<br>         ltctrt_routine.EnterTimerValue), '0.000000')<br>     astr_node.Children = (ll_node_cnt &gt; 0)<br>     astr_node.Label = ls_label<br>     astr_node.Time = ltctrt_routine.EnterTimerValue<br>     RETURN<br>   CASE ActLine!<br>     TraceTreeLine tctln_treeLine   <br>     tctln_treeLine = atctn_node   <br>     ls_label = LINEPREFIX + &amp;<br>        String(tctln_treeLine.LineNumber )<br>     astr_node.time = tctln_treeLine.Timervalue<br>     ...<br>     // CASE statements omitted<br>     ...<br>   CASE ELSE<br>     ls_label = "INVALID NODE"<br>   END CHOOSE<br> <br>   astr_node.label = ls_label<br>   RETURN</PRE></p>
+<A NAME="TI9762"></A><h2>Accessing trace data directly</h2>
+<A NAME="TI9763"></A><p>You use the PowerScript functions and PowerBuilder objects
+listed in <A HREF="pbugp260.htm#BABGDEED">Table 33-11</A> to
+access the data in the trace file directly so that you can develop
+your own analysis tools.</p>
+<A NAME="BABGDEED"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-11: Functions for direct access to
+trace data</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9764"></A>Use this function</th>
+<th  rowspan="1"  ><A NAME="TI9765"></A>With this object</th>
+<th  rowspan="1"  ><A NAME="TI9766"></A>To do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9767"></A><b>Open</b></td>
+<td  rowspan="1"  ><A NAME="TI9768"></A>TraceFile</td>
+<td  rowspan="1"  ><A NAME="TI9769"></A>Opens the trace file to be analyzed.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9770"></A><b>NextActivity</b></td>
+<td  rowspan="1"  ><A NAME="TI9771"></A>TraceFile</td>
+<td  rowspan="1"  ><A NAME="TI9772"></A>Returns the next activity in the trace
+file. The value returned is of type <b>TraceActivityNode</b>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9773"></A><b>Reset</b></td>
+<td  rowspan="1"  ><A NAME="TI9774"></A>TraceFile</td>
+<td  rowspan="1"  ><A NAME="TI9775"></A>Resets the next activity to the beginning
+of the trace file.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9776"></A><b>Close</b></td>
+<td  rowspan="1"  ><A NAME="TI9777"></A>TraceFile</td>
+<td  rowspan="1"  ><A NAME="TI9778"></A>Closes the open trace file.</td>
+</tr>
+</table>
+<A NAME="TI9779"></A><p>With the exception of <b>NextActivity</b>, each
+of these functions returns a value of type <b>ErrorReturn</b>.
+Each TraceActivityNode object includes information about the category
+of the activity, the timer value when the activity occurred, and
+the activity type.</p>
+<A NAME="TI9780"></A><h4>Timer values</h4>
+<A NAME="TI9781"></A><p>The category of the activity is either TraceIn! or TraceOut!
+for activities that have separate beginning and ending points, such
+as routines, garbage collection, and tracing itself. Each such activity
+has two timer values associated with it: the time when it began
+and the time when it completed.</p>
+<A NAME="TI9782"></A><p>Activities that have only one associated timer value are in
+the category TraceAtomic!. ActLine!, ActUser!, and ActError! are
+all atomic activities.</p>
+<A NAME="TI9783"></A><h4>Inherited objects</h4>
+<A NAME="TI9784"></A><p>The following objects inherit from TraceActivityNode and contain
+data about the associated activity type:<A NAME="TI9785"></A>
+<ul>
+<li class=fi>TraceBeginEnd</li>
+<li class=ds>TraceError</li>
+<li class=ds><ACRONYM title = "trace e sequel" >TraceESQL</ACRONYM></li>
+<li class=ds>TraceGarbageCollect</li>
+<li class=ds>TraceLine</li>
+<li class=ds>TraceObject</li>
+<li class=ds>TraceRoutine</li>
+<li class=ds>TraceUser
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>TraceTreeNode and TraceActivityNode objects</span> <A NAME="TI9786"></A>The objects that inherit from TraceActivityNode are analogous
+to those that inherit from TraceTreeNode, and you can use similar
+techniques when you write applications that use them.</p>
+<A NAME="TI9787"></A><p>For a list of activity types, see <A HREF="pbugp258.htm#CAIBEACA">"Trace activities"</A>.</p>
+<A NAME="TI9788"></A><h3>Using the TraceFile object</h3>
+<A NAME="TI9789"></A><p>To access the data in the trace file directly, you create
+a TraceFile object, open a trace file, and then use the <b>NextActivity</b> function
+to access each activity in the trace file sequentially. For each
+node, determine what activity type it is by examining the <b>TraceActivity</b> enumerated
+datatype, and then use the appropriate trace object to extract information.</p>
+<A NAME="TI9790"></A><h4>Example: direct access to trace data</h4>
+<A NAME="TI9791"></A><p>The following example creates a TraceFile object, opens a
+trace file called <b>ltcf_file</b>, and then
+uses a function called <b>of_dumpActivityNode</b> to
+report the appropriate information for each activity depending on
+its activity type.<p><PRE> string ls_fileName<br>TraceFile ltcf_file<br>TraceActivityNode ltcan_node<br>string ls_line<br> <br>ls_fileName = sle_filename.Text<br>ltcf_file = CREATE TraceFile<br>ltcf_file.Open(ls_fileName)<br>ls_line = "CollectionTime = " + &amp;<br>   String(Truncate(ltcf_file.CollectionTime, 6)) &amp;<br>   + "~r~n" + "Number of Activities = " + &amp;<br>   String(ltcf_file.NumberOfActivities) + "~r~n" + &amp;<br>   "Time Stamp " + "Activity" + "~r~n"<br> <br>mle_output.text = ls_line<br> <br>ltcan_node = ltcf_file.NextActivity()<br>DO WHILE IsValid(ltcan_node)<br>   ls_line += of_dumpActivityNode(ltcan_node)<br>   ltcan_node = ltcf_file.NextActivity()<br>LOOP<br> <br>mle_output.text = ls_line<br>ltcf_file.Close()</PRE></p>
+<A NAME="TI9792"></A><p>The following code shows part of <b>of_dumpActivityNode</b>:<p><PRE> string lstr_result<br> <br>lstr_result = String(Truncate(atcan_node. &amp;<br>   TimerValue, 6)) + " "<br>CHOOSE CASE atcan_node.ActivityType<br>   CASE ActRoutine!<br>      TraceRoutine ltcrt_routine<br>      ltcrt_routine = atcan_node<br>      IF ltcrt_routine.IsEvent THEN<br>        lstr_result += "Event: "<br>      ELSE<br>        lstr_result += "Function: "<br>      END IF<br>      lstr_result += ltcrt_routine.ClassName + "." + &amp;<br>         ltcrt_routine.name + "(" + &amp;<br>         ltcrt_routine.LibraryName + ") " &amp;<br>         + String(ltcrt_routine.ObjectId) + "~r~n"<br>   CASE ActLine!<br>      TraceLine ltcln_line<br>      ltcln_line = atcan_node<br>      lstr_result += "Line: " +     &amp;<br>         String(ltcln_line.LineNumber) + "~r~n"<br>   CASE ActESQL!   <br>      TraceESQL ltcsql_esql<br>      ltcsql_esql = atcan_node<br>      lstr_result += "ESQL: " + ltcsql_esql.Name &amp;<br>          + "~r~n"<br> <br>   // CASE statements and code omitted<br>   ...<br>   CASE ActBegin!<br>      IF atcan_node.Category = TraceIn! THEN<br>         lstr_result += "Begin Tracing~r~n"<br>      ELSE<br>         lstr_result += "End Tracing~r~n"<br>      END IF<br>   CASE ActGarbageCollect!<br>      lstr_result += "Garbage Collection~r~n"<br>   CASE else<br>      lstr_result += "Unknown Activity~r~n"<br>END CHOOSE<br> <br>RETURN lstr_result</PRE></p>
+

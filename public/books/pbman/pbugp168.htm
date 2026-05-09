@@ -1,0 +1,320 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Working in the DataWindow painter </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp167.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp169.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAICEEJB"></A><h1>Working in the DataWindow painter </h1>
+<A NAME="TI5201"></A><p>The DataWindow painter provides views related to the DataWindow object you
+are working on. Interacting with these views is how you work in
+the DataWindow painter.</p>
+<A NAME="TI5202"></A><p>The following picture shows a DataWindow object in the DataWindow painter with
+the default layout. </p>
+<br><img src="images/dwen01pb.gif">
+<A NAME="TI5203"></A><h4>Design view</h4>
+<A NAME="TI5204"></A><p>The Design view at the top left shows a representation of
+the DataWindow object and its controls. You use this view to design the
+layout and appearance of the DataWindow object. Changes you make are immediately
+shown in the Preview view and the Properties view.</p>
+<A NAME="TI5205"></A><h4>Preview view</h4>
+<A NAME="TI5206"></A><p>The Preview view in the middle on the left shows the DataWindow object with data
+as it will appear at runtime. If the Print Preview toggle is selected,
+you see the DataWindow object as it would appear when printed.</p>
+<A NAME="TI5207"></A><h4>Export/Import Template view <br>for
+XML</h4>
+<A NAME="TI5208"></A><p>The Export/Import Template view for XML at the bottom
+left shows a default template for exporting and importing data in
+XML format. You can define custom templates for import and export.
+The templates are saved with the DataWindow object. For more information,
+see <A HREF="pbugp236.htm#BABBABHD">Chapter 29, "Exporting and Importing
+XML Data."</A></p>
+<A NAME="TI5209"></A><h4>Export Template view for XHTML</h4>
+<A NAME="TI5210"></A><p>The Export Template view for XHTML (not shown; see XHTML tab
+at the bottom left) shows a default template for exporting data
+in XHTML format. You can define custom XHTML export templates for
+customizing XML Web DataWindow generation. The templates are saved
+with the DataWindow object. For more information, see the <i>DataWindow Programmer's
+Guide</i>
+.</p>
+<A NAME="TI5211"></A><h4>Properties view</h4>
+<A NAME="TI5212"></A><p>The Properties view at the top right displays the properties
+for the currently selected control(s) in the DataWindow object, for the
+currently selected band in the DataWindow object, or for the DataWindow object itself.
+You can view and change the values of properties in this view.</p>
+<A NAME="TI5213"></A><h4>Control List view</h4>
+<A NAME="TI5214"></A><p>The Control List view in the stacked pane at the bottom right
+lists all controls in the DataWindow object. Selecting controls in this
+view selects them in the Design view and the Properties view. You
+can also sort controls by Control Name, Type, or Tag. </p>
+<A NAME="TI5215"></A><h4>Data view</h4>
+<A NAME="TI5216"></A><p>The Data view in the stacked pane at the bottom right displays
+the data that can be used to populate a DataWindow object and allows manipulation
+of that data. </p>
+<A NAME="TI5217"></A><h4>Column Specifications view</h4>
+<A NAME="TI5218"></A><p>The Column Specifications view in the stacked pane at the
+bottom right shows a list of the columns in the data source. For
+the columns, you can add, modify, and delete initial values, validation
+expressions, and validation messages. You can also specify that
+you want a column to be included in a prompt for retrieval criteria
+during data retrieval. To add a column to the DataWindow object, you can
+drag and drop the column from the Column Specifications view to
+the Design view. For external or stored procedure data sources,
+you can add, delete, and edit columns (column name, type, and length).</p>
+<A NAME="CAICEIJC"></A><h2>Understanding the DataWindow painter Design view</h2>
+<A NAME="TI5219"></A><p>For most presentation styles, the DataWindow painter Design view is
+divided into areas called bands. Each band corresponds to a section
+of the displayed DataWindow object.</p>
+<A NAME="TI5220"></A><p>DataWindow objects with these presentation styles are divided into
+four bands: header, detail, summary, and footer. Each band is identified
+by a bar containing the name of the band above the bar and an Arrow
+pointing to the band.</p>
+<A NAME="TI5221"></A><p>These bands can contain any information you want, including
+text, drawing controls, graphs, and computed fields containing aggregate
+totals.</p>
+<A NAME="TI5222"></A><p>The following picture shows the Design view for a tabular DataWindow object.</p>
+<br><img src="images/dwen01.gif">
+<A NAME="TI5223"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-1: Bands in the DataWindow painter Design view</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5224"></A>Band</th>
+<th  rowspan="1"  ><A NAME="TI5225"></A>Used
+to display</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5226"></A>Header</td>
+<td  rowspan="1"  ><A NAME="TI5227"></A>Information at the top of every screen
+or page, such as the name of the report or current date</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5228"></A>Detail</td>
+<td  rowspan="1"  ><A NAME="TI5229"></A>Data from the database or other data
+source</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5230"></A>Summary</td>
+<td  rowspan="1"  ><A NAME="TI5231"></A>Summary information that displays after
+all the data, such as totals and counts</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5232"></A>Footer</td>
+<td  rowspan="1"  ><A NAME="TI5233"></A>Information displayed at the bottom of
+every page or screen, such as page number and page count</td>
+</tr>
+</table>
+<A NAME="TI5234"></A><h3>The header band</h3>
+<A NAME="TI5235"></A><p>The header band contains heading information that is displayed
+at the top of every screen or page. The presentation style
+determines the contents of the header band:<A NAME="TI5236"></A>
+<ul>
+<li class=fi>If the presentation style is Tabular, Grid, or N-Up,
+the headings defined for the columns in the Database painter display in
+the header band and the columns display on a single line across
+the detail band </li>
+<li class=ds>If the presentation style is Freeform, the header
+band is empty and labels display in the detail band next to each
+column
+</li>
+</ul>
+</p>
+<A NAME="TI5237"></A><p>You can specify additional heading information (such as a
+date) in the header band and you can include pictures, graphic controls,
+and color to enhance the appearance of the band.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Displaying the current date</span> <A NAME="TI5238"></A>To include the current date in the header, you place a computed
+field that uses the <b>Today</b> DataWindow expression function in the header
+band. For information, see <A HREF="pbugp175.htm#CAICBBCE">"Adding computed fields to
+a DataWindow object"</A></p>
+<A NAME="TI5239"></A><h3>The detail band</h3>
+<A NAME="TI5240"></A><p>The detail band displays the retrieved data. It is also where
+the user enters new data and updates existing data. The number of
+rows of data that display in the DataWindow object at one time is determined
+by the following expression: <p><PRE><i>(Height of the DataWindow object &#8211; Height of headers and footers) / <br>Height of the detail band</i></PRE></p>
+</p>
+<A NAME="TI5241"></A><p>The presentation style determines the contents of the detail
+band: <A NAME="TI5242"></A>
+<ul>
+<li class=fi>If the presentation style is Tabular, Grid, N-Up,
+or Label, the detail band displays column names, representing the
+columns</li>
+<li class=ds>If the presentation style is Freeform, the labels
+defined for the columns in the Database painter display in the detail
+band with boxes for the data to the right 
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>How PowerBuilder names the columns in the Design view</span> <A NAME="TI5243"></A>If the DataWindow object uses one table, the names of the columns
+in the Design view are the same as the names in the table. </p>
+<A NAME="TI5244"></A>If the DataWindow object uses more than one table, the names of the
+columns in the Design view are <i>tablename_columnname</i>. PowerBuilder prefaces
+the name of the column with the table name to prevent ambiguity,
+since different tables can have columns with the same name.</p>
+<A NAME="TI5245"></A><p>When you design the detail band of a DataWindow object, you can specify display and
+validation information for each column of the DataWindow object and add
+other controls, such as text, pictures, graphs, and drawing controls.</p>
+<A NAME="TI5246"></A><h3>The summary and footer bands</h3>
+<A NAME="TI5247"></A><p>You use the summary and footer bands of the DataWindow object the
+same way you use summary pages and page footers in a printed report:<A NAME="TI5248"></A>
+<ul>
+<li class=fi>The contents of the summary
+band display at the end, after all the detail rows; this band often
+summarizes information in the DataWindow object</li>
+<li class=ds>The contents of the footer band display at the bottom
+of each screen or page of the DataWindow object; this band often displays
+the page number and name of the report
+</li>
+</ul>
+</p>
+<A NAME="BFCEACCI"></A><h2>Using the DataWindow painter toolbars</h2>
+<A NAME="TI5249"></A><p>The DataWindow painter contains three customizable PainterBars and
+a StyleBar. </p>
+<A NAME="TI5250"></A><p>For more information about using toolbars,
+see <A HREF="pbugp18.htm#X-REF342804801">"Using toolbars"</A>.</p>
+<A NAME="TI5251"></A><h4>PainterBars</h4>
+<A NAME="TI5252"></A><p>The PainterBars include buttons for standard operations (such
+as Save, Print, and Undo on PainterBar1), for common formatting
+operations (such as Currency, Percent, and Tab Order on PainterBar2),
+and for database operations (such as Retrieve and Insert Row on
+PainterBar3). </p>
+<A NAME="TI5253"></A><p>They also include six drop-down toolbars, which are indicated
+by a small black triangle on the right part of a button. <A HREF="pbugp168.htm#BABJBGHA">Table 19-2</A> lists the drop-down
+toolbars that are available. The
+Controls toolbar is on PainterBar1. The other drop-down toolbars
+are on PainterBar2.</p>
+<A NAME="BABJBGHA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-2: Drop-down toolbars in the DataWindow painter</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5254"></A> Toolbar</th>
+<th  rowspan="1"  ><A NAME="TI5255"></A>Used to</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5256"></A>Background Color</td>
+<td  rowspan="1"  ><A NAME="TI5257"></A>Specify the background color of one or
+more selected controls.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5258"></A>Borders</td>
+<td  rowspan="1"  ><A NAME="TI5259"></A>Specify borders for one or more selected
+controls.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5260"></A>Controls</td>
+<td  rowspan="1"  ><A NAME="TI5261"></A>Specify controls to add to a DataWindow object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5262"></A>Foreground Color</td>
+<td  rowspan="1"  ><A NAME="TI5263"></A>Specify the foreground color of one or
+more selected controls. In a text control, the foreground color
+specifies the color of the text.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5264"></A>Layout</td>
+<td  rowspan="1"  ><A NAME="TI5265"></A>Specify the alignment, sizing, and spacing
+of selected controls.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5266"></A>Slide</td>
+<td  rowspan="1"  ><A NAME="TI5267"></A>Specify sliding for controls.</td>
+</tr>
+</table>
+<A NAME="TI5268"></A><h4>StyleBar</h4>
+<A NAME="TI5269"></A><p>The StyleBar includes buttons for applying properties (such
+as bold) to selected text elements.</p>
+<A NAME="BFCBCACJ"></A><h2>Using the Properties view in the DataWindow painter</h2>
+<A NAME="TI5270"></A><p>Each part of the DataWindow object (such as text, columns, computed
+fields, bands, graphs, even the DataWindow object itself) has a set of
+properties appropriate to the part. The properties display in the
+Properties view.</p>
+<A NAME="TI5271"></A><p>You can use the Properties view to modify the parts of the DataWindow object.</p>
+<A NAME="TI5272"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use the Properties view to modify the parts
+of the DataWindow object:</p>
+<ol><li class=fi><p>Position the mouse over the part you want
+to modify.</p></li>
+<li class=ds><p>Display the part's pop-up menu and select
+Properties.</p><p>If it is not already displayed, the Properties view displays.
+The view displays the properties of the currently selected control(s),
+the band, or the DataWindow object itself. The contents of the Properties
+view change as different controls are selected (made current).</p></li></ol>
+<br><A NAME="TI5273"></A><p>For example, the Properties view for a column has seven tabbed
+property pages of information that you access by clicking the appropriate
+tab. If you want to choose an edit style for the column, you click
+the Edit tab. This brings the Edit page to the front of the Properties
+view.</p>
+<A NAME="BFCBFGBI"></A><h2>Selecting controls in the DataWindow painter</h2>
+<A NAME="TI5274"></A><p>The DataWindow painter provides several ways to select controls to
+act on. You can select multiple controls and act on all the selected
+controls as a unit. For example, you can move all of them or change
+the fonts used to display text for all of them.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Lasso selection</span> <A NAME="TI5275"></A>Use lasso selection when possible because it is fast and easy.
+Lasso selection is another name for the method described below for
+selecting neighboring multiple controls.</p>
+<A NAME="TI5276"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select one control in a DataWindow object in the Design
+view:</p>
+<ol><li class=fi><p>Click it.</p><p>The control displays with handles on it. Previously selected
+controls are no longer selected.</p></li></ol>
+<br><A NAME="TI5277"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select neighboring multiple controls in a DataWindow object in
+the Design view (lasso selection):</p>
+<ol><li class=fi><p>Press and hold the left mouse button at
+one corner of the neighboring controls.</p></li>
+<li class=ds><p>Drag the mouse over the controls you want to select.</p><p>A bounding box (the lasso) displays.</p></li>
+<li class=ds><p>Release the mouse button.</p><p>All the controls in the bounding box are selected.</p></li></ol>
+<br><A NAME="TI5278"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select non-neighboring multiple controls in
+a DataWindow object in the Design view:</p>
+<ol><li class=fi><p>Click the first control.</p></li>
+<li class=ds><p>Press and hold the Ctrl key and click additional
+controls.</p><p>All the controls you click are selected.</p></li></ol>
+<br><A NAME="TI5279"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select controls by type in the DataWindow object:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI5280"></A>
+<ul>
+<li class=fi>Select
+Edit&gt;Select&gt;Select All to select all controls</li>
+<li class=ds>Select Edit&gt;Select&gt;Select Text
+to select all text</li>
+<li class=ds>Select Edit&gt;Select&gt;Select Columns
+to select all columns
+</li>
+</ul>
+
+                      </p></li></ol>
+<br><A NAME="TI5281"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select controls by position in the DataWindow object:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI5282"></A>
+<ul>
+<li class=fi>Select
+Edit&gt;Select&gt;Select Above to select all controls
+above the currently selected control</li>
+<li class=ds>Select Edit&gt;Select&gt;Select Below
+to select all controls below it</li>
+<li class=ds>Select Edit&gt;Select&gt;Select Left
+to select all controls to the left of it</li>
+<li class=ds>Select Edit&gt;Select&gt;Select Right
+to select all controls to the right of it
+</li>
+</ul>
+
+                      </p></li></ol>
+<br><A NAME="TI5283"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select
+controls in a DataWindow object in the Control List view:</p>
+<ol><li class=fi><p>Select View&gt;Control List from
+the menu bar.</p></li>
+<li class=ds><p>Click a control in the list.</p></li>
+<li class=ds><p>Press and hold the Ctrl key and click additional
+controls if desired.</p></li></ol>
+<br><A NAME="TI5284"></A><h4>Displaying information about the selected control</h4>
+<A NAME="TI5285"></A><p>The name, x and y coordinates, width, and height of the selected
+control are displayed in the MicroHelp bar. If multiple controls
+are selected, <i>Group Selected</i> displays in the
+Name area and the coordinates and size do not display.</p>
+<A NAME="BFCDFFHA"></A><h2>Resizing bands in the DataWindow painter Design view</h2>
+<A NAME="TI5286"></A><p>You can change the size of any band in the DataWindow object.</p>
+<A NAME="TI5287"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To resize a band in the DataWindow painter Design view:</p>
+<ol><li class=fi><p>Position the pointer on the bar representing
+the band and drag the bar up or down to shrink or enlarge the band.</p></li></ol>
+<br><A NAME="BFCCHEEB"></A><h2>Using zoom in the DataWindow painter</h2>
+<A NAME="TI5288"></A><p>You can zoom the display in and out in four views in the DataWindow painter: the
+Design view, Preview view, Data View, and Column Specifications
+view. For example, if you are working with a large DataWindow object, you
+can zoom out the Design view so you can see all of it on your screen,
+or you can zoom in on a group of controls to better see their details.</p>
+<A NAME="TI5289"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To zoom the display in the DataWindow painter:</p>
+<ol><li class=fi><p>Select the view you want to zoom (click
+in the view). </p><p>You can zoom the Design view, Preview view, Data View, and
+Column Specifications view.</p></li>
+<li class=ds><p>Select Design&gt;Zoom from the menu bar.</p></li>
+<li class=ds><p>Select a built-in zoom percentage, or set a custom
+zoom percentage by typing an integer in the Custom box.</p></li></ol>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the IntelliMouse pointing device</span> <A NAME="TI5290"></A>Using the IntelliMouse pointing device, users can also
+zoom a view larger or smaller by holding down the Ctrl key while
+rotating the wheel.</p>
+<br><A NAME="BFCBGEJE"></A><h2>Undoing changes in the DataWindow painter</h2>
+<A NAME="TI5291"></A><p>You can undo your change by pressing Ctrl+Z or selecting
+Edit&gt;Undo from the menu bar. Undo requests affect all views.</p>
+

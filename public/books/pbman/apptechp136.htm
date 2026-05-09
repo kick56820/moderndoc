@@ -1,0 +1,92 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Server support</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp135.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp137.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBBHDJH"></A><h1>Server support</h1>
+<A NAME="TI4426"></A><p>PowerBuilder developers can build clients that invoke the
+services of Sybase <ABBR title = "e a server" >EAServer</ABBR> and
+COM+ servers, and build components (or objects) that execute business
+logic inside each of these servers.</p>
+<A NAME="TI4427"></A><p>PowerBuilder also provides support for building clients for
+Enterprise JavaBeans components (EJBs) running on any J2EE-compliant
+server.</p>
+<A NAME="TI4428"></A><h4><ABBR title = "e a server" >EAServer</ABBR></h4>
+<A NAME="TI4429"></A><p>PowerBuilder and <ABBR title = "e a server" >EAServer</ABBR> are
+fully integrated. A PowerBuilder application can act as a client
+to any <ABBR title = "e a server" >EAServer</ABBR> component. In
+addition, <ABBR title = "e a server" >EAServer</ABBR> can contain
+PowerBuilder custom class user (nonvisual) objects that execute
+as middle-tier components.</p>
+<A NAME="TI4430"></A><p><ABBR title = "e a server" >EAServer</ABBR> hosts the PowerBuilder
+virtual machine natively. This means that <ABBR title = "e a server" >EAServer</ABBR> can
+communicate directly with PowerBuilder nonvisual user objects, and
+vice versa. <ABBR title = "e a server" >EAServer</ABBR> components
+developed in PowerBuilder can take full advantage of the ease of
+use and flexibility of PowerScript and the richness of PowerBuilder's
+system objects. </p>
+<A NAME="TI4431"></A><p>Components developed in PowerBuilder can exploit features
+such as transactions, interoperability, and instance pooling. As
+shown in <A HREF="apptechp136.htm#BGBDFFAB">Figure 23-1</A>, any
+type of client can access any type of component running in <ABBR title = "e a server" >EAServer</ABBR>, regardless of the language
+used to develop the component. </p>
+<A NAME="BGBDFFAB"></A><caption><b>Figure 23-1: Clients and components in <ABBR title = "e a server" >EAServer</ABBR></b></captionls>
+<br><img src="images/distarch.gif">
+<A NAME="TI4432"></A><p>For more information, see <A HREF="apptechp137.htm#CBBBFDAD">Chapter 24, "Building an <ABBR title = "e a server" >EAServer</ABBR> Component"</A> and <A HREF="apptechp151.htm#CDECHFMK">Chapter 25, "Building an <ABBR title = "e a server" >EAServer</ABBR> Client ."</A></p>
+<A NAME="TI4433"></A><h4>COM+</h4>
+<A NAME="TI4434"></A><p>A PowerBuilder application can act as a client to a COM server.
+The server can be built using PowerBuilder or any other COM-compliant
+application development tool and it can run locally, on a remote
+computer as an in-process server, or in COM+, as shown
+in <A HREF="apptechp136.htm#BGBIAIAH">Figure 23-2</A>.</p>
+<A NAME="BGBIAIAH"></A><caption><b>Figure 23-2: PowerBuilder clients for
+COM components</b></captionls>
+<br><img src="images/dpbimts.gif">
+<A NAME="TI4435"></A><p>You can develop a custom class user object containing business
+logic in PowerBuilder and then package the object as a COM object.
+A PowerBuilder COM server can include one or more PowerBuilder custom
+class user objects. You code the user objects in the User Object
+painter and then build the server in the Project painter. You can
+also deploy the COM server directly to a local COM+ server
+or create a COM+ package from the Project painter.</p>
+<A NAME="TI4436"></A><p>For more information, see <A HREF="apptechp167.htm#CHDDHCED">Chapter 27, "Building a COM or COM+ Component"</A> and <A HREF="apptechp179.htm#CHDBJEFH">Chapter 28, "Building a COM or COM+ Client."</A></p>
+<A NAME="TI4437"></A><h4>J2EE servers</h4>
+<A NAME="TI4438"></A><p>J2EE, the Java 2 Platform, Enterprise Edition, is the official
+Java framework for enterprise application development. A J2EE application
+is composed of separate components that are installed on different
+computers in a multitiered system. <A HREF="apptechp136.htm#BGBIEJHE">Figure 23-3</A> shows three tiers in this system:
+the client tier, middle tier, and Enterprise Information Systems
+(EIS) tier. The middle tier is sometimes considered to be made up
+of two separate tiers: the Web tier and the business tier.</p>
+<A NAME="BGBIEJHE"></A><caption><b>Figure 23-3: J2EE client, middle, and
+EIS tiers</b></captionls>
+<br><img src="images/j2ee1.gif">
+<A NAME="TI4439"></A><p>Client components, such as application clients and applets,
+run on computers in the client tier. Web components, such as Java
+servlets and JavaServer Pages (JSP) components, run on J2EE servers
+in the Web tier. Enterprise JavaBeans (EJB) components are business
+components and run on J2EE servers in the business tier. The EIS
+tier is made up of servers running relational database management
+systems, enterprise resource planning applications, mainframe transaction
+processing, and other legacy information systems.</p>
+<A NAME="TI4440"></A><p>In PowerBuilder, you can build client applications that use
+the services of EJB components running on any J2EE-compliant server.
+For more information, see <A HREF="apptechp184.htm#CDECHFKM">Chapter 29, "Building an EJB client ."</A></p>
+<A NAME="TI4441"></A><p>You can also deploy custom class user objects to third-party
+application servers on which the PowerBuilder Application Server
+Plug-in is installed. The Plug-in is a Sybase product that
+supports several Web servers. Wizards that help you generate application
+server components that you can deploy to these servers and proxies
+that you can use to build client applications are built into PowerBuilder,
+but you must purchase the Plug-in product separately. The wizards
+and techniques are very similar to those used for building <ABBR title = "e a server" >EAServer</ABBR> components and clients.
+For more information, see the documentation for the PowerBuilder
+Application Server Plug-in on the <A HREF="http://www.sybase.com/support/manuals/">Product Manuals Web site</A>
+..</p>
+

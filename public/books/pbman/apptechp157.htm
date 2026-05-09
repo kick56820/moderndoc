@@ -1,0 +1,98 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Client- and component-demarcated transactions</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp156.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp158.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABJIAFE"></A><h1>Client- and component-demarcated transactions</h1>
+<A NAME="TI5251"></A><p>Client applications and <ABBR title = "e a server" >EAServer</ABBR> components
+marked as OTS style can create, control, and obtain information
+about <ABBR title = "e a server" >EAServer</ABBR> transactions using
+functions of the CORBACurrent context service object. The CORBACurrent
+object provides most of the methods defined for the CORBA Current
+interface. </p>
+<A NAME="TI5252"></A><h4>Two-phase commit</h4>
+<A NAME="TI5253"></A><p>Components in a client- or component-demarcated transaction
+must be running on a server that is using the OTS/XA transaction
+coordinator. This transaction coordinator supports the two-phase
+commit protocol, which uses detailed records from all participants
+to protect against system failures. In the prepare phase, the transaction
+coordinator obtains a guarantee from every participant in the transaction
+that it can be committed and writes a prepare record to the log. In
+the commit phase, the coordinator notifies all participants, resources
+are released, the transaction is committed, and a commit record
+is written to the log. </p>
+<A NAME="TI5254"></A><p>Components using two-phase commit must connect to a database
+using a PowerBuilder database interface that is XA-compliant. On
+Windows NT, you can use Oracle O73 and O84 interfaces with Oracle
+8.0.x (not 8.1.x), or the JDB interface for JDBC used with Sun's
+JRE 1.2 and jConnect 5.2. If the component is running on a UNIX
+host, you can also use the Sybase Adaptive Server Enterprise CT-LIB
+interface (SYJ).</p>
+<A NAME="TI5255"></A><p>An OTS/XA transaction coordinator uses XA resources
+instead of connection caches to manage transactions. For more information
+about creating and managing XA resources, see the <i>EAServer
+System Administration Guide</i>
+.</p>
+<A NAME="TI5256"></A><h4>Marking components as OTS style</h4>
+<A NAME="TI5257"></A><p>To create an <ABBR title = "e a server" >EAServer</ABBR> component
+that can manage transactions, check the OTS Style box in the <ABBR title = "e a server" >EAServer</ABBR> Project wizard or the Project
+painter. You can also select OTS Style on the Transaction tab of
+the property sheet for the component in EAServer Manager after you
+have deployed the component. </p>
+<A NAME="TI5258"></A><h4>Initializing the CORBACurrent object</h4>
+<A NAME="TI5259"></A><p>Before you can invoke the functions of the CORBACurrent context
+service object, you need to create an instance of the object using
+the <b>GetContextService</b> function, and then initialize
+it using the <b>Init</b> function.</p>
+<A NAME="TI5260"></A><p>For transactions managed by an OTS style component, call the <b>Init</b> function with
+no arguments:<p><PRE> GetContextService("CORBACurrent", myCorbCurr)<br>myCorbCurr.Init()</PRE></p>
+<A NAME="TI5261"></A><p>For client-demarcated transactions, you must call the <b>Init</b> function
+with an argument: either an instance of the Connection object with
+which you have already established a connection, or a URL that identifies
+a valid <ABBR title = "e a server" >EAServer</ABBR> host. </p>
+<A NAME="TI5262"></A><p>Because the Connection object is more portable, using it is
+the preferred technique.<p><PRE> myCorbCurr.Init( myconnect )<br>// OR<br>myCorbCurr.Init( "iiop://localhost:9000")</PRE></p>
+<A NAME="TI5263"></A><h4>Beginning and ending transactions</h4>
+<A NAME="TI5264"></A><p>You begin a client- or component-demarcated transaction by
+calling the <b>BeginTransaction</b> function and end
+it by calling <b>CommitTransaction</b> or <b>RollbackTransaction</b>.
+Components you instantiate to participate in the transaction must
+support transactions.</p>
+<A NAME="TI5265"></A><p><p><PRE> // Instance variables:<br>// CORBACurrent corbcurr<br>// Connection myconnect<br> <br><br>int li_rc<br>long ll_rc<br>boolean lb_rc, lb_success<br> <br>ll_rc = myconnect.CreateInstance(mycomponent)<br>li_rc = this.GetContextService("CORBACurrent", &amp;    <br>        corbcurr)<br>IF li_rc &lt;&gt; 1 THEN<br>        // handle error<br>        RETURN<br>END IF<br> <br>li_rc = corbcurr.<i>Init</i>( myconnect )<br>IF li_rc &lt;&gt; 0 THEN<br>        // handle error<br>        RETURN<br>END IF<br> <br>lb_rc = corbcurr.<i>BeginTransaction</i>()<br>// perform some processing on the server and<br>// test for success<br>...<br>IF lb_success THEN<br>        corbcurr.<i>CommitTransaction</i>()<br>ELSE<br>        corbcurr.<i>RollbackTransaction</i>()<br>END IF</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>No nested transactions</span> <A NAME="TI5266"></A>You cannot begin a second transaction until the first transaction
+has been committed or rolled back.</p>
+<A NAME="TI5267"></A><p>If a component is marked as OTS style, <ABBR title = "e a server" >EAServer</ABBR> does
+not start a transaction when the component is instantiated. <ABBR title = "e a server" >EAServer</ABBR> expects the component to
+start a transaction by calling the <b>BeginTransaction</b> function
+on an instance of a CORBACurrent object. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Do not call SetComplete</span> <A NAME="TI5268"></A>A component should not begin a transaction and then call <b>SetComplete</b> before committing
+or rolling back the transaction. The transaction will be orphaned until
+it either times out or is picked up by another transaction.</p>
+<A NAME="TI5269"></A><h4>Getting information about the transaction</h4>
+<A NAME="TI5270"></A><p>CORBACurrent provides two functions for obtaining information
+about the transaction: <b>GetStatus</b> and <b>GetTransactionName</b>. <b>GetStatus</b> returns
+an <b>Integer</b> that indicates whether the transaction
+is active, has been marked for rollback, is in the prepare phase
+or commit phase, or has been committed or rolled back. <b>GetTransactionName</b> returns
+a <b>String</b> that identifies the current transaction.
+It is intended for use in debugging.</p>
+<A NAME="TI5271"></A><h4>Suspending and resuming a transaction</h4>
+<A NAME="TI5272"></A><p>A calling thread can suspend a transaction while the thread
+performs some non-transactional processing and then resume
+it. <b>SuspendTransaction</b> returns a handle to the
+transaction that can be passed to the <b>ResumeTransaction</b> function. <b>ResumeTransaction</b> can
+be called from a different thread in the same execution context.
+In this example, the transaction is reassociated with the same thread:</p>
+<A NAME="TI5273"></A><p><p><PRE> long ll_rc<br>unsignedlong ll_handle<br>...<br>ll_rc = corbcurr.BeginTransaction()<br>// do some transactional work<br>ll_handle = corbcurr.<i>SuspendTransaction</i>()<br>// do some non-transactional work<br>corbcurr.<i>ResumeTransaction</i>(ll_handle)<br>// do some more transactional work</PRE></p>
+<A NAME="TI5274"></A><h4>Setting a timeout period for transactions</h4>
+<A NAME="TI5275"></A><p>A calling thread can specify a timeout period after which
+a transaction will be rolled back. This example sets the timeout
+period to three minutes (180 seconds):</p>
+<A NAME="TI5276"></A><p><p><PRE> integer li_rc<br> <br>li_rc = this.GetContextService("CORBACurrent", &amp;<br>        corbcurr)<br>IF li_rc &lt;&gt; 1 THEN<br>        // handle error and return<br>END IF<br>li_rc = corbcurr.Init()<br>IF li_rc &lt;&gt; 1 THEN<br>        // handle error and return<br>END IF<br>corbcurr.<i>SetTimeout</i>(180)<br>corbcurr.BeginTransaction()</PRE></p>
+

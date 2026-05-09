@@ -1,0 +1,590 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+OLE objects in scripts </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp110.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp112.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF348432491"></A><h1>OLE objects in scripts </h1>
+<A NAME="TI3331"></A><p>This chapter has described the three ways to use OLE in a
+window or user object. You have learned about:<A NAME="TI3332"></A>
+<ul>
+<li class=fi>Inserting an object in an OLE control</li>
+<li class=ds>Placing an ActiveX control in an OLE custom control</li>
+<li class=ds>Declaring an OLEObject variable and connecting to
+an OLE object
+</li>
+</ul>
+</p>
+<A NAME="TI3333"></A><p>In scripts, you can manipulate these objects by means of OLE <strong>automation</strong>, getting
+and setting properties, and calling functions that are defined by
+the OLE server. There are examples of automation commands in the
+preceding sections. This section provides more information about
+the automation interface in PowerBuilder.</p>
+<A NAME="TI3334"></A><h2>The automation interface</h2>
+<A NAME="TI3335"></A><p>In PowerBuilder, an OLEObject is your interface to an OLE
+server or ActiveX control. When you declare an OLEObject variable
+and connect to a server, you can use dot notation for that variable
+and send instructions to the server. The instruction might be a
+property whose value you want to get or set, or a function you want
+to call.</p>
+<A NAME="TI3336"></A><p>The general automation syntax for an OLEObject is:</p>
+<A NAME="TI3337"></A><p><p><PRE><i>oleobjectvar</i>.<i>serverinstruction</i></PRE></p>
+</p>
+<A NAME="TI3338"></A><p>For OLE controls in a window, your interface to the server
+or ActiveX control is the control's Object property, which
+has a datatype of OLEObject.</p>
+<A NAME="TI3339"></A><p>The general automation syntax for an OLE control is:</p>
+<A NAME="TI3340"></A><p><p><PRE><i>olecontrol</i>.<b>Object</b>.<i>serverinstruction</i></PRE></p>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Compiling scripts that include commands to the OLE
+server</span> <A NAME="TI3341"></A>When you compile scripts that apply methods to an OLEObject
+(including a control's Object property), PowerBuilder does
+not check the syntax of the rest of the command, because it does
+not know the server's command set. You must ensure that
+the syntax is correct to avoid errors during execution.</p>
+<A NAME="TI3342"></A>Make sure you give your applications a test run to ensure
+that your commands to the server application are correct.</p>
+<A NAME="TI3343"></A><h4>What does the server support?</h4>
+<A NAME="TI3344"></A><p>A server's command set includes properties and methods
+(functions and events).</p>
+<A NAME="TI3345"></A><p>OLE server applications publish the command set they support
+for automation. Check your server application's documentation
+for information.</p>
+<A NAME="TI3346"></A><p>For custom controls and programmable OLE objects,
+you can see a list of properties and methods in the PowerBuilder
+Browser. For more information about OLE information in the Browser,
+see <A HREF="apptechp112.htm#BIIDAECD">"OLE information in the Browser "</A>.</p>
+<A NAME="TI3347"></A><h3>Setting properties</h3>
+<A NAME="TI3348"></A><p>You access server properties for an OLE control through its
+Object property using the following syntax:<p><PRE><i>olecontrolname</i>.<b>Object</b>.{<i> serverqualifiers</i>.}<i>propertyname</i></PRE></p>
+</p>
+<A NAME="TI3349"></A><p>If the OLE object is complex, there could be nested objects
+or properties within the
+object that serve as qualifiers for the property name.</p>
+<A NAME="TI3350"></A><p>For example, the following commands for an Excel spreadsheet
+object activate the object and set the value property of several
+cells:<p><PRE> double value<br>ole_1.Activate(InPlace!)<br>ole_1.Object.cells[1,1].value = 55<br>ole_1.Object.cells[2,2].value = 66<br>ole_1.Object.cells[3,3].value = 77<br>ole_1.Object.cells[4,4].value = 88</PRE></p>
+<A NAME="TI3351"></A><p>For an Excel 95 spreadsheet, enclose the cells' row
+and column arguments in parentheses instead of square brackets.
+For example:<p><PRE> ole_1.Object.cells(1,1).value = 55</PRE></p>
+<A NAME="TI3352"></A><p>For properties of an OLEObject variable, the server qualifiers
+and property name follow the variable name:<p><PRE><i>oleobjectvar</i>.{ <i>serverqualifiers</i>.}<i>propertyname</i></PRE></p>
+</p>
+<A NAME="TI3353"></A><p>The qualifiers you need to specify depend on how you connect
+to the object. For more information, see <A HREF="apptechp111.htm#X-REF348492329">"Qualifying server
+commands"</A>.</p>
+<A NAME="TI3354"></A><h3>Calling functions</h3>
+<A NAME="TI3355"></A><p>You can call server functions for an OLE control through its
+Object property using the following syntax:<p><PRE><i>olecontrolname</i>.<b>Object</b>.{<i> serverqualifiers</i>.}<i>functionname</i> ( { <i>arguments</i> } )</PRE></p>
+</p>
+<A NAME="TI3356"></A><p>If the OLE object is complex, there could be nested properties
+or objects within the object that serve as qualifiers for the function
+name.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Required parentheses</span> <A NAME="TI3357"></A>PowerScript considers all commands to the server either property
+settings or functions. For statements and functions to be distinguished
+from property settings, they must be followed by parentheses surrounding
+the parameters. If there are no parameters, specify empty parentheses. </p>
+<A NAME="TI3358"></A><h4>Arguments and return values and their datatypes</h4>
+<A NAME="TI3359"></A><p>PowerBuilder converts OLE data to and from compatible PowerBuilder datatypes.
+The datatypes of values you specify for arguments must be compatible
+with the datatypes expected by the server, but they do not need
+to be an exact match.</p>
+<A NAME="TI3360"></A><p>When the function returns a value, you can assign the value
+to a PowerBuilder variable of a compatible datatype.</p>
+<A NAME="TI3361"></A><h4>Passing arguments by reference</h4>
+<A NAME="TI3362"></A><p>If an OLE server expects an argument to be passed by reference
+so that it can pass a value back to your script, include the keyword <b>REF</b> just
+before the argument. This is similar to the use of <b>REF</b> in
+an external function declaration:<p><PRE><i>olecontrol</i>.Object.<i>functionname</i> ( REF <i>argname</i> )</PRE></p>
+</p>
+<A NAME="TI3363"></A><p>In these generic examples, the server can change the values
+of <i>ls_string</i> and <i>li_return</i> because
+they are passed by reference:<p><PRE> string ls_string<br>integer li_return<br>ole_1.Object.testfunc(REF ls_string, REF li_return)</PRE></p>
+<A NAME="TI3364"></A><p>This example illustrates the same function call using an OLEObject
+variable.<p><PRE> OLEObject ole_obj<br>ole_obj = CREATE OLEObject<br>ole_obj.ConnectToNewObject("servername")<br>ole_obj.testfunc(REF ls_string, REF li_return)</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Setting the timeout period</span> <A NAME="TI3365"></A>Calls from a PowerBuilder client to a server time out after
+five minutes. You can use the <b>SetAutomationTimeout</b> PowerScript
+function to change the default timeout period if you expect a specific
+OLE request to take longer. </p>
+<A NAME="TI3366"></A><h4>Word and automation</h4>
+<A NAME="TI3367"></A><p>Microsoft Word 6.0 and 7.0 support automation with a command
+set similar to the WordBasic macro language. The command set includes
+both statements and functions and uses named parameters. Later versions
+of Microsoft Word use Visual Basic for Applications (VBA), which
+consists of a hierarchy of objects that expose a specific set of
+methods and properties. </p>
+<p><b>WordBasic statements</b>   WordBasic has both statements and functions. Some of them
+have the same name. WordBasic syntax differentiates between statements
+and functions calls, but PowerBuilder does not.</p>
+<A NAME="TI3368"></A><p>To specify that you want to call a statement, you can include <b>AsStatement!</b> (a value
+of the <b>OLEFunctionCallType</b> enumerated datatype)
+as an argument. Using <b>AsStatement!</b> is the only
+way to call WordBasic statements that have the same name as a function.
+Even when the statement name does not conflict with a function name,
+specifying <b>AsStatement!</b> is more efficient:<p><PRE><i>olecontrol</i>.<b>Object</b>.application.wordbasic.<i>statementname<br></i>    ( <i>argumentlist</i>, AsStatement! )</PRE></p>
+</p>
+<A NAME="TI3369"></A><p>For example, the following code calls the <b>AppMinimize</b> statement:<p><PRE> ole_1.Object.application.wordbasic. &amp;<br>   AppMinimize("",1,AsStatement!)</PRE></p>
+<p><b>Named parameters</b>   PowerBuilder does not support named parameters that both WordBasic
+and Visual Basic use. In the parentheses, specify the parameter values
+without the parameter names.</p>
+<A NAME="TI3370"></A><p>For example, the following statements insert text at a bookmark
+in a Word 6.0 or 7.0 document:<p><PRE> ole_1.Activate(InPlace!)<br>Clipboard(mle_nameandaddress.Text)<br>ole_1.Object.application.wordbasic.&amp;<br>   fileopen("c:\msoffice\winword\doc1.doc")<br>ole_1.Object.application.wordbasic.&amp;<br>   editgoto("NameandAddress", AsStatement!)<br>ole_1.Object.application.wordbasic.&amp;<br>   editpaste(1, AsStatement!)</PRE></p>
+<A NAME="TI3371"></A><p>The last two commands in a WordBasic macro would look like
+this, where Destination is the named parameter:<p><PRE> EditGoto.Destination = "NameandAddress"<br>EditPaste</PRE></p>
+<A NAME="TI3372"></A><p>In a PowerBuilder script, you would use this syntax to insert
+text in a Word 97 or later document:<p><PRE> ole_1.Object.Selection.TypeText("insert this text")</PRE></p>
+<A NAME="TI3373"></A><p>In the corresponding Visual Basic statement, the named parameter
+Text contains the string to be inserted: <p><PRE> Selection.TypeText Text:="insert this text"</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Automation is not macro programming</span> <A NAME="TI3374"></A>You cannot send commands to the server application that declare
+variables or control the flow of execution (for example, <b>IF
+THEN</b>). Automation executes one command at a time independently
+of any other commands. Use PowerScript's conditional and
+looping statements to control program flow. </p>
+<p><b>Example of Word automation</b>   To illustrate how to combine PowerScript with server commands,
+the following script counts the number of bookmarks in a Microsoft
+Word OLE object and displays their names:<p><PRE> integer i, count<br>string bookmarklist, curr_bookmark<br>ole_1.Activate(InPlace!)<br> <br>count = ole_1.Object.Bookmarks.Count<br>bookmarklist = "Bookmarks = " + String(count) + "~n"<br>   <br>FOR i = 1 to count<br>   curr_bookmark = ole_1.Object.Bookmarks[i].Name<br>   bookmarklist = bookmarklist + curr_bookmark + "~n"<br>END FOR<br> <br>MessageBox("BookMarks", bookmarklist)</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Word automation tip</span> <A NAME="TI3375"></A>You can check that you are using the correct syntax for Word
+automation with the Word macro editor. Turn on macro recording in
+Word, perform the steps you want to automate manually, then turn
+off macro recording. You can then type Alt+F11 to open
+the macro editor and see the syntax that was built. Remember that
+PowerBuilder uses square brackets for array indexes.</p>
+<p><b>Example of Word 6.0 and 7.0 automation</b>   The following script counts the number of bookmarks in a Microsoft
+Word 6.0 or 7.0 OLE object and displays their names:<p><PRE> integer i, count<br>string bookmarklist, curr_bookmark<br>ole_1.Activate(InPlace!)<br> <br>// Get the number of bookmarks<br>count = ole_1.Object. &amp;<br>    application.wordbasic<i>.</i>countbookmarks<br>bookmarklist = "Bookmarks = " + String(count) + "~n"<br> <br>// Get the name of each bookmark<br>FOR i = 1 to count<br>   curr_bookmark = ole_1.Object. &amp;<br>   application.wordbasic<i>.</i>bookmarkname(i)<br>   bookmarklist = bookmarklist    + curr_bookmark + "~n"<br>END FOR<br> <br>MessageBox("BookMarks", bookmarklist)</PRE></p>
+<A NAME="X-REF348492329"></A><h3>Qualifying server commands</h3>
+<A NAME="TI3376"></A><p>Whether to qualify the server command with the name of the
+application depends on the server and how the object is connected.
+Each server implements its own version of an object hierarchy, which
+needs to be reflected in the command syntax. For example, the Microsoft
+Excel object hierarchy is shown in <A HREF="apptechp111.htm#CEGJIJDB">Figure 19-2</A>.</p>
+<A NAME="CEGJIJDB"></A><caption><b>Figure 19-2: Microsoft Excel object hierarchy</b></captionls>
+<br><img src="images/oleap04.gif">
+<A NAME="TI3377"></A><p>When the server is Excel, the following commands appear to
+mean the same thing but can have different effects (for an Excel
+95 spreadsheet, the cells' row and column arguments are
+in parentheses instead of square brackets):</p>
+<A NAME="TI3378"></A><p><p><PRE> ole_1.Object.application.cells[1,2].value = 55</PRE></p>
+<A NAME="TI3379"></A><p><p><PRE> ole_1.Object.cells[1,2].value = 55</PRE></p>
+<A NAME="TI3380"></A><p>The first statement changes a cell in the active document.
+It moves up Excel's object hierarchy to the Application
+object and back down to an open sheet. It does not matter whether
+it is the same one in the PowerBuilder control. If the user switches
+to Excel and activates a different sheet, the script changes that one
+instead. You should avoid this syntax.</p>
+<A NAME="TI3381"></A><p>The second statement affects only the document in the PowerBuilder
+control. However, it will cause a runtime error if the document
+has not been activated. It is the safer syntax to use, because there
+is no danger of affecting the wrong data.</p>
+<A NAME="TI3382"></A><p>Microsoft Word 6.0 and 7.0 implement the application hierarchy
+differently and require the qualifier application.wordbasic when
+you are manipulating an object in a control. (You must activate
+the object.) For example:<p><PRE> ole_1.Object.application.wordbasic.<i></i>bookmarkname(i)</PRE></p>
+<A NAME="TI3383"></A><p>Later versions of Microsoft Word do not require a qualifier,
+but it is valid to specify one. You can use any of the following
+syntaxes:<p><PRE> ole_1.Object.Bookmarks.[i].Name<br>ole_1.Object.Bookmarks.item(i).Name<br> <br>ole_1.Object.application.ActiveDocument. &amp;    <br>   Bookmarks.[i].Name</PRE></p>
+<A NAME="TI3384"></A><p>When you are working with PowerBuilder's OLEObject,
+rather than an object in a control, you omit the application qualifiers
+in the commands because you have already specified them when you
+connected to the object. (For more about the OLEObject object type,
+see <A HREF="apptechp110.htm#X-REF307046708">"Programmable OLE Objects "</A>.)</p>
+<A NAME="TI3385"></A><h2>Automation and the Any datatype</h2>
+<A NAME="TI3386"></A><p>Because PowerBuilder knows nothing about the commands and
+functions of the server application, it also knows nothing about
+the datatypes of returned information when it compiles a program.
+Expressions that access properties and call functions have a datatype
+of <b>Any</b>. You can assign the expression to an <b>Any</b> variable,
+which avoids datatype conversion errors.</p>
+<A NAME="TI3387"></A><p>During execution, when data is assigned to the variable, it
+temporarily takes the datatype of the value. You can use the <b>ClassName</b> function
+to determine the datatype of the <b>Any</b> variable
+and make appropriate assignments. If you make an incompatible assignment
+with mismatched datatypes, you will get a runtime error.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Do not use the Any datatype unnecessarily</span> <A NAME="TI3388"></A>If you know the datatype of data returned by a server automation
+function, do not use the <b>Any</b> datatype. You
+can assign returned data directly to a variable of the correct type.</p>
+<A NAME="TI3389"></A><p>The following sample code retrieves a value from Excel and
+assigns it to the appropriate PowerBuilder variable, depending on
+the value's datatype. (For an Excel 95 spreadsheet, the
+row and column arguments for cells are in parentheses instead of
+square brackets.)<p><PRE> string stringval<br>double dblval<br>date dateval<br>any anyval<br> <br>anyval = myoleobject.application.cells[1,1].value<br>CHOOSE CASE ClassName(anyval)<br>   CASE "string"<br>      stringval = anyval<br>   CASE "double"<br>      dblval = anyval<br>   CASE "datetime"<br>      dateval = Date(anyval)<br>END CHOOSE</PRE></p>
+<A NAME="TI3390"></A><h2>OLEObjects for efficiency</h2>
+<A NAME="TI3391"></A><p>When your automation command refers to a deeply nested object
+with multiple server qualifiers, it takes time to negotiate the
+object's hierarchy and resolve the object reference. If
+you refer to the same part of the object hierarchy repeatedly, then
+for efficiency you can assign that part of the object reference to
+an OLEObject variable. The reference is resolved once and reused.</p>
+<A NAME="TI3392"></A><p>Instead of coding repeatedly for different properties:<p><PRE> ole_1.Object.application.wordbasic.<i>propertyname</i></PRE></p>
+<A NAME="TI3393"></A><p>you can define an OLEObject variable to handle all the qualifiers:<p><PRE> OLEObject ole_wordbasic<br>ole_wordbasic = ole_1.Object.application.wordbasic<br>ole_wordbasic.<i>propertyname1</i> = <i>value</i><br>ole_wordbasic.<i>propertyname2</i> = <i>value</i></PRE></p>
+<A NAME="TI3394"></A><h4>Example: resolving an object reference</h4>
+<A NAME="TI3395"></A><p>This example uses an OLEObject variable to refer to a Microsoft
+Word object. Because it is referred to repeatedly in a <b>FOR</b> loop,
+the resolved OLEObject makes the code more efficient. The example
+destroys the OLEObject variable when it is done with it:<p><PRE> integer li_i, li_count<br>string ls_curr_bookmark<br>OLEObject ole_wb<br> <br>ole_1.Activate(InPlace!)<br>ole_wb = ole_1.Object.application.wordbasic<br> <br>// Get the number of bookmarks<br>li_count = ole_wb.countbookmarks<br>// Get the name of each bookmark<br>FOR li_i = 1 to count<br>   ls_curr_bookmark = ole_wb.bookmarkname(i)<br>   ... // code to save the bookmark name in a list<br>END FOR</PRE></p>
+<A NAME="X-REF348260087"></A><h2>Handling errors</h2>
+<A NAME="TI3396"></A><p>Statements in scripts that refer to the OLE server's
+properties are not checked in the compiler because PowerBuilder
+does not know what syntax the server expects. Because the compiler
+cannot catch errors, runtime errors can occur when you specify property
+or function names and arguments the OLE server does not recognize.</p>
+<A NAME="TI3397"></A><h4>Chain of error events</h4>
+<A NAME="TI3398"></A><p>When an error occurs that is generated by a call to an OLE
+server, PowerBuilder follows this sequence of events:<A NAME="TI3399"></A>
+<ol>
+</li>
+<li class=ds>If the error was generated
+by an ActiveX control that has defined a stock error event, the
+ocx_error event for the PowerBuilder OLE control is triggered.</li>
+<li class=ds>Otherwise, the ExternalException event for the OLE
+object occurs.</li>
+<li class=ds>If the ExternalException event has no script or
+its action argument is set to <b>ExceptionFail!</b> (the
+default), the Error event for the OLE object occurs.</li>
+<li class=ds>If the Error event has no script or its action argument
+is set to <b>ExceptionFail!</b> (the default), any active
+exception handler for a RuntimeError or its descendants is invoked.</li>
+<li class=ds>If no exception handler exists, or if the existing
+exception handlers do not handle the exception, the SystemError
+event for the Application object occurs.</li>
+<li class=ds>If the SystemError has no script, an application
+runtime error occurs and the application is terminated.
+</li>
+</ol>
+</p>
+<A NAME="TI3400"></A><p>You can handle the error in any of these events or in a script
+using a TRY-CATCH block. However, it is not a good idea
+to continue processing after the SystemError event occurs.</p>
+<A NAME="TI3401"></A><p>For more information about exception handling, see <A HREF="apptechp20.htm#BABCAAHB">"Handling exceptions"</A>.</p>
+<A NAME="TI3402"></A><h4>Events for OLE errors</h4>
+<A NAME="TI3403"></A><p>PowerBuilder OLE objects and controls all have two events
+for error handling:<A NAME="TI3404"></A>
+<ul>
+<li class=fi><b>ExternalException</b>   Triggered when the OLE server or control throws an exception
+or fires an error event (if there is no ocx_error event). Information
+provided by the server can help diagnose the error.</li>
+<li class=ds><b>Error</b>   Triggered when the exception or error event is not handled. PowerBuilder
+error information is available in the script.
+</li>
+</ul>
+</p>
+<A NAME="TI3405"></A><p>If the OLE control defines a stock error event, the PowerBuilder
+OLE control container has an additional event:<A NAME="TI3406"></A>
+<ul>
+<li class=fi><b>ocx_error</b>   Triggered when the OLE server fires an error event. Information
+provided by the server can help diagnose the error.
+</li>
+</ul>
+</p>
+<A NAME="TI3407"></A><p>The creator of an OLE control can generate the stock error
+event for the control using the Microsoft Foundation Classes (MFC)
+Class Wizard. The arguments for the ocx_error event in
+PowerBuilder map to the arguments defined for the stock error event.</p>
+<A NAME="TI3408"></A><h4>Responding to the error</h4>
+<A NAME="TI3409"></A><p>If the PowerBuilder OLE control has an ocx_error
+event script, you can get information about the error from the event's
+arguments and take appropriate action. One of the arguments of ocx_error
+is the boolean CancelDisplay. You can set CancelDisplay to <b>TRUE</b> to
+cancel the display of any MFC error message. You can also supply
+a different description for the error.</p>
+<A NAME="TI3410"></A><p>In either the ExternalException or Error event script, you
+set the Action argument to an ExceptionAction enumerated value.
+What you choose depends on what you know about the error and how
+well the application will handle missing information.</p>
+<A NAME="TI3411"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-6: ExceptionAction enumerated values</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3412"></A>ExceptionAction value</th>
+<th  rowspan="1"  ><A NAME="TI3413"></A>Effect</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3414"></A><b>ExceptionFail!</b></td>
+<td  rowspan="1"  ><A NAME="TI3415"></A>Fail as if the event had no script. Failing
+triggers the next error event in the order of event handling.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3416"></A><b>ExceptionIgnore!</b></td>
+<td  rowspan="1"  ><A NAME="TI3417"></A>Ignore the error and return as if no
+error occurred.<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Caution</span> <A NAME="TI3418"></A>If you are getting a property value or expecting a return
+value from a function, a second error can occur during the assignment
+because of mismatched datatypes.</p>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3419"></A><b>ExceptionRetry!</b></td>
+<td  rowspan="1"  ><A NAME="TI3420"></A>Send the command to the OLE server again
+(useful if the OLE server was not ready).<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Caution</span> <A NAME="TI3421"></A>If you keep retrying and the failure is caused by an incorrect name
+or argument, you will set your program into an endless loop. You
+can set up a counter to limit the number of retries.</p>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3422"></A><b>ExceptionSubstituteReturnValue!</b></td>
+<td  rowspan="1"  ><A NAME="TI3423"></A>Use the value specified in the ReturnValue
+argument instead of the value returned by the OLE server (if any)
+and ignore the error condition.<A NAME="TI3424"></A><p>You can set up an acceptable return value in an instance variable
+before you address the OLE server and assign it to the ReturnValue
+argument in the event script. The datatype of ReturnValue is <b>Any</b>,
+which accommodates all possible datatypes.</p><A NAME="TI3425"></A><p>With a valid substitute value, this choice is a safe one if
+you want to continue the application after the error occurs.</p></td>
+</tr>
+</table>
+<A NAME="TI3426"></A><h4>Example: ExternalException event</h4>
+<A NAME="TI3427"></A><p>The ExternalException event, like the ocx_error event,
+provides error information from the OLE server that can be useful
+when you are debugging your application.</p>
+<A NAME="TI3428"></A><p>Suppose your window has two instance variables: one for specifying
+the exception action and another of type Any for storing a potential
+substitute value. Before accessing the OLE property, a script sets
+the instance variables to appropriate values:<p><PRE> ie_action = ExceptionSubstituteReturnValue!<br>ia_substitute = 0<br>li_currentsetting = ole_1.Object.Value</PRE></p>
+<A NAME="TI3429"></A><p>If the command fails, a script for the ExternalException event
+displays the Help topic named by the OLE server, if any. It substitutes
+the return value you prepared and returns. The assignment of the
+substitute value to <i>li_currentsetting</i> works
+correctly because their datatypes are compatible:<p><PRE> string ls_context<br> <br>// Command line switch for WinHelp numeric context ID<br>ls_context = "-n " + String(helpcontext)<br>IF Len(HelpFile) &gt; 0 THEN<br>   Run("winhelp.exe " + ls_context + " " + HelpFile)<br>END IF<br> <br>Action = ExceptionSubstituteReturnValue!<br>ReturnValue = ia_substitute</PRE></p>
+<A NAME="TI3430"></A><p>Because the event script must serve for every automation command
+for the control, you would need to set the instance variables to
+appropriate values before each automation command.</p>
+<A NAME="TI3431"></A><h4>Error event</h4>
+<A NAME="TI3432"></A><p>The Error event provides information about the PowerBuilder
+context for the error. You can find out the PowerBuilder error number
+and message, as well as the object, script, and line number of the
+error. This information is useful when debugging your application.</p>
+<A NAME="TI3433"></A><p>The same principles discussed in the ExceptionAction value
+table for setting the Action and ReturnValue arguments apply to
+the Error event, as well as ExternalException.</p>
+<A NAME="TI3434"></A><p>For more information about the events for error handling,
+see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="X-REF348258892"></A><h2>Creating hot links</h2>
+<A NAME="TI3435"></A><p>Some OLE servers support property change notifications. This
+means that when a property is about to be changed and again after
+it has been changed, the server notifies the client, passing information
+about the change. These messages trigger the events PropertyRequestEdit
+and PropertyChanged.</p>
+<A NAME="TI3436"></A><h4>PropertyRequestEdit event</h4>
+<A NAME="TI3437"></A><p>When a property is about to change, PowerBuilder triggers
+the PropertyRequestEdit event. In that event's script you
+can:<A NAME="TI3438"></A>
+<ul>
+<li class=fi>Find out the name of the property
+being changed by looking at the PropertyName argument.</li>
+<li class=ds>Obtain the old property value and save it<br>
+The property still has its old value, so you can use the standard
+syntax to access the value.<br></li>
+<li class=ds>Cancel the change by changing the value of the CancelChange
+argument to <b>TRUE</b>
+</li>
+</ul>
+</p>
+<A NAME="TI3439"></A><h4>PropertyChanged event</h4>
+<A NAME="TI3440"></A><p>When a property has changed, PowerBuilder triggers the PropertyChanged event.
+In that event's script, you can:<A NAME="TI3441"></A>
+<ul>
+<li class=fi>Find out the name of the property being changed by looking
+at the PropertyName argument</li>
+<li class=ds>Obtain the new property value<br>
+The value has already changed, so you <i>cannot</i> cancel
+the change.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI3442"></A><h4>Using the PropertyName argument</h4>
+<A NAME="TI3443"></A><p>Because the PropertyName argument is a string, you <i>cannot</i> use
+it in dot notation to get the value of the property:<p><PRE> value = This.Object.PropertyName // Will not work</PRE></p>
+<A NAME="TI3444"></A><p>Instead, use <b>CHOOSE CASE</b> or <b>IF</b> statements
+for the property names that need special handling.</p>
+<A NAME="TI3445"></A><p>For example, in the PropertyChanged event, this code checks
+for three specific properties and gets their new value when they
+are the property that changed. The value is assigned to a variable
+of the appropriate datatype:<p><PRE> integer li_index, li_minvalue<br>long ll_color<br> <br>CHOOSE CASE Lower(PropertyName)<br>   CASE "value"<br>   li_index = ole_1.Object.Value<br>   CASE "minvalue"<br>   li_minvalue = ole_1.Object.MinValue<br>   CASE "backgroundcolor"<br>   ll_color = ole_1.Object.BackgroundColor<br>   CASE ELSE<br>   ... // Other processing<br>END CHOOSE</PRE></p>
+<A NAME="TI3446"></A><h4>If a larger change occurred</h4>
+<A NAME="TI3447"></A><p>In some cases the value of the PropertyName argument is an
+empty string (""). This means a more general change has occurred&#8212;for
+example, a change that affects several properties.</p>
+<A NAME="TI3448"></A><h4>If notification is not supported</h4>
+<A NAME="TI3449"></A><p>If the OLE server does not support property change notification,
+then the PropertyRequestEdit and PropertyChanged events are never
+triggered, and scripts you write for them will not run. Check your
+OLE server documentation to see if notification is supported.</p>
+<A NAME="TI3450"></A><p>If notifications are not supported and your application needs
+to know about a new property value, you might write your own function
+that checks the property periodically.</p>
+<A NAME="TI3451"></A><p>For more information about the PropertyRequestEdit
+and PropertyChanged events, see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI3452"></A><h2>Setting the language for OLE objects and controls</h2>
+<A NAME="TI3453"></A><p>When you write automation commands, you generally use commands
+that match the locale for your computer. If your locale and your
+users' locale will differ, you can specify the language
+you have used for automation with the <b>SetAutomationLocale</b> function.</p>
+<A NAME="TI3454"></A><p>You can call <b>SetAutomationLocale</b> for OLE
+controls, custom controls, and OLEObjects, and you can specify a
+different locale for each automation object in your application.</p>
+<A NAME="TI3455"></A><p>For example, if you are developing your application in Germany
+and will deploy it all over Europe, you can specify the automation
+language is German. Use this syntax for an OLE control called <b>ole_1</b>:<p><PRE> ole_1.Object.SetAutomationLocale(LanguageGerman!)</PRE></p>
+<A NAME="TI3456"></A><p>Use this syntax for an OLEObject called <b>oleobj_report</b>:<p><PRE> oleobj_report.SetAutomationlocale(LanguageGerman!)</PRE></p>
+<A NAME="TI3457"></A><p>The users of your application must have the German automation
+interface for the OLE server application.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>What languages do your users' computers support?</span> <A NAME="TI3458"></A>When your users install an OLE server application (particularly
+an OLE application from Microsoft), they get an automation interface
+in their native language and in English. It might not be appropriate
+for you to write automation commands in your native language if
+your users have a different language.</p>
+<A NAME="TI3459"></A><p>For more information, see the <b>SetAutomationLocale</b> function
+in the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI3460"></A><h2>Low-level access to the OLE object</h2>
+<A NAME="TI3461"></A><p>If you need low-level access to OLE through a C or C++ DLL
+that you call from PowerBuilder, you can use these functions:<A NAME="TI3462"></A>
+<ul>
+<li class=fi><b>GetNativePointer</b> (for
+OLEControl and OLECustomControl)</li>
+<li class=ds><b>GetAutomationNativePointer</b> (for
+OLEObject)
+</li>
+</ul>
+</p>
+<A NAME="TI3463"></A><p>When you have finished, you must use these functions to free
+the pointer:<A NAME="TI3464"></A>
+<ul>
+<li class=fi><b>ReleaseNativePointer</b> (for
+OLEControl and OLECustomControl)</li>
+<li class=ds><b>ReleaseAutomationNativePointer</b> (for
+OLEObject)
+</li>
+</ul>
+</p>
+<A NAME="TI3465"></A><p>For more information, see the <i>PowerScript
+Reference</i>
+.</p>
+<A NAME="X-REF379597475"></A><h2>OLE objects in DataWindow objects</h2>
+<A NAME="TI3466"></A><p>The preceding sections discuss the automation interface to
+OLE controls and OLE objects. You can also use scripts to change
+settings for an OLE object embedded in a DataWindow object, and
+you can address properties of the external OLE object.</p>
+<A NAME="TI3467"></A><p>This section describes how to use the Object property in dot
+notation to set DataWindow properties and issue automation commands
+for OLE objects in DataWindow objects.</p>
+<A NAME="TI3468"></A><h4>Naming the OLE object</h4>
+<A NAME="TI3469"></A><p>To use dot notation for the OLE object, give the object a
+name. You specify the name on the General page in the object's
+property sheet.</p>
+<A NAME="TI3470"></A><h4>Setting properties</h4>
+<A NAME="TI3471"></A><p>You set properties of the OLE container object just as you
+do for any object in the DataWindow object. The Object property
+of the control is an interface to the objects within the DataWindow
+object.</p>
+<A NAME="TI3472"></A><p>For example, this statement sets the Pointer property of the
+object <b>ole_word</b>:<p><PRE> dw_1.Object.ole_word.Pointer = "Cross!"</PRE></p>
+<A NAME="TI3473"></A><p>It is important to remember that the compiler does not check
+syntax after the Object property. Incorrect property references
+cause runtime errors.</p>
+<A NAME="TI3474"></A><p>For more information about setting properties,
+handling errors, and the list of properties for the OLE DWObject,
+see the <i>DataWindow Reference</i>
+.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>OLE objects and the Modify function</span> <A NAME="TI3475"></A>You cannot create an OLE object in a DataWindow object dynamically
+using the <b>CREATE</b> keyword of the <b>Modify</b> function.
+The binary data for the OLE object is not compatible with <b>Modify</b> syntax.</p>
+<A NAME="TI3476"></A><h4>Functions and properties</h4>
+<A NAME="TI3477"></A><p>There are four functions you can call for the OLE DWObject.
+They have the same effect as for the OLE control. They are:<A NAME="TI3478"></A>
+<ul>
+<li class=fi><b>Activate</b></li>
+<li class=ds><b>Copy</b></li>
+<li class=ds><b>DoVerb</b></li>
+<li class=ds><b>UpdateLinksDialog</b>
+</li>
+</ul>
+</p>
+<A NAME="TI3479"></A><p>To call the functions, you use the Object property of the
+DataWindow control, just as you do for DataWindow object properties:<p><PRE> dw_1.Object.ole_word.Activate(InPlace!)</PRE></p>
+<A NAME="TI3480"></A><p>Four properties that apply to OLE controls in a window also
+apply to the OLE DWObject.</p>
+<A NAME="TI3481"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-7: Properties that apply to OLE controls and DWObject</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3482"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI3483"></A>datatype</th>
+<th  rowspan="1"  ><A NAME="TI3484"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3485"></A>ClassLongName</td>
+<td  rowspan="1"  ><A NAME="TI3486"></A><b>String</b></td>
+<td  rowspan="1"  ><A NAME="TI3487"></A>(Read-only) The long name for the server application
+associated with the OLE DWObject.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3488"></A>ClassShortName</td>
+<td  rowspan="1"  ><A NAME="TI3489"></A><b>String</b></td>
+<td  rowspan="1"  ><A NAME="TI3490"></A>(Read-only) The short name for the server application
+associated with the OLE DWObject.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3491"></A>LinkItem</td>
+<td  rowspan="1"  ><A NAME="TI3492"></A><b>String</b></td>
+<td  rowspan="1"  ><A NAME="TI3493"></A>(Read-only) The entire link name of the
+item to which the object is linked.<A NAME="TI3494"></A><p>For example, if the object is linked to <i>C:\FILENAME.XLS!A1:B2</i>,
+then LinkItem would contain <i>C:\FILENAME.XLS!A1:B2</i>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3495"></A>ObjectData</td>
+<td  rowspan="1"  ><A NAME="TI3496"></A><b>Blob</b></td>
+<td  rowspan="1"  ><A NAME="TI3497"></A>If the object is embedded, the object
+itself is stored as a blob in the ObjectData property.<A NAME="TI3498"></A><p>If the object is linked, this property contains the link information
+and the cached image (for display).</p></td>
+</tr>
+</table>
+<A NAME="TI3499"></A><h4>Automation</h4>
+<A NAME="TI3500"></A><p>You can send commands to the OLE server using dot notation.
+The syntax involves two Object properties:<A NAME="TI3501"></A>
+<ul>
+<li class=fi><b>The Object property of the DataWindow
+control</b>   Gives you access to DataWindow objects, including the OLE
+container DWObject</li>
+<li class=ds><b>The Object property of the OLE DWObject</b>   Gives you access to the automation object
+</li>
+</ul>
+</p>
+<A NAME="TI3502"></A><p>The syntax is:<p><PRE><i>dwcontrol</i>.Object.<i>oledwobject</i>.Object.{<i> serverqualifiers</i>. }<i>serverinstruction</i></PRE></p>
+</p>
+<A NAME="TI3503"></A><p>For example, this statement uses the WordBasic Insert function
+to add a report title to the beginning of the table of data in the
+Word document:<p><PRE> dw_1.Object.ole_word.Object.application.wordbasic.&amp;<br>   Insert("Report Title " + String(Today()))</PRE></p>
+<A NAME="TI3504"></A><h3>OLE columns in an application</h3>
+<A NAME="TI3505"></A><p>OLE columns in a DataWindow object enable you to store, retrieve,
+and modify blob data in a database. To use an OLE column in an application,
+place a DataWindow control in a window and associate it with the
+DataWindow object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>For users of SQL Server</span> <A NAME="TI3506"></A>If you are using a SQL Server database, you must turn off
+transaction processing to use OLE. In the Transaction object used
+by the DataWindow control, set AutoCommit to <b>TRUE</b>.</p>
+<A NAME="TI3507"></A><p>For how to create an OLE column in a DataWindow
+object, see the <i>PowerBuilder User's Guide</i>
+.</p>
+<A NAME="TI3508"></A><h4>Activating an OLE server application</h4>
+<A NAME="TI3509"></A><p>Users can interact with the blob
+exactly as you did in preview in the DataWindow painter: they can
+double-click a blob to invoke the server application, then view
+and edit the blob. You can also use the <b>OLEActivate</b> function
+in a script to invoke the server application. Calling <b>OLEActivate</b> simulates
+double-clicking a specified blob.</p>
+<A NAME="TI3510"></A><p>The <b>OLEActivate</b> function has this syntax:<p><PRE><i>dwcontrol</i>.<b>OLEActivate</b> (<i>row</i>, <i>columnnameornumber</i>, <i>verb</i> )</PRE></p>
+</p>
+<A NAME="TI3511"></A><h4>Specifying the verb</h4>
+<A NAME="TI3512"></A><p>When using <b>OLEActivate</b>,
+you need to know the action to pass to the OLE server application.
+(Windows calls these actions verbs.) Typically, you want to edit
+the document, which for most servers means you specify 0 as the
+verb.</p>
+<A NAME="TI3513"></A><p>To obtain the verbs supported by a particular OLE server application,
+use the advanced interface of the Windows Registry Editor utility
+(run <b>REGEDT32 /V</b>).</p>
+<A NAME="TI3514"></A><p>For information about Registry Editor, see
+the Windows online Help file <i>REGEDT32.HLP</i>.</p>
+<A NAME="TI3515"></A><h4>Example</h4>
+<A NAME="TI3516"></A><p>For example, you might want to use <b>OLEActivate</b> in
+a Clicked script for a button to allow users to use OLE without
+their having to know they can double-click the blob's icon.</p>
+<A NAME="TI3517"></A><p>The following statement invokes the OLE server application
+for the OLE column in the current row of the DataWindow control <b>dw_1</b> (assuming
+that the second column in the DataWindow object is an OLE column):<p><PRE> dw_1.OLEActivate(dw_1.GetRow(), 2, 0)</PRE></p>
+<A NAME="TI3518"></A><h4>For more information</h4>
+<A NAME="TI3519"></A><p>For more information about using OLE in a DataWindow object,
+see the <i>PowerBuilder User's Guide</i>
+.</p>
+

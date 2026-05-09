@@ -1,0 +1,31 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Handling PBDOM exceptions</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp81.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp83.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CDEGGEDA"></A><h1>Handling PBDOM exceptions</h1>
+<A NAME="TI2328"></A><p>PBDOM defines an exception class, PBDOM_EXCEPTION,
+derived from the standard PowerBuilder Exception class. The standard
+Text property of the Exception class can be used to obtain more
+detail on the nature of the exception being thrown. The class extends
+the PowerBuilder Exception class with one method, <b>GetExceptionCode,</b> that
+returns the unique code that identifies the exception being thrown.</p>
+<A NAME="TI2329"></A><p>For a list of exception codes, see the <i>PowerBuilder
+Extension Reference</i>
+ or the topic PBDOM exceptions in
+the online Help.</p>
+<A NAME="TI2330"></A><p>PBDOM is a PowerBuilder extension, built using PBNI. The extension
+itself might throw a PBXRuntimeError exception. In the following
+example, the try-catch block checks first for a PBDOM exception,
+then for a PBXRuntimeError. </p>
+<A NAME="TI2331"></A><p>The example builds a PBDOM_DOCUMENT from a passed-in
+file name and uses a user-defined function called <b>ProcessData</b> to
+handle the DOM nodes. Process data could be a recursive function
+that extracts information from the DOM elements for further processing:<p><PRE> Long ll_ret<br> <br>ll_ret = XMLParseFile(filename, ValNever!)<br>if ll_ret &lt; 0 then return<br> <br>PBDOM_Builder   domBuilder<br> <br>TRY<br>   domBuilder = CREATE PBDOM_Builder<br>   PBDOM_Document domDoc<br>   PBDOM_Element   root<br>   domDoc = domBuilder.BuildFromFile( filename )<br>   IF IsValid( domDoc ) THEN<br>      IF domDoc.HasChildren() THEN<br>         PBDOM_Object data[]<br>         IF domDoc.GetContent( data ) THEN<br>            Long   ll_index, ll_count<br>            ll_count = UpperBound( data )<br>            FOR ll_index = 1 TO ll_count<br>               ProcessData( data[ll_index], 0 )<br>            NEXT<br>         END IF<br>      END IF<br>   END IF<br> <br>CATCH ( PBDOM_Exception pbde )<br>   MessageBox( "PBDOM Exception", pbde.getMessage() )<br>CATCH ( PBXRuntimeError re )<br>   MessageBox( "PBNI Exception", re.getMessage() )<br>END TRY</PRE></p>
+

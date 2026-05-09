@@ -1,0 +1,370 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using a source control system with PowerBuilder</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp24.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp26.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CBBEABED"></A><h1>Using a source control system with PowerBuilder</h1>
+<A NAME="TI793"></A><p>PowerBuilder
+provides a direct connection to external SCC-compliant source control
+systems. It no longer requires you to register PowerBuilder objects
+in a separate work <ACRONYM title = "pibble" >PBL</ACRONYM> before
+you can check them into or out of the source control system. </p>
+<A NAME="TI794"></A><p>For information on migrating PowerBuilder applications and
+objects previously checked into source control through a registered <ACRONYM title = "pibble" >PBL</ACRONYM>, see <A HREF="pbugp28.htm#CHDBFFEJ">"Migrating existing projects
+under source control"</A>.</p>
+<A NAME="TI795"></A><p>Before you can perform any source control operations from
+PowerBuilder, you must set up a source control connection profile
+for your PowerBuilder workspace, either from the System Tree or
+from the Library painter. Even if you use the PBNative check in/check
+out utility, you must access source-controlled objects through an
+SCC interface that you define in the Workspace Properties dialog
+box.</p>
+<A NAME="TI796"></A><p>The source control connection profile assigns a PowerBuilder
+workspace to a source control project. Setting up a source control
+project is usually the job of a project manager or administrator.
+See <A HREF="pbugp24.htm#CBBDIEHJ">"Project manager's tasks"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Creating a new source control project</span> <A NAME="TI797"></A>Although you can create a project in certain source control
+systems directly from PowerBuilder, it is usually best to create
+the project from the administrative tool for your source control
+system before you create the connection profile in PowerBuilder. </p>
+<A NAME="BABCGDIB"></A><h2>Setting up a connection profile</h2>
+<A NAME="TI798"></A><p>In
+PowerBuilder you can set up a source control connection profile
+at the workspace level only. Local and advanced connection options
+can be defined differently on each machine for PowerBuilder workspaces
+that contain the same targets.</p>
+<A NAME="TI799"></A><h4>Local connection options</h4>
+<A NAME="TI800"></A><p>Local connection options allow you to create a trace log to
+record all source control activity for your current workspace session.
+You can overwrite or preserve an existing log file for each session.</p>
+<A NAME="TI801"></A><p>You can also make sure a comment is included for every file
+checked into source control from your local machine. If you select
+this connection option, the OK button on the Check In dialog box
+is disabled until you type a comment for all the objects you are
+checking in.</p>
+<A NAME="TI802"></A><p>The following table lists the connection options you can use for
+each local connection profile:</p>
+<A NAME="TI803"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 3-2: Source control properties for a PowerBuilder workspace</caption>
+<tr><th  rowspan="1"  ><A NAME="TI804"></A>Select this option</th>
+<th  rowspan="1"  ><A NAME="TI805"></A>To do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI806"></A>Log All Source Management Activity (not
+selected by default)</td>
+<td  rowspan="1"  ><A NAME="TI807"></A>Enable trace logging. By default the
+log file name is <i>PBSCC105.LOG</i>, which is saved
+in your workspace directory, but you can select a different path
+and file name.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI808"></A>Append To Log File (default selection
+when logging is enabled)</td>
+<td  rowspan="1"  ><A NAME="TI809"></A>Append source control activity information to
+named log file when logging is enabled.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI810"></A>Overwrite Log File (not selected by default)</td>
+<td  rowspan="1"  ><A NAME="TI811"></A>Overwrite the named log file with source control
+activity of the current session when logging is enabled.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI812"></A>Require Comments On Check In (not selected
+by default; not available for PBNative source control)</td>
+<td  rowspan="1"  ><A NAME="TI813"></A>Disable the OK button on the Check In
+dialog box until you type a comment. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI814"></A>This Project Requires That I Sometimes
+Work Offline (not selected by default)</td>
+<td  rowspan="1"  ><A NAME="TI815"></A>Disable automatic connection to source control
+when you open the workspace.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI816"></A>Delete PowerBuilder Generated Object
+Files (not selected by default)</td>
+<td  rowspan="1"  ><A NAME="TI817"></A>Remove object files (such as SRDs) from
+the local directory after they are checked into source control.
+This may increase the time it takes for PowerBuilder to refresh
+source control status, but it minimizes the drive space used by
+temporary files. You cannot select this option for the Perforce,
+ClearCase, or Continuus source control systems.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI818"></A>Perform Diff On Status Update</td>
+<td  rowspan="1"  ><A NAME="TI819"></A>Permit display of out-of-sync icons for
+local objects that are different from objects on the source control
+server. Selecting this also increases the time it takes to refresh
+source control status.You cannot select this option for Perforce.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI820"></A>Suppress prompts to overwrite read-only
+files</td>
+<td  rowspan="1"  ><A NAME="TI821"></A>Avoid message boxes warning that read-only files
+exist on your local project directory. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI822"></A>Status Refresh Rate (5 minutes by default)</td>
+<td  rowspan="1"  ><A NAME="TI823"></A>Specifies the minimum time elapsed before PowerBuilder
+automatically requests information from the source control server
+to determine if objects are out of sync. Valid values are between
+1 and 59 minutes. Status refresh rate is ignored when you are working offline.</td>
+</tr>
+</table>
+<A NAME="TI824"></A><h4>Advanced connection options</h4>
+<A NAME="TI825"></A><p>Advanced
+connection options depend on the source control system you are using
+to store your workspace objects. Different options exist for different source
+control systems.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Applicability of advanced options</span> <A NAME="TI826"></A>Some advanced options might not be implemented or might be
+rendered inoperable by the PowerBuilder SCC API interface. For example,
+if an advanced option allows you to make local files writable after
+an Undo Check Out operation, PowerBuilder still creates read-only
+files when reverting an object to the current version in source
+control. (PowerBuilder might even delete these files if you selected
+the Delete PowerBuilder Generated Object Files option.)</p>
+<A NAME="TI827"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set up a connection profile:</p>
+<ol><li class=fi><p>Right-click the Workspace object in the
+System Tree (or in the Tree view of the Library painter) and select
+Properties from the pop-up menu.</p></li>
+<li class=ds><p>Select the Source Control tab from the Workspace
+Properties dialog box.</p></li>
+<li class=ds><p>Select the system you want to use from the Source
+Control System drop-down list.</p><p>Only source control systems that are defined in your registry (<i>HKEY_LOCAL_MACHINE\SOFTWARE\SourceCodeControlProvider\<br>InstalledSCCProviders</i>)
+appear in the drop-down list.</p></li>
+<li class=ds><p>Type in your user name for the source control
+system.</p><p>Some source control systems use a login name from your registry
+rather than the user name that you enter here. For these systems
+(such as Perforce or PVCS), you can leave this field blank.</p></li>
+<li class=ds><p>Click the ellipsis button next to the Project
+text box.</p><p>A dialog box from your source control system displays. Typically
+it allows you to select or create a source control project. </p><p>The dialog box displayed for PBNative is shown below:</p><br><img src="images/pbnat1.gif"><br>
+</li>
+<li class=ds><p>Fill in the information required by your source
+control system and click OK.</p><p>The Project field on the Source Control page of the Workspace
+Properties dialog box is typically populated with the project name
+from the source control system you selected. However, some source
+control systems (such as Perforce or Vertical Sky) do not return
+a project name. For these systems, you can leave this field blank.</p></li>
+<li class=ds><p>Type or select a path for the local root directory.</p><p>All the files that you check into and out of source control
+must reside in this path or in a subdirectory of this path. </p></li>
+<li class=ds><p>(Option) Select the options you want for your
+local workspace connection to the source control server.</p></li>
+<li class=ds><p>(Option) Click the Advanced button and make any
+changes you want to have apply to advanced options defined for your
+source control system.</p><p>The Advanced button might be grayed if you are not first connected
+to a source control server. If Advanced options are not supported
+for your source control system, you see only a splash screen for
+the system you selected and an OK button that you can click to return
+to the Workspace Properties dialog box.</p></li>
+<li class=ds><p>Click Apply or click OK.</p></li></ol>
+<br><A NAME="BABBIJBJ"></A><h2>Viewing the status of source-controlled objects</h2>
+<A NAME="TI828"></A><p>After a PowerBuilder
+workspace is assigned to a source control project through a connection
+profile, icons in the PowerBuilder System Tree display the source control
+status of all objects in the workspace. The same icons are also
+displayed for objects in the Library painter if the workspace to
+which they belong is the current workspace for PowerBuilder.</p>
+<A NAME="TI829"></A><h4>Source control icons</h4>
+<A NAME="TI830"></A><p>The icons and their meanings are described in <A HREF="pbugp25.htm#BABCIIBH">Table 3-3</A> and <A HREF="pbugp25.htm#CHDJICFH">Table 3-4</A>.</p>
+<A NAME="BABCIIBH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 3-3: Source control status icons in
+PowerBuilder</caption>
+<tr><th  rowspan="1"  ><A NAME="TI831"></A>Icon</th>
+<th  rowspan="1"  ><A NAME="TI832"></A>Source control status of
+object displaying icon</th>
+</tr>
+<tr><td  rowspan="1"  ><br><img src="images/sccicon1.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI833"></A>The object resides only locally and is
+not under source control.</td>
+</tr>
+<tr><td  rowspan="1"  ><br><img src="images/sccicon5.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI834"></A>The object is under source control and
+is not checked out by anyone. The object on the local machine is
+in sync with the object on the server unless the icon for indeterminate
+status also appears next to the same object. </td>
+</tr>
+<tr><td  rowspan="1"  ><br><img src="images/sccicon2.gif">
+<A NAME="TI835"></A> </td>
+<td  rowspan="1"  ><A NAME="TI836"></A>The object is checked out by the current
+user.</td>
+</tr>
+<tr><td  rowspan="1"  ><br><img src="images/sccicon3.gif">
+<A NAME="TI837"></A></td>
+<td  rowspan="1"  ><A NAME="TI838"></A>The object is checked out by another
+user. </td>
+</tr>
+<tr><td  rowspan="1"  ><br><img src="images/scciconq.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI839"></A>The current status of an object under
+source control has not been determined. You are likely to see this
+icon only if the Perform Diff On Status Update check box is not
+selected and if diffs are not performed for your source control
+system based on version number. This icon can appear only in conjunction
+with the icon for a registered object (green dot icon) or for an
+object checked out by another user (red x icon).</td>
+</tr>
+<tr><td  rowspan="1"  ><br><img src="images/sccicon4.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI840"></A>The object on the local machine is registered
+to source control, but is out of sync with the object on the server.
+This icon can also appear with the icon for an object checked out
+by another user. The Perform Diff On Status Update check box must
+be selected for this icon to display.</td>
+</tr>
+</table>
+<A NAME="TI841"></A><p>Compound icons with a red check mark can display only if your
+SCC provider permits multiple user checkouts. These icons are described
+in the following table:</p>
+<A NAME="CHDJICFH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 3-4: Source control status icons with
+multiple checkouts enabled</caption>
+<tr><th  rowspan="1"  ><A NAME="TI842"></A>Icon</th>
+<th  rowspan="1"  ><A NAME="TI843"></A>Source control status of object displaying
+icon</th>
+</tr>
+<tr><td  rowspan="1"  ><br><img src="images/sccico12.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI844"></A>The object is under source control and
+is checked out nonexclusively by another user. PowerBuilder allows
+a concurrent checkout by the current user.</td>
+</tr>
+<tr><td  rowspan="1"  ><br><img src="images/sccico11.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI845"></A>The object is checked out by both the
+current user and another user.</td>
+</tr>
+<tr><td  rowspan="1"  ><br><img src="images/sccico13.gif">
+</td>
+<td  rowspan="1"  ><A NAME="TI846"></A>The object is checked out nonexclusively
+by another user and the version in the current user's local
+path is out of sync.</td>
+</tr>
+</table>
+<A NAME="TI847"></A><p>For more information on allowing multiple user checkouts,
+see <A HREF="pbugp26.htm#BABDJDCH">"Checking objects out from
+source control"</A>.</p>
+<A NAME="TI848"></A><h4>Pop-up menus</h4>
+<A NAME="TI849"></A><p>Pop-up menus for each object in the workspace change dynamically
+to reflect the source control status of the object. For example,
+if the object is included in a source-controlled workspace but has
+not been registered to source control, the Add To Source Control
+menu item is visible and enabled in the object's pop-up
+menu. However, other source control menu items such as Check In
+and Show Differences are not visible until the object is added to
+source control.</p>
+<A NAME="TI850"></A><h4>Library painter Entry menu</h4>
+<A NAME="TI851"></A><p>Additional status functionality is available from the Entry
+menu of the Library painter. Depending on the source control system
+you are using, you can see the owner of an object and the name of
+the user who has the object checked out. For most source control
+systems, you can see the list of revisions, including any branch
+revisions, as well as version labels for each revision. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Library painter selections</span> <A NAME="TI852"></A>When a painter is open, menu commands apply to the current
+object or objects in the painter, not the current object in the
+System Tree. This can get confusing with the Library painter in
+particular, since Library painter views list objects only (much
+like the System Tree), and do not provide a more detailed visual interface
+for viewing current selections, as other painters do.</p>
+<A NAME="TI853"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To view the status of source-controlled objects</p>
+<ol><li class=fi><p>In a Library painter view, select the object
+(or objects) whose status you want to determine.</p></li>
+<li class=ds><p>Select Entry&gt;Source Control&gt;<i>Source
+Control Manager </i>Properties.</p><p>A dialog box from your source control system displays. Typically
+it indicates if the selected file is checked in, or the name of
+the user who has the file checked out. It should also display the
+version number of the selected object.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Displaying the version number in the Library painter</span> <A NAME="TI854"></A>You can display the version number of all files registered
+in source control directly in the Library painter. You add a Version
+Number column to the Library painter List view by making sure the
+SCC Version Number option is selected in the Options dialog box
+for the Library painter. </p>
+<A NAME="TI855"></A>For more information, see <A HREF="pbugp52.htm#BGBDFFEA">"Controlling columns that
+display in the List view"</A>.</p>
+</li></ol>
+<br><A NAME="CIHBEICE"></A><h2>Working in offline mode</h2>
+<A NAME="TI856"></A><h4>Viewing status information offline</h4>
+<A NAME="TI857"></A><p>You can work offline and still see status information from
+the last time you were connected to source control. However, you
+cannot perform any source control operations while you are offline,
+and you cannot save changes to source-controlled objects that you
+did not check out from source control before you went offline.</p>
+<A NAME="TI858"></A><p>To be able to work offline, you should select the option on
+the Source Control page of the Workspace Properties dialog box that
+indicates you sometimes work offline. If you select this option,
+a dialog box displays each time you open the workspace. The dialog
+box prompts you to select whether you want to work online or offline. </p>
+<A NAME="TI859"></A><p>For more information about setting source control options
+for your workspace, see <A HREF="pbugp25.htm#BABCGDIB">"Setting up a connection
+profile"</A>.</p>
+<A NAME="TI860"></A><h4>About the PBC file</h4>
+<A NAME="TI861"></A><p>If you opt to work offline, PowerBuilder looks for (and imports)
+a PBC file in the local root directory. The PBC file is a text file
+that contains status information from the last time a workspace
+was connected to source control. PowerBuilder creates a PBC file
+only from a workspace that is connected to source control. Status
+information is added to the PBC file from expanded object nodes
+(in the System Tree or in a Library painter view) at the time you exit
+the workspace. </p>
+<A NAME="TI862"></A><p>If a PBC file already exists for a workspace that is connected
+to source control, PowerBuilder merges status information from the
+current workspace session to status information already contained
+in the PBC file. Newer status information for an object replaces
+older status information for the same object, but older status information
+is not overwritten for objects in nodes that were not expanded during
+a subsequent workspace session.</p>
+<A NAME="TI863"></A><h4>Backing up the PBC file</h4>
+<A NAME="TI864"></A><p>You can back up the
+PBC file with current checkout and version information by selecting
+the Backup SCC Status Cache menu item from the Library painter Entry&gt;Source
+Control menu, or from the pop-up menu on the current workspace item
+in the System Tree. The Library painter menu item is only enabled
+when the current workspace file is selected. </p>
+<A NAME="TI865"></A><p>The Backup SCC Status Cache operation copies the entire contents
+of the refresh status cache to the PBC file in the local project
+path whether the status cache is dirty or valid. To assure a valid
+status cache, you can perform a Refresh Status operation on the
+entire workspace before backing up the SCC status cache.</p>
+<A NAME="TI866"></A><p>For information about refreshing the status cache, see <A HREF="pbugp26.htm#BABCDGEA">"Refreshing the status of
+objects"</A>.</p>
+<A NAME="TI867"></A><h2>Fine-tuning performance for batched source control
+requests</h2>
+<A NAME="TI868"></A><p>PowerBuilder uses
+an array of object file names that it passes to a source control
+system in each of its SCC API requests. The SCC specification does
+not mention an upper limit to the number of files that can be passed
+in each request, but the default implementation in PowerBuilder
+limits SCC server requests to batches of 25 objects. </p>
+<A NAME="TI869"></A><p>A PB.INI file setting allows you to override the 25-file limit
+on file names sent to the source control server in a batched request.
+You can make this change in the Library section of the PB.INI file
+by adding the following instruction:<p><PRE> SccMaxArraySize=<i>nn</i></PRE>where <i>nn</i> is
+the number of files you want PowerBuilder to include in its SCC API
+batch calls. Like other settings in the <i>PB.INI</i> file,
+the SccMaxArraySize parameter is not case sensitive.</p>
+<A NAME="TI870"></A><h2>Configuring Java VM initialization</h2>
+<A NAME="TI871"></A><p>When you connect to a source control system, PowerBuilder
+instantiates a Java VM by default. For certain SCC programs, such
+as Borland's StarTeam or Serena's TrackerLink,
+the Java VM instantiated by PowerBuilder conflicts with the Java
+VM instantiated by the SCC program. To prevent Java VM conflicts,
+you must add the following section and parameter setting to the PB.INI
+file:<p><PRE> [JavaVM]</PRE><PRE> CreateJavaVM=0 </PRE></p>
+<A NAME="TI872"></A><p>By adding this section and parameter setting to the PB.INI
+file, you prevent PowerBuilder from instantiating a Java VM when
+it connects to a source control system. </p>
+<A NAME="TI873"></A><h2>Files available for source control</h2>
+<A NAME="TI874"></A><p>The following schema shows a directory structure for files
+in the local PowerBuilder workspace and on the source control server.
+Directories and files in the local root path that can be copied
+to the source control server from PowerBuilder are displayed in
+bold print. Asterisks indicate a variable name for a file and italic
+print indicates a variable name for a file or folder. </p>
+<A NAME="TI875"></A><caption><b>Figure 3-1: Directory structure in local path and source control
+server</b></captionls>
+<br><img src="images/sccschm2.gif">
+<A NAME="TI876"></A><p>Typically, the source control server files are stored in a
+database but preserve the file system structure. Files in a Web
+target <i>Build</i> directory and in any deployment
+configuration directories can be regenerated automatically by building
+and deploying the files in the <i>Source</i> directory.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Temporary files in local root path</span> <A NAME="TI877"></A>When you add or check in a PowerScript object to source control, PowerBuilder
+first exports the object as a temporary file (<i>*.SR*</i>)
+to your local target directory. For some source control systems,
+you might choose to delete temporary files from the local root path.</p>
+

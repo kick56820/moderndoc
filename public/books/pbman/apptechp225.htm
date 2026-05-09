@@ -1,0 +1,118 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating an HTML page</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp224.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp226.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF363896741"></A><h1>Creating an HTML page</h1>
+<A NAME="TI6825"></A><p>After creating and building the PowerBuilder PBDs for your
+plug-in application, you need to create the HTML page that displays
+it.</p>
+<A NAME="TI6826"></A><p>You include a PowerBuilder window on a Web page with the Embed
+element. Element attributes specify the space allocated for the
+window, the name of the PBD, and the name of the child window in
+the PBD.</p>
+<A NAME="TI6827"></A><p>A sample Embed element might look like this:</p>
+<A NAME="TI6828"></A><p><p><PRE> &lt;EMBED SRC=plugin_tree.pbd WIDTH=370 HEIGHT=320<br>WINDOW=w_emp_by_dept&gt;</PRE></p>
+<A NAME="BFCCAIIH"></A><h2>Attributes of the Embed element</h2>
+<A NAME="TI6829"></A><p>The Embed element is part of the HTML specification for plug-ins.
+It defines several standard attributes, and PowerBuilder defines
+additional attributes.</p>
+<A NAME="TI6830"></A><h4>HTML attributes</h4>
+<A NAME="TI6831"></A><p>HTML attributes name the file to be downloaded to the client
+and the space reserved for the plug-in on the Web page. </p>
+<A NAME="TI6832"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-5: HTML Embed element attributes</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6833"></A>HTML attribute</th>
+<th  rowspan="1"  ><A NAME="TI6834"></A>Value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6835"></A>SRC</td>
+<td  rowspan="1"  ><A NAME="TI6836"></A>A URL identifying the object to be downloaded.<A NAME="TI6837"></A><p>When the browser processes the Embed element, it requests
+the resource from the server and finds the DLL that handles the content
+type in its Plugins directory.</p><A NAME="TI6838"></A><p>For a PowerBuilder window plug-in, the object is a PBD containing
+the child window that starts the application.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6839"></A>WIDTH</td>
+<td  rowspan="1"  ><A NAME="TI6840"></A>The width of the viewing window in pixels.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6841"></A>HEIGHT</td>
+<td  rowspan="1"  ><A NAME="TI6842"></A>The height of the viewing window in pixels.</td>
+</tr>
+</table>
+<A NAME="TI6843"></A><p>The WIDTH and HEIGHT attributes define the maximum width and
+height of the child window. If the child window is resizable, the
+user can make it smaller than the specified size, but not larger.</p>
+<A NAME="TI6844"></A><h4>PowerBuilder attributes</h4>
+<A NAME="TI6845"></A><p>The PowerBuilder attributes for the Embed element let you
+identify the window object that starts your application, additional
+libraries, parameters to pass to the application, and the name of
+your Application object. </p>
+<A NAME="TI6846"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-6: PowerBuilder Embed element attributes</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6847"></A>PowerBuilder attribute</th>
+<th  rowspan="1"  ><A NAME="TI6848"></A>Value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6849"></A>WINDOW</td>
+<td  rowspan="1"  ><A NAME="TI6850"></A>The class name of the child window in
+the PBD.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6851"></A>LIBRARY <br>(optional)</td>
+<td  rowspan="1"  ><A NAME="TI6852"></A>A URL specifying an additional PBD that
+contains objects that your application needs. You must specify the <i>full
+URL </i>for the PBD, rather than a relative one.<A NAME="TI6853"></A><p>You can specify more than one LIBRARY attribute. Specify a
+LIBRARY attribute for each additional PBD your application needs.
+Do not specify a LIBRARY attribute for the file specified for SRC.</p><A NAME="TI6854"></A><p>For an example of HTML code that uses the
+LIBRARY attribute, see <A HREF="apptechp225.htm#X-REF379010276">"Embed element with
+additional attributes"</A>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6855"></A>COMMANDPARM <br>(optional)</td>
+<td  rowspan="1"  ><A NAME="TI6856"></A>A string that you want to pass to your
+window. To access this string from within your window, call the CommandParm
+function.<A NAME="TI6857"></A><p>For an example of HTML code that uses the COMMANDPARM
+attribute, see <A HREF="apptechp225.htm#X-REF379010276">"Embed element with
+additional attributes"</A>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6858"></A>APPLICATION <br>(optional)</td>
+<td  rowspan="1"  ><A NAME="TI6859"></A>The name of the Application object in
+the PBD.<A NAME="TI6860"></A><p>This gives your plug-in application access to the Application
+object's Open and Close events, as well as to global variables
+and global functions used in the application.</p><A NAME="TI6861"></A><p>When you use the APPLICATION attribute, the Application object's
+Open and Close events execute by default, and cannot be overridden.
+Make sure the Application object's Open event does <i>not</i> open
+the child window specified by the WINDOW attribute. If it does,
+your application will fail.</p><A NAME="TI6862"></A><p>For an example of HTML code that uses the APPLICATION
+attribute, see <A HREF="apptechp225.htm#X-REF379010276">"Embed element with
+additional attributes"</A>.</p></td>
+</tr>
+</table>
+<A NAME="TI6863"></A><h2>Sample page</h2>
+<A NAME="TI6864"></A><p>Here is HTML code that includes the PowerBuilder window plug-in
+showing a window with master and detail DataWindow controls. Note
+the use of the Embed element to specify the PowerBuilder window
+plug-in.</p>
+<A NAME="TI6865"></A><h4>Opening element</h4>
+<A NAME="TI6866"></A><p><p><PRE> &lt;HTML&gt;</PRE></p>
+<A NAME="TI6867"></A><h4>Document head</h4>
+<A NAME="TI6868"></A><p><p><PRE> &lt;HEAD&gt;<br>&lt;TITLE&gt;Master-Detail window&lt;/TITLE&gt;<br>&lt;/HEAD&gt;<br>&lt;BODY&gt;</PRE></p>
+<A NAME="TI6869"></A><h4>A small image</h4>
+<A NAME="TI6870"></A><p><p><PRE> &lt;IMG SRC="undercon.gif" BORDER=0 HEIGHT=38 WIDTH=40&gt;</PRE></p>
+<A NAME="TI6871"></A><h4>H1 heading</h4>
+<A NAME="TI6872"></A><p><p><PRE> &lt;H1&gt;Master-detail in a PB window plug-in&lt;/H1&gt;</PRE></p>
+<A NAME="TI6873"></A><h4>Horizontal rule</h4>
+<A NAME="TI6874"></A><p><p><PRE> &lt;P&gt;&lt;HR&gt;&lt;/P&gt;</PRE></p>
+<A NAME="TI6875"></A><h4>Paragraph</h4>
+<A NAME="TI6876"></A><p><p><PRE> &lt;P&gt;This window accesses the PB demo database to display a list of departments. When the user clicks a department row, the second DataWindow displays the employees in that department.&lt;/P&gt;</PRE></p>
+<A NAME="TI6877"></A><h4>Embed element in a paragraph</h4>
+<A NAME="TI6878"></A><p><p><PRE> &lt;P&gt;&lt;EMBED SRC=plugin_tree.pbd WIDTH=370 HEIGHT=320 WINDOW=w_emp_by_dept&gt;<br>&lt;/P&gt;</PRE></p>
+<A NAME="TI6879"></A><h4>Link to site's home page</h4>
+<A NAME="TI6880"></A><p><p><PRE> &lt;LI&gt;Back to &lt;A HREF="http://www.mycompany.com/index.html"&gt;Home Page&lt;/A&gt; &lt;/LI&gt;</PRE></p>
+<A NAME="TI6881"></A><h4>Closing elements</h4>
+<A NAME="TI6882"></A><p><p><PRE> &lt;/BODY&gt;<br>&lt;/HTML&gt;</PRE></p>
+<A NAME="X-REF379010276"></A><h2>Embed element with additional attributes</h2>
+<A NAME="TI6883"></A><p>If your plug-in application uses additional libraries, a COMMANDPARM string,
+and the APPLICATION attribute to provide access to the PBD's Application
+object, the Embed element might look like this:<p><PRE> &lt;EMBED SRC=plugin_tree.pbd WIDTH=370 HEIGHT=320<br>WINDOW=w_emp_by_dept<br>LIBRARY=http://www.mycompany.com/pb/extra1.pbd<br>LIBRARY=http://www.mycompany.com/pb/extra2.pbd<br>COMMANDPARM="Eastern region"<br>APPLICATION=plugin_tree&gt;</PRE></p>
+

@@ -1,0 +1,101 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using drop-down lists</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp53.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp55.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF354819204"></A><h1>Using drop-down lists</h1>
+<A NAME="TI1275"></A><p>Drop-down lists are
+another way to present simple lists of information to the user.
+You can present your lists with just text (in a DropDownListBox)
+or with text and pictures (in a DropDownPictureListBox). You add
+DropDownListBox and DropDownPictureListBox controls to windows in
+the same way you add other controls: select DropDownListBox or DropDownPictureListBox
+from the Insert&gt;Control menu and click the window.</p>
+<A NAME="TI1276"></A><h4>Adding items to drop-down list controls</h4>
+<p><b>In the painter</b>   Use the Items property page for the control to add items.</p>
+<A NAME="TI1277"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add items to a DropDownListBox or DropDownPictureListBox:</p>
+<ol><li class=fi><p>Select the Items tab in the Properties
+view for the control.</p></li>
+<li class=ds><p>Enter the name of the items for the ListBox. For
+a PictureListBox, also enter a picture index number to associate
+the item with a picture.</p><p>For how to add pictures to a DropDownPictureListBox,
+see <A HREF="apptechp54.htm#CAIBIDJC">"Adding pictures to DropDownPicture<br>ListBox
+controls"</A>.</p></li></ol>
+<br><p><b>In a script</b>   Use the <b>AddItem</b> and <b>InsertItem</b> functions
+to dynamically add items to a DropDownListBox or DropDownPictureListBox
+at runtime. </p>
+<A NAME="TI1278"></A><p><b>AddItem</b> adds items to the end of the list.
+However, if the list is sorted, the item will then be moved to its
+position in the sort order. Use <b>InsertItem</b> if
+you want to specify where in the list the item will be inserted.</p>
+<A NAME="TI1279"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 9-2: Using the InsertItem and AddItem functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1280"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI1281"></A>You supply</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1282"></A><b>InsertItem</b></td>
+<td  rowspan="1"  ><A NAME="TI1283"></A><A NAME="TI1284"></A>
+<ul>
+<li class=fi>Item
+name</li>
+<li class=ds>Picture index (for a DropDownPictureListBox)</li>
+<li class=ds>Position in which the item will be inserted
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1285"></A><b>AddItem</b></td>
+<td  rowspan="1"  ><A NAME="TI1286"></A><A NAME="TI1287"></A>
+<ul>
+<li class=fi>Item
+name</li>
+<li class=ds>Picture index (for a DropDownPictureListBox)
+</li>
+</ul>
+</td>
+</tr>
+</table>
+<A NAME="TI1288"></A><p>This example inserts three items into a DropDownPictureListBox
+in the first, second, and third positions:</p>
+<A NAME="TI1289"></A><p><p><PRE> This.InsertItem ("Atropos", 2, 1)<br>This.InsertItem ("Clotho", 2, 2)<br>This.InsertItem ("Lachesis", 2, 3)</PRE></p>
+<A NAME="TI1290"></A><p>This example adds two items to a DropDownPictureListBox:<p><PRE> this.AddItem ("Plasma", 2)<br>this.AddItem ("Platelet", 2)</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the Sort property</span> <A NAME="TI1291"></A>You can set the control's sort property to <b>TRUE</b> to
+ensure that the items in the list are always arranged in ascending
+sort order.</p>
+<A NAME="CAIBIDJC"></A><h4>Adding pictures to DropDownPicture<br>ListBox
+controls</h4>
+<p><b>In the painter</b>   Use the Pictures and Items property pages for the control
+to add pictures.</p>
+<A NAME="TI1292"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add pictures to a DropDownPictureListBox:</p>
+<ol><li class=fi><p>Select the Pictures tab in the Properties
+view for the control.</p></li>
+<li class=ds><p>Select an image from the stock image list, or
+use the Browse button to select a bitmap, cursor, or icon image.</p></li>
+<li class=ds><p>Select a color from the PictureMaskColor drop-down
+menu for the image.</p><p>The color selected for the picture mask will appear transparent
+in the DropDownPictureListBox.</p></li>
+<li class=ds><p>Select a picture height and width for your image.</p><p>This will control the size of the image in the DropDownPictureListBox.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Dynamically changing image size</span> <A NAME="TI1293"></A>The image size can be changed at runtime by setting the PictureHeight
+and PictureWidth properties before you add any pictures when you
+create a DropDownPictureListBox. For more information about PictureHeight
+and PictureWidth, see the <i>PowerScript Reference.</i>
+</p>
+</li>
+<li class=ds><p>Repeat the procedure for the number of images
+you plan to use in your DropDownPictureListBox.</p></li>
+<li class=ds><p>Select the Items tab and change the Picture Index
+for each item to the appropriate number.</p></li></ol>
+<br><p><b>In a script</b>   Use the <b>AddPicture</b> function to dynamically
+add pictures to a PictureListBox at runtime. For instance, this
+example adds two <i>BMP</i> files to the PictureListBox:</p>
+<A NAME="TI1294"></A><p><p><PRE> This.AddPicture ("c:\images\justify.bmp")<br>This.AddPicture ("c:\images\center.bmp")</PRE></p>
+<A NAME="TI1295"></A><h4>Deleting pictures from DropDownPicture<br>ListBox
+controls</h4>
+<A NAME="TI1296"></A><p>For instructions on deleting pictures from DropDownPictureListBox
+controls, see <A HREF="apptechp53.htm#CAIDAEDD">"Deleting pictures from picture
+list controls"</A>.</p>
+

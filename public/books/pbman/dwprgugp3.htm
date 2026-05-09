@@ -1,0 +1,212 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About DataWindow objects, controls, and components</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp2.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp4.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDBCGGF"></A><h1>About DataWindow objects, controls, and components</h1>
+<A NAME="TI42"></A><p>DataWindow technology is implemented in two parts:<A NAME="TI43"></A>
+<ul>
+<li class=fi><b>A DataWindow object</b>   The DataWindow object defines the data source and presentation
+style for the data. </li>
+<li class=ds><b>A DataWindow control or component</b>   The control or component is a container for the DataWindow
+object in the application. You write code that calls methods of
+the container to manipulate the DataWindow object.
+</li>
+</ul>
+</p>
+<A NAME="TI44"></A><h4>DataWindow controls and components</h4>
+<A NAME="TI45"></A><p>The DataWindow was originally invented for use in PowerBuilder
+to provide powerful data retrieval, manipulation, and update capabilities
+for client/server applications. Now the DataWindow is available
+in several environments:<A NAME="TI46"></A>
+<ul>
+<li class=fi><b>PowerBuilder
+DataWindow</b>   A PowerBuilder control for use in client/server and
+distributed PowerBuilder applications.</li>
+<li class=ds><b>Web DataWindow</b>   A thin-client DataWindow implementation for Web applications
+that provides most of the data manipulation, presentation, and scripting
+capabilities of the PowerBuilder DataWindow, requiring the Web DataWindow
+component on a component server but no PowerBuilder DLLs on the
+client. The Web DataWindow can be implemented in three ways:<A NAME="TI47"></A>
+<ul>
+<li class=fi><b>XML Web DataWindow</b>   Separate XML (content), XSLT (layout), and CSS (style) with
+a subsequent transformation to XHTML</li>
+<li class=ds><b>XHTML Web DataWindow</b>   XHTML</li>
+<li class=ds><b>HTML Web DataWindow</b>   HTML
+</li>
+</ul>
+</li>
+<li class=ds><b>Web DataWindow DTC</b>   A design-time control used to represent the Web DataWindow
+on a development machine. The DTC is an ActiveX control that generates
+a set of instructions for the DataWindow component on a component
+server. The component generates a Web DataWindow for display in
+a client browser. The client browser does not need to support ActiveX
+controls to display the Web DataWindow.</li>
+<li class=ds><b>Sybase DataWindow Web control for ActiveX</b>   An ActiveX control for use on Web pages. The client browser
+must support ActiveX controls to display a DataWindow object used
+by this control.</li>
+<li class=ds><b>DataWindow plug-in</b>   A browser plug-in that displays Powersoft reports.
+</li>
+</ul>
+</p>
+<A NAME="TI48"></A><p>For a comparison of each of these environments, see <A HREF="dwprgugp4.htm#CHDBACBI">"Choosing a DataWindow technology"</A>.</p>
+<A NAME="TI49"></A><p>You can also use DataStore objects as containers for a DataWindow
+object. DataStores provide DataWindow functionality for retrieving
+and manipulating data without the on-screen display. Uses for DataStores
+include specifying layouts for printing and managing data in the
+server component of a distributed application. </p>
+<A NAME="TI50"></A><h4>What DataWindow objects are</h4>
+<A NAME="TI51"></A><p>A DataWindow object is an object that you use to retrieve,
+present, and manipulate data from a relational database or other
+data source (such as an Excel worksheet or dBASE file). You can
+specify whether the DataWindow object supports updating of data.</p>
+<A NAME="TI52"></A><p>DataWindow objects have knowledge about the data they are
+retrieving. You can specify display formats, presentation styles,
+and other data properties to make the data meaningful to users.</p>
+<A NAME="TI53"></A><p>In the DataWindow painter, you can also make Powersoft report
+(PSR) files, which you can use in DataWindow controls or components.
+A PSR file contains a report definition&#8212;essentially a nonupdatable
+DataWindow object&#8212;as well as the data contained in the
+report when the PSR file was created. It does not retrieve data.</p>
+<A NAME="TI54"></A><h4>Where to define DataWindow objects</h4>
+<A NAME="TI55"></A><p>You define DataWindow objects in the PowerBuilder DataWindow
+painter. You
+can also define nonupdatable DataWindow objects in the InfoMaker Report
+painter.</p>
+<A NAME="TI56"></A><h2>Presentation styles and data sources</h2>
+<A NAME="TI57"></A><p>When you define a DataWindow object, you choose a presentation
+style and a data source.</p>
+<A NAME="TI58"></A><h4>Presentation styles</h4>
+<A NAME="TI59"></A><p>A presentation style defines a typical style of report and
+handles how rows are grouped on the page. You can customize the
+way the data is displayed in each presentation style. The presentation
+styles include:</p>
+<A NAME="TI60"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 1-1: DataWindow presentation styles</caption>
+<tr><th  rowspan="1"  ><A NAME="TI61"></A>Presentation
+style</th>
+<th  rowspan="1"  ><A NAME="TI62"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI63"></A>Tabular</td>
+<td  rowspan="1"  ><A NAME="TI64"></A>Data columns across the page and headers
+above each column. Several rows are viewable at once.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI65"></A>Freeform</td>
+<td  rowspan="1"  ><A NAME="TI66"></A>Data columns going down the page with
+labels next to each column. One row displayed at a time.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI67"></A>Grid</td>
+<td  rowspan="1"  ><A NAME="TI68"></A>Row-and-column format like a spreadsheet
+with grid lines. Users can move borders and columns.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI69"></A>Label</td>
+<td  rowspan="1"  ><A NAME="TI70"></A>Several labels per page with one row
+for each label. Used for mailing and other labels.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI71"></A>N-Up</td>
+<td  rowspan="1"  ><A NAME="TI72"></A>Two or more rows of data next to each
+other across the page. Useful for periodic data, such as data for
+each day of the week or each month in the quarter.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI73"></A>Group</td>
+<td  rowspan="1"  ><A NAME="TI74"></A>A tabular style with rows grouped under
+headings. Each group can have summary fields with computed statistics.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI75"></A>TreeView</td>
+<td  rowspan="1"  ><A NAME="TI76"></A>A tabular style that groups data hierarchically
+and displays the data in a way that is collapsible and expandable.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI77"></A>Composite</td>
+<td  rowspan="1"  ><A NAME="TI78"></A>Several DataWindow objects grouped into
+a single presentation. Not supported by the Web DataWindow.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI79"></A>Graph</td>
+<td  rowspan="1"  ><A NAME="TI80"></A>Graphical presentation of data. Not supported
+by the Web DataWindow.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI81"></A>Crosstab</td>
+<td  rowspan="1"  ><A NAME="TI82"></A>Data summary in a row-and-column format.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI83"></A>RichText</td>
+<td  rowspan="1"  ><A NAME="TI84"></A>Paragraphs of text with embedded data
+columns. Not supported by the Web DataWindow or the Sybase DataWindow
+Web control for ActiveX.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI85"></A>OLE</td>
+<td  rowspan="1"  ><A NAME="TI86"></A>An OLE object linked or embedded in the
+DataWindow and associated with the retrieved data. Not supported
+by Web DataWindow.</td>
+</tr>
+</table>
+<A NAME="TI87"></A><p>For examples of the presentation styles, see the <i>PowerBuilder
+User's Guide</i>
+.</p>
+<A NAME="TI88"></A><h4>Data sources</h4>
+<A NAME="TI89"></A><p>The data source specifies
+where the data in the DataWindow comes from and what data items
+are displayed. Data can come from tables in a database, or you can
+import data from a file or specify the data in code. For databases,
+the data specification is saved in a <ACRONYM title = "sequel" >SQL</ACRONYM> statement.
+In all cases, the DataWindow object saves the names of the data
+items to display, as well as their datatypes.</p>
+<A NAME="TI90"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 1-2: Data sources you can use for a DataWindow</caption>
+<tr><th  rowspan="1"  ><A NAME="TI91"></A>Data source</th>
+<th  rowspan="1"  ><A NAME="TI92"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI93"></A>Quick Select</td>
+<td  rowspan="1"  ><A NAME="TI94"></A>The data is coming from one or more tables
+in a<ACRONYM title = "sequel" > SQL</ACRONYM> database. The tables
+must be related through a foreign key. You need to choose only columns,
+selection criteria, and sorting.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI95"></A><ACRONYM title = "sequel" >SQL</ACRONYM> Select</td>
+<td  rowspan="1"  ><A NAME="TI96"></A>You want more control over the select
+statement that is generated for the data source. You can specify
+grouping, computed columns, and so on.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI97"></A>Query</td>
+<td  rowspan="1"  ><A NAME="TI98"></A>The data has already been selected and
+the <ACRONYM title = "sequel" >SQL</ACRONYM> statement is saved in
+a query object that you have defined in the Query painter. When
+you define the DataWindow object, the query object is incorporated
+into the DataWindow and does not need to be present when you run
+the application.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI99"></A>Stored Procedure</td>
+<td  rowspan="1"  ><A NAME="TI100"></A>The data is defined in a database stored
+procedure.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI101"></A>External</td>
+<td  rowspan="1"  ><A NAME="TI102"></A>The data is not stored in a database,
+but is imported from a file (such as a tab-separated or dBASE file)
+or populated from code.</td>
+</tr>
+</table>
+<A NAME="TI103"></A><h2>Basic process</h2>
+<A NAME="TI104"></A><p>Using a DataWindow involves two main steps:<A NAME="TI105"></A>
+<ol>
+</li>
+<li class=ds>Use the DataWindow painter to create or edit a DataWindow
+object.<br>
+In the painter, you define the data source, presentation style,
+and all other properties of the object, such as display formats,
+validation rules, sorting and filtering criteria, and graphs.<br></li>
+<li class=ds>In your development environment, put a DataWindow
+control in a window, visual user object, or form or a DataWindow
+container in a Web page and associate a DataWindow object with the
+control or container.<br>
+It is through the control or container that your application
+communicates with the DataWindow object you created in the DataWindow
+painter. You write code to manipulate the DataWindow control or
+container and the DataWindow object it contains. Typically, your
+code retrieves and updates data, changes the appearance of the data,
+handles errors, and shares data between DataWindow controls.<br>
+</li>
+</ol>
+</p>
+

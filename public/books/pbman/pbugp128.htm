@@ -1,0 +1,105 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using inheritance to build user objects </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp127.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp129.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF351802496"></A><h1>Using inheritance to build user objects </h1>
+<A NAME="TI3831"></A><p>When you build a user object that inherits its definition
+(properties, events, functions, structures, variables, controls,
+and scripts) from an existing user object, you save coding time.
+All you must do is modify the inherited definition to meet the requirements
+of the current application.</p>
+<A NAME="TI3832"></A><p>For example, suppose your application has a user object <b>u_file_view</b> that
+has three CommandButtons:<A NAME="TI3833"></A>
+<ul>
+<li class=fi>List&#8212;displays
+a list of files in a list</li>
+<li class=ds>Open&#8212;opens the selected file and displays
+the file in a MultiLineEdit control</li>
+<li class=ds>Close&#8212;displays a message box and then closes
+the window
+</li>
+</ul>
+</p>
+<A NAME="TI3834"></A><p>If you want to build another user object that is exactly like
+the existing <b>u_file_view</b> except
+that it has a fourth CommandButton, you can use inheritance to build
+the new user object, and then all you need to do is add the fourth CommandButton.</p>
+<A NAME="TI3835"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use inheritance to build a descendent user
+object:</p>
+<ol><li class=fi><p>Click the Inherit button in the PowerBar,
+or select File&gt;Inherit from the menu bar.</p></li>
+<li class=ds><p>In the Inherit From Object dialog box, select
+User Objects from the Objects of Type drop-down list. </p></li>
+<li class=ds><p>Select the target as well as the library or libraries
+you want to look in.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Displaying user objects from many libraries</span> <A NAME="TI3836"></A>To find a user object more easily, you can select more than
+one library in the Libraries list. Use Ctrl+Click to toggle
+selected libraries and Shift+Click to select a range.</p>
+</li>
+<li class=ds><p>Select the user object you want to use to create
+the descendant, and click OK.</p><p>The
+selected object displays in the User Object painter and the title
+bar indicates that the object is a descendant.</p></li>
+<li class=ds><p>Make any changes you want to the user object.</p></li>
+<li class=ds><p>Save the user object with a new name.</p></li></ol>
+<br><A NAME="TI3837"></A><h2>Using the inherited information</h2>
+<A NAME="TI3838"></A><p>When you build and save a user object, PowerBuilder treats
+the object as a unit that includes:<A NAME="TI3839"></A>
+<ul>
+<li class=fi>The object (and any controls within the object if it is a
+custom visual user object)</li>
+<li class=ds>The object's properties, events, and scripts</li>
+<li class=ds>Any variables, functions, or structures declared
+for the object
+</li>
+</ul>
+</p>
+<A NAME="TI3840"></A><p>When you use inheritance to build a new user object, everything
+in the ancestor user object is inherited in the direct descendant
+and in its descendants in turn.</p>
+<A NAME="TI3841"></A><h4>Ancestor's instance variables display</h4>
+<A NAME="TI3842"></A><p>If
+you create a user object by inheriting it from a custom class or
+standard class user object that has public or protected instance
+variables with simple datatypes, the instance variables display
+and can be modified in the descendent user object's Properties
+view.</p>
+<A NAME="TI3843"></A><p>All public instance variables with simple datatypes such as <b>integer</b>, <b>boolean</b>, <b>character</b>, <b>date</b>, <b>string</b>,
+and so on display in the descendant. Instance variables with the <b>any </b>or <b>blob </b>datatype
+or instance variables that are objects or arrays do not display.</p>
+<A NAME="TI3844"></A><h4>What you can do in the descendant</h4>
+<A NAME="TI3845"></A><p>You can do the following in a descendent user object: <A NAME="TI3846"></A>
+<ul>
+<li class=fi>Change the values of the properties and the variables</li>
+<li class=ds>Build scripts for events that do not have scripts
+in the ancestor</li>
+<li class=ds>Extend or override the inherited scripts</li>
+<li class=ds>Add controls (in custom visual user objects)</li>
+<li class=ds>Reference the ancestor's functions and
+events</li>
+<li class=ds>Reference the ancestor's structures if
+the ancestor contains a public or protected instance variable of
+the structure datatype</li>
+<li class=ds>Access ancestor properties, such as instance variables,
+if the scope of the property is public or protected</li>
+<li class=ds>Declare variables, events, functions, and structures
+for the descendant
+</li>
+</ul>
+</p>
+<A NAME="TI3847"></A><h4>What you cannot do in the descendant</h4>
+<A NAME="TI3848"></A><p>In a descendent user object, you cannot delete controls inherited
+from a custom visual user object. If you do not need a control in
+a descendent user object, you can make it invisible.</p>
+<A NAME="TI3849"></A><h4>Understanding inheritance</h4>
+<A NAME="TI3850"></A><p>The issues concerning inheritance with user objects are the
+same as the issues concerning inheritance with windows and menus.
+See <A HREF="pbugp108.htm#CAIDCJFG">Chapter 13, "Understanding Inheritance ,"</A> for
+more information.</p>
+

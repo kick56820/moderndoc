@@ -1,0 +1,128 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Working with display formats</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp190.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp192.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BHAGJGBH"></A><h1>Working with display formats</h1>
+<A NAME="TI6074"></A><p>You work with display formats in the Database painter and the DataWindow painter.</p>
+<A NAME="TI6075"></A><h4>What you do in the Database painter</h4>
+<A NAME="TI6076"></A><p>In the Database painter, you can:<A NAME="TI6077"></A>
+<ul>
+<li class=fi>Create, modify, and delete named display formats<br>
+The named display formats are stored in the extended attribute
+system tables. When you have defined a display format, it can be
+used by any column of the appropriate datatype in the database.<br></li>
+<li class=ds>Assign display formats to columns and remove them
+from columns<br>
+These formats are used by default when you place the column
+in a DataWindow object in the DataWindow painter.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI6078"></A><h4>What you do in the DataWindow painter</h4>
+<A NAME="TI6079"></A><p>In the DataWindow painter, you can:<A NAME="TI6080"></A>
+<ul>
+<li class=fi>Accept the default display format assigned to a column in
+the Database painter</li>
+<li class=ds>Override the default display format with another
+named format stored in the extended attribute system tables</li>
+<li class=ds>Create an ad hoc, unnamed format to use with one
+specific column
+</li>
+</ul>
+</p>
+<A NAME="TI6081"></A><h4>Display formats and the extended attribute system
+tables</h4>
+<A NAME="TI6082"></A><p>When you have placed a column in a DataWindow object and have given
+it a display format (either the default format from the assignment
+made in the Database painter for the column or a format assigned in the DataWindow painter),
+there is no longer any link to the named format in the extended attribute
+system tables.</p>
+<A NAME="TI6083"></A><p>If the definition of the display format later changes in the
+extended attribute system tables, the format for the column in a DataWindow object does
+not change. If you want to use the modified format, you can reapply
+it to the column in the DataWindow painter.</p>
+<A NAME="X-REF376851941"></A><h2>Working with display formats in the Database painter</h2>
+<A NAME="TI6084"></A><p>Typically, you define display formats and associate them with
+columns in the Database painter, because display formats are properties
+of the data itself. Once you have associated a display format with
+a column in the Database painter, it is used by default each time the
+column is placed in a DataWindow object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Edit style takes precedence</span> <A NAME="TI6085"></A>If a column has an associated edit style, the edit style takes
+precedence over a display format unless you use an EditMask edit
+style and check the Use Format box on the Format property page.</p>
+<A NAME="TI6086"></A>For more information, see <A HREF="pbugp193.htm#BFCBBIBJ">"About edit styles "</A>.</p>
+<A NAME="TI6087"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new display format:</p>
+<ol><li class=fi><p>In the Database painter, select Object&gt;Insert&gt;Display
+Format from the menu bar.</p><p>The Display Format view displays.</p></li>
+<li class=ds><p>Name the display format and specify a datatype.</p></li>
+<li class=ds><p>Define the display format using masks.</p><p>For information, see <A HREF="pbugp192.htm#BFCCJFHF">"Defining display formats"</A>.</p></li></ol>
+<br><A NAME="TI6088"></A><p>You can use this display format with any column of the appropriate
+datatype in the database.</p>
+<A NAME="TI6089"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify an existing display format:</p>
+<ol><li class=fi><p>In the Database painter, open the Extended Attributes
+view.</p></li>
+<li class=ds><p>In the Extended Attributes view, open the list
+of display formats.</p></li>
+<li class=ds><p>Position the pointer on the display format you
+want to modify, display the pop-up menu, and select Properties.</p></li>
+<li class=ds><p>In the Display Format view, modify the display
+format as desired.</p><p>For information, see <A HREF="pbugp192.htm#BFCCJFHF">"Defining display formats"</A>.</p></li></ol>
+<br><A NAME="TI6090"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To associate a display format with a column in
+the Database painter:</p>
+<ol><li class=fi><p>In the Database painter Objects view, position
+the pointer on the column, select Properties from the pop-up menu,
+and select the Display tab in the Properties view.</p></li>
+<li class=ds><p>Select a format from the list in the Display Format
+box.</p><p>The column now has the selected format associated with it
+in the extended attribute system tables.</p></li></ol>
+<br><A NAME="TI6091"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To remove a display format from a column in the Database painter:</p>
+<ol><li class=fi><p>In the Database painter Objects view, position
+the pointer on the column, select Properties from the pop-up menu,
+and select the Display tab in the Properties view.</p></li>
+<li class=ds><p>Select (None) from the list in the Display Format
+box.</p><p>The display format is no longer associated with the column.</p></li></ol>
+<br><A NAME="TI6092"></A><h2>Working with display formats in the DataWindow painter</h2>
+<A NAME="TI6093"></A><p>Display formats you assign to a column in the Database painter are
+used by default when you place the column in a DataWindow object. You can
+override the default format in the DataWindow painter by choosing another
+format from the extended attribute system tables or defining an
+ad hoc format for one specific column.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About computed fields</span> <A NAME="TI6094"></A>You can assign display formats to computed fields using the
+same techniques as for columns in a table.</p>
+<A NAME="TI6095"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a display format for a column in the DataWindow painter:</p>
+<ol><li class=fi><p>In the DataWindow painter, move the pointer to
+the column, select Properties from the column's pop-up
+menu, and then select the Format tab.</p><p>Information appropriate to the datatype of the selected column
+displays. The currently used format displays in the Format box.
+All formats for the datatype defined in the extended attribute system
+tables are listed in the pop-up list (displayed by clicking the
+button).</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI6096"></A>
+<ul>
+<li class=fi>Delete the display format.</li>
+<li class=ds>Select a format in the extended attribute system
+tables from the pop-up list.</li>
+<li class=ds>Create a format for the column by typing it in the
+Format box. For more information, see <A HREF="pbugp192.htm#BFCCJFHF">"Defining display formats"</A>.
+</li>
+</ul>
+
+                      </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Format not saved in the extended attribute system tables</span> <A NAME="TI6097"></A>If you create a format here, it is used only for the current
+column and is not saved in the extended attribute system tables.</p>
+</li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Shortcuts</span> <A NAME="TI6098"></A>To assign the Currency or Percent display format to a numeric
+column in a report, select the column, then click the Currency or
+Percent button in the PainterBar or select Format&gt;Currency
+or Format&gt;Percent from the menu bar.</p>
+<A NAME="TI6099"></A><h4>Customizing the toolbar</h4>
+<A NAME="TI6100"></A><p>You can add buttons to the PainterBar that assign a specified
+display format to selected columns in reports.</p>
+<A NAME="TI6101"></A><p>For more information, see <A HREF="pbugp18.htm#X-REF342453953">"Customizing toolbars"</A>.</p>
+

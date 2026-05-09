@@ -1,0 +1,336 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Working with objects</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp45.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp47.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDBJABB"></A><h1>Working with objects</h1>
+<A NAME="TI1380"></A><p>In PowerScript targets, you can:<A NAME="TI1381"></A>
+<ul>
+<li class=fi>Create
+new objects</li>
+<li class=ds>Create new objects using inheritance</li>
+<li class=ds>Open existing objects</li>
+<li class=ds>Run or preview objects
+</li>
+</ul>
+</p>
+<A NAME="TI1382"></A><p>After you create or open an object, the object displays in
+its painter and you work on it there.</p>
+<A NAME="CAIDADCD"></A><h2>Creating new objects</h2>
+<A NAME="TI1383"></A><p>To create new
+objects, you use the New dialog box.</p>
+<A NAME="TI1384"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new object:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI1385"></A>
+<ul>
+<li class=fi>Click
+the New button in the PowerBar.</li>
+<li class=ds>Select File&gt;New from the menu bar.</li>
+<li class=ds>On the Workspace tab of the System Tree, right-click
+on a workspace or target name and select New from the pop-up menu.
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>In the New dialog box, select the appropriate
+tab page for the object you want to create.</p><p>You use icons on the PB Object tab page for creating new user
+objects, windows, menus, structures, and functions.</p></li>
+<li class=ds><p>Select an icon and click OK.</p></li></ol>
+<br><A NAME="CAICDHAH"></A><h2>Creating new objects using inheritance</h2>
+<A NAME="TI1386"></A><p>One
+of the most powerful features of PowerBuilder is inheritance. With inheritance,
+you can create a new window, user object, or menu (a descendent object)
+from an existing object (the ancestor object).</p>
+<A NAME="TI1387"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new object by inheriting it from an
+existing object:</p>
+<ol><li class=fi><p>Click the Inherit button in the PowerBar,
+or select File&gt;Inherit from the menu bar.</p></li>
+<li class=ds><p>In the Inherit From Object dialog box, select
+the object type (menu, user object, or window) from the Object Type
+drop-down list. Then select the target as well as the library or
+libraries you want to look in. Finally, select the object from which
+you want to inherit the new object.</p><br><img src="images/wrkg806.gif"><br>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Displaying objects from many libraries</span> <A NAME="TI1388"></A>To find an object more easily, you can select more than one
+library in the Libraries list. Use Ctrl+Click to select
+additional libraries and Shift+Click to select a range.</p>
+</li>
+<li class=ds><p>Click OK.</p><p>The new object, which is a descendant of the object you chose
+to inherit from, opens in the appropriate painter.</p></li></ol>
+<br><A NAME="TI1389"></A><p>For more information about inheritance, see <A HREF="pbugp108.htm#CAIDCJFG">Chapter 13, "Understanding Inheritance ."</A></p>
+<A NAME="CCJDDGHB"></A><h2>Naming conventions</h2>
+<A NAME="TI1390"></A><p>As you use PowerBuilder to develop your application, you create
+many different components that require names. These components include
+objects such as windows and menus, controls that go into your windows,
+and variables for your event and function scripts.</p>
+<A NAME="TI1391"></A><p>You should devise a set of naming conventions and follow them
+throughout your project. When you are working in a team, this is
+critical to enforcing consistency and enabling others to understand
+your code. This section provides tables of common naming conventions.
+PowerBuilder does not require you to use these conventions, but
+they are followed in many PowerBuilder books and examples.</p>
+<A NAME="TI1392"></A><p>All indentifiers in PowerBuilder can be up to 40 characters
+long. The first few characters are typically used to specify a prefix
+that identifies the kind of object or variable, followed by an underscore
+character, followed by a string of characters that uniquely describes
+this particular object or variable. </p>
+<A NAME="TI1393"></A><h4>Object naming conventions</h4>
+<A NAME="TI1394"></A><p><A HREF="pbugp46.htm#CHDDJECF">Table 5-2</A> shows common prefixes
+for objects that you create in PowerBuilder.</p>
+<A NAME="CHDDJECF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 5-2: Common prefixes for objects</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1395"></A>Prefix</th>
+<th  rowspan="1"  ><A NAME="TI1396"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1397"></A><b>w_</b></td>
+<td  rowspan="1"  ><A NAME="TI1398"></A>Window</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1399"></A><b>m_</b></td>
+<td  rowspan="1"  ><A NAME="TI1400"></A>Menu</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1401"></A><b>d_</b></td>
+<td  rowspan="1"  ><A NAME="TI1402"></A>DataWindow</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1403"></A><b>pipe_</b></td>
+<td  rowspan="1"  ><A NAME="TI1404"></A>Data Pipeline</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1405"></A><b>q_</b></td>
+<td  rowspan="1"  ><A NAME="TI1406"></A>Query</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1407"></A><b>n_</b> or <b>n_</b><i>standardobject</i>_</td>
+<td  rowspan="1"  ><A NAME="TI1408"></A>Standard class user object, where <i>standardobject</i> represents the
+type of object; for example, <b>n_trans</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1409"></A><b>n_</b> or <b>n_cst</b> <b></b></td>
+<td  rowspan="1"  ><A NAME="TI1410"></A>Custom class user object</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1411"></A><b>u_</b> or <b>u_</b><i>standardobject</i><b>_</b></td>
+<td  rowspan="1"  ><A NAME="TI1412"></A>Standard visual user object, where <i>standardobject</i> represents
+the type of object; for example, <b>u_cb</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1413"></A><b>u_</b></td>
+<td  rowspan="1"  ><A NAME="TI1414"></A>Custom visual user object</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1415"></A><b>f_</b></td>
+<td  rowspan="1"  ><A NAME="TI1416"></A>Global function</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1417"></A><b>of_</b></td>
+<td  rowspan="1"  ><A NAME="TI1418"></A>Object-level function</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1419"></A><b>s_</b></td>
+<td  rowspan="1"  ><A NAME="TI1420"></A>Global structure</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1421"></A><b>str_</b></td>
+<td  rowspan="1"  ><A NAME="TI1422"></A>Object-level structure</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1423"></A><b>ue_</b></td>
+<td  rowspan="1"  ><A NAME="TI1424"></A>User event</td>
+</tr>
+</table>
+<A NAME="TI1425"></A><h4>Variable naming conventions</h4>
+<A NAME="TI1426"></A><p>The prefix for variables typically
+combines a letter that represents the scope of the variable and
+a letter or letters that represent its datatype. <A HREF="pbugp46.htm#CHDBFIGD">Table 5-3</A> lists the prefixes
+used to indicate a variable's scope. <A HREF="pbugp46.htm#CHDBHHII">Table 5-4</A> lists the prefixes
+for standard datatypes, such as integer or string. </p>
+<A NAME="TI1427"></A><p>The variable might also be a PowerBuilder object or control. <A HREF="pbugp46.htm#CHDIJJCA">Table 5-5</A> lists prefixes
+for some common PowerBuilder system objects. For controls, you can use
+the standard prefix that PowerBuilder uses when you add a control
+to a window or visual user object. To see these prefixes, open the
+Window painter, select Design&gt;Options, and look at the
+Prefixes 1 and Prefixes 2 pages. </p>
+<A NAME="CHDBFIGD"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 5-3: Prefixes that indicate the scope
+of variables</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1428"></A>Prefix</th>
+<th  rowspan="1"  ><A NAME="TI1429"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1430"></A><b>a</b></td>
+<td  rowspan="1"  ><A NAME="TI1431"></A>Argument to an event or function</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1432"></A><b>g</b></td>
+<td  rowspan="1"  ><A NAME="TI1433"></A>Global variable</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1434"></A><b>i</b></td>
+<td  rowspan="1"  ><A NAME="TI1435"></A>Instance variable</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1436"></A><b>l</b></td>
+<td  rowspan="1"  ><A NAME="TI1437"></A>Local variable</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1438"></A><b>s</b></td>
+<td  rowspan="1"  ><A NAME="TI1439"></A>Shared variable</td>
+</tr>
+</table>
+<A NAME="CHDBHHII"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 5-4: Prefixes for
+standard datatypes</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1440"></A>Prefix</th>
+<th  rowspan="1"  ><A NAME="TI1441"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1442"></A><b>a</b></td>
+<td  rowspan="1"  ><A NAME="TI1443"></A><b>Any</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1444"></A><b>blb</b></td>
+<td  rowspan="1"  ><A NAME="TI1445"></A><b>Blob</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1446"></A><b>b</b></td>
+<td  rowspan="1"  ><A NAME="TI1447"></A><b>Boolean</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1448"></A><b>ch</b></td>
+<td  rowspan="1"  ><A NAME="TI1449"></A><b>Character</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1450"></A><b>d</b></td>
+<td  rowspan="1"  ><A NAME="TI1451"></A><b>Date</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1452"></A><b>dtm</b></td>
+<td  rowspan="1"  ><A NAME="TI1453"></A><b>DateTime</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1454"></A><b>dc</b></td>
+<td  rowspan="1"  ><A NAME="TI1455"></A><b>Decimal</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1456"></A><b>dbl</b></td>
+<td  rowspan="1"  ><A NAME="TI1457"></A><b>Double</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1458"></A><b>e</b></td>
+<td  rowspan="1"  ><A NAME="TI1459"></A><b>Enumerated</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1460"></A><b>i</b></td>
+<td  rowspan="1"  ><A NAME="TI1461"></A><b>Integer</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1462"></A><b>l</b></td>
+<td  rowspan="1"  ><A NAME="TI1463"></A><b>Long</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1464"></A><b>r</b></td>
+<td  rowspan="1"  ><A NAME="TI1465"></A><b>Real</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1466"></A><b>s</b></td>
+<td  rowspan="1"  ><A NAME="TI1467"></A><b>String</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1468"></A><b>tm</b></td>
+<td  rowspan="1"  ><A NAME="TI1469"></A><b>Time</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1470"></A><b>ui</b></td>
+<td  rowspan="1"  ><A NAME="TI1471"></A><b>UnsignedInteger</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1472"></A><b>ul</b></td>
+<td  rowspan="1"  ><A NAME="TI1473"></A><b>UnsignedLong</b></td>
+</tr>
+</table>
+<A NAME="CHDIJJCA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 5-5: Prefixes for
+selected PowerBuilder system objects</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1474"></A>Prefix</th>
+<th  rowspan="1"  ><A NAME="TI1475"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1476"></A><b>ds</b></td>
+<td  rowspan="1"  ><A NAME="TI1477"></A>DataStore</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1478"></A><b>dw</b></td>
+<td  rowspan="1"  ><A NAME="TI1479"></A>DataWindow</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1480"></A><b>dwc</b></td>
+<td  rowspan="1"  ><A NAME="TI1481"></A>DataWindowChild</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1482"></A><b>dwo</b></td>
+<td  rowspan="1"  ><A NAME="TI1483"></A>DWobject</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1484"></A><b>env</b></td>
+<td  rowspan="1"  ><A NAME="TI1485"></A>Environment</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1486"></A><b>err</b></td>
+<td  rowspan="1"  ><A NAME="TI1487"></A>Error</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1488"></A><b>gr</b></td>
+<td  rowspan="1"  ><A NAME="TI1489"></A>Graph</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1490"></A><b>inet</b></td>
+<td  rowspan="1"  ><A NAME="TI1491"></A>Inet</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1492"></A><b>ir</b></td>
+<td  rowspan="1"  ><A NAME="TI1493"></A>InternetResult</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1494"></A><b>lvi</b></td>
+<td  rowspan="1"  ><A NAME="TI1495"></A>ListViewItem</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1496"></A><b>mfd</b></td>
+<td  rowspan="1"  ><A NAME="TI1497"></A>MailFileDescription</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1498"></A><b>mm</b></td>
+<td  rowspan="1"  ><A NAME="TI1499"></A>MailMessage</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1500"></A><b>mr</b></td>
+<td  rowspan="1"  ><A NAME="TI1501"></A>MailRecipient</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1502"></A><b>ms</b></td>
+<td  rowspan="1"  ><A NAME="TI1503"></A>MailSession</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1504"></A><b>msg</b></td>
+<td  rowspan="1"  ><A NAME="TI1505"></A>Message</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1506"></A><b>nvo</b></td>
+<td  rowspan="1"  ><A NAME="TI1507"></A>NonVisualObject</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1508"></A><b>tr</b></td>
+<td  rowspan="1"  ><A NAME="TI1509"></A>Transaction</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1510"></A><b>tvi</b></td>
+<td  rowspan="1"  ><A NAME="TI1511"></A>TreeViewItem</td>
+</tr>
+</table>
+<A NAME="CAICGADE"></A><h2>Opening existing objects</h2>
+<A NAME="TI1512"></A><p>You can open existing objects through the Open dialog box
+or directly from the System Tree.</p>
+<A NAME="TI1513"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To open existing objects:</p>
+<ol><li class=fi><p>Click the Open button in the PowerBar or
+select File&gt;Open from the menu bar.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>When using the System Tree</span> <A NAME="TI1514"></A>To open an existing object directly from the System Tree,
+either double-click on the object name or select Edit from
+the pop-up menu.</p>
+</li>
+<li class=ds><p>In the
+Open dialog box, select the object type from the Object Type drop-down
+list. Then select the target as well as the library or libraries
+you want to look in. Finally select the object you want to open. </p><br><img src="images/wrkg807.gif"><br>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Displaying objects from many libraries</span> <A NAME="TI1515"></A>To find an object more easily, you can select more than one
+library in the Libraries list. Use Ctrl+Click to select
+additional libraries and Shift+Click to select a range.</p>
+</li>
+<li class=ds><p>Click OK.</p><p>The object opens in the appropriate painter.</p></li></ol>
+<br><A NAME="TI1516"></A><h4>Accessing recently opened objects</h4>
+<A NAME="TI1517"></A><p>You can quickly open
+recently opened objects by selecting File&gt;Recent Objects
+from the menu bar. The Recent Objects list includes the eight most recently
+opened objects by default, but you can include up to 36 objects
+on the list.</p>
+<A NAME="TI1518"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify the number of recent objects:</p>
+<ol><li class=fi><p>Select Tools&gt;System Options from
+the menu bar.</p></li>
+<li class=ds><p>On the General page of the System Options dialog
+box, modify the number for the recent objects list.</p></li></ol>
+<br><A NAME="CHDDJAFG"></A><h2>Running or previewing objects</h2>
+<A NAME="TI1519"></A><p>To run a window or preview a DataWindow object, you use the
+Run dialog box.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the System Tree</span> <A NAME="TI1520"></A>Instead of using the Run dialog box, you can right-click the
+object in the System Tree and select Run/Preview from the
+pop-up menu.</p>
+<A NAME="TI1521"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To run or preview an object:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI1522"></A>
+<ul>
+<li class=fi>Click
+the Run/Preview Object button in the PowerBar.</li>
+<li class=ds>Select File&gt;Run/Preview from the
+menu bar.
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>In
+the Run dialog box, select the object type from the Object Type
+drop-down list.</p></li>
+<li class=ds><p>Select the target as well as the library or libraries
+you want to look in.</p></li>
+<li class=ds><p>Select the object you want to run or preview and
+click OK.</p><p>The object runs or is previewed.</p></li></ol>
+<br><A NAME="TI1523"></A><p>For more specific information on running a window, see <A HREF="pbugp91.htm#X-REF298578429">"Running a window"</A>. For
+information on using the DataWindow painter's Preview view,
+see <A HREF="pbugp153.htm#BFCDDADG">Chapter 18, "Defining DataWindow Objects ."</A></p>
+

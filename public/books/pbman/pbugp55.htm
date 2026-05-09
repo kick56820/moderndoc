@@ -1,0 +1,61 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Regenerating library entries</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp54.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp56.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF345205710"></A><h1>Regenerating library entries</h1>
+<A NAME="TI1688"></A><p>Occasionally you may need to update library entries by regenerating, rebuilding,
+or migrating them. For example:</p>
+<A NAME="TI1689"></A><p><A NAME="TI1690"></A>
+<ul>
+<li class=fi>When you modify an
+ancestor object, you can <i>regenerate</i> descendants
+so they pick up the revisions to their ancestor.</li>
+<li class=ds>When you make extensive changes to a target, you
+can <i>rebuild</i> entire libraries so objects are
+regenerated sequentially based on interdependence.</li>
+<li class=ds>When you upgrade to a new version of PowerBuilder,
+you need to <i>migrate</i> your targets.
+</li>
+</ul>
+</p>
+<A NAME="TI1691"></A><p>When you regenerate an entry, PowerBuilder recompiles the
+source form stored in the library and replaces the existing compiled
+form with the recompiled form. You can regenerate entries in the
+Library painter or by selecting regenerate from the object's
+pop-up menu in the System Tree.</p>
+<A NAME="TI1692"></A><p>You can also regenerate and rebuild from a command line. For
+more information, see <A HREF="pbugp275.htm#BABGACFCHF">Appendix B, "The
+OrcaScript Language"</A></p>
+<A NAME="TI1693"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To regenerate library entries in the Library painter:</p>
+<ol><li class=fi><p>Select the entries you want to regenerate.</p></li>
+<li class=ds><p>Click the Regenerate button or select Entry&gt;Library
+Item&gt;Regenerate from the menu bar.</p><p>PowerBuilder uses the source to regenerate the library entry
+and replaces the current compiled object with the regenerated object.
+The compilation date and size are updated.</p></li></ol>
+<br><A NAME="TI1694"></A><h4>Regenerating descendants</h4>
+<A NAME="TI1695"></A><p>You can use the Browser to easily regenerate all descendants
+of a changed ancestor object.</p>
+<A NAME="TI1696"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To regenerate descendants:</p>
+<ol><li class=fi><p>Click the Browser button in the PowerBar.</p><p>The Browser displays.</p></li>
+<li class=ds><p>Select the tab for the object type you want to
+regenerate. </p><p>For example, if you want to regenerate all descendants of
+window <b>w_frame</b>, click the Window tab.</p></li>
+<li class=ds><p>Select the ancestor object and choose Show Hierarchy
+from its pop-up menu.</p><p>The Regenerate item displays on the pop-up menu.</p><br><img src="images/lib17.gif"><br>
+</li>
+<li class=ds><p>Click the Regenerate item.</p><p>PowerBuilder regenerates all descendants of the selected ancestor.</p></li></ol>
+<br><A NAME="TI1697"></A><p>For more about the Browser, see <A HREF="pbugp112.htm#CBBCFJHA">"Browsing the class
+hierarchy"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Regenerate limitations</span> <A NAME="TI1698"></A>If you regenerate a group of objects, PowerBuilder will regenerate
+them in the order in which they appear in the library, which might
+cause an error if an object is generated before its ancestor. For
+this reason, you should use a full or incremental build to update
+more than one object at a time.</p>
+

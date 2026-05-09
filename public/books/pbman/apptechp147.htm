@@ -1,0 +1,58 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Exposing an NVO as a Web service</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp146.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp148.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CEGBCHBI"></A><h1>Exposing an NVO as a Web service</h1>
+<A NAME="TI4960"></A><p>The <ABBR title = "e a server" >EAServer</ABBR> Component wizard includes
+a page that allows you to expose the component that the wizard generates
+as a Web service. </p>
+<A NAME="TI4961"></A><p>The Expose Component as Web Service page of the wizard has
+a check box and three text box fields for setting and listing the
+generated component as a Web service in <ABBR title = "e a server" >EAServer</ABBR> 5.0.
+These fields are describe in <A HREF="apptechp147.htm#CEGICGHB">Table 24-8</A>. They are disabled until you select
+the Expose This Component As Web Service check box.</p>
+<A NAME="CEGICGHB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 24-8: Properties of a component exposed
+as a Web service</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4962"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI4963"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4964"></A>Web Application</td>
+<td  rowspan="1"  ><A NAME="TI4965"></A>The name of the Web application to which
+you deploy the component. If the Web application you enter does
+not exist in <ABBR title = "e a server" >EAServer</ABBR>, the application
+is created before you deploy the component. If no application is
+specified, the component is deployed to the "ws" default
+Web application in <ABBR title = "e a server" >EAServer</ABBR>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4966"></A>Service</td>
+<td  rowspan="1"  ><A NAME="TI4967"></A>The service name you want to use for
+the component when it is exposed as a Web service. If you do not
+specify a service name, the service name defaults to <i>packageName</i>_<i>componentName</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4968"></A>HTTP Port</td>
+<td  rowspan="1"  ><A NAME="TI4969"></A>The port you use for Web services in <ABBR title = "e a server" >EAServer</ABBR>. If you do not specify
+a port, the default value 8080 is used. </td>
+</tr>
+</table>
+<A NAME="TI4970"></A><p>The Expose This Component As Web Service check box and the
+three text box fields are also listed on the Advanced tab of the
+Properties dialog box for an <ABBR title = "e a server" >EAServer</ABBR> component.
+This allows you to set these properties without using the wizard
+or to modify these properties after completing the wizard.</p>
+<A NAME="TI4971"></A><p>If you reference a structure object in an EAServer component
+that you deploy as a Web service, the structure object is automatically
+rendered as a custom datatype.</p>
+<A NAME="TI4972"></A><p>The following limitation currently applies to components exposed
+as Web services in <ABBR title = "e a server" >EAServer</ABBR>: If
+the PowerBuilder component has a function that passes a character
+datatype by reference, the component cannot be exposed as a Web
+service in <ABBR title = "e a server" >EAServer</ABBR> 5. An error
+message such as: "Can't find prefix for 'http://DefaultNamespace'." displays.</p>
+

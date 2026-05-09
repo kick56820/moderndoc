@@ -1,0 +1,79 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using dynamic libraries </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp265.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp267.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF364216420"></A><h1>Using dynamic libraries </h1>
+<A NAME="TI9895"></A><p>You can store the objects used in your PowerBuilder application
+in more than one library and, when you run the application, dynamically
+load any objects that are not contained in the application's
+executable file. This allows you to break the application into smaller
+units that are easier to manage and makes the executable file smaller.
+You do this by using dynamic libraries. If you compile using Pcode,
+PowerBuilder builds PowerBuilder dynamic libraries (PBD files).
+If you use machine code, PowerBuilder builds Dynamic Link Libraries (DLL
+files).</p>
+<A NAME="TI9896"></A><p>When you distribute your application to users, you distribute
+the executable, the dynamic libraries, and PowerBuilder runtime
+DLLs. For more information about deployment and a list of PowerBuilder
+runtime DLLs, see <i>Application Techniques</i>
+.</p>
+<A NAME="TI9897"></A><h4>Dynamic library names</h4>
+<A NAME="TI9898"></A><p>PowerBuilder dynamic libraries are given the name of the <ACRONYM title = "pibble" >PBL</ACRONYM> with the extension .<i>pbd</i>.
+For example, the Pcode library built from <i>test.pbl </i>is
+named <i>test.pbd</i>.</p>
+<A NAME="TI9899"></A><p>Machine-code dynamic libraries are given the extension .<i>dll</i>.
+For example, the machine-code library built from <i>test.pbl</i> is
+named <i>test.dll</i>. </p>
+<A NAME="TI9900"></A><h4>Reducing the size of dynamic libraries</h4>
+<A NAME="TI9901"></A><p>When PowerBuilder builds a dynamic library, it copies the
+compiled versions of <i>all objects</i> from the source
+library (<ACRONYM title = "pibble" >PBL</ACRONYM> file) into the
+dynamic library. </p>
+<A NAME="TI9902"></A><p>The easiest way to specify source libraries is simply to use
+your standard PowerBuilder libraries as source libraries. However,
+using this technique can make your dynamic libraries larger than
+they need to be, because they include all objects from the source
+library, not just the ones used in your application. You can create
+a PowerBuilder library that contains only the objects that you want
+in a dynamic library.</p>
+<A NAME="TI9903"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a source library to be used as a dynamic
+library:</p>
+<ol><li class=fi><p>In the Library painter, place in one standard
+PowerBuilder library (a <ACRONYM title = "pibble" >PBL</ACRONYM> file)
+all the objects that you want in the dynamic library. </p><p>If you need to create a new library, select Entry&gt;Library&gt;Create
+from the menu bar, then drag or move the objects into the new library.</p></li>
+<li class=ds><p>Make sure the application's library search
+path includes the new library.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Multiple dynamic libraries</span> <A NAME="TI9904"></A>You can use as many dynamic libraries as you want in an application.
+To do so, create a source library (<ACRONYM title = "pibble" >PBL</ACRONYM> file)
+for each of them.</p>
+<A NAME="TI9905"></A><h4>Specifying the dynamic libraries in your project</h4>
+<A NAME="TI9906"></A><p>When you define your project, you tell PowerBuilder which
+of the libraries in the application's library search path
+will be dynamic by checking the PBD or DLL check box next to the
+library name in the Project painter.</p>
+<A NAME="TI9907"></A><h4>Including
+additional resources for a dynamic library</h4>
+<A NAME="TI9908"></A><p>When building a dynamic library, PowerBuilder does not inspect
+the objects; it simply copies the compiled form of the objects into
+the dynamic library. Therefore, if any of the objects in the library
+use resources (pictures, icons, and pointers)&#8212;<i>either
+specified in a painter or assigned dynamically in a script</i>&#8212;and
+you do not want to provide these resources separately, you must
+list the resources in a PowerBuilder resource (PBR) file. Doing
+so enables PowerBuilder to include the resources in the dynamic
+library when it builds it.</p>
+<A NAME="TI9909"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To reference additional resources:</p>
+<ol><li class=fi><p>List the resources in a PBR file, as described
+in <A HREF="pbugp267.htm#X-REF364141074">"Using PowerBuilder
+resource files"</A>.</p></li>
+<li class=ds><p>Use the Resource File Name box in the Project
+painter workspace to reference the PBR file in the dynamic library.</p></li></ol>
+<br>

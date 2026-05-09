@@ -1,0 +1,300 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Importing XML</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp241.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp243.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABIBGDE"></A><h1>Importing XML</h1>
+<A NAME="TI8462"></A><p>You can select XML as
+a file type in the dialog box that displays when you select Rows&gt;Import
+in the DataWindow painter. (The Preview view must be open to enable the
+Rows&gt;Import menu item.)</p>
+<A NAME="TI8463"></A><p>You can also import data from an XML document or string using
+the <b>ImportFile</b>, <b>ImportString</b>,
+or <b>ImportClipboard</b> methods. These methods have
+an optional first parameter that enables you to specify the type
+of data to be imported. </p>
+<A NAME="TI8464"></A><p>Data can be imported with or without a template. To import
+data without a template, the data must correspond to the DataWindow column
+definition. The text content of the XML elements must match the
+column order, column type, and validation requirements of the DataWindow columns.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Composite, OL E, and Graph DataWindow objects</span> <A NAME="TI8465"></A>Composite, O LE, and Graph DataWindow objects cannot be imported
+using a template. You must use the default format. Graph objects
+must also be imported using the default format.</p>
+<A NAME="TI8466"></A><h2>Importing with a template</h2>
+<A NAME="TI8467"></A><p>If the
+XML document or string from which you want to import data does not correspond
+to the DataWindow column definition, or if you want to import attribute
+values, you must use a template. </p>
+<A NAME="TI8468"></A><p>If a schema is associated with the XML to be imported, you
+must create a template that reflects the schema.</p>
+<A NAME="TI8469"></A><p>For complex, nested XML with row data in an iterative structure,
+you may need to design a structure that uses several linked DataWindow definitions
+to import the data. Each DataWindow must define the structure of
+a block of iterative data with respect to the root element. Importing
+the data into the DataWindow objects would require multiple import passes
+using different import templates. </p>
+<A NAME="TI8470"></A><p>For data that does not conform to an iterative row data structure
+or has additional complexities, you can use the PBDOM parser to
+handle the data on a node-by-node basis. For more information, see <i>Application
+Techniques</i>
+ and the <i>PowerBuilder Extension Reference</i>
+.</p>
+<A NAME="TI8471"></A><h4>Defining import templates</h4>
+<A NAME="TI8472"></A><p>The XML import
+template can be defined in the Export/Import Template view for
+XML. If you are defining a template for use only as an import template,
+do not include DataWindow expressions, text, comments, and processing instructions.
+These items are ignored when data is imported.</p>
+<A NAME="TI8473"></A><p>Only mappings from DataWindow columns to XML elements and
+attributes that follow the Starts Detail marker in the template
+are used for import. Element and attribute contents in the header
+section are also ignored. If the Starts Detail marker does not exist,
+all element and attribute to column mappings within the template
+are used for import. For more information about the Starts Detail
+marker, see <A HREF="pbugp239.htm#CIHBCBFI">"The Detail Start element"</A>.</p>
+<A NAME="TI8474"></A><h4>Matching template structure to XML</h4>
+<A NAME="TI8475"></A><p>An XML import template must map the XML element and attribute
+names in the XML document to DataWindow column names, and it must
+reflect the nesting of elements and attributes in the XML. </p>
+<A NAME="TI8476"></A><p>The order of elements and attributes with column reference
+content in the template does not have to match the order of columns
+within the DataWindow, because import values are located by name
+match and nesting depth within the XML. However, the order of elements
+and attributes in the template must match the order in which elements
+and attributes occur in the XML. Each element or attribute that
+has column reference content in the template must occur in each
+row in the XML document or string. The required elements and attributes
+in the XML can be empty. </p>
+<A NAME="TI8477"></A><p>If an element or attribute does not occur in the XML document,
+the DataWindow import column remains empty. </p>
+<A NAME="TI8478"></A><p>The data for the DataWindow is held in the columns of the
+data table. Some data columns, such as those used for computed fields,
+may not have an associated control. To import data into a column
+that has no control reference, add a child DataWindow expression that contains
+the column name.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Remove tab characters</span> <A NAME="TI8479"></A>When you select a column name in the DataWindow expression dialog box,
+tab characters are added before and after the name. You should remove
+these characters before saving the expression.</p>
+<A NAME="TI8480"></A><h4>Importing data with group headers</h4>
+<A NAME="TI8481"></A><p>For XML
+import using a template, element and attribute contents in the header section
+are ignored. However, if the Starts Detail marker does not exist,
+all element and attribute to column mappings within the template
+are used for import. This has the following implications for DataWindow objects
+with group headers:<A NAME="TI8482"></A>
+<ul>
+<li class=fi>If data is imported to
+a Group DataWindow using a template that has a Starts Detail marker,
+the group header data is not imported because import starts importing
+from the Starts Detail location.</li>
+<li class=ds>If the Group DataWindow has one group and the import
+template has no Starts Detail marker, all the data is imported successfully.
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Nested groups cannot be imported</span> <A NAME="TI8483"></A>If the Group DataWindow has nested groups, the data cannot
+be imported successfully even if the Starts Detail marker in the
+import template is turned off.</p>
+<A NAME="CIHEEAHB"></A><h4>Restrictions</h4>
+<A NAME="TI8484"></A><p>DataWindow columns cannot be referenced twice for import.
+A second column reference to a DataWindow column within an XML import
+template is ignored.</p>
+<A NAME="TI8485"></A><p>An XML element or attribute name whose content references
+a DataWindow column for import must be unique within the level of
+nesting. It cannot occur twice in the template at the same nesting
+level. </p>
+<A NAME="TI8486"></A><h4>Setting the import template</h4>
+<A NAME="TI8487"></A><p>The names of all templates for the current DataWindow object display
+in the Use Template drop-down list on the Data Import page in the
+Properties view. </p>
+<br><img src="images/datimp1.gif">
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using export templates for import</span> <A NAME="TI8488"></A>If you have already defined an export template for a DataWindow object,
+you can use it as an import template, but only the mapping of column
+names to element attribute names is used for import. All other information
+in the template is ignored. </p>
+<A NAME="TI8489"></A><p>The template you select in the list box is used to conform
+the XML imported to the specifications defined in the named template. Selecting
+a template from the list sets the DataWindow object's Import.XML.UseTemplate
+property. You can also modify the value of the Import.XML.UseTemplate
+property dynamically in a script.</p>
+<A NAME="TI8490"></A><p>The Data Import page also contains a check box that enables
+you to create a trace log of the import. See <A HREF="pbugp242.htm#CIHBJABJ">"Tracing import"</A>.</p>
+<A NAME="TI8491"></A><h3>Example</h3>
+<A NAME="TI8492"></A><p>This example uses a DataWindow object that includes the columns <b>emp_id</b>, <b>emp_fname</b>, <b>emp_lname</b>,
+and <b>dept_id</b>. The template used in
+this example includes only these columns. Any other columns in the DataWindow remain empty
+when you import using this template.</p>
+<A NAME="TI8493"></A><p>To illustrate how template import works, create a new template
+that has one element in the header section, called before_detail_marker.
+This element contains a column reference to the <b>emp_id</b> column.</p>
+<A NAME="TI8494"></A><p>The Detail Start element, employee, has an attribute, dept_id,
+whose value is a control reference to the column <b>dept_id</b>.
+It also has three children: <A NAME="TI8495"></A>
+<ul>
+<li class=fi>The emp_id
+element contains a column reference to the <b>emp_id</b> column.</li>
+<li class=ds>The emp_fname element contains static text. </li>
+<li class=ds>The name element has two children, emp_fname
+and emp_lname, that contain column references to those
+columns.
+</li>
+</ul>
+</p>
+<br><img src="images/dwimp2.gif">
+<A NAME="TI8496"></A><p>The template exports and imports the <b>dept_id</b> DataWindow column
+using the attribute of the employee element. It exports and imports
+the <b>emp_id</b>, <b>emp_fname</b>,
+and <b>emp_lname</b> columns using the column
+references in the elements. The following shows the beginning of
+the XML exported using this template:<p><PRE> &lt;?xml version="1.0" encoding="UTF-16LE" standalone="no"?&gt;<br> <br>&lt;employee_list&gt;<br>  &lt;before_detail_marker&gt;102&lt;/before_detail_marker&gt;<br>  &lt;employee dept_id="100"&gt;<br>     &lt;emp_id&gt;102&lt;/emp_id&gt;<br>     &lt;emp_fname&gt;static text content&lt;/emp_fname&gt;<br>     &lt;name&gt;<br>       &lt;emp_fname&gt;Fran&lt;/emp_fname&gt;<br>       &lt;emp_lname&gt;Whitney&lt;/emp_lname&gt;<br>     &lt;/name&gt;<br>  &lt;/employee&gt;<br>  &lt;employee dept_id="100"&gt;<br>     &lt;emp_id&gt;105&lt;/emp_id&gt;<br>     &lt;emp_fname&gt;static text content&lt;/emp_fname&gt;<br>     &lt;name&gt;<br>       &lt;emp_fname&gt;Matthew&lt;/emp_fname&gt;<br>       &lt;emp_lname&gt;Cobb&lt;/emp_lname&gt;<br>     &lt;/name&gt;<br>  &lt;/employee&gt;<br>  ...</PRE></p>
+<A NAME="TI8497"></A><p>The exported XML can be reimported into the DataWindow columns <b>dept_id</b>, <b>emp_id</b>, <b>emp_fname</b>,
+and <b>emp_lname</b>. Before importing, you
+must set the import template on the Data Import page in the Properties
+view or in a script using the DataWindow object's Import.XML.UseTemplate
+property.</p>
+<A NAME="TI8498"></A><p>The following items are exported, but ignored on import:<A NAME="TI8499"></A>
+<ul>
+<li class=fi>The before_detail_marker element
+is ignored because it is in the header section.</li>
+<li class=ds>The first occurrence of the element tag name emp_fname
+is ignored because it does not contain a mapping to a DataWindow column
+name.
+</li>
+</ul>
+</p>
+<A NAME="TI8500"></A><p>If you change the nesting of the emp_fname and emp_lname
+elements inside the name element, the import fails because the order
+of the elements and the nesting in the XML and the template must
+match.</p>
+<A NAME="TI8501"></A><h2>Default data import</h2>
+<A NAME="TI8502"></A><p>When
+there is no import template assigned to a DataWindow object with the Use
+Template property, PowerBuilder attempts to import the data using
+the default mechanism described in this section.</p>
+<A NAME="TI8503"></A><h4>Elements that contain text</h4>
+<A NAME="TI8504"></A><p>The text between the start and end tags for each element can
+be imported if the XML document data corresponds to the DataWindow column
+definition. For example, this is the case if the XML was exported
+from PowerBuilder using the default XML export template. </p>
+<A NAME="TI8505"></A><p>The text content of the XML elements must match the column
+order, column type, and validation requirements of the DataWindow columns. (The
+same restriction applies when you import data from a text file with
+the <b>ImportFile</b> method). </p>
+<A NAME="TI8506"></A><p>All element text contents are imported in order of occurrence.
+Any possible nesting is disregarded. The import process ignores
+tag names of the elements, attributes, and any other content of
+the XML document. </p>
+<A NAME="TI8507"></A><h4>Empty elements</h4>
+<A NAME="TI8508"></A><p>Empty elements (elements that have no content between the
+start and end tags) are imported as empty values into the DataWindow column.
+If the element text contains only white space, carriage returns,
+and new line or tab characters, the element is treated as an empty
+element.</p>
+<A NAME="TI8509"></A><p>Any attributes of empty elements are ignored.</p>
+<A NAME="TI8510"></A><h4>Elements with non-text content</h4>
+<A NAME="TI8511"></A><p>If the element has no text content, but does contain comments,
+processing instructions, or any other content, it is not regarded
+as an empty element and is skipped for import. </p>
+<A NAME="TI8512"></A><h3>Example with no empty elements</h3>
+<A NAME="TI8513"></A><p>The three XML documents that follow all show the same result
+when you select Rows&gt;Import in the DataWindow painter of if <b>ImportFile</b> is
+called with or without default arguments for start and end column,
+start and end row, and DataWindow start column. </p>
+<A NAME="TI8514"></A><p>The DataWindow object has five columns: <b>emp_id</b>, <b>emp_fname</b>, <b>emp_lname</b>, <b>phone</b>,
+and<b> birth_date.</b></p>
+<br><img src="images/dwimp1.gif">
+<A NAME="TI8515"></A><h4>Example 1</h4>
+<A NAME="TI8516"></A><p>This example contains two rows, each with five elements that
+match the column order, type, and validation requirements for the DataWindow object.<p><PRE> &lt;?xml version="1.0"?&gt;<br>&lt;d_emp_birth_listing&gt;<br>   &lt;d_emp_birth_row&gt;<br>      &lt;element_1&gt;105&lt;/element_1&gt;<br>      &lt;element_2&gt;Matthew&lt;/element_2&gt;<br>      &lt;element_3&gt;Cobb&lt;/element_3&gt;<br>      &lt;element_4&gt;6175553840&lt;/element_4&gt;<br>      &lt;element_5&gt;04/12/1960&lt;/element_5&gt;<br>   &lt;/d_emp_birth_row&gt;<br>   &lt;d_emp_birth_row&gt;<br>      &lt;element_1&gt;148&lt;/element_1&gt;<br>      &lt;element_2&gt;Julie&lt;/element_2&gt;<br>      &lt;element_3&gt;Jordan&lt;/element_3&gt;<br>      &lt;element_4&gt;6175557835&lt;/element_4&gt;<br>      &lt;element_5&gt;11/12/1951&lt;/element_5&gt;<br>   &lt;/d_emp_birth_row&gt;<br>&lt;/d_emp_birth_listing&gt;</PRE></p>
+<A NAME="TI8517"></A><h4>Example 2</h4>
+<A NAME="TI8518"></A><p>In this example, the elements are not contained in rows, but
+they still match the DataWindow object.<p><PRE> &lt;?xml version="1.0"?&gt;<br>&lt;root_element&gt;<br>   &lt;element_1&gt;105&lt;/element_1&gt;<br>   &lt;element_2&gt;Matthew&lt;/element_2&gt;<br>   &lt;element_3&gt;Cobb&lt;/element_3&gt;<br>   &lt;element_4&gt;6175553840&lt;/element_4&gt;<br>   &lt;element_5&gt;04/12/1960&lt;/element_5&gt;<br>   &lt;element_6&gt;148&lt;/element_6&gt;<br>   &lt;element_7&gt;Julie&lt;/element_7&gt;<br>   &lt;element_8&gt;Jordan&lt;/element_8&gt;<br>   &lt;element_9&gt;6175557835&lt;/element_9&gt;<br>   &lt;element_10&gt;11/12/1951&lt;/element_10&gt;<br>&lt;/root_element&gt;</PRE></p>
+<A NAME="TI8519"></A><h4>Example 3</h4>
+<A NAME="TI8520"></A><p>The comments and processing instructions in this example are
+not imported. The nesting of the &lt;first&gt; and &lt;last&gt; elements
+within the &lt;Name&gt; element is ignored.<p><PRE> &lt;?xml version="1.0"?&gt;<br>&lt;root_element&gt;<br>&lt;!-- some comment --&gt;<br>&lt;row_element&gt;&lt;?process me="no"?&gt;105&lt;name Title="Mr"&gt;<br>&lt;first&gt;Matthew&lt;/first&gt;<br>&lt;last&gt;Cobb&lt;/last&gt;<br>&lt;/name&gt;<br>&lt;!-- another comment --&gt;<br>&lt;phone&gt;6175553840&lt;/phone&gt;<br>&lt;birthdate&gt;04/12/1960&lt;/birthdate&gt;<br>&lt;/row_element&gt;<br>&lt;row_element&gt;148&lt;name Title="Ms"&gt;<br>&lt;first&gt;Julie&lt;/first&gt;<br>&lt;last&gt;Jordan&lt;/last&gt;<br>&lt;/name&gt;<br>&lt;phone&gt;6175557835&lt;/phone&gt;<br>&lt;birthdate&gt;11/12/1951&lt;/birthdate&gt;<br>&lt;/row_element&gt;<br>&lt;/root_element&gt;</PRE></p>
+<A NAME="TI8521"></A><h4>Result</h4>
+<A NAME="TI8522"></A><p>All three XML documents produce this result:</p>
+<A NAME="TI8523"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI8524"></A>emp_id</th>
+<th  rowspan="1"  ><A NAME="TI8525"></A>emp_fname</th>
+<th  rowspan="1"  ><A NAME="TI8526"></A>emp_lname</th>
+<th  rowspan="1"  ><A NAME="TI8527"></A>phone</th>
+<th  rowspan="1"  ><A NAME="TI8528"></A>birth_date</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8529"></A>105</td>
+<td  rowspan="1"  ><A NAME="TI8530"></A>Matthew</td>
+<td  rowspan="1"  ><A NAME="TI8531"></A>Cobb</td>
+<td  rowspan="1"  ><A NAME="TI8532"></A>6175553840</td>
+<td  rowspan="1"  ><A NAME="TI8533"></A>04/12/1960</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8534"></A>148</td>
+<td  rowspan="1"  ><A NAME="TI8535"></A>Julie</td>
+<td  rowspan="1"  ><A NAME="TI8536"></A>Jordan</td>
+<td  rowspan="1"  ><A NAME="TI8537"></A>6175557835</td>
+<td  rowspan="1"  ><A NAME="TI8538"></A>11/12/1951</td>
+</tr>
+</table>
+<A NAME="TI8539"></A><h3>Example with empty elements</h3>
+<A NAME="TI8540"></A><h4>Example 4</h4>
+<A NAME="TI8541"></A><p>This example uses the same DataWindow object, but there are two empty elements
+in the XML document. The first has no content, and the second has an
+attribute but no content. Both are imported as empty elements.</p>
+<A NAME="TI8542"></A><p><p><PRE> &lt;?xml version="1.0"?&gt;<br>&lt;root_element&gt;<br>&lt;!-- some comment --&gt;<br>&lt;row_element&gt;<br>&lt;?process me="no"?&gt;105&lt;name Title="Mr"&gt;<br>&lt;first&gt;Matthew&lt;/first&gt;<br>&lt;!-- another comment --&gt;<br>&lt;last&gt;Cobb&lt;/last&gt;<br>&lt;/name&gt;<br>&lt;empty&gt;&lt;/empty&gt;<br>&lt;birthdate&gt;04/12/1960&lt;/birthdate&gt;<br>&lt;/row_element&gt;<br>&lt;row_element&gt;148&lt;name Title="Ms"&gt;<br>&lt;empty attribute1 = "blue"&gt;&lt;/empty&gt;<br>&lt;last&gt;Jordan&lt;/last&gt;<br>&lt;/name&gt;<br>&lt;phone&gt;6175557835&lt;/phone&gt;<br>&lt;birthdate&gt;11/12/1951&lt;/birthdate&gt;<br>&lt;/row_element&gt;<br>&lt;/root_element&gt;</PRE></p>
+<A NAME="TI8543"></A><h4>Result</h4>
+<A NAME="TI8544"></A><p>The XML document produces this result:</p>
+<A NAME="TI8545"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI8546"></A>emp_id</th>
+<th  rowspan="1"  ><A NAME="TI8547"></A>emp_fname</th>
+<th  rowspan="1"  ><A NAME="TI8548"></A>emp_lname</th>
+<th  rowspan="1"  ><A NAME="TI8549"></A>phone</th>
+<th  rowspan="1"  ><A NAME="TI8550"></A>birth_date</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8551"></A>105</td>
+<td  rowspan="1"  ><A NAME="TI8552"></A>Matthew</td>
+<td  rowspan="1"  ><A NAME="TI8553"></A>Cobb</td>
+<td  rowspan="1"  ><A NAME="TI8554"></A></td>
+<td  rowspan="1"  ><A NAME="TI8555"></A>04/12/1960</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8556"></A>148</td>
+<td  rowspan="1"  ><A NAME="TI8557"></A></td>
+<td  rowspan="1"  ><A NAME="TI8558"></A>Jordan</td>
+<td  rowspan="1"  ><A NAME="TI8559"></A>6175557835</td>
+<td  rowspan="1"  ><A NAME="TI8560"></A>11/12/1951</td>
+</tr>
+</table>
+<A NAME="CIHBJABJ"></A><h2>Tracing import</h2>
+<A NAME="TI8561"></A><p>When you import data from XML with
+or without a template, you can create a trace log to verify that
+the import process worked correctly. The trace log shows whether
+a template was used and if so which template, and it shows which
+elements and rows were imported. </p>
+<A NAME="TI8562"></A><p>To create a trace log, select the Trace XML Import check box
+on the Data Import page in the Properties view and specify the name
+and location of the log file in the Trace File Name box. If you
+do not specify a name for the trace file, PowerBuilder generates a
+trace file with the name <i>pbxmtrc.log</i> in the
+current directory.</p>
+<A NAME="TI8563"></A><p>You can also use the Import.XML.Trace and Import.XML.TraceFile DataWindow object properties.</p>
+<A NAME="TI8564"></A><p>If you use <b>ImportClipboard</b> or <b>ImportString</b> to
+import the data, you must specify XML! as the <i>importtype</i> argument.
+For example:<p><PRE> ImportString(XML!, ls_xmlstring)</PRE></p>
+<A NAME="TI8565"></A><p>If you omit the <i>importtype</i> argument,
+the trace file is not created. You do not need to specify the <i>importtype</i> argument
+if you use<b>ImportFile</b>. </p>
+<A NAME="TI8566"></A><h4>Example: default import</h4>
+<A NAME="TI8567"></A><p>The following trace log shows a default import of the <b>department</b> table
+in the <ACRONYM title = "E A S" >EAS</ACRONYM> Demodatabase:<p><PRE> /*--------------------------------------------------*/<br>/*                09/10/2005 18:26                 */<br>/*--------------------------------------------------*/<br>CREATING SAX PARSER.<br>NO XML IMPORT TEMPLATE SET - STARTING XML DEFAULT IMPORT.<br>DATAWINDOW ROWSIZE USED FOR IMPORT: 3<br> <br>ELEMENT: dept_id: 100<br>ELEMENT: dept_name: R &amp; D<br>ELEMENT: dept_head_id: 501<br>--- ROW<br>ELEMENT: dept_id: 200<br>ELEMENT: dept_name: Sales<br>ELEMENT: dept_head_id: 902<br>--- ROW<br>ELEMENT: dept_id: 300<br>ELEMENT: dept_name: Finance<br>ELEMENT: dept_head_id: 1293<br>--- ROW<br>ELEMENT: dept_id: 400<br>ELEMENT: dept_name: Marketing<br>ELEMENT: dept_head_id: 1576<br>--- ROW<br>ELEMENT: dept_id: 500<br>ELEMENT: dept_name: Shipping<br>ELEMENT: dept_head_id: 703<br>--- ROW</PRE></p>
+<A NAME="TI8568"></A><h4>Example: template import</h4>
+<A NAME="TI8569"></A><p>The following trace log shows a template import of the <b>department</b> table.
+The template used is named <b>t_1</b>. Notice
+that the DataWindow column <b>dept_id</b> is referenced
+twice, as both an attribute and a column. The second occurrence
+is ignored for the template import, as described in <A HREF="pbugp242.htm#CIHEEAHB">"Restrictions"</A>. The Detail
+Start element has an implicit attribute named __pbband
+which is also ignored.<p><PRE> /*---------------------------------------------------*/<br>/*                 09/10/2005 18:25                 */<br>/*---------------------------------------------------*/<br>CREATING SAX PARSER.<br>USING XML IMPORT TEMPLATE: t_1<br> <br>XML NAMES MAPPING TO DATAWINDOW IMPORT COLUMNS: <br>ATTRIBUTE: /d_dept/d_dept_row NAME: '__pbband'<br>&gt;&gt;&gt; RESERVED TEMPLATE NAME - ITEM WILL BE IGNORED<br>ATTRIBUTE: /d_dept/d_dept_row/dept_id_xml_name NAME: 'dept_id'<br>DATAWINDOW COLUMN: 1, NAME: 'dept_id'<br>ELEMENT: /d_dept/d_dept_row/dept_id_xml_name<br>&gt;&gt;&gt; DUPLICATE DATAWINDOW COLUMN REFERENCE: 1, NAME: 'dept_id' - ITEM WILL BE IGNORED<br>ELEMENT: /d_dept/d_dept_row/dept_head_id<br>DATAWINDOW COLUMN: 3, NAME: 'dept_head_id'<br>ELEMENT: /d_dept/d_dept_row/dept_name<br>DATAWINDOW COLUMN: 2, NAME: 'dept_name'<br> <br>ATTRIBUTE: /d_dept/d_dept_row/dept_id_xml_name NAME: 'dept_id': 100<br>ELEMENT: /d_dept/d_dept_row/dept_head_id: 501<br>ELEMENT: /d_dept/d_dept_row/dept_name: R &amp; D<br>--- ROW<br>ATTRIBUTE: /d_dept/d_dept_row/dept_id_xml_name NAME: 'dept_id': 200<br>ELEMENT: /d_dept/d_dept_row/dept_head_id: 902<br>ELEMENT: /d_dept/d_dept_row/dept_name: Sales<br>--- ROW<br>ATTRIBUTE: /d_dept/d_dept_row/dept_id_xml_name NAME: 'dept_id': 300<br>ELEMENT: /d_dept/d_dept_row/dept_head_id: 1293<br>ELEMENT: /d_dept/d_dept_row/dept_name: Finance<br>--- ROW<br>ATTRIBUTE: /d_dept/d_dept_row/dept_id_xml_name NAME: 'dept_id': 400<br>ELEMENT: /d_dept/d_dept_row/dept_head_id: 1576<br>ELEMENT: /d_dept/d_dept_row/dept_name: Marketing<br>--- ROW<br>ATTRIBUTE: /d_dept/d_dept_row/dept_id_xml_name NAME: 'dept_id': 500<br>ELEMENT: /d_dept/d_dept_row/dept_head_id: 703<br>ELEMENT: /d_dept/d_dept_row/dept_name: Shipping<br>--- ROW</PRE></p>
+

@@ -1,0 +1,75 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using sheets </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp29.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp31.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF352147718"></A><h1>Using sheets </h1>
+<A NAME="TI610"></A><p>In an MDI frame window, users can open windows (sheets) to
+perform activities. For example, in an electronic mail application,
+an MDI frame might have sheets that users open to create and send
+messages and read and reply to messages. All sheets can be open
+at the same time and the user can move among the sheets, performing
+different activities in each sheet.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About menus and sheets</span> <A NAME="TI611"></A>A sheet can have its own menu but is not required to. When
+a sheet without a menu is opened, it uses the frame's menu.</p>
+<A NAME="TI612"></A><h4>Opening sheets</h4>
+<A NAME="TI613"></A><p>To open a sheet in the client area of an MDI frame, use the <b>OpenSheet</b> function in
+a script for an event in a menu item, an event in another sheet,
+or an event in any object in the frame. </p>
+<A NAME="TI614"></A><p>For more information about <b>OpenSheet</b>,
+see the <i>PowerScript Reference</i>
+.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Opening instances of windows</span> <A NAME="TI615"></A>Typically in an MDI application, you allow users to open more
+than one instance of a particular window type. For example, in an
+order entry application, users can probably look at several different
+orders at the same time. Each of these orders displays in a separate
+window (sheet).</p>
+<A NAME="TI616"></A><h4>Listing open sheets</h4>
+<A NAME="TI617"></A><p>When you open a sheet in the client area, you can display
+the title of the window (sheet) in a list at the end of a drop-down
+menu. This menu lists two open sheets:</p>
+<br><img src="images/mdi03.gif">
+<A NAME="TI618"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To list open sheets in a drop-down menu:</p>
+<ol><li class=fi><p>Specify the number of the menu bar item
+in which you want the open sheets listed when you call the <b>OpenSheet</b> function.
+Typically you list the open sheets in the Windows menu. In a menu
+bar with four items in the order File, Edit, Windows, and Help,
+you specify the Windows menu with the number 3.</p></li></ol>
+<br><A NAME="TI619"></A><p>If more than nine sheets are open at one time, only nine sheets
+are listed in the menu and More Windows displays in the tenth position.
+To display the rest of the sheets in the list, click More Windows.</p>
+<A NAME="TI620"></A><h4>Arranging sheets</h4>
+<A NAME="TI621"></A><p>After you open sheets in an MDI frame, you can change the
+way they are arranged in the frame with the <b>ArrangeSheets</b> function.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>To allow arrangement of sheets</span> <A NAME="TI622"></A>To allow the user to arrange the sheets, create a menu item
+(typically on a menu bar item named Window) and use the <b>ArrangeSheets</b> function
+to arrange the sheets when the user selects a menu item.</p>
+<A NAME="TI623"></A><h4>Maximizing sheets</h4>
+<A NAME="TI624"></A><p>If sheets opened in an MDI window have a control menu, users
+can maximize the sheets. When the active sheet is maximized:<A NAME="TI625"></A>
+<ul>
+<li class=fi>If another sheet becomes the
+active sheet, that sheet is maximized (the sheet inherits the state
+of the previous sheet).</li>
+<li class=ds>If a new sheet is opened, the current sheet is restored
+to its previous size and the new sheet is opened in its original
+size.
+</li>
+</ul>
+</p>
+<A NAME="TI626"></A><h4>Closing sheets</h4>
+<p><b>Active sheet</b>   To close the active window (sheet), users can press ctrl+f4. You
+can write a script for a menu item that closes the parent window
+of the menu (make sure the menu is associated with the sheet, not
+the frame.) For example:</p>
+<A NAME="TI627"></A><p><p><PRE> Close(ParentWindow)</PRE></p>
+<p><b>All sheets</b>   To close all sheets and exit the application, users can press alt+f4.
+You can write a script to keep track of the open sheets in an array
+and then use a loop structure to close them.</p>
+

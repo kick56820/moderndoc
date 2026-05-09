@@ -1,0 +1,219 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+What the Web DataWindow is</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp37.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp39.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BCGBGBBJ"></A><h1>What the Web DataWindow is</h1>
+<A NAME="TI1241"></A><p>The Web DataWindow is a DataWindow that is generated for use
+in Web applications. The Web DataWindow offers a thin-client solution
+that provides most of the data manipulation, presentation, and scripting capabilities
+of the PowerBuilder DataWindow without requiring any PowerBuilder
+DLLs or plug-ins on the Web client. The DataWindow that displays
+in the Web browser looks very much like the DataWindow you designed
+in the DataWindow painter.</p>
+<A NAME="TI1242"></A><h2>Web DataWindow types</h2>
+<A NAME="TI1243"></A><p>Web DataWindow functionality includes three types of Web DataWindow implementation:</p>
+<A NAME="TI1244"></A><p><A NAME="TI1245"></A>
+<ul>
+<li class=fi><b>XML Web
+DataWindow</b>   Separate XML (content), XSLT (layout), and CSS (style) with
+a subsequent transformation to XHTML</li>
+<li class=ds><b>XHTML Web DataWindow</b>   XHTML content only</li>
+<li class=ds><b>HTML Web DataWindow</b>   HTML content only
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>HTML Generation property page has been renamed</span> <A NAME="TI1246"></A>Since the Web DataWindow can be generated in XML, XHTML, and
+HTML, the HTML Generation property page in the DataWindow properties
+view is now called the Web Generation property page. Shared XHTML
+and HTML properties and properties specific to XML, XHTML, and HTML
+can be set there. For information about setting Web generation properties,
+see <A HREF="dwprgugp40.htm#BABGBHAH">"Setting Web generation properties
+for the Web DataWindow"</A>.</p>
+<A NAME="TI1247"></A><h4>Web DataWindow use</h4>
+<A NAME="TI1248"></A><p>The easiest way to use any type of Web DataWindow involves
+placing a Web DataWindow design-time control (DTC) on a Web page
+template in a JSP target and setting Web DataWindow DTC properties
+such as the generation format: XML, XHTML, or HTML. </p>
+<A NAME="TI1249"></A><p>No matter what type of Web DataWindow you want to use, the
+way you use it is the same. For specific information about using
+the XML Web DataWindow, see <A HREF="dwprgugp39.htm#CEGBIIDA">"Using the XML Web DataWindow"</A>. For information about using the
+Web DataWindow DTC, see the chapter about the Web DataWindow design-time
+control in the <i>Working with Web and JSP Targets</i>
+ book
+and <A HREF="dwprgugp41.htm#CEGGFFCA">"Setting Web DataWindow design-time
+control properties"</A>.</p>
+<A NAME="TI1250"></A><h2>How the Web DataWindow works</h2>
+<A NAME="TI1251"></A><p>The Web DataWindow uses a component running in a transaction
+server (such as <ABBR title = "e a server" >EAServer</ABBR> or COM+)
+cooperating with a dynamic page server (such as Microsoft Active
+Server Pages in <ACRONYM title = "i i s" >IIS</ACRONYM> or Java Server
+Pages in Tomcat) and communicating with a Web client by means of
+a Web server. No PowerBuilder DLLs or plug-ins are required on the
+Web client.</p>
+<A NAME="TI1252"></A><p>The built-in Web DataWindow component is the HTMLGenerator90 component
+that is preinstalled in <ABBR title = "e a server" >EAServer</ABBR> 5.x.
+The component is used to generate the JavaScript and the HTML; XHTML;
+or XML, XSLT, CSS, and XHTML, depending on the type of Web DataWindow
+you are creating. You can also use a custom component that you develop
+instead. For more information, see <A HREF="dwprgugp38.htm#BABCAFDD">"The Web DataWindow server
+component and client control"</A> on page <A HREF="dwprgugp38.htm#BABCAFDD"></A>.</p>
+<A NAME="TI1253"></A><p>A DataWindow COM component can also be called directly from
+ASP without a transaction server, but using a transaction server
+usually provides better performance because database connections
+and instances of the component can be pooled or cached.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Disabling instance pooling when deploying Web DataWindow
+targets</span> <A NAME="TI1254"></A>Instance pooling allows transaction server clients to reuse
+component instances and so improves server performance by eliminating
+the resource drain caused by repeated allocation of component instances.
+Instance pooling is turned on by default for the HTMLGenerator105
+component in <ABBR title = "e a server" >EAServer</ABBR>. This prevents you
+from deploying a target that uses the component a second time without stopping
+and restarting the server. During development, you might want to
+turn instance pooling off. For information on changing the pooling
+property of a component, see your server documentation.</p>
+<A NAME="TI1255"></A>In <ABBR title = "e a server" >EAServer</ABBR>, you can disable
+instance pooling using EAServer Manager or by setting the com.sybase.jaguar.component.pooling
+property to false in the HTMLGenerator<i>XXX</i>.props
+file in the <i>\EAServer\Repository\Component\DataWindow</i> directory.
+The component pooling property should be set to <i>true</i> for
+production use.</p>
+<A NAME="TI1256"></A><h4>What happens when a user requests a page</h4>
+<A NAME="TI1257"></A><p><A HREF="dwprgugp38.htm#CEGBBBCA">Figure 6-1</A> shows
+you graphically (in eight steps) what happens when a user accesses
+a Web page containing an XHTML or HTML Web DataWindow. </p>
+<A NAME="CEGBBBCA"></A><caption><b>Figure 6-1: How the Web DataWindow works</b></captionls>
+<br><img src="images/wdw02prc.gif">
+<A NAME="TI1258"></A><p>The numbers 1 through 8 in the figure correspond to the events
+that occur after you develop and deploy a Web DataWindow and a user
+accesses a page containing the Web DataWindow:<A NAME="TI1259"></A>
+<ol>
+</li>
+<li class=ds>In a Web browser, a user requests the URL for a page.</li>
+<li class=ds>The Web server passes the request to the page server,
+which locates the template for the requested page and executes server-side
+scripts in the template.</li>
+<li class=ds>The server-side scripts connect to the (transaction)
+server component, passing it information about the DataWindow and
+database connection.</li>
+<li class=ds>Methods on the server component retrieve data required
+for the DataWindow from the database and translate the DataWindow
+definition, data, and state into JavaScript and XHTML or HTML.</li>
+<li class=ds>The server component returns the JavaScript and
+XHTML or HTML and to the page server.</li>
+<li class=ds>The page server replaces the server-side script
+in the requested Web page with the generated JavaScript and XHTML
+or HTML and returns the page to the Web browser through the Web
+server.</li>
+<li class=ds>The user interacts with the DataWindow&#8212;for
+example, requesting the next page or updating the data.</li>
+<li class=ds>The Web server passes the URL with added action
+parameters to the page server, and the cycle begins again. 
+</li>
+</ol>
+</p>
+<A NAME="BABCAFDD"></A><h2>The Web DataWindow server component and client control</h2>
+<A NAME="TI1260"></A><p>The Web DataWindow has two main components: the server component
+and the client control.</p>
+<A NAME="TI1261"></A><h4>Web DataWindow server component</h4>
+<A NAME="TI1262"></A><p>The Web DataWindow server component retrieves data from a
+database and returns JavaScript and XSLT, XHTML, or HTML that represent
+the data and the DataWindow object definition to the page server.
+The server component is a PowerBuilder custom class user object
+that uses a DataStore to handle retrieval and updates and is deployed
+as an <ABBR title = "e a server" >EAServer</ABBR> or COM component.
+You can use the generic component provided with PowerBuilder or
+a custom component.</p>
+<A NAME="TI1263"></A><p>The generic <ABBR title = "e a server" >EAServer</ABBR> component, HTMLGenerator90,
+is preinstalled in <ABBR title = "e a server" >EAServer</ABBR> in
+a package named <i>DataWindow</i>. PowerBuilder also
+provides a generic COM component called <i>PowerBuilder.HTMLDataWindow</i> that
+you can register and use with COM+ or <ABBR title = "e a server" >EAServer</ABBR>. The COM component is in
+the file <i>PBDWR105.DLL</i>. For information about
+using the COM component, see <A HREF="dwprgugp48.htm#BABBFFEI">"Server configuration requirements"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using an older version of the generic component</span> <A NAME="TI1264"></A>Earlier versions of the generic HTMLGenerator component are
+also installed in the <ABBR title = "e a server" >EAServer</ABBR> DataWindow
+package. Because <ABBR title = "e a server" >EAServer</ABBR> supports
+multiple PowerBuilder VMs, you can continue to run older Web DataWindow applications
+that use this component.</p>
+<A NAME="TI1265"></A><p>The generic component has methods that you call in your Web
+page template to instantiate and configure the component. The generic
+component also provides most of the methods available on the PowerBuilder
+DataWindow control. You should probably use the generic component
+when you are getting started with the Web DataWindow. Later you
+might want to build and deploy a custom component that uses the
+methods of the generic <ABBR title = "e a server" >EAServer</ABBR> component interface
+or that uses only the methods you design for the component. For information,
+see <A HREF="dwprgugp50.htm#BEIEHDDG">"Using a custom server component"</A>.</p>
+<A NAME="TI1266"></A><h4>Types of server components and platforms</h4>
+<A NAME="TI1267"></A><p>The following table describes all the types of Web DataWindow
+server components and their supported platforms:</p>
+<A NAME="TI1268"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-1: Web DataWindow server components and platforms</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1269"></A>Web DataWindow server component</th>
+<th  rowspan="1"  ><A NAME="TI1270"></A>Platform <A NAME="TI1271"></A><p>(server component name)</p></th>
+<th  rowspan="1"  ><A NAME="TI1272"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1273"></A>Generic</td>
+<td  rowspan="1"  ><A NAME="TI1274"></A><ABBR title = "e a server" >EAServer</ABBR> (DataWindow::HTMLGenerator90)<br>or <br>COM (PowerBuilder.HTMLDataWindow)</td>
+<td  rowspan="1"  ><A NAME="TI1275"></A>Prebuilt <ABBR title = "e a server" >EAServer</ABBR> component
+or prebuilt COM component (ActiveX). No generation or compiling
+of stubs required.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1276"></A>Container <br>(can include multiple DataWindow definitions)</td>
+<td  rowspan="1"  ><A NAME="TI1277"></A><ABBR title = "e a server" >EAServer</ABBR> (<i>PackageName</i>::<i>ComponentName</i> using
+generic DataWindow::HTMLGenerator90 interface)</td>
+<td  rowspan="1"  ><A NAME="TI1278"></A>Deploy with Web DW Container project
+wizard. Increases performance by reducing calls to server. No generation
+or compiling of stubs required.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1279"></A>Custom (hybrid)</td>
+<td  rowspan="1"  ><A NAME="TI1280"></A><ABBR title = "e a server" >EAServer</ABBR> (<i>PackageName</i>::<i>ComponentName</i> using
+generic DataWindow::HTMLGenerator90 interface)</td>
+<td  rowspan="1"  ><A NAME="TI1281"></A>Use to increase flexibility of generic
+component. Can build and deploy with PB object or project wizard. Generic
+methods remain available.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1282"></A>Custom <br>(user-designed)</td>
+<td  rowspan="1"  ><A NAME="TI1283"></A><ABBR title = "e a server" >EAServer</ABBR> (<i>PackageName</i>::<i>ComponentName</i>)<br>or <br>COM (<i>PackageName.ComponentName</i>)</td>
+<td  rowspan="1"  ><A NAME="TI1284"></A>Potentially best for performance and scalability.
+Can use to avoid downloads of unneeded generic methods to client.</td>
+</tr>
+</table>
+<A NAME="TI1285"></A><h4>Web DataWindow client control</h4>
+<p><b>Embedding client-side scripts</b>   The Web DataWindow client control is the JavaScript plus XML,
+XSLT, and CSS; the JavaScript plus XHTML; or the JavaScript plus
+HTML that is generated by the server component and embedded in the
+page returned to the Web client. Client-side scripts that you add
+to your Web page template and wrap in SCRIPT tags are embedded as JavaScript
+in the client control. </p>
+<p><b>JavaScript caching</b>   Some features available on the client control are optional:
+events, methods, data update and validation, and display formatting for
+newly entered data. The size of the generated JavaScript increases
+as you add more client-side functionality. You can cache client-side
+methods in JavaScript files on your Web server to reduce the size
+of the markup generated for Web DataWindow pages and, if the browser
+is configured to use cached files, improve the performance on the
+client machine. </p>
+<A NAME="TI1286"></A><p>For information about enabling JavaScript caching, see <A HREF="dwprgugp40.htm#BABCBICA">"Using JavaScript caching
+for Web DataWindow methods"</A>. You can find
+additional information about client-side caching, HTMLGen properties,
+and other generation properties in the <i>DataWindow Reference</i>
+.</p>
+<p><b>Using client-side events</b>   Events that are triggered on the client control and several
+of the client control methods do not require the server component
+to reload the page, so processing on the client is typically much
+faster than processing performed on the server. </p>
+<A NAME="TI1287"></A><p>For more information about enabling features on the client,
+see <A HREF="dwprgugp40.htm#BABGCCFE">"Web DataWindow properties"</A> and <A HREF="dwprgugp49.htm#BABCBBAI">"Controlling what is generated "</A>. For more
+about writing scripts, see <A HREF="dwprgugp45.htm#BABDAFFA">"Writing client-side scripts"</A>.</p>
+<A NAME="TI1288"></A><p>For complete documentation of the events and methods available
+on the server component and the client control, see the <i>DataWindow
+Reference</i>
+ or the PowerBuilder online Help.</p>
+

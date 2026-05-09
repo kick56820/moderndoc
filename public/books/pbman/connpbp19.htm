@@ -1,0 +1,184 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About the OLE DB interface</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp18.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp20.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BCGBGBBJ"></A><h1>About the OLE DB interface</h1>
+<A NAME="TI450"></A><p>You can access a wide variety of data through OLE DB data
+providers in PowerBuilder. This section describes what you need to
+know to use OLE DB connections to access your data in PowerBuilder. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Supported OLE DB data providers</span> <A NAME="TI451"></A>For a complete list of the OLE DB data providers supplied
+with PowerBuilder and the data they access, see "Supported
+Database Interfaces" in online Help.</p>
+<A NAME="TI452"></A><h2>What is OLE DB?</h2>
+<A NAME="TI453"></A><h4>OLE DB API</h4>
+<A NAME="TI454"></A><p>OLE DB is a standard application programming interface (API)
+developed by Microsoft. It is a component of Microsoft's
+Data Access Components software. OLE DB allows an application to
+access a variety of data for which OLE DB data providers exist.
+It provides an application with uniform access to data stored in
+diverse formats, such as indexed-sequential files like Btrieve, personal
+databases like Paradox, productivity tools such as spreadsheets
+and electronic mail, and <ACRONYM title = "sequel" >SQL</ACRONYM>-based
+DBMSs. </p>
+<A NAME="TI455"></A><p>The OLE DB interface supports direct connections to <ACRONYM title = "sequel" >SQL</ACRONYM>-based databases.</p>
+<A NAME="TI456"></A><h4>Accessing data through OLE DB</h4>
+<A NAME="TI457"></A><p>Applications like PowerBuilder that provide an OLE DB interface
+can access data for which an OLE DB data provider exists. An <strong>OLE
+DB data provider </strong>is a dynamic link library (DLL) that
+implements OLE DB function calls to access a particular data source.</p>
+<A NAME="TI458"></A><p>The PowerBuilder OLE DB interface can connect to any OLE DB
+data provider that supports the OLE DB object interfaces listed
+in <A HREF="connpbp19.htm#BABIGGDA">Table 4-1</A>. An OLE
+DB data provider must support these interfaces in order to adhere
+to the Microsoft OLE DB 2.0 specification. </p>
+<A NAME="BABIGGDA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 4-1: Required OLE DB interfaces </caption>
+<tr><td  rowspan="1"  ><A NAME="TI459"></A>IAccessor</td>
+<td  rowspan="1"  ><A NAME="TI460"></A>IDBInitialize</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI461"></A>IColumnsInfo</td>
+<td  rowspan="1"  ><A NAME="TI462"></A>IDBProperties</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI463"></A>ICommand</td>
+<td  rowspan="1"  ><A NAME="TI464"></A>IOpenRowset</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI465"></A>ICommandProperties</td>
+<td  rowspan="1"  ><A NAME="TI466"></A>IRowset</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI467"></A>ICommandText</td>
+<td  rowspan="1"  ><A NAME="TI468"></A>IRowsetInfo</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI469"></A>IDBCreateCommand</td>
+<td  rowspan="1"  ><A NAME="TI470"></A>IDBSchemaRowset</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI471"></A>IDBCreateSession</td>
+<td  rowspan="1"  ><A NAME="TI472"></A>ISourcesRowset</td>
+</tr>
+</table>
+<A NAME="TI473"></A><p>In addition to the required OLE DB interfaces, PowerBuilder also
+uses the OLE DB interfaces listed in <A HREF="connpbp19.htm#BABGHCAC">Table 4-2</A> to provide further functionality. </p>
+<A NAME="BABGHCAC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 4-2: Additional OLE DB interfaces </caption>
+<tr><th  rowspan="1"  ><A NAME="TI474"></A>OLE DB interface</th>
+<th  rowspan="1"  ><A NAME="TI475"></A>Use in PowerBuilder</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI476"></A>ICommandPrepare</td>
+<td  rowspan="1"  ><A NAME="TI477"></A>Preparing commands and retrieving column information.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI478"></A>IDBInfo</td>
+<td  rowspan="1"  ><A NAME="TI479"></A>Querying the data provider for its properties.
+If this interface is not supported, database connections might fail.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI480"></A>IDBCommandWithParameters</td>
+<td  rowspan="1"  ><A NAME="TI481"></A>Querying the data provider for parameters.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI482"></A>IErrorInfo</td>
+<td  rowspan="1"  ><A NAME="TI483"></A>Providing error information.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI484"></A>IErrorRecords</td>
+<td  rowspan="1"  ><A NAME="TI485"></A>Providing error information.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI486"></A>IIndexDefinition</td>
+<td  rowspan="1"  ><A NAME="TI487"></A>Creating indexes for the extended attribute
+system tables. Also creating indexes in the Database painter. If
+this interface is not supported, PowerBuilder looks for index definition
+syntax in the <i>pbodb105.ini</i> file.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI488"></A>IMultipleResults</td>
+<td  rowspan="1"  ><A NAME="TI489"></A>Providing information.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI490"></A>IRowsetChange</td>
+<td  rowspan="1"  ><A NAME="TI491"></A>Populating the extended attribute system
+tables when they are created. Also, for updating blobs.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI492"></A>IRowsetUpdate</td>
+<td  rowspan="1"  ><A NAME="TI493"></A>Creating the extended attribute system
+tables.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI494"></A><ACRONYM title = "I sequel error info" >ISQLErrorInfo</ACRONYM></td>
+<td  rowspan="1"  ><A NAME="TI495"></A>Providing error information.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI496"></A>ISupportErrorInfo</td>
+<td  rowspan="1"  ><A NAME="TI497"></A>Providing error information.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI498"></A>ITableDefinition</td>
+<td  rowspan="1"  ><A NAME="TI499"></A>Creating the extended attribute system
+tables and also for creating tables in the Database painter. If this
+interface is not supported, the following behavior results:<A NAME="TI500"></A><p><A NAME="TI501"></A>
+<ul>
+<li class=fi>PowerBuilder looks for table definition
+syntax in the <i>pbodb105.ini</i> file</li>
+<li class=ds>PowerBuilder catalog tables cannot be used</li>
+<li class=ds>DDL and DML operations, like modifying columns or
+editing data in the database painter, do not function properly
+</li>
+</ul>
+</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI502"></A>ITransactionLocal</td>
+<td  rowspan="1"  ><A NAME="TI503"></A>Supporting transactions. If this interface
+is not supported, PowerBuilder defaults to AutoCommit mode.</td>
+</tr>
+</table>
+<A NAME="TI504"></A><h4>Accessing Unicode data</h4>
+<A NAME="TI505"></A><p>Using the OLE DB interface, PowerBuilder can connect, save,
+and retrieve data in both ANSI/DBCS and Unicode databases
+but does not convert data between Unicode and ANSI/DBCS.
+When character data or command text is sent to the database, PowerBuilder sends
+a Unicode string. The data provider must guarantee that the data
+is saved as Unicode data correctly. When PowerBuilder retrieves character
+data, it assumes the data is Unicode.</p>
+<A NAME="TI506"></A><p>A Unicode database is a database whose character set is set
+to a Unicode format, such as UTF-8, UTF-16, UCS-2, or UCS-4. All
+data must be in Unicode format, and any data saved to the database
+must be converted to Unicode data implicitly or explicitly.</p>
+<A NAME="TI507"></A><p>A database that uses ANSI (or DBCS) as its character set might
+use special datatypes to store Unicode data. Columns with these
+datatypes can store <i>only</i> Unicode data. Any
+data saved into such a column must be converted to Unicode explicitly.
+This conversion must be handled by the database server or client.</p>
+<A NAME="TI508"></A><h2>Components of an OLE DB connection</h2>
+<A NAME="TI509"></A><p>When you access an OLE DB data provider in PowerBuilder, your
+connection goes through several layers before reaching the data
+provider. It is important to understand that each layer represents
+a separate component of the connection, and that each component
+might come from a different vendor. </p>
+<A NAME="TI510"></A><p>Because OLE DB is a standard API, PowerBuilder uses the same
+interface to access every OLE DB data provider. As long as an OLE
+DB data provider supports the object interfaces required by PowerBuilder, PowerBuilder can access
+it through the OLE DB interface. </p>
+<A NAME="TI511"></A><p><A HREF="connpbp19.htm#BABBJFGE">Figure 4-1</A> shows
+the general components of a OLE DB connection.</p>
+<A NAME="BABBJFGE"></A><caption><b>Figure 4-1: Components of an OLE DB connection</b></captionls>
+<br><img src="images/cnw4ole.gif">
+<A NAME="TI512"></A><h2>Obtaining OLE DB data providers </h2>
+<A NAME="TI513"></A><p>There are two ways you can obtain OLE DB data providers for
+use with PowerBuilder: <A NAME="TI514"></A>
+<ul>
+<li class=fi><b>From Sybase (recommended)</b>   Install the OLE DB data providers shipped with PowerBuilder.
+You can do this either when you first install PowerBuilder or later.</li>
+<li class=ds><b>From another vendor</b>   PowerBuilder Enterprise lets you access data with <i>any</i> OLE
+DB data provider obtained from a vendor other than Sybase if that
+data provider supports the OLE DB object interfaces required by PowerBuilder.
+In most cases, these drivers work with PowerBuilder. However, Sybase
+might not have tested the drivers to verify this.<br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>PowerBuilder Professional and Desktop editions</span> <A NAME="TI515"></A>The PowerBuilder Professional and Desktop editions do <i>not</i> support
+the OLE DB interface. 
+<br>
+
+</li>
+</ul>
+</p>
+<A NAME="TI516"></A><h2>Supported versions for OLE DB</h2>
+<A NAME="TI517"></A><p>The OLE DB interface uses a DLL named <i>PBOLE105.DLL</i> to
+access a database through an OLE DB data provider. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Required OLE DB version</span> <A NAME="TI518"></A>To use the OLE DB interface to access an OLE DB database,
+you must connect through an OLE DB data provider that supports OLE
+DB version 2.0 or later. For information on OLE DB specifications,
+see <A HREF="http://msdn.microsoft.com/data">Microsoft's Universal Data Access Web site</A>
+.</p>
+

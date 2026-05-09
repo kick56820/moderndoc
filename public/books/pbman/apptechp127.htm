@@ -1,0 +1,28 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using MAPI</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp126.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp128.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF353878664"></A><h1>Using MAPI</h1>
+<A NAME="TI4162"></A><p>To use MAPI, you create a MailSession object, then use the
+MailSession functions to manage it.</p>
+<A NAME="TI4163"></A><p>For example:<p><PRE> MailSession PBmail</PRE><PRE> PBmail = CREATE MailSession</PRE><PRE> </PRE><PRE> PBmail.MailLogon(...)</PRE><PRE> ... // Manage the session: send messages,</PRE><PRE> ... // receive messages, and so on.</PRE><PRE> PBmail.MailLogoff()</PRE><PRE> </PRE><PRE> DESTROY PBmail</PRE></p>
+<A NAME="TI4164"></A><p>You can use the Browser to get details about the attributes
+and functions of the MailSession system object, the attributes of
+the mail-related structures, and the valid values of the mail-related
+enumerated datatypes.</p>
+<A NAME="TI4165"></A><p>For information about using the Browser, see
+the <i>PowerBuilder User's Guide</i>
+. For
+complete information about the MailSession functions, see the <i>PowerScript
+Reference</i>
+. For complete information about MAPI, see the documentation
+for your MAPI-compliant mail application<i></i>
+.</p>
+

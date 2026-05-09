@@ -1,0 +1,75 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using secure connections with EAServer</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp161.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp163.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CIHEGJEC"></A><h1>Using secure connections with EAServer</h1>
+<A NAME="TI5372"></A><p>The SSL
+protocol allows connections to be secured using public-key encryption
+and authentication algorithms that are based on digital certificates.
+SSL is a wrapper protocol: packets for another protocol are secured
+by embedding them inside SSL packets. For example, HTTPS is HTTP
+secured by embedding each HTTP packet within an SSL packet. Similarly,
+IIOPS is IIOP embedded within SSL.</p>
+<A NAME="TI5373"></A><p><ABBR title = "e a servers" >EAServer's</ABBR> built-in
+SSL driver supports dynamic negotiation, cached and shared sessions,
+and authorization for client and server using X.509 Digital Certificate
+support.</p>
+<A NAME="TI5374"></A><p>For an overview of security in <ABBR title = "e a server" >EAServer</ABBR> and
+more information about <ABBR title = "e a server" >EAServer</ABBR> and
+SSL, see the <i>EAServer Security Administration and Programming
+Guide</i>
+.</p>
+<A NAME="TI5375"></A><p>For more information about the SSL protocol, see the documentation
+for security on the <A HREF="http://developer.netscape.com/">Netscape DevEdge Web site</A>
+.</p>
+<A NAME="TI5376"></A><h4>Quality of protection</h4>
+<A NAME="TI5377"></A><p>The quality of protection (QOP) for <ABBR title = "e a server" >EAServer</ABBR> packages,
+components, and methods can be set in EAServer Manager. QOP establishes
+a minimum level of encryption and authentication that a client must
+meet before it can access a component's business logic.
+For example, to set the quality of protection for a component, add
+the com.sybase.jaguar.component.qop property on the All Properties
+page of the component's property sheet and set it to a
+security characteristic provided with <ABBR title = "e a server" >EAServer</ABBR>,
+such as sybpks_intl. </p>
+<A NAME="TI5378"></A><p>For a description of configuring QOP on the server and a list
+of security characteristics provided with <ABBR title = "e a server" >EAServer</ABBR>,
+see the <i>EAServer Security Administration and Programming
+Guide</i>
+. This chapter describes configuring QOP on the
+client.</p>
+<A NAME="TI5379"></A><h4>SSL certificate-based authentication</h4>
+<A NAME="TI5380"></A><p>In EAServer Manager, you can configure a secure IIOP or HTTP
+port by configuring a listener and associating a security profile
+with the listener. The profile designates a security certificate
+to be sent to clients to verify that the connection ends at the
+intended server, as well as other security settings.</p>
+<A NAME="TI5381"></A><p>PowerBuilder clients need a public key infrastructure (PKI)
+system to manage digital certificates. You can use Security Manager,
+which manages the <ABBR title = "e a server" >EAServer</ABBR> certificate
+database, or you can use Entrust/Entelligence, available separately
+from Entrust Technologies (http://www.entrust.com).</p>
+<A NAME="TI5382"></A><p>For more information about PKI and configuring secure ports
+and authentication options, see the<i> EAServer Security
+Administration and Programming Guide</i>
+.</p>
+<A NAME="TI5383"></A><h4>Client installation requirements</h4>
+<A NAME="TI5384"></A><p><ABBR title = "e a server" >EAServer</ABBR> provides several
+sets of client runtime files. Because SSL support in PowerBuilder
+clients is provided through the C++ client ORB,
+you should install the SSL and C++ runtime files
+on the computer on which PowerBuilder SSL clients will run. The
+installation includes the client-side security database, SSL support
+libraries, and the client-side Security Manager. You also need to configure
+the client installation to load the client libraries when you run
+your application. See the <i>Installation Guide</i>
+ for
+more information.</p>
+

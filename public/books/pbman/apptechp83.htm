@@ -1,0 +1,157 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+XML namespaces</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp82.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp84.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABDAIDD"></A><h1>XML namespaces</h1>
+<A NAME="TI2332"></A><p>XML namespaces provide a way to create globally unique names
+to distinguish between elements and attributes with the same name
+but of different terminologies. For example, in an XML invoice document
+for a bookstore, the name "date" could be used by accounting for
+the date of the order and by order fulfillment for the date of publication.An
+XML namespace is identified by a Uniform Resource Identifier (URI),
+a short string that uniquely identifies resources on the Web. The
+elements and attributes in each namespace can be uniquely identified
+by prefixing the element or attribute name (the local name) with
+the URI of the namespace.</p>
+<A NAME="TI2333"></A><h4>Associating a prefix with a namespace</h4>
+<A NAME="TI2334"></A><p>You declare an XML namespace using <b>xmlns</b> as
+part of a namespace declaration attribute. With the namespace declaration
+attribute, you can associate a prefix with the namespace.</p>
+<A NAME="TI2335"></A><p>For example, the following namespace declaration attribute
+declares the <i>http://www.pre.com</i> namespace
+and associates the prefix <FONT FACE="Courier New">pre</FONT> with
+this namespace:<p><PRE> xmlns:pre="http://www.pre.com"</PRE></p>
+<A NAME="TI2336"></A><h4>Default XML namespace</h4>
+<A NAME="TI2337"></A><p>If an XML namespace declaration does not specify a prefix,
+the namespace becomes a default XML namespace. For example, the
+following element, <b>digicom</b>, declares the namespace<i> http://www.digital_software.com</i>:<p><PRE> &lt;digicom xmlns="http://www.digital_software.com" /&gt;</PRE>The
+namespace<i> http://www.digital_software.com</i> is
+the in-scope default namespace for the element <b>digicom</b> and
+any child elements that <b>digicom</b> might contain.
+The child elements of <b>digicom</b> will automatically
+be in this namespace.</p>
+<A NAME="TI2338"></A><h4>The NONAMESPACE declaration</h4>
+<A NAME="TI2339"></A><p>The following namespace declaration is known as the NONAMESPACE declaration:<p><PRE> xmlns=""</PRE>The
+containing element and its child elements are declared to be in
+no namespace. An element that is in the NONAMESPACE namespace has
+its namespace prefix and URI set to empty strings.</p>
+<A NAME="TI2340"></A><h4>Initial state</h4>
+<A NAME="TI2341"></A><p>When a PBDOM_ELEMENT or a PBDOM_ATTRIBUTE
+is first created, it has no name, and the namespace information
+is by default set to the NONAMESPACE namespace (that is, its namespace
+prefix and URI are both empty strings). The <b>SetName</b> method
+is used to set the local name and the <b>SetNamespace</b> method
+is used to set the namespace prefix and URI.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>The name is required</span> <A NAME="TI2342"></A>The name is a required property of a PBDOM_ELEMENT
+and PBDOM_ATTRIBUTE, but the namespace information is not.</p>
+<A NAME="TI2343"></A><h4>Retrieving from a parsed document</h4>
+<A NAME="TI2344"></A><p>If a PBDOM_ELEMENT or PBDOM_ATTRIBUTE is
+retrieved programmatically from a parsed document, then its name
+and namespace information are inherited from the Element or Attribute
+contained in the parsed document. However, even after parsing, the
+name and namespace information of the PBDOM_ELEMENT and
+PBDOM_ATTRIBUTE can be further modified with the <b>SetName</b> and <b>SetNamespace</b> methods.The
+name and namespace information are stored separately internally. Changing
+the name of a PBDOM_ELEMENT or PBDOM_ATTRIBUTE
+does not affect its namespace information, and changing its namespace
+information has no effect on its name.</p>
+<A NAME="TI2345"></A><h2>Setting the name and namespace of a PBDOM_ATTRIBUTE</h2>
+<A NAME="TI2346"></A><p>The W3C "Namespaces in XML" specification (in section 5.3)
+places restrictions on setting the name and namespace of a PBDOM_ATTRIBUTE. No
+tag can contain two attributes with identical names, or with qualified
+names that have the same local name and have prefixes that are bound
+to identical namespace names.</p>
+<A NAME="TI2347"></A><p>The specification provides the following examples of illegal
+and legal attributes:</p>
+<A NAME="TI2348"></A><p><p><PRE> &lt;!-- http://www.w3.org is bound to n1 and n2 --&gt;<br>&lt;x xmlns:n1="http://www.w3.org" <br>   xmlns:n2="http://www.w3.org" &gt;<br>   &lt;bad a="1"  a="2" /&gt;<br>   &lt;bad n1:a="1"  n2:a="2" /&gt;<br>&lt;/x&gt; </PRE></p>
+<A NAME="TI2349"></A><p><p><PRE> &lt;!-- http://www.w3.org is bound to n1 and is the default --&gt;<br>&lt;x xmlns:n1="http://www.w3.org" <br>   xmlns="http://www.w3.org" &gt;<br>   &lt;good a="1"  b="2" /&gt;<br>   &lt;good a="1"  n1:a="2" /&gt;<br>&lt;/x&gt; </PRE></p>
+<A NAME="TI2350"></A><p>In the first example, <FONT FACE="Courier New">&lt;bad a="1"  a="2" /&gt;</FONT> violates
+the rule that no tag can contain two attributes with identical names.
+In the second tag, the attributes have the same local name but different
+prefixes, so that their names are different. However, their prefixes
+point to the same namespace URI, <i>http://www.w3.org</i>,
+so it is illegal to place them inside the same owner element.</p>
+<A NAME="TI2351"></A><h4>PBDOM scenarios</h4>
+<A NAME="TI2352"></A><p>The following scenarios illustrate how PBDOM conforms to these requirements.</p>
+<A NAME="TI2353"></A><p><A NAME="TI2354"></A>
+<ul>
+<li class=fi>When the PBDOM_ATTRIBUTE <b>SetName</b> method
+is invoked:<br>
+If the PBDOM_ATTRIBUTE <b>pbdom_attr1</b> has
+an owner PBDOM_ELEMENT that contains an existing PBDOM_ATTRIBUTE with
+the same name that is to be set for <b>pbdom_attr1</b> and
+has the same namespace URI as <b>pbdom_attr1</b>,
+the EXCEPTION_INVALID_NAME exception is thrown.<br></li>
+<li class=ds>When the PBDOM_ATTRIBUTE <b>SetNamespace</b> method
+is invoked:<br>
+If the PBDOM_ATTRIBUTE <b>pbdom_attr1</b> has
+an owner PBDOM_ELEMENT that contains an existing PBDOM_ATTRIBUTE with
+the same name as <b>pbdom_attr1</b> and the
+same namespace URI that is to be set for <b>pbdom_attr1</b>,
+the EXCEPTION_INVALID_NAME exception is thrown.<br></li>
+<li class=ds>When the PBDOM_ELEMENT <b>SetAttribute</b>(<b>pbdom_attribute</b> <i>pbdom_attribute_ref</i>)
+method is invoked:<br>
+If the PBDOM_ELEMENT already contains an attribute
+that has the same name and namespace URI as the input PBDOM_ATTRIBUTE,
+the existing attribute is replaced by the input PBDOM_ATTRIBUTE.
+The existing attribute is thus removed (detached) from the owner
+element.<br></li>
+<li class=ds>When the PBDOM_ELEMENT <b>SetAttributes</b>(<b>pbdom_attribute</b> <i>pbdom_attribute_array</i><i>[]</i>)
+method is invoked:<br>
+If any two PBDOM_ATTRIBUTE objects in the array have
+the same name and namespace URI, the EXCEPTION_INVALID_NAME exception
+is thrown. If there is no name or namespace conflict within the array,
+all the existing attributes of the PBDOM_ELEMENT are replaced by
+the PBDOM_ATTRIBUTE objects in the array.<br><br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Note</span> <A NAME="TI2355"></A>All the above scenarios apply to PBDOM_ATTRIBUTE
+objects that are contained in the NONAMESPACE namespace.
+<br>
+</li>
+<li class=ds>When the PBDOM_ELEMENT <b>SetAttribute</b>(<b>string</b> <i>strName</i>, <b>string</b> <i>strValue</i>)
+method is invoked:<br>
+A new PBDOM_ATTRIBUTE with the specified name and
+value is created and set into the PBDOM_ELEMENT. If the
+PBDOM_ELEMENT already contains an attribute that has the
+same name and that is contained within the NONAMESPACE namespace,
+it is removed (detached) from the PBDOM_ELEMENT.<br></li>
+<li class=ds>When the PBDOM_ELEMENT <b>SetAttribute</b>(<b>string</b> <i>strName</i>, <b>string</b> <i>strValue</i>, <b>string</b> <i>strNamespacePrefix</i>, <b>string</b> <i>strNamespaceUri</i>, <b>boolean</b> <i>bVerifyNamespace</i>)
+method is invoked: <br>
+A new PBDOM_ATTRIBUTE with the specified name, value,
+and namespace information is created and set into the PBDOM_ELEMENT.
+If the PBDOM_ELEMENT already contains a PBDOM_ATTRIBUTE
+that has the same name and namespace URI as the input namespace
+URI, it is removed (detached) from the PBDOM_ELEMENT.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI2356"></A><h4>Example</h4>
+<A NAME="TI2357"></A><p>The following example demonstrates the impact of
+setting a PBDOM_ATTRIBUTE for a PBDOM_ELEMENT
+where the PBDOM_ELEMENT already contains an attribute of
+the same name and namespace URI as the input PBDOM_ATTRIBUTE.</p>
+<A NAME="TI2358"></A><p>The example creates a PBDOM_DOCUMENT based on the
+following document:<p><PRE> &lt;root xmlns:pre1="http://www.pre.com" xmlns:pre2="http://www.pre.com"&gt;<br>   &lt;child1 pre1:a="123"/&gt;<br>&lt;/root&gt;</PRE></p>
+<A NAME="TI2359"></A><p>Then it creates a PBDOM_ATTRIBUTE object and set
+its name to <FONT FACE="Courier New">a</FONT> and its prefix
+and URI to <FONT FACE="Courier New">pre2</FONT> and <FONT FACE="Courier New">http://www.pre.com</FONT>.
+The <i>bVerifyNamespace</i> argument is set to <b>FALSE</b> because
+this PBDOM_ATTRIBUTE has not been assigned an owner PBDOM_ELEMENT
+yet, so that the verification for a predeclared namespace would
+fail. The text value is set to <FONT FACE="Courier New">456</FONT>.The <b>child1</b> element
+already contains an attribute named <b>a</b> that
+belongs to the namespace <b>http://www.pre.com</b>,
+as indicated by the prefix <b>pre1</b>. The new PBDOM_ATTRIBUTE
+uses the prefix <b>pre2</b>, but it represents the
+same namespace URI, so setting the new PBDOM_ATTRIBUTE
+to <b>child1</b> successfully replaces the existing <b>pre1:a</b> with
+the new PBDOM_ATTRIBUTE <b>pre2:a</b>. </p>
+<A NAME="TI2360"></A><p><p><PRE> PBDOM_BUILDER pbdom_buildr<br>PBDOM_DOCUMENT pbdom_doc<br>PBDOM_ATTRIBUTE pbdom_attr<br> <br>string strXML = "&lt;root xmlns:pre1=~"http://www.pre.com~" xmlns:pre2=~"http://www.pre.com~"&gt;&lt;child1 pre1:a=~"123~"/&gt;&lt;/root&gt;"<br> <br></PRE><PRE> try<br> <br>  pbdom_buildr = Create PBDOM_BUILDER<br>  pbdom_doc = pbdom_buildr.BuildFromString (strXML)<br>  <br>  // Create a PBDOM_ATTRIBUTE and set its properties<br>  pbdom_attr = Create PBDOM_ATTRIBUTE<br>  pbdom_attr.SetName ("a")<br>  pbdom_attr.SetNamespace ("pre2", &amp;<br>     "http://www.pre.com", false)<br>  pbdom_attr.SetText("456")<br>  <br>  // Attempt to obtain the child1 element and <br>  // set the new attribute to it<br>  pbdom_doc.GetRootElement(). &amp;<br>    GetChildElement("child1").SetAttribute(pbdom_attr)<br>  <br>  pbdom_doc.SaveDocument &amp;<br>     ("pbdom_elem_set_attribute_1.xml")<br> <br>catch (PBDOM_EXCEPTION except)<br>  MessageBox ("PBDOM_EXCEPTION", except.GetMessage())<br>end try</PRE></p>
+<A NAME="TI2361"></A><p>The XML output from <b>SaveDocument</b> looks
+like the following :<p><PRE> &lt;root xmlns:pre1="http://www.pre.com" xmlns:pre2="http://www.pre.com"&gt;<br>   &lt;child1 pre2:a="456"/&gt;<br>&lt;/root&gt;</PRE></p>
+

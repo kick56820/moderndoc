@@ -1,0 +1,182 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Working with keys</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp136.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp138.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDECFJ"></A><h1>Working with keys</h1>
+<A NAME="TI4227"></A><p>If your DBMS supports primary and foreign keys, you can work
+with the keys in PowerBuilder. </p>
+<A NAME="TI4228"></A><h4>Why you should use keys</h4>
+<A NAME="TI4229"></A><p>If your DBMS supports them, you should use primary and foreign
+keys to enforce the referential integrity of your database. That
+way you can rely on the DBMS to make sure that only valid values
+are entered for certain columns instead of having to write code
+to enforce valid values.</p>
+<A NAME="TI4230"></A><p>For example, say you have two tables called <b>Department</b> and <b>Employee</b>.
+The <b>Department</b> table contains the column <b>Dept_Head_ID</b>,
+which holds the ID of the department's manager. You want
+to make sure that only valid employee IDs are entered in this column.
+The only valid values for <b>Dept_Head_ID</b> in
+the <b>Department</b> table are values for <b>Emp_ID</b> in
+the <b>Employee</b> table.</p>
+<A NAME="TI4231"></A><p>To enforce this kind of relationship, you define a foreign
+key for <b>Dept_Head_ID</b> that
+points to the <b>Employee</b> table. With this key
+in place, the DBMS disallows any value for <b>Dept_Head_ID</b> that
+does not match an <b>Emp_ID</b> in the <b>Employee</b> table.</p>
+<A NAME="TI4232"></A><p>For more about primary and foreign keys, consult
+a book about relational database design or your DBMS documentation.</p>
+<A NAME="TI4233"></A><h4>What you can do in the Database painter</h4>
+<A NAME="TI4234"></A><p>You can work with keys in the following ways:<A NAME="TI4235"></A>
+<ul>
+<li class=fi>Look at existing primary and foreign keys</li>
+<li class=ds>Open all tables that depend on a particular primary
+key</li>
+<li class=ds>Open the table containing the primary key used by
+a particular foreign key</li>
+<li class=ds>Create, alter, and drop keys
+</li>
+</ul>
+</p>
+<A NAME="TI4236"></A><p>For the most part, you work with keys the same way for each
+DBMS that supports keys, but there are some DBMS-specific issues.
+For complete information about using keys with your DBMS, see your
+DBMS documentation.</p>
+<A NAME="BDCFCFHJ"></A><h4>Viewing keys</h4>
+<A NAME="TI4237"></A><p>Keys can be viewed in several ways:<A NAME="TI4238"></A>
+<ul>
+<li class=fi>In
+the expanded tree view of a table in the Objects view</li>
+<li class=ds>As icons connected by lines to a table in the Object
+Layout view
+</li>
+</ul>
+</p>
+<A NAME="TI4239"></A><p>In the following picture, the Department table has two keys:<A NAME="TI4240"></A>
+<ul>
+<li class=fi>A primary key (on <b>dept_id</b>)</li>
+<li class=ds>A foreign key (on <b>dept_head_id</b>)
+</li>
+</ul>
+</p>
+<br><img src="images/db0013.gif">
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you cannot see the lines</span> <A NAME="TI4241"></A>If the color of your window background makes it difficult
+to see the lines for the keys and indexes, you can set the colors
+for each component of the Database painter's graphical table
+representation, including keys and indexes. For information, see <A HREF="pbugp134.htm#BABDFCJG">"Modifying database preferences"</A>.</p>
+<A NAME="TI4242"></A><h4>Opening related tables</h4>
+<A NAME="TI4243"></A><p>When working with tables containing keys, you can easily open
+related tables.</p>
+<A NAME="TI4244"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To open the table that a particular foreign key
+references:</p>
+<ol><li class=fi><p>Display the foreign key pop-up menu.</p></li>
+<li class=ds><p>Select Open Referenced Table.</p></li></ol>
+<br><A NAME="TI4245"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To open all tables referencing a particular primary
+key:</p>
+<ol><li class=fi><p>Display the primary key pop-up menu.</p></li>
+<li class=ds><p>Select Open Dependent Table(s).</p><p>PowerBuilder opens and expands all tables in the database containing foreign
+keys that reference the selected primary key.</p></li></ol>
+<br><A NAME="BDCFDFIF"></A><h4>Defining primary keys</h4>
+<A NAME="TI4246"></A><p>If your DBMS supports primary keys, you can define them in PowerBuilder.</p>
+<A NAME="TI4247"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a primary key:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI4248"></A>
+<ul>
+<li class=fi>Highlight
+the table for which you want to create a primary key and click the
+Create Primary Key drop-down toolbar button in PainterBar1.</li>
+<li class=ds>Select Object&gt;Insert&gt;Primary Key
+from the main menu or New&gt;Primary Key from the pop-up menu.</li>
+<li class=ds>Expand the table's tree view, right-click
+Primary Key, and select New Primary Key from the pop-up menu. 
+</li>
+</ul>
+
+                      </p><p>The Primary Key properties display in the Object Details view. </p></li>
+<li class=ds><p>Select one or more columns for the primary key.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Columns that are allowed in a primary key</span> <A NAME="TI4249"></A>Only a column that does not allow null values can be included
+as a column in a primary key definition. If you choose a column
+that allows null values<b></b>, you get a DBMS error
+when you save the table. In DBMSs that allow rollback for Data Definition
+Language (DDL), the table definition is rolled back. In DBMSs that
+do not allow rollback for DDL, the Database painter is refreshed with
+the current definition of the table.</p>
+</li>
+<li class=ds><p>Specify any information required by your DBMS.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Naming a primary key</span> <A NAME="TI4250"></A>Some DBMSs allow you to name a primary key and specify whether
+it is clustered or not clustered. For these DBMSs, the Primary Key
+property page has a way to specify these properties.</p>
+<p>For DBMS-specific information, see your DBMS
+documentation.</p></li>
+<li class=ds><p>Right-click on the Object Details view and select
+Save Changes from the pop-up menu. </p><p>Any changes you made in the view are immediately saved to
+the table definition. </p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Completing the primary key</span> <A NAME="TI4251"></A>Some DBMSs automatically create a unique index when you define
+a primary key so that you can immediately begin to add data to the
+table. Others require you to create a unique index separately to
+support the primary key before populating the table with data.</p>
+<A NAME="TI4252"></A>To find out what your DBMS does, see your
+DBMS documentation.</p>
+<A NAME="BDCBADBB"></A><h4>Defining foreign keys</h4>
+<A NAME="TI4253"></A><p>If your DBMS supports foreign keys, you can define them in PowerBuilder.</p>
+<A NAME="TI4254"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a foreign key:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI4255"></A>
+<ul>
+<li class=fi>Highlight
+the table and click the Create Foreign Key drop-down toolbar button
+in PainterBar1.</li>
+<li class=ds>Select Object&gt;Insert&gt;Foreign Key
+from the main menu or New&gt;Foreign Key from the pop-up menu.</li>
+<li class=ds>Expand the table's tree view and right-click
+on Foreign Keys and select New Foreign Key from the pop-up menu. 
+</li>
+</ul>
+
+                      </p><p>The Foreign Key properties display in the Object Details view.
+Some of the information is DBMS-specific. </p></li>
+<li class=ds><p>Name the foreign key in the Foreign Key Name box.</p></li>
+<li class=ds><p>Select the columns for the foreign key.</p></li>
+<li class=ds><p>On the Primary Key tab page, select the table
+and column containing the Primary key referenced by the foreign
+key you are defining.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Key definitions must match exactly</span> <A NAME="TI4256"></A>The definition of the foreign key columns must match the primary
+key columns, including datatype, precision (width), and scale (decimal specification).</p>
+</li>
+<li class=ds><p>On the Rules tab page, specify any information
+required by your DBMS.</p><p>For example, you might need to specify a delete rule by selecting
+one of the rules listed for On Delete of Primary Table Row.</p><p>For DBMS-specific information, see your DBMS
+documentation.</p></li>
+<li class=ds><p>Right-click on the Object Details view and select
+Save Changes from the pop-up menu. </p><p>Any changes you make in the view are immediately saved to
+the table definition. </p></li></ol>
+<br><A NAME="BDCEIGAB"></A><h4>Modifying keys</h4>
+<A NAME="TI4257"></A><p>You can modify a primary key in PowerBuilder.</p>
+<A NAME="TI4258"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify a primary key:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI4259"></A>
+<ul>
+<li class=fi>Highlight
+the primary key listed in the table's expanded tree view and click
+the Properties button.</li>
+<li class=ds>Select Properties from the Object or pop-up menu.</li>
+<li class=ds>Drag the primary key icon and drop it in the Object
+Details view. 
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>Select one or more columns for the primary key.</p></li>
+<li class=ds><p>Right-click on the Object Details view and select
+Save Changes from the pop-up menu. </p><p>Any changes you make in the view are immediately saved to
+the table definition. </p></li></ol>
+<br><A NAME="BDCEFADF"></A><h4>Dropping a key</h4>
+<A NAME="TI4260"></A><p>You can drop keys (remove them from the database) from within PowerBuilder.</p>
+<A NAME="TI4261"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To drop a key:</p>
+<ol><li class=fi><p>Highlight the key in the expanded tree
+view for the table in the Objects view or right-click the key icon
+for the table in the Object Layout view.</p></li>
+<li class=ds><p>Select Drop Primary Key or Drop Foreign Key from
+the key's pop-up menu.</p></li>
+<li class=ds><p>Click Yes.</p></li></ol>
+<br>

@@ -1,0 +1,88 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About libraries</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp48.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp50.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CBBCAHDI"></A><h1>About libraries</h1>
+<A NAME="TI1550"></A><p>Whenever you save an object, such as a window or menu, in
+a painter, PowerBuilder stores the object in a library (a <ACRONYM title = "pibble" >PBL</ACRONYM> file). Similarly, whenever you
+open an object in a painter, PowerBuilder retrieves the object from
+the library.</p>
+<A NAME="TI1551"></A><h4>Assigning libraries</h4>
+<A NAME="TI1552"></A><p>PowerScript targets can use as many libraries as you want.
+Libraries can be on your own PC or workstation or on a server. When
+you create a target, you specify which libraries it uses. You can
+also change the library search path for a target at any time during
+development.</p>
+<A NAME="TI1553"></A><p>For information about specifying the library
+search path, see <A HREF="pbugp44.htm#CHDDJJFJ">"Specifying the target's
+library search path"</A>.</p>
+<A NAME="TI1554"></A><h4>How the information is saved</h4>
+<A NAME="TI1555"></A><p>Every object is saved in two parts in a library:</p>
+<A NAME="TI1556"></A><p><A NAME="TI1557"></A>
+<ul>
+<li class=fi><b>Source
+form</b>   This is a syntactic representation of the object, including the
+script code.</li>
+<li class=ds><b>Object form</b>   This is a binary representation of the object, similar to
+an object file in the C and C++ languages. PowerBuilder
+compiles an object automatically every time you save it.
+</li>
+</ul>
+</p>
+<A NAME="TI1558"></A><h2>Using libraries</h2>
+<A NAME="TI1559"></A><p>It is hard to predict the needs of a particular application,
+so the organization of a target's libraries generally evolves
+over the development cycle. PowerBuilder lets you reorganize your
+libraries easily at any time.</p>
+<A NAME="TI1560"></A><h4>About library size</h4>
+<A NAME="TI1561"></A><p>For small applications, you might use only one library, but
+for larger applications, you should split the application into different
+libraries.</p>
+<A NAME="TI1562"></A><p>There are no limits to how large libraries can be, but for
+performance and convenience, you should follow these guidelines:<A NAME="TI1563"></A>
+<ul>
+<li class=fi><b>Number of objects</b>   It is a good idea not to have more than 50 or 60 objects saved
+in a library. This is strictly for your convenience; the number of
+objects does not affect performance. If you have many objects in
+a library, list boxes that list library objects become unmanageable
+and the System Tree and Library painter become more difficult to
+use.</li>
+<li class=ds><b>Balance</b>   Managing a large number of libraries with only a few objects makes
+the library search path too long and can slow performance by forcing
+PowerBuilder to look through many libraries to find an object. Try to
+maintain a balance between the size and number of libraries.
+</li>
+</ul>
+</p>
+<A NAME="TI1564"></A><h2>Organizing libraries</h2>
+<A NAME="TI1565"></A><p>You can organize your libraries any way you want. For example,
+you might put all objects of one type in their own library, or divide
+your target into subsystems and place each subsystem in its own
+library.</p>
+<A NAME="TI1566"></A><h4>Sharing objects with others</h4>
+<A NAME="TI1567"></A><p>PowerBuilder provides basic source control using the PBNative
+check in/check out utility. PBNative allows you to lock
+the current version of PowerBuilder objects and prevents others
+from checking out these objects and modifying them while you are
+working on them. </p>
+<A NAME="TI1568"></A><p>The project administrator must design a directory hierarchy
+for the project's workspace. The administrator might create
+a separate subdirectory for each target in the workspace, or for
+each <ACRONYM title = "pibble" >PBL</ACRONYM> in the workspace. After
+the administrator sets up the project and registers every object
+in the workspace, individual developers copy a template workspace
+to their own computers, open the workspace, and connect to source
+control.</p>
+<A NAME="TI1569"></A><p>PowerBuilder also provides a direct connection to external
+SCC-compliant source control systems.</p>
+<A NAME="TI1570"></A><p>For more about using PBNative and other source control systems,
+see <A HREF="pbugp25.htm#CBBEABED">"Using a source control system
+with PowerBuilder"</A>.</p>
+

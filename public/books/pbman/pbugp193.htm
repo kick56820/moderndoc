@@ -1,0 +1,79 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About edit styles </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp192.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp194.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCBBIBJ"></A><h1>About edit styles </h1>
+<A NAME="TI6372"></A><p>You can define edit styles for columns. Edit styles specify
+how column data is presented in DataWindow objects. Unlike display formats,
+edit styles do not only affect the display of data; they also affect
+how users interact with the data at runtime. Once you define
+an edit style, it can be used by any column of the appropriate datatype
+in the database.</p>
+<A NAME="TI6373"></A><h4>When edit styles are used</h4>
+<A NAME="TI6374"></A><p>If both a display format and an edit style have been assigned
+to a column, the edit style is always used, with one exception.
+When you assign an EditMask edit style to a column, you can check
+the Use Format check box on the Format property page for the column
+to use the edit mask format when focus is on the column, and the
+display format mask when focus is off the column.</p>
+<A NAME="TI6375"></A><h4>Edit styles</h4>
+<A NAME="TI6376"></A><p><A HREF="pbugp193.htm#BHAHDDEA">Table 22-8</A> shows
+the available edit styles.</p>
+<A NAME="BHAHDDEA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 22-8: Edit styles</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6377"></A>Edit style</th>
+<th  rowspan="1"  ><A NAME="TI6378"></A>What the edit style does</th>
+<th  rowspan="1"  ><A NAME="TI6379"></A>Example</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6380"></A>Edit box (default)</td>
+<td  rowspan="1"  ><A NAME="TI6381"></A>Displays a value in the box<A NAME="TI6382"></A><p>For data entry, type a value</p></td>
+<td  rowspan="1"  ><A NAME="TI6383"></A><br><img src="images/dwdis03.gif">
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6384"></A>DropDownListBox</td>
+<td  rowspan="1"  ><A NAME="TI6385"></A>Displays a value from the drop-down
+list<A NAME="TI6386"></A><p>For data entry, select or enter a value</p></td>
+<td  rowspan="1"  ><A NAME="TI6387"></A><br><img src="images/dwdis04.gif">
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6388"></A>CheckBox</td>
+<td  rowspan="1"  ><A NAME="TI6389"></A>Displays a check box selected or cleared<A NAME="TI6390"></A><p>For data entry, select or clear the check box</p></td>
+<td  rowspan="1"  ><A NAME="TI6391"></A><br><img src="images/dwdis05.gif">
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6392"></A>RadioButtons</td>
+<td  rowspan="1"  ><A NAME="TI6393"></A>Displays radio buttons, one of which
+is selected<A NAME="TI6394"></A><p>For data entry, select one of the radio buttons</p></td>
+<td  rowspan="1"  ><A NAME="TI6395"></A><br><img src="images/dwdis06.gif">
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6396"></A>EditMask</td>
+<td  rowspan="1"  ><A NAME="TI6397"></A>Displays formatted data<A NAME="TI6398"></A><p>For data entry, type a value</p></td>
+<td  rowspan="1"  ><A NAME="TI6399"></A><br><img src="images/dwdis07.gif">
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6400"></A>DropDownDataWindow</td>
+<td  rowspan="1"  ><A NAME="TI6401"></A>Displays a value from a drop-down
+DataWindow<A NAME="TI6402"></A><p>For data entry, select a value</p></td>
+<td  rowspan="1"  ><A NAME="TI6403"></A><br><img src="images/dwdis08.gif">
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6404"></A>InkEdit</td>
+<td  rowspan="1"  ><A NAME="TI6405"></A>On Tablet PCs, displays an InkEdit control
+so the user can enter data with the stylus.</td>
+<td  rowspan="1"  ><A NAME="TI6406"></A></td>
+</tr>
+</table>
+<A NAME="TI6407"></A><p>For example, suppose you have a column <b>Status</b> that
+takes one of three values: the letters A, T, and L, each representing
+a status (Active, Terminated, or On Leave). If you assign it the
+RadioButton edit style, userscan simply click a button instead
+of having to type A, T, or L. You do not have to create a validation
+rule to validate typed input.</p>
+

@@ -1,0 +1,68 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using a custom DataStore object </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp28.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp30.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF355846943"></A><h1>Using a custom DataStore object </h1>
+<A NAME="TI922"></A><p>This section describes how to extend a DataStore in PowerBuilder
+by creating a user object.</p>
+<A NAME="TI923"></A><p>You might want to use a custom version of the DataStore object
+that performs specialized processing. To define a custom DataStore,
+you use the User Object painter. There you specify the DataWindow
+object for the DataStore, and you can optionally write scripts for
+events or define your own methods, user events, and instance variables. </p>
+<A NAME="TI924"></A><p>Using a custom DataStore involves two procedures:</p>
+<A NAME="TI925"></A><p><A NAME="TI926"></A>
+<ol>
+</li>
+<li class=ds>In the User Object
+painter, define and save a standard class user object inherited
+from the built-in DataStore object.</li>
+<li class=ds>Use the custom DataStore in your PowerBuilder application.
+</li>
+</ol>
+</p>
+<A NAME="TI927"></A><p>Once you have defined a custom DataStore in the User Object
+painter, you can write code that uses the user object to perform
+the processing you want.</p>
+<A NAME="TI928"></A><p>For instructions on using the User Object
+painter in PowerBuilder, see the <i>PowerBuilder User's
+Guide</i>
+.</p>
+<A NAME="TI929"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define the standard class user object:</p>
+<ol><li class=fi><p>Select Standard Class User Object on the
+PBObjects tab in the New dialog box.</p></li>
+<li class=ds><p>Select datastore as the built-in system type that
+you want your user object to inherit from, and click OK.</p><p>The User Object painter workspace displays so that you can
+define the custom object.</p></li>
+<li class=ds><p>Specify the name of the DataWindow object in the
+DataObject box in the Properties view and click OK.</p></li>
+<li class=ds><p>Customize the DataStore by scripting the events
+for the object, or by defining methods, user events, and instance
+variables.</p></li>
+<li class=ds><p>Save the object.</p></li></ol>
+<br><A NAME="TI930"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use the user object in your application:</p>
+<ol><li class=fi><p>Select the object or control for which
+you want to write a script.</p></li>
+<li class=ds><p>Open the Script view and select the event for
+which you want to write the script.</p></li>
+<li class=ds><p>Write code that uses the user object to do the
+necessary processing.</p><p>Here is a simple code example that shows how to use a custom
+DataStore to retrieve data from the database. First it instantiates
+the custom DataStore object, then it sets the transaction object
+and retrieves data into the DataStore:<p><PRE> uo_cust_dstore lds_cust_dstore</PRE><PRE> lds_cust_dstore = CREATE uo_cust_dstore</PRE><PRE> lds_cust_dstore.SetTransObject (SQLCA)</PRE><PRE> lds_cust_dstore.Retrieve()</PRE><PRE> /* Perform some processing on the data... */</PRE></p><p>Notice that this script does not assign the DataWindow object
+to the DataStore. This is because the DataWindow object is specified
+in the user object definition.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Changing the DataWindow object at execution time</span> <A NAME="TI931"></A>When you associate a DataWindow object with a DataStore in
+the User Object painter, you are setting the initial value of the
+DataStore's DataObject property. During execution, you
+can change the DataWindow object for the DataStore by changing the
+value of the DataObject property.</p>
+</li>
+<li class=ds><p>Compile the script and save your changes.</p></li></ol>
+<br>

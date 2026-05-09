@@ -1,0 +1,79 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+CreateObject function</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp120.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp122.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF349370572"></A><A NAME="TI3979"></A><h1>CreateObject function</h1>
+<A NAME="TI3980"></A><p>
+<FORM>
+<INPUT
+ TYPE = "BUTTON"
+ VALUE = "Examples"
+ onClick = "window.location = 'apptechp121.htm#EX1';">
+<INPUT
+  TYPE = "BUTTON"
+ VALUE = "See also"
+ onClick = "window.location = 'apptechp121.htm#SA1';">
+</FORM>
+</p>
+<h3>Description</h3><A NAME="TI3981"></A><p>Creates an instance of a PowerBuilder class in a PowerBuilder.Application OLE
+server session. </p>
+
+<h3>Controls</h3><A NAME="TI3982"></A><p>PowerBuilder.Application (automation server)</p>
+
+<h3>Syntax</h3><p><PRE>{ <i>automationobject</i>.} CreateObject ( <i>classname</i> )</PRE></p>
+<A NAME="TI3983"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI3984"></A>Argument</th>
+<th  rowspan="1"  ><A NAME="TI3985"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3986"></A><i>automationobject</i></td>
+<td  rowspan="1"  ><A NAME="TI3987"></A>When PowerBuilder is the OLE client,
+the name of the OLEObject instantiated with the PowerBuilder.Application automation
+server. For other clients, use syntax appropriate for calling a
+function belonging to an automation object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3988"></A><i>classname</i></td>
+<td  rowspan="1"  ><A NAME="TI3989"></A>A string specifying the name of the class
+you want to create. The class must be defined in one of the libraries
+specified in the PowerBuilder.Application LibraryList property.</td>
+</tr>
+</table>
+
+<h3>Return Values</h3><A NAME="TI3990"></A><p>OLEObject. Returns a reference to the instantiated object,
+which is valid for automation. If the object could not be created, <b>CreateObject</b> returns
+NULL.</p>
+
+<h3>Usage</h3><A NAME="TI3991"></A><p>If the OLE client is Visual Basic, you can test for the keyword <b>nothing</b> to
+see if <b>CreateObject</b> succeeded.</p>
+<A NAME="TI3992"></A><p>If the object's executable type does not correspond
+to the value of the MachineCode property, then <b>CreateObject</b> returns
+NULL. All the objects created for one PowerBuilder.Application session
+must have the same executable type (either Pcode or compiled machine
+code). When you create more than one object in a single PowerBuilder.Application
+session, those objects can be passed as function arguments or returned
+as results.</p>
+<A NAME="TI3993"></A><p>You do not need to use the <b>CREATE</b> statement
+for the OLEObject variable before calling the <b>CreateObject</b> function.</p>
+
+<A NAME="EX1"></A><h3>Examples</h3><A NAME="TI3994"></A><p>This example is a PowerBuilder script that starts
+the PowerBuilder.Application server and creates an object that is
+contained in <i>MYLIBRARY.DLL</i>. If the object is
+created successfully, the script calls the function <b>uf_calc</b>,
+which returns a <b>Long</b> as a status code and passes
+back the result of the calculation in the variable <i>ld_result</i>:<p><PRE> OLEObject PBObject, PBNVObject</PRE><PRE> long ll_status</PRE><PRE> double ld_result</PRE><PRE> </PRE><PRE> PBObject = CREATE OLEObject</PRE><PRE> ll_status = PBObject.ConnectToNewObject &amp;</PRE><PRE>    ("PowerBuilder.Application")</PRE><PRE> IF ll_status = 0 THEN</PRE><PRE>    // Handle the error</PRE><PRE> ELSE</PRE><PRE>    PBObject.LibraryList = "c:\myappl\mylibrary.dll"</PRE><PRE>    PBObject.MachineCode = TRUE</PRE><PRE> </PRE><PRE>    PBNVObject = CREATE OLEObject</PRE><PRE> </PRE><PRE>    PBNVObject = &amp;</PRE><PRE>       PBObject.<i>CreateObject</i>("nvo_myobject")</PRE><PRE>    IF IsNull(PBNVObject) THEN</PRE><PRE>    // Handle the error</PRE><PRE>    ELSE</PRE><PRE>    ll_status = PBNVObject.uf_calc &amp;</PRE><PRE>       (12, 14, REF result)</PRE><PRE>    END IF<br>   DESTROY PBNVObject</PRE><PRE>    PBObject.DisconnectObject( )</PRE><PRE> END IF</PRE><PRE> </PRE><PRE> DESTROY PBObject</PRE></p>
+<A NAME="TI3995"></A><p>This example is a Visual Basic script that does the same tasks
+as the PowerBuilder script above:<p><PRE> Dim PBObject as object</PRE><PRE> Dim PBNVObject as object</PRE><PRE> Dim status as long</PRE><PRE> Dim result as double</PRE><PRE> </PRE><PRE> Set PBObject = _</PRE><PRE>    CreateObject("PowerBuilder.Application")</PRE><PRE> If PBObject is nothing then</PRE><PRE>    REM handle the error</PRE><PRE> Else</PRE><PRE>    PBObject.LibraryList = "c:\myappl\mylibrary.dll"</PRE><PRE>    Set PBNVObject = _</PRE><PRE>    PBObject.<i>CreateObject</i>("nvo_myobject")</PRE><PRE>    If PBNVObject is nothing then</PRE><PRE>    REM handle the error</PRE><PRE>    Else</PRE><PRE>    status = PBNVObject.uf_calc(12, 14, REF result)</PRE><PRE>    Set PBNVObject = nothing</PRE><PRE>    End if</PRE><PRE> </PRE><PRE>    Set PBObject = nothing</PRE><PRE> End if</PRE></p>
+
+<A NAME="SA1"></A><h3>See Also</h3><A NAME="TI3996"></A><p><A NAME="TI3997"></A>
+<ul>
+<li class=fi><b>ConnectToNewObject</b>
+</li>
+</ul>
+</p>
+
+

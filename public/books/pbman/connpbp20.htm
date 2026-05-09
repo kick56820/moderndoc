@@ -1,0 +1,84 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Preparing to use the OLE DB interface</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp19.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp21.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABCCHID"></A><h1>Preparing to use the OLE DB interface</h1>
+<A NAME="TI519"></A><p>Before you define the interface and connect to a data provider
+through the OLE DB: <A NAME="TI520"></A>
+<ol>
+</li>
+<li class=ds>Install and configure the database
+server, network, and client software.</li>
+<li class=ds>Install the OLE DB interface and the OLE DB data
+provider that accesses your data source.</li>
+<li class=ds>Install Microsoft's Data Access Components
+software on your machine.</li>
+<li class=ds>If required, define the OLE DB data source.
+</li>
+</ol>
+</p>
+<A NAME="TI521"></A><h4>Step 1: Install and configure the data server</h4>
+<A NAME="TI522"></A><p>You must install and configure the database server and install
+the network software and client software.</p>
+<A NAME="TI523"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To install and configure the database server,
+network, and client software:</p>
+<ol><li class=fi><p>Make sure the appropriate database software
+is installed and running on its server.</p><p>You must obtain the database server software from your database
+vendor. For installation instructions, see your database vendor's
+documentation.</p></li>
+<li class=ds><p>Make sure the required network software (such
+as TCP/IP) is installed and running on your computer and
+is properly configured so that you can connect to the data server
+at your site. You must install the network communication driver
+that supports the network protocol and operating system platform
+you are using.</p><p>For installation and configuration instructions,
+see your network or data source administrator.</p></li>
+<li class=ds><p>If required, install the appropriate client software
+on each client computer on which PowerBuilder is installed. </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Client software requirements </span> <A NAME="TI524"></A>To determine client software requirements, see your database
+vendor's documentation. To access supported remote Informix
+databases through the Informix data provider, you need Informix
+Connect for Windows platforms, version 2.x, or the Informix Client
+Software Development Kit for Windows platforms, version 2.x.</p>
+</li></ol>
+<br><A NAME="TI525"></A><h4>Step 2: Install the OLE DB interface and data provider</h4>
+<A NAME="TI526"></A><p>In the PowerBuilder Setup program, select the Custom install
+and select the OLE DB provider that accesses your database. You
+can install one or more of the OLE DB data providers shipped with PowerBuilder,
+or you can install data providers from another vendor later. </p>
+<A NAME="TI527"></A><h4>Step 3: Install the Microsoft Data Access Components
+software</h4>
+<A NAME="TI528"></A><p>The PowerBuilder OLE DB interface requires the functionality
+of the Microsoft Data Access Components (MDAC) version 2.6 or higher
+software. </p>
+<A NAME="TI529"></A><p>To check the version of MDAC on your computer, download and
+run the MDAC Component Checker utility from the <A HREF="http://msdn.microsoft.com/data/downloads/default.aspx">Microsoft Data Access Downloads page</A>
+.</p>
+<A NAME="TI530"></A><p>If MDAC version 2.6 or higher is not installed, you can install
+it by running the file <i>mdac_typ.exe</i> found
+in the <i>Support</i> directory. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>OLE DB data providers installed with MDAC</span> <A NAME="TI531"></A>When you run the <i>mdac_typ</i> file,
+several Microsoft OLE DB data providers are automatically installed,
+including the providers for SQL Server ( SQLOLEDB) and ODBC (MSDASQL).</p>
+<A NAME="TI532"></A><h4>Step 4: Define the OLE DB data source</h4>
+<A NAME="TI533"></A><p>Once the OLE DB data provider is installed, you might have
+to define the OLE DB data source the data provider will access.
+How you define the data source depends on the OLE DB data provider
+you are using and the vendor who provided it. </p>
+<A NAME="TI534"></A><p>To define a data source for one of the OLE DB data providers
+shipped with PowerBuilder, use the DataDirect OLE DB Administrator.
+This utility is named <b>PBadmin</b> and can be found
+in <i>Sybase\Shared\DataDirect</i>. </p>
+<A NAME="TI535"></A><p>If you are connecting to an ODBC data provider (such as Microsoft's
+OLE DB Provider for ODBC), you must define the ODBC data source
+as you would if you were using a direct ODBC connection. To define
+an ODBC data source, use Microsoft's ODBC Data Source Administrator.
+You can access this utility from the Control Panel in Windows or
+from the Database painter or Database Profile Setup dialog box in PowerBuilder.</p>
+

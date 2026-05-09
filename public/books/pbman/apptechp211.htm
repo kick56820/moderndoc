@@ -1,0 +1,36 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Exception handling</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp210.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp212.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABDIJGH"></A><h1>Exception handling</h1>
+<A NAME="TI6433"></A><p>Errors that occur in the execution
+of a method of a Web service are converted to SoapException objects
+and thrown to the calling script. The methods of the SoapConnection
+object in <i>PBWSClient105.pbx</i> and <i>PBSoapClient105.pbx</i> can also
+throw SoapException<b></b> objects when, for example,
+connection to the server fails, or the Web service cannot be located
+or created.</p>
+<A NAME="TI6434"></A><h4>Catching exceptions</h4>
+<A NAME="TI6435"></A><p>A client application can handle communications errors in a
+number of ways. For example, if a client connects to a server and
+tries to invoke a method for an object that does not exist, the
+client can disconnect from the server, connect to a different server,
+or retry the operation. Alternatively, the client can display a message
+to the user and give the user the opportunity to control what happens next.</p>
+<A NAME="TI6436"></A><p>When an error occurs, if the client connects to a new server
+to retry the operation, it must instantiate the remote object on
+the new server before invoking a method of the remote object.</p>
+<A NAME="TI6437"></A><h4>Unhandled exceptions</h4>
+<A NAME="TI6438"></A><p>If no exception handler exists, or if the existing exception
+handlers do not handle the exception, the SystemError<b></b> event
+on the Application object is executed. If the SystemError event
+has no script, an application error occurs and the application is
+terminated.</p>
+

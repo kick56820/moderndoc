@@ -1,0 +1,82 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About building an EJB client</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp184.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp186.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDCDEJA"></A><h1>About building an EJB client</h1>
+<A NAME="TI5915"></A><p>A PowerBuilder application can act as a client to an EJB 1.1
+or 2.0 component running on an application server that is J2EE compliant.
+This capability relies on PowerBuilder extension files provided
+by Sybase. </p>
+<A NAME="TI5916"></A><p>PowerBuilder extension files are developed using the PowerBuilder Native
+Interface (PBNI). You do not need to know anything about PBNI to
+create EJB clients, but you can read more about PowerBuilder extensions
+in the <i>PowerBuilder Extension Reference</i>
+, and
+about PBNI in the <i>PowerBuilder Native Interface Programmer's
+Guide and Reference</i>
+. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>EJB clients for <ABBR title = "e a server" >EAServer</ABBR></span> <A NAME="TI5917"></A>If you are developing EJB clients for <ABBR title = "e a server" >EAServer</ABBR>,
+you can use the techniques described in this chapter, or you can
+create a client that uses the PowerBuilder Connection object and <ABBR title = "e a server" >EAServer</ABBR> proxy objects.</p>
+<A NAME="TI5918"></A>The EJB client extension is a wrapper for Java, and therefore
+provides more flexibility in communicating with EJBs. For example,
+an EJB client can manipulate a Java class returned from an EJB method
+call through its proxy.</p>
+<A NAME="TI5919"></A>The PowerBuilder Connection object has a smaller footprint
+(and thus is easier to deploy) because it does not require a JRE
+to be installed on the computer where the client resides. Connectivity
+to the server is also faster with the connection object, because
+there is no delay while a JRE loads.</p>
+<A NAME="TI5920"></A>For more information about building an EJB client for an EJB
+component running on <ABBR title = "e a server" >EAServer</ABBR> using
+the PowerBuilder connection object, see <A HREF="apptechp151.htm#CDECHFMK">Chapter 25, "Building an <ABBR title = "e a server" >EAServer</ABBR> Client ."</A></p>
+<A NAME="TI5921"></A><h4>pbejbclient105.pbx and pbejbclient105.pbd</h4>
+<A NAME="TI5922"></A><p>To connect to the server and communicate
+with the EJB component, clients use a set of classes implemented
+in a DLL file with the suffix PBX, <i>pbejbclient105.pbx</i>.
+To use the classes in this PBX file, you must import the definitions
+in it into a library in the client application. You can also add
+the <i>pbejbclient105.pbd</i> file, which acts as
+a wrapper for the PBX file, to the target's library earch
+path.</p>
+<A NAME="TI5923"></A><h4>About EJB proxy objects</h4>
+<A NAME="TI5924"></A><p>The PowerBuilder client uses local proxy objects for the EJB
+component to delegate calls to methods on the remote EJB component.
+At a minimum, each EJB component is represented in the client application
+by a proxy for the home interface and a proxy for the remote interface.
+For example, an EJB component named Cart has two proxies, CartHome
+and Cart, each containing only the signatures of the public methods
+of those interfaces.</p>
+<A NAME="TI5925"></A><p>Additional proxies are
+also generated for exceptions and ancillary classes used by the
+home and remote interfaces. For more information, see <A HREF="apptechp187.htm#CCJDFHEAA">"Generating EJB proxy objects"</A>.</p>
+<A NAME="TI5926"></A><h4>Overview of the process</h4>
+<A NAME="TI5927"></A><p>To build an EJB client, you need to complete the following
+steps:<A NAME="TI5928"></A>
+<ol>
+</li>
+<li class=ds>Create a workspace
+and a PowerScript target.</li>
+<li class=ds>Add <i>pbejbclient105.pbx</i> to the
+application.</li>
+<li class=ds>Create a project for building proxy objects.</li>
+<li class=ds>Build the project to generate the proxy objects.</li>
+<li class=ds>Create the windows required to implement the user
+interface of the client application.</li>
+<li class=ds>Instantiate a Java VM.</li>
+<li class=ds>Establish a connection to the server and look up
+the EJB.</li>
+<li class=ds>Create an instance of the EJB component and call
+component methods from the client.</li>
+<li class=ds>Test and debug the client.
+</li>
+</ol>
+</p>
+

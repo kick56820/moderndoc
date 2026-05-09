@@ -1,0 +1,254 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using Tab controls in scripts </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp43.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp45.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF352990358"></A><h1>Using Tab controls in scripts </h1>
+<A NAME="TI917"></A><p>This section provides examples of tabs in scripts:</p>
+<A NAME="TI918"></A><p><A NAME="TI919"></A>
+<ul>
+<li class=fi><A HREF="apptechp44.htm#X-REF353252542">Referring to tab pages
+in scripts</A></li>
+<li class=ds><A HREF="apptechp44.htm#X-REF353252552">Referring to controls
+on tab pages</A></li>
+<li class=ds><A HREF="apptechp44.htm#X-REF353252562">Opening, closing,
+and hiding tab pages</A></li>
+<li class=ds><A HREF="apptechp44.htm#X-REF353252573">Keeping track of tab
+pages</A></li>
+<li class=ds><A HREF="apptechp44.htm#X-REF353252583">Creating tab pages
+only when needed</A></li>
+<li class=ds><A HREF="apptechp44.htm#X-REF353252589">Events for the parts
+of the Tab control</A>
+</li>
+</ul>
+</p>
+<A NAME="X-REF353252542"></A><h2>Referring to tab pages in scripts</h2>
+<A NAME="TI920"></A><p>Dot
+notation allows you to refer to individual tab pages and controls
+on those tab pages:</p>
+<A NAME="TI921"></A><p><A NAME="TI922"></A>
+<ul>
+<li class=fi>The window or user
+object containing the Tab control is its parent:<p><PRE><i>window</i>.<i>tabcontrol</i></PRE></p>
+</li>
+<li class=ds>The Tab control is the parent of the tab pages contained
+in it:<p><PRE><i>window</i>.<i>tabcontrol</i>.<i>tabpageuo</i></PRE></p>
+</li>
+<li class=ds>The tab page is the parent of the control contained
+in it:<p><PRE><i>window</i>.<i>tabcontrol</i>.<i>tabpageuo</i>.<i>controlonpage</i></PRE></p>
+
+</li>
+</ul>
+</p>
+<A NAME="TI923"></A><p>For example, this statement refers to the PowerTips property
+of the Tab control <b>tab_1</b> within the
+window <b>w_display</b>:<p><PRE> w_display.tab_1.PowerTips = TRUE</PRE></p>
+<A NAME="TI924"></A><p>This example sets the PowerTipText property of tab page <b>tabpage_1</b>:<p><PRE> w_display.tab_1.tabpage_1.PowerTipText = &amp;<br>   "Font settings"</PRE></p>
+<A NAME="TI925"></A><p>This example enables the CommandButton <b>cb_OK</b> on
+the tab page <b>tabpage_doit</b>:<p><PRE> w_display.tab_1.tabpage_doit.cb_OK.Enabled = TRUE</PRE></p>
+<A NAME="TI926"></A><h4>Generic coding</h4>
+<A NAME="TI927"></A><p>You can use the <b>Parent</b> pronoun and <b>GetParent</b> function
+to make a script more general.</p>
+<p><b>Parent pronoun</b>   In a script for any tab page, you can use the <b>Parent</b> pronoun to
+refer to the Tab control:</p>
+<A NAME="TI928"></A><p><p><PRE> Parent.SelectTab(This)</PRE></p>
+<p><b>GetParent function</b>    If you are in an event script for
+a tab page, you can call the <b>GetParent</b> function
+to get a reference to the tab page's parent, which is the Tab
+control, and assign the reference to a variable of type Tab.</p>
+<A NAME="TI929"></A><p>In an event script for a user object that is used as a tab
+page, you can use code like the following to save a reference to
+the parent Tab control in an instance variable.</p>
+<A NAME="TI930"></A><p>This is the declaration of the instance variable. It can hold
+a reference to any Tab control:<p><PRE> tab itab_settings</PRE></p>
+<A NAME="TI931"></A><p>This code saves a reference to the tab page's parent
+in the instance variable:<p><PRE> // Get a reference to the Tab control<br>// "This" refers to the tab page user object<br>itab_settings = This.GetParent()</PRE></p>
+<A NAME="TI932"></A><p>In event scripts for controls on the tab page, you can use <b>GetParent</b> twice
+to refer to the tab page user object and its Tab control:<p><PRE> tab tab_mytab<br>userobject tabpage_generic<br> <br>tabpage_generic = This.GetParent()<br>tab_mytab = tabpage_generic.GetParent()<br> <br>tabpage_generic.PowerTipText = &amp;<br>   "Important property page"<br>tab_mytab.PowerTips = TRUE<br> <br>tab_mytab.SelectTab(tabpage_generic)</PRE></p>
+<p><b>Generic variables for controls have limitations</b>   The type of these variables is the basic PowerBuilder object
+type&#8212;a variable of type Tab has no knowledge of the tab
+pages in a specific Tab control and a variable of type UserObject
+has no knowledge of the controls on the tab page.</p>
+<A NAME="TI933"></A><p>In this script for a tab page event, a local variable is assigned
+a reference to the parent Tab control. You cannot refer to specific
+pages in the Tab control because <i>tab_settings</i> does
+not know about them. You can call Tab control functions and refer
+to Tab control properties:</p>
+<A NAME="TI934"></A><p><p><PRE> tab tab_settings<br>tab_settings = This.GetParent()<br>tab_settings.SelectTab(This)</PRE></p>
+<p><b>User object variables</b>   If the tab page is an independent user object, you can define
+a variable whose type is that specific user object. You can now
+refer to controls defined on the user object, which is the ancestor
+of the tab page in the control.</p>
+<A NAME="TI935"></A><p>In this script for a Tab control's event, the index
+argument refers to a tab page and is used to get a reference to
+a user object from the Control property array. The example assumes
+that all the tab pages are derived from the same user object <b>uo_emprpt_page</b>:<p><PRE> uo_emprpt_page tabpage_current<br>tabpage_current = This.Control[index]<br>tabpage_current.dw_emp.Retrieve &amp;<br>   (tabpage_current.st_name.Text)</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>The Tab control's Control property</span> <A NAME="TI936"></A>The Control property array contains references to all the
+tab pages in the control, including both embedded and independent
+user objects. New tab pages are added to the array when you insert
+them in the painter and when you open them in a script.</p>
+<A NAME="X-REF353252552"></A><h2>Referring to controls on tab pages</h2>
+<A NAME="TI937"></A><p>If you
+are referring to a control on a tab page in another window, you
+must fully qualify the control's name up to the window
+level.</p>
+<A NAME="TI938"></A><p>The following example shows a fully qualified reference to
+a static text control:<p><PRE> w_activity_manager.tab_fyi.tabpage_today. &amp;    <br>   st_currlogon_time.Text = ls_current_logon_time</PRE></p>
+<A NAME="TI939"></A><p>This example from the PowerBuilder Code Examples sets the
+size of a DataWindow control on the tab page to match the size of
+another DataWindow control in the window. Because all the tab pages
+were inserted in the painter, the Control property array corresponds
+with the tab page index. All the pages are based on the same user
+object <b>u_tab_dir</b>:<p><PRE> u_tab_dir luo_Tab<br>luo_Tab = This.Control[newindex]<br>luo_Tab.dw_dir.Height = dw_list.Height<br>luo_Tab.dw_dir.Width = dw_list.Width</PRE></p>
+<A NAME="TI940"></A><p>In scripts and functions for the tab page user object, the
+user object knows about its own controls. You do not need to qualify
+references to the controls. This example in a function for the <b>u_tab_dir</b> user
+object retrieves data for the <b>dw_dir</b> DataWindow
+control:<p><PRE> IF NOT ib_Retrieved THEN<br>   dw_dir.SetTransObject(SQLCA)<br>   dw_dir.Retrieve(as_Parm)<br>   ib_Retrieved = TRUE<br>END IF<br> <br>RETURN dw_dir.RowCount()</PRE></p>
+<A NAME="X-REF353252562"></A><h2>Opening, closing, and hiding tab pages</h2>
+<A NAME="TI941"></A><p>You can open tab pages in a script. You can close tab pages
+that you opened, but you cannot close tab pages that were inserted
+in the painter. You can hide any tab page.</p>
+<A NAME="TI942"></A><p>This example opens a tab page of type <b>tabpage_listbox</b> and
+stores the object reference in an instance variable <i>i_tabpage</i>.
+The value 0 specifies that the tab page becomes the last page in
+the Tab control. You need to save the reference for closing the
+tab later.</p>
+<A NAME="TI943"></A><p>This is the instance variable declaration for the tab page's
+object reference:<p><PRE> userobject i_tabpage</PRE></p>
+<A NAME="TI944"></A><p>This code opens the tab page:<p><PRE> li_rtn = tab_1.OpenTab &amp;<br>   (i_tabpage, "tabpage_listbox", 0)</PRE></p>
+<A NAME="TI945"></A><p>This statement closes the tab page:<p><PRE> tab_1.CloseTab(i_tabpage)</PRE></p>
+<A NAME="X-REF353252573"></A><h2>Keeping track of tab pages</h2>
+<A NAME="TI946"></A><p>To refer to the controls on a tab page, you need the user
+object reference, not just the index of the tab page. You can use
+the tab page's Control property array to get references
+to all your tab pages.</p>
+<A NAME="TI947"></A><h4>Control property for tab pages</h4>
+<A NAME="TI948"></A><p>The Control property of the Tab control is an array with a
+reference to each tab page defined in the painter and each tab page
+added in a script. The index values that are passed to events match
+the array elements of the Control property.</p>
+<A NAME="TI949"></A><p>You can get an object reference for the selected tab using
+the SelectedTab property:<p><PRE> userobject luo_tabpage<br>luo_tabpage = tab_1.Control[tab_1.SelectedTab]</PRE></p>
+<A NAME="TI950"></A><p>In an event for the Tab control, like SelectionChanged, you
+can use the index value passed to the event to get a reference from
+the Control property array:<p><PRE> userobject tabpage_generic<br>tabpage_generic = This.Control[newindex]</PRE></p>
+<A NAME="TI951"></A><h4>Adding a new tab page</h4>
+<A NAME="TI952"></A><p>When you call <b>OpenTab</b>, the control property
+array grows by one element. The new element is a reference to the
+newly opened tab page. For example, the following statement adds
+a new tab in the second position in the Tab control:<p><PRE> tab_1.OpenTab(uo_newtab, 2)</PRE></p>
+<A NAME="TI953"></A><p>The second element in the control array for <b>tab_1</b> now
+refers to <b>uo_newtab</b>, and the index
+into the control array for all subsequent tab pages becomes one greater.</p>
+<A NAME="TI954"></A><h4>Closing a tab page</h4>
+<A NAME="TI955"></A><p>When you call <b>CloseTab</b>, the size of the
+array is reduced by one and the reference to the user object or
+page is destroyed. If the closed tab was not the last element in
+the array, the index for all subsequent tab pages is reduced by one.</p>
+<A NAME="TI956"></A><h4>Moving a tab page</h4>
+<A NAME="TI957"></A><p>The <b>MoveTab</b> function changes the order
+of the pages in a Tab control and also reorders the elements in
+the control array to match the new tab order.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Control property array for user objects</span> <A NAME="TI958"></A>The Control property array for controls in a user object works
+in the same way.</p>
+<A NAME="X-REF353252583"></A><h2>Creating tab pages only when needed</h2>
+<A NAME="TI959"></A><p>The user might never look at all the tab pages in your Tab
+control. You can avoid the overhead of creating graphical representations
+of the controls on all the tab pages by checking Create on Demand
+on the Tab control's General property page or setting the
+CreateOnDemand property to <b>TRUE</b>. </p>
+<A NAME="TI960"></A><p>The controls on all the tab pages in a Tab control are always
+instantiated when the Tab control is created. However, when Create
+on Demand is checked, the Constructor event for controls on tab
+pages is not triggered and graphical representations of the controls
+are not created until the user views the tab page. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Constructor events on the selected tab page</span> <A NAME="TI961"></A>Constructor events for controls on the <i>selected</i> tab
+page are always triggered when the Tab control is created.</p>
+<A NAME="TI962"></A><h4>Tradeoffs for Create on Demand</h4>
+<A NAME="TI963"></A><p>A window will open more quickly if the creation of graphical
+representations is delayed for tab pages with many controls. However,
+scripts cannot refer to a control on a tab page until the control's
+Constructor event has run and a graphical representation of the
+control has been created. When Create on Demand is checked, scripts
+cannot reference controls on tab pages that the user has not viewed.</p>
+<A NAME="TI964"></A><h4>Whether a tab page has been created</h4>
+<A NAME="TI965"></A><p>You can check whether a tab page has been created with the <b>PageCreated</b> function.
+Then, if it has not been created, you can trigger the constructor
+event for the tab page using the <b>CreatePage</b> function:<p><PRE> IF tab_1.tabpage_3.PageCreated() = FALSE THEN<br>        tab_1.tabpage_3.CreatePage()<br>END IF</PRE></p>
+<A NAME="TI966"></A><p>You can check whether a control on a tab page has been created
+by checking whether the control's handle is nonzero. If
+so, the control has been created.<p><PRE> IF Handle(tab_1.tabpage_3.dw_list) &gt; 0 THEN ...</PRE></p>
+<A NAME="TI967"></A><h4>Changing CreateOnDemand during execution</h4>
+<A NAME="TI968"></A><p>If you change the CreateOnDemand property to <b>FALSE</b> in
+a script, graphical representations of any tab pages that have not
+been created are created immediately.</p>
+<A NAME="TI969"></A><p>It does not do any good to change CreateOnDemand to <b>TRUE</b> during
+execution, because graphical representations of all the tab pages
+have already been created.</p>
+<A NAME="TI970"></A><h4>Creating tab pages dynamically</h4>
+<A NAME="TI971"></A><p>If CreateOnDemand is <b>FALSE</b>, you can set
+the label for a dynamically created tab page in its Constructor
+event, using the argument to OpenTabWithParm that is passed to the
+Message object. If CreateOnDemand is <b>TRUE</b>, you
+need to set the label when the tab page is instantiated, because
+the Constructor event is not triggered until the tab is selected.
+The following script in a user event that is posted from a window's
+open event opens five tab pages and sets the label for each tab
+as it is instantiated:<p><PRE> int li_ctr<br>string is_title<br>THIS.setredraw(false)<br> <br>FOR li_ctr = 1 to 5<br>   is_title = "Tab#" + string(li_ctr)<br>   tab_test.opentabwithparm(iuo_tabpage[li_ctr], &amp;<br>      is_title, 0)<br>iuo_tabpage[li_ctr].text = is_title //set tab label<br>NEXT<br> <br>THIS.setredraw(true)<br>RETURN 1</PRE></p>
+<A NAME="X-REF353252589"></A><h2>Events for the parts of the Tab control</h2>
+<A NAME="TI972"></A><p>With so many overlapping pieces in a Tab control, you need
+to know where to code scripts for events.</p>
+<A NAME="TI973"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 7-4: Coding scripts for Tab control events</caption>
+<tr><th  rowspan="1"  ><A NAME="TI974"></A>To respond to actions in
+the</th>
+<th  rowspan="1"  ><A NAME="TI975"></A>Write a script for events
+belonging to</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI976"></A>Tab area of the Tab control, including clicks
+or drag actions on tabs</td>
+<td  rowspan="1"  ><A NAME="TI977"></A>The Tab control</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI978"></A>Tab page (but not the tab)</td>
+<td  rowspan="1"  ><A NAME="TI979"></A>The tab page (for embedded tab pages)
+or the user object (for independent tab pages)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI980"></A>Control on a tab page</td>
+<td  rowspan="1"  ><A NAME="TI981"></A>That control</td>
+</tr>
+</table>
+<A NAME="TI982"></A><p>For example, if the user drags to a tab and you want to do
+something to the tab page associated with the tab, you need to code
+the DragDrop event for the Tab control, not the tab page.</p>
+<A NAME="TI983"></A><h4>Examples</h4>
+<A NAME="TI984"></A><p>This code in the DragDrop event of the <b>tab_1</b> control
+selects the tab page when the user drops something onto its tab.
+The index of the tab that is the drop target is an argument for
+the DragDrop event:<p><PRE> This.SelectTab( index )</PRE></p>
+<A NAME="TI985"></A><p>The following code in the DragDrop event for the Tab control
+lets the user drag DataWindow information to a tab and then inserts
+the dragged information in a list on the tab page associated with
+the tab.</p>
+<A NAME="TI986"></A><p>A user object of type <b>tabpage_listbox</b> that
+contains a ListBox control, <b>lb_list</b>,
+has been defined in the User Object painter. The Tab control contains
+several independent tab pages of type <b>tabpage_listbox</b>.</p>
+<A NAME="TI987"></A><p>You can use the index argument for the DragDrop event to get
+a tab page reference from the Tab control's Control property
+array. The user object reference lets the script access the controls
+on the tab page.</p>
+<A NAME="TI988"></A><p>The <b>Parent</b> pronoun in this script for the
+Tab control refers to the window: <p><PRE> long ll_row<br>string ls_name<br>tabpage_listbox luo_tabpage<br> <br>IF TypeOf(source) = DataWindow! THEN<br>   l_row = Parent.dw_2.GetRow()<br>   ls_name = Parent.dw_2.Object.lname.Primary[ll_row]<br> <br>    // Get a reference from the Control property array       luo_tabpage = This.Control[index]<br> <br>   // Make the tab page the selected tab page<br>   This.SelectTab(index)<br> <br>   // Insert the dragged information<br>   luo_tabpage.lb_list.InsertItem(ls_name, 0)<br> <br>END IF</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If the tab page has not been created</span> <A NAME="TI989"></A>If the CreateOnDemand property for the Tab control is <b>TRUE</b>,
+the Constructor events for a tab page and its controls are not triggered
+until the tab page is selected. In the previous example, making
+the tab page the selected tab page triggers the Constructor events.
+You could also use the <b>CreatePage</b> function to trigger
+them:<p><PRE> IF luo_tabpage.PageCreated() = FALSE THEN &amp;<br>   luo_tabpage.CreatePage()</PRE></p>
+

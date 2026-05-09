@@ -1,0 +1,411 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About Transaction objects</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp64.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp66.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF305419123"></A><h1>About Transaction objects</h1>
+<A NAME="TI1505"></A><p>In a PowerBuilder database connection, a <strong>Transaction
+object</strong> is a special nonvisual object that functions
+as the communications area between a PowerBuilder application and
+the database. The Transaction object specifies the parameters that
+PowerBuilder uses to connect to a database. You must establish the
+Transaction object before you can access the database from your
+application, as shown in <A HREF="apptechp65.htm#CIHDEFDJ">Figure 12-1</A>: </p>
+<A NAME="CIHDEFDJ"></A><caption><b>Figure 12-1: Transaction object to access
+database</b></captionls>
+<br><img src="images/datrn005.gif">
+<A NAME="TI1506"></A><h4>Communicating with the database</h4>
+<A NAME="TI1507"></A><p>In order for a PowerBuilder application to display and manipulate
+data, the application must communicate with the database in which
+the data resides.</p>
+<A NAME="TI1508"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To communicate with the database from your PowerBuilder
+application:</p>
+<ol><li class=fi><p>Assign the appropriate values to the Transaction
+object.</p></li>
+<li class=ds><p>Connect to the database.</p></li>
+<li class=ds><p>Assign the Transaction object to the DataWindow
+control.</p></li>
+<li class=ds><p>Perform the database processing.</p></li>
+<li class=ds><p>Disconnect from the database.</p></li></ol>
+<br><A NAME="TI1509"></A><p>For information about setting the Transaction
+object for a DataWindow control and using the DataWindow to retrieve
+and update data, see the <i>DataWindow Programmer's
+Guide</i>
+. </p>
+<A NAME="TI1510"></A><h4>Default Transaction object</h4>
+<A NAME="TI1511"></A><p>When you start executing an application, PowerBuilder creates
+a global default Transaction object named <ACRONYM title = "sequel C A" >SQLCA</ACRONYM> (<ACRONYM title = "sequel" >SQL</ACRONYM> Communications Area). You can
+use this default Transaction object in your application or define
+additional Transaction objects if your application has multiple
+database connections.</p>
+<A NAME="TI1512"></A><h4>Transaction object properties</h4>
+<A NAME="TI1513"></A><p>Each Transaction object has 15 properties, of which: <A NAME="TI1514"></A>
+<ul>
+<li class=fi>Ten are used to connect to
+the database.</li>
+<li class=ds>Five are used to receive status information from
+the database about the success or failure of each database operation.
+(These error-checking properties all begin with <ACRONYM title = "sequel" >SQL</ACRONYM>.)
+</li>
+</ul>
+</p>
+<A NAME="X-REF355513727"></A><h2>Description of Transaction object properties</h2>
+<A NAME="TI1515"></A><p><A HREF="apptechp65.htm#CIHICDFH">Table 12-1</A> describes
+each Transaction object property. For each of the ten connection
+properties, it also lists the equivalent field in the Database Profile Setup
+dialog box that you complete to create a database profile in the PowerBuilder
+development environment.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Transaction object properties for your PowerBuilder
+database interface</span> <A NAME="TI1516"></A>For the Transaction object properties that
+apply to your PowerBuilder database interface, see <A HREF="apptechp65.htm#X-REF355508091">"Transaction object
+properties and supported PowerBuilder database interfaces"</A>.</p>
+<A NAME="TI1517"></A>For information about the values you should
+supply for each connection property, see the section for your PowerBuilder
+database interface in <i>Connecting to Your Database</i>
+.</p>
+<A NAME="CIHICDFH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 12-1: Transaction
+object properties</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1518"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI1519"></A>Datatype</th>
+<th  rowspan="1"  ><A NAME="TI1520"></A>Description</th>
+<th  rowspan="1"  ><A NAME="TI1521"></A>In a database profile</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1522"></A>DBMS</td>
+<td  rowspan="1"  ><A NAME="TI1523"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI1524"></A>The DBMS identifier for your connection.
+For a complete list of the identifiers for the supported database
+interfaces, see the online Help.<i></i>
+</td>
+<td  rowspan="1"  ><A NAME="TI1525"></A>DBMS</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1526"></A>Database</td>
+<td  rowspan="1"  ><A NAME="TI1527"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI1528"></A>The name of the database to which you
+are connecting.</td>
+<td  rowspan="1"  ><A NAME="TI1529"></A>Database Name</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1530"></A>UserID</td>
+<td  rowspan="1"  ><A NAME="TI1531"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI1532"></A>The name or ID of the user who connects
+to the database.</td>
+<td  rowspan="1"  ><A NAME="TI1533"></A>User ID</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1534"></A>DBPass</td>
+<td  rowspan="1"  ><A NAME="TI1535"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI1536"></A>The password used to connect to the database.</td>
+<td  rowspan="1"  ><A NAME="TI1537"></A>Password</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1538"></A>Lock</td>
+<td  rowspan="1"  ><A NAME="TI1539"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI1540"></A>For those DBMSs that support the use
+of lock values and isolation levels, the isolation level to use
+when you connect to the database. For information about the lock
+values you can set for your DBMS, see the description of the Lock
+DBParm parameter in the online Help.</td>
+<td  rowspan="1"  ><A NAME="TI1541"></A>Isolation Level</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1542"></A>LogID</td>
+<td  rowspan="1"  ><A NAME="TI1543"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI1544"></A>The name or ID of the user who logs in
+to the database server.</td>
+<td  rowspan="1"  ><A NAME="TI1545"></A>Login ID</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1546"></A>LogPass</td>
+<td  rowspan="1"  ><A NAME="TI1547"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI1548"></A>The password used to log in to the database
+server.</td>
+<td  rowspan="1"  ><A NAME="TI1549"></A>Login Password</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1550"></A>ServerName</td>
+<td  rowspan="1"  ><A NAME="TI1551"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI1552"></A>The name of the server on which the database
+resides.</td>
+<td  rowspan="1"  ><A NAME="TI1553"></A>Server Name</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1554"></A>AutoCommit</td>
+<td  rowspan="1"  ><A NAME="TI1555"></A>Boolean</td>
+<td  rowspan="1"  ><A NAME="TI1556"></A>For those DBMSs that support it, specifies
+whether PowerBuilder issues <ACRONYM title = "sequel" >SQL</ACRONYM> statements
+outside or inside the scope of a transaction. Values you can set
+are:<A NAME="TI1557"></A><p><A NAME="TI1558"></A>
+<ul>
+<li class=fi><b>True</b>    PowerBuilder issues <ACRONYM title = "sequel" >SQL</ACRONYM> statements <i>outside</i> the scope
+of a transaction; that is, the statements are not part of a logical
+unit of work (LUW). If the <ACRONYM title = "sequel" >SQL</ACRONYM> statement succeeds,
+the DBMS updates the database immediately as if a <b>COMMIT</b> statement
+had been issued.</li>
+<li class=ds><b>False</b>    (Default) PowerBuilder issues <ACRONYM title = "sequel" >SQL</ACRONYM> statements <i>inside</i> the
+scope of a transaction. PowerBuilder issues a <b>BEGIN TRANSACTION</b> statement
+at the start of the connection. In addition, PowerBuilder issues
+another <b>BEGIN TRANSACTION</b> statement after each <b>COMMIT</b> or <b>ROLLBACK</b> statement
+is issued.
+</li>
+</ul>
+</p><A NAME="TI1559"></A><p>For more information, see the AutoCommit description
+in the online Help.</p></td>
+<td  rowspan="1"  ><A NAME="TI1560"></A>AutoCommit Mode</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1561"></A>DBParm</td>
+<td  rowspan="1"  ><A NAME="TI1562"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI1563"></A>Contains DBMS-specific connection parameters
+that support particular DBMS features. For a description of each
+DBParm parameter that PowerBuilder supports, see the chapter on setting
+additional connection parameters in <i>Connecting to Your Database</i>
+.</td>
+<td  rowspan="1"  ><A NAME="TI1564"></A>DBPARM</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1565"></A><ACRONYM title = "sequel return data" >SQLReturnData</ACRONYM></td>
+<td  rowspan="1"  ><A NAME="TI1566"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI1567"></A>Contains DBMS-specific information. For
+example, after you connect to an Informix database and execute an
+embedded <ACRONYM title = "sequel" >SQL</ACRONYM> <b>INSERT</b> statement, <ACRONYM title = "sequel return data" >SQLReturnData</ACRONYM> contains
+the serial number of the inserted row.</td>
+<td  rowspan="1"  ><A NAME="TI1568"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1569"></A><ACRONYM title = "sequel code" >SQLCode</ACRONYM></td>
+<td  rowspan="1"  ><A NAME="TI1570"></A>Long</td>
+<td  rowspan="1"  ><A NAME="TI1571"></A>The success or failure code of the most
+recent <ACRONYM title = "sequel" >SQL</ACRONYM> operation. For details,
+see <A HREF="apptechp66.htm#X-REF356210949">"Error handling after
+a <ACRONYM title = "sequel" >SQL</ACRONYM> statement"</A>.</td>
+<td  rowspan="1"  ><A NAME="TI1572"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1573"></A><ACRONYM title = "sequel n rows" >SQLNRows</ACRONYM></td>
+<td  rowspan="1"  ><A NAME="TI1574"></A>Long</td>
+<td  rowspan="1"  ><A NAME="TI1575"></A>The number of rows affected by the most
+recent <ACRONYM title = "sequel" >SQL</ACRONYM> operation. The database
+vendor supplies this number, so the meaning may be different for
+each DBMS.</td>
+<td  rowspan="1"  ><A NAME="TI1576"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1577"></A><ACRONYM title = "sequel d b code" >SQLDBCode</ACRONYM></td>
+<td  rowspan="1"  ><A NAME="TI1578"></A>Long</td>
+<td  rowspan="1"  ><A NAME="TI1579"></A>The database vendor's error
+code. For details, see <A HREF="apptechp66.htm#X-REF356210949">"Error handling after
+a <ACRONYM title = "sequel" >SQL</ACRONYM> statement"</A>.</td>
+<td  rowspan="1"  ><A NAME="TI1580"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1581"></A><ACRONYM title = "sequel er text" >SQLErrText</ACRONYM></td>
+<td  rowspan="1"  ><A NAME="TI1582"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI1583"></A>The text of the database vendor's
+error message corresponding to the error code. For details, see <A HREF="apptechp66.htm#X-REF356210949">"Error handling after
+a <ACRONYM title = "sequel" >SQL</ACRONYM> statement"</A>.</td>
+<td  rowspan="1"  ><A NAME="TI1584"></A>&#8212;</td>
+</tr>
+</table>
+<A NAME="X-REF355508091"></A><h2>Transaction object properties and supported PowerBuilder database interfaces</h2>
+<A NAME="TI1585"></A><p>The Transaction object properties required to connect to the
+database are different for each PowerBuilder database interface.
+Except for <ACRONYM title = "sequel return data" >SQLReturnData</ACRONYM>,
+the properties that return status information about the success or
+failure of a <ACRONYM title = "sequel" >SQL</ACRONYM> statement apply
+to all PowerBuilder database interfaces. </p>
+<A NAME="TI1586"></A><p><A HREF="apptechp65.htm#CIHCFGFI">Table 12-2</A> lists
+each supported PowerBuilder database interface and the Transaction
+object properties you can use with that interface.</p>
+<A NAME="CIHCFGFI"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 12-2: PowerBuilder database interfaces</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1587"></A>Database interface</th>
+<th  rowspan="1"  ><A NAME="TI1588"></A>Transaction
+object properties</th>
+<th  rowspan="1"  ><A NAME="TI1589"></A></th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1590"></A>Informix </td>
+<td  rowspan="1"  ><A NAME="TI1591"></A><A NAME="TI1592"></A>
+<ul>
+<li class=fi>DBMS</li>
+<li class=ds>UserID</li>
+<li class=ds>DBPass</li>
+<li class=ds>Database</li>
+<li class=ds>ServerName</li>
+<li class=ds>DBParm</li>
+<li class=ds>Lock
+</li>
+</ul>
+</td>
+<td  rowspan="1"  ><A NAME="TI1593"></A><A NAME="TI1594"></A>
+<ul>
+<li class=fi>AutoCommit</li>
+<li class=ds><ACRONYM title = "sequel return data" >SQLReturnData</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel code" >SQLCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel n rows" >SQLNRows</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel d b code" >SQLDBCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel er text" >SQLErrText</ACRONYM>
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1595"></A>JDBC</td>
+<td  rowspan="1"  ><A NAME="TI1596"></A><A NAME="TI1597"></A>
+<ul>
+<li class=fi>DBMS</li>
+<li class=ds>LogID</li>
+<li class=ds>LogPass</li>
+<li class=ds>DBParm</li>
+<li class=ds>Lock
+</li>
+</ul>
+</td>
+<td  rowspan="1"  ><A NAME="TI1598"></A><A NAME="TI1599"></A>
+<ul>
+<li class=fi>AutoCommit</li>
+<li class=ds><ACRONYM title = "sequel code" >SQLCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel n rows" >SQLNRows</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel d b code" >SQLDBCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel er text" >SQLErrText</ACRONYM>
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1600"></A>Microsoft <ACRONYM title = "sequel" >SQL</ACRONYM> Server</td>
+<td  rowspan="1"  ><A NAME="TI1601"></A><A NAME="TI1602"></A>
+<ul>
+<li class=fi>DBMS</li>
+<li class=ds>Database</li>
+<li class=ds>ServerName</li>
+<li class=ds>LogID</li>
+<li class=ds>LogPass</li>
+<li class=ds>DBParm</li>
+<li class=ds>Lock
+</li>
+</ul>
+</td>
+<td  rowspan="1"  ><A NAME="TI1603"></A><A NAME="TI1604"></A>
+<ul>
+<li class=fi>AutoCommit</li>
+<li class=ds><ACRONYM title = "sequel code" >SQLCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel n rows" >SQLNRows</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel d b code" >SQLDBCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel er text" >SQLErrText</ACRONYM>
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1605"></A>ODBC</td>
+<td  rowspan="1"  ><A NAME="TI1606"></A><A NAME="TI1607"></A>
+<ul>
+<li class=fi>DBMS</li>
+<li class=ds>#UserID</li>
+<li class=ds>+LogID</li>
+<li class=ds>+LogPass</li>
+<li class=ds>DBParm</li>
+<li class=ds>Lock
+</li>
+</ul>
+</td>
+<td  rowspan="1"  ><A NAME="TI1608"></A><A NAME="TI1609"></A>
+<ul>
+<li class=fi>AutoCommit</li>
+<li class=ds><ACRONYM title = "sequel return data" >SQLReturnData</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel code" >SQLCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel n rows" >SQLNRows</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel d b code" >SQLDBCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel er text" >SQLErrText</ACRONYM>
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1610"></A>OLE DB</td>
+<td  rowspan="1"  ><A NAME="TI1611"></A><A NAME="TI1612"></A>
+<ul>
+<li class=fi>DBMS</li>
+<li class=ds>LogID</li>
+<li class=ds>LogPass</li>
+<li class=ds>DBParm
+</li>
+</ul>
+</td>
+<td  rowspan="1"  ><A NAME="TI1613"></A><A NAME="TI1614"></A>
+<ul>
+<li class=fi>AutoCommit</li>
+<li class=ds><ACRONYM title = "sequel code" >SQLCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel n rows" >SQLNRows</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel d b code" >SQLDBCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel err text" >SQLErrText</ACRONYM>
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1615"></A>Oracle</td>
+<td  rowspan="1"  ><A NAME="TI1616"></A><A NAME="TI1617"></A>
+<ul>
+<li class=fi>DBMS</li>
+<li class=ds>ServerName</li>
+<li class=ds>LogID</li>
+<li class=ds>LogPass</li>
+<li class=ds>DBParm
+</li>
+</ul>
+</td>
+<td  rowspan="1"  ><A NAME="TI1618"></A><A NAME="TI1619"></A>
+<ul>
+<li class=fi><ACRONYM title = "sequel return data" >SQLReturnData</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel code" >SQLCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel n rows" >SQLNRows</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel d b code" >SQLDBCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel er text" >SQLErrText</ACRONYM>
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1620"></A>Sybase DirectConnect</td>
+<td  rowspan="1"  ><A NAME="TI1621"></A><A NAME="TI1622"></A>
+<ul>
+<li class=fi>DBMS</li>
+<li class=ds>Database</li>
+<li class=ds>ServerName</li>
+<li class=ds>LogID</li>
+<li class=ds>LogPass</li>
+<li class=ds>DBParm</li>
+<li class=ds>Lock
+</li>
+</ul>
+</td>
+<td  rowspan="1"  ><A NAME="TI1623"></A><A NAME="TI1624"></A>
+<ul>
+<li class=fi>AutoCommit</li>
+<li class=ds><ACRONYM title = "sequel code" >SQLCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel n rows" >SQLNRows</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel d b code" >SQLDBCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel er text" >SQLErrText</ACRONYM>
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1625"></A>Sybase Adaptive Server Enterprise</td>
+<td  rowspan="1"  ><A NAME="TI1626"></A><A NAME="TI1627"></A>
+<ul>
+<li class=fi>DBMS</li>
+<li class=ds>Database</li>
+<li class=ds>ServerName</li>
+<li class=ds>LogID</li>
+<li class=ds>LogPass</li>
+<li class=ds>DBParm</li>
+<li class=ds>Lock
+</li>
+</ul>
+</td>
+<td  rowspan="1"  ><A NAME="TI1628"></A><A NAME="TI1629"></A>
+<ul>
+<li class=fi>AutoCommit</li>
+<li class=ds><ACRONYM title = "sequel code" >SQLCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel n rows" >SQLNRows</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel d b code" >SQLDBCode</ACRONYM></li>
+<li class=ds><ACRONYM title = "sequel er text" >SQLErrText</ACRONYM>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+<A NAME="TI1630"></A><p>#    UserID is optional for ODBC.
+(Be careful specifying the UserID property; it overrides the connection's
+UserName property returned by the ODBC SQLGetInfo call.)</p>
+<A NAME="TI1631"></A><p>+    PowerBuilder uses the LogID
+and LogPass properties only if your ODBC driver does <i>not</i> support
+the SQL driver CONNECT call.</p>
+

@@ -1,0 +1,89 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Exporting and importing entries</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp57.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp59.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF302058208"></A><h1>Exporting and importing entries</h1>
+<A NAME="TI1733"></A><p>You can export object definitions to text files. The text
+files contain all the information that defines the objects. The
+files are virtually identical syntactically to the source forms
+that are stored in libraries for all objects.</p>
+<A NAME="TI1734"></A><p>You may want to export object definitions in the following
+situations:</p>
+<A NAME="TI1735"></A><p><A NAME="TI1736"></A>
+<ul>
+<li class=fi>You want to store
+the objects as text files.</li>
+<li class=ds>You want to move objects to another computer as
+text files.
+</li>
+</ul>
+</p>
+<A NAME="TI1737"></A><p>Later you can import the files back into PowerBuilder for
+storage in a library.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Caution</span> <A NAME="TI1738"></A>The primary use of the Export feature is exporting source
+code, modifying the source. You can use the Source editor to modify
+the source code of an object directly, but modifying source in an
+ASCII text file is not recommended for most users. See <A HREF="pbugp47.htm#CEGCABBH">"Using the Source editor"</A>. </p>
+<A NAME="TI1739"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To export entries to text files:</p>
+<ol><li class=fi><p>Select the Library entries you want to
+export.</p><p>You can select multiple entries in the List view.</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI1740"></A>
+<ul>
+<li class=fi>Select
+Export from the pop-up menu.</li>
+<li class=ds>Click the Export button on the PainterBar.</li>
+<li class=ds>Select Entry&gt;Library Item&gt;Export
+from the menu bar.
+</li>
+</ul>
+
+                    </p><p>The Export Library Entry dialog box displays, showing the
+name of the first entry selected for export in the File Name box
+and the name of the current directory. The current directory is
+the target's directory or the last directory you selected
+for saving exported entries or saving a file using the file editor.</p><p>PowerBuilder appends the file extension .<i>srx</i>,
+where <i>x</i> represents the object type.</p></li>
+<li class=ds><p>Specify the file name and directory for the export
+file. Do not change the file extension from the one that PowerBuilder
+appended.</p></li>
+<li class=ds><p>Select the encoding for the exported file.</p><p>The HEXASCII export format is used for source-controlled files.
+Unicode strings are represented by hexadecimal/ASCII strings
+in the exported file, which has the letters HA at the beginning
+of the header to identify it as a file that might contain such strings.
+You cannot import HEXASCII files into a previous version of PowerBuilder.</p></li>
+<li class=ds><p>Click OK.</p><p>PowerBuilder converts the entry to text, stores it with the
+specified name, then displays the next entry you selected for export.</p><p>If a file already exists with the same name, PowerBuilder
+displays a message asking whether you want to replace the file.
+If you say no, you can change the name of the file and then export
+it, skip the file, or cancel the export of the current file and
+any selected files that have not been exported.</p></li>
+<li class=ds><p>Repeat steps 3 through 5 until you have processed
+all the selected entries.</p><p>If the Library painter is set to display files, you can see
+the saved files and double-click them to open them in the File editor.</p></li></ol>
+<br><A NAME="TI1741"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To import text files to library entries:</p>
+<ol><li class=fi><p>In the System Tree or Library painter,
+select the library into which you want to import an object.</p></li>
+<li class=ds><p>Select Import from the pop-up menu, or, in the
+Library painter only, click the Import button on the PainterBar.</p><p>The Select Import Files dialog box displays, showing the current
+directory and a list of files with the extension .<i>sr*</i> in
+that directory. The current directory is the target's directory
+or the last directory you selected for saving exported entries or
+saving a file using the file editor.</p><br><img src="images/lib21.gif"><br>
+</li>
+<li class=ds><p>Select the files you want to import. Use Shift+Click
+or Ctrl+Click to select multiple files.</p></li>
+<li class=ds><p>Click Open.</p><p>PowerBuilder converts the specified text files to PowerBuilder
+format, regenerates (recompiles) the objects, stores the entries
+in the specified library, and updates the entries' timestamps.</p><p>If a library entry with the same name already exists, PowerBuilder replaces
+it with the imported entry.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Caution</span> <A NAME="TI1742"></A>When you import an entry with the same name as an existing
+entry, the old entry is deleted before the import takes place. If
+an import fails, the old object will already be deleted.</p>
+</li></ol>
+<br>

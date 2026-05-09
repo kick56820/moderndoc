@@ -1,0 +1,215 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Generating HTML</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp17.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp19.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF355847727"></A><h1>Generating HTML</h1>
+<A NAME="TI728"></A><p>You can use the data in a DataWindow object to create HyperText
+Markup Language (HTML) syntax. Once the HTML has been created, you
+can display it in a Web browser.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Web DataWindow not described here</span> <A NAME="TI729"></A>This section does not include description of the Web DataWindow.
+The Web DataWindow uses DataWindow object properties that are described
+in detail in the <i>DataWindow Reference</i>
+. For
+overview information, see the <A HREF="dwprgugp40.htm#BABGCCFE">"Web DataWindow properties"</A>.</p>
+<A NAME="TI730"></A><h4>Techniques you can use</h4>
+<A NAME="TI731"></A><p>You can use any of several techniques to generate HTML from
+a DataWindow object.</p>
+<p><b>In a painter</b>   In both the DataWindow painter and the Output view in the Database
+painter, you can save retrieved data in HTML format. To do this
+in the DataWindow painter, select File&gt;Save Rows As from
+the menu. In the Database painter, open the Output view, then select
+Rows&gt;Save Rows As from the menu. In both painters, specify
+HTML Table as the format for the file.</p>
+<p><b>In your application code</b>   You can obtain an HTML string of the DataWindow presentation
+and data from the Data.HTMLTable property. You can save the string
+in a variable and modify the HTML with string manipulation operations.
+In PowerBuilder, you can also use the FileOpen and FileWrite functions
+to save the HTML to a file.</p>
+<A NAME="TI732"></A><p>The HTMLTable property has its own properties which you can
+set to control the HTML attributes and style sheet associated with
+the Table HTML element.</p>
+<p><b>PowerBuilder only</b>   In PowerBuilder, there are two more techniques available to
+you. You can:<A NAME="TI733"></A>
+<ul>
+<li class=fi>Call the SaveAs
+method to save the contents of a DataWindow directly to a file on
+disk. To save the data in HTML format, you need to specify HTMLTable
+as the file type when you call SaveAs.</li>
+<li class=ds>Call the GenerateHTMLForm method to create an HTML
+form from data contained in a DataWindow control or DataStore whose
+DataWindow object uses the Freeform or Tabular presentation style. 
+</li>
+</ul>
+</p>
+<A NAME="TI734"></A><h4>Choosing presentation styles</h4>
+<A NAME="TI735"></A><p>Some DataWindow presentation styles translate better into
+HTML than others. The following presentation styles produce good
+results:<A NAME="TI736"></A>
+<ul>
+<li class=fi>Tabular</li>
+<li class=ds>Group</li>
+<li class=ds>TreeView</li>
+<li class=ds>Freeform</li>
+<li class=ds>Crosstab</li>
+<li class=ds>Grid
+</li>
+</ul>
+</p>
+<A NAME="TI737"></A><p>The Composite, Graph, RichText, and OLE 2.0 presentation styles
+produce HTML output that is based on the result only, and not on
+the presentation style. DataWindows that have overlapping controls
+might not produce the expected results. Nested reports are ignored;
+they are not included in the generated HTML.</p>
+<A NAME="TI738"></A><h4>Example</h4>
+<A NAME="TI739"></A><p>This example illustrates how you might use DataWindow-generated
+HTML in an application. </p>
+<A NAME="TI740"></A><p>The key line of code gets the HTML from the DataWindow by
+referring to its HTMLTable property. Variations for each environment
+are shown below. In PowerBuilder, you can use the Describe method
+or a property expression. The Web ActiveX has to use Describe.</p>
+<p><b>PowerBuilder</b>   </p>
+<A NAME="TI741"></A><p><p><PRE> ls_htmlstring = dw_1.Object.DataWindow.Data.HTMLTable</PRE></p>
+<p><b>Web ActiveX</b>   </p>
+<A NAME="TI742"></A><p><p><PRE> str_html = dw_1.Describe("DataWindow.Data.HTMLTable");</PRE></p>
+<A NAME="TI743"></A><p>The complete example that follows is implemented in PowerBuilder.</p>
+<A NAME="TI744"></A><p>The window below displays customer data in a tabular DataWindow
+object. By pressing the Browse button, the user can translate the
+contents of the DataWindow object into HTML format and invoke a
+Web browser to view the HTML output. By pressing the Select Browser
+button, the user can tell the application which Web browser to use:</p>
+<br><img src="images/udwo11.gif">
+<p><b>Script for the Select Browser button</b>   The script for the Select Browser button displays a dialog
+box where the user can select an executable file for a Web browser.
+The path to the executable is stored in is_Browser, which
+is an instance variable defined on the window:<p><PRE> String ls_BrowserName</PRE><PRE> Integer li_Result</PRE><PRE> </PRE><PRE> // Open the dialog to select a browser.</PRE><PRE> li_Result = GetFileOpenName("Select Browser",  &amp;</PRE><PRE>         is_Browser, ls_BrowserName,  &amp;</PRE><PRE>         "exe", "Executable Files (*.EXE),*.EXE")</PRE><PRE> </PRE><PRE> IF li_Result = -1 THEN</PRE><PRE>         MessageBox("No Browser", "No Browser selected")</PRE><PRE> END IF</PRE></p>
+<p><b>Script for the Browse button</b>   The script for the Browse button creates an HTML string from
+the data in the DataWindow by assigning the Data.HTMLTable property
+to a string variable. After constructing the HTML string, the script
+adds a header to the HTML string. Then the script saves the HTML
+to a file and runs the Web browser to display the output.<p><PRE> String ls_HTML, ls_FileName, ls_BrowserPath</PRE><PRE> Integer li_FileNumber, li_Bytes, </PRE><PRE> Integer li_RunResult, li_Result</PRE><PRE> </PRE><PRE> // Generate the HTML.</PRE><PRE> ls_HTML = dw_1.Object.DataWindow.Data.HTMLTable</PRE><PRE> IF IsNull(ls_HTML) Or Len(ls_HTML) &lt;= 1 THEN</PRE><PRE>         MessageBox ("Error", "Error generating HTML!")</PRE><PRE>         Return</PRE><PRE> ELSE</PRE><PRE>         ls_HTML ="&lt;H1&gt;HTML Generated From a DataWindow"&amp;</PRE><PRE>             + "&lt;/H1&gt;&lt;P&gt;" + ls_HTML</PRE><PRE> END IF</PRE><PRE> </PRE><PRE> //Create the file.</PRE><PRE> ls_FileName = "custlist.htm"</PRE><PRE> li_FileNumber = FileOpen(ls_FileName, StreamMode!, &amp;</PRE><PRE>         Write!, LockReadWrite!, Replace! )</PRE><PRE> </PRE><PRE> IF (li_FileNumber &gt;= 0) THEN    </PRE><PRE>         li_Bytes = FileWrite(li_FileNumber, ls_HTML)</PRE><PRE>         FileClose(li_FileNumber)</PRE><PRE>         IF li_Bytes = Len(ls_HTML) THEN    </PRE><PRE>             // Run Browser with the HTML file.</PRE><PRE>             IF Not FileExists(is_Browser) THEN</PRE><PRE>                 cb_selbrowser.Trigger Event Clicked()</PRE><PRE>                 IF NOT FileExists(is_Browser) THEN</PRE><PRE>                     MessageBox("Select Browser", "Could &amp; </PRE><PRE>                         not find the browser.")</PRE><PRE>                     RETURN</PRE><PRE>                 END IF</PRE><PRE>             END IF</PRE><PRE>             li_RunResult = Run(is_Browser + " file:///"+&amp;</PRE><PRE>                 ls_FileName)</PRE><PRE>             IF li_RunResult = -1 THEN    </PRE><PRE>                 MessageBox("Error", "Error running browser!")</PRE><PRE>             END IF</PRE><PRE>         ELSE</PRE><PRE>             MessageBox ("Write Error", &amp;</PRE><PRE>                 "File Write Unsuccessful")</PRE><PRE>         END IF</PRE><PRE> ELSE</PRE><PRE>         MessageBox ("File Error", "Could not open file")</PRE><PRE> END IF</PRE></p>
+<A NAME="TI745"></A><h2>Controlling display</h2>
+<A NAME="TI746"></A><p>You control table display and style sheet usage through the HTMLTable.GenerateCSS
+property. The HTMLTable.GenerateCSS property controls the downward
+compatibility of the HTML found in the HTMLTable property. If HTMLTable.GenerateCSS
+is FALSE, formatting (style sheet references) is not referenced
+in the HTMLTable property; if it is TRUE, the HTMLTable property
+includes elements that reference the cascading style sheet saved
+in HTML.StyleSheet.</p>
+<A NAME="TI747"></A><p>This screen shows an HTML table in a browser using custom
+display features:</p>
+<br><img src="images/udwo12.gif">
+<A NAME="TI748"></A><h4>HTMLTable.GenerateCSS is TRUE </h4>
+<A NAME="TI749"></A><p>If the HTMLTable.GenerateCSS property is TRUE, the HTMLTable
+element in the HTMLTable property uses additional properties to
+customize table display. For example, suppose you specify the following
+properties:<p><PRE> HTMLTable.NoWrap=Yes</PRE><PRE> HTMLTable.Border=5</PRE><PRE> HTMLTable.Width=5</PRE><PRE> HTMLTable.CellPadding=2</PRE><PRE> HTMLTable.CellSpacing=2</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Describe, Modify, and dot notation</span> <A NAME="TI750"></A>You can access these properties by using the Modify and Describe
+PowerScript methods or by using dot notation.</p>
+<A NAME="TI751"></A><p>The HTML syntax in the HTMLTable property includes table formatting information
+and class references for use with the style sheet:<p><PRE> &lt;table cellspacing=2 cellpadding=2 border=5 width=5&gt;</PRE><PRE> &lt;tr&gt;</PRE><PRE> &lt;td CLASS=0 ALIGN=center&gt;Employee ID</PRE><PRE> &lt;td CLASS=0 ALIGN=center&gt;First Name</PRE><PRE> &lt;td CLASS=0 ALIGN=center&gt;Last Name</PRE><PRE> &lt;tr&gt;</PRE><PRE> &lt;td CLASS=6 ALIGN=right&gt;102</PRE><PRE> &lt;td CLASS=7&gt;Fran</PRE><PRE> &lt;td CLASS=7&gt;Whitney</PRE><PRE> &lt;/table&gt;</PRE></p>
+<A NAME="TI752"></A><h4>HTMLTable.GenerateCSS is FALSE </h4>
+<A NAME="TI753"></A><p>If HTMLTable.GenerateCSS is FALSE, the DataWindow does not
+use HTMLTable properties to create the Table element. For example,
+if GenerateCSS is FALSE, the HTML syntax for the HTMLTable property
+might look like this:<p><PRE> &lt;table&gt;</PRE><PRE> &lt;tr&gt;</PRE><PRE> &lt;th ALIGN=center&gt;Employee ID</PRE><PRE> &lt;th ALIGN=center&gt;First Name</PRE><PRE> &lt;th ALIGN=center&gt;Last Name</PRE><PRE> &lt;tr&gt;</PRE><PRE> &lt;td ALIGN=right&gt;102</PRE><PRE> &lt;td&gt;Fran</PRE><PRE> &lt;td&gt;Whitney</PRE><PRE> &lt;/table&gt;</PRE></p>
+<A NAME="TI754"></A><h4>Merging HTMLTable with the style sheet</h4>
+<A NAME="TI755"></A><p>The HTML syntax contained in the HTMLTable property is incomplete:
+it is not wrapped in &lt;HTML&gt;&lt;/HTML&gt; elements
+and does not contain the style sheet. You can write code in your
+application to build a string representing a complete HTML page.</p>
+<p><b>PowerBuilder example</b>   This example sets DataWindow properties, creates an HTML string,
+and returns it to the browser:<p><PRE> String ls_html</PRE><PRE> ds_1.Modify  &amp;</PRE><PRE> ("datawindow.HTMLTable.GenerateCSS='yes'")</PRE><PRE> ds_1.Modify("datawindow.HTMLTable.NoWrap='yes'")</PRE><PRE> ds_1.Modify("datawindow.HTMLTable.width=5")</PRE><PRE> ds_1.Modify("datawindow.HTMLTable.border=5")</PRE><PRE> ds_1.Modify("datawindow.HTMLTable.CellSpacing=2")</PRE><PRE> ds_1.Modify("datawindow.HTMLTable.CellPadding=2")</PRE><PRE> ls_html = "&lt;HTML&gt;"</PRE><PRE> ls_html +=  &amp;</PRE><PRE>         ds_1.Object.datawindow.HTMLTable.StyleSheet</PRE><PRE> ls_html += "&lt;BODY&gt;"</PRE><PRE> ls_html += "&lt;H1&gt;DataWindow with StyleSheet&lt;/H1&gt;"</PRE><PRE> ls_html += ds_1.Object.DataWindow.data.HTMLTable</PRE><PRE> ls_html += "&lt;/BODY&gt;"</PRE><PRE> ls_html += "&lt;/HTML&gt;"</PRE><PRE> return ls_html</PRE></p>
+<A NAME="TI756"></A><p>This technique provides control over HTML page content. Use
+this technique as an alternative to calling the SaveAs method with
+the HTMLTable! Enumeration.</p>
+<A NAME="TI757"></A><h2>Calling the SaveAs method</h2>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Availability</span> <A NAME="TI758"></A>The SaveAs method is not available for the Web control for
+ActiveX.</p>
+<A NAME="TI759"></A><p>As an alternative to creating HTML pages dynamically, you
+can call the SaveAs method with the HTMLTable! Enumeration: <p><PRE> ds_1.SaveAs  &amp;</PRE><PRE>         ("C:\TEMP\HTMLTemp.htm", HTMLTable!, TRUE)</PRE></p>
+<A NAME="TI760"></A><p>This creates an HTML file with the proper elements, including
+the style sheet:<p><PRE> &lt;STYLE TYPE="text/css"&gt;</PRE><PRE> &lt;!--</PRE><PRE> .2 {COLOR:#000000;BACKGROUND:#ffffff;FONT-STYLE:normal;FONT-WEIGHT:normal;FONT:9pt "Arial", sans-serif;TEXT-DECORATION:none}</PRE><PRE> </PRE><PRE> .3{COLOR:#000000;BACKGROUND:#ffffff;FONT-STYLE:normal;FONT-WEIGHT:normal;FONT:8pt "MS Sans Serif", sans-serif;TEXT-DECORATION:none}</PRE><PRE> </PRE><PRE> .3{COLOR:#000000;BACKGROUND:#ffffff;FONT-STYLE:normal;FONT-WEIGHT:normal;FONT:8pt "MS Sans Serif", sans-serif;TEXT-DECORATION:none}</PRE><PRE> --&gt;</PRE><PRE> &lt;/STYLE&gt;</PRE><PRE> </PRE><PRE> &lt;TABLE nowrap cellspacing=2 cellpadding=2 border=5 width=5&gt;</PRE><PRE> &lt;tr&gt;</PRE><PRE>         &lt;td CLASS=2 ALIGN=right&gt;Employee ID:</PRE><PRE>         &lt;td CLASS=3 ALIGN=right&gt;501</PRE><PRE> &lt;tr&gt;</PRE><PRE>         &lt;td CLASS=2 ALIGN=right&gt;Last Name:</PRE><PRE>         &lt;td CLASS=3&gt;Scott</PRE><PRE> &lt;tr&gt;</PRE><PRE>         &lt;td CLASS=2 ALIGN=right&gt;First Name:</PRE><PRE>         &lt;td CLASS=3&gt;David</PRE><PRE> &lt;tr&gt;</PRE><PRE>         &lt;td CLASS=2 ALIGN=right&gt;Status:</PRE><PRE>         &lt;td CLASS=3&gt;Active</PRE><PRE> &lt;/TABLE&gt;</PRE></p>
+<A NAME="TI761"></A><h2>Displaying DataWindow objects as HTML forms</h2>
+<A NAME="TI762"></A><p>The GenerateHTMLForm method creates HTML form syntax for DataWindow
+objects. You can create an HTML form that displays a specified number
+of columns for a specified number of rows. Note the following:<A NAME="TI763"></A>
+<ul>
+<li class=fi>You create HTML form syntax by calling the GenerateHTMLForm method
+for the DataWindow control or DataStore</li>
+<li class=ds>The GenerateHTMLForm method creates HTML form syntax
+for the detail band only</li>
+<li class=ds>Embedded nested DataWindows are ignored; they are
+omitted from the generated HTML
+</li>
+</ul>
+</p>
+<A NAME="TI764"></A><h4>Presentation styles</h4>
+<A NAME="TI765"></A><p>Although the GenerateHTMLForm method generates syntax for
+all presentation styles, the only styles that create usable forms
+are Freeform and Tabular.</p>
+<A NAME="TI766"></A><p>The following HTML page shows a freeform DataWindow object
+converted into a form using syntax generated by the GenerateHTMLForm
+method:</p>
+<br><img src="images/udwo13.gif">
+<A NAME="TI767"></A><h4>Edit style conversion</h4>
+<A NAME="TI768"></A><p>The GenerateHTMLForm method converts column edit styles into
+the appropriate HTML elements:</p>
+<A NAME="TI769"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-12: HTML elements generated for column edit styles</caption>
+<tr><th  rowspan="1"  ><A NAME="TI770"></A>Column edit
+style</th>
+<th  rowspan="1"  ><A NAME="TI771"></A>HTML element</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI772"></A>CheckBox</td>
+<td  rowspan="1"  ><A NAME="TI773"></A>Input element specifying TYPE=CHECKBOX</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI774"></A>DropDownDataWindow</td>
+<td  rowspan="1"  ><A NAME="TI775"></A>Select element with a single Option element</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI776"></A>DropDownListBox</td>
+<td  rowspan="1"  ><A NAME="TI777"></A>Select element with one Option element
+for each item in the DropDownListBox</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI778"></A>Edit</td>
+<td  rowspan="1"  ><A NAME="TI779"></A>Input element specifying TYPE=TEXT</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI780"></A>RadioButton</td>
+<td  rowspan="1"  ><A NAME="TI781"></A>Input element specifying TYPE=RADIO</td>
+</tr>
+</table>
+<A NAME="TI782"></A><h4>Generating syntax</h4>
+<A NAME="TI783"></A><p>To generate HTML form syntax, you call the GenerateHTMLForm
+method:<p><PRE>instancename.GenerateHTMLForm ( syntax, style, action { , startrow,                  endrow, startcolumn, endcolumn { , buffer } } )</PRE></p>
+</p>
+<A NAME="TI784"></A><p>The method places the Form element syntax into the <i>syntax</i> argument
+and the HTML style sheet into the <i>style</i> argument,
+both of which are passed by reference.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Static texts in freeform DataWindow objects</span> <A NAME="TI785"></A>All static texts in the detail band are passed through to
+the generated HTML form syntax. If you limit the number of columns
+to be converted using the <i>startcolumn</i> and <i>endcolumn</i> arguments,
+remove the headers from the detail band for the columns you eliminate.</p>
+<A NAME="TI786"></A><p>Here is an example of the GenerateHTMLForm method:<p><PRE> String   ls_syntax, ls_style, ls_action</PRE><PRE> String   ls_html</PRE><PRE> Integer li_return</PRE><PRE> ls_action =  &amp;</PRE><PRE>         "/cgi-bin/pbcgi60.exe/myapp/uo_webtest/f_emplist"</PRE><PRE> li_return = ds_1.GenerateHTMLForm  &amp;</PRE><PRE>         (ls_syntax, ls_style, ls_action)</PRE><PRE> </PRE><PRE> IF li_return = -1 THEN</PRE><PRE>         MessageBox("HTML", "GenerateHTMLForm failed")</PRE><PRE> ELSE</PRE><PRE>         // of_MakeHTMLPage is an object method,</PRE><PRE>         // described in the next section.</PRE><PRE>         ls_html = this.of_MakeHTMLPage  &amp;</PRE><PRE>             (ls_syntax, ls_style) </PRE><PRE> END IF</PRE></p>
+<A NAME="TI787"></A><p>After calling the GenerateHTMLForm method, the ls_syntax
+variable contains a Form element. Here is an example:<p><PRE> &lt;FORM ACTION=</PRE><PRE>         "/cgi-bin/pbcgi60.exe/myapp/uo_webtest/f_emplist" </PRE><PRE>         METHOD=POST&gt;</PRE><PRE> &lt;P&gt;</PRE><PRE> &lt;P&gt;&lt;FONT CLASS=2&gt;Employee ID:&lt;/FONT&gt;</PRE><PRE> &lt;INPUT TYPE=TEXT NAME="emp_id_1" VALUE="501"&gt;</PRE><PRE> </PRE><PRE> &lt;P&gt;&lt;FONT CLASS=2&gt;Last Name:&lt;/FONT&gt;</PRE><PRE> &lt;INPUT TYPE=TEXT NAME="emp_lname_1" MAXLENGTH=20 VALUE="Scott"&gt;</PRE><PRE> </PRE><PRE> &lt;P&gt;&lt;FONT CLASS=2&gt;First Name:&lt;/FONT&gt;</PRE><PRE> &lt;INPUT TYPE=TEXT NAME="emp_fname_1" MAXLENGTH=20 VALUE="David"&gt;</PRE><PRE> </PRE><PRE> &lt;P&gt;&lt;FONT CLASS=2&gt;Status:&lt;/FONT&gt;</PRE><PRE> &lt;INPUT TYPE="RADIO" NAME="status_1" CHECKED CLASS=5 &gt;&lt;FONT CLASS=5 &gt;Active</PRE><PRE> </PRE><PRE> &lt;P&gt;</PRE><PRE> &lt;INPUT TYPE="RADIO" NAME="status_1" CLASS=5 &gt;</PRE><PRE> &lt;FONT CLASS=5 &gt;Terminated</PRE><PRE> </PRE><PRE> &lt;P&gt;</PRE><PRE> &lt;INPUT TYPE="RADIO" NAME="status_1" CLASS=5 &gt;</PRE><PRE> &lt;FONT CLASS=5 &gt;On Leave</PRE></p>
+<A NAME="TI788"></A><p><p><PRE> &lt;P&gt;</PRE><PRE> &lt;P&gt;</PRE><PRE> &lt;BR&gt;</PRE><PRE> &lt;INPUT TYPE=SUBMIT NAME=SAMPLE VALUE="OK"&gt;</PRE><PRE> &lt;/FORM&gt;</PRE></p>
+<A NAME="TI789"></A><p>The ls_stylesheet variable from the previous example
+contains a Style element, an example of which is shown below:<p><PRE> &lt;STYLE TYPE="text/css"&gt;</PRE><PRE> &lt;!--</PRE><PRE> .2{COLOR:#000000;BACKGROUND:#ffffff;FONT-STYLE:normal;FONT-WEIGHT:normal;FONT:9pt "Arial", sans-serif;TEXT-DECORATION:none}</PRE><PRE> </PRE><PRE> .3{COLOR:#000000;BACKGROUND:#ffffff;FONT-STYLE:normal;FONT-WEIGHT:normal;FONT:8pt "MS Sans Serif", sans-serif;TEXT-DECORATION:none}</PRE><PRE> </PRE><PRE> .5{COLOR:#000000;BACKGROUND:#ffffff;FONT-STYLE:normal;FONT-WEIGHT:normal;FONT:8pt "MS Sans Serif", sans-serif;TEXT-DECORATION:none}</PRE><PRE> --&gt;</PRE><PRE> &lt;/STYLE&gt;</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Unique element names</span> <A NAME="TI790"></A>The GenerateHTMLForm method creates unique names for all elements
+in the form (even when displaying multiple rows in one form) by
+adding a<i> _nextsequentialnumber</i> suffix.</p>
+<A NAME="TI791"></A><h4>Creating an HTML page</h4>
+<A NAME="TI792"></A><p>To use the syntax and style sheet returned by the GenerateHTMLForm
+method, you must write code to merge them into an HTML page. A complete
+HTML page requires &lt;HTML&gt; and &lt;BODY&gt; elements
+to contain the style sheet and syntax.</p>
+<A NAME="TI793"></A><p>One way to do this is to create a global or object function
+that returns a complete HTML page, taking as arguments the Form
+and Style elements generated by the GenerateHTMLForm method. Such
+a function might contain the following code:<p><PRE> // Function Name: of_MakeHTMLPage</PRE><PRE> // Arguments: String as_syntax, String as_style</PRE><PRE> // Returns: String</PRE><PRE> //***********************************</PRE><PRE> String    ls_html</PRE><PRE> IF as_syntax = "" THEN</PRE><PRE>         RETURN ""</PRE><PRE> END IF</PRE><PRE> </PRE><PRE> IF as_style = "" THEN</PRE><PRE>         RETURN ""</PRE><PRE> END IF<br></PRE><PRE> ls_html = "&lt;HTML&gt;"</PRE><PRE> ls_html += as_style</PRE><PRE> ls_html += "&lt;BODY&gt;"</PRE><PRE> ls_html += "&lt;H1&gt;Employee Information&lt;/H1&gt;"</PRE><PRE> ls_html += as_syntax</PRE><PRE> ls_html += "&lt;/BODY&gt;&lt;/HTML&gt;"</PRE><PRE> RETURN ls_html</PRE></p>
+

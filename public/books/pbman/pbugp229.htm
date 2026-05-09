@@ -1,0 +1,134 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating a new TreeView DataWindow</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp228.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp230.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABEJEJC"></A><h1>Creating a new TreeView DataWindow</h1>
+<A NAME="TI8042"></A><p>You use the TreeView wizard and the DataWindow painter to
+create a TreeView DataWindow. </p>
+<A NAME="TI8043"></A><h2>TreeView creation process</h2>
+<A NAME="TI8044"></A><p>A TreeView DataWindow has multiple levels, each of which is
+a node in the TreeView. You use the TreeView wizard to create a
+TreeView DataWindow, but the wizard produces a DataWindow that includes
+only the top level of the TreeView. </p>
+<A NAME="TI8045"></A><p>Creating a complete TreeView DataWindow involves three steps:<A NAME="TI8046"></A>
+<ol>
+</li>
+<li class=ds>Using the TreeView DataWindow wizard
+to create the top level (level 1) of the TreeView DataWindow.</li>
+<li class=ds>Using the DataWindow painter to add additional levels to
+the TreeView DataWindow.</li>
+<li class=ds>Setting TreeView DataWindow properties to customize
+the TreeView style. 
+</li>
+</ol>
+</p>
+<A NAME="TI8047"></A><p>For information about adding and deleting TreeView levels,
+see <A HREF="pbugp230.htm#BABDJJAA">"Adding and deleting TreeView
+levels"</A>. For information about
+setting properties in the DataWindow painter, see <A HREF="pbugp234.htm#BABGGBHA">"Setting properties for the
+TreeView DataWindow"</A>. </p>
+<A NAME="TI8048"></A><p>You can use TreeView DataWindow methods to expand and collapse
+TreeView nodes, and you can write code for TreeView DataWindow events
+that are fired when a node is expanded or collapsed. For detailed
+information about using TreeView DataWindow properties, methods,
+and events, see the <i>DataWindow Reference</i>
+ or
+the online Help.</p>
+<A NAME="TI8049"></A><h2>Creating a TreeView DataWindow</h2>
+<A NAME="TI8050"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a TreeView DataWindow:</p>
+<ol><li class=fi><p>Select File&gt;New from the menu
+bar and select the DataWindow tab.</p></li>
+<li class=ds><p>If there is more than one target in the workspace,
+select the target where you want to create the DataWindow from the
+drop-down list at the bottom of the dialog box.</p></li>
+<li class=ds><p>Choose the TreeView presentation style for the DataWindow and
+click OK.</p><br><img src="images/tvwizpb.gif"><br>
+</li>
+<li class=ds><p>Select the data source you want to use: Quick
+Select, SQL Select, Query, External, or Stored Procedure.</p><p>You are prompted to specify the data.</p></li>
+<li class=ds><p>Define the tables and columns you want to use.</p><p>You are prompted to specify the TreeView grouping columns.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Multiple columns and multiple TreeView levels</span> <A NAME="TI8051"></A>You can specify more than one column, but all columns apply
+to TreeView level one. At this point, you can define only one TreeView
+level. You define additional levels later.</p>
+<p>In the following example, TreeView grouping will be by department,
+as specified by the <b>dept_id</b> column:</p><br><img src="images/setrpdef.gif"><br>
+<p>If you want to use an expression, you can define it when you
+have completed the wizard. See <A HREF="pbugp229.htm#BHABICFE">"Using an expression for
+a column name"</A>.</p><p>The sample DataWindow shown in <A HREF="pbugp228.htm#CEGEEEHH">"Example"</A> uses the department and employee
+tables in the EAS Demo DB database.</p></li>
+<li class=ds><p>Specify the column or columns that will be at
+the top level (level 1) of the TreeView DataWindow.</p><p>The sample DataWindow uses the department name as the top
+level. If you want to display both the department ID and department
+name, you specify that both columns are at the top level.</p></li>
+<li class=ds><p>If you want the TreeView DataWindow to display
+grid lines, select the Grid Style check box.</p><p>When you select the Grid Style check box, the TreeView DataWindow displays
+grid lines for rows and columns. You can drag the grid lines to resize
+rows and columns.</p></li>
+<li class=ds><p>Click Next.</p></li>
+<li class=ds><p>Modify the default color and border settings if
+needed, and then click Next.</p></li>
+<li class=ds><p>Review the TreeView DataWindow characteristics.</p></li>
+<li class=ds><p>Click Finish.</p></li></ol>
+<br><A NAME="TI8052"></A><p>The DataWindow painter Design view displays. For information
+about the Design view, see <A HREF="pbugp233.htm#BABGDDFH">"TreeView DataWindow Design
+view"</A>. For information about adding
+additional levels, see <A HREF="pbugp230.htm#BABDJJAA">"Adding and deleting TreeView
+levels"</A>.</p>
+<A NAME="TI8053"></A><h4>What PowerBuilder does</h4>
+<A NAME="TI8054"></A><p>As a result of your specifications, PowerBuilder generates a
+TreeView DataWindow object and creates:<A NAME="TI8055"></A>
+<ul>
+<li class=fi>A TreeView header band with
+controls that include the heading text of the detail band columns</li>
+<li class=ds>The first TreeView level band with the TreeView
+level columns you chose in the wizard</li>
+<li class=ds>The detail (leaf node) band that includes all the
+column controls except for first-level columns you selected in the
+wizard</li>
+<li class=ds>A level 1 trailer band.</li>
+<li class=ds>A summary band, and a footer band.
+</li>
+</ul>
+</p>
+<A NAME="TI8056"></A><p>Here is the sample TreeView DataWindow object in the Design view:</p>
+<br><img src="images/designv.gif">
+<A NAME="TI8057"></A><p>If you selected the Grid Style check box, vertical and horizontal
+grid lines display:</p>
+<br><img src="images/gridlnes.gif">
+<A NAME="TI8058"></A><p>Here is the sample TreeView DataWindow object in the Preview view:</p>
+<br><img src="images/emprep.gif">
+<A NAME="BHABICFE"></A><h4>Using an expression for
+a column name</h4>
+<A NAME="TI8059"></A><p>If you want to use an expression for one or more column names
+in a TreeView, you can enter it as the TreeView definition on the
+General page in the Properties view after you finish using the TreeView
+wizard. </p>
+<A NAME="TI8060"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use an expression for a TreeView column name:</p>
+<ol><li class=fi><p>Open the Properties view and click the
+TreeView level band in the Design view.</p></li>
+<li class=ds><p>Click the ellipsis button next to the TreeView
+Level Definition box on the General page in the Properties view
+to open the Specify Group Columns dialog box.</p></li>
+<li class=ds><p>In the Columns box, double-click the column you
+want to use in an expression. </p><p>The Modify Expression dialog box opens. You can specify more
+than one grouping item expression for a group. A break occurs whenever
+the value concatenated from each column/expression changes.</p></li></ol>
+<br><A NAME="TI8061"></A><h4>What you can do</h4>
+<A NAME="TI8062"></A><p>All of the techniques available in a tabular DataWindow object ,
+such as moving controls and specifying display formats, are available
+for modifying and enhancing TreeView DataWindow objects. See <A HREF="pbugp230.htm#BABDJJAA">"Adding and deleting TreeView
+levels"</A> to read more about
+the bands in a TreeView DataWindow object and see how to add features especially
+suited for TreeView DataWindow objects, such as additional TreeView levels
+or summary statistics.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>DataWindow object is not updatable by default </span> <A NAME="TI8063"></A>When you generate a DataWindow object using the TreeView presentation style, PowerBuilder makes
+it not updatable by default. If you want to be able to update the
+database through the TreeView DataWindow object, you must modify its update
+characteristics. For more information, see <A HREF="pbugp179.htm#BHBJIJJE">Chapter 21, "Controlling Updates in DataWindow Objects."</A></p>
+

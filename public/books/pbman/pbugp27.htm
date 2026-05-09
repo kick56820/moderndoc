@@ -1,0 +1,96 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Modifying source-controlled targets and objects</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp26.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp28.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABBJCFJ"></A><h1>Modifying source-controlled targets and objects</h1>
+<A NAME="TI973"></A><p>Objects in targets under source control must be managed differently
+than the same objects in targets that are not under source control.</p>
+<A NAME="TI974"></A><h2>Effects of source control on object management</h2>
+<A NAME="TI975"></A><p>You must check out a target file from source control before
+you can modify its properties. If objects in a source-controlled
+target are not themselves registered in source control, you can
+add them to or delete them from the local target without checking
+out the target. However, you must remove a source-controlled
+object from the source control system before you can delete the
+same object from the local copy of the target (whether or not the
+target itself is under source control).</p>
+<A NAME="TI976"></A><p>Although you can add objects to a source-controlled target
+without checking out the target from source control, you cannot
+add existing libraries to the library list of a source-controlled
+PowerScript target unless the target is checked out.</p>
+<A NAME="TI977"></A><p>For information on removing an object from source control,
+see <A HREF="pbugp26.htm#BABDIHCF">"Removing objects from source
+control"</A>.</p>
+<A NAME="TI978"></A><h2>Copy and move operations on source-controlled objects</h2>
+<A NAME="TI979"></A><p>You cannot copy a source-controlled object to a destination <ACRONYM title = "pibble" >PBL</ACRONYM> in the same directory as the
+source <ACRONYM title = "pibble" >PBL</ACRONYM>. Generally when you
+work with source control, objects with the same name should not
+exist in more than one <ACRONYM title = "pibble" >PBL</ACRONYM> in
+the same directory. </p>
+<A NAME="TI980"></A><p>Moving an object that is not under source control to a destination <ACRONYM title = "pibble" >PBL</ACRONYM> having a source-controlled object
+with the same name is permitted only when the second object is checked
+out of source control.</p>
+<A NAME="TI981"></A><p>You cannot move an object from a source <ACRONYM title = "pibble" >PBL</ACRONYM> if
+the object is under source control, even when the object has been
+checked out. The right way to move an object under source control
+is described below.</p>
+<A NAME="TI982"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To move an object under source control from one <ACRONYM title = "pibble" >PBL</ACRONYM> to another:</p>
+<ol><li class=fi><p>Export the object from the first <ACRONYM title = "pibble" >PBL</ACRONYM>.</p></li>
+<li class=ds><p>Remove the object from source control.</p><p>See <A HREF="pbugp26.htm#BABDIHCF">"Removing objects from source
+control"</A>.</p></li>
+<li class=ds><p>Delete the object from the first <ACRONYM title = "pibble" >PBL</ACRONYM>.</p></li>
+<li class=ds><p>Import the object into the second <ACRONYM title = "pibble" >PBL</ACRONYM>.</p></li>
+<li class=ds><p>Register the object in source control once again.</p></li></ol>
+<br><A NAME="BABCHHHJ"></A><h2>Editing the PBG file for a source-controlled target</h2>
+<A NAME="TI983"></A><p>PowerBuilder creates and uses PBG files to determine if any
+objects present on a source control server are missing from local
+PowerScript targets. Up-to-date PBG files insure that the latest
+objects in source control are available to all developers on a project,
+and that the objects are associated with a named <ACRONYM title = "pibble" >PBL</ACRONYM> file. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>PBG files and Web targets</span> <A NAME="TI984"></A>PowerBuilder also creates PBG files for Web targets, but these
+list only the directory structure for the targets, not the individual
+files. Since Web Target files are flat files, you can check them
+out (or get the latest versions) directly from source control without
+having to compile them into <ACRONYM title = "pibbles" >PBLs</ACRONYM>. </p>
+<A NAME="TI985"></A>If you do not have all the files on your local machine&#8212;and
+your source control system supports the <b>SCCPopulateList</b> call&#8212;you
+might still be able to check out or get the latest versions of these
+files through the PowerBuilder SCC API. In this case, you might
+still need to force a status refresh in order to view the new objects
+in the System Tree or the Library painter.</p>
+<A NAME="TI986"></A><p>Ideally, PBG files are not necessary. If the source control
+system exposes the latest additions of objects in a project through
+its SCC interface, PowerBuilder can obtain the list of all objects
+added to a project since the last status refresh. However, many
+source control systems do not support this, so PowerBuilder uses
+the PBG files to make sure it has an up-to-date list of objects
+under source control. </p>
+<A NAME="TI987"></A><p>PBG files are registered and checked in to source control
+separately from all other objects in PowerBuilder. They are automatically
+updated to include new objects that are added to source control,
+but they can easily get out of sync when multiple users simultaneously
+register objects to (or delete objects from) the same source control
+project. For example, it is possible to add an object to source
+control successfully yet have the check-in of the PBG file fail
+because it is locked by another user.</p>
+<A NAME="TI988"></A><p>You cannot see the PBG files in the System Tree or Library
+painter unless you set the root for these views to the file system.
+To edit PBG files manually, you should check them out of source
+control using the source control manager and open them in a text
+editor. (If you are using PBNative, you can edit PBG files directly
+in the server storage location, without checking them out of source control.)</p>
+<A NAME="TI989"></A><p>You can manually add objects to the PBG file for a PowerBuilder
+library by including a new line for each object after the <FONT FACE="Courier New">@begin
+Objects</FONT> line. The following is an example of
+the contents of a PBG file for a <ACRONYM title = "pibble" >PBL</ACRONYM> that
+is saved to a subdirectory (<i>target1</i>) of the
+workspace associated with the source control project:</p>
+<br><img src="images/gnapppbg.gif">
+

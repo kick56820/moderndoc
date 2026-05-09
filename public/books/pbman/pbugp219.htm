@@ -1,0 +1,403 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining a graph's properties </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp218.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp220.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF352146494"></A><h1>Defining a graph's properties </h1>
+<A NAME="TI7619"></A><p>This section describes properties of a graph that are used
+regardless of whether the graph is in a DataWindow object or in a window. To define the properties of
+a graph, you use the graph's Properties view. For general
+information about the property pages, see <A HREF="pbugp217.htm#X-REF352150508">"Using the graph's
+Properties view"</A>.</p>
+<A NAME="X-REF356369840"></A><h2>Using the General property page in the graph's Properties view</h2>
+<A NAME="TI7620"></A><p>You name a graph and define its basic properties on the General
+property page in the graph's Properties view.</p>
+<A NAME="TI7621"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the basic properties of a graph:</p>
+<ol><li class=fi><p>Select Properties from the graph's
+pop-up menu and then select the General page in the Properties view.</p></li></ol>
+<br><A NAME="TI7622"></A><h4>About the model graph in the Design view</h4>
+<A NAME="TI7623"></A><p>As you modify a graph's properties, PowerBuilder updates
+the model graph shown in the Design view so that you can get an
+idea of the graph's basic layout:<A NAME="TI7624"></A>
+<ul>
+<li class=fi>PowerBuilder uses the graph title and axis labels
+you specify.</li>
+<li class=ds>PowerBuilder uses sample data (not data from your DataWindow object) to
+illustrate series, categories, and values.
+</li>
+</ul>
+</p>
+<A NAME="TI7625"></A><p>In Preview view, PowerBuilder displays the graph with data.</p>
+<A NAME="TI7626"></A><h4>Naming a graph</h4>
+<A NAME="TI7627"></A><p>You can modify graphs at runtime. To reference a graph in
+code, you use its name.</p>
+<A NAME="TI7628"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To name a graph:</p>
+<ol><li class=fi><p>On the General properties page for the
+graph, assign a meaningful name to the graph in the Name box.</p></li></ol>
+<br><A NAME="TI7629"></A><h4>Defining a graph's title</h4>
+<A NAME="TI7630"></A><p>The title displays at the top of the graph.</p>
+<A NAME="TI7631"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a graph's title:</p>
+<ol><li class=fi><p>On the General properties page for the
+graph, enter a title in the Title box.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Multiline titles</span> <A NAME="TI7632"></A>You can force a new line in a title by embedding ~n.</p>
+<A NAME="TI7633"></A><p>For information about specifying properties
+for the title text, see <A HREF="pbugp219.htm#BFCBCIED">"Specifying text properties
+for titles, labels, axes, and legends"</A>.</p>
+<A NAME="TI7634"></A><h4>Specifying the type of graph</h4>
+<A NAME="TI7635"></A><p>You can change the graph type at any time in the
+development environment (To change the type at runtime, modify a
+graph's GraphType property.)</p>
+<A NAME="TI7636"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the graph type:</p>
+<ol><li class=fi><p>On the General properties page for the
+graph, select a graph type from the Graph Type drop-down list.</p></li></ol>
+<br><A NAME="TI7637"></A><h4>Using legends</h4>
+<A NAME="TI7638"></A><p>A legend provides a key to your graph's series.</p>
+<A NAME="TI7639"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To include a legend for a series in a graph:</p>
+<ol><li class=fi><p>On the General properties page for the
+graph, specify where you want the legend to appear by selecting
+a value in the Legend drop-down list.</p></li></ol>
+<br><A NAME="TI7640"></A><p>For information on specifying text properties
+for the legend, see <A HREF="pbugp219.htm#BFCBCIED">"Specifying text properties
+for titles, labels, axes, and legends"</A>.</p>
+<A NAME="TI7641"></A><h4>Specifying a border</h4>
+<A NAME="TI7642"></A><p>You can specify the border that PowerBuilder places around a
+graph.</p>
+<A NAME="TI7643"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a border for a graph:</p>
+<ol><li class=fi><p>On the General properties page for the
+graph, select the type of border to use from the Border or BorderStyle drop-down
+list.</p></li></ol>
+<br><A NAME="TI7644"></A><h4>Specifying point of view in 3D graphs</h4>
+<A NAME="TI7645"></A><p>If you are defining a 3D graph, you can specify the point
+of view that PowerBuilder uses when displaying the graph.</p>
+<A NAME="TI7646"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a 3D graph's point of view:</p>
+<ol><li class=fi><p>On the General properties page for the
+graph, adjust the point of view along the three dimensions of the
+graph:<A NAME="TI7647"></A>
+<ul>
+<li class=fi>To change the perspective,
+move the Perspective slider.</li>
+<li class=ds>To rotate the graph, move the Rotation slider.</li>
+<li class=ds>To change the elevation, move the Elevation slider.
+</li>
+</ul>
+
+                        </p></li>
+<li class=ds><p>Define the depth of the graph (the percent the
+depth is of the width of the graph) by using the Depth slider.</p></li></ol>
+<br><A NAME="TI7648"></A><h2>Sorting data for series and categories</h2>
+<A NAME="TI7649"></A><p>You can specify how to sort the data for series and categories.
+By default, the data is sorted in ascending order.</p>
+<A NAME="TI7650"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify how to sort the data for series and
+categories in a graph:</p>
+<ol><li class=fi><p>Select Properties from the graph's
+pop-up menu and then select the Axis </p><p>page in the Properties view.</p></li>
+<li class=ds><p>Select the axis for which you want to specify
+sorting.</p></li>
+<li class=ds><p>Scroll to Sort, the last option on the Axis page,
+and select Ascending (order), Descending (order), or Unsorted.</p></li></ol>
+<br><A NAME="BFCBCIED"></A><h2>Specifying text properties for titles, labels, axes, and legends</h2>
+<A NAME="TI7651"></A><p>A graph can have four text elements:<A NAME="TI7652"></A>
+<ul>
+<li class=fi>Title</li>
+<li class=ds>Labels for the axes</li>
+<li class=ds>Text that shows the values along the axes</li>
+<li class=ds>Legend
+</li>
+</ul>
+</p>
+<A NAME="TI7653"></A><p></p>
+<br><img src="images/graph38.gif">
+<A NAME="TI7654"></A><p>You can specify properties for each text element.</p>
+<A NAME="TI7655"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify text properties for the title, labels,
+axis values, and legend of a graph:</p>
+<ol><li class=fi><p>Select Properties from the graph's
+pop-up menu and then select the Text page in the Properties view.</p></li>
+<li class=ds><p>Select a text element from the list in the Text
+Object drop-down list:</p><br><img src="images/graph40.gif"><br>
+</li>
+<li class=ds><p>Specify the font and its characteristics.</p></li></ol>
+<br><A NAME="TI7656"></A><h4>Using Auto Size</h4>
+<A NAME="TI7657"></A><p>With Auto Size in effect, PowerBuilder resizes the text appropriately
+whenever the graph is resized. With Auto Size disabled, you specify
+the font size of a text element explicitly.</p>
+<A NAME="TI7658"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To have PowerBuilder automatically size a text element
+in a graph:</p>
+<ol><li class=fi><p>On the Text properties page for the graph,
+select a text element from the list in the Text Object drop-down
+list.</p></li>
+<li class=ds><p>Select the Autosize check box (this is the default).</p></li></ol>
+<br><A NAME="TI7659"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a font size for a text element in a
+graph:</p>
+<ol><li class=fi><p>On the Text properties page for the graph,
+select a text element from the list in the Text Object drop-down
+list.</p></li>
+<li class=ds><p>Clear the Autosize check box.</p></li>
+<li class=ds><p>Select the Font size in the Size drop-down list.</p></li></ol>
+<br><A NAME="TI7660"></A><h4>Rotating text</h4>
+<A NAME="TI7661"></A><p>For all the text elements, you can specify the number of degrees
+by which you want to rotate the text.</p>
+<A NAME="TI7662"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify rotation for a text element in a graph:</p>
+<ol><li class=fi><p>On the Text properties page for the graph,
+select a text element from the list in the Text Object drop-down
+list.</p></li>
+<li class=ds><p>Specify the rotation you want in the Escapement
+box using tenths of a degree (450 means 45 degrees).</p></li></ol>
+<br><A NAME="TI7663"></A><p>Changes you make here are shown in the model graph in the
+Design view and in the Preview view.</p>
+<A NAME="TI7664"></A><h4>Using display formats</h4>
+<A NAME="TI7665"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use a display format for a text element in
+a graph:</p>
+<ol><li class=fi><p>On the Text properties page for the graph,
+select a text element from the list in the Text Object drop-down
+list.</p></li>
+<li class=ds><p>Type a display format in the Format box or choose
+one from the pop-up menu. To display the pop-up menu, click the
+button to the right of the Format box.</p></li></ol>
+<br><A NAME="TI7666"></A><h4>Modifying display expressions</h4>
+<A NAME="TI7667"></A><p>You can specify an expression for the text that is used for
+each graph element. The expression is evaluated at execution time.</p>
+<A NAME="TI7668"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify an expression for a text element in
+a graph:</p>
+<ol><li class=fi><p>On the Text properties page for the graph,
+select a text element from the list in the Text Object drop-down
+list.</p></li>
+<li class=ds><p>Click the button next to the Display Expression
+box.</p><p>The Modify Expression dialog box displays.</p></li>
+<li class=ds><p>Specify the expression. </p><p>You can paste functions, column names, and operators. Included
+with column names in the Columns box are statistics about the columns,
+such as counts and sums.</p></li>
+<li class=ds><p>Click OK to return to the graph's Properties
+view.</p></li></ol>
+<br><A NAME="TI7669"></A><h4>Example</h4>
+<A NAME="TI7670"></A><p>By default, when you generate a pie graph, PowerBuilder puts
+the title at the top and labels each slice of the pie with the percentage
+each slice represents of the whole. Percentages are accurate to
+two decimal places.</p>
+<A NAME="TI7671"></A><p>The following graph has been enhanced as follows:<A NAME="TI7672"></A>
+<ul>
+<li class=fi>The current date displays
+in the title</li>
+<li class=ds>The percentages are rounded to integers</li>
+<li class=ds>The raw data for each slice is shown in addition
+to the percentages
+</li>
+</ul>
+</p>
+<br><img src="images/graph46.gif">
+<A NAME="TI7673"></A><p>To accomplish this, the display expressions were modified
+for the title and pie graph labels:</p>
+<A NAME="TI7674"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI7675"></A>Element</th>
+<th  rowspan="1"  ><A NAME="TI7676"></A>Original expression</th>
+<th  rowspan="1"  ><A NAME="TI7677"></A>Modified expression</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7678"></A>Title</td>
+<td  rowspan="1"  ><A NAME="TI7679"></A><FONT FACE="Courier New">title</FONT></td>
+<td  rowspan="1"  ><A NAME="TI7680"></A><FONT FACE="Courier New">title + "
+as of " + date(today())</FONT></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7681"></A>Pie graph labels</td>
+<td  rowspan="1"  ><A NAME="TI7682"></A><FONT FACE="Courier New">if(seriescount &gt; 1, series,
+string<br>(percentofseries, "0.00%"))</FONT></td>
+<td  rowspan="1"  ><A NAME="TI7683"></A><FONT FACE="Courier New">if(seriescount &gt; 1,
+series, string(percentofseries,"0%") + " (" + value + ")"
+)</FONT></td>
+</tr>
+</table>
+<A NAME="TI7684"></A><h2>Specifying overlap and spacing</h2>
+<A NAME="TI7685"></A><p>With bar and column charts, you can specify the properties
+in <A HREF="pbugp219.htm#CEGJIIIG">Table 26-8</A>.</p>
+<A NAME="CEGJIIIG"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 26-8: Overlap and spacing properties
+for bar and column charts</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7686"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI7687"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7688"></A>Overlap</td>
+<td  rowspan="1"  ><A NAME="TI7689"></A>The percentage by which bars or columns
+overlap each other. The default is 0 percent, meaning no overlap.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7690"></A>Spacing</td>
+<td  rowspan="1"  ><A NAME="TI7691"></A>The amount of space to leave between
+bars or columns. The default is 100 percent, which leaves a space
+equal to the width of a bar or column.</td>
+</tr>
+</table>
+<A NAME="TI7692"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify overlap and spacing for the bars or
+columns in a graph:</p>
+<ol><li class=fi><p>Select Properties from the graph's
+pop-up menu and then select the Graph  tab.</p></li>
+<li class=ds><p>Specify a percentage for Overlap (% of
+width) and Spacing (% of width).</p></li></ol>
+<br><A NAME="TI7693"></A><h2>Specifying axis properties</h2>
+<A NAME="TI7694"></A><p>Graphs have two or three axes. You specify the axes' properties
+in the Axis page in the graph's Properties view.</p>
+<A NAME="TI7695"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify properties for an axis of a graph:</p>
+<ol><li class=fi><p>Select Properties from the graph's
+pop-up menu and then select the Axis page in the Properties view.</p></li>
+<li class=ds><p>Select the Category, the Value, or the Series
+axis from the Axis drop-down list.</p><p>If you are not working with a 3D graph, the Series Axis options
+are disabled.</p></li>
+<li class=ds><p>Specify the properties as described next.</p></li></ol>
+<br><A NAME="TI7696"></A><h4>Specifying text properties</h4>
+<A NAME="TI7697"></A><p>You can specify the characteristics of the text that displays
+for each axis. <A HREF="pbugp219.htm#CEGHEEDA">Table 26-9</A> shows
+the two kinds of text associated with an axis.</p>
+<A NAME="CEGHEEDA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 26-9: Text types associated with each
+axis of a graph</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7698"></A>Type of text</th>
+<th  rowspan="1"  ><A NAME="TI7699"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7700"></A>Text</td>
+<td  rowspan="1"  ><A NAME="TI7701"></A>Text that identifies the values for an
+axis.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7702"></A>Label</td>
+<td  rowspan="1"  ><A NAME="TI7703"></A>Text that describes the axis. You specify
+the label text in a painter. You can use ~n to embed a new line
+within a label.</td>
+</tr>
+</table>
+<A NAME="TI7704"></A><p>For information on specifying properties for
+the text, see <A HREF="pbugp219.htm#BFCBCIED">"Specifying text properties
+for titles, labels, axes, and legends"</A>.</p>
+<A NAME="TI7705"></A><h4>Specifying datatypes</h4>
+<A NAME="TI7706"></A><p>The data graphed along the Value, Category, and Series axes
+has an assigned datatype. The Series axis always has the datatype
+String. The Value and Category axes can have the datatypes listed
+in <A HREF="pbugp219.htm#CEGCGCAB">Table 26-10</A>.</p>
+<A NAME="CEGCGCAB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 26-10: Datatypes for Value and Category axes</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7707"></A>Axis</th>
+<th  rowspan="1"  ><A NAME="TI7708"></A>Possible datatypes</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7709"></A>Both axes (for scatter graph)</td>
+<td  rowspan="1"  ><A NAME="TI7710"></A>Number, Date, Time</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7711"></A>Value (other graph types)</td>
+<td  rowspan="1"  ><A NAME="TI7712"></A>Number, Date, DateTime, Time</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7713"></A>Category (other graph types)</td>
+<td  rowspan="1"  ><A NAME="TI7714"></A>String, Number, Date, DateTime, Time</td>
+</tr>
+</table>
+<A NAME="TI7715"></A><p>For graphs in DataWindow objects, PowerBuilder automatically assigns
+the datatypes based on the datatype of the corresponding column;
+you do not specify them.</p>
+<A NAME="TI7716"></A><p>For graphs in windows, you specify the datatypes yourself.
+Be sure you specify the appropriate datatypes so that when you populate
+the graph (using the AddData method), the data matches the datatype.</p>
+<A NAME="TI7717"></A><h4>Scaling axes</h4>
+<A NAME="TI7718"></A><p>You can specify the properties listed in <A HREF="pbugp219.htm#CEGJBFDC">Table 26-11</A> to define the scaling
+used along numeric axes.</p>
+<A NAME="CEGJBFDC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 26-11: Properties for scaling on numeric
+axes</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7719"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI7720"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7721"></A>Autoscale</td>
+<td  rowspan="1"  ><A NAME="TI7722"></A>If selected (the default), PowerBuilder automatically
+assigns a scaling for the numbers along the axis.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7723"></A>Round To, Round To Unit</td>
+<td  rowspan="1"  ><A NAME="TI7724"></A>Specifies how to round the end points
+of the axis (note that this just rounds the range displayed along
+the axis; it does not round the data itself).<A NAME="TI7725"></A><p>You can specify a number and a unit. The unit is based on
+the datatype; you can specify Default as the unit to have PowerBuilder decide
+for you. For example, if the Value axis is a Date column, you can
+specify that you want to round the end points of the axis to the
+nearest five years. In this case, if the largest data value is the
+year 1993, the axis extends up to 1995, which is 1993 rounded to
+the next highest five-year interval.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7726"></A>Minimum Value, Maximum Value</td>
+<td  rowspan="1"  ><A NAME="TI7727"></A>The smallest and largest numbers to appear
+on the axis (disabled if you have selected Autoscale).</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7728"></A>Scale Type</td>
+<td  rowspan="1"  ><A NAME="TI7729"></A>Specifies linear or logarithmic scaling
+(common or natural).</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7730"></A>Scale Value</td>
+<td  rowspan="1"  ><A NAME="TI7731"></A>Specifies whether values are displayed
+as actual values or as a cumulative value, a percentage, or a cumulative
+percentage.</td>
+</tr>
+</table>
+<A NAME="TI7732"></A><h4>Using major and minor divisions</h4>
+<A NAME="TI7733"></A><p>You can divide axes into divisions. Each division is identified
+by a tick mark, which is a short line that intersects an axis. In
+the Sales by Printer graphs shown in <A HREF="pbugp217.htm#X-REF299438620">"Examples"</A>, the
+graph's Value axis is divided into major divisions of 50
+units each. PowerBuilder divides the axes automatically into major
+divisions.</p>
+<A NAME="TI7734"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define divisions for an axis of a graph:</p>
+<ol><li class=fi><p>To divide an axis into a specific number
+of major divisions, type the number of divisions you want in the
+MajorDivisions box.</p><p>Leave the number 0 to have PowerBuilder automatically create
+divisions. PowerBuilder labels each tick mark in major divisions.
+If you do not want each tick mark labeled, enter a value in the
+DisplayEveryNLabels box. For example, if you enter 2, PowerBuilder labels
+every second tick mark for the major divisions.</p></li>
+<li class=ds><p>To use minor divisions, which are divisions within
+each major division, type the appropriate number in the MinorDivisions
+box. To use no minor divisions, leave the number 0.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>When using logarithmic axes</span> <A NAME="TI7735"></A>If you want minor divisions, specify 1; otherwise, specify
+0.</p>
+</li></ol>
+<br><A NAME="TI7736"></A><h4>Representing divisions with grid and drop lines</h4>
+<A NAME="TI7737"></A><p>You can specify lines to represent the divisions as described
+in <A HREF="pbugp219.htm#CEGDGGFG">Table 26-12</A> and illustrated
+in <A HREF="pbugp219.htm#CEGGCHBJ">Figure 26-1</A>.</p>
+<A NAME="CEGDGGFG"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 26-12: Representing graph divisions
+with grid and drop lines</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7738"></A>Line</th>
+<th  rowspan="1"  ><A NAME="TI7739"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7740"></A>Grid line</td>
+<td  rowspan="1"  ><A NAME="TI7741"></A>A line that extends from a tick mark
+across the graph. Grid lines make graphs easier to read.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7742"></A>Drop line</td>
+<td  rowspan="1"  ><A NAME="TI7743"></A>A line that extends vertically from a
+data point to its axis (not available for all graph types).</td>
+</tr>
+</table>
+<A NAME="CEGGCHBJ"></A><caption><b>Figure 26-1: Grid and drop lines in a
+graph</b></captionls>
+<br><img src="images/graph55.gif">
+<A NAME="TI7744"></A><h4>Using line styles</h4>
+<A NAME="TI7745"></A><p>You can define line styles for the components of a graph listed
+in <A HREF="pbugp219.htm#CEGFGBDC">Table 26-13</A>.</p>
+<A NAME="CEGFGBDC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 26-13: Components of a graph that can
+have line styles</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7746"></A>Component</th>
+<th  rowspan="1"  ><A NAME="TI7747"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7748"></A>PrimaryLine</td>
+<td  rowspan="1"  ><A NAME="TI7749"></A>The axis itself</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7750"></A>SecondaryLine</td>
+<td  rowspan="1"  ><A NAME="TI7751"></A>The axis parallel to and opposite the
+primary axis</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7752"></A>OriginLine</td>
+<td  rowspan="1"  ><A NAME="TI7753"></A>A grid line that represents the value
+zero</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7754"></A>Frame</td>
+<td  rowspan="1"  ><A NAME="TI7755"></A>The frame for the axis in 3D graphs (disabled
+for 2D graphs)</td>
+</tr>
+</table>
+<A NAME="TI7756"></A><h2>Specifying a pointer</h2>
+<A NAME="TI7757"></A><p>You can specify a pointer to use when the mouse is over a
+graph at runtime.</p>
+<A NAME="TI7758"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a pointer for a graph:</p>
+<ol><li class=fi><p>Select Properties from the graph's
+pop-up menu and then select the Pointer page in the Properties view.</p></li>
+<li class=ds><p>Select a stock pointer from the list, or select
+a <i>CUR</i> file containing a pointer.</p></li></ol>
+<br>

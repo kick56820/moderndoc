@@ -1,0 +1,87 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using Stored Procedure</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp161.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp163.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CACEBEGC"></A><h1>Using Stored Procedure</h1>
+<A NAME="TI5097"></A><p>A stored procedure is a set of precompiled and preoptimized <ACRONYM title = "sequel" >SQL</ACRONYM> statements that performs some
+database operation. Stored procedures reside where the database
+resides, and you can access them as needed.</p>
+<A NAME="TI5098"></A><h4>Defining data using a stored procedure</h4>
+<A NAME="TI5099"></A><p>You can specify a stored procedure as the data source for
+a DataWindow object if your DBMS supports stored procedures.</p>
+<A NAME="TI5100"></A><p>For information on support for stored procedures,
+see your database documentation.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If the Stored Procedure icon is not displayed</span> <A NAME="TI5101"></A>The icon for the Stored Procedure data source displays in
+the Choose Data Source dialog box in the DataWindow object wizards only
+if the database to which you are connected supports stored procedures.</p>
+<A NAME="TI5102"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define the data using Stored Procedure:</p>
+<ol><li class=fi><p>Select Stored Procedure in the Choose Data
+Source dialog box in the wizard and click Next.</p><p>The Select Stored Procedure dialog box displays a list of
+the stored procedures in the current database.</p></li>
+<li class=ds><p>Select a stored procedure from the list.</p><p>To list system procedures, select the System Procedure check
+box.</p><p>The syntax of the selected stored procedure displays below
+the list of stored procedures. </p></li>
+<li class=ds><p>Specify how you want the result set description
+built:<A NAME="TI5103"></A>
+<ul>
+<li class=fi>To build the result set description
+automatically, clear the Manual Result Set check box and click Next.<br>
+PowerBuilder executes the stored procedure and builds the result
+set description for you. <br></li>
+<li class=ds>To define the result set description manually, select
+the Manual Result Set check box and click Next.<br>
+In the Define Stored Procedure Result Set dialog box:<A NAME="TI5104"></A>
+<ul>
+<li class=fi>Enter the name and type of
+the first column in the result set.</li>
+<li class=ds>To add additional columns, click Add.
+</li>
+</ul>
+<br>
+</li>
+</ul>
+
+                      </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Your preference is saved</span> <A NAME="TI5105"></A>PowerBuilder records your preference for building result set
+descriptions for stored procedure DataWindow objects in the variable <i>Stored_Procedure_Build</i> in
+the PowerBuilder initialization file. If this variable is set to 1, PowerBuilder will
+automatically build the result set; if the variable is set to 0,
+you are prompted to define the result set description.</p>
+</li>
+<li class=ds><p>Continue in the DataWindow wizard as needed for
+the presentation style you are using.</p><p>When you have finished interacting with the wizard, you go
+to the DataWindow painter with the columns specified in the result set placed
+in the DataWindow object.</p><p>For information about defining retrieval arguments
+for DataWindow objects, see <A HREF="pbugp167.htm#CAICGCGD">Chapter 19, "Enhancing DataWindow Objects ."</A></p><p>For information about using a stored procedure to update the
+database, see <A HREF="pbugp187.htm#BABCDFEGJ">"Using stored procedures
+to update the database"</A>.</p></li></ol>
+<br><A NAME="TI5106"></A><h4>Editing a result set description</h4>
+<A NAME="TI5107"></A><p>After you create a result set that uses a stored procedure,
+you can edit the result set description from the DataWindow painter.</p>
+<A NAME="TI5108"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To edit the result set description:</p>
+<ol><li class=fi><p>Select Design&gt;Data Source from
+the menu bar.</p><p>This displays the Column Specification view if it is not already
+displayed.</p></li>
+<li class=ds><p>Select Stored Procedure from the Column Specification
+view's pop-up menu.</p><p>The Modify Stored Procedure dialog box displays.</p></li>
+<li class=ds><p>Edit the Execute statement, select another stored
+procedure, or add arguments.</p><p>The syntax is:<p><PRE>execute<i> sp_procname</i>;<i>num</i> <i>arg1</i> = :<i>arg1</i>, <i>arg2</i> = :<i>arg2</i>..., <i>argn</i> =:<i>argn</i></PRE></p>
+where
+sp_procname is the name of the stored procedure, <i>num</i> is
+the stored procedure group suffix, and <i>arg1</i>, <i>arg2</i>,
+and <i>argn</i> are the stored procedure's
+arguments.</p><p>The group suffix is an optional integer used in some DBMSs
+to group procedures of the same name so that they can be dropped
+together with a single <b>DROP PROCEDURE</b> statement.
+For other DBMSs the number is ignored.</p></li>
+<li class=ds><p>When you have defined the entire result set, click
+OK.</p><p>You return to the DataWindow painter with the columns specified in
+the result set placed in the DataWindow object.</p><p>For information about defining retrieval arguments
+for DataWindow objects, see <A HREF="pbugp167.htm#CAICGCGD">Chapter 19, "Enhancing DataWindow Objects ."</A></p></li></ol>
+<br>

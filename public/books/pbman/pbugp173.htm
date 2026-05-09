@@ -1,0 +1,97 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Retrieving data</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp172.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp174.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDBDABC"></A><h1>Retrieving data</h1>
+<A NAME="TI5565"></A><p>In a DataWindow object, you can prompt for retrieval criteria, retrieve
+rows as needed, and save retrieved rows to disk.</p>
+<A NAME="CAIDHFDE"></A><h2>Prompting for retrieval criteria in a DataWindow object</h2>
+<A NAME="TI5566"></A><p>You can define your DataWindow object so that it always prompts for retrieval criteria
+just before it retrieves data. PowerBuilder allows you to prompt for criteria
+when retrieving data for a DataWindow control, but not for a DataStore object.</p>
+<A NAME="TI5567"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To prompt for retrieval criteria in a DataWindow object:</p>
+<ol><li class=fi><p>If the Column Specifications view is not
+already displayed, select View&gt;Column Specifications from
+the menu bar.</p><p>In the default layout for the DataWindow painter, the Column Specifications view
+displays in a stacked pane under the Properties view. All columns
+defined for the DataWindow object are listed in the view.</p></li>
+<li class=ds><p>Select the Prompt check box next to each column
+for which you want to specify retrieval criteria at runtime.</p></li></ol>
+<br><A NAME="TI5568"></A><p>When you specify prompting for criteria, PowerBuilder displays
+the Specify Retrieval dialog box just before a retrieval is to be
+done. (It is the last thing that happens before the <ACRONYM title = "sequel" >SQL</ACRONYM>Preview event.)</p>
+<A NAME="TI5569"></A><p>Each column you selected in the Column Specification view
+displays in the grid. Users can specify criteria here exactly as
+in the grid in the Quick Select dialog box. Criteria specified here
+are added to the <b>WHERE</b> clause for the <ACRONYM title = "sequel" >SQL</ACRONYM> <b>SELECT</b> statement
+defined for the DataWindow object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Testing in PowerBuilder</span> <A NAME="TI5570"></A>You can test the prompting for criteria by retrieving data
+in the Preview view of the DataWindow object.</p>
+<A NAME="TI5571"></A><h4>Using edit styles</h4>
+<A NAME="TI5572"></A><p>If a column uses a code table or the RadioButton, CheckBox,
+or DropDownListBox edit style, an arrow displays in the column header
+and users can select a value from a drop-down list when specifying
+criteria:</p>
+<br><img src="images/dwen30.gif">
+<A NAME="TI5573"></A><p>If you do not want the drop-down list used for a column for
+specifying retrieval criteria, select the Override Edit check box
+on the General page of the column's Properties view.</p>
+<A NAME="TI5574"></A><h4>Forcing the entry of criteria</h4>
+<A NAME="TI5575"></A><p>If you have specified prompting for criteria for a column,
+you can force the entry of criteria for the column by selecting
+the Equality Required check box on the General page of the column's
+Properties view. PowerBuilder underlines the column header in the
+grid during prompting. Selection criteria for the specified column
+must be entered, and the <b>=</b> operator
+must be used.</p>
+<A NAME="TI5576"></A><h4>For more information</h4>
+<A NAME="TI5577"></A><p>The section <A HREF="pbugp158.htm#BFCDBCEF">"Using Quick Select"</A> describes in detail how you and your
+users can specify selection criteria in the grid.</p>
+<A NAME="TI5578"></A><p>The chapter on dynamic DataWindow objects in the <i>DataWindow</i>
+ <i>Programmer's
+Guide</i>
+ describes how to write code to allow users to specify retrieval
+criteria at runtime.</p>
+<A NAME="CAIBFCAB"></A><h2>Retrieving rows as needed</h2>
+<A NAME="TI5579"></A><p>If a DataWindow object retrieves hundreds of rows, there can be a
+noticeable delay at runtime while all the rows are retrieved and
+before control returns to the user. For these DataWindow objects, PowerBuilder can
+retrieve only as many rows as it has to before displaying data and
+returning control to the user.</p>
+<A NAME="TI5580"></A><p>For example, if a DataWindow object displays only 10 rows at a time, PowerBuilder only
+needs to retrieve 10 or more rows before presenting the data. Then,
+as the user pages through the data, PowerBuilder continues to retrieve
+what is necessary to display the new information. There may be slight pauses
+while PowerBuilder retrieves the additional rows, but these pauses
+are usually preferable to waiting a long time to start working with
+data.</p>
+<A NAME="TI5581"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify that a DataWindow object retrieve only as
+many rows as it needs to:</p>
+<ol><li class=fi><p>Select Rows&gt;Retrieve Options&gt;Rows
+As Needed from the menu bar.</p><p>With this setting, PowerBuilder presents data and returns control
+to the user when it has retrieved enough rows to display in the DataWindow object. </p></li></ol>
+<br><A NAME="TI5582"></A><p>Retrieve Rows As Needed is overridden if you have specified
+sorting or have used aggregate functions, such as <b>Avg</b> and <b>Sum</b>,
+in the DataWindow object. This is because PowerBuilder must retrieve every
+row before it can sort or perform aggregates.</p>
+<A NAME="TI5583"></A><p>In a multiuser situation, Retrieve Rows As Needed might lock
+other people out of the tables.</p>
+<A NAME="CAIBJBCD"></A><h2>Saving retrieved rows to disk </h2>
+<A NAME="TI5584"></A><p>If you want to maximize the amount of memory available to PowerBuilder and other
+running applications, PowerBuilder can save retrieved data on your
+hard disk in a temporary file rather than keep the data in memory. PowerBuilder swaps
+rows of data from the temporary file into memory as needed to display data.</p>
+<A NAME="TI5585"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To maximize available memory by saving retrieved
+rows to disk:</p>
+<ol><li class=fi><p>Select Rows&gt;Retrieve Options&gt;Rows
+to Disk from the menu bar.</p><p>With this setting, when displaying data, PowerBuilder swaps
+rows of data from the temporary file into memory instead of keeping
+all the retrieved rows of data in memory. </p></li></ol>
+<br>

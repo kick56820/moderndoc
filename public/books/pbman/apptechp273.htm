@@ -1,0 +1,108 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+PowerBuilder runtime files</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp272.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp274.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBEBIEA"></A><h1>PowerBuilder runtime files</h1>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Database connectivity</span> <A NAME="TI8077"></A>Files required for database connectivity are listed separately
+in <A HREF="apptechp274.htm#BAJIGDCH">"Database connections"</A>.</p>
+<A NAME="TI8078"></A><h4>Core runtime files</h4>
+<A NAME="TI8079"></A><p><A HREF="apptechp273.htm#BAJIBJID">Table 41-3</A> lists
+the core PowerBuilder runtime files. </p>
+<A NAME="BAJIBJID"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-3: Core PowerBuilder runtime files</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8080"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8081"></A>Required for</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8082"></A><i>PBVM105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8083"></A>All. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8084"></A><i>PBSHR105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8085"></A>All. <i>PBVM105.DLL</i> has
+dependencies on this file.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8086"></A><i>LIBJCC.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8087"></A>All. <i>PBVM105.DLL</i> has
+dependencies on this file.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8088"></A><i>LIBJUTILS.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8089"></A>All. <i>LIBJCC.DLL</i> has
+dependencies on this file.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8090"></A><i>PBDWE105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8091"></A>DataWindows and DataStores.</td>
+</tr>
+</table>
+<A NAME="TI8092"></A><h4>Microsoft files</h4>
+<A NAME="TI8093"></A><p>When you deploy the core PowerBuilder runtime files, you must
+also deploy the <i>msvcr71.dll</i> and <i>msvcp71.dll</i> Microsoft
+Visual C++ runtime libraries and the Microsoft
+.NET Active Template Library (ATL) module, <i>atl71.dll</i>,
+if they are not present on the user's computer. The PowerBuilder
+runtime files have a runtime dependency on these files. See <A HREF="apptechp272.htm#CHDIJCFC">"Third-party components and
+deployment"</A> for more information.</p>
+<A NAME="TI8094"></A><p>Microsoft Windows GDI+ is the subsystem of the Windows
+XP or Windows Server 2003 operating system that implements enhanced
+graphic capabilities for screens and printers. The PowerBuilder
+runtime files have a runtime dependency on <i>gdiplus.dll</i>.
+If you deploy your PowerBuilder application to the Windows 2000
+platform, you must make sure that <i>gdiplus.dll</i> is
+available on the target computer.</p>
+<A NAME="TI8095"></A><h4>Additional runtime files</h4>
+<A NAME="TI8096"></A><p><A HREF="apptechp273.htm#BAJFAHDA">Table 41-4</A> lists
+additional runtime files that your application might not require. For
+example, <i>PBVM105.DLL</i> is required for all deployed
+applications, but <i>PBRTC105.DLL</i> and its associated
+runtime files are required only if your application uses Rich Text
+controls or RichText DataWindow objects. </p>
+<A NAME="TI8097"></A><p>For more information about deploying applications that use
+the <i>PBJVM105.DLL</i> for Java support, see <A HREF="apptechp275.htm#BAJBFFIA">"Java support"</A>.</p>
+<A NAME="BAJFAHDA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-4: Additional PowerBuilder runtime
+files</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8098"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8099"></A>Required for</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8100"></A><i>PBACC105.DLL  </i></td>
+<td  rowspan="1"  ><A NAME="TI8101"></A>Accessibility support (Section 508)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8102"></A><i>PBDWR105.DLL</i>, <i>PBDWR105.PBD</i></td>
+<td  rowspan="1"  ><A NAME="TI8103"></A>Web DataWindow support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8104"></A><i>PBXerces105.DLL</i>, <br><i>xerces-c_2_6.dll</i>, <i> <br>xerces-depdom_2_6.dll</i></td>
+<td  rowspan="1"  ><A NAME="TI8105"></A>XML Web DataWindow support and XML support
+for DataWindows and DataStores</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8106"></A><i>PBJVM105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8107"></A>Java support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8108"></A><i>PBRTC105.DLL</i>,<br><i>tp11.dll</i>, <i>tp11_bmp.flt</i>,<br><i>tp11_css.dll</i>, <i>tp11_doc.dll</i>,<br><i>tp11_gif.flt</i>, <i>tp11_htm.dll</i>,<br><i>tp11_ic.dll</i>, <i>tp11_ic.ini</i>,<br><i>tp11_jpg.flt</i>, <i>tp11_obj.dll</i>,<br><i>tp11_pdf.dll</i>, <i>tp11_png.flt</i>,<br><i>tp11_rtf.dll</i>, <i>tp11_tif.flt</i>,<br><i>tp11_tls.dll</i>, <i>tp11_wmf.flt</i>,<br><i>tp11_wnd.dll</i>, <i>tp4ole11.ocx</i></td>
+<td  rowspan="1"  ><A NAME="TI8109"></A>Rich Text support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8110"></A><i>PBLAB105.INI</i></td>
+<td  rowspan="1"  ><A NAME="TI8111"></A>Label DataWindow presentation-style predefined formats</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8112"></A><i>PBTRA105.DLL</i>, <br><i>PBTRS105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8113"></A>Database connection tracing</td>
+</tr>
+</table>
+<p><b>Installed path</b>   <i>\Program Files\Sybase\Shared\PowerBuilder</i> or
+for most of the required rich text files, <i>\Program
+Files\Sybase\Shared\PowerBuilder\RTC</i>.</p>
+<p><b>Deployment path</b>   Same directory as the application, in a directory on the system
+path, or in the <A HREF="apptechp270.htm#BGBCIHAF">App Path registry key</A>.</p>
+<p><b>Registry entries</b>   See <A HREF="apptechp270.htm#BGBCIHAF">"App Path registry key"</A>.</p>
+<A NAME="TI8114"></A><h4>Localized runtime files</h4>
+<A NAME="TI8115"></A><p>Localized runtime files are provided for French, German, Italian,
+Spanish, Dutch, Danish, Norwegian, and Swedish. These files are
+usually available shortly after the general release of a new version
+of PowerBuilder. The localized
+runtime files let you deploy PowerBuilder applications with standard runtime
+dialog boxes in the local language. They handle language-specific
+data when the application runs.</p>
+<A NAME="TI8116"></A><p>For more information, see <A HREF="apptechp239.htm#X-REF354479635">"Localizing the product"</A>.</p>
+

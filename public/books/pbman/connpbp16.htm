@@ -1,0 +1,74 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Preparing to use the JDBC interface</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp15.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp17.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCDCFDD"></A><h1>Preparing to use the JDBC interface</h1>
+<A NAME="TI416"></A><p>Before you define the interface and connect to a database
+through the JDBC interface, follow these steps to prepare the database
+for use: <A NAME="TI417"></A>
+<ol>
+</li>
+<li class=ds>Configure the database
+server for its JDBC connection and install its JDBC-compliant driver
+and network software.</li>
+<li class=ds>Install the JDBC driver.</li>
+<li class=ds>Set or verify the settings in the CLASSPATH environment
+variable and the Java tab of the System Options dialog box.
+</li>
+</ol>
+</p>
+<A NAME="TI418"></A><h4>Step 1: Configure the database server</h4>
+<A NAME="TI419"></A><p>You must configure the database server to make JDBC connections
+as well as install the JDBC driver and network software.</p>
+<A NAME="TI420"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To configure the database server for its JDBC
+connection:</p>
+<ol><li class=fi><p>Make sure the database server is configured
+to make JDBC connections. For configuration instructions, see your
+database vendor's documentation. </p></li>
+<li class=ds><p>Make sure the appropriate JDBC driver software
+is installed and running on the database server. </p><p>The driver vendor's documentation should provide
+the driver name, URL format, and any driver-specific properties
+you need to specify in the database profile. For notes about the
+jConnect driver, see <A HREF="connpbp16.htm#BABJEAJJ">"Configuring the jConnect
+driver"</A>.</p></li>
+<li class=ds><p>Make sure the required network software (such
+as TCP/IP) is installed and running on your computer and
+is properly configured so that you can connect to the database server
+at your site.</p><p>You must install the network communication driver that supports
+the network protocol and operating system platform you are using. </p><p>For installation and configuration instructions,
+see your network or database administrator.</p></li></ol>
+<br><A NAME="TI421"></A><h4>Step 2: Install the JDBC driver</h4>
+<A NAME="TI422"></A><p>In the PowerBuilder Setup program, select the Typical install,
+or select the Custom install and select the JDBC driver. </p>
+<A NAME="TI423"></A><h4>Step 3: Verify or set the settings in the CLASSPATH
+variable and Java tab</h4>
+<A NAME="TI424"></A><p>Verify that the settings in the PATH and CLASSPATH environment
+variables or the Classpaths list on the Java tab of the PowerBuilder
+System Options dialog box point to the appropriate, fully qualified
+file names, or set them. </p>
+<A NAME="TI425"></A><p>If you are using the JDK installed with PowerBuilder, you do
+not need to make any changes to these environment variables.</p>
+<A NAME="TI426"></A><p>If you are using JDK 1.2 or later, you do not need to include
+any Sun Java VM packages in your CLASSPATH variable, but your PATH
+environment variable must include an entry for the Sun Java VM library, <i>jvm.dll</i> (for
+example, <i>path</i><i>\ JDK14\JRE\bin\client</i>). </p>
+<A NAME="BABJEAJJ"></A><h4>Configuring the jConnect
+driver</h4>
+<A NAME="TI427"></A><p>If you are using the Sybase jConnect driver, make sure to
+complete the required configuration steps such as installing the
+JDBC stored procedures in Adaptive Server databases. Also, verify
+that the CLASSPATH environment variable on your machine or the Classpaths
+list on the Java tab of the PowerBuilder System Options dialog box includes
+an entry pointing to the location of the jConnect driver. </p>
+<A NAME="TI428"></A><p>For example, if you are using jConnect 5.5, you should include
+an entry similar to the following:<p><PRE>             C:\Program Files\Sybase\Shared\jConnect-5_5\classes\jconn2.jar</PRE></p>
+<A NAME="TI429"></A><p>For more information about configuring jConnect, see the jConnect
+for JDBC documentation. </p>
+

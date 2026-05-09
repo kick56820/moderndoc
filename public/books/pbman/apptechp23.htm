@@ -1,0 +1,126 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Reading and writing text or binary files</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp22.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp24.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299417095"></A><h1>Reading and writing text or binary files</h1>
+<A NAME="TI419"></A><p>You use PowerScript text file functions to read and write
+text in line mode or text mode, or to read and write binary files
+in stream mode:</p>
+<A NAME="TI420"></A><p><A NAME="TI421"></A>
+<ul>
+<li class=fi>In <i>line
+mode</i>, you can read a file a line at a time until either
+a carriage return or line feed (CR/LF) or the end-of-file
+(EOF) is encountered. When writing to the file after the specified
+string is written, PowerScript appends a CR/LF.</li>
+<li class=ds>In <i>stream mode</i>, you can read
+the entire contents of the file, including any CR/LFs.
+When writing to the file, you must write out the specified blob (but
+not append a CR/LF).</li>
+<li class=ds>In <i>text mode</i>, you can read
+the entire contents of the file, including any CR/LFs.
+When writing to the file, you must write out the specified string (but
+not append a CR/LF).
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Reading a file into a MultiLineEdit</span> <A NAME="TI422"></A>You can use stream mode to read an entire file into a MultiLineEdit,
+and then write it out after it has been modified.</p>
+<A NAME="TI423"></A><h4>Understanding the position pointer</h4>
+<A NAME="TI424"></A><p>When PowerBuilder opens a file, it assigns the file a unique
+integer and sets the position pointer for the file to the position
+you specify&#8212;the beginning, after the byte-order mark, if
+any, or end of the file. You use the integer to identify the file
+when you want to read the file, write to it, or close it. The position
+pointer defines where the next read or write will begin. PowerBuilder
+advances the pointer automatically after each read or write.</p>
+<A NAME="TI425"></A><p>You can also set the position pointer with the <b>FileSeek</b> or <b>FileSeek64</b> function.</p>
+<A NAME="TI426"></A><h4>File functions </h4>
+<A NAME="TI427"></A><p>These are the built-in PowerScript functions that manipulate
+files:</p>
+<A NAME="TI428"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 3-1: PowerScript functions that manipulate files</caption>
+<tr><th  rowspan="1"  ><A NAME="TI429"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI430"></A>Datatype returned</th>
+<th  rowspan="1"  ><A NAME="TI431"></A>Action</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI432"></A><b>FileClose</b></td>
+<td  rowspan="1"  ><A NAME="TI433"></A><b>Integer</b></td>
+<td  rowspan="1"  ><A NAME="TI434"></A>Closes the specified file</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI435"></A><b>FileDelete</b></td>
+<td  rowspan="1"  ><A NAME="TI436"></A><b>Boolean</b></td>
+<td  rowspan="1"  ><A NAME="TI437"></A>Deletes the specified file</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI438"></A><b>FileEncoding</b></td>
+<td  rowspan="1"  ><A NAME="TI439"></A><b>Encoding enumerated type</b></td>
+<td  rowspan="1"  ><A NAME="TI440"></A>Returns the encoding used in the file</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI441"></A><b>FileExists</b></td>
+<td  rowspan="1"  ><A NAME="TI442"></A><b>Boolean</b></td>
+<td  rowspan="1"  ><A NAME="TI443"></A>Determines whether the specified file
+exists</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI444"></A><b>FileLength</b></td>
+<td  rowspan="1"  ><A NAME="TI445"></A><b>Long</b></td>
+<td  rowspan="1"  ><A NAME="TI446"></A>Obtains the length of a file with a file
+size of 2GB or less</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI447"></A><b>FileLength64</b></td>
+<td  rowspan="1"  ><A NAME="TI448"></A><b>LongLong</b></td>
+<td  rowspan="1"  ><A NAME="TI449"></A>Obtains the length of a file of any size</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI450"></A><b>FileOpen</b></td>
+<td  rowspan="1"  ><A NAME="TI451"></A><b>Integer</b></td>
+<td  rowspan="1"  ><A NAME="TI452"></A>Opens the specified file</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI453"></A><b>FileRead</b></td>
+<td  rowspan="1"  ><A NAME="TI454"></A><b>Integer</b></td>
+<td  rowspan="1"  ><A NAME="TI455"></A>Reads from the specified file (deprecated)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI456"></A><b>FileReadEx</b></td>
+<td  rowspan="1"  ><A NAME="TI457"></A><b>Long</b></td>
+<td  rowspan="1"  ><A NAME="TI458"></A>Reads from the specified file</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI459"></A><b>FileSeek</b></td>
+<td  rowspan="1"  ><A NAME="TI460"></A><b>Long</b></td>
+<td  rowspan="1"  ><A NAME="TI461"></A>Seeks to a position in a file with a
+file size of 2GB or less</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI462"></A><b>FileSeek64</b></td>
+<td  rowspan="1"  ><A NAME="TI463"></A><b>LongLong</b></td>
+<td  rowspan="1"  ><A NAME="TI464"></A>Seeks to a position in a file of any
+size</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI465"></A><b>FileWrite</b></td>
+<td  rowspan="1"  ><A NAME="TI466"></A><b>Integer</b></td>
+<td  rowspan="1"  ><A NAME="TI467"></A>Writes to the specified file (deprecated)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI468"></A><b>FileWriteEx</b></td>
+<td  rowspan="1"  ><A NAME="TI469"></A><b>Long</b></td>
+<td  rowspan="1"  ><A NAME="TI470"></A>Writes to the specified file</td>
+</tr>
+</table>
+<A NAME="TI471"></A><h4>Encoding</h4>
+<A NAME="TI472"></A><p>The last argument in the <b>FileOpen</b> function
+lets you create an ANSI, UTF-8, UTF-16LE (Little Endian), or UTF16-BE
+(Big Endian) file.</p>
+<A NAME="TI473"></A><p>The <i>encoding</i> argument, like all arguments
+of the <b>FileOpen</b> function except the file name,
+is optional. You need only specify it if you want to create a new
+text file with Unicode encoding. If the <i>filename</i> argument
+refers to a file that does not exist, the <b>FileOpen</b> function
+creates the file and sets the character encoding specified in the <i>encoding</i> argument.</p>
+<A NAME="TI474"></A><p>By default, if the file does not exist and the encoding argument
+is not specified, PowerBuilder opens a file with ANSI encoding.
+This ensures compatibility with earlier versions of PowerBuilder. </p>
+<A NAME="TI475"></A><p>The <b>FileRead</b> and <b>FileWrite</b> functions
+cannot read more than 32,766 bytes at a time. The <b>FileReadEx</b> and <b>FileWriteEx</b> functions
+can write an unlimited number of bytes at a time.</p>
+

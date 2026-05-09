@@ -1,0 +1,130 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+OLE information in the Browser </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp111.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp113.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BIIDAECD"></A><h1>OLE information in the Browser </h1>
+<A NAME="TI3520"></A><p>The system stores information about the OLE server applications
+and OLE custom controls installed on your computer in the registry.</p>
+<A NAME="TI3521"></A><p>PowerBuilder reads the registry and displays the registration
+information for all registered OLE servers and custom controls.</p>
+<A NAME="TI3522"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To view the OLE information:</p>
+<ol><li class=fi><p>Click the Browser button on the PowerBar.</p></li>
+<li class=ds><p>Click the OLE tab in the Browser.</p></li></ol>
+<br><A NAME="TI3523"></A><p>There are three categories of OLE object, as shown in <A HREF="apptechp112.htm#CEGCFCII">Table 19-8</A>.</p>
+<A NAME="CEGCFCII"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-8: OLE object categories</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3524"></A>OLE object category</th>
+<th  rowspan="1"  ><A NAME="TI3525"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3526"></A>Insertable objects</td>
+<td  rowspan="1"  ><A NAME="TI3527"></A>OLE servers that can link or embed objects
+in OLE containers. OLE servers that support insertable objects must
+have a visual component.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3528"></A>Custom controls</td>
+<td  rowspan="1"  ><A NAME="TI3529"></A>ActiveX controls that can be included
+in an OLE container. ActiveX controls can also be insertable objects. If
+so, they will appear on both lists.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3530"></A>Programmable objects</td>
+<td  rowspan="1"  ><A NAME="TI3531"></A>OLE servers to which you can send automation instructions.
+A programmable object might not have a visual aspect, which means
+it supports only automation and cannot support insertable objects.</td>
+</tr>
+</table>
+<A NAME="TI3532"></A><p>When you expand each of these categories, you see the individual
+OLE servers that are installed. Each OLE server can also be expanded.
+The information provided depends on the category.</p>
+<A NAME="TI3533"></A><h4>Class information</h4>
+<A NAME="TI3534"></A><p>All the categories provide class information about the OLE
+server. You see a list of registry keys. Some of the keys are meaningful
+in their own right and some have values. The values, or simply the
+presence or absence of keys, tell you how to find the OLE server
+and what it supports.</p>
+<A NAME="TI3535"></A><p><A HREF="apptechp112.htm#CEGEHHGC">Table 19-9</A> lists
+some typical keys and what they mean.</p>
+<A NAME="CEGEHHGC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 19-9: OLE registry keys</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3536"></A>Registry key</th>
+<th  rowspan="1"  ><A NAME="TI3537"></A>Value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3538"></A>GUID</td>
+<td  rowspan="1"  ><A NAME="TI3539"></A>The global unique identifier for the
+OLE server.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3540"></A>TypeLib - GUID</td>
+<td  rowspan="1"  ><A NAME="TI3541"></A>The global unique identifier for the
+type library for an ActiveX control.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3542"></A>ProgID</td>
+<td  rowspan="1"  ><A NAME="TI3543"></A>A string that identifies the OLE server
+or ActiveX control. It usually includes a version number.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3544"></A>VersionIndependentProgID</td>
+<td  rowspan="1"  ><A NAME="TI3545"></A>A string that identifies the OLE server
+or ActiveX control, but does not include a version number.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3546"></A>InprocServer32</td>
+<td  rowspan="1"  ><A NAME="TI3547"></A>The name of the file for the 32-bit version
+of an ActiveX control.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3548"></A>ToolboxBitmap32</td>
+<td  rowspan="1"  ><A NAME="TI3549"></A>The name of a bitmap file for the 32-bit
+ActiveX control that can be used to represent the ActiveX control
+in toolbars or toolboxes of a development environment.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3550"></A>DefaultIcon</td>
+<td  rowspan="1"  ><A NAME="TI3551"></A>The name of an icon file or executable
+containing an icon to be used for an insertable icon that is being displayed
+as an icon.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3552"></A>Version</td>
+<td  rowspan="1"  ><A NAME="TI3553"></A>The version number of the OLE server
+or ActiveX control.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3554"></A>Insertable</td>
+<td  rowspan="1"  ><A NAME="TI3555"></A>No value &#8211; specifies that the
+entry is an OLE server that supports insertable object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3556"></A>Control</td>
+<td  rowspan="1"  ><A NAME="TI3557"></A>No value &#8211; specifies that the
+entry is an ActiveX control.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3558"></A>Verb</td>
+<td  rowspan="1"  ><A NAME="TI3559"></A>No value &#8211; specifies that the
+entry accepts verbs as commands.</td>
+</tr>
+</table>
+<A NAME="TI3560"></A><p>In addition to registry information, the Browser displays
+the properties and methods of ActiveX controls and programmable
+objects. To provide the information, PowerBuilder uses the registry
+information to query the ActiveX control for its properties and
+methods. The information includes arguments and datatypes.</p>
+<A NAME="TI3561"></A><h4>Browser as script-writing tool</h4>
+<A NAME="TI3562"></A><p>Take advantage of the Browser when writing scripts. You can
+find property and function names and paste them into your scripts.
+The Browser provides the full syntax for accessing that property.</p>
+<A NAME="TI3563"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To paste OLE information into a script:</p>
+<ol><li class=fi><p>Open the Browser.</p></li>
+<li class=ds><p>Click the OLE tab.</p></li>
+<li class=ds><p>Expand the list to find what you want. For example,
+find the ActiveX control you want and expand the list further to
+find a property.</p></li>
+<li class=ds><p>Highlight the property and select Copy from the
+pop-up menu.</p></li>
+<li class=ds><p>Position the insertion point in the Script view
+and select Paste from the pop-up menu.</p><p>The Browser inserts syntax like this into your script:<p><PRE> OLECustomControl.Object.NeedlePosition</PRE></p><p>After you change OLECustomControl to the actual name of your
+control, your script correctly accesses the NeedlePosition property.</p></li></ol>
+<br><A NAME="TI3564"></A><p>What the Browser pastes into your script depends on what you
+have selected. If you select an object (a level above its properties
+in the hierarchy), PowerBuilder pastes the object's ProgID.
+You can use the ProgID in the <b>ConnectToNewObject</b> function.</p>
+<A NAME="TI3565"></A><p>For more information about automation and
+the registry, see <A HREF="apptechp114.htm#BFCBECHA">Chapter 20, "PowerBuilder Runtime Automation
+Server."</A></p>
+

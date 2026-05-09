@@ -1,0 +1,181 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Server configuration requirements</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp47.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp49.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABBFFEI"></A><h1>Server configuration requirements</h1>
+<A NAME="TI2021"></A><p>The servers and clients used by the Web DataWindow can run
+on the same or different machines. The following diagram shows typical configurations
+with the Web server and page server on the same machine and the
+component server and database on separate machines, but any or all
+of the servers can run on the same computer. In your development environment,
+the client browser could be on the same computer too.</p>
+<A NAME="TI2022"></A><caption><b>Figure 7-1: Typical client and server configurations</b></captionls>
+<br><img src="images/htmldw02.gif">
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Web server is built in to EAServer</span> <A NAME="TI2023"></A>As shown in the first configuration, EAServer has a built-in
+Web server, so this configuration demonstrates the full capability
+of EAServer.</p>
+<A NAME="BEIEIAIC"></A><h4>Using the Web DataWindow
+with <ABBR title = "e a server" >EAServer</ABBR></h4>
+<A NAME="TI2024"></A><p>If you are not running your Web server as a service and you
+have a user CLASSPATH environment variable, make sure that this
+variable includes the paths to all classes needed for communication
+between the Web server and <ABBR title = "e a server" >EAServer</ABBR>.
+This includes the Sybase\<ABBR title = "e a server" ></ABBR><ABBR title = "e a server" >EAServer</ABBR>\html\classes
+directory and the path to any component stubs that you generate
+for use with your Web pages <br>(if these are in a different
+directory). When you install <ABBR title = "e a server" >EAServer</ABBR>,
+the path information for the server is placed only in the system
+CLASSPATH variable, not the user variable.</p>
+<A NAME="TI2025"></A><h4>Using the Web DataWindow with Tomcat</h4>
+<A NAME="TI2026"></A><p>To use Web DataWindows
+and access <ABBR title = "e a server" >EAServer</ABBR> components
+in JSP pages that you deploy to a Tomcat server, you must add the
+following JAR files and classes to the class path used by Tomcat
+at startup:<A NAME="TI2027"></A>
+<ul>
+<li class=fi>jconn2.jar</li>
+<li class=ds>easclient.jar</li>
+<li class=ds>easj2ee.jar</li>
+<li class=ds><i>EAServer_home</i>\html\classes</li>
+<li class=ds><i>EAServer_home</i>\java\classes
+</li>
+</ul>
+</p>
+<A NAME="TI2028"></A><p>where <i>EAServer_home</i> is the full
+path to the <ABBR title = "e a server" >EAServer</ABBR> where the
+Web DataWindow component is installed. To add the required files
+to the Tomcat class path, you need to edit the <i>catalina.bat</i> file
+in the Tomcat bin directory.</p>
+<A NAME="TI2029"></A><h4>Using the Web DataWindow with a COM component</h4>
+<A NAME="TI2030"></A><p>You can also use the Web
+DataWindow with Microsoft servers, but more configuration tasks
+are required. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Only the HTML Web DataWindow is supported</span> <A NAME="TI2031"></A>No changes were made to the ASP Object model for PowerBuilder
+10.5. The GenerateXMLWeb and GenerateXHTML methods are therefore
+not supported.</p>
+<A NAME="TI2032"></A><p>On COM+, you access the COM version of the generic
+server component (PowerBuilder.HTMLDataWindow) using automation
+methods called from the page server. For example, to instantiate
+the generic COM component from ASP:<p><PRE>     dwGen = Server.CreateObject(<br>        "PowerBuilder.HTMLDataWindow")</PRE></p>
+<A NAME="TI2033"></A><p>The COM server component is provided in <i>PBDWR105.DLL</i>.
+You can also write your own custom class user object based on the
+sample source code in <i>PBDWRMT.PBL</i>. </p>
+<A NAME="TI2034"></A><p>For more information about building Web pages that use the
+Web DataWindow server component, see <A HREF="dwprgugp49.htm#BABCBGAH">"Instantiating and configuring
+the server component"</A>. For information on using the
+Web DataWindow COM server component from a JSP page, see the white
+paper on the <A HREF="http://www.sybase.com/detail?id=1029911">Sybase Web site</A>
+. </p>
+<A NAME="TI2035"></A><p>You need to register the COM server component and install
+PowerBuilder runtime files and the PBL or PBD containing your DataWindow
+objects on the COM+ server computer.</p>
+<A NAME="BABCBCAB"></A><h4>Transaction server configuration
+tasks </h4>
+<A NAME="TI2036"></A><p>The following table summarizes the configuration tasks you
+need to perform on the transaction server:</p>
+<A NAME="TI2037"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 7-1: Configuration tasks for transaction server</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2038"></A>Server</th>
+<th  rowspan="1"  ><A NAME="TI2039"></A>Tasks</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2040"></A><ABBR title = "e a server" >EAServer</ABBR> or COM+</td>
+<td  rowspan="1"  ><A NAME="TI2041"></A>Copy the <ACRONYM title = "pibbles" >PBLs</ACRONYM>,
+PBDs, SRDs, or PSRs containing the definitions of your DataWindow
+objects to a directory on the <ABBR title = "e a server" >EAServer</ABBR> server's
+path or the system path if the server component is running as a
+service (always true for COM+).</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2042"></A><ABBR title = "e a server" >EAServer</ABBR></td>
+<td  rowspan="1"  ><A NAME="TI2043"></A>Set up a DSN and a connection cache for
+your data source.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2044"></A>ASP (<ACRONYM title = "i i s" >IIS</ACRONYM>)
+with COM+</td>
+<td  rowspan="1"  ><A NAME="TI2045"></A><A NAME="TI2046"></A>
+<ul>
+<li class=fi>Copy the following
+PowerBuilder runtime files to the <i>system</i> path: <i>PBVM105.DLL</i>, <i>LIBJCC.DLL</i>, <i>LIBJUTILS.DLL</i>, <i> PBDWE105.DLL</i>, <i>PBODB105.DLL</i>, <i>PBODB105.INI</i></li>
+<li class=ds>Copy the file containing the generic COM server
+component to the <i>system</i> path and register it:<p><PRE> regsvr32.exe pbdwr105.dll</PRE></li>
+<li class=ds>If you designed your own custom class user object
+and built a COM server component, you need to copy your component DLL
+to the server and register it</li>
+<li class=ds>If necessary, install the ODBC driver for your DBMS
+and use the ODBC Administrator to define an ODBC data source for your
+DataWindow objects as a <i>system</i> DSN 
+</li>
+</ul>
+<A NAME="TI2047"></A><p>If COM+ is hosting the server component and running
+on a different computer from <ACRONYM title = "i i s" >IIS</ACRONYM>,
+create a client install package using COM+ Explorer and
+install it on the <ACRONYM title = "i i s" >IIS</ACRONYM> machine.
+For more information, see the COM+ documentation.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2048"></A>JSP (Tomcat) with COM+</td>
+<td  rowspan="1"  ><A NAME="TI2049"></A>To use a COM+ component with
+a JSP page running on Tomcat or another JSP server, you need to
+use a Java-COM bridge. For more information, see the white paper
+on "How to set up a JSP that uses a DW DTC to access the Web DW
+on MTS via Tomcat" on the <A HREF="http://www.sybase.com/detail?id=1029911">Sybase Web site</A>
+.</td>
+</tr>
+</table>
+<A NAME="TI2050"></A><h4>Page server configuration tasks</h4>
+<A NAME="TI2051"></A><p>The following table summarizes the configuration tasks you
+need to perform on the page server:</p>
+<A NAME="TI2052"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 7-2: Configuration tasks for page server</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2053"></A>Server</th>
+<th  rowspan="1"  ><A NAME="TI2054"></A>Tasks</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2055"></A>ASP </td>
+<td  rowspan="1"  ><A NAME="TI2056"></A>Copy the HTML pages, scripts, images,
+and other application files to the page server. You can use the
+Web target deployment controller for ASP to copy them to the server.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2057"></A>JSP</td>
+<td  rowspan="1"  ><A NAME="TI2058"></A>Copy the JSPs, custom tag libraries,
+scripts, images, and other files to the page server. You can use
+the Web target deployment controller for JSP to copy them to the
+server.<A NAME="TI2059"></A><p>Although a custom tag library you add to a page is placed
+in the Web-Inf\tld directory and deployed with the target,
+you must manually copy any classes or archives required by the tag library.
+Tag library class files should be copied to the Web-Inf\classes
+directory, and tag library archive files should be copied to the
+Web-Inf\lib directory. </p><A NAME="TI2060"></A><p>For information about the Web DataWindow custom tag library, see
+the "Custom Tag Reference" chapter in the <i>JSP Target Reference</i>
+.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2061"></A>ASP (with <ABBR title = "e a server" >EAServer</ABBR> as
+the component server)</td>
+<td  rowspan="1"  ><A NAME="TI2062"></A>If ASP and <ABBR title = "e a server" >EAServer</ABBR> are
+not installed on the same computer:<A NAME="TI2063"></A>
+<ul>
+<li class=fi>Copy <i>JAGCLIENT.EXE</i> from
+the <ABBR title = "e a server" >EAServer</ABBR> client subdirectory
+to the ASP server, run it, and select ActiveX Runtime.</li>
+<li class=ds>Copy <i>PBDWR105.TLB</i> and <i>PBDWR105.REG</i> to
+the ASP server from the Sybase\Shared\PowerBuilder
+directory on the computer where PowerBuilder is installed.</li>
+<li class=ds>Edit the HKEY_CLASSES_ROOT\TypeLib
+lines in <i>PBDWR105.REG</i> that show the location
+of the <i>PBDWR105.TLB</i> file to show the correct
+location on the ASP server.</li>
+<li class=ds>Double-click <i>PBDWR105.REG</i> to
+install its information into the Windows registry.
+</li>
+</ul>
+<A NAME="TI2064"></A><p>If you designed your own custom class user object, generate TLB
+and REG files for the component in <ABBR title = "e a server" >EAServer</ABBR> Manager and
+register them on the ASP server. For more information, see the chapter
+on creating ActiveX clients in the <i>EAServer Programmer's
+Guide</i>
+.</p></td>
+</tr>
+</table>
+

@@ -1,0 +1,357 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Exception handling in PowerBuilder</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp19.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp21.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABDCHCF"></A><h1>Exception handling in PowerBuilder</h1>
+<A NAME="TI311"></A><p>When a runtime error occurs
+in a PowerBuilder application, unless that error is trapped, a single
+application event (SystemError) fires to handle the error no matter
+where in the application the error happened. Although some errors
+can be handled in the system error event, catching the error closer
+to its source increases the likelihood of recovery from the error
+condition. </p>
+<A NAME="TI312"></A><p>You can use exception-handling classes and syntax to handle
+context-sensitive errors in PowerBuilder applications. This means
+that you can deal with errors close to their source by embedding
+error-handling code anywhere in your application. Well-designed
+exception-handling code can give application users a better chance
+to recover from error conditions and run the application without interruption.</p>
+<A NAME="TI313"></A><p>Exception handling allows you to design an application that
+can recover from exceptional conditions and continue execution.
+Any exceptions that you do not catch are handled by the runtime
+system and can result in the termination of the application. </p>
+<A NAME="TI314"></A><p>PowerBuilder clients can catch exceptions thrown from <ABBR title = "e a server" >EAServer</ABBR> components and recover
+from them. Components developed with PowerBuilder can also define
+and throw their own exception types, making them more consistent
+with other EAServer component types like Java.</p>
+<A NAME="TI315"></A><p>Exception handling can be found in such object-oriented languages
+as Java and C++. The implementation for PowerBuilder
+is similar to the implementation of exception handling in Java.
+In PowerBuilder, the <b>TRY</b>, <b>CATCH</b>, <b>FINALLY</b>, <b>THROW</b>,
+and <b>THROWS</b> reserved words are used for exception
+handling. There are also several PowerBuilder objects that descend
+from the Throwable object.</p>
+<A NAME="BABECAFJ"></A><h2>Basics of exception handling</h2>
+<A NAME="TI316"></A><p><strong>Exceptions</strong> are objects that are thrown
+in the event of some exceptional (or unexpected) condition or error
+and are used to describe the condition or error encountered. Standard
+errors, such as null object references and division by zero, are
+typically thrown by the runtime system. These types of errors could occur
+anywhere in an application and you can include <strong>catch</strong> clauses
+in any executable script to try to recover from these errors.</p>
+<A NAME="TI317"></A><h4>User-defined exceptions</h4>
+<A NAME="TI318"></A><p>There are also exceptional conditions that do not immediately
+result in runtime errors. These exceptions typically occur during
+execution of a function or a user-event script. To signal these
+exceptions, you create user objects that inherit from the PowerScript
+Exception class. You can associate a user-defined exception with
+a function or user event in the prototype for the method.</p>
+<A NAME="TI319"></A><p>For example, a user-defined exception might be created to
+indicate that a file cannot be found. You could declare this exception
+in the prototype for a function that is supposed to open the file.
+To catch this condition, you must instantiate the user-defined exception
+object and then <strong>throw</strong> the exception instance
+in the method script.</p>
+<A NAME="BABDHDCH"></A><h2>Objects for exception handling support</h2>
+<A NAME="TI320"></A><p>Several system objects support exception handling within PowerBuilder. </p>
+<A NAME="TI321"></A><h4>Throwable object type</h4>
+<A NAME="TI322"></A><p>The object type <strong>Throwable</strong> is the root
+datatype for all user-defined exception and system error types.
+Two other system object types, RuntimeError and Exception, derive
+from Throwable.</p>
+<A NAME="TI323"></A><h4>RuntimeError and its descendants</h4>
+<A NAME="TI324"></A><p>PowerBuilder runtime errors are represented in the <strong>RuntimeError</strong> object
+type. For more robust error-handling capabilities, the RuntimeError
+type has its own system-defined descendants; but the RuntimeError
+type contains all information required for dealing with PowerBuilder
+runtime errors.</p>
+<A NAME="TI325"></A><p>One of the descendants of RuntimeError is the NullObjectError
+type that is thrown by the system whenever a null object reference
+is encountered. This allows you to handle null-object-reference
+errors explicitly without having to differentiate them from other
+runtime errors that might occur.</p>
+<A NAME="TI326"></A><p>Error types that derive from RuntimeError are typically used
+by the system to indicate runtime errors. RuntimeErrors can be caught
+in a try-catch block, but it is not necessary to declare where such
+an error condition might occur. (PowerBuilder does that for you,
+since a system error can happen anywhere anytime the application
+is running.) It is also not a requirement to catch these types of
+errors.</p>
+<A NAME="TI327"></A><h4>Exception object type</h4>
+<A NAME="TI328"></A><p>The system object <strong>Exception</strong> also derives
+from Throwable and is typically used as an ancestor object for user-defined
+exception types. It is the root class for all checked exceptions. <strong>Checked
+exceptions</strong> are user-defined exceptions that must be
+caught in a try-catch block when thrown, or that must be declared in
+the prototype of a method when thrown outside of a try-catch block. </p>
+<A NAME="TI329"></A><p>The PowerScript compiler checks the local syntax where you
+throw checked exceptions to make sure you either declare or catch
+these exception types. Descendants of RuntimeError are not checked
+by the compiler, even if they are user defined or if they are thrown
+in a script rather than by the runtime system.</p>
+<A NAME="BABCAAHB"></A><h2>Handling exceptions</h2>
+<A NAME="TI330"></A><p>Whether an exception is thrown by the runtime system or by
+a <b>THROW</b> statement in an application script, you
+handle the exception by catching it. This is done by surrounding
+the set of application logic that throws the exception with code
+that indicates how the exception is to be dealt with.</p>
+<A NAME="TI331"></A><h4>TRY-CATCH-FINALLY block</h4>
+<A NAME="TI332"></A><p>To handle an exception in PowerScript, you must include some
+set of your application logic inside a try-catch block. A try-catch
+block begins with a <b>TRY</b> clause and ends with
+the <b>END TRY</b> statement. It must also contain either
+a <b>CATCH</b> clause or a <b>FINALLY</b> clause.
+A try-catch block normally contains a <b>FINALLY</b> clause
+for error condition cleanup. In between the <b>TRY</b> and <b>FINALLY</b> clauses
+you can add any number of <b>CATCH</b> clauses. </p>
+<A NAME="TI333"></A><p><b>CATCH</b> clauses are not obligatory, but if
+you do include them you must follow each <b>CATCH</b> statement
+with a variable declaration. In addition to following all of the
+usual rules for local variable declarations inside a script, the
+variable being defined must derive from the Throwable system type.</p>
+<A NAME="TI334"></A><p>You can add a <b>TRY-CATCH-FINALLY</b>, <b>TRY-CATCH</b>,
+or <b>TRY-FINALLY</b> block using the Script view Paste
+Special feature for PowerScript statements.     If you select
+the Statement Templates check box on the AutoScript tab of the Design Options
+dialog box, you can also use the AutoScript feature to insert these block
+structures.</p>
+<A NAME="TI335"></A><h4>Example</h4>
+<p><b>Example catching a system error</b>   This is an example of a <b>TRY-CATCH-FINALLY</b> block
+that catches a system error when an <b>arccosine</b> argument,
+entered by the application user (in a SingleLineEdit) is not in
+the required range. If you do not catch this error, the application
+goes to the system error event, and eventually terminates: </p>
+<A NAME="TI336"></A><p><p><PRE> Double ld_num<br>ld_num = Double (sle_1.text)<br>TRY<br>   sle_2.text = string (acos (ld_num))<br>CATCH (runtimeerror er)   <br>   MessageBox("Runtime Error", er.GetMessage())<br>FINALLY   <br>   // Add cleanup code here   <br>   of_cleanup()   <br>   Return<br>END TRY   <br>MessageBox("After", "We are finished.")</PRE></p>
+<A NAME="TI337"></A><p>The system runtime error message might be confusing to the
+end user, so for production purposes, it would be better to catch
+a user-defined exception&#8212;see the example in <A HREF="apptechp20.htm#BABCABDH">"Creating user-defined exception
+types"</A>&#8212;and
+set the message to something more understandable.</p>
+<A NAME="TI338"></A><p>The <b>TRY</b> reserved word signals the start
+of a block of statements to be executed and can include more than
+one <b>CATCH</b> clause. If the execution of code in
+the <b>TRY</b> block causes an exception to be thrown,
+then the exception is handled by the first <b>CATCH</b> clause
+whose variable can be assigned the value of the exception thrown.
+The variable declaration after a <b>CATCH</b> statement
+indicates the type of exception being handled (a system runtime
+error, in this case).</p>
+<A NAME="TI339"></A><h4>CATCH order</h4>
+<A NAME="TI340"></A><p>It is important to order your <b>CATCH</b> clauses
+in such a way that one clause does not hide another. This would
+occur if the first <b>CATCH</b> clause catches an exception
+of type Exception and a subsequent <b>CATCH</b> clause
+catches a descendant of Exception. Since they are processed in order,
+any exception thrown that is a descendant of Exception would be
+handled by the first <b>CATCH</b> clause and never by
+the second. The PowerScript compiler can detect this condition and
+signals an error if found.</p>
+<A NAME="TI341"></A><p>If an exception is not dealt with in any of the <b>CATCH</b> clauses,
+it is thrown up the call stack for handling by other exception handlers
+(nested try-catch blocks) or by the system error event. But before
+the exception is thrown up the stack, the <b>FINALLY</b> clause
+is executed.</p>
+<A NAME="TI342"></A><h4>FINALLY clause</h4>
+<A NAME="TI343"></A><p>The <b>FINALLY</b> clause is generally used to
+clean up after execution of a <b>TRY</b> or <b>CATCH</b> clause.
+The code in the <b>FINALLY</b> clause is guaranteed
+to execute if any portion of the try-catch block is executed, regardless
+of how the code in the try-catch block completes. </p>
+<A NAME="TI344"></A><p>If no exceptions occur, the <b>TRY</b> clause
+completes, followed by the execution of the statements contained
+in the <b>FINALLY</b> clause. Then execution continues
+on the line following the <b>END TRY</b> statement.</p>
+<A NAME="TI345"></A><p>In cases where there are no <b>CATCH</b> clauses
+but only a <b>FINALLY</b> clause, the code in the <b>FINALLY</b> clause
+is executed even if a return is encountered or an exception is thrown
+in the <b>TRY</b> clause. </p>
+<A NAME="TI346"></A><p>If an exception occurs within the context of the <b>TRY</b> clause
+and an applicable <b>CATCH</b> clause exists, the <b>CATCH</b> clause
+is executed, followed by the <b>FINALLY</b> clause.
+But even if no <b>CATCH</b> clause is applicable to
+the exception thrown, the <b>FINALLY</b> clause still
+executes before the exception is thrown up the call stack.</p>
+<A NAME="TI347"></A><p>If an exception or a return is encountered within a <b>CATCH</b> clause,
+the <b>FINALLY</b> clause is executed before execution
+is transferred to the new location.</p>
+<A NAME="BABCABDH"></A><h2>Creating user-defined exception types</h2>
+<A NAME="TI348"></A><p>You can create your own user-defined exception types from
+standard class user objects that inherit from Exception or RuntimeError
+or that inherit from an existing user object deriving from Exception
+or RuntimeError. </p>
+<A NAME="TI349"></A><h4>Inherit from Exception object type</h4>
+<A NAME="TI350"></A><p>Normally, user-defined exception types should inherit from
+the Exception type or a descendant, since the RuntimeError type
+is used to indicate system errors. These user-defined objects are
+no different from any other nonvisual user object in the system.
+They can contain events, functions, and instance variables. </p>
+<A NAME="TI351"></A><p>This is useful, for example, in cases where a specific condition,
+such as the failure of a business rule, might cause application
+logic to fail. If you create a user-defined exception type to describe
+such a condition and then catch and handle the exception appropriately,
+you can prevent a runtime error. </p>
+<A NAME="TI352"></A><h4>Throwing exceptions</h4>
+<A NAME="TI353"></A><p>Exceptions can be thrown by the runtime engine to indicate
+an error condition. If you want to signal a potential exception
+condition manually, you must use the <b>THROW</b> statement. </p>
+<A NAME="TI354"></A><p>Typically, the <b>THROW</b> statement is used
+in conjunction with some user-defined exception type. Here is a
+simple example of the use of the <b>THROW</b> statement:<p><PRE> Exception    le_ex<br>le_ex = create Exception<br>Throw le_ex<br>MessageBox ("Hmm", "We would never get here if" &amp;   <br>   + "the exception variable was not instantiated")</PRE></p>
+<A NAME="TI355"></A><p>In this example, the code throws the instance of the exception <b>le_ex</b>.
+The variable following the <b>THROW</b> reserved word
+must point to a valid instance of the exception object that derives
+from Throwable. If you attempt to throw an uninstantiated Exception
+variable, a NullObjectError is thrown instead, indicating a null
+object reference in this routine. That could only complicate the error
+handling for your application.</p>
+<A NAME="TI356"></A><h4>Declaring exceptions thrown from functions</h4>
+<A NAME="TI357"></A><p>If you signal an exception with the <b>THROW</b> statement
+inside a method script&#8212;and do not surround the statement
+with a try-catch block that can deal with that type of exception&#8212;you
+must also declare the exception as an exception type (or as a descendant
+of an exception type) thrown by that method. However, you do not
+need to declare that a method can throw runtime errors, since PowerBuilder
+does that for you.</p>
+<A NAME="TI358"></A><p>The prototype window in the Script view of most PowerBuilder
+painters allows you to declare what user-defined exceptions, if
+any, can be thrown by a function or a user-defined event. You can
+drag and drop exception types from the System Tree or a Library
+painter view to the Throws box in the prototype window, or you can
+type in a comma-separated list of the exception types that the method
+can throw. </p>
+<A NAME="TI359"></A><h4>Example</h4>
+<p><b>Example catching a user-defined exception</b>   This code displays a user-defined error when an <b>arccosine</b> argument,
+entered by the application user, is not in the required range. The
+try-catch block calls a method, <b>wf_acos</b>,
+that catches the system error and sets and throws the user-defined
+error:</p>
+<A NAME="TI360"></A><p><p><PRE> TRY   <br>   wf_acos()<br>CATCH (uo_exception u_ex)   <br>   MessageBox("Out of Range", u_ex.GetMessage())<br>END TRY</PRE></p>
+<A NAME="TI361"></A><p>This code in the <b>wf_acos</b> method
+catches the system error and sets and throws the user-defined error:</p>
+<A NAME="TI362"></A><p><p><PRE> uo_exception lu_error<br>Double ld_num<br>ld_num = Double (sle_1.text)<br>TRY<br>   sle_2.text = string (acos (ld_num))<br>CATCH (runtimeerror er)   <br>   lu_error = Create uo_exception<br>   lu_error.SetMessage("Value must be between -1" &amp;<br>      + "and 1")<br>   Throw lu_error<br>END TRY</PRE></p>
+<A NAME="TI363"></A><h4>Integration with EAServer</h4>
+<A NAME="TI364"></A><p>If you declare exceptions on a method of a user object and
+deploy the user object as a component to <ABBR title = "e a server" >EAServer</ABBR>,
+the exceptions are translated to IDL (CORBA) as part of the method
+prototype. This means that PowerBuilder components in <ACRONYM title = "e a server" >EAServer</ACRONYM> can be defined to throw
+exceptions that can be handled by any type of <ABBR title = "e a server" >EAServer</ABBR> client
+application. </p>
+<p><b>Other benefits for <ABBR title = "e a server" >EAServer</ABBR> applications</b>   Another benefit for component development is that you can
+handle runtime errors in the component. If you do not handle an
+error, it is automatically translated into an exception and the component
+stops executing. </p>
+<A NAME="TI365"></A><p>PowerBuilder client applications that use <ABBR title = "e a server" >EAServer</ABBR> components can handle exceptions
+thrown by any type of <ABBR title = "e a server" >EAServer</ABBR> component.
+If a Java <ABBR title = "e a server" >EAServer</ABBR> component has
+a method on it that is defined to throw an exception and a PowerBuilder
+proxy is created to use that component, the method on the PowerBuilder
+proxy is also declared to throw a user-defined exception. The definition
+of the user-defined exception is created automatically at the time
+of the PowerBuilder proxy creation.</p>
+<A NAME="TI366"></A><p>For more information about error handling in <ABBR title = "e a server" >EAServer</ABBR> clients, see <A HREF="apptechp159.htm#CCJBBGBC">"Handling errors "</A>.</p>
+<p><b>IDL restrictions</b>   Deployment of components to <ACRONYM title = "e a server" >EAServer</ACRONYM> imposes restrictions
+on the way you can use exception handling within PowerBuilder. Only
+the public instance variables defined on the exception type are
+actually translated to IDL. This is because IDL exceptions cannot
+have methods declared on them. Therefore if the exception type has
+methods defined on it, those methods can be called within the execution
+of the component but cannot be called by client applications that
+catch the exception thrown. </p>
+<A NAME="TI367"></A><p>You must keep this restriction in mind when designing exception
+objects for distributed applications, exposing all exception information
+as public instance variables instead of through accessor methods
+on an exception object. </p>
+<A NAME="TI368"></A><p>Two other interface restrictions also apply to exception types
+of a user object that is deployed as an <ABBR title = "e a server" >EAServer</ABBR> component.
+Instance variables of exceptions on the user object methods cannot
+have object datatypes. Null data is supported only for instance
+variables with simple datatypes; if instance variables are structures
+or arrays, null values for individual elements are not maintained.</p>
+<A NAME="TI369"></A><h2>Adding flexibility and facilitating object reuse</h2>
+<A NAME="TI370"></A><p>You can use exception handling to add flexibility to your
+PowerBuilder applications, and to help in the separation of business
+rules from presentation logic. For example, business rules can be
+stored in a non-visual object (nvo) that has:<A NAME="TI371"></A>
+<ul>
+<li class=fi>An
+instance variable to hold a reference to the presentation object:<p><PRE> powerobject my_presenter</PRE></li>
+<li class=ds>A function that registers the presentation object<br>
+The registration function could use the following syntax:<br><br>
+<p><PRE> SetObject (string my_purpose, powerobject myobject)</PRE><br></li>
+<li class=ds>Code to call a dynamic function implemented by the
+presentation object, with minimal assumptions about how the data
+is displayed<br>
+The dynamic function call should be enclosed in a try-catch
+block, such as:<br><br>
+<p><PRE> TRY        <br>            my_presenter.Dynamic nf_displayScreen(" ")<br>        CATCH (Throwable lth_exception)        <br>            Throw lth_exception<br>END TRY    </PRE><br><br>
+This try-catch block catches all system and user-defined errors
+from the presentation object and throws them back up the calling
+chain (to the object that called the nvo). In the above example,
+the thrown object in the <b>CATCH</b> statement is an
+object of type Throwable, but you could also instantiate and throw
+a user exception object: <br><br>
+<p><PRE> uo_exception luo_exception<br> <br>TRY        <br>            my_presenter.Dynamic nf_displayScreen(" ")<br>CATCH (Throwable lth_exception)        <br>            luo_exception = Create uo_exception<br>            luo_exception.SetMessage &amp; +<br>            (lth_exception.GetMessage())<br>            Throw luo_exception<br>END TRY    </PRE><br>
+</li>
+</ul>
+</p>
+<A NAME="TI372"></A><p>Code for data processing could be added to the presentation
+object, to the business rules nvo, or to processing objects called
+by the nvo. The exact design depends on your business objectives,
+but this code should also be surrounded by try-catch blocks. The
+actions to take and the error messages to report (in case of code
+processing failure) should be as specific as possible in the try-catch
+blocks that surround the processing code.</p>
+<A NAME="TI373"></A><p>There are significant advantages to this type of approach,
+since the business nvo can be reused more easily, and it can be
+accessed by objects that display the same business data in many
+different ways. The addition of exception handling makes this approach
+much more robust, giving the application user a chance to recover
+from an error condition.</p>
+<A NAME="BABEADGH"></A><h2>Using the SystemError and Error events</h2>
+<A NAME="TI374"></A><h4>Error event</h4>
+<A NAME="TI375"></A><p>If a runtime error occurs, an error structure that describes
+the error is created. If the error occurs in the context of a connection
+to a remote server (such as EAServer) then the Error event on the
+Connection, JaguarORB, DataWindow, or OLE control object is triggered,
+with the information in the error structure as arguments.</p>
+<A NAME="TI376"></A><p>The error can be handled in this Error event by use of a special
+reference argument that allows the error to be ignored. If the error
+does not occur in the context described above, or if the error in
+that context is not dealt with, then the error structure information
+is used to populate the global error variable and the SystemError
+event on the Application object is triggered. </p>
+<A NAME="TI377"></A><h4>SystemError event</h4>
+<A NAME="TI378"></A><p>In the SystemError event, unexpected error conditions can
+be dealt with in a limited way. In general, it is not a good idea
+to continue running the application after the SystemError event
+is triggered. However, error-handling code can and should be added
+to this event. Typically you could use the SystemError event to
+save data before the application terminates and to perform last-minute cleanup
+(such as closing files or database connections). </p>
+<A NAME="TI379"></A><h4>Precedence of exception handlers and events</h4>
+<A NAME="TI380"></A><p>If you write code in the Error event, then that code is executed
+first in the event of a thrown exception.</p>
+<A NAME="TI381"></A><p>If the exception is not thrown in any of the described contexts
+or the object's Error event does not handle the exception
+or you do not code the Error event, then the exception is handled
+by any active exception handlers (<b>CATCH</b> clauses)
+that are applicable to that type of exception. Information from
+the exception class is copied to the global error variable and the
+SystemError event on the Application object is fired only if there
+are no exception handlers to handle the exception.</p>
+<A NAME="TI382"></A><h4>Error handling for new applications</h4>
+<A NAME="TI383"></A><p>For new PowerBuilder applications, the recommended approach
+for handling errors is to use a try-catch block instead of coding
+the Error event on Connection, DataWindow, or OLE control objects.
+You should still have a SystemError event coded in your Application
+object to handle any uncaught exceptions. The SystemError event
+essentially becomes a global exception handler for a PowerBuilder
+application.</p>
+

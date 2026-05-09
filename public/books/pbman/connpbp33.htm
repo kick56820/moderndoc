@@ -1,0 +1,289 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+DirectConnect </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp32.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp34.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCDDIEI"></A><h1>DirectConnect </h1>
+<A NAME="TI1140"></A><p>This section describes how to use the DirectConnect&#153; interface
+in PowerBuilder.</p>
+<A NAME="TI1141"></A><h2>Using the DirectConnect interface</h2>
+<A NAME="TI1142"></A><p>The DirectConnect interface uses Sybase's Open Client
+CT-Library (CT-Lib) API to access a database through Sybase middleware
+data access products such as the DirectConnect for OS/390
+component of MainFrame Connect and Open ServerConnect&#153;.</p>
+<A NAME="TI1143"></A><h4>Accessing Unicode data</h4>
+<A NAME="TI1144"></A><p>PowerBuilder can connect, save, and retrieve data in both ANSI/DBCS
+and Unicode databases. When character data or command text is sent
+to the database, PowerBuilder sends a DBCS string if the UTF8 database
+parameter is set to 0 (the default). If UTF8 is set to 1, PowerBuilder sends
+a UTF-8 string.</p>
+<A NAME="TI1145"></A><p>The database server must have the UTF-8 character set installed.
+See the description of the UTF-8 database parameter in the online
+Help for more information.</p>
+<A NAME="TI1146"></A><p>A Unicode database is a database whose character set is set
+to a Unicode format, such as UTF-8, UTF-16, UCS-2, or UCS-4. All
+data must be in Unicode format, and any data saved to the database
+must be converted to Unicode data implicitly or explicitly.</p>
+<A NAME="TI1147"></A><p>A database that uses ANSI (or DBCS) as its character set might
+use special datatypes to store Unicode data. Columns with these
+datatypes can store <i>only</i> Unicode data. Any
+data saved into such a column must be converted to Unicode explicitly.
+This conversion must be handled by the database server or client.</p>
+<A NAME="TI1148"></A><h3>Connecting through the DirectConnect middleware
+product</h3>
+<A NAME="TI1149"></A><p>Sybase DirectConnect is a data access server that provides
+a standardized middleware interface between your applications and
+your enterprise data sources. Data access services to a particular
+database are defined in a DirectConnect server. Since a DirectConnect
+server can support multiple access services, you can access multiple
+databases through a single server.</p>
+<A NAME="TI1150"></A><p>When you use the DirectConnect interface to connect to a particular
+database, your connection is routed through the access service for
+that database. An access service consists of a named set of configuration
+properties and a specific access service library. </p>
+<A NAME="TI1151"></A><p>To access DB2 data on an IBM mainframe through a DirectConnect
+server, you can use the DirectConnect interface to connect through
+either a DirectConnect for MVS access service or a DirectConnect
+Transaction Router Service (TRS). </p>
+<A NAME="TI1152"></A><p>TRS provides fast access to a DB2/MVS database by
+using remote stored procedures. The DirectConnect interface supports
+both versions of the TRS library: TRSLU62 and TRSTCP. </p>
+<A NAME="TI1153"></A><p>The DirectConnect server operates in two modes: <ACRONYM title = "sequel" >SQL</ACRONYM> transformation and passthrough.
+The DirectConnect interface for DB2/MVS uses passthrough mode,
+which allows your PowerBuilder application to have direct access to
+the capabilities of the DB2/MVS data source.</p>
+<A NAME="TI1154"></A><h3>Connecting through the Open ServerConnect middleware
+product</h3>
+<A NAME="TI1155"></A><p>Sybase's Open ServerConnect supports mainframe applications
+that retrieve and update data stored on the mainframe that Sybase
+client applications can execute. Client applications can connect
+directly to a DB2/MVS database through an Open ServerConnect
+application residing on the mainframe, eliminating the need for
+an intermediate gateway like DirectConnect. (This type of connection
+is also known as a <i>gateway-less</i> connection.)
+In addition, an Open ServerConnect application presents mainframe
+Remote Procedure Calls (RPCs) as database stored procedures to the
+client application. </p>
+<A NAME="TI1156"></A><p>To access DB2 data on an IBM mainframe through Open ServerConnect,
+you can use the DirectConnect interface to connect through Open
+ServerConnect for IMS and MVS. </p>
+<A NAME="TI1157"></A><h3>Selecting the type of connection</h3>
+<A NAME="TI1158"></A><p>To select how PowerBuilder accesses the database, use the Choose
+Gateway drop-down list on the Connection tab of the DirectConnect
+Database Profile Setup dialog box and select one of the following:<A NAME="TI1159"></A>
+<ul>
+<li class=fi>Access Service</li>
+<li class=ds>Gatewayless</li>
+<li class=ds>TRS
+</li>
+</ul>
+</p>
+<A NAME="TI1160"></A><p>All the DBParm parameters defined for the DirectConnect interface
+are applicable to all three connections except the following: <A NAME="TI1161"></A>
+<ul>
+<li class=fi>HostReqOwner applies to Access
+Service and Gatewayless only</li>
+<li class=ds>Request, ShowWarnings, and SystemOwner apply to
+Access Service only</li>
+<li class=ds>UseProcSyntax applies to Gatewayless only
+</li>
+</ul>
+</p>
+<A NAME="TI1162"></A><p>See the online help for the complete list of DBParm parameters
+applicable to the DirectConnect interface.</p>
+<A NAME="TI1163"></A><h2>Basic software components for the DirectConnect
+interface</h2>
+<A NAME="TI1164"></A><p><A HREF="connpbp33.htm#BABHIBGA">Figure 6-5</A> shows
+the basic software components required to access a database using
+the DirectConnect interface and the DirectConnect middleware data access
+product. </p>
+<A NAME="BABHIBGA"></A><caption><b>Figure 6-5: Components of a DirectConnect
+connection using DirectConnect middleware</b></captionls>
+<br><img src="images/cnw5dc.gif">
+<A NAME="TI1165"></A><p><A HREF="connpbp33.htm#BABIECCG">Figure 6-6</A> shows
+the basic software components required to access a database using
+the DirectConnect interface and the Open ServerConnect middleware data
+access product.</p>
+<A NAME="BABIECCG"></A><caption><b>Figure 6-6: Components of a DirectConnect
+connection using Open ServerConnect middleware</b></captionls>
+<br><img src="images/Cnw5dcocs.gif">
+<A NAME="TI1166"></A><h2>Supported versions for the DirectConnect interface</h2>
+<A NAME="TI1167"></A><p>The DirectConnect interface uses a DLL named <i>PBDIR105.DLL</i> to
+access a database through either DirectConnect or Open ServerConnect. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Required DirectConnect versions</span> <A NAME="TI1168"></A>To access a DB2/MVS database through the access service,
+it is strongly recommended that you use DirectConnect for MVS access
+service version 11.1.1p4 or later.</p>
+<A NAME="TI1169"></A>To access a DB2/MVS database through TRS, it is strongly
+recommended that you use DirectConnect TRS version 11.1.1p4 or later.</p>
+<A NAME="TI1170"></A>For information on DirectConnect for MVS and
+TRS, see your DirectConnect documentation.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Required Open ServerConnect versions</span> <A NAME="TI1171"></A>To access a DB2/MVS database through Open ServerConnect,
+it is strongly recommended that you use Open ServerConnect IMS and
+MVS version 4.0 or later. </p>
+<A NAME="TI1172"></A>For information on Open ServerConnect for
+MVS, see your Open ServerConnect documentation.</p>
+<A NAME="TI1173"></A><h2>Supported DirectConnect interface datatypes</h2>
+<A NAME="TI1174"></A><p>The DirectConnect interface supports the PowerBuilder datatypes
+listed in <A HREF="connpbp33.htm#BABCAGDC">Table 6-5</A> in DataWindow objects. and
+embedded <ACRONYM title = "sequel" >SQL</ACRONYM>.</p>
+<A NAME="BABCAGDC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-5: Supported datatypes for DirectConnect</caption>
+<tr><td  rowspan="1"  ><A NAME="TI1175"></A>Char (fewer
+than 255 characters)</td>
+<td  rowspan="1"  ><A NAME="TI1176"></A>Long VarChar</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1177"></A>Char for Bit
+Data</td>
+<td  rowspan="1"  ><A NAME="TI1178"></A>Real</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1179"></A>Date</td>
+<td  rowspan="1"  ><A NAME="TI1180"></A>SmallInt</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1181"></A>Decimal</td>
+<td  rowspan="1"  ><A NAME="TI1182"></A>Time</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1183"></A>Double Precision</td>
+<td  rowspan="1"  ><A NAME="TI1184"></A>Timestamp (DateTime)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1185"></A>Float</td>
+<td  rowspan="1"  ><A NAME="TI1186"></A>VarChar</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1187"></A>Integer</td>
+<td  rowspan="1"  ><A NAME="TI1188"></A>VarChar for Bit Data</td>
+</tr>
+</table>
+<A NAME="TI1189"></A><h2>Preparing to use the database with DirectConnect</h2>
+<A NAME="TI1190"></A><p>Before you define the interface and connect to a database
+through the DirectConnect interface, follow these steps to prepare
+the database for use: <A NAME="TI1191"></A>
+<ol>
+</li>
+<li class=ds>Install and configure the Sybase
+middleware data access products, network, and client software.</li>
+<li class=ds>Install the DirectConnect interface.</li>
+<li class=ds>Verify that you can connect to your middleware product
+and your database outside PowerBuilder.</li>
+<li class=ds>Create the extended attribute system tables outside PowerBuilder. 
+</li>
+</ol>
+</p>
+<A NAME="TI1192"></A><h4>Step 1: Install and configure the Sybase middleware
+product</h4>
+<A NAME="TI1193"></A><p>You must install and configure the Sybase middleware data
+access product, network, and client software. </p>
+<A NAME="TI1194"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To install and configure the Sybase middleware
+data access product, network, and client software:</p>
+<ol><li class=fi><p>Make sure the appropriate database software
+is installed and running on its server.</p><p>You must obtain the database server software from your database
+vendor.</p><p>For installation instructions, see your database
+vendor's documentation.</p></li>
+<li class=ds><p>Make sure the appropriate DirectConnect access
+service software is installed and running on the DirectConnect server
+specified in your database profile </p><p><i>or</i></p><p>Make sure the appropriate Open ServerConnect software
+is installed and running on the mainframe specified in your database
+profile.</p></li>
+<li class=ds><p>Make sure the required network software (such
+as TCP/IP) is installed and running on your computer and
+is properly configured so you that can connect to the DirectConnect
+server or mainframe at your site.</p><p>You must install the network communication driver that supports
+the network protocol and operating system platform you are using. </p><p>For installation and configuration instructions,
+see your network or database administrator.</p></li>
+<li class=ds><p>Install the required Open Client CT-Library (CT-Lib)
+software on each client computer on which PowerBuilder is installed.</p><p>You must obtain the Open Client software from Sybase. Make
+sure the version of Open Client you install supports <i>both</i> of
+the following:<A NAME="TI1195"></A>
+<ul>
+<li class=fi>The operating
+system running on the client computer</li>
+<li class=ds>The version of PowerBuilder that you are running
+</li>
+</ul>
+</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Required Open Client versions</span> <A NAME="TI1196"></A>To use the DirectConnect interface, you must install Open
+Client.</p>
+<p>For information about Open Client, see your
+Open Client documentation.</p></li>
+<li class=ds><p>Make sure the Open Client software is properly
+configured so you can connect to the middleware data access product
+at your site.</p><p>Installing the Open Client software places the <i>SQL.INI</i> configuration
+file in the <ACRONYM title = "sequel" >SQL</ACRONYM> Server directory
+on your computer. <i>SQL.INI</i> provides information
+that <ACRONYM title = "sequel" >SQL</ACRONYM> Server uses to find
+and connect to the middleware product at your site. You can enter
+and modify information in <i>SQL.INI</i> with the
+configuration utility or editor that comes with the Open Client software.</p><p>For information about editing the <i>SQL.INI</i> file,
+see <A HREF="connpbp33.htm#BABHDBEH">"Editing the <ACRONYM title = "sequel dot i n i" >SQL.INI </ACRONYM>file"</A>.
+For more information about setting up <i>SQL.INI</i> or
+any other required configuration file, see your <ACRONYM title = "sequel" >SQL</ACRONYM> Server documentation.</p></li>
+<li class=ds><p>If required by your operating system, make sure
+the directory containing the Open Client software is in your system
+path.</p></li>
+<li class=ds><p>Make sure only one copy of each of the following
+files is installed on your client computer:<A NAME="TI1197"></A>
+<ul>
+<li class=fi>DirectConnect interface DLL</li>
+<li class=ds>Network communication DLL (such as <i>NLWNSCK.DLL</i> for
+Windows Sockets-compliant TCP/IP)</li>
+<li class=ds>Open Client DLLs (such as <i>LIBCT.DLL</i> and <i>LIBCS.DLL</i>)
+</li>
+</ul>
+
+                        </p></li></ol>
+<br><A NAME="TI1198"></A><h4>Step 2: Install the interface</h4>
+<A NAME="TI1199"></A><p>In the PowerBuilder Setup program, select the Typical install,
+or select the Custom install and select the Direct Connect Interface
+(DIR). </p>
+<A NAME="TI1200"></A><h4>Step 3: Verify the connection</h4>
+<A NAME="TI1201"></A><p>Make sure you can connect to your middleware product and your
+database and log in to the database you want to access from outside PowerBuilder.</p>
+<A NAME="TI1202"></A><p>Some possible ways to verify the connection are by running
+the following tools:<A NAME="TI1203"></A>
+<ul>
+<li class=fi><b>Accessing the database server</b>   Tools such as the Open Client/Open Server Configuration
+utility (or any Ping utility) check whether you can reach the database
+server from your computer.</li>
+<li class=ds><b>Accessing the database</b>   Tools such as <ACRONYM title = "I sequel" >ISQL</ACRONYM> or <ACRONYM title = "sequel" >SQL</ACRONYM> Advantage (interactive <ACRONYM title = "sequel" >SQL</ACRONYM> utilities) check whether you
+can log in to the database and perform database operations. It is
+a good idea to specify the same connection parameters you plan to
+use in your PowerBuilder database profile to access the database.
+</li>
+</ul>
+</p>
+<A NAME="TI1204"></A><h4>Step 4: Create the extended attribute system
+tables</h4>
+<A NAME="TI1205"></A><p>PowerBuilder uses a collection of five system tables to store
+extended attribute information. When using the DirectConnect interface,
+you <i>must</i> create the extended attribute system
+tables outside PowerBuilder to control the access rights and location
+of these tables. </p>
+<A NAME="TI1206"></A><p>Run the <i>DB2SYSPB.SQL</i> script outside PowerBuilder using
+the <ACRONYM title = "sequel" >SQL</ACRONYM> tool of your choice.</p>
+<A NAME="TI1207"></A><p>For instructions, see <A HREF="connpbp34.htm#CCJDFDBI">"Creating the extended attribute
+system tables in DB2 databases"</A>. </p>
+<A NAME="BABHDBEH"></A><h4>Editing the <ACRONYM title = "sequel dot i n i" >SQL.INI </ACRONYM>file</h4>
+<A NAME="TI1208"></A><p>Make sure the <i>SQL.INI</i> file provides an
+entry about either the access service being used and the DirectConnect
+server on which it resides or the Open ServerConnect program being
+used and the mainframe on which it resides. </p>
+<A NAME="TI1209"></A><p>For the server object name, you need to provide the exact
+access service name as it is defined in the access service library
+configuration file on the DirectConnect server. You must also specify
+the network communication DLL being used, the TCP/IP address
+or alias used for the DirectConnect server on which the access service
+resides, and the port on which the DirectConnect server listens
+for requests: <p><PRE> [<i>access_service_name</i>]</PRE><PRE> query=<i>network_dll</i>,<i>server_alias,server_port_no</i></PRE></p>
+<A NAME="TI1210"></A><p>PowerBuilder users must also specify the access service name
+in the <ACRONYM title = "sequel C A" >SQLCA</ACRONYM>.ServerName
+property of the Transaction object. </p>
+<A NAME="TI1211"></A><h2>Defining the DirectConnect interface</h2>
+<A NAME="TI1212"></A><p>To define a connection through the DirectConnect interface,
+you must create a database profile by supplying values for at least
+the basic connection parameters in the Database Profile Setup -
+DirectConnect dialog box. You can then select this profile anytime
+to connect to your database in the development environment.</p>
+<A NAME="TI1213"></A><p>For information on how to define a database profile, see <A HREF="connpbp6.htm#X-REF289075262">"Using database profiles"</A>. </p>
+

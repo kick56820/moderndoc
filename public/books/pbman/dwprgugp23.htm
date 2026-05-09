@@ -1,0 +1,106 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Providing query ability to users </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp22.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp24.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299343617"></A><h1>Providing query ability to users </h1>
+<A NAME="TI850"></A><p>When you call the Retrieve method for a DataWindow control,
+the rows specified in the DataWindow object's SELECT statement
+are retrieved. You can give users the ability to further specify
+which rows are retrieved during execution by putting the DataWindow
+into query mode. To do that, you use the Modify method or a property
+expression (the examples here use Modify).</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Limitations</span> <A NAME="TI851"></A>You cannot use query mode in a DataWindow object that contains
+the UNION keyword or nested SELECT statements.</p>
+<A NAME="TI852"></A><h2>How query mode works</h2>
+<A NAME="TI853"></A><p>Once the DataWindow is in query mode, users can specify selection
+criteria using query by example&#8212;just as you do when you
+use Quick Select to define a data source. When criteria have been
+defined, they are added to the WHERE clause of the SELECT statement
+the next time data is retrieved.</p>
+<A NAME="TI854"></A><p>The following three figures show what happens when query mode
+is used. </p>
+<A NAME="TI855"></A><p>First, data is retrieved into the DataWindow. There are 36
+rows:</p>
+<br><img src="images/dadyn1.gif">
+<A NAME="TI856"></A><p>Next, query mode is turned on. The retrieved data disappears
+and users are presented with empty rows where they can specify selection
+criteria. Here the user wants to retrieve rows where Quarter = Q1
+and Units &gt; 15:</p>
+<br><img src="images/dadyn2.gif">
+<A NAME="TI857"></A><p>Next, Retrieve is called and query mode is turned off. The
+DataWindow control adds the criteria to the SELECT statement, retrieves
+the three rows that meet the criteria, and displays them to the
+user:</p>
+<br><img src="images/dadyn3.gif">
+<A NAME="TI858"></A><p>You can turn query mode back on, allow the user to revise
+the selection criteria, and retrieve again.</p>
+<A NAME="TI859"></A><h2>Using query mode</h2>
+<A NAME="TI860"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To provide query mode to users during execution:</p>
+<ol><li class=fi><p>Turn query mode on by coding.</p><p>In PowerBuilder:<p><PRE> <i>dw_1</i>.<i>Modify</i>("datawindow.querymode=yes")</PRE></p><p>In JavaScript:<p><PRE> <i>dw_1</i>.<i>Modify</i>("datawindow.querymode=yes");</PRE></p><p>All data displayed in the DataWindow is blanked out, though
+it is still in the DataWindow control's Primary buffer,
+and the user can enter selection criteria where the data had been.</p></li>
+<li class=ds><p>The user specifies selection criteria in the DataWindow,
+just as you do when using Quick Select to define a DataWindow object's
+data source. </p><p>Criteria entered in one row are ANDed together; criteria in
+different rows are ORed. Valid operators are =, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=,
+LIKE, IN, AND, and OR.</p><p>For more information about Quick Select, see
+the <i>PowerBuilder User's Guide</i>
+.</p></li>
+<li class=ds><p>Call AcceptText and Retrieve, then turn off query
+mode to display the newly retrieved rows.</p><p>In PowerBuilder:<p><PRE> <i>dw_1</i>.<i>AcceptText</i>()</PRE><PRE> <i>dw_1</i>.<i>Modify</i>("datawindow.querymode=no")</PRE><PRE> <i>dw_1</i>.<i>Retrieve</i>()</PRE></p><p>In JavaScript:<p><PRE> <i>dw_1</i>.<i>AcceptText</i>();</PRE><PRE> <i>dw_1</i>.<i>Modify</i>("datawindow.querymode=no");</PRE><PRE> <i>dw_1</i>.<i>Retrieve</i>();</PRE></p><p>The DataWindow control adds the newly defined selection criteria
+to the WHERE clause of the SELECT statement, then retrieves and
+displays the specified rows.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Revised SELECT statement</span> <A NAME="TI861"></A>You can look at the revised SELECT statement that is sent
+to the DBMS when data is retrieved with criteria. To do so, look
+at the sqlsyntax argument in the SQLPreview event of the DataWindow
+control.</p>
+<A NAME="TI862"></A><h4>How the criteria affect the SELECT statement</h4>
+<A NAME="TI863"></A><p>Criteria specified by the user are added to the SELECT statement
+that originally defined the DataWindow object. </p>
+<A NAME="TI864"></A><p>For example, if the original SELECT statement was:<p><PRE> SELECT printer.rep, printer.quarter, printer.product, printer.units</PRE><PRE> FROM printer</PRE><PRE> WHERE printer.units &lt; 70</PRE></p>
+<A NAME="TI865"></A><p>and the following criteria are specified:</p>
+<br><img src="images/dadyn4.gif">
+<A NAME="TI866"></A><p>the new SELECT statement is:<p><PRE> SELECT printer.rep, printer.quarter, printer.product, printer.units</PRE><PRE> FROM printer</PRE><PRE> WHERE printer.units &lt; 70</PRE><PRE> AND (printer.quarter = 'Q1'</PRE><PRE> AND printer.product = 'Stellar'</PRE><PRE> OR printer.quarter = 'Q2')</PRE></p>
+<A NAME="TI867"></A><h4>Clearing selection criteria</h4>
+<A NAME="TI868"></A><p>To clear the selection criteria, Use the QueryClear property.</p>
+<A NAME="TI869"></A><p>In PowerBuilder:<p><PRE> <i>dw_1</i>.<i>Modify</i>("datawindow.queryclear=yes")</PRE></p>
+<A NAME="TI870"></A><p>In JavaScript:<p><PRE> <i>dw_1</i>.<i>Modify</i>("datawindow.queryclear=yes");</PRE></p>
+<A NAME="TI871"></A><h4>Sorting in query mode</h4>
+<A NAME="TI872"></A><p>You can allow users to sort rows in a DataWindow while specifying
+criteria in query mode using the QuerySort property. The following
+statement makes the first row in the DataWindow
+dedicated to sort criteria (just as in Quick Select in the DataWindow
+wizard).</p>
+<A NAME="TI873"></A><p>In PowerBuilder:<p><PRE> <i>dw_1</i>.<i>Modify</i>("datawindow.querysort=yes")</PRE></p>
+<A NAME="TI874"></A><p>In JavaScript:<p><PRE> <i>dw_1</i>.<i>Modify</i>("datawindow.querysort=yes");</PRE></p>
+<A NAME="TI875"></A><h4>Overriding column properties during query mode</h4>
+<A NAME="TI876"></A><p>By default, query mode uses edit styles and other definitions
+of the column (such as the number of allowable characters). If you
+want to override these properties during query mode and provide
+a standard edit control for the column, use the Criteria.Override_Edit
+property for each column.</p>
+<A NAME="TI877"></A><p>In PowerBuilder:<p><PRE> <i>dw_1</i>.<i>Modify</i>("<i>mycolumn</i>.criteria.override_edit=yes")</PRE></p>
+<A NAME="TI878"></A><p>In JavaScript:<p><PRE> <i>dw_1</i>.<i>Modify</i>("<i>mycolumn</i>.criteria.override_edit=yes");</PRE></p>
+<A NAME="TI879"></A><p>You can also specify this in the DataWindow painter by checking
+Override Edit on the General property page for the column. With
+properties overridden for criteria, users can specify any number
+of characters in a cell (they are not constrained by the number
+of characters allowed in the column in the database).</p>
+<A NAME="TI880"></A><h4>Forcing users to specify criteria for a column</h4>
+<A NAME="TI881"></A><p>You can force users to specify criteria for a column during
+query mode by coding the following:</p>
+<A NAME="TI882"></A><p>In PowerBuilder:<p><PRE> <i>dw_1</i>.<i>Modify</i>("<i>mycolumn</i>.criteria.required=yes")</PRE></p>
+<A NAME="TI883"></A><p>In JavaScript:<p><PRE> <i>dw_1</i>.<i>Modify</i>("<i>mycolumn</i>.criteria.required=yes");</PRE></p>
+<A NAME="TI884"></A><p>You can also specify this in the DataWindow painter by checking
+Equality Required on the General property page for the column. Doing
+this ensures that the user specifies criteria for the column and
+that the criteria for the column use = rather than other
+operators, such as &lt; or &gt;=.</p>
+

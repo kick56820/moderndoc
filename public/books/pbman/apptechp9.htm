@@ -1,0 +1,136 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+PowerBuilder techniques</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp8.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp10.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF355156086"></A><h1>PowerBuilder techniques</h1>
+<A NAME="TI107"></A><p>PowerBuilder provides full support for inheritance, encapsulation,
+and polymorphism in both visual and nonvisual objects.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Creating reusable objects</span> <A NAME="TI108"></A>In most cases, the person developing reusable objects is not
+the same person using the objects in applications. This discussion
+describes defining and creating reusable objects. It does not address
+usage.</p>
+<A NAME="TI109"></A><h4>Implementing inheritance</h4>
+<A NAME="TI110"></A><p>PowerBuilder makes it easy to create descendent objects. You
+implement inheritance in PowerBuilder by using a painter to inherit
+from a specified ancestor object.</p>
+<A NAME="TI111"></A><p>For examples of inheritance in visual objects,
+see the <b>w_employee</b> window and <b>u_employee_object</b> in
+the Code Examples sample application.</p>
+<p><b>Example of ancestor service object</b>   One example of using inheritance in custom class user objects
+is creating an ancestor service object that performs basic services
+and several descendent service objects. These descendent objects
+perform specialized services, as well as having access to the ancestor's services:</p>
+<A NAME="TI112"></A><caption><b>Figure 2-1: Ancestor service object</b></captionls>
+<br><img src="images/ltoop060.gif">
+<p><b>Example of virtual function in ancestor object</b>   Another example of using inheritance in custom class user
+objects is creating an ancestor object containing functions for
+all platforms and then creating descendent objects that perform
+platform-specific functions. In this case, the ancestor object contains a <strong>virtual
+function</strong> (<b>uf_change_dir</b> in
+this example) so that developers can create descendent objects using
+the ancestor's datatype.</p>
+<A NAME="TI113"></A><caption><b>Figure 2-2: Virtual function in ancestor object</b></captionls>
+<br><img src="images/ltoop080.gif">
+<A NAME="TI114"></A><p>For more on virtual functions, see <A HREF="apptechp10.htm#X-REF355062155">"Other techniques"</A>.</p>
+<A NAME="TI115"></A><h4>Implementing encapsulation</h4>
+<A NAME="TI116"></A><p>Encapsulation allows you to insulate your object's
+data, restricting access by declaring instance variables as private
+or protected. You then write object functions to provide selective
+access to the instance variables.</p>
+<p><b>One approach</b>   One approach to encapsulating processing and data is as follows:<A NAME="TI117"></A>
+<ul>
+<li class=fi>Define
+instance variables as public, private, or protected, depending on
+the desired degree of outside access. To ensure complete encapsulation,
+define instance variables as either private or protected.</li>
+<li class=ds>Define object functions to perform processing and
+provide access to the object's data.<A NAME="TI118"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-1: Defining object functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI119"></A>To do this</th>
+<th  rowspan="1"  ><A NAME="TI120"></A>Provide
+this function</th>
+<th  rowspan="1"  ><A NAME="TI121"></A>Example</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI122"></A>Perform processing</td>
+<td  rowspan="1"  ><A NAME="TI123"></A><b>uf_do_<i>operation</i></b></td>
+<td  rowspan="1"  ><A NAME="TI124"></A><b>uf_do_retrieve</b> (which
+retrieves rows from the database)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI125"></A>Modify instance variables</td>
+<td  rowspan="1"  ><A NAME="TI126"></A><b>uf_set_<i>variablename</i></b></td>
+<td  rowspan="1"  ><A NAME="TI127"></A><b>uf_set_style</b> (which
+modifies the is_style string variable)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI128"></A>Read instance variables</td>
+<td  rowspan="1"  ><A NAME="TI129"></A><b>uf_get_<i>variablename</i></b></td>
+<td  rowspan="1"  ><A NAME="TI130"></A><b>uf_get_style</b> (which
+returns the is_style string variable)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI131"></A>(Optional) Read boolean instance variables</td>
+<td  rowspan="1"  ><A NAME="TI132"></A><b>uf_is_<i>variablename</i></b></td>
+<td  rowspan="1"  ><A NAME="TI133"></A><b>uf_is_protected</b> (which
+returns the ib_protected boolean variable)</td>
+</tr>
+</table>
+
+</li>
+</ul>
+</p>
+<p><b>Another approach</b>   Another approach to encapsulating processing and data is to
+provide a single entry point, in which the developer specifies the
+action to be performed:<A NAME="TI134"></A>
+<ul>
+<li class=fi>Define <i>instance
+variables</i> as private or protected, depending on the desired degree
+of outside access</li>
+<li class=ds>Define private or protected <i>object functions</i> to
+perform processing</li>
+<li class=ds>Define a single <i>public function</i> whose
+arguments indicate the type of processing to perform<A NAME="TI135"></A><caption><b>Figure 2-3: Defining a public function for encapsulation</b></captionls>
+<br><img src="images/ltoop120.gif">
+
+</li>
+</ul>
+</p>
+<A NAME="TI136"></A><p>For an example, see the <b>uo_sales_order</b> user
+object in the Code Examples sample application.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Distributed components</span> <A NAME="TI137"></A>When you generate an <ABBR title = "e a server" >EAServer</ABBR> or
+COM/COM+ component in the Project painter, public
+functions are available in the interface of the generated component
+and you can choose to make public instance variables available. Private
+and protected functions and variables are never exposed in the interface of
+the generated component.</p>
+<A NAME="TI138"></A>For more information, see Part 6, "Distributed Application
+Techniques."</p>
+<A NAME="TI139"></A><h4>Implementing polymorphism</h4>
+<A NAME="TI140"></A><p>Polymorphism refers to a programming language's ability
+to process objects differently depending on their datatype or class.
+Polymorphism means that functions with the same name behave differently
+depending on the referenced object. Although there is some discussion
+over an exact definition for polymorphism, many people find it helpful
+to think of it as follows:</p>
+<p><b>Operational polymorphism</b>   Separate, unrelated objects define functions with the same
+name. Each function performs the appropriate processing for its object
+type:</p>
+<A NAME="TI141"></A><caption><b>Figure 2-4: Operational polymorphism</b></captionls>
+<br><img src="images/ltoop020.gif">
+<A NAME="TI142"></A><p>For an example, see the <b>u_external_functions</b> user
+object and its descendants in the Code Examples sample application.</p>
+<p><b>Inclusional polymorphism</b>   Various objects in an inheritance chain define functions with
+the same name. </p>
+<A NAME="TI143"></A><p>With inclusional polymorphism PowerBuilder determines which
+version of a function to execute, based on where the current object
+fits in the inheritance hierarchy. When the object is a descendant,
+PowerBuilder executes the descendent version of the function, overriding
+the ancestor version:</p>
+<A NAME="TI144"></A><caption><b>Figure 2-5: Inclusional polymorphism</b></captionls>
+<br><img src="images/ltoop040.gif">
+<A NAME="TI145"></A><p>For an example, see the <b>u_employee_object</b> user
+object in the Code Examples sample application.</p>
+

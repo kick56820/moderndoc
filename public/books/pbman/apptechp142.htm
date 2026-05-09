@@ -1,0 +1,447 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Accessing a database from an EAServer component</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp141.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp143.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJCEGFE"></A><h1>Accessing a database from an EAServer component</h1>
+<A NAME="TI4642"></A><h4>Database connectivity</h4>
+<A NAME="TI4643"></A><p>You can
+access a database from an <ABBR title = "e a server" >EAServer</ABBR> component.
+If you want to take advantage of <ABBR title = "e a servers" >EAServer's</ABBR> support
+for connection pooling and transaction management, you need to use
+one of the database interfaces supported by <ABBR title = "e a server" >EAServer</ABBR> to
+connect to your database. For more information about <ABBR title = "e a server" >EAServer</ABBR> database connections for
+components developed in PowerBuilder, see <i>Connecting to
+Your Database</i>
+.</p>
+<A NAME="BABCBHHC"></A><h4>Using DataStores</h4>
+<A NAME="TI4644"></A><p><ABBR title = "e a server" >EAServer</ABBR> components developed in
+PowerBuilder can use <strong>DataStores</strong> to interact
+with the database. DataStores are nonvisual DataWindow controls. DataStores
+act just like DataWindow controls except that they do not have visual
+attributes.</p>
+<A NAME="TI4645"></A><p>DataStores can be useful in a distributed application: they
+give you the ability to perform database processing on a remote
+server instead of on each client machine.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>RichText presentation style is not supported</span> <A NAME="TI4646"></A>A server component
+cannot contain a DataStore that has a DataWindow object that uses
+the RichText presentation style. Rich text processing is not supported in
+distributed applications.</p>
+<A NAME="TI4647"></A><h4>Sharing data between the server and the client</h4>
+<A NAME="TI4648"></A><p>If you want to provide a visual interface to the data retrieved
+on the server, include a window in the client that has a DataWindow
+control. Whenever data is retrieved on the server, refresh the DataWindow
+control to show the result set for the DataStore on the server.
+Similarly, whenever the user makes modifications to the data on
+the client, refresh the contents of the DataStore on the server
+to reflect the current state of the DataWindow control on the client.</p>
+<A NAME="TI4649"></A><p>To share data between a client and a server, synchronize the
+server DataStore and the client DataWindow control programmatically.
+If you want your application to handle database updates, this involves
+moving the DataWindow data buffers and status flags back and forth
+between the client and the server. </p>
+<A NAME="TI4650"></A><p>For more information about synchronizing a server DataStore
+with a client DataWindow, see <A HREF="apptechp142.htm#CAICFEII">"Performing
+updates"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>ShareData function is not supported in distributed
+applications</span> <A NAME="TI4651"></A>You cannot use the <b>ShareData</b> function to
+share data between a DataWindow control on a client and a DataStore
+on a server.</p>
+<A NAME="CCJBEHAG"></A><h2>Using connection caching</h2>
+<A NAME="TI4652"></A><h4>Benefits of connection caching</h4>
+<A NAME="TI4653"></A><p>To optimize database processing, <ABBR title = "e a server" >EAServer</ABBR> provides
+support for <strong>connection caching</strong>. Connection
+caching allows <ABBR title = "e a server" >EAServer</ABBR> components
+to share pools of preallocated connections to a remote database
+server, avoiding the overhead imposed when each instance of a component
+creates a separate connection. By establishing a connection cache,
+a server can reuse connections made to the same data source.</p>
+<A NAME="TI4654"></A><h4>How it works</h4>
+<A NAME="TI4655"></A><p>Ordinarily, when a PowerBuilder application connects to a
+database, PowerBuilder physically terminates each database connection
+for which a <b>DISCONNECT</b> statement is issued. By
+contrast, when a PowerBuilder component uses an <ABBR title = "e a server" >EAServer</ABBR> connection cache, <ABBR title = "e a server" >EAServer</ABBR> logically terminates the
+database connection but does not physically remove the connection. Instead,
+the database connection is kept open in the connection cache so
+that it can be reused for other database operations.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Do not disconnect in destructor event</span> <A NAME="TI4656"></A><ABBR title = "e a server" >EAServer</ABBR> releases all connection
+handles to the cache when a transaction is completed or when the
+component is deactivated. If you place a <b>DISCONNECT</b> statement
+in the destructor event, which is triggered after the deactivate
+event, the connection has already been logically terminated and
+the <b>DISCONNECT</b> causes a physical termination. <b>DISCONNECT</b> statements
+can be placed in the deactivate event.</p>
+<A NAME="TI4657"></A><p>All connections in a cache must share a common user name,
+password, server name, and connectivity library.</p>
+<A NAME="TI4658"></A><h4>Accessing a cache by user</h4>
+<A NAME="TI4659"></A><p>If you want to retrieve a connection from the cache that uses
+a specified set of user name, password, server, and connectivity
+library values, you do not need to modify your database access code
+to enable it to use the cache. You simply need to create a new cache
+in EAServer Manager that has the database connection properties
+(user name, password, server name, and connectivity library) required
+by the component. At runtime, when the component tries to connect
+to the database, <ABBR title = "e a server" >EAServer</ABBR> automatically
+returns a connection from the cache that matches the connection
+values requested by the component. </p>
+<A NAME="TI4660"></A><h4>Accessing a cache by name</h4>
+<A NAME="TI4661"></A><p>If you want to retrieve a connection from a cache by specifying
+the cache name, set the <strong>CacheName</strong> DBParm
+to identify the cache you want to use. Accessing a cache by name
+allows you to change the user name, password, or server in EAServer Manager
+without requiring corresponding changes to your component source
+code.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Enabling cache-by-name access</span> <A NAME="TI4662"></A>To access a cache by name, select the Enable Cache-By-Name
+Access option for the cache in EAServer Manager. By default, this
+option is not selected. </p>
+<A NAME="TI4663"></A>To enable cache-by-name access, you need jagadmin rights.</p>
+<A NAME="TI4664"></A><p>This code for a PowerBuilder component shows how to access
+a cache by name:<p><PRE> SQLCA.DBMS = "ODBC"<br>SQLCA.Database = "EAS Demo DB"<br>SQLCA.AutoCommit = FALSE<br>SQLCA.DBParm = "ConnectString='DSN=EAS Demo DB;<br>   UID=dba;PWD=sql',CacheName='mycache'"</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Cache names are case-sensitive</span> <A NAME="TI4665"></A>Cache names are case-sensitive; therefore, make sure the case
+of the cache name you specify in your script matches the case used
+for the name in <ABBR title = "e a server" >EAServer</ABBR>.</p>
+<A NAME="TI4666"></A><h4>Retrieving a connection by proxy</h4>
+<A NAME="TI4667"></A><p>Regardless of whether you access a cache by user or name,
+you can retrieve a connection by proxy. Retrieving a connection
+by proxy means that you can assume the identity and privileges of
+another user by providing an alternative login name.</p>
+<A NAME="TI4668"></A><p>This feature can be used with any database that recognizes
+the SQL command <strong>set session authorization</strong>.
+In order for user A to use the ProxyUserName DBParm to assume the
+identity of another user B, user A must have permission to execute
+this statement. For example, for ASA, user A must have DBA authority,
+and for ASE, user A must have been granted permission to execute <b>set
+session authorization</b> by a System Security Officer.</p>
+<A NAME="TI4669"></A><p>For more information about the PowerBuilder database interfaces
+that support proxy connections, see <i>Connecting to Your
+Database</i>
+. </p>
+<A NAME="TI4670"></A><p>To use proxy connections, set the <strong>ProxyUserName</strong> DBParm
+to identify the alternative login name. This example shows how to
+retrieve a connection by proxy:<p><PRE> SQLCA.DBMS = "ODBC"<br>SQLCA.DBParm = "CacheName='MyEAServerCache',<br>   UseContextObject='Yes',ProxyUserName='pikachu'"</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Before you can use a connection by proxy </span> <A NAME="TI4671"></A>Set-proxy support must be enabled in the cache properties
+file before components can take advantage of it. <ABBR title = "e a server" >EAServer</ABBR> Manager does not automatically
+create an individual cache properties file when you create a cache,
+so you must create this file manually. Name the file <i>cachename.props</i> and
+put it in the <i>EAServer\Repository\ConnCache</i> directory.
+Once you have created the cache properties file, add the following
+line: <p><PRE> com.sybase.jaguar.conncache.ssa=true</PRE></p>
+<A NAME="TI4672"></A>For this setting to take effect, you must refresh <ABBR title = "e a server" >EAServer</ABBR>. For more information on
+managing connection caches, see the <i>EAServer System Administration
+Guide</i>
+. </p>
+<A NAME="TI4673"></A>You must also set up your database server to recognize and
+give privileges to the alternative login name defined in the ProxyUserName
+DBParm. </p>
+<A NAME="TI4674"></A><h4>What happens when all connections are in use</h4>
+<A NAME="TI4675"></A><p>You can control what happens if all connections in a cache
+are in use. To do this, set the <strong>GetConnectionOption</strong> DBParm
+to one of the following values:</p>
+<A NAME="TI4676"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI4677"></A>Value</th>
+<th  rowspan="1"  ><A NAME="TI4678"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4679"></A>JAG_CM_NOWAIT</td>
+<td  rowspan="1"  ><A NAME="TI4680"></A>Causes the attempt to connect to fail
+with an error if no connection can be returned.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4681"></A>JAG_CM_WAIT</td>
+<td  rowspan="1"  ><A NAME="TI4682"></A>Causes the component to wait until a
+connection becomes available.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4683"></A>JAG_CM_FORCE</td>
+<td  rowspan="1"  ><A NAME="TI4684"></A>Allocates and opens a new connection.
+The new connection is not cached and is destroyed when it is no longer
+needed.</td>
+</tr>
+</table>
+<A NAME="TI4685"></A><p>By default, PowerBuilder uses JAG_CM_FORCE.</p>
+<A NAME="TI4686"></A><h4>What happens when a connection is released</h4>
+<A NAME="TI4687"></A><p>You can also control what happens when a connection is released.
+To do this, set the <strong>ReleaseConnectionOption</strong> DBParm
+to one of the following values:</p>
+<A NAME="TI4688"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI4689"></A>Value</th>
+<th  rowspan="1"  ><A NAME="TI4690"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4691"></A>JAG_CM_DROP</td>
+<td  rowspan="1"  ><A NAME="TI4692"></A>Closes and deallocates the connection.
+If the connection came from a cache, a new connection is created
+in its place. Use JAG_CM_DROP to destroy a connection
+when errors have made it unusable.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4693"></A>JAG_CM_UNUSED</td>
+<td  rowspan="1"  ><A NAME="TI4694"></A>If the connection was taken from a cache,
+it is placed back in the cache. A connection created outside of
+a cache is closed and destroyed.</td>
+</tr>
+</table>
+<A NAME="TI4695"></A><p>By default, PowerBuilder uses JAG_CM_UNUSED. </p>
+<A NAME="CHDDIEHC"></A><h4>EAServer connection caches
+for Unicode support</h4>
+<A NAME="TI4696"></A><p>The following EAServer native connection caches support Unicode connections
+for PowerBuilder components:<A NAME="TI4697"></A>
+<ul>
+<li class=fi>OCI_9U &#8211; Oracle9<i>i</i> Unicode
+Cache</li>
+<li class=ds>ODBCU &#8211; ODBC Unicode Cache
+</li>
+</ul>
+</p>
+<A NAME="TI4698"></A><p>These connection cache types accept Unicode connection parameters
+and then send a request to the database driver to open a Unicode
+connection to the database. With a Unicode connection, PowerBuilder
+components can communicate with the database using Unicode.</p>
+<A NAME="TI4699"></A><p>If you are using the Oracle9<i>i</i> native
+interface (O90) to access an Oracle9<i>i</i> database
+in a PowerBuilder component in EAServer, use the database driver type
+OCI_9U for the connection cache. If you do not, access
+will fail.</p>
+<A NAME="TI4700"></A><p>For an ODBC connection cache, use the database driver type
+ODBCU to access multiple-language data in an ASA Unicode database
+or DBCS data in an ASA DBCS database and set the database parameter
+ODBCU_CONLIB to 1. For example:<p><PRE> SQLCA.DBParm = "CacheName='EASDemo_u',<br>   UseContextObject='Yes',ODBCU_CONLIB=1"</PRE></p>
+<A NAME="TI4701"></A><h2>Performing retrieval operations</h2>
+<A NAME="TI4702"></A><p>To use a DataStore to perform retrieval operations, you first
+need to create an instance of the DataStore object in a script and
+assign the DataWindow object to the DataStore. Then set the Transaction
+object for the DataStore. Once these setup steps have been performed,
+you can retrieve data into the DataStore, print the contents of
+the DataStore, or perform other processing against a retrieved result
+set.</p>
+<A NAME="TI4703"></A><h3>Example: passing an array by reference</h3>
+<A NAME="TI4704"></A><h4>Description</h4>
+<A NAME="TI4705"></A><p>This example demonstrates the use of a DataStore to retrieve
+data in a server component. The server component <b>uo_customers</b> has
+a function called <b>retrieve_custlist</b>. <b>retrieve_custlist</b> generates
+an instance of the DataStore <b>ds_datastore</b> and
+then uses this DataStore to retrieve all of the rows in the Customer
+table. Once the data has been retrieved, <b>retrieve_custlist</b> passes
+the data back to the client application.</p>
+<A NAME="TI4706"></A><h4>Function declaration</h4>
+<A NAME="TI4707"></A><p>The <b>retrieve_custlist</b> function
+has an argument called <b>customers</b>, which is defined
+as an array based on the structure <b>st_custlist</b>.
+The structure <b>st_custlist</b> has the
+same layout as <b>d_custlist</b>, the DataWindow
+object used to access the database. The return value for <b>retrieve_custlist</b>,
+which is used to return the number of rows retrieved, is of type <b>Long</b>.</p>
+<A NAME="TI4708"></A><p>Here is the signature of the <b>retrieve_custlist</b> function:<p><PRE>retrieve_custlist( REF st_custlist customers [] ) returns long</PRE></p>
+</p>
+<A NAME="TI4709"></A><h4>Script</h4>
+<A NAME="TI4710"></A><p>Here is the script for the <b>retrieve_custlist</b> function:<p><PRE> datastore ds_datastore<br>long ll_rowcount<br> <br>ds_datastore = create datastore<br>ds_datastore.dataobject = "d_custlist"<br>ds_datastore.SetTransObject (SQLCA)<br> <br>IF ds_datastore.Retrieve() &lt;&gt; -1 THEN<br>   ll_rowcount = ds_datastore.RowCount()<br>END IF<br> <br>customers = ds_datastore.object.data<br>destroy ds_datastore<br> <br>return ll_rowcount</PRE></p>
+<A NAME="TI4711"></A><p>At the conclusion of processing, the function <b>retrieve_custlist</b> destroys
+the DataStore and returns the number of rows retrieved back to the
+client.</p>
+<A NAME="CAICFEII"></A><h2>Performing updates</h2>
+<A NAME="TI4712"></A><h4>DataWindow synchronization</h4>
+<A NAME="TI4713"></A><p>In a conventional
+client/server application, where database updates are initiated
+by a single application running on a client machine, PowerBuilder
+can manage DataWindow state information for you automatically. In
+a distributed application, the situation is somewhat different.
+Because application components are partitioned between the client
+and the server, you need to write logic to ensure that the data
+buffers and status flags for the DataWindow control on the client
+are synchronized with those for the DataStore on the server.</p>
+<A NAME="TI4714"></A><p>PowerBuilder provides four functions for synchronizing DataWindows
+and DataStores in a distributed application:<A NAME="TI4715"></A>
+<ul>
+<li class=fi><b>GetFullState</b></li>
+<li class=ds><b>SetFullState</b></li>
+<li class=ds><b>GetChanges</b></li>
+<li class=ds><b>SetChanges</b>
+</li>
+</ul>
+</p>
+<A NAME="TI4716"></A><p>Although these functions are most useful in distributed applications,
+they can also be used in nondistributed applications where multiple
+DataWindows (or DataStores) must be synchronized.</p>
+<A NAME="TI4717"></A><h4>Moving DataWindow buffers and status flags</h4>
+<A NAME="TI4718"></A><p>To synchronize a DataWindow control on the client with a DataStore
+on the server, move the DataWindow data buffers and status flags
+back and forth between the client and the server whenever changes
+occur. The procedures for doing this are essentially the same whether
+the source of the changes resides on the client or the server.</p>
+<A NAME="TI4719"></A><p>To apply <i>complete state information</i> from
+one DataWindow (or DataStore) to another, you need to:<A NAME="TI4720"></A>
+<ol>
+</li>
+<li class=ds>Invoke the <b>GetFullState</b> function
+to capture the current state of the source DataWindow.</li>
+<li class=ds>Invoke the <b>SetFullState</b> function
+to apply the state of the source DataWindow to the target.
+</li>
+</ol>
+</p>
+<A NAME="TI4721"></A><p>To apply <i>changes</i> from one DataWindow
+(or DataStore) to another, you need to:<A NAME="TI4722"></A>
+<ol>
+</li>
+<li class=ds>Invoke the <b>GetChanges</b> function
+to capture changes from the source DataWindow.</li>
+<li class=ds>Invoke the <b>SetChanges</b> function
+to apply changes from the source DataWindow to the target.
+</li>
+</ol>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>SetChanges can be applied to an empty DataWindow</span> <A NAME="TI4723"></A>You can call <b>SetChanges</b> to apply changes
+to an empty DataWindow (or DataStore). The target DataWindow does
+not need to contain a result set from a previous retrieval operation.
+However, the DataWindow must have access to the DataWindow definition.
+This means that you need to assign the DataWindow object to the
+target DataWindow before calling <b>SetChanges</b>. </p>
+<A NAME="TI4724"></A><h4>DataWindow state is stored in blobs </h4>
+<A NAME="TI4725"></A><p>When you call <b>GetFullState</b> or <b>GetChanges</b>,
+PowerBuilder returns DataWindow state information in a <b>Blob</b>.
+The <b>Blob</b> returned from <b>GetFullState</b> provides
+everything required to recreate the DataWindow, including the data buffers,
+status flags, and complete DataWindow specification. The <b>Blob</b> returned
+from <b>GetChanges</b> provides data buffers and status
+flags for changed and deleted rows only. </p>
+<A NAME="TI4726"></A><h4>Synchronizing after Update</h4>
+<A NAME="TI4727"></A><p>By default, the <b>Update</b> function resets
+the update flags after a successful update. Therefore, when you
+call the <b>Update</b> function on the server, the status flags
+are automatically reset for the server DataStore. However, the update flags
+for the corresponding client DataWindow control are <i>not</i> reset.
+Therefore, if the <b>Update</b> function on the server
+DataStore succeeds, call <b>ResetUpdate</b> on the client
+DataWindow to reset the flags.</p>
+<A NAME="TI4728"></A><h4>One source, one target</h4>
+<A NAME="TI4729"></A><p>You can synchronize a single source DataWindow (or DataStore)
+with a single target DataWindow (or DataStore). <i>Do not
+try to synchronize a single source with multiple targets, or vice
+versa.</i></p>
+<A NAME="TI4730"></A><h3>Typical usage scenario</h3>
+<A NAME="TI4731"></A><p>Suppose the server has a component that uses a DataStore called <b>DS_1</b>.
+This DataStore is the source of data for a target DataWindow called <b>DW_1</b> on
+the client. In the Activate event, the component connects to the
+database, creates a DataStore, and assigns the DataWindow object
+to the DataStore.</p>
+<A NAME="TI4732"></A><p>In one of its methods, the server component issues a <b>Retrieve</b> function
+for <b>DS_1</b>, calls <b>GetFullState</b> on <b>DS_1</b>,
+and then passes the resulting <b>Blob</b> to the client.
+Because the component's Automatic Demarcation/Deactivation
+setting is disabled, it also calls <b>SetComplete</b> before
+the method returns to cause the component instance to be deactivated.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If Automatic Demarcation/Deactivation were
+enabled</span> <A NAME="TI4733"></A>If the Automatic Demarcation/Deactivation setting
+were enabled for the component, it would not need to call <b>SetComplete</b> after
+the retrieval because the component instance would automatically
+be deactivated when the method finished execution.</p>
+<A NAME="TI4734"></A><p>Once the client has the DataWindow <b>Blob</b>,
+it calls <b>SetFullState</b> to apply the state information
+from the <b>Blob</b> to <b>DW_1</b>.
+At this point, the user can insert new rows in <b>DW_1</b> and
+change or delete some of the existing rows. When the user makes an
+update request, the client calls <b>GetChanges</b> and
+invokes another component method that passes the resulting <b>Blob</b> back
+to the server. The component method then calls <b>SetChanges</b> to
+apply the changes from <b>DW_1</b> to <b>DS_1</b>.
+After synchronizing <b>DS_1</b> with <b>DW_1</b>,
+the server component updates the database and calls <b>SetComplete</b> or <b>SetAbort</b> to
+indicate whether the update was successful.</p>
+<A NAME="TI4735"></A><p>If the update was successful, the client calls <b>ResetUpdate</b> to
+reset the status flags on the client DataWindow.</p>
+<A NAME="TI4736"></A><caption><b>Figure 24-1: Update processing example</b></captionls>
+<br><img src="images/jagcmp1.gif">
+<A NAME="TI4737"></A><p>After the completion of the first update operation, the client
+and server can pass change <b>Blob</b> results (rather
+than complete state information) back and forth to handle subsequent
+updates. From this point on, the update process is an iterative
+cycle that begins with Step 7 and concludes with Step 14.</p>
+<A NAME="TI4738"></A><h3>Example</h3>
+<A NAME="TI4739"></A><p>The following example shows how you might synchronize DataWindows between
+a PowerBuilder client and an <ABBR title = "e a server" >EAServer</ABBR> component.
+This example uses a stateless component. </p>
+<A NAME="TI4740"></A><h4>Client window definition</h4>
+<A NAME="TI4741"></A><p>Suppose the client has a window called <b>w_employee</b> that
+has buttons that allow the user to retrieve and update data. The
+Retrieve button on the client window has the following script:<p><PRE> // Global variable:<br>// connection myconnect<br>// Instance variable:<br>// uo_employee iuo_employee<br> <br>blob lblb_data<br>long ll_rv<br> <br>myconnect.CreateInstance(iuo_employee)<br>iuo_employee.RetrieveData(lblb_data)<br> <br>ll_rv = dw_employee.SetFullState(lblb_data)<br> <br>if ll_rv = -1 then<br>   MessageBox("Error", "SetFullState call failed!")<br>end if</PRE></p>
+<A NAME="TI4742"></A><p>The Update button on the client window has the following script:<p><PRE> blob lblb_data<br>long ll_rv<br> <br>ll_rv = dw_employee.GetChanges(lblb_data)<br> <br>if ll_rv = -1 then<br>   MessageBox("Error", "GetChanges call failed!")<br>else<br>   if iuo_employee.UpdateData(lblb_data) = 1 then &amp;<br>      dw_employee.ResetUpdate()<br>end if</PRE></p>
+<A NAME="TI4743"></A><h4>Server object definition</h4>
+<A NAME="TI4744"></A><p>The server has an object called <b>uo_employee</b> that
+has the following functions:<A NAME="TI4745"></A>
+<ul>
+<li class=fi><b>RetrieveData</b></li>
+<li class=ds><b>UpdateData</b>
+</li>
+</ul>
+</p>
+<A NAME="TI4746"></A><h4>Instance variables</h4>
+<A NAME="TI4747"></A><p>The <b>uo_employee</b> object has these
+instance variables:<p><PRE> protected TransactionServer ts<br>protected DataStore ids_datastore</PRE></p>
+<A NAME="TI4748"></A><h4>Activate</h4>
+<A NAME="TI4749"></A><p>The Activate event for the <b>uo_employee</b> object
+instantiates the TransactionServer service. In addition, it connects
+to the database and creates the DataStore that will be used to access
+the database:<p><PRE> this.GetContextService("TransactionServer", ts)<br>SQLCA.DBMS="ODBC"<br>SQLCA.DBParm="ConnectString=<br>   'DSN=EAS Demo DB;UID=dba;PWD=sql',<br>   UseContextObject='Yes'"<br>CONNECT USING SQLCA;<br>IF SQLCA.SQLCode &lt; 0 THEN<br>   //Handle the error<br>END IF<br>ids_datastore = CREATE datastore<br>ids_datastore.dataobject = "d_emplist"<br>ids_datastore.SetTransObject (SQLCA)</PRE></p>
+<A NAME="TI4750"></A><h4>Script for the RetrieveData function</h4>
+<A NAME="TI4751"></A><p>The <b>RetrieveData</b> function takes an argument
+called <b>ablb_data</b>, which is a <b>Blob</b> passed
+by reference. The function returns a <b>Long</b> value. </p>
+<A NAME="TI4752"></A><p>Here is the script for the <b>RetrieveData</b> function:<p><PRE> long ll_rv<br>ids_datastore.Retrieve()<br>ll_rv = ids_datastore.GetFullState(ablb_data)<br>ts.SetComplete()<br>return ll_rv</PRE></p>
+<A NAME="TI4753"></A><h4>Script for the UpdateData function</h4>
+<A NAME="TI4754"></A><p>The <b>UpdateData</b> function takes an argument
+called <b>ablb_data</b>, which is a <b>Blob</b> passed
+by reference. The function returns a <b>Long</b> value. </p>
+<A NAME="TI4755"></A><p>Here is the script for the <b>UpdateData</b> function:<p><PRE> long ll_rv<br>if ids_datastore.SetChanges(ablb_data) = 1 then<br>   ll_rv = ids_datastore.Update()<br>end if <br>if ll_rv = 1 then<br>   ts.SetComplete()<br>else<br>   ts.SetAbort()<br>end if<br>return ll_rv</PRE></p>
+<A NAME="TI4756"></A><h4>Deactivate</h4>
+<A NAME="TI4757"></A><p>The Deactivate event for the <b>uo_employee</b> object
+destroys the DataStore and disconnects from the database:<p><PRE> DESTROY ids_datastore<br>DISCONNECT USING SQLCA;</PRE></p>
+<A NAME="BABBEEFI"></A><h2>Passing result sets</h2>
+<A NAME="TI4758"></A><p>PowerBuilder provides two system objects to handle getting
+result sets from components running in <ABBR title = "e a server" >EAServer</ABBR> and
+returning result sets from PowerBuilder user objects running as <ABBR title = "e a server" >EAServer</ABBR> components. These system
+objects, ResultSet and ResultSets, are designed to simplify the
+conversion of transaction server result sets to and from DataStore
+objects and do not contain any state information. They are not designed
+to be used for database updates. You use the <b>CreateFrom</b> and <b>GenerateResultSet</b> functions
+on the DataStore object to convert the result sets stored in these
+objects to and from DataStore objects. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About GenerateResultSet</span> <A NAME="TI4759"></A><b>GenerateResultSet</b> has an alternative syntax
+used for returning a Tabular Data Stream result set when using MASP
+(Method as Stored Procedure) with <ABBR title = "e a server" >EAServer</ABBR>.
+For more information, see the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI4760"></A><p>Component methods that return result sets use the TabularResults
+module. Single result sets are returned as TabularResults::ResultSet
+structures. Multiple result sets are returned as a sequence of ResultSet
+structures using the TabularResults::ResultSets datatype. </p>
+<A NAME="TI4761"></A><h4>Accessing result sets in <ABBR title = "e a server" >EAServer</ABBR> components
+from PowerBuilder clients</h4>
+<A NAME="TI4762"></A><p>When you generate an <ABBR title = "e a server" >EAServer</ABBR> proxy
+object in PowerBuilder for an <ABBR title = "e a server" >EAServer</ABBR> component
+method that returns TabularResults::ResultSet, the method on the
+proxy object returns a PowerBuilder ResultSet object. Methods that
+return multiple result sets return a PowerBuilder ResultSets object. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Viewing proxies in the Browser</span> <A NAME="TI4763"></A>You can view the properties and methods of <ABBR title = "e a server" >EAServer</ABBR> proxy objects on the Proxy
+tab in the PowerBuilder Browser.</p>
+<A NAME="TI4764"></A>For example, the Sybase Virtual University sample SVUBookstore
+component has several methods that return a TabularResults::ResultSet
+value. When you create an <ABBR title = "e a server" >EAServer</ABBR> proxy
+object for the component, this is how the <b>GetMajors</b> method
+displays as a PowerBuilder user object function in the Browser:<p><PRE>SVUBookStore.GetMajors ( ) returns ResultSet</PRE></p>
+</p>
+<A NAME="TI4765"></A><p>You can access the result set from a PowerBuilder client by
+creating an instance of the component, calling the method, and then
+using the result set to populate a DataStore object with the <b>CreateFrom</b> function. </p>
+<A NAME="TI4766"></A><p>This example creates an instance of the SVUBookstore component
+and calls the <b>GetMajors</b> method:<p><PRE> SVUBookstore lcst_mybookstore<br>resultset lrs_resultset<br>datastore ds_local<br>integer li_rc<br> <br>// myconnect is a Connection object<br>li_rc = myconnect.CreateInstance(lcst_mybookstore)<br>IF li_rc &lt;&gt; 0 THEN<br>   MessageBox("Create Instance", string(li_rc) )<br>   myconnect.DisconnectServer()<br>   RETURN<br>END IF<br> <br>lrs_resultset = lcst_mybookstore.GetMajors()<br>ds_local = CREATE datastore<br>ds_local.CreateFrom(lrs_resultset)</PRE></p>
+<A NAME="BEIDCEJD"></A><h4>Returning result sets from <ABBR title = "e a server" >EAServer</ABBR> components</h4>
+<A NAME="TI4767"></A><p>To pass or return result sets from a PowerBuilder user object
+that will be deployed to <ABBR title = "e a server" >EAServer</ABBR>,
+set the datatype of a function's argument or return value to
+ResultSet (for a single result set) or ResultSets (for multiple
+result sets). When the user object is deployed as an <ABBR title = "e a server" >EAServer</ABBR> component, the ResultSet and
+ResultSets return values are represented in the IDL interface of
+the component as TabularResults::ResultSet and TabularResults::ResultSets datatypes. </p>
+<A NAME="TI4768"></A><p>In this example, a DataStore object is created and data is
+retrieved into it, and then the <b>GenerateResultSet</b> function
+is used to create a result set that can be returned to a client:<p><PRE> datastore ds_datastore<br>resultset lrs_resultset<br>integer li_rc<br> <br>ds_datastore = create datastore<br>ds_datastore.dataobject = "d_empdata"<br>ds_datastore.SetTransObject (SQLCA)<br>IF ds_datastore.Retrieve() = -1 THEN<br>   // report error and return<br>END IF<br>li_rc = ds_datastore.generateresultset(lrs_resultset)<br>IF li_rc &lt;&gt; 1 THEN<br>   // report error and return<br>END IF<br>return lrs_resultset</PRE></p>
+

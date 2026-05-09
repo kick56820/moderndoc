@@ -1,0 +1,224 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating accessible software applications with PowerBuilder</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp242.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp244.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CEGBAEHH"></A><h1>Creating accessible software applications with PowerBuilder</h1>
+<A NAME="TI7338"></A><h4>MSAA standard</h4>
+<A NAME="TI7339"></A><p>PowerBuilder provides the infrastructure and properties needed
+to build accessibility features into your Windows and Web applications.
+Its features allow applications to conform generally to Microsoft
+Active Accessibility (MSAA) Version
+2. MSAA is a Windows standard that defines the way accessibility
+aids obtain information about user interface elements and the way programs
+expose information to the aids. </p>
+<A NAME="TI7340"></A><p>PowerBuilder standard controls support all required Microsoft
+Active Accessibility properties as
+listed in the following table:</p>
+<A NAME="TI7341"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 36-1: MSAA properties and PowerBuilder support</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7342"></A>Microsoft Active Accessibility
+property</th>
+<th  rowspan="1"  ><A NAME="TI7343"></A>PowerBuilder property support</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7344"></A>Name</td>
+<td  rowspan="1"  ><A NAME="TI7345"></A>objectname.AccessibleName<A NAME="TI7346"></A><p>Some controls support the Name setting through the Text or
+Title property. For all controls, Name is customizable through the
+AccessibleName property.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7347"></A>Role</td>
+<td  rowspan="1"  ><A NAME="TI7348"></A>objectname.AccessibleRole<A NAME="TI7349"></A><p>Customizable through the AccessibleRole property.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7350"></A>State</td>
+<td  rowspan="1"  ><A NAME="TI7351"></A>Default Active Accessibility support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7352"></A>Location</td>
+<td  rowspan="1"  ><A NAME="TI7353"></A>Default Active Accessibility support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7354"></A>Parent</td>
+<td  rowspan="1"  ><A NAME="TI7355"></A>Default Active Accessibility support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7356"></A>ChildCount</td>
+<td  rowspan="1"  ><A NAME="TI7357"></A>Default Active Accessibility support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7358"></A>Keyboard Shortcut</td>
+<td  rowspan="1"  ><A NAME="TI7359"></A>Default Active Accessibility support
+for "&amp;" access key of the Text property<A NAME="TI7360"></A><p>Also, PowerBuilder Accelerator property setting if applicable
+to the control.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7361"></A>DefaultAction</td>
+<td  rowspan="1"  ><A NAME="TI7362"></A>Default Active Accessibility support <A NAME="TI7363"></A><p>(For example, a selected check box has a default action of
+uncheck.)</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7364"></A>Value</td>
+<td  rowspan="1"  ><A NAME="TI7365"></A>Default Active Accessibility support<A NAME="TI7366"></A><p>(For example, a selected check box has the value checked.)</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7367"></A>Children</td>
+<td  rowspan="1"  ><A NAME="TI7368"></A>Default Active Accessibility support<A NAME="TI7369"></A><p>(For example, items in a list box.)</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7370"></A>Focus</td>
+<td  rowspan="1"  ><A NAME="TI7371"></A>Default Active Accessibility support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7372"></A>Selection</td>
+<td  rowspan="1"  ><A NAME="TI7373"></A>Default Active Accessibility support</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7374"></A>Description</td>
+<td  rowspan="1"  ><A NAME="TI7375"></A>objectname.AccessibleDescription <A NAME="TI7376"></A><p>Customizable through the AccessibleDescription property.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7377"></A>Help</td>
+<td  rowspan="1"  ><A NAME="TI7378"></A>Not supported</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7379"></A>HelpTopic</td>
+<td  rowspan="1"  ><A NAME="TI7380"></A>Not supported</td>
+</tr>
+</table>
+<A NAME="TI7381"></A><h4>Visual controls</h4>
+<A NAME="TI7382"></A><p>For PowerBuilder
+visual controls that inherit from DragObject, you can manipulate
+the IAccessible Name, Role, and Description properties of each control
+by using PowerBuilder dot notation or the Other page in the Properties view
+of the painters. You can also manipulate the IAccessible property KeyboardShortcut
+using PowerBuilder properties wherever the ampersand in text property
+and accelerator property are supported. Other IAccessible properties
+are set automatically using Active Accessibility default support. (For
+example, location is automatically updated with absolute screen coordinates
+for Windows controls at runtime.)</p>
+<A NAME="TI7383"></A><p>The following table lists PowerBuilder visual controls that
+inherit from DragObject and their default accessible roles:</p>
+<A NAME="TI7384"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 36-2: PowerBuilder visual controls and their default roles</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7385"></A>PowerBuilder visual controls</th>
+<th  rowspan="1"  ><A NAME="TI7386"></A>AccessibleRole enumerated
+value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7387"></A>Animation</td>
+<td  rowspan="1"  ><A NAME="TI7388"></A>animationrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7389"></A>CheckBox</td>
+<td  rowspan="1"  ><A NAME="TI7390"></A>checkbuttonrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7391"></A>CommandButton</td>
+<td  rowspan="1"  ><A NAME="TI7392"></A>pushbuttonrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7393"></A>DataWindow</td>
+<td  rowspan="1"  ><A NAME="TI7394"></A>clientrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7395"></A>DropDownListBox    </td>
+<td  rowspan="1"  ><A NAME="TI7396"></A>comboboxrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7397"></A>DropDownPictureListBox</td>
+<td  rowspan="1"  ><A NAME="TI7398"></A>comboboxrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7399"></A>EditMask</td>
+<td  rowspan="1"  ><A NAME="TI7400"></A>textrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7401"></A>Graph</td>
+<td  rowspan="1"  ><A NAME="TI7402"></A>diagramrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7403"></A>GroupBox            </td>
+<td  rowspan="1"  ><A NAME="TI7404"></A>groupingrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7405"></A>HProgressBar, VProgressBar    </td>
+<td  rowspan="1"  ><A NAME="TI7406"></A>progressbarrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7407"></A>HScrollBar, VScrollBar    </td>
+<td  rowspan="1"  ><A NAME="TI7408"></A>scrollbarrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7409"></A>HTrackBar, VTrackBar    </td>
+<td  rowspan="1"  ><A NAME="TI7410"></A>sliderrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7411"></A>ListBox</td>
+<td  rowspan="1"  ><A NAME="TI7412"></A>listrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7413"></A>ListView</td>
+<td  rowspan="1"  ><A NAME="TI7414"></A>listrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7415"></A>MonthCalendar</td>
+<td  rowspan="1"  ><A NAME="TI7416"></A>clientrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7417"></A>MultiLineEdit</td>
+<td  rowspan="1"  ><A NAME="TI7418"></A>textrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7419"></A>Picture</td>
+<td  rowspan="1"  ><A NAME="TI7420"></A>graphicrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7421"></A>PictureButton</td>
+<td  rowspan="1"  ><A NAME="TI7422"></A>pushbuttonrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7423"></A>PictureHyperLink</td>
+<td  rowspan="1"  ><A NAME="TI7424"></A>linkrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7425"></A>PictureListBox</td>
+<td  rowspan="1"  ><A NAME="TI7426"></A>listrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7427"></A>RadioButton</td>
+<td  rowspan="1"  ><A NAME="TI7428"></A>radiobuttonrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7429"></A>RichTextEdit            </td>
+<td  rowspan="1"  ><A NAME="TI7430"></A>clientrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7431"></A>SingleLineEdit            </td>
+<td  rowspan="1"  ><A NAME="TI7432"></A>textrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7433"></A>StaticHyperLink</td>
+<td  rowspan="1"  ><A NAME="TI7434"></A>linkrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7435"></A>StaticText            </td>
+<td  rowspan="1"  ><A NAME="TI7436"></A>statictextrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7437"></A>Tab control            </td>
+<td  rowspan="1"  ><A NAME="TI7438"></A>clientrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7439"></A>Tab page</td>
+<td  rowspan="1"  ><A NAME="TI7440"></A>clientrole!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7441"></A>TreeView</td>
+<td  rowspan="1"  ><A NAME="TI7442"></A>outlinerole!</td>
+</tr>
+</table>
+<A NAME="TI7443"></A><p>The OLEControl control is set to pushbuttonrole! by default.
+You need to set this role depending on content.</p>
+<A NAME="TI7444"></A><h4>DataWindow control</h4>
+<A NAME="TI7445"></A><p>PowerBuilder implements the MSAA standard for the DataWindow
+custom control and its children.</p>
+<A NAME="TI7446"></A><p>The AccessibleName and AccessibleDescription properties take
+string values. The AccessibleRole property takes the value of the
+AccessibleRole enumerated variable.</p>
+<A NAME="TI7447"></A><p>There are some limitations regarding accessibility support in the DataWindow:<A NAME="TI7448"></A>
+<ul>
+<li class=fi>For the navigation function <b>accNavigate</b>,
+spatial navigation (navigation by keyboard based on screen location)
+is not supported. Logical navigation, where keyboard navigation
+follows a logical tab sequence, is supported only for columns in
+the detail band. Columns that have a tab value set to 0 so that
+users cannot update them cannot be accessed from the keyboard.</li>
+<li class=ds>The Label, N-Up, OLE 2.0, and RichText DataWindow
+styles are not supported.</li>
+<li class=ds>Support for OLE objects, OLE database columns, and
+nested reports in DataWindows is limited.
+</li>
+</ul>
+</p>
+<A NAME="TI7449"></A><p>PowerBuilder cannot provide accessibility for control content.
+This must be provided by the control vendor.</p>
+<A NAME="TI7450"></A><h4>Examples</h4>
+<A NAME="TI7451"></A><p>The following statements set the IAccessible properties for
+a command button in a Window:<p><PRE> cb_1.accessiblename = "Delete"<br>cb_1.accessibledescription = "Deletes selected text"<br>cb_1.accessiblerole = pushbuttonrole!</PRE></p>
+<A NAME="TI7452"></A><p>The following statement sets the AccessibleName property of
+a button in a DataWindow object:<p><PRE> dw_1.Object.b_1.accessiblename = "Update"</PRE></p>
+<A NAME="TI7453"></A><p>The following statements set the AccessibleRole property for
+a button in a DataWindow object to 43 (the number associated with
+PushButtonRole!) and return the property to a string variable:<p><PRE> string ls_data<br> <br>dw_1.Object.b_1.AccessibleRole = 43<br>ls_data = dw_1.Describe("b_1.AccessibleRole")</PRE></p>
+<A NAME="TI7454"></A><h4>Deployment</h4>
+<A NAME="TI7455"></A><p>When you deploy an accessible application, you must deploy
+the <i>pbacc105.dll </i>file.</p>
+<A NAME="TI7456"></A><h4>For more information</h4>
+<A NAME="TI7457"></A><p>For more information, see the Microsoft <A HREF="http://www.microsoft.com/enable">general accessibility Web site</A>
+ and <A HREF="http://msdn.microsoft.com/library/default.asp?url=/nhp/default.asp?contentid=28000544">the MSDN library site</A>
+. Also helpful is the <A HREF="http://www.webaim.org">WebAim Web site</A>
+.</p>
+

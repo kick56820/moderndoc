@@ -1,0 +1,276 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Accessing the database</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp8.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp10.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAICJGDD"></A><h1>Accessing the database</h1>
+<A NAME="TI262"></A><p>Before you can display data in a DataWindow control, you must
+get the data stored in the data source into that control. The most
+common way to get the data is to access a database.</p>
+<A NAME="TI263"></A><p>An application goes through several steps in accessing a database:<A NAME="TI264"></A>
+<ol>
+</li>
+<li class=ds>Set the appropriate values
+for the transaction object.</li>
+<li class=ds>Connect to the database.</li>
+<li class=ds>Set the transaction object for the DataWindow control.</li>
+<li class=ds>Retrieve and update data.</li>
+<li class=ds>Disconnect from the database.
+</li>
+</ol>
+This
+section provides instructions for setting the transaction object
+for a DataWindow control and for using the DataWindow object to
+retrieve and update data.</p>
+<A NAME="TI265"></A><p>To learn more about setting values for the
+transaction object, connecting to the database, and disconnecting
+from the database, see:<A NAME="TI266"></A>
+<ul>
+<li class=fi><b>PowerBuilder</b>   <i>Application Techniques</i>
+, "Using Transaction
+Objects"</li>
+<li class=ds><b>Web DataWindow</b>   <A HREF="dwprgugp49.htm#BABCJGCI">"Specifying the database
+connection and retrieving data"</A></li>
+<li class=ds><b>Web ActiveX</b>   <A HREF="dwprgugp57.htm#BGBCBBDH">"Using the DataWindow Transaction
+Object control"</A>
+</li>
+</ul>
+</p>
+<A NAME="CAIBCAFJ"></A><h2>Setting the transaction object for the DataWindow control</h2>
+<A NAME="TI267"></A><p>There are two ways to handle database connections and transactions
+for the DataWindow control. You can use:<A NAME="TI268"></A>
+<ul>
+<li class=fi>Internal
+transaction management</li>
+<li class=ds>A separate transaction object
+</li>
+</ul>
+</p>
+<A NAME="TI269"></A><p>The two methods provide different levels of control over database
+transactions.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you are displaying a PSR file in the control</span> <A NAME="TI270"></A>You do not need to use a transaction object or make a database
+connection if you are displaying a PSR file in the DataWindow control.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you change the DataWindow object</span> <A NAME="TI271"></A>If you change the DataWindow object associated with a DataWindow
+control during execution, you might need to call the SetTrans or
+SetTransObject method again.</p>
+<p><b>PowerBuilder</b>   You always need to call one of the methods to set the transaction
+object.</p>
+<p><b>Web ActiveX</b>   You need to call SetTransObject again only when you are using a
+separate transaction object.</p>
+<A NAME="TI272"></A>These options are described in this section.</p>
+<A NAME="TI273"></A><h3>Internal transaction management</h3>
+<A NAME="TI274"></A><h4>What it does</h4>
+<A NAME="TI275"></A><p>When the DataWindow control uses internal transaction management,
+it handles connecting, disconnecting, commits, and rollbacks. It <i>automatically</i> performs
+connects and disconnects as needed; any errors that occur cause
+an <i>automatic</i> rollback.</p>
+<A NAME="TI276"></A><p>Whenever the DataWindow needs to access the database (such
+as when a Retrieve or Update method is executed), the DataWindow
+issues an internal CONNECT statement, does the appropriate data
+access, then issues an internal DISCONNECT.</p>
+<A NAME="TI277"></A><h4>Whether to use it</h4>
+<p><b>When not to use it</b>   Do not use internal transaction management when:<A NAME="TI278"></A>
+<ul>
+<li class=fi>Your application requires the best possible performance<br>
+Internal transaction management is slow and uses considerable
+system resources because it must connect and disconnect for every
+database access.<br></li>
+<li class=ds>You want control over when a transaction is committed
+or rolled back<br>
+Because internal transaction management must disconnect after
+a database access, any changes are always committed immediately.<br>
+</li>
+</ul>
+</p>
+<p><b>When to use it</b>   If the number of available connections at your site is limited, you
+might want to use internal transaction management because connections are
+not held open.</p>
+<A NAME="TI279"></A><p>Internal transaction management is appropriate in simple situations
+when you are doing pure retrievals (such as in reporting) and do
+not need to hold database locks&#8212;when application control
+over committing or rolling back transactions is not an issue.</p>
+<A NAME="TI280"></A><h4>How it works</h4>
+<p><b>PowerBuilder</b>   To use internal transaction management, you specify connection
+values for a transaction object, which could be the automatically instantiated
+SQLCA. Then you call the SetTrans method, which copies the values
+from a specified transaction object to the DataWindow control's
+internal transaction object. <p><PRE> SQLCA.DBMS = ProfileString("myapp.ini", &amp;</PRE><PRE>         "database", "DBMS", " ")</PRE><PRE> ... // Set more connection parameters</PRE><PRE> dw_employee.SetTrans(SQLCA)</PRE><PRE> dw_employee.Retrieve( )</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Connecting to the database</span> <A NAME="TI281"></A>When you use SetTrans, you do not need to explicitly code
+a CONNECT or DISCONNECT statement in a script. CONNECT and DISCONNECT statements
+are automatically issued when needed.</p>
+<A NAME="TI282"></A><p>For more information about PowerBuilder transaction objects,
+see PowerBuilder <i>Application Techniques</i>
+.</p>
+<p><b>Web ActiveX</b>   To use internal transaction management, set the transaction properties
+for the DataWindow Web ActiveX control instead of using a DataWindow
+Transaction Object control. You can set the properties using Param
+elements or in a script. This example sets the DbParm property and
+calls Retrieve in a script:<p><PRE> dw_employee.DbParm =</PRE><PRE>         "Driver='com.sybase.jdbc.SybDriver',</PRE><PRE>         URL='jdbc:sybase:Tds:www.domain.com:7373'";</PRE><PRE> dw_employee.Retrieve( );</PRE></p>
+<A NAME="TI283"></A><p>For internal transaction management, you do not call SetTransObject.
+If you change the DataWindow object during execution, the connection
+information is still available and the DataWindow connects as needed.
+You can change the connection information by changing the value
+of the DbParm property. </p>
+<A NAME="TI284"></A><h3>Transaction management with a separate transaction
+object</h3>
+<A NAME="TI285"></A><h4>How it works</h4>
+<A NAME="TI286"></A><p>When you use a separate transaction object, you control the
+duration of the database transaction. Your scripts explicitly connect
+to and disconnect from the database. If the transaction object's
+AutoCommit property is set to <i>false</i>, you also
+program when an update is committed or rolled back.</p>
+<A NAME="TI287"></A><p>Typically, a script for data retrieval or update involves
+these statements:<A NAME="TI288"></A>
+<ul>
+<li class=fi>Connect</li>
+<li class=ds>SetTransObject</li>
+<li class=ds>Retrieve or Update</li>
+<li class=ds>Commit or Rollback</li>
+<li class=ds>Disconnect
+</li>
+</ul>
+</p>
+<A NAME="TI289"></A><p>In PowerBuilder, you use embedded SQL for connecting and committing.
+For the Web ActiveX, the transaction object has methods that perform
+these actions.</p>
+<A NAME="TI290"></A><p>The transaction object also stores error messages returned
+from the database in its properties. You can use the error information
+to determine whether to commit or roll back database changes.</p>
+<A NAME="TI291"></A><h4>When to use it</h4>
+<A NAME="TI292"></A><p>When the DataWindow control uses a separate transaction object,
+you have more control of the database processing and are responsible
+for managing the database transaction. </p>
+<A NAME="TI293"></A><p>There are several reasons to use a separate transaction object:<A NAME="TI294"></A>
+<ul>
+<li class=fi>You have several DataWindow controls that connect
+to the same database and you want to make one database connection
+for all of them, saving the overhead of multiple connections</li>
+<li class=ds>You want to control transaction processing </li>
+<li class=ds>You require the improved performance provided by
+keeping database connections open
+</li>
+</ul>
+</p>
+<A NAME="TI295"></A><h4>How it works</h4>
+<p><b>PowerBuilder</b>   The SetTransObject method associates a transaction object with
+the DataWindow control. PowerBuilder has a default transaction object called
+SQLCA that is automatically instantiated. You can set its connection properties,
+connect, and assign it to the DataWindow control.</p>
+<A NAME="TI296"></A><p>The following statement uses SetTransObject to associate the
+DataWindow control dw_emp with the default transaction
+object (SQLCA):<p><PRE> // Set connection parameters in the transaction object</PRE><PRE> SQLCA.DBMS = ...</PRE><PRE> SQLCA.database = ...</PRE><PRE> CONNECT USING SQLCA;</PRE><PRE> dw_emp.SetTransObject(SQLCA)</PRE><PRE> dw_emp.Retrieve( )</PRE></p>
+<A NAME="TI297"></A><p>Instead of or in addition to using the predefined SQLCA transaction
+object, you can define your own transaction object in a script.
+This is necessary if your application needs to connect to more than
+one database at the same time.</p>
+<A NAME="TI298"></A><p>The following statement uses SetTransObject to associate dw_customer
+with a programmer-created transaction object (trans_customer):<p><PRE> transaction trans_customer</PRE><PRE> trans_customer = CREATE transaction</PRE><PRE> // Set connection parameters in the transaction object</PRE><PRE> trans_customer.DBMS = ...</PRE><PRE> trans_customer.database = ...</PRE><PRE> CONNECT USING trans_customer;</PRE><PRE> dw_customer.SetTransObject(trans_customer)</PRE><PRE> dw_customer.Retrieve( )</PRE></p>
+<p><b>Web ActiveX</b>   To use a separate transaction object for the Web ActiveX,
+you add an OBJECT element for the Sybase DataWindow Transaction
+Object control to the Web page. You can set its connection properties
+using Param elements or a script. </p>
+<A NAME="TI299"></A><p>A script that connects and retrieves data would have statements
+like these:<p><PRE> trans_1.Connect( );</PRE><PRE> dw_employee.SetTransObject( trans_1 );</PRE><PRE> dw_employee.Retrieve( );</PRE><PRE> trans_1.Disconnect( );</PRE></p>
+<A NAME="TI300"></A><h4>For more information</h4>
+<A NAME="TI301"></A><p>For more information about database transaction
+processing:<A NAME="TI302"></A>
+<ul>
+<li class=fi><b>PowerBuilder</b>   See the chapter on using transaction objects in <i>Application
+Techniques</i>
+</li>
+<li class=ds><b>Web ActiveX</b>   See <A HREF="dwprgugp52.htm#CHDCDHDG">Chapter 8, "Using the DataWindow Web Control
+for ActiveX"</A> 
+</li>
+</ul>
+</p>
+<A NAME="TI303"></A><p>For more information about SetTrans and SetTransObject
+methods, see the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI304"></A><h2>Retrieving and updating data</h2>
+<A NAME="TI305"></A><p>You call the following two methods to access a database through
+a DataWindow control:<A NAME="TI306"></A>
+<ul>
+<li class=fi>Retrieve</li>
+<li class=ds>Update
+</li>
+</ul>
+</p>
+<A NAME="TI307"></A><h3>Basic data retrieval</h3>
+<A NAME="TI308"></A><p>After you have set the transaction object for your DataWindow
+control, you can use the Retrieve method to retrieve data from the
+database into that control:</p>
+<A NAME="TI309"></A><p><p><PRE> dw_emp.Retrieve( )</PRE></p>
+<A NAME="TI310"></A><p>The Web DataWindow server component has a second form of the
+method, RetrieveEx, for use when the method requires arguments.
+For more information about retrieving data with the Web DataWindow,
+see <A HREF="dwprgugp49.htm#BABCJGCI">"Specifying the database
+connection and retrieving data"</A> and <A HREF="dwprgugp49.htm#BABDECHH">"Passing page-specific data
+to the reloaded page"</A>.</p>
+<A NAME="TI311"></A><h3>Using retrieval arguments</h3>
+<A NAME="TI312"></A><h4>About retrieval arguments</h4>
+<A NAME="TI313"></A><p>Retrieval arguments qualify the SELECT statement associated
+with the DataWindow object, reducing the rows retrieved according
+to some criteria. For example, in the following SELECT statement,
+Salary is a retrieval argument defined in the DataWindow painter:<p><PRE> SELECT Name, emp.sal FROM Employee </PRE><PRE>         WHERE emp.sal &gt; :Salary</PRE></p>
+<A NAME="TI314"></A><p>When you call the Retrieve method, you supply a value for
+Salary. In PowerBuilder, the code looks like this:<p><PRE> dw_emp.Retrieve( 50000 )</PRE></p>
+<A NAME="TI315"></A><p>Special considerations for each environment
+are explained below.</p>
+<A NAME="TI316"></A><p>When coding Retrieve with arguments, specify them in the order
+in which they are defined in the DataWindow object. Your Retrieve
+method can provide more arguments than a particular DataWindow object
+expects. Any extra arguments are ignored. This allows you to write
+a generic Retrieve that works with several different DataWindow
+objects.</p>
+<p><b>Omitting retrieval arguments</b>   If your DataWindow object takes retrieval arguments but you
+do not pass them in the Retrieve method, the DataWindow control
+prompts the user for them when Retrieve is called.</p>
+<A NAME="TI317"></A><h4>More than 16 arguments</h4>
+<A NAME="TI318"></A><p>The Retrieve method is limited to 16 arguments in some environments.</p>
+<p><b>PowerBuilder</b>   You can specify any number of retrieval arguments.</p>
+<p><b>Web DataWindow</b>   You can specify a maximum of 16 arguments using the RetrieveEx
+method. </p>
+<p><b>Web ActiveX</b>   You can specify a maximum of 16 arguments for Retrieve. If you
+need to specify more, use the RetrieveEx method for the Web ActiveX
+and pass an array where each array element is a retrieval argument.</p>
+<A NAME="TI319"></A><h3>Updating data</h3>
+<A NAME="TI320"></A><p>After users have made changes to data in a DataWindow control,
+you can use the Update method to save those changes in the database. </p>
+<A NAME="TI321"></A><p>In PowerBuilder, the code looks like this:<p><PRE> dw_emp.<i>Update</i>()</PRE></p>
+<A NAME="TI322"></A><p>Update sends to the database all inserts, changes, and deletions
+made in the DataWindow control since the last Update method. When
+you are using an external transaction object, you can then commit
+(or roll back) those database updates. In PowerBuilder, you use
+SQL statements. In the Web ActiveX, you use methods and properties
+of the transaction object. In the Web DataWindow client control,
+update requests call the update method in the server component, which
+handles the commit or rollback.</p>
+<A NAME="TI323"></A><p>For more specifics on how a DataWindow control
+updates the database (that is, which SQL statements are sent in
+which situations), see <A HREF="dwprgugp14.htm#X-REF377435567">"Updating the database"</A>.</p>
+<A NAME="TI324"></A><h4>Examples</h4>
+<A NAME="TI325"></A><p>The following example shows code that connects, retrieves,
+updates, commits or rolls back, and disconnects from the database. </p>
+<A NAME="TI326"></A><p>Although the example shows all database operations in a single
+script or function, most applications separate these operations.
+In a PowerBuilder application, for example, an application could
+connect to the database in the application Open event, retrieve
+and update data in one or more window scripts, and disconnect from
+the database in the application Close event.</p>
+<p><b>PowerBuilder</b>   The following statements retrieve and update data using the transaction
+object EmpSQL and the DataWindow control dw_emp:<p><PRE> // Connect to the database specified in the</PRE><PRE> // transaction object EmpSQL</PRE><PRE> CONNECT USING EmpSQL;</PRE><PRE> </PRE><PRE> // Set EmpSQL as the transaction object for dw_emp</PRE><PRE> dw_emp.SetTransObject(EmpSQL)</PRE><PRE> </PRE><PRE> // Retrieve data from the database specified in</PRE><PRE> // EmpSQL into dw_emp</PRE><PRE> dw_emp.Retrieve()</PRE><PRE> </PRE><PRE> // Make changes to the data...</PRE><PRE> ...</PRE><PRE> </PRE><PRE> // Update the database</PRE><PRE> IF dw_emp.Update() &gt; 0 THEN    </PRE><PRE>         COMMIT USING EmpSQL;</PRE><PRE> ELSE    </PRE><PRE>         ROLLBACK USING EmpSQL;</PRE><PRE> END IF</PRE><PRE> </PRE><PRE> // Disconnect from the database</PRE><PRE> DISCONNECT USING EmpSQL;</PRE></p>
+<p><b>Web ActiveX</b>   The following JavaScript statements retrieve and update data using
+the transaction object EmpSQL and the DataWindow control dw_emp.</p>
+<A NAME="TI327"></A><p><p><PRE> // Connect to the database specified in the</PRE><PRE> // transaction object EmpSQL</PRE><PRE> EmpSQL.Connect( );</PRE><PRE> </PRE><PRE> // Set EmpSQL as the transaction object for dw_emp</PRE><PRE> dw_emp.SetTransObject(EmpSQL);</PRE><PRE> </PRE><PRE> // Retrieve data from the database specified in</PRE><PRE> // EmpSQL into dw_emp</PRE><PRE> dw_emp.Retrieve();</PRE><PRE> </PRE><PRE> // Make changes to the data</PRE><PRE> ...</PRE><PRE> </PRE><PRE> // Update the database</PRE><PRE> if (dw_emp.Update() &gt; 0) {</PRE><PRE>         EmpSQL.Commit( );</PRE><PRE> } else {</PRE><PRE>         EmpSQL.Rollback( );</PRE><PRE> }</PRE><PRE> </PRE><PRE> // Disconnect from the database</PRE><PRE> EmpSQL.Disconnect( );</PRE></p>
+<A NAME="TI328"></A><h4>Handling retrieval or update errors</h4>
+<A NAME="TI329"></A><p>A production application should include error tests after
+each database operation. </p>
+<A NAME="TI330"></A><p>For more about checking for errors, see <A HREF="dwprgugp13.htm#X-REF377435655">"Handling DataWindow
+errors"</A>.</p>
+

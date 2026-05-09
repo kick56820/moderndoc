@@ -1,0 +1,50 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using tabs </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp249.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp251.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299755480"></A><h1>Using tabs </h1>
+<A NAME="TI7546"></A><p>The <b>Print</b> function has several formats.
+The format shown in the previous example prints a string starting
+at the left edge of the print area and then prints a new line. In
+other formats of the <b>Print</b> function, you can
+use tabbing to specify the print cursor position before or after
+printing, or both. </p>
+<A NAME="TI7547"></A><h4>Specifying tab values</h4>
+<A NAME="TI7548"></A><p>Tab values are specified in thousandths of an inch and are
+relative to the left edge of the print area. If a tab value precedes
+the string in the <b>Print</b> call and no tab value
+follows the string, PowerBuilder tabs, prints, then starts a new
+line. If a tab value follows the string, PowerBuilder tabs after
+printing and does not start a new line; it waits for the next statement.</p>
+<A NAME="TI7549"></A><p>In these examples, Job is the integer print job number.</p>
+<A NAME="TI7550"></A><p>This statement tabs one inch from the left edge of the print
+area, prints Atlanta, and starts a new line:<p><PRE> Print(Job,1000,"Atlanta")</PRE></p>
+<A NAME="TI7551"></A><p>This statement prints Boston at the current print position,
+tabs three inches from the left edge of the print area, and waits
+for the next statement:<p><PRE> Print(Job,"Boston",3000)</PRE></p>
+<A NAME="TI7552"></A><p>This statement tabs one inch from the edge of the print area,
+prints Boston, tabs three inches from the left edge of the print
+area, and waits for the next statement:<p><PRE> Print(Job,1000,"Boston",3000)</PRE></p>
+<A NAME="TI7553"></A><h4>Tabbing and the print cursor</h4>
+<A NAME="TI7554"></A><p>When PowerBuilder tabs, it sets the x coordinate of the print
+cursor to a larger print cursor value (a specified value or the
+current cursor position). Therefore, if the specified value is less
+than the current x coordinate of the print cursor, the cursor does
+not move.</p>
+<A NAME="TI7555"></A><p>The first <b>Print</b> statement shown below tabs
+one inch from the left edge of the print area and prints <FONT FACE="Courier New">Sybase</FONT>,
+but it does not move to the next tab. (0.5 inches from the left
+edge of the print area is less than the current cursor position.) Since
+a tab was specified as the last argument, the first <b>Print</b> statement
+does not start a new line even though the tab was ignored. The next <b>Print</b> statement
+prints <FONT FACE="Courier New">Inc.</FONT> immediately
+after the <FONT FACE="Courier New">e</FONT> in <FONT FACE="Courier New">Sybase</FONT> (<FONT FACE="Courier New">Sybase
+Inc.</FONT>) and then starts a new line:<p><PRE> Print(Job,1000,"Sybase",500)</PRE><PRE> Print(Job," Inc.")</PRE></p>
+

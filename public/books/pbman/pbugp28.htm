@@ -1,0 +1,151 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Migrating existing projects under source control</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp27.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp29.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDBFFEJ"></A><h1>Migrating existing projects under source control</h1>
+<A NAME="TI990"></A><h4>Migrating from PowerBuilder 8</h4>
+<A NAME="TI991"></A><p>There are different strategies for migrating existing source
+control projects from earlier versions of PowerBuilder. To migrate
+a target from PowerBuilder 8 or later, you can check the
+target out from source control, then add the target to a workspace in
+the new version of PowerBuilder. When the Migrate Application dialog
+box prompts you to migrate the libraries in the application library
+list, click OK to begin the migration. </p>
+<A NAME="TI992"></A><p>If you change the directory hierarchy for target libraries
+in the new version of PowerBuilder, you should use the Existing
+Application target wizard to create a new target instead of adding
+and migrating a PowerBuilder 8 or later target. If you keep the
+old target file (PBT) in the new target path, you must give the new
+target a different name or the wizard will not be able to create
+a new PBT. </p>
+<A NAME="TI993"></A><p>For information on using the Existing Application target wizard,
+see <A HREF="pbugp28.htm#BABDCIAJ">"Using the Existing Application
+target wizard"</A>.</p>
+<A NAME="TI994"></A><p>When you open a PowerBuilder 8 or later workspace in the current
+version of PowerBuilder, a dialog box prompts you to migrate the
+workspace targets. If you select the No Prompting check box and
+click OK, the target libraries are migrated without additional prompting,
+and the Migrate Application dialog box never displays. You can then
+add the migrated target objects to source control from the new version
+of PowerBuilder.</p>
+<A NAME="TI995"></A><p>For more information about migration, see <A HREF="pbugp57.htm#BGBJHCBC">"Migrating targets"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Uninstalling PowerBuilder 8</span> <A NAME="TI996"></A>If you uninstall PowerBuilder 8 from a machine where you have
+already installed a later version of PowerBuilder, the uninstall
+deletes the PBNative registry entry. Subsequently, if you want to
+use PBNative source control with PowerBuilder 10, you must
+reregister <i>PBNAT105.DLL</i>. Attempting to use PBNative
+before reregistering the DLL produces an error message that points out
+the problem and the solution. You can reregister the DLL by opening
+a DOS command box, switching to the <i>Sybase\Shared\PowerBuilder</i> directory, and
+entering the command <b>REGSVR32  PBNAT105.DLL</b>.</p>
+<A NAME="TI997"></A>The uninstall for PowerBuilder 9 and later does not remove
+the DLL or the registry entry for PBNative source control.</p>
+<A NAME="TI998"></A><h4>Migrating from PowerBuilder 7 or earlier</h4>
+<A NAME="TI999"></A><p>Migrating an application from PowerBuilder 7 or earlier requires
+a different approach, since workspaces and targets were introduced with PowerBuilder
+8. You need to create a new workspace and appropriate targets for
+any PowerBuilder 7 (or older) objects that you are migrating.</p>
+<A NAME="TI1000"></A><p>The strategies available to you or the project manager are:<A NAME="TI1001"></A>
+<ul>
+<li class=fi><A HREF="pbugp28.htm#BABDCIAJ">Using the Existing Application
+target wizard</A></li>
+<li class=ds><A HREF="pbugp28.htm#BABCFJDH">Importing source control
+files to a new library</A>
+</li>
+</ul>
+</p>
+<A NAME="TI1002"></A><p>To use the first strategy, you must keep a copy of the old
+version of PowerBuilder&#8212;at least until you have finished
+migrating all your source-controlled <ACRONYM title = "pibbles" >PBLs</ACRONYM>.</p>
+<A NAME="BABDCIAJ"></A><h2>Using the Existing Application target wizard</h2>
+<A NAME="TI1003"></A><h4>Source control in early PowerBuilder versions</h4>
+<A NAME="TI1004"></A><p>Because workspaces and targets were not available in PowerBuilder
+prior to version 8, you must use the Existing Application wizard
+to create targets for applications that you built with PowerBuilder
+7 or earlier PowerBuilder versions. A source control project in
+PowerBuilder 7 (or earlier PowerBuilder versions) was associated
+with a single application. </p>
+<A NAME="TI1005"></A><p>Beginning with PowerBuilder 8, source control is associated
+with a workspace that can have multiple targets and applications.</p>
+<A NAME="TI1006"></A><p>If you keep a copy of your old version of PowerBuilder, you
+can check out your application object and all other objects from
+source control to a work <ACRONYM title = "pibble" >PBL</ACRONYM>.
+By checking out the objects in the older version of PowerBuilder,
+you make sure that no one else makes changes to the objects before
+you migrate them to the current version of PowerBuilder. </p>
+<A NAME="TI1007"></A><h4>Deciding on a directory hierarchy</h4>
+<A NAME="TI1008"></A><p>You should decide on a directory hierarchy before you migrate.
+PowerBuilder 7 and earlier versions required you to keep all source-controlled
+files in a single directory. Beginning with PowerBuilder 8, you
+can create subdirectories to contain each <ACRONYM title = "pibble" >PBL</ACRONYM> in
+your library list. Although this is not required, it is useful in
+that it keeps objects from different <ACRONYM title = "pibbles" >PBLs</ACRONYM> separated
+in source control subprojects.</p>
+<A NAME="TI1009"></A><p>You must also decide whether to add a new target to an existing
+PowerBuilder workspace or to a new workspace that you create specifically
+for the target. You can then use the Existing Application target
+wizard to create a new target from the local copies of your registered <ACRONYM title = "pibbles" >PBLs</ACRONYM> (making sure to select all
+the supporting <ACRONYM title = "pibbles" >PBLs</ACRONYM> for your
+application on the Set Library Search Path page of the wizard).
+When you run the wizard, PowerBuilder prompts you to migrate the <ACRONYM title = "pibbles" >PBLs</ACRONYM> you select.</p>
+<A NAME="TI1010"></A><p>After you have run the wizard and migrated all the source-controlled <ACRONYM title = "pibbles" >PBLs</ACRONYM>, you can define the source
+control connection profile for the workspace to point to the old
+source control project if you want to maintain it, or to a new source control
+project if you do not. You can then check in or add the migrated
+objects to source control and delete the work <ACRONYM title = "pibble" >PBL</ACRONYM> containing
+the older versions of the objects. You do not need a separate work <ACRONYM title = "pibble" >PBL</ACRONYM> in PowerBuilder 9 or later.</p>
+<A NAME="TI1011"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To migrate a source control project using the
+Existing Application wizard:</p>
+<ol><li class=fi><p>From your old version of PowerBuilder,
+check out your objects to a work <ACRONYM title = "pibble" >PBL</ACRONYM>.</p></li>
+<li class=ds><p>Decide on a new file hierarchy for the libraries
+in your application library list.</p><p>You can keep all the libraries in the same directory if you
+want, but it can be advantageous to create separate subdirectories
+for each library in the list. If you plan to share libraries among
+different targets, you should structure the directories so that
+the common libraries are in the local root path of every target
+that uses them.</p></li>
+<li class=ds><p>Create a new workspace in the new version of PowerBuilder,
+or open an existing workspace in the new version of PowerBuilder.</p></li>
+<li class=ds><p>Create a new target using the Existing Application
+wizard.</p><p>In the wizard, point to the <ACRONYM title = "pibble" >PBL</ACRONYM> with
+an Application object and add all the helper <ACRONYM title = "pibbles" >PBLs</ACRONYM> to
+the library search path.</p><p>PowerBuilder prompts you to migrate the <ACRONYM title = "pibbles" >PBLs</ACRONYM>.</p></li>
+<li class=ds><p>Click Yes to migrate each library in the path.</p></li>
+<li class=ds><p>Create a source connection profile for the workspace
+that points to the old source control project or to a new project.</p></li>
+<li class=ds><p>Check in the migrated objects to source control
+if you are using the old source control project, or add the migrated
+objects to source control if you are using a new source control
+project.</p></li>
+<li class=ds><p>Delete the work <ACRONYM title = "pibble" >PBL</ACRONYM> whenever
+you want.</p></li></ol>
+<br><A NAME="BABCFJDH"></A><h2>Importing source control files to a new library</h2>
+<A NAME="TI1012"></A><p>You can use your source control manager to check out all the
+old PowerBuilder objects to a named directory or folder. If you
+plan to use the same project to store your migrated objects, you
+must make sure that the manager locks the files you check out of
+the source control archive.</p>
+<A NAME="TI1013"></A><p>You can create a new target using the Application target wizard
+in a new or existing workspace. The Application wizard lets you
+select or name a new <ACRONYM title = "pibble" >PBL</ACRONYM> file
+to associate with the target it creates. You can use the Target
+property sheet to list any additional <ACRONYM title = "pibbles" >PBLs</ACRONYM> you
+want to associate with the target.</p>
+<A NAME="TI1014"></A><p>You can then import the files that you checked out of source
+control, distributing them as needed to the libraries you associated
+with the new target. After importing the files, you can migrate
+the target by right-clicking it in the System Tree and selecting
+Migrate from the target pop-up menu. You should also do a full build
+of the target. After you have migrated and built the target, you
+can define the connection profile for the workspace to point to
+the old source control project if you want to maintain it, or to
+a new source control project if you do not.</p>
+

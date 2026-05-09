@@ -1,0 +1,257 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating the PowerBuilder application</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp229.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp231.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCCHIDC"></A><h1>Creating the PowerBuilder application</h1>
+<A NAME="TI6999"></A><p>The starting point of your PowerBuilder window ActiveX application
+is a child window, which is displayed within a Web page. In the
+window, you can include controls and write scripts for events. Your
+scripts can open other windows, read and write files, and run other
+programs on the client machine. </p>
+<A NAME="TI7000"></A><h2>Designing the application</h2>
+<A NAME="TI7001"></A><p>The application you design for use with the PowerBuilder window
+ActiveX can be much the same as other PowerBuilder applications
+you develop; however, there are some restrictions and considerations
+to keep in mind. This section discusses:<A NAME="TI7002"></A>
+<ul>
+<li class=fi>Window management</li>
+<li class=ds>Scripts and variables</li>
+<li class=ds>Data access</li>
+<li class=ds>External files
+</li>
+</ul>
+</p>
+<A NAME="TI7003"></A><h4>Window management</h4>
+<p><b>Initial child window</b>   Your initial window needs to be a child window that lives
+in the browser frame.</p>
+<A NAME="TI7004"></A><p>You <i>cannot</i>:<A NAME="TI7005"></A>
+<ul>
+<li class=fi>Have a menu for the child window</li>
+<li class=ds>Open another child window from the initial window
+</li>
+</ul>
+</p>
+<A NAME="TI7006"></A><p>You <i>can</i>:<A NAME="TI7007"></A>
+<ul>
+<li class=fi>Include a title bar on the child window (but you <i>should
+not</i> use a control menu, maximize box, or minimize box
+on that window)</li>
+<li class=ds>Open pop-up and response windows from the child
+window (but not main or MDI windows)
+</li>
+</ul>
+</p>
+<p><b>Closing windows</b>   When the client browses to another Web page, the child window
+on the current Web page is closed, but other windows remain open unless
+your application closes them. You must close them in the child window's
+Close or CloseQuery events.</p>
+<A NAME="TI7008"></A><p>Do not try to stop the child window from being closed in the
+CloseQuery event by setting a return value. You cannot prevent the
+browser from changing to another page and removing the window from
+view. If the user returns to the page, another instance of your
+application is started.</p>
+<A NAME="TI7009"></A><h4>Objects</h4>
+<p><b>Objects in your PBDs</b>   Your PowerBuilder window ActiveX application has access to
+all objects in the PBDs. This includes functions, structures, and
+user objects.</p>
+<p><b>System objects</b>   Your PowerBuilder window ActiveX application has access to
+system objects that PowerBuilder instantiates, such as the SQLCA Transaction
+object and the Message object. </p>
+<p><b>Application object</b>   Your PowerBuilder window ActiveX application can access global
+variables, which are properties of the Application object.</p>
+<A NAME="TI7010"></A><p>PowerBuilder requires that you have a current Application
+object during development, but only the application Open event and
+global variables are used in your application. Any other scripts
+in the Application object are used only during testing within PowerBuilder.</p>
+<A NAME="TI7011"></A><h4>Scripts and variables</h4>
+<p><b>Scripts for application setup</b>   If you specify the PBAPPLICATION parameter in the HTML, the
+PowerBuilder window ActiveX executes the application Open event
+before opening the child window. You can use this event to establish
+a database connection and initialize global variables.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>The HTML specifies the window to open</span> <A NAME="TI7012"></A>Do not open windows from within the application Open event.</p>
+<A NAME="TI7013"></A><p>If you do not specify the PBAPPLICATION parameter in the HTML,
+all application setup must be done in the child window, including
+connecting to the DBMS. The first scriptable events to occur are
+the constructors for the controls in the window, and then the Open
+event for the window occurs.</p>
+<A NAME="TI7014"></A><p>Note that the Activate event does not occur for a child window,
+so do not do application setup there.</p>
+<p><b>Global variables</b>   The PowerBuilder window ActiveX application can access global
+variables.</p>
+<p><b>Referencing the initial window</b>   You cannot reference the initial child window by name in your
+scripts because PowerBuilder does not create a variable to hold
+the instance of it. (By contrast, when you instantiate a window yourself
+by coding the <b>Open</b> function, you always place
+the instance in a variable that you can then reference.)</p>
+<A NAME="TI7015"></A><p>As a result, the following code produces an error at runtime
+(because the window variable <b>w_mychild</b> does
+not exist):<p><PRE> // This code produces a runtime error:</PRE><PRE>     <i>w_mychild</i>.title = "The initial window"</PRE></p>
+<A NAME="TI7016"></A><p>But you can code:<p><PRE> // In the child window itself:</PRE><PRE>     <i>this.</i>title = "The initial window"</PRE><PRE>     // or</PRE><PRE>     title = "The initial window"</PRE><PRE> </PRE><PRE> // In controls of the child window:</PRE><PRE>     <i>parent</i>.title = "The initial window"</PRE></p>
+<A NAME="TI7017"></A><h4>Data access</h4>
+<A NAME="TI7018"></A><p>If your application accesses a DBMS, each client must have
+a connection to the data source. The connection must be defined
+on the client's machine, not the server. The data source
+can be a local or a network DBMS.</p>
+<A NAME="TI7019"></A><p>For information about how to connect to a
+DBMS from the client machine, see <i>Connecting to Your Database</i>
+.</p>
+<A NAME="TI7020"></A><p>Remember that the Constructor events for controls occur before
+the Open event of the window. That means that if you connect to
+the DBMS in the window's Open event, the Constructor events
+cannot get data. You can get data for controls in the window's
+Open event, or you can post events from the Constructor events or
+the window's Open event.</p>
+<A NAME="TI7021"></A><h4>Paths for external resources</h4>
+<A NAME="TI7022"></A><p>Paths you specify for files must be valid on the client workstation.</p>
+<A NAME="TI7023"></A><p>If your application uses images as external files, the images
+must be available at the path specified in the PowerBuilder object.
+Instead of using external files, you can build image resources into
+PBDs.</p>
+<A NAME="TI7024"></A><p>If your application reads or writes local files, the path
+for those files must be valid on each client's machine.</p>
+<A NAME="TI7025"></A><p>In Windows environments, if a path refers to a network drive
+by mapped drive letter, all clients must use the same drive letter
+that the application uses. As an alternative, specify the server
+name in the path instead.</p>
+<A NAME="TI7026"></A><p>For example, both of these paths are valid when <i>O:</i> is
+mapped to <i>\\marketing\drive</i>.
+However, the second path that uses a server name is more likely
+to <i>remain</i> valid:<p><PRE> O:\pbapps\connect.bmp</PRE><PRE> \\marketing\drive\pbapps\connect.bmp</PRE></p>
+<A NAME="TI7027"></A><h2>Defining the starting window in the Window painter</h2>
+<A NAME="TI7028"></A><p>You create the starting window for your application in PowerBuilder.</p>
+<A NAME="TI7029"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create your application's starting
+window:</p>
+<ol><li class=fi><p>Create a new window object in PowerBuilder.</p></li>
+<li class=ds><p>On the window's General tab of the Properties
+view, set the window type to Child.</p></li>
+<li class=ds><p>Add other controls as desired.</p></li>
+<li class=ds><p>Write scripts for events of the window and controls.</p></li></ol>
+<br><A NAME="TI7030"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To convert an existing application to run as a
+PowerBuilder window ActiveX:</p>
+<ol><li class=fi><p>Change the type of the opening window to
+child.</p></li>
+<li class=ds><p>Move application setup code from the application's
+Open event or MDI frame events to the child window's Open
+event.</p></li></ol>
+<br><A NAME="TI7031"></A><p>Depending on the application's design, you may need
+to redesign how it opens other windows.</p>
+<A NAME="TI7032"></A><h4>About child windows</h4>
+<A NAME="TI7033"></A><p>Child windows cannot have menus. They are never considered
+the active window; therefore, the Activate event is never triggered.
+They can have title bars and can be minimizable, maximizable, and
+resizable. However, in the PowerBuilder window ActiveX environment,
+the child window is always restricted to the space allotted by the
+WIDTH and HEIGHT attributes specified on the Web page:<A NAME="TI7034"></A>
+<ul>
+<li class=fi>Maximizing causes the window
+to fill the space allotted by the WIDTH and HEIGHT attributes.</li>
+<li class=ds>Minimizing displays the window's icon and
+title at the bottom of the ActiveX control's allotted space.</li>
+<li class=ds>If the child window is resizable, the user can drag
+the borders to make the window smaller (but not larger) than the
+allotted space.
+</li>
+</ul>
+</p>
+<A NAME="TI7035"></A><p>As a result, it is not useful to allow minimizing, maximizing,
+or resizing of the child window.</p>
+<A NAME="TI7036"></A><h2>Testing the application in PowerBuilder</h2>
+<A NAME="TI7037"></A><p>Before you try your application in a client browser, you can
+test it in PowerBuilder by defining a main window that opens the
+child window.</p>
+<A NAME="TI7038"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To test your PowerBuilder window ActiveX application:</p>
+<ol><li class=fi><p>In PowerBuilder, create a new window object
+whose type is main (the default).</p></li>
+<li class=ds><p>Write a script for the Open event that opens the
+child window:</p><p><p><PRE> Open(w_child)</PRE></p></li>
+<li class=ds><p>For convenience, you can set appropriate window
+sizes in the Window painter:<A NAME="TI7039"></A>
+<ul>
+<li class=fi>Make
+the main window large enough to display the child</li>
+<li class=ds>Position the child window in the upper-left corner
+(you set the position on the Position tab of the property sheet)
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>Run the test window by clicking the Run Window
+icon.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Debugging in PowerBuilder</span> <A NAME="TI7040"></A>To use the PowerBuilder debugger, you need to run an application
+instead of a single window. Define an Application object with a
+script that opens the main window. Then you can use the Run or Debug
+commands to test the application.</p>
+<A NAME="TI7041"></A><h4>Organizing objects in PBLs</h4>
+<A NAME="TI7042"></A><p>In the Web environment, file size is important. Clients are
+downloading your application each time they run it (unless it happens
+to be cached because they ran it recently). </p>
+<A NAME="TI7043"></A><p>Before you build your application, use the Library painter
+to organize the objects your application uses in PBLs, which are
+the sources for the PowerBuilder window ActiveX application's
+PBDs. To minimize file size, include only objects the application
+uses. Remove any objects that are not needed. You must:<A NAME="TI7044"></A>
+<ul>
+<li class=fi>Include any objects that are
+dynamically created, such as DataWindows used in DataStores or assigned
+dynamically to DataWindow controls and Proxy objects</li>
+<li class=ds>Include ancestor objects
+</li>
+</ul>
+</p>
+<A NAME="TI7045"></A><h4>Using PowerBuilder resource (PBR) files</h4>
+<A NAME="TI7046"></A><p>Several controls can use external files for images. These
+include PictureListBox, TreeView, Picture, and PictureButton controls,
+pointers, and bitmap objects in DataWindow objects. If your application
+uses external files for the images, it is unlikely that the client
+has the same images on the same system path.</p>
+<A NAME="TI7047"></A><p>Instead of finding some way to install the pictures on client
+machines, you can use one or more PowerBuilder resource (PBR) files
+so that the images are built into the PBDs. The resulting PBDs are
+larger but self-contained.</p>
+<A NAME="TI7048"></A><p>Because you are building a PBD, not an executable, you do
+not need to include DataWindow objects in the resource file. All
+PowerBuilder objects in the source PBL are included in the resulting
+PBD.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Images and other resources on a network</span> <A NAME="TI7049"></A>Instead of building the files into the PBD, you can put the
+files in a generally accessible network directory, but the path
+to the files must be identical to the path named in the PowerBuilder
+objects. In the Windows environment, this means each client must
+use the same drive letter to map the network drive (or you can specify
+the server name in the path).</p>
+<A NAME="TI7050"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a PBR file:</p>
+<ol><li class=fi><p>Open the File Editor (Shift+F6)
+or some other text editor and create a new file with the extension <i>PBR</i>.</p></li>
+<li class=ds><p>List each image or other resource on its own line.
+List the path and file name exactly as they are shown in the object's
+Properties view or script.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Shortcut</span> <A NAME="TI7051"></A>Look at the object's Properties view and use Ctrl+C
+to copy the file name to the clipboard. Then paste it into the editor.</p>
+</li>
+<li class=ds><p>Save the file.</p></li></ol>
+<br><A NAME="TI7052"></A><p>If your application includes several PBLs, each with objects
+using their own resources, you should create a PBR file for each
+PBL. The PBR file lists file names for resources that are used in
+one PBL.</p>
+<A NAME="TI7053"></A><h4>Building the PBDs</h4>
+<A NAME="TI7054"></A><p>Build your dynamic libraries (PBDs) using the System Tree
+or the Project or Library painter. Do the following:<A NAME="TI7055"></A>
+<ul>
+<li class=fi><b>Deselect Machine
+code</b>   Your PowerBuilder window ActiveX application must have PBDs,
+not machine code DLLs.</li>
+<li class=ds><b>Specify a PBR file for each PBD</b>   If the objects in the PBL use resources that you have listed
+in a PBR file, put the PBR name in the Resource File Name text box.
+</li>
+</ul>
+</p>
+<A NAME="TI7056"></A><p>For instructions on defining a PBR file and
+building your dynamic libraries (PBDs), see the chapter on creating
+executables in the <i>User's Guide</i>
+.</p>
+

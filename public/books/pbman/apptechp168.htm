@@ -1,0 +1,105 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About building COM and COM+ components</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp167.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp169.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABDJBJC"></A><h1>About building COM and COM+ components</h1>
+<A NAME="TI5541"></A><p>You
+can develop a custom class user object containing business logic
+in PowerBuilder and then package the object as a COM server or COM+ application.</p>
+<A NAME="TI5542"></A><p>On platforms that support COM+, such as Windows 2000
+and Windows XP, you can build COM+ applications and deploy
+them to COM+.</p>
+<A NAME="TI5543"></A><p>The rest of this chapter uses the term COM components to refer
+to components that support COM and COM+.</p>
+<A NAME="TI5544"></A><p>A PowerBuilder COM application can include one or more PowerBuilder custom
+class user objects. You code the user objects in the User Object
+painter and then build the server in the Project painter. You can
+also deploy the application directly to a local COM+ server
+or create a COM+ Microsoft Installer package from the Project
+painter.</p>
+<A NAME="TI5545"></A><p>Once you have generated and deployed a PowerBuilder COM application, users
+can call methods on the PowerBuilder objects it contains from COM-enabled
+client applications built with tools such as PowerBuilder, Visual Basic,
+and C++ compilers.</p>
+<A NAME="TI5546"></A><h2>About using the wizards</h2>
+<A NAME="TI5547"></A><p>PowerBuilder provides several wizards to facilitate the development
+and deployment of COM components:<A NAME="TI5548"></A>
+<ul>
+<li class=fi><b>Target
+wizard </b>   Creates a new application, a new custom class user object,
+and a new project</li>
+<li class=ds><b>Object wizard</b>    Creates a new custom class user object in an existing application
+and creates a new project</li>
+<li class=ds><b>Project wizard</b>   Creates a project you use to build a COM server and optionally
+a COM+ package from one or more existing custom class user objects
+</li>
+</ul>
+</p>
+<A NAME="TI5549"></A><p>When you create a new user object using a COM/COM+ Target
+or Object wizard:<A NAME="TI5550"></A>
+<ul>
+<li class=fi>The object has two new events:
+Activate and Deactivate.</li>
+<li class=ds>The object has COM validation support enabled. </li>
+<li class=ds>If you checked the box on the last page of the wizard,
+the wizard adds items to a To-Do List to remind you to complete
+all phases of development.
+</li>
+</ul>
+</p>
+<A NAME="BABBJIIC"></A><h4>When to use the wizards</h4>
+<p><b>New objects</b>   If you plan to build a server containing a single new custom class
+user object, use the Target or Object wizard to take advantage of
+these features.</p>
+<A NAME="TI5551"></A><p>If you plan to build a server containing multiple new custom
+class user objects, using the Target or Object wizards will give
+you a separate project for each object, so you will need to add
+all the objects to one of the projects and discard the other projects. </p>
+<A NAME="TI5552"></A><p>Alternatively, you can create new custom class user objects
+without using the Target or Object wizards and then create the project
+later using the Project wizard or the Project painter. </p>
+<A NAME="TI5553"></A><p>You can enable COM validation and add the Activate and Deactivate
+events as user-defined events in the User Object painter. For more
+information, see <A HREF="apptechp170.htm#BABCBDAC">"COM validation"</A>.</p>
+<p><b>Existing objects</b>   If you have one or more custom class user objects that you want
+to deploy as COM servers, make sure that they meet the requirements described
+in <A HREF="apptechp170.htm#BABEBABB">"Defining the component interface"</A> and
+the subsequent sections. As for new user objects, you can enable
+COM validation and add the Activate and Deactivate events as user-defined
+events in the User Object painter. When you are ready to build the
+server, you can use the Project wizard to set up the project.</p>
+<A NAME="BABCJIAB"></A><h2>About the development process</h2>
+<A NAME="TI5554"></A><p>To build and deploy a PowerBuilder COM server from one or
+more custom class user objects, you need to complete the following
+steps:<A NAME="TI5555"></A>
+<ol>
+</li>
+<li class=ds>Create a new custom class user
+object or open an existing user object.<br>
+If you use a Target or Object wizard, you also create a project
+object that you use to build and deploy the new object. <br></li>
+<li class=ds>Code the user object in the User Object painter.<br>
+See <A HREF="apptechp170.htm#BABEBABB">"Defining the component interface"</A>.<br></li>
+<li class=ds>Optionally, create and code additional user objects
+in the same application.</li>
+<li class=ds>If you did not use a wizard to create the user object(s),
+create a project using the COM/COM+ Component
+Project wizard or the Project painter.<br>
+See <A HREF="apptechp175.htm#CCJDBDIC">"Building COM/COM+ components
+in the Project painter"</A>.<br></li>
+<li class=ds>Open the project, modify the list of selected objects
+and their properties if necessary, and build the project. </li>
+<li class=ds>Deploy the server.<br>
+See <A HREF="apptechp177.htm#CEGDFIJA">"Deploying a PowerBuilder
+COM server"</A>. <br>
+</li>
+</ol>
+</p>
+

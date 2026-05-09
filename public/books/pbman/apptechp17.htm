@@ -1,0 +1,46 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Types of arguments for functions and events </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp16.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp18.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF354898964"></A><h1>Types of arguments for functions and events </h1>
+<A NAME="TI275"></A><p>When you define a function or user event, you specify its
+arguments, their datatypes, and how they are passed.</p>
+<A NAME="TI276"></A><p>There are three ways to pass an argument:</p>
+<A NAME="TI277"></A><p><A NAME="TI278"></A>
+<ul>
+<li class=fi><b>By value</b>   Is the default<br>
+PowerBuilder passes a copy of a by-value argument. Any changes
+affect the copy, and the original value is unaffected.<br></li>
+<li class=ds><b>By reference</b>   Tells PowerBuilder to pass a pointer to the passed variable<br>
+The function script can change the value of the variable because
+the argument points back to the original variable. An argument passed
+by reference must be a variable, not a literal or constant, so that
+it can be changed.<br></li>
+<li class=ds><b>Read-only</b>   Passes the argument by value without making a copy of the data<br>
+Read-only provides a performance advantage for some datatypes
+because it does not create a copy of the data, as with by value.
+Datatypes for which read-only provides a performance advantage are <b>String</b>, <b>Blob</b>, <b>Date</b>, <b>Time</b>, and <b>DateTime</b>.<br><br>
+For other datatypes, read-only provides documentation for
+other developers by indicating something about the purpose of the
+argument.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI279"></A><h4>Matching argument types when overriding functions</h4>
+<A NAME="TI280"></A><p>If you define a function in a descendant that overrides an
+ancestor function, the function signatures must match in every way:
+the function name, return value, argument datatypes, and argument
+passing methods must be the same.</p>
+<A NAME="TI281"></A><p>For example, this function declaration has two long arguments
+passed by value and one passed by reference:<p><PRE> uf_calc(long a_1, long a_2, ref long a_3) &amp;<br>   returns integer</PRE></p>
+<A NAME="TI282"></A><p>If the overriding function does not match, then when you call
+the function, PowerBuilder calculates which function matches more
+closely and calls that one, which might give unexpected results.</p>
+

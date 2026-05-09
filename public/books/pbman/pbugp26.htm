@@ -1,0 +1,590 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Source control operations in PowerBuilder</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp25.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp27.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CIHBIEAA"></A><h1>Source control operations in PowerBuilder</h1>
+<A NAME="TI878"></A><p>The following
+source control operations are described in this section:<A NAME="TI879"></A>
+<ul>
+<li class=fi><A HREF="pbugp26.htm#BABBGEJE">Adding objects to source
+control</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABDJDCH">Checking objects out from
+source control</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABDJADB">Checking objects in to source
+control</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABBAAED">Clearing the checked-out
+status of objects</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABEAGGB">Synchronizing objects with
+the source control server</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABCDGEA">Refreshing the status of
+objects</A></li>
+<li class=ds><A HREF="pbugp26.htm#CAIBICCG">Comparing local objects
+with source control versions</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABBGCFC">Displaying the source control
+version history</A></li>
+<li class=ds><A HREF="pbugp26.htm#BABDIHCF">Removing objects from source
+control</A>
+</li>
+</ul>
+</p>
+<A NAME="TI880"></A><p>Source control operations on workspace and <ACRONYM title = "pibble" >PBL</ACRONYM> files are performed on the objects
+contained in the current workspace or in target <ACRONYM title = "pibbles" >PBLs</ACRONYM>, not on the actual PBW and <ACRONYM title = "pibble" >PBL</ACRONYM> files. The PBW and <ACRONYM title = "pibble" >PBL</ACRONYM> files cannot be added to source
+control through the PowerBuilder interface. Source control operations
+are not enabled for target PBD files or for any of the objects in
+target PBD files.</p>
+<A NAME="BABBGEJE"></A><h2>Adding objects to source control</h2>
+<A NAME="TI881"></A><p>You add an object to your source control project by selecting
+the Add To Source Control menu item from the object's pop-up
+menu in the System Tree or in the Library painter. You can also
+select an object in a Library painter view and then select Entry&gt;Source
+Control&gt;Add To Source Control from the Library painter
+menu bar. </p>
+<A NAME="TI882"></A><h4>What happens when you add objects to source control</h4>
+<A NAME="TI883"></A><p>When you add an object to source control, the icon in front
+of the object changes from a plus sign to a green dot, indicating
+that the object on the local machine is in sync with the object
+on the server.</p>
+<A NAME="TI884"></A><p>PowerBuilder creates read-only object files in the local root
+directory for each PowerBuilder object that you add to source control.
+These files can be automatically deleted if you selected the Delete
+PowerBuilder Generated Object Files option as a source control connection
+property (although you cannot do this for certain SCC systems such
+as Perforce or ClearCase). </p>
+<A NAME="TI885"></A><p>Read-only attributes are also assigned to any Web target files
+that you add to source control. Read-only attributes are not changed
+by PowerBuilder if you later remove a workspace containing these
+files from source control.</p>
+<A NAME="TI886"></A><h4>Adding multiple objects to source control</h4>
+<A NAME="TI887"></A><p>If the object you select is a PowerBuilder workspace, a dialog
+box displays listing all the objects for that workspace that are
+not currently under source control (although the workspace PBW and
+target <ACRONYM title = "pibbles" >PBLs</ACRONYM> are not included
+in the list). If the object you select is a PowerBuilder target,
+and at least one of the objects in that target has not been registered
+with the current source control project, PowerBuilder displays a
+dialog box that prompts you to:<A NAME="TI888"></A>
+<ul>
+<li class=fi>Select multiple
+files contained in the target </li>
+<li class=ds>Register the target file only
+</li>
+</ul>
+</p>
+<A NAME="TI889"></A><p>If you select the multiple files radio button, another dialog
+box displays with a list of objects to add to source control. A
+check box next to each object lets you select which objects you
+want to add to source control. By default, check boxes are selected
+for all objects that are not in your source control project. They
+are not selected for any object already under source control.</p>
+<br><img src="images/sccdlg1.gif">
+<A NAME="TI890"></A><p>You can resize all source control dialog boxes listing multiple
+files by placing a cursor over the edge of a dialog box until a
+two-headed arrow displays, then dragging the edge in the direction
+of one of the arrow heads.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Selecting multiple files from a <ACRONYM title = "pibble" >PBL</ACRONYM></span> <A NAME="TI891"></A>If you select Add To Source Control for a target <ACRONYM title = "pibble" >PBL</ACRONYM>, you immediately see the list
+of multiple files from that <ACRONYM title = "pibble" >PBL</ACRONYM> in
+the Add To Source Control dialog box. There is no need for an intervening
+dialog box as there is for a target or workspace, since you cannot
+register a <ACRONYM title = "pibble" >PBL</ACRONYM> file to source
+control from the PowerBuilder UI&#8212;you can only register
+the objects contained in that <ACRONYM title = "pibble" >PBL</ACRONYM>.</p>
+<A NAME="TI892"></A><p>You can also select multiple objects to add to source control
+from the List view of the Library painter (without selecting a workspace,
+target, or <ACRONYM title = "pibble" >PBL</ACRONYM>).</p>
+<A NAME="TI893"></A><p>The Add To Source Control menu item is disabled for all objects
+that are registered in source control except workspaces and targets.
+If you select the Add To Source Control menu item for a workspace
+or target in which all the objects are already registered to source
+control, PowerBuilder displays the Add To Source Control dialog
+box with an empty list of files. You cannot add objects to your
+source control project that are already registered with that project.</p>
+<A NAME="TI894"></A><h4>Creating a mapping file for target <ACRONYM title = "pibbles" >PBLs</ACRONYM></h4>
+<A NAME="TI895"></A><p>When you add a target or an object (in a target that is not
+under source control) to source control, PowerBuilder creates a
+PBG file. A PBG file maps objects in a target to a particular <ACRONYM title = "pibble" >PBL</ACRONYM> in a PowerScript target. One
+PBG file is created per <ACRONYM title = "pibble" >PBL</ACRONYM>,
+so there can be multiple PBG files per PowerScript target. PBG files are
+also used to list target directories and subdirectories for Web
+targets, but there is only one PBG file per Web target.</p>
+<A NAME="TI896"></A><p>If a PBG file already exists for a target <ACRONYM title = "pibble" >PBL</ACRONYM> containing the object you are adding
+to source control, PowerBuilder checks the PBG file out of source control
+and adds the name of the object to the names of objects already
+listed in the PBG file. It then checks the PBG file back into source
+control.</p>
+<A NAME="TI897"></A><p>The PBG files are used by PowerBuilder to make sure that objects
+are distributed to the correct <ACRONYM title = "pibbles" >PBLs</ACRONYM> and
+targets when you check the objects out (or get the latest versions
+of the objects) from source control. </p>
+<A NAME="TI898"></A><p>If your source control system requires comments on registration
+and check-in, you get separate message boxes for the PBG file and
+the objects that you are adding to source control. If your source
+control system gives you the option of adding the same comments
+to all the objects you are registering, you can still get additional
+message boxes for PBG files, since PBG files are checked in separately.</p>
+<A NAME="TI899"></A><p>Because it is possible for PBG files to get out of sync, it
+is important that the project manager monitor these files to make
+sure they map all objects to the correct <ACRONYM title = "pibbles" >PBLs</ACRONYM> and
+contain references to all objects in the source control project. However,
+you cannot explicitly check in or check out PBG files through the PowerBuilder
+SCC API.</p>
+<A NAME="TI900"></A><p>For more information on modifying PBG files, see <A HREF="pbugp27.htm#BABCHHHJ">"Editing the PBG file for
+a source-controlled target"</A>.</p>
+<A NAME="BABDJDCH"></A><h2>Checking objects out from source control</h2>
+<A NAME="TI901"></A><h4>What happens on checking out an object</h4>
+<A NAME="TI902"></A><p>When you check out an object, PowerBuilder:<A NAME="TI903"></A>
+<ul>
+<li class=fi>Locks
+the object in the archive so that no one else can modify it&#8212;unless your
+source control system permits multiple user checkouts</li>
+<li class=ds>Copies the object to the directory for the target
+to which it belongs</li>
+<li class=ds>For a PowerScript object, compiles the object and
+regenerates it in the target <ACRONYM title = "pibble" >PBL</ACRONYM> to
+which it is mapped </li>
+<li class=ds>Displays a check mark icon next to the object in
+your System Tree and in your Library painter to show that the object
+has been checked out 
+</li>
+</ul>
+</p>
+<A NAME="TI904"></A><h4>Checking out multiple objects</h4>
+<A NAME="TI905"></A><p>If you select the Check Out menu item for a PowerBuilder target
+that is not already checked out, and at least one of the objects
+in that target is available for checkout, PowerBuilder displays
+a dialog box that prompts you to:<A NAME="TI906"></A>
+<ul>
+<li class=fi> Select multiple
+files contained in the target</li>
+<li class=ds>Check out the target file only
+</li>
+</ul>
+</p>
+<A NAME="TI907"></A><p>If you select the multiple file option, or if the target file
+is already checked out, the Check Out dialog box displays the list
+of objects from that target that are available for checkout. A check
+box next to each object in the list lets you choose which objects
+you want to check out. By default, check boxes are selected for
+all objects that are not currently checked out of source control.</p>
+<A NAME="TI908"></A><p>The Deselect All button in the Check Out dialog box lets you
+clear all the check boxes with a single click. When none of the
+objects in the list is selected, the button text becomes Select
+All, and you can click the button to select all the objects in the
+list.</p>
+<A NAME="TI909"></A><p>You can also select multiple objects (without selecting a target)
+in the List view of the Library painter. The PowerBuilder SCC API
+does not let you check out an object that you or someone else has
+already checked out or that is not yet registered with source control.
+If you use multiple object selection to select an object that is
+already checked out, PowerBuilder does not include this object in the
+list view of the Check Out dialog box.</p>
+<A NAME="TI910"></A><h4>Multiple
+user checkout</h4>
+<A NAME="TI911"></A><p>Checking out an object from a source control system usually
+prevents other users from checking in modified versions of the same
+object. Some source control systems, such as Serena Version Manager
+(formerly Merant PVCS) and MKS Source Integrity, permit multiple
+user checkouts. In these systems, you can allow shared checkouts
+of the same object. </p>
+<A NAME="TI912"></A><p>By default, PowerBuilder recognizes shared checkouts from
+SCC providers that support multiple user checkouts. PowerBuilder
+shows a red check mark as part of a compound icon to indicate that
+an object is checked out to another user in a shared (nonexclusive)
+mode. You can check out an object in shared mode even though another
+user has already checked the object out. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Managing multiple user check-ins</span> <A NAME="TI913"></A>If you allow multiple user checkouts, the SCC administrator
+should publish a procedure that describes how to merge changes to
+the same object by multiple users. Merge functionality is not automatically
+supported by the SCC API, so checking in an object in shared mode
+might require advanced check-in features of the source control system.
+Merging changes might also require using the source control administration
+utility instead of the PowerBuilder user interface.</p>
+<A NAME="TI914"></A><p>If your SCC provider permits multiple user checkouts, you
+can still ensure that an item checked out by a user is exclusively
+reserved for that user until the object is checked back in, but
+only if you add the following instruction to the Library section
+of the PB.INI file:<p><PRE> [Library]</PRE><PRE> SccMultiCheckout=0</PRE></p>
+<A NAME="TI915"></A><p>After you add this PB.INI setting, or if your SCC provider
+does not support multiple user checkouts, you will not see the compound
+icons with red check marks, and all items will be checked out exclusively
+to a single user. For source control systems that support multiple
+user checkouts, you can re-enable shared checkouts by setting the
+SccMultiCheckout value to <FONT FACE="Courier New">1</FONT> or <FONT FACE="Courier New">-1</FONT>.</p>
+<A NAME="TI916"></A><h4>Creating a source control branch</h4>
+<A NAME="TI917"></A><p>If your source control system supports branching and its SCC
+API lets you check out a version of an object that is not the most
+recent version in source control, you can select the version you
+want in the Advanced Check Out dialog box (that you access by clicking
+the Advanced button in the Check Out dialog box). When you select
+an earlier version, PowerBuilder displays a message box telling
+you it will create a branch when you check the object back in. You
+can click Yes to continue checking out the object or No to leave
+the object unlocked in the source control project. If this is part
+of a multiple object checkout, you can select Yes To All or No To
+All.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you want just a read-only copy of the latest version
+of an object</span> <A NAME="TI918"></A>Instead of checking out an object and locking it in the source
+control system, you can choose to get the latest version of the
+object with a read-only attribute. See <A HREF="pbugp26.htm#BABEAGGB">"Synchronizing objects with
+the source control server"</A>.</p>
+<A NAME="TI919"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To check out an object from source control:</p>
+<ol><li class=fi><p>Right-click the object in the System Tree
+or in a Library painter view and select Check Out from the pop-up
+menu</p><p><i>or</i></p><p>Select the object in a Library painter view and select
+Entry&gt;Source Control&gt;Check Out from the Library
+painter menu.</p><p>The Check Out dialog box displays the name of the object you
+selected. For PowerScript objects, the object listing includes the
+name of the <ACRONYM title = "pibble" >PBL</ACRONYM> that contains
+the selected object.</p><p>If you selected multiple objects, the Check Out dialog box
+displays the list of objects available for checkout. You can also
+display a list of available objects when you select a target file
+for checkout. A check mark next to an object in the list marks the
+object as assigned for checkout. </p></li>
+<li class=ds><p>Make sure that the check box is selected next
+to the object you want to check out, and click OK.</p></li></ol>
+<br><A NAME="BABDJADB"></A><h2>Checking objects in to source control</h2>
+<A NAME="TI920"></A><p>When you finish working with an object that you checked out,
+you must check it back in so other developers can use it, or you
+must clear the object's checked-out status. You cannot check in objects
+that you have not checked out.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you do not want to use the checked-out version</span> <A NAME="TI921"></A>Instead of checking an entry back in, you can choose not to
+use the checked-out version by clearing the checked-out
+status of the entry. See <A HREF="pbugp26.htm#BABBAAED">"Clearing the checked-out
+status of objects"</A>.</p>
+<A NAME="TI922"></A><h4>Checking in multiple objects</h4>
+<A NAME="TI923"></A><p>If you select the Check In menu item for a workspace, PowerBuilder
+lists all the objects in the workspace that are available for check-in.
+If you select the Check In menu item for a PowerBuilder target that
+is currently checked out to you, and at least one of the objects
+in that target is also checked out to you, PowerBuilder displays
+a dialog box that prompts you to:<A NAME="TI924"></A>
+<ul>
+<li class=fi>Select multiple
+files contained in the target</li>
+<li class=ds>Check in the target file only
+</li>
+</ul>
+</p>
+<A NAME="TI925"></A><p>If you select the multiple file option, or if the target file
+is not currently checked out to you, the Check In dialog box displays
+the list of objects from that target that are available for you
+to check in. A check box next to each object in the list lets you
+choose which objects you want to check in. By default, check boxes
+are selected for all objects that you currently have checked out
+of source control.</p>
+<A NAME="TI926"></A><p>The Deselect All button in the Check In dialog box lets you
+clear all the check boxes with a single click. When none of the
+objects in the list is selected, the button text becomes Select
+All, and you can click the button to select all the objects in the
+list.</p>
+<A NAME="TI927"></A><p>You can also select multiple objects (without selecting a
+workspace or target) in the List view of the Library painter. The
+PowerBuilder SCC API does not let you check in an object that you
+have not checked out of source control. If you use multiple object
+selection to select an object that is not checked out to you, PowerBuilder
+does not include this object in the list view of the Check In dialog
+box.</p>
+<A NAME="TI928"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To check in objects to source control:</p>
+<ol><li class=fi><p>Right-click the object in the System Tree
+or in a Library painter view and select Check In from the pop-up
+menu</p><p><i>or</i></p><p>Select the object in a Library painter view and select
+Entry&gt;Source Control&gt;Check In from the Library
+painter menu.</p><p>The Check In dialog box displays the name of the object you
+selected. If you selected multiple objects or a workspace, the Check
+In dialog box displays the list of objects available for check-in.
+You can also display a list of available objects when you select
+a target file. A check mark next to an object in the list marks
+the object as assigned for check-in. </p></li>
+<li class=ds><p>Make sure the check box is selected next to the
+object you want to check in and click OK.</p></li></ol>
+<br><A NAME="BABBAAED"></A><h2>Clearing the checked-out status of objects</h2>
+<A NAME="TI929"></A><p>Sometimes you need to clear
+(revert) the checked-out status of an object without checking it
+back into source control. This is usually the case if you modify
+the object but then decide not to use the changes you have made.
+When you undo a checkout on an object, PowerBuilder replaces your
+local copy with the latest version of the object on the source control
+server. For PowerScript targets, it compiles and regenerates the
+object in its target <ACRONYM title = "pibble" >PBL</ACRONYM>. </p>
+<A NAME="TI930"></A><h4>Clearing the status of multiple objects</h4>
+<A NAME="TI931"></A><p>If you select the Undo Check Out menu item for a PowerBuilder
+target that is checked out to you, and at least one of the objects
+in that target is also checked out to you, PowerBuilder displays
+a dialog box that prompts you to:<A NAME="TI932"></A>
+<ul>
+<li class=fi>Select multiple
+files contained in the target</li>
+<li class=ds>Undo the checked-out status for the target file
+only
+</li>
+</ul>
+</p>
+<A NAME="TI933"></A><p>If you select the multiple file option, or if the target file
+is not currently checked out to you, the Undo Check Out dialog box
+displays the list of objects from that target that are locked by
+you in source control. A check box next to each object in the list
+lets you choose the objects for which you want to undo the checked-out
+status. By default, check boxes are selected for all objects that
+are currently checked out to you from source control.</p>
+<A NAME="TI934"></A><p>You can also select multiple objects (without selecting a  target)
+in the List view of the Library painter. The PowerBuilder SCC API
+does not let you undo the checked-out status of an object that you
+have not checked out of source control. If you use multiple object
+selection to select an object that is not checked out to you, PowerBuilder
+does not include this object in the list view of the Undo Check
+Out dialog box.</p>
+<A NAME="TI935"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To clear the checked-out status of entries:</p>
+<ol><li class=fi><p>Right-click the object in the System Tree
+or in a Library painter view and select Undo Check Out from the
+pop-up menu</p><p><i>or</i></p><p>Select the object in a Library painter view and select
+Entry&gt;Source Control&gt;Undo Check Out from the Library
+painter menu.</p><p>The Undo Check Out dialog box displays the name of the object
+you selected. If you selected multiple objects, the Undo Check Out
+dialog box displays the list of objects in the selection that are
+currently checked out to you. You can also display a list of objects
+that are checked out to you when you select a target file. </p></li>
+<li class=ds><p>Make sure that the check box is selected next
+to the object whose checked-out status you want to clear,
+and click OK.</p></li></ol>
+<br><A NAME="BABEAGGB"></A><h2>Synchronizing objects with the source control server</h2>
+<A NAME="TI936"></A><p>You can synchronize local copies of PowerBuilder objects with
+the latest versions of these objects in source control without checking
+them out from the source control system. The objects copied to your
+local machine are read-only. The newly copied PowerScript objects
+are then compiled into their target <ACRONYM title = "pibbles" >PBLs</ACRONYM>.</p>
+<A NAME="TI937"></A><p>If there are exported PowerScript files in your local path
+that are not marked read-only, and you did not select the Suppress
+Prompts To Overwrite Read-Only Files option, your source
+control system may prompt you before attempting to overwrite these
+files during synchronization. If you are synchronizing multiple
+objects at the same time, you can select: <A NAME="TI938"></A>
+<ul>
+<li class=fi>Yes
+To All, to overwrite all files in your selection</li>
+<li class=ds>No To All, to cancel the synchronization for all
+objects in the selection that have writable files in the local path
+</li>
+</ul>
+</p>
+<A NAME="TI939"></A><p>Synchronizing an object does not lock that object on the source
+control server. After you synchronize local objects to the latest
+version of these objects in source control, other developers can
+continue to perform source control operations on these objects.</p>
+<A NAME="TI940"></A><p>If you want only to check whether the status of the objects
+has changed on the source control server, you can use the Refresh
+Status menu item from the Library painter Entry menu or System Tree
+pop-up menus. The Refresh Status command runs on a background thread.
+If you do not use the Refresh Status feature before getting the
+latest versions of workspace or target objects, then PowerBuilder
+has to obtain status and out-of-sync information from the
+SCC provider in real time during a GetLatestVersion call.For more
+information, see <A HREF="pbugp26.htm#BABCDGEA">"Refreshing the status of
+objects"</A>.</p>
+<A NAME="TI941"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To synchronize a local object with the latest
+source control version:</p>
+<ol><li class=fi><p>Right-click the object in the System Tree
+or in a Library painter view and select Get Latest Version from
+the pop-up menu.</p><p><i>or</i></p><p>Select the object in a Library painter view and select
+Entry&gt;Source Control&gt;Get Latest Version from the
+Library painter menu.</p><p>The Get Latest Version dialog box displays the name of the
+object you selected. If you selected multiple objects in the Library
+painter List view, the Get Latest Version dialog box lists all the
+objects in your selection. If you selected a workspace, the Get
+Latest Version dialog box lists all the objects referenced in the
+PBG files belonging to your workspace. You can also display a list
+of available objects (from the PBG files for a target) when you
+select the Get Latest Version menu item for a target file. </p><p>A check mark next to an object in the list assigns the object
+for synchronization. By default only objects that are currently
+out of sync are selected in this list. You can use the Select All
+button to select all the objects for synchronization. If all objects
+are selected, the button text becomes Deselect All. Its function
+also changes, allowing you to clear all the selections with a single
+click.</p></li>
+<li class=ds><p>Make sure that the check box is selected next
+to the object for which you want to get the latest version, and
+click OK.</p></li></ol>
+<br><A NAME="BABCDGEA"></A><h2>Refreshing the status of objects</h2>
+<A NAME="TI942"></A><p>PowerBuilder uses
+the source control connection defined for a workspace to check periodically
+on the status of all objects in the workspace. You can set the status
+refresh rate for a workspace on the Source Control page of the Workspace
+Properties dialog box. You can also select the Perform Diff on Status
+Update option to detect any differences between objects in your
+local directories and objects on the source control server.</p>
+<A NAME="TI943"></A><p>For more information about source control options you can
+set on your workspace, see <A HREF="pbugp25.htm#BABCGDIB">"Setting up a connection
+profile"</A>.</p>
+<A NAME="TI944"></A><p>PowerBuilder stores status information in memory, but it does
+not automatically update the source control status of an object
+until a System Tree or Library painter node containing that object
+has been expanded and the time since the last status update for
+that object exceeds the status refresh rate. </p>
+<A NAME="TI945"></A><p>Status information can still get out of sync if multiple users
+access the same source control project simultaneously and you do
+not refresh the view of your System Tree or Library painter. By
+using the Refresh Status menu item, you can force a status update
+for objects in your workspace without waiting for the refresh rate
+to expire, and without having to open and close tree view nodes containing
+these objects. </p>
+<A NAME="TI946"></A><p>The Refresh Status feature runs in the background on a secondary
+thread.  This allows you to continue working in PowerBuilder while
+the operation proceeds. When the Refresh Status command is executed,
+your SCC status cache is populated with fresh status values. This
+allows subsequent operations like a target-wide synchronization
+(through a GetLatestVersion call) to run much faster. </p>
+<A NAME="TI947"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To refresh the status of objects:</p>
+<ol><li class=fi><p>Right-click the object in the System Tree
+or in a Library painter view and select Refresh Status from the
+pop-up menu</p><p><i>or</i></p><p>Select the object in a Library painter view and select
+Entry&gt;Source Control&gt;Refresh Status from the Library
+painter menu.</p><p>If the object you selected is not a workspace, target, or <ACRONYM title = "pibble" >PBL</ACRONYM> file, the object status is refreshed
+and any change is made visible by a change in the source control
+icon next to the object. If you selected an object in a Library painter
+view, the status of this object in the System Tree is also updated.</p><p>For information about the meaning of source control icons
+in PowerBuilder, see <A HREF="pbugp25.htm#BABBIJBJ">"Viewing the status of source-controlled
+objects"</A>.</p></li>
+<li class=ds><p>If the object you selected in step 1 is a workspace
+or target file, select a radio button to indicate whether you want
+to refresh the status of the selected file only or of multiple files
+in the workspace or target.</p></li>
+<li class=ds><p>If the object you selected in step 1 is a <ACRONYM title = "pibble" >PBL</ACRONYM>, or if you selected the multiple files
+option in step 2, make sure that the check box is selected next
+to the object or objects whose status you want to refresh, and click
+OK.</p><p>Status is refreshed for every object selected in the Refresh
+Status dialog box. Any change in status is made visible by a change
+in the source control icon next to the objects (in the selected
+workspace, target, or <ACRONYM title = "pibble" >PBL</ACRONYM>) that
+are refreshed.</p></li></ol>
+<br><A NAME="CAIBICCG"></A><h2>Comparing local objects with source control versions</h2>
+<A NAME="TI948"></A><p>The PowerBuilder SCC API lets you compare an object in your
+local directory with a version of the object in the source control
+archive (or project). By default, the comparison is made with the
+latest version in the archive, although most source control systems
+let you compare your local object to any version in the archive.
+Using this feature, you can determine what changes have been made
+to an object since it was last checked into source control.</p>
+<A NAME="TI949"></A><h4>Setting up PBNative for object comparisons</h4>
+<A NAME="TI950"></A><p>PBNative does not have its own visual difference utility,
+but it does allow you to select one that you have already installed.
+You must use only a 32-bit visual difference utility for the object
+comparisons. You can select any or all of the following options
+when you set up the utility to work with a PBNative repository:</p>
+<A NAME="TI951"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 3-5: Object comparison options for use with PBNative</caption>
+<tr><th  rowspan="1"  ><A NAME="TI952"></A>Option</th>
+<th  rowspan="1"  ><A NAME="TI953"></A>Select this if</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI954"></A>Enclose file names in double quotes</td>
+<td  rowspan="1"  ><A NAME="TI955"></A>Your visual difference utility does not
+handle spaces in file names.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI956"></A>Refer to local <ACRONYM title = "pibble" >PBL</ACRONYM> entry as
+argument #1</td>
+<td  rowspan="1"  ><A NAME="TI957"></A>You do not want the visual difference
+utility to use the repository object as the first file in a file
+comparison.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI958"></A>Generate short (8.3) file names</td>
+<td  rowspan="1"  ><A NAME="TI959"></A>Your visual difference utility does not
+handle long file names.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI960"></A>Generate an extra space prior to file
+arguments</td>
+<td  rowspan="1"  ><A NAME="TI961"></A>Your visual difference utility requires
+an extra space between files that are listed as arguments when you
+open the utility from a command line. This option was added for
+backward compatibility only, as an extra space was automatically
+added by PowerBuilder 8.</td>
+</tr>
+</table>
+<A NAME="TI962"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set up PBNative for object comparisons</p>
+<ol><li class=fi><p>Right-click the Workspace object in the
+System Tree and click the Source Control tab in the Workspace Properties
+dialog box.</p><p>PBNative should be your selection for the source control system,
+and you must have a project and local root directory configured.
+If you are connected already to source control, you can skip the
+next step.</p></li>
+<li class=ds><p>Click Connect.</p><p>The Connect button is disabled if you are already connected
+to source control.</p></li>
+<li class=ds><p>Click Advanced.</p><p>The PBNative Options dialog box displays.</p></li>
+<li class=ds><p>Type the path to a visual difference utility followed
+by the argument string required by your utility to perform a diff
+(comparison) on two objects.</p><p>Typically, you would add two <i>%s </i>parameter
+markers to indicate where PowerBuilder should perform automatic
+file name substitution. The following figure shows a setting used
+to call the Microsoft <b>WinDiff</b> utility:</p><br><img src="images/pbnatops.gif"><br>
+</li>
+<li class=ds><p>(Optional) Select any or all of the check box
+options in the PBNative Command Options dialog box for your object
+comparisons.</p></li>
+<li class=ds><p>Click OK twice.</p><p>You are now set to use your visual difference utility to compare
+objects on the local machine and the server.</p></li></ol>
+<br><A NAME="TI963"></A><h4>Using Show Differences to compare objects</h4>
+<A NAME="TI964"></A><p>You can select Show Differences from a pop-up menu or from
+the Library painter menu bar. If the object you want to compare
+has not been added to the source control project defined for your
+workspace, the Show Differences menu item is not available. </p>
+<A NAME="TI965"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To compare a local object with the latest source
+control version:</p>
+<ol><li class=fi><p>Right-click the object in the System Tree
+or in a Library painter view and</p><p>select Show Differences from the pop-up menu</p><p><i>or</i></p><p>Select the object in a Library painter view and select
+Entry&gt;Source Control&gt;Show Differences from the
+Library painter menu bar.</p><p>A dialog box from your source control system displays. </p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>PBNative connections</span> <A NAME="TI966"></A>Skip the next step if you are using a visual difference utility
+with PBNative. The difference utility displays the files directly
+or indicates that there are no differences between the files. </p>
+</li>
+<li class=ds><p>Select the source control comparison options you
+want and click OK.</p><p>Some source control systems support additional comparison
+functions. You may need to run the source control manager for these
+functions. See your source control system documentation for more
+information.</p></li></ol>
+<br><A NAME="BABBGCFC"></A><h2>Displaying the source control version history</h2>
+<A NAME="TI967"></A><p>For some source control systems, the PowerBuilder SCC API
+lets you show the version control history of an object in source
+control. Using this feature, you can determine what changes have
+been made to an object since it was first checked into source control.</p>
+<A NAME="TI968"></A><p>The Show History menu item is not visible if the object for
+which you want to display a version history has not been added to
+the source control project defined for your workspace. It is grayed
+out if your source control system does not support this functionality
+through the PowerBuilder SCC API.</p>
+<A NAME="TI969"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display the source control version history:</p>
+<ol><li class=fi><p>Right-click the object in the System Tree
+or in a Library painter view and</p><p>select Show History from the pop-up menu</p><p><i>or</i></p><p>Select the object in a Library painter view and select
+Entry&gt;Source Control&gt;Show History from the Library
+painter menu bar.</p><p>A dialog box from your source control system displays. </p></li>
+<li class=ds><p>Select the source control options you want and
+click OK.</p><p>Some source control systems support additional tracing and
+reporting functions for objects in their archives. You may need
+to run the source control manager for these functions. See your
+source control system documentation for more information.</p></li></ol>
+<br><A NAME="BABDIHCF"></A><h2>Removing objects from source control</h2>
+<A NAME="TI970"></A><p>The PowerBuilder SCC API lets you remove objects from source
+control, although for some source control systems, you may have
+to use the source control manager to delete the archives for the
+objects you remove. You cannot remove an object that is currently
+checked out from source control.</p>
+<A NAME="TI971"></A><p>You cannot delete a source-controlled object from a local
+PowerBuilder workspace before that object has been removed from
+source control. There is no requirement, however, that the source
+control archive be deleted before you delete the object from its
+PowerBuilder workspace.</p>
+<A NAME="TI972"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To remove objects from source control:</p>
+<ol><li class=fi><p>Select the object in a Library painter
+view and select Entry&gt;Source Control&gt;Remove From
+Source Control from the Library painter menu.</p><p>The Remove From Source Control dialog box displays the name
+of the object you selected. </p><p>If you selected multiple objects or a workspace, the Remove
+From Source Control dialog box displays the list of objects in your
+selection that are not currently checked out from source control.
+You can also display a list of available objects when you select
+the Remove From Source Control menu item for a target file. A check
+mark next to an object in the list marks the object as assigned
+for removal from source control. </p></li>
+<li class=ds><p>Make sure that the check box is selected next
+to the object you want to remove, and click OK.</p></li></ol>
+<br>

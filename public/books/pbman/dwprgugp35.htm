@@ -1,0 +1,367 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Accessing data properties</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp34.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp36.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF377543569"></A><h1>Accessing data properties</h1>
+<A NAME="TI1068"></A><p>To access properties related to a graph's data during
+execution, you use DataWindow methods for graphs. There are three categories
+of these methods related to data:<A NAME="TI1069"></A>
+<ul>
+<li class=fi>Methods that provide information about a graph's
+data</li>
+<li class=ds>Methods that save data from a graph</li>
+<li class=ds>Methods that change the color, fill patterns, and
+other visual properties of data
+</li>
+</ul>
+</p>
+<A NAME="TI1070"></A><h4>How to use the methods</h4>
+<A NAME="TI1071"></A><p>To call the methods for a graph in a DataWindow control, use
+the following syntax:<p><PRE><i>DataWindowName.methodName</i> ( "<i>graphName</i>", <i>otherArguments...</i> )</PRE></p>
+</p>
+<A NAME="TI1072"></A><p>For example, there is a method CategoryCount, which returns
+the number of categories in a graph. So to get the category count
+in the graph gr_printer (which is in the DataWindow control
+dw_sales), write:<p><PRE> Ccount = dw_sales.<i>CategoryCount</i>("gr_printer")</PRE></p>
+<A NAME="TI1073"></A><h2>Getting information about the data</h2>
+<A NAME="TI1074"></A><p>There are quite a few methods for getting information about
+data in a graph in a DataWindow control at execution time. For all
+methods, you provide the name of the graph within the DataWindow
+as the first argument. You can provide your own name for graph controls
+when you insert them in the DataWindow painter. If the presentation
+style is Graph, you do not need to name the graph.</p>
+<p><b>PowerBuilder</b>   These methods get information about the data and its display. For
+several of them, an argument is passed by reference to hold the
+requested information:</p>
+<A NAME="TI1075"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 5-1: Common methods for graph DataWindows in PowerBuilder</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1076"></A>Method</th>
+<th  rowspan="1"  ><A NAME="TI1077"></A>Information
+provided</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1078"></A>CategoryCount</td>
+<td  rowspan="1"  ><A NAME="TI1079"></A>The number of categories in a graph</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1080"></A>CategoryName</td>
+<td  rowspan="1"  ><A NAME="TI1081"></A>The name of a category, given its number</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1082"></A>DataCount</td>
+<td  rowspan="1"  ><A NAME="TI1083"></A>The number of data points in a series</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1084"></A>FindCategory</td>
+<td  rowspan="1"  ><A NAME="TI1085"></A>The number of a category, given its name</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1086"></A>FindSeries</td>
+<td  rowspan="1"  ><A NAME="TI1087"></A>The number of a series, given its name</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1088"></A>GetData</td>
+<td  rowspan="1"  ><A NAME="TI1089"></A>The value of a data point, given its
+series and position (superseded by GetDataValue, which is more flexible)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1090"></A>GetDataPieExplode</td>
+<td  rowspan="1"  ><A NAME="TI1091"></A>The percentage at which a pie slice is
+exploded</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1092"></A>GetDataStyle</td>
+<td  rowspan="1"  ><A NAME="TI1093"></A>The color, fill pattern, or other visual
+property of a specified data point</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1094"></A>GetDataValue</td>
+<td  rowspan="1"  ><A NAME="TI1095"></A>The value of a data point, given its
+series and position</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1096"></A>GetSeriesStyle</td>
+<td  rowspan="1"  ><A NAME="TI1097"></A>The color, fill pattern, or other visual
+property of a specified series</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1098"></A>ObjectAtPointer</td>
+<td  rowspan="1"  ><A NAME="TI1099"></A>The graph element the mouse was positioned
+over when it was clicked</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1100"></A>SeriesCount</td>
+<td  rowspan="1"  ><A NAME="TI1101"></A>The number of series in a graph</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1102"></A>SeriesName</td>
+<td  rowspan="1"  ><A NAME="TI1103"></A>The name of a series, given its number</td>
+</tr>
+</table>
+<p><b>Web ActiveX</b>   These methods get information about the data and its display. There
+are additional helper methods available whenever the equivalent PowerBuilder
+method uses an argument passed by reference. These helper methods
+are identified in the second column of the following table (and
+are described in the <i>DataWindow Reference</i>
+):</p>
+<A NAME="TI1104"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 5-2: Common methods for graph DataWindows in Web ActiveX</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1105"></A>Method</th>
+<th  rowspan="1"  ><A NAME="TI1106"></A>Information
+provided</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1107"></A>CategoryCount</td>
+<td  rowspan="1"  ><A NAME="TI1108"></A>The number of categories in a graph.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1109"></A>CategoryName</td>
+<td  rowspan="1"  ><A NAME="TI1110"></A>The name of a category, given its number.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1111"></A>DataCount</td>
+<td  rowspan="1"  ><A NAME="TI1112"></A>The number of data points in a series.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1113"></A>FindCategory</td>
+<td  rowspan="1"  ><A NAME="TI1114"></A>The number of a category, given its name.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1115"></A>FindSeries</td>
+<td  rowspan="1"  ><A NAME="TI1116"></A>The number of a series, given its name.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1117"></A>ObjectAtPointer</td>
+<td  rowspan="1"  ><A NAME="TI1118"></A>The graph element the mouse was positioned
+over when it was clicked. Call ObjectAtPointerSeries and ObjectAtPointerDataPoint
+to get additional information.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1119"></A>SeriesCount</td>
+<td  rowspan="1"  ><A NAME="TI1120"></A>The number of series in a graph.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1121"></A>SeriesName</td>
+<td  rowspan="1"  ><A NAME="TI1122"></A>The name of a series, given its number.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1123"></A><i>Getting information
+about a data point's appearance</i></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1124"></A>GetDataPieExplode</td>
+<td  rowspan="1"  ><A NAME="TI1125"></A>The percentage at which a pie slice is
+exploded. Call GetDataPieExplodePercentage to retrieve the requested value.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1126"></A>GetDataStyleColor</td>
+<td  rowspan="1"  ><A NAME="TI1127"></A>The color of a specified data point.
+Call GetDataStyleColorValue to retrieve the requested value.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1128"></A>GetDataStyleFill</td>
+<td  rowspan="1"  ><A NAME="TI1129"></A>The fill pattern of a specified data
+point. Call GetDataStyleFillPattern to retrieve the requested value.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1130"></A>GetDataStyleLine</td>
+<td  rowspan="1"  ><A NAME="TI1131"></A>The line style and width of a specified
+data point. Call GetDataStyleLineWidth and GetDataStyleLineStyle
+to retrieve the requested values.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1132"></A>GetDataStyleSymbol</td>
+<td  rowspan="1"  ><A NAME="TI1133"></A>The symbol of a specified data point.
+Call GetDataStyleSymbolValue to retrieve the requested value.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1134"></A><i>Getting a data
+point's value</i></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1135"></A>GetDataDate</td>
+<td  rowspan="1"  ><A NAME="TI1136"></A>The value of a data point that contains
+a date, given its series and position. Call GetDataDateVariable
+to retrieve the requested value.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1137"></A>GetDataNumber</td>
+<td  rowspan="1"  ><A NAME="TI1138"></A>The value of a numeric data point, given
+its series and position. Call GetDataNumberVariable to retrieve
+the requested value.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1139"></A>GetDataString</td>
+<td  rowspan="1"  ><A NAME="TI1140"></A>The value of a string data point, given
+its series and position. Call GetDataStringVariable to retrieve
+the requested value.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1141"></A><i>Getting information
+about a series' appearance</i></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1142"></A>GetSeriesStyleColor</td>
+<td  rowspan="1"  ><A NAME="TI1143"></A>The color of a specified series. Call GetSeriesStyleColorValue
+to retrieve the requested value.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1144"></A>GetSeriesStyleFill</td>
+<td  rowspan="1"  ><A NAME="TI1145"></A>The fill pattern of a specified series.
+Call GetSeriesStyleFillPattern to retrieve the requested value.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1146"></A>GetSeriesStyleLine</td>
+<td  rowspan="1"  ><A NAME="TI1147"></A>The line style and width used by a specified
+series. Call GetSeriesStyleLineWidth and GetSeriesStyleLineStyle
+to retrieve the requested values.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1148"></A>GetSeriesStyleOverlay</td>
+<td  rowspan="1"  ><A NAME="TI1149"></A>Indication whether a series in a graph
+is an overlay (that is, whether it is shown as a line on top of
+another graph type). Call GetSeriesStyleOverlayValue to retrieve
+the requested value.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1150"></A>GetSeriesStyleSymbol</td>
+<td  rowspan="1"  ><A NAME="TI1151"></A>The symbol of a specified series. Call GetSeriesStyleSymbolValue
+to retrieve the requested value.</td>
+</tr>
+</table>
+<A NAME="TI1152"></A><h2>Saving graph data</h2>
+<p><b>PowerBuilder</b>   The following methods allow you to save data from the graph:</p>
+<A NAME="TI1153"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 5-3: PowerBuilder methods for saving data from a graph</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1154"></A>Method</th>
+<th  rowspan="1"  ><A NAME="TI1155"></A>Action</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1156"></A>Clipboard</td>
+<td  rowspan="1"  ><A NAME="TI1157"></A>Copies a bitmap image of the specified
+graph to the clipboard</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1158"></A>SaveAs</td>
+<td  rowspan="1"  ><A NAME="TI1159"></A>Saves the data in the underlying graph
+to the clipboard or to a file in one of a number of formats</td>
+</tr>
+</table>
+<p><b>Web ActiveX</b>   You can save an image of the graph on the clipboard, but you cannot
+save data in a file. Writing to the file system is a security violation
+for an ActiveX control:</p>
+<A NAME="TI1160"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 5-4: Web Active X method for saving data from a graph</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1161"></A>Method</th>
+<th  rowspan="1"  ><A NAME="TI1162"></A>Action</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1163"></A>Clipboard</td>
+<td  rowspan="1"  ><A NAME="TI1164"></A>Copies a bitmap image of the specified
+graph to the clipboard</td>
+</tr>
+</table>
+<A NAME="TI1165"></A><h2>Modifying colors, fill patterns, and other data</h2>
+<p><b>PowerBuilder</b>   The following methods allow you to modify the appearance of data
+in a graph:</p>
+<A NAME="TI1166"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 5-5: PowerBuilder methods for modifying the appearance of data</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1167"></A>Method</th>
+<th  rowspan="1"  ><A NAME="TI1168"></A>Action</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1169"></A>ResetDataColors</td>
+<td  rowspan="1"  ><A NAME="TI1170"></A>Resets the color for a specific data
+point</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1171"></A>SetDataStyle</td>
+<td  rowspan="1"  ><A NAME="TI1172"></A>Sets the color, fill pattern, or other
+visual property for a specific data point</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1173"></A>SetSeriesStyle</td>
+<td  rowspan="1"  ><A NAME="TI1174"></A>Sets the color, fill pattern, or other
+visual property for a series</td>
+</tr>
+</table>
+<p><b>Web ActiveX</b>   These methods modify the appearance of data in a graph:</p>
+<A NAME="TI1175"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 5-6: Web ActiveX methods for modifying the appearance of data</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1176"></A>Method</th>
+<th  rowspan="1"  ><A NAME="TI1177"></A>Action</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1178"></A>ResetDataColors</td>
+<td  rowspan="1"  ><A NAME="TI1179"></A>Resets the color for a specific data
+point</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1180"></A>SetDataColor</td>
+<td  rowspan="1"  ><A NAME="TI1181"></A>Sets the color of a specified data point</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1182"></A>SetDataFill</td>
+<td  rowspan="1"  ><A NAME="TI1183"></A>Sets the fill pattern of a specified
+data point</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1184"></A>SetDataLine</td>
+<td  rowspan="1"  ><A NAME="TI1185"></A>Sets the line style and width of a specified
+data point</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1186"></A>SetDataPieExplode</td>
+<td  rowspan="1"  ><A NAME="TI1187"></A>Explodes a slice in a pie graph</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1188"></A>SetDataSymbol</td>
+<td  rowspan="1"  ><A NAME="TI1189"></A>Sets the symbol of a specified data point</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1190"></A>SetSeriesColor</td>
+<td  rowspan="1"  ><A NAME="TI1191"></A>Sets the color of a specified series</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1192"></A>SetSeriesFill</td>
+<td  rowspan="1"  ><A NAME="TI1193"></A>Sets the fill pattern of a specified
+series</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1194"></A>SetSeriesLine</td>
+<td  rowspan="1"  ><A NAME="TI1195"></A>Sets the line style and width used by
+a specified series</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1196"></A>SetSeriesOverlay</td>
+<td  rowspan="1"  ><A NAME="TI1197"></A>Specifies whether a series in a graph
+is an overlay (that is, whether it is shown as a line on top of
+another graph type)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1198"></A>SetSeriesSymbol</td>
+<td  rowspan="1"  ><A NAME="TI1199"></A>Sets the symbol of a specified series</td>
+</tr>
+</table>
+<A NAME="TI1200"></A><h2>Using graph methods</h2>
+<A NAME="TI1201"></A><p>You call the data-access methods after a graph has been created
+and populated with data. Some graphs, such as graphs that display
+data for a page or group of data, are destroyed and re-created internally
+as the user pages through the data. Any changes you made to the
+display of a graph, such as changing the color of a series, are
+lost when the graph is re-created.</p>
+<A NAME="TI1202"></A><h4>Event for graph creation</h4>
+<A NAME="TI1203"></A><p>To be assured that data-access methods are called whenever
+a graph has been created and populated with data, you can call the
+methods in the code for an event that is triggered when a graph
+is created. The
+event is:<A NAME="TI1204"></A>
+<ul>
+<li class=fi><b>PowerBuilder</b>   Event ID pbm_dwngraphcreate, which you can assign
+to a user event for a DataWindow control (described below)</li>
+<li class=ds><b>Web ActiveX</b>   The onGraphCreate event 
+</li>
+</ul>
+</p>
+<A NAME="TI1205"></A><p>The graph-creation event is triggered by the DataWindow control
+after it has created a graph and populated it with data, but before
+it has displayed the graph. By accessing the data in the graph in
+this event, you are assured that you are accessing the current data
+and that the data displays the way you want it.</p>
+<A NAME="TI1206"></A><h4>Setting up the PowerBuilder user event</h4>
+<A NAME="TI1207"></A><p>PowerBuilder provides an event ID, pbm_dwngraphcreate,
+that you can assign to a user event for a DataWindow control. </p>
+<A NAME="TI1208"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To access data properties of a graph in a DataWindow
+control:</p>
+<ol><li class=fi><p>Place the DataWindow control in a window
+or user object and associate it with the DataWindow object containing
+the graph.</p><p>Next you create a user event for the DataWindow control that
+is triggered whenever a graph in the control is created or changed.</p></li>
+<li class=ds><p>Select Insert&gt;Event from the menu bar.</p><p>The Script view displays and includes prototype fields for
+adding a new event.</p></li>
+<li class=ds><p>Select the DataWindow control in the first drop-down
+list of the prototype window.</p><p>If the second drop-down list also changes to display an existing DataWindow
+event prototype, scroll to the top of the list to select New Event
+or select Insert&gt;Event once again from the menu bar.</p><br><img src="images/dagr01.gif"><br>
+</li>
+<li class=ds><p>Name the user event you are creating. </p><p>For example, you might call it GraphCreate.</p></li>
+<li class=ds><p>Select pbm_dwngraphcreate for the event
+ID.</p><br><img src="images/dagr02.gif"><br>
+</li>
+<li class=ds><p>Click OK to save the new user event.</p></li>
+<li class=ds><p>Write a script for the new GraphCreate event that
+accesses the data in the graph. </p><p>Calling data access methods in the GraphCreate event assures
+you that the data access happens each time the graph has been created
+or changed in the DataWindow.</p></li></ol>
+<br><A NAME="TI1209"></A><h4>Examples</h4>
+<p><b>PowerBuilder</b>   The following statement sets to black the foreground (fill) color
+of the Q1 series in the graph gr_quarter, which is in the
+DataWindow control dw_report. The statement is in the GraphCreate
+event, which is associated with the event ID pbm_dwngraphcreate
+in PowerBuilder:<p><PRE> dw_report.SetSeriesStyle("gr_quarter", "Q1", &amp;</PRE><PRE>         foreground!, 0)</PRE></p>
+<A NAME="TI1210"></A><p>The following statement changes the foreground (fill) color
+to red of the second data point in the Stellar series in the graph
+gr_sale in a window. The statement can be in a script for
+any event:<p><PRE> int SeriesNum</PRE><PRE> // Get the number of the series.</PRE><PRE> SeriesNum = gr_sale.FindSeries("Stellar")</PRE><PRE> </PRE><PRE> // Change color of second data point to red</PRE><PRE> gr_sale.SetDataStyle(SeriesNum, 2, foreground!, 255)</PRE></p>
+<p><b>Web ActiveX</b>   The following statement sets the foreground (fill) color to black
+in one of the series in the graph gr_quarter, which is
+in the DataWindow control dw_report. The statement is in
+the onGraphCreate event:<p><PRE> dw_report.<i>SetSeriesStyleColor</i>("gr_quarter", 1, 0, 0);</PRE></p>
+<A NAME="TI1211"></A><h4>For more information</h4>
+<A NAME="TI1212"></A><p>For complete information about the data-access graph methods,
+see the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI1213"></A><p>For more about PowerBuilder user events, see the <i>PowerBuilder
+User's Guide</i>
+.</p>
+

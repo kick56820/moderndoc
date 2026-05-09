@@ -1,0 +1,56 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using .NET Web services with custom headers</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp209.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp211.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABIBAGI"></A><h1>Using .NET Web services with custom headers</h1>
+<A NAME="TI6425"></A><p>PowerBuilder provides support
+for custom SOAP headers in .NET Web services. The PowerBuilder .NET
+Web Service proxy generator creates a structure for methods of the
+Web service that require authentication information transmitted
+in the SOAP header. The number of fields in the generated structure,
+and their datatypes, depend on information contained in the Web
+service's SOAP header class. </p>
+<A NAME="TI6426"></A><p>The name of the generated structure consists of the prefix,
+if any, that you assign to the Web service proxy, and the name of
+the SOAP header class for the Web service. For example, if you assign "ws_" as
+the proxy prefix and the SOAP header class name is "Authentication",
+then the generated structure name will be "ws_Authentication".
+ </p>
+<A NAME="TI6427"></A><p>The proxy generator also creates at least one function for
+passing authentication values in or to the generated structure.
+The type of function or functions created is determined by the direction
+parameter in the Web service SOAP header class. The direction can
+be "in", "out", or "inout". </p>
+<A NAME="TI6428"></A><p>If the direction is "in", the PowerBuilder
+.NET Web Service proxy generator creates a function you can use
+to pass the generated structure to the Web service after populating
+the structure with authentication values.  The name of this function
+consists of the name of the Web Service SOAP header class with a "set" prefix
+and a "value" suffix.</p>
+<A NAME="TI6429"></A><p>For the example with the SOAP header class named "Authentication",
+the syntax for the function is: <p><PRE>boolean setAuthenticationValue (ws_Authentication  <i>AuthenticationValue</i>)</PRE></p>
+</p>
+<A NAME="TI6430"></A><p>The return value is <b>true</b> for success, and <b>false</b> for
+failure. In this example, AuthenticationValue is a variable for
+the generated structure that you submit to the Web service in a
+custom header. If the value of the SOAP header direction parameter
+is "out", the PowerBuilder .NET Web Service proxy
+generator creates a function you can use to get information back
+from the SOAP header in a Web service call. The name for this function
+consists of the name of the SOAP header class with a "get" prefix and
+a "value" suffix. </p>
+<A NAME="TI6431"></A><p>For the example with the SOAP header class named "Authentication",
+the syntax for this function is: <p><PRE>ws_Authentication getAuthenticationValue ( )</PRE></p>
+</p>
+<A NAME="TI6432"></A><p>For the same example when the SOAP header direction parameter
+is "inout", both the <b>setAuthenticationValue</b> and <b>getAuthenticationValue</b> functions
+are created. You can call these functions in PowerScript to set
+and return authentication values in a custom SOAP header.</p>
+

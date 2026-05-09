@@ -1,0 +1,166 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Connecting to EAServer </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp152.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp154.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJBGAEB"></A><h1>Connecting to EAServer </h1>
+<A NAME="TI5111"></A><h4>Using the Connection object</h4>
+<A NAME="TI5112"></A><p>The simplest way to connect to <ABBR title = "e a server" >EAServer</ABBR> is
+to use the capabilities of the <strong>Connection object</strong>,
+a nonvisual object that handles communications with the server.
+You can write all the code to connect to the server by hand, or
+you can use the Connection Object wizard to get started.</p>
+<A NAME="TI5113"></A><h2>Writing the code by hand</h2>
+<A NAME="TI5114"></A><h4>Declaring the connection variable </h4>
+<A NAME="TI5115"></A><p>The Connection object is not a built-in global object. You
+need to declare a global or instance variable of type connection. </p>
+<A NAME="TI5116"></A><h4>Establishing a connection </h4>
+<A NAME="TI5117"></A><p>To establish
+a connection to the server, you need to execute the PowerScript statements
+required to perform these operations:<A NAME="TI5118"></A>
+<ol>
+</li>
+<li class=ds>Use the <b>Create</b> statement to instantiate
+the Connection object.</li>
+<li class=ds>Set properties for the Connection object.</li>
+<li class=ds>Invoke the <b>ConnectToServer</b> function
+to establish a connection to the server.</li>
+<li class=ds>Check for errors.
+</li>
+</ol>
+</p>
+<A NAME="TI5119"></A><p>You can perform these operations in a single script or in
+several scripts, but they must be performed in the order shown.</p>
+<p><b>Example</b>   The following script instantiates the <b>myconnect</b> Connection
+object and sets the connection properties to identify the communications
+driver for <ABBR title = "e a server" >EAServer</ABBR>, the host
+name and port number of the server, and the default package. Then
+the script invokes the <b>ConnectToServer</b> function
+to establish a connection to the server and checks for errors:<p><PRE> // Global variable:<br>// connection myconnect<br>long ll_rc<br>myconnect = create connection<br>myconnect.driver = "jaguar"<br>myconnect.location = "Jagserver1:9000"<br>myconnect.application = "PB_pkg_1"<br>myconnect.userID = "bjones"<br>myconnect.password = "mypass"<br>ll_rc = myconnect.ConnectToServer()<br>IF ll_rc &lt;&gt; 0 THEN<br>        MessageBox("Connection failed", ll_rc)<br>END IF</PRE></p>
+<A NAME="TI5120"></A><h4>Setting the Connection object properties</h4>
+<A NAME="TI5121"></A><p><A HREF="apptechp153.htm#CIHFEJEG">Table 25-1</A> provides
+some guidelines for setting Connection object properties when you
+are communicating with <ABBR title = "e a server" >EAServer</ABBR>.</p>
+<A NAME="CIHFEJEG"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 25-1:  Connection object properties
+for <ABBR title = "e a server" >EAServer</ABBR></caption>
+<tr><th  rowspan="1"  ><A NAME="TI5122"></A>Property name</th>
+<th  rowspan="1"  ><A NAME="TI5123"></A>Description</th>
+<th  rowspan="1"  ><A NAME="TI5124"></A>Examples</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5125"></A>Application</td>
+<td  rowspan="1"  ><A NAME="TI5126"></A>The default package to be used for <ABBR title = "e a server" >EAServer</ABBR> components</td>
+<td  rowspan="1"  ><A NAME="TI5127"></A>"PB_pkg_1"</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5128"></A>Driver</td>
+<td  rowspan="1"  ><A NAME="TI5129"></A>The name of the <ABBR title = "e a server" >EAServer</ABBR> driver.</td>
+<td  rowspan="1"  ><A NAME="TI5130"></A>"jaguar"</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5131"></A>Location</td>
+<td  rowspan="1"  ><A NAME="TI5132"></A>The host name and port number for the
+server, separated by a colon.<A NAME="TI5133"></A><p>The Location property can also specify a fully qualified URL
+that uses one of the following formats:<p><PRE>iiop://<i>host</i>:<i>port</i></PRE></p>
+<p><PRE>iiops://<i>host</i>:<i>port</i></PRE></p>
+<p><PRE>http://<i>host</i>:<i>port</i></PRE></p>
+<p><PRE>https://<i>host</i>:<i>port</i></PRE></p>
+</p><A NAME="TI5134"></A><p>To take advantage of <ABBR title = "e a servers" >EAServer's</ABBR> load
+balancing and failover support, you can also specify a semicolon-separated
+list of server locations. </p></td>
+<td  rowspan="1"  ><A NAME="TI5135"></A>"Jagserver:9000"<A NAME="TI5136"></A><p>"iiop://srv1:9000"</p><A NAME="TI5137"></A><p>"iiops://srv3:9001"</p><A NAME="TI5138"></A><p>"http://srv5:1080"</p><A NAME="TI5139"></A><p>"iiop://s1:9000;iiop://s2:9000"</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5140"></A>Password</td>
+<td  rowspan="1"  ><A NAME="TI5141"></A>The <ABBR title = "e a server" >EAServer</ABBR> password. </td>
+<td  rowspan="1"  ><A NAME="TI5142"></A>"mypass"</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5143"></A>UserID</td>
+<td  rowspan="1"  ><A NAME="TI5144"></A>The <ABBR title = "e a server" >EAServer</ABBR> user
+ID.</td>
+<td  rowspan="1"  ><A NAME="TI5145"></A>"bjones"</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5146"></A>Options</td>
+<td  rowspan="1"  ><A NAME="TI5147"></A>One or more <ABBR title = "e a server" >EAServer</ABBR> ORB property
+settings.</td>
+<td  rowspan="1"  ><A NAME="TI5148"></A>"ORBLogFile='jaglog.log'"</td>
+</tr>
+</table>
+<A NAME="TI5149"></A><h4>Establishing multiple connections</h4>
+<A NAME="TI5150"></A><p>PowerBuilder allows you to instantiate multiple Connection
+objects. This makes it possible for you to establish multiple connections
+in a single client application. For example, you could instantiate
+two separate Connection objects to connect a client to two different
+servers.</p>
+<A NAME="TI5151"></A><h3>Setting options</h3>
+<A NAME="TI5152"></A><p>When you connect to <ABBR title = "e a server" >EAServer</ABBR> using
+either the Connection object or the JaguarORB object, you are using
+the <ABBR title = "e a server" >EAServer</ABBR> C++ client
+ORB. You can set its properties in the Options string of the Connection
+object or using JaguarORB's <b>Init</b> function.</p>
+<A NAME="TI5153"></A><h4>Using a different code set</h4>
+<A NAME="TI5154"></A><p>To connect to an <ABBR title = "e a server" >EAServer</ABBR> component that handles
+double-byte characters, make sure the component is using the correct
+code set. The code set can be changed in the Component Properties
+dialog box in EAServer Manager. You must also set your PowerBuilder
+client's code set to use the component. To do so, set the
+Options property of the Connection object. For example, if you want to
+handle Korean characters in the eucksc code set, use the following
+script for a Connection object called <b>myConnection</b>:<p><PRE> myConnection.Options = "ORBCodeSet='eucksc'"</PRE></p>
+<A NAME="TI5155"></A><p>If <ABBR title = "e a server" >EAServer</ABBR> was started using the <b>utf-8</b> codeset
+and you are calling a Java or PowerBuilder component that returns
+a string containing the Euro and/or British pound symbol,
+set the ORBCodeSet property to <b>cp1252</b>. For example:<p><PRE> myConnection.Options = "ORBCodeSet='cp1252'"</PRE></p>
+<A NAME="TI5156"></A><h4>Troubleshooting connections</h4>
+<A NAME="TI5157"></A><p>When a connection fails, you can obtain more information about
+the failure in a log file by enabling the ORBLogIIOP option and
+specifying a value for the ORBLogFile option. If you want to set
+multiple options, they must be set in the same statement. Separate
+the options with commas:<p><PRE> myConnection.Options     = &amp;<br>  "ORBLogIIOP='TRUE', ORBLogFile='d:\temp\ORBLog.txt'"</PRE></p>
+<A NAME="TI5158"></A><p>For a complete list of options, see the online Help for the
+Connection object or the <ABBR title = "e a server" >EAServer</ABBR> documentation.</p>
+<A NAME="CCJBIIFI"></A><h2>Using the wizard to create a Connection object</h2>
+<A NAME="TI5159"></A><p>When you select <ABBR title = "e a server" >EAServer</ABBR> as
+the connection type in the Connection Object wizard, PowerBuilder
+creates a standard class user object inherited from the Connection
+object. You supply the Connection object properties in the wizard and
+specify whether connection information will be provided in the registry,
+an <i>INI</i> file, or a script. The Connection Object
+wizard gets information about the server you want to connect to
+from the <ABBR title = "e a server" >EAServer</ABBR> profiles you
+have set up. For how
+to create an <ABBR title = "e a server" >EAServer</ABBR> profile,
+see <A HREF="apptechp138.htm#BGECFEAA">"Creating an application
+server profile "</A>.</p>
+<A NAME="TI5160"></A><p>The Constructor event of the Connection object calls a function, <b>of_getconnectioninfo</b>,
+that gets the stored connection information from the source you
+specified.</p>
+<A NAME="TI5161"></A><p>Once you have used the Connection Object wizard to create
+a Connection object, you need to execute the PowerScript statements
+required to perform these operations:<A NAME="TI5162"></A>
+<ol>
+</li>
+<li class=ds>Use the <b>Create</b> statement to instantiate
+the Connection object.</li>
+<li class=ds>Invoke the <b>ConnectToServer</b> function
+to establish a connection to the server.</li>
+<li class=ds>(Optional) Check for errors.
+</li>
+</ol>
+</p>
+<A NAME="TI5163"></A><p>You do not need to set properties for the Connection object,
+but you can modify them in the <b>of_getconnectioninfo</b> function.
+You can also set options for the Connection object in its constructor
+event, for example:<p><PRE> this.options = "ORBHttp='TRUE'"</PRE></p>
+<p><b>Example</b>   The following script instantiates the <b>myconnect</b> instance
+of the <b>n_myclient_connect</b> object
+created by the wizard, invokes the <b>ConnectToServer</b> function
+to establish a connection to the server, and checks for errors:<p><PRE> long ll_rc<br>myconnect = create n_myclient_connect<br>ll_rc = myconnect.ConnectToServer()<br>IF ll_rc &lt;&gt; 0 THEN<br>    MessageBox("Connection failed", ll_rc)<br>END IF</PRE></p>
+<A NAME="TI5164"></A><h4>Establishing multiple connections</h4>
+<A NAME="TI5165"></A><p>You can establish multiple connections in a single client
+application. If you want to connect a client to two different servers,
+run the Connection Object wizard again to create a new user object
+with different connection properties.</p>
+

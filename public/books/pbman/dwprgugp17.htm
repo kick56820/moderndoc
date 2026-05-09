@@ -1,0 +1,168 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using crosstabs</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp16.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp18.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF361632609"></A><h1>Using crosstabs</h1>
+<A NAME="TI672"></A><p>To perform certain kinds of data analysis, you might want
+to design DataWindow objects in the Crosstab presentation style.
+The basic steps for using crosstabs in an application are the same
+ones you follow for the other DataWindow types, but there are some
+additional topics concerning crosstabs that you should know about.</p>
+<A NAME="TI673"></A><p>To learn about designing crosstabs, see the <i>PowerBuilder
+User's Guide</i>
+.</p>
+<A NAME="TI674"></A><h2>Viewing the underlying data</h2>
+<A NAME="TI675"></A><p>If you want users to be able to see the raw data as well as
+the cross-tabulated data, you can do one of two things:<A NAME="TI676"></A>
+<ul>
+<li class=fi>Place two DataWindow controls on the window or form:
+one that is associated with the crosstab and one that is associated
+with a DataWindow object that displays the retrieved rows.</li>
+<li class=ds>Create a composite DataWindow object that contains
+two reports: one that shows the raw data and one that shows the
+crosstab.
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Do not share data between the two DataWindow objects
+or reports</span> <A NAME="TI677"></A>They have the same SQL SELECT data definition, but they have
+different result sets.</p>
+<A NAME="TI678"></A><p>For more about composite DataWindows, see
+the <i>PowerBuilder User's Guide</i>
+.</p>
+<A NAME="TI679"></A><h2>Letting users redefine the crosstab</h2>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Availability</span> <A NAME="TI680"></A>This technique is available in PowerBuilder and the Web ActiveX.</p>
+<A NAME="TI681"></A><p>With the CrosstabDialog method, you can allow users to redefine
+which columns in the retrieved data are associated with the crosstab's
+columns, rows, and values during execution.</p>
+<A NAME="TI682"></A><p>The CrossTabDialog method displays the Crosstab Definition
+dialog box for the user to define the data for the crosstab's
+columns, rows, and values (using the same techniques you use in
+the DataWindow painter). When the user clicks OK in the dialog box,
+the DataWindow control rebuilds the crosstab with the new specifications.</p>
+<A NAME="TI683"></A><h4>Displaying informational messages</h4>
+<A NAME="TI684"></A><p>You can display informational messages when a crosstab is
+rebuilt during execution as a result of the call to CrosstabDialog.
+(The messages are the same ones you see when building a crosstab
+in the DataWindow painter, such as <FONT FACE="Courier New">Retrieving
+data</FONT> and <FONT FACE="Courier New">Building crosstab</FONT>.)
+You might want to do this if you are working with a very large number
+of rows and rebuilding the crosstab could take a long time.</p>
+<p><b>PowerBuilder</b>   In PowerBuilder, you use a user event to display the crosstab's informational
+messages.</p>
+<A NAME="TI685"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display informational messages when a crosstab
+is rebuilt:</p>
+<ol><li class=fi><p>Define a user event for the DataWindow
+control containing the crosstab. Associate it with the event ID
+pbm_dwnmessagetext.</p></li>
+<li class=ds><p>In
+the script for the user event, get the value of the text argument
+(which holds the message that PowerBuilder would display when building
+the crosstab in the DataWindow painter) and display it to the user.</p></li></ol>
+<br><p><b>Web ActiveX</b>   In a Web page, you use the DataWindow's onMessageText event
+to handle informational messages.</p>
+<A NAME="TI686"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display informational messages when a crosstab
+is rebuilt:</p>
+<ol><li class=fi><p>Edit the code for the onMessageText event
+of your DataWindow control. </p></li>
+<li class=ds><p>In that event, get the value of the Text argument
+and display it to the user.</p></li></ol>
+<br><A NAME="TI687"></A><h4>Examples</h4>
+<p><b>PowerBuilder</b>   In the example, code for the DataWindow control's
+user event for pbm_dwnmessagetext displays informational
+messages in a static text control in the window containing the crosstab:</p>
+<A NAME="TI688"></A><p><p><PRE> st_message.Text = text</PRE></p>
+<A NAME="TI689"></A><p>With that script in place, after CrosstabDialog has been called
+and the user has redefined the crosstab, as the crosstab is being
+rebuilt, your application dynamically displays the informational
+messages in the static text control st_message. (You might
+want to reset st_message.Text to be the empty string in
+the line following the CrosstabDialog call.)</p>
+<A NAME="TI690"></A><p>In this example, code in the user event for pbm_dwnmessagetext
+displays informational messages as MicroHelp in an MDI application
+(w_crosstab is an MDI frame window):<p><PRE> w_crosstab.SetMicroHelp(text)</PRE></p>
+<A NAME="TI691"></A><p>The informational messages are displayed in the MDI application's
+MicroHelp as the crosstab is rebuilt.</p>
+<A NAME="TI692"></A><h4>For more information</h4>
+<A NAME="TI693"></A><p>For more about user events in PowerBuilder, see the <i>PowerBuilder
+User's Guide</i>
+.</p>
+<A NAME="TI694"></A><p>For more about the CrosstabDialog method and MessageText event,
+see the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI695"></A><h2>Modifying the crosstab's properties during
+execution</h2>
+<A NAME="TI696"></A><p>As with other DataWindow objects, you can modify the properties
+of a crosstab during execution using the Modify method. Some changes
+require the DataWindow control to dynamically rebuild the crosstab;
+others do not. (If the original crosstab was static, it becomes
+a dynamic crosstab when it is rebuilt.)</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Availability</span> <A NAME="TI697"></A>You can use this technique in all DataWindow environments.</p>
+<A NAME="TI698"></A><h4>Changes that do not force a rebuild</h4>
+<A NAME="TI699"></A><p>You can change the following properties without forcing the
+DataWindow control to rebuild the crosstab:</p>
+<A NAME="TI700"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-11: Properties you can change on a crosstab DataWindow without
+forcing a rebuild</caption>
+<tr><th  rowspan="1"  ><A NAME="TI701"></A>Properties</th>
+<th  rowspan="1"  ><A NAME="TI702"></A>Objects</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI703"></A>Alignment</td>
+<td  rowspan="1"  ><A NAME="TI704"></A>Column, Compute, Text</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI705"></A>Background</td>
+<td  rowspan="1"  ><A NAME="TI706"></A>Column, Compute, Line, Oval, Rectangle, RoundRectangle,
+Text</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI707"></A>Border</td>
+<td  rowspan="1"  ><A NAME="TI708"></A>Column, Compute, Text</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI709"></A>Brush</td>
+<td  rowspan="1"  ><A NAME="TI710"></A>Line, Oval, Rectangle, RoundRectangle</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI711"></A>Color</td>
+<td  rowspan="1"  ><A NAME="TI712"></A>Column, Compute, Text</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI713"></A>Edit styles (dddw, ddlb, checkbox, edit,
+editmask, radiobutton)</td>
+<td  rowspan="1"  ><A NAME="TI714"></A>Column</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI715"></A>Font</td>
+<td  rowspan="1"  ><A NAME="TI716"></A>Column, Compute, Text</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI717"></A>Format</td>
+<td  rowspan="1"  ><A NAME="TI718"></A>Column, Compute</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI719"></A>Pen</td>
+<td  rowspan="1"  ><A NAME="TI720"></A>Line, Oval, Rectangle, RoundRectangle</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI721"></A>Pointer</td>
+<td  rowspan="1"  ><A NAME="TI722"></A>Column, Compute, Line, Oval, Rectangle, RoundRectangle,
+Text</td>
+</tr>
+</table>
+<A NAME="TI723"></A><h4>Changes that force a rebuild</h4>
+<A NAME="TI724"></A><p>If you change any other properties, the DataWindow control
+rebuilds the structure of the crosstab when Modify is called. You
+should combine all needed expressions into one Modify call so that
+the DataWindow control has to rebuild the crosstab only once.</p>
+<A NAME="TI725"></A><h4>Default values for properties</h4>
+<A NAME="TI726"></A><p>For computations derived from existing columns, the DataWindow
+control by default uses the properties from the existing columns.
+For completely new columns, properties (such as font, color, and
+so on) default to the first column of the preexisting crosstab.
+Properties for text in headers default to the properties of the
+first text control in the preexisting crosstab's first
+header line.</p>
+<A NAME="TI727"></A><p>For more about the Modify method, see <A HREF="dwprgugp19.htm#BIIBCCDA">Chapter 3, "Dynamically Changing DataWindow
+Objects ."</A> For details
+on the DataWindow object properties, see the <i>DataWindow
+Reference</i>
+.</p>
+

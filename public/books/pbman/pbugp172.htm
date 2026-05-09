@@ -1,0 +1,76 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Storing data in a DataWindow object using the Data view</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp171.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp173.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIDGFJC"></A><h1>Storing data in a DataWindow object using the Data view</h1>
+<A NAME="TI5550"></A><p>Usually you retrieve data into a DataWindow object from the database,
+because the data is changeable and you want the latest information. However, sometimes
+the data you display in a DataWindow object never changes (as in a list
+of states or provinces), and sometimes you need a snapshot of the
+data at a certain point in time. In these situations, you can store
+the data in the DataWindow object itself. You do not need to go out to
+the database or other data source to display the data.</p>
+<A NAME="TI5551"></A><p>The most common reason to store data in a DataWindow object is for
+use as a drop-down DataWindow where the data is not coming from
+a database. For example, you might want to display a list of postal
+codes for entering values in a State or Province column in a DataWindow object.
+You can store those codes in a DataWindow object and use the DropDownDataWindow
+edit style for the column.</p>
+<A NAME="TI5552"></A><p>For more information about using the DropDownDataWindow
+edit style, see <A HREF="pbugp188.htm#CAIDCCJB">Chapter 22, "Displaying and Validating
+Data ."</A></p>
+<A NAME="TI5553"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To store data in a DataWindow object:</p>
+<ol><li class=fi><p>If the Data view is not already displayed, select
+View&gt;Data from the menu bar.</p><p>In the default layout for the DataWindow painter, the Data view displays in
+a stacked pane under the Properties view. All columns defined for
+the DataWindow object are listed at the top.</p></li>
+<li class=ds><p>Do any of the following:<A NAME="TI5554"></A>
+<ul>
+<li class=fi> Click the Insert Row button in the PainterBar to create an
+empty row and type a row of data. You can enter as many rows as
+you want.</li>
+<li class=ds>Click the Retrieve button in the  PainterBar to
+retrieve all the rows of data from the database. You can delete
+rows you do not want to save or manually add new rows.</li>
+<li class=ds>Click the Delete button in the PainterBar to delete
+unwanted rows.
+</li>
+</ul>
+</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Data changes are local to the DataWindow object</span> <A NAME="TI5555"></A>Adding or deleting data here does not change the data in the
+database. It only determines what data will be stored with the DataWindow object when
+you save it. The Update DB button is disabled.</p>
+</li>
+<li class=ds><p>When you have finished, save the DataWindow object.</p></li></ol>
+<br><A NAME="TI5556"></A><p>When you save the DataWindow object, the data is stored in the DataWindow object. </p>
+<A NAME="TI5557"></A><h4>Sharing data with the Preview view</h4>
+<A NAME="TI5558"></A><p>To see changes you make in the Data view reflected in the
+Preview view, select ShareData from the pop-up menu in the Data
+view. The Preview
+view shows data from the storage buffer associated with the Data
+view.</p>
+<A NAME="TI5559"></A><h4>Saving the DataWindow object without data</h4>
+<A NAME="TI5560"></A><p>If you saved the DataWindow object with data to obtain a snapshot,
+you usually need to save it again without data. To do so, select
+Delete All Rows from the pop-up menu in the Data view before saving.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Sharing DataWindow objects with other developers</span> <A NAME="TI5561"></A>Storing data in a DataWindow object is a good way to share data <i>and
+its definition</i> with other developers. They can simply
+open the DataWindow object on their computers to get the data and all its
+properties.</p>
+<A NAME="TI5562"></A><h2>What happens at runtime</h2>
+<A NAME="TI5563"></A><p>Data stored in a DataWindow object is stored within the actual object
+itself, so when a window opens showing such a DataWindow, the data
+is already there. There is no need to issue <b>Retrieve</b> to
+get the data.</p>
+<A NAME="TI5564"></A><p>PowerBuilder <i>never</i> retrieves data into
+a drop-down DataWindow that already contains data. For all other DataWindow objects,
+if you retrieve data into a DataWindow object stored with data, PowerBuilder handles
+it the same as a DataWindow object that is not stored with data: PowerBuilder gets
+the latest data by retrieving rows from the database.</p>
+

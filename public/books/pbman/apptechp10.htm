@@ -1,0 +1,121 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Other techniques</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp9.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp11.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF355062155"></A><h1>Other techniques</h1>
+<A NAME="TI146"></A><p>PowerBuilder allows you to implement a wide variety of object-oriented techniques.
+This section discusses selected techniques and relates them to PowerBuilder.</p>
+<A NAME="TI147"></A><h4>Using function overloading</h4>
+<A NAME="TI148"></A><p>In function overloading, the descendent function (or an identically
+named function in the same object) has different arguments or argument
+datatypes. PowerBuilder determines which version of a function to
+execute, based on the arguments and argument datatypes specified
+in the function call:</p>
+<A NAME="TI149"></A><caption><b>Figure 2-6: Function overloading</b></captionls>
+<br><img src="images/ltoop160.gif">
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Global functions</span> <A NAME="TI150"></A>Global functions cannot be overloaded.</p>
+<A NAME="CCJDEAEG"></A><h4>Dynamic versus static lookup</h4>
+<p><b>Dynamic lookup</b>   In certain situations, such as when insulating your application
+from cross-platform dependencies, you create separate descendent objects,
+each intended for a particular situation. Your application calls
+the platform-dependent functions dynamically:</p>
+<A NAME="TI151"></A><caption><b>Figure 2-7: Dynamic lookup</b></captionls>
+<br><img src="images/ltoop200.gif">
+<A NAME="TI152"></A><p>Instantiate the appropriate object at runtime, as shown in
+the following code example:<p><PRE> // This code works with both dynamic and<br>// static lookup.<br>// Assume these instance variables<br>u_platform iuo_platform<br>Environment ienv_env<br>...<br>GetEnvironment(ienv_env)<br>choose case ienv_env.ostype<br>   case windows!<br>      iuo_platform = CREATE u_platform_win<br>   case windowsnt!<br>      iuo_platform = CREATE u_platform_win<br>   case else<br>      iuo_platform = CREATE u_platform_unix<br>end choose</PRE></p>
+<A NAME="TI153"></A><p>Although dynamic lookup provides flexibility, it also slows
+performance. </p>
+<p><b>Static lookup</b>   To ensure fast performance, static lookup is a better option. However,
+PowerBuilder enables object access using the reference variable's datatype
+(not the datatype specified in a <b>CREATE</b> statement).</p>
+<A NAME="TI154"></A><caption><b>Figure 2-8: Static lookup</b></captionls>
+<br><img src="images/ltoop180.gif">
+<A NAME="TI155"></A><p>When using static lookup, you must define default implementations
+for functions in the ancestor. These ancestor functions return an
+error value (for example, -1) and are overridden in at least one
+of the descendent objects.</p>
+<A NAME="TI156"></A><caption><b>Figure 2-9: Ancestor functions overridden in descendent functions</b></captionls>
+<br><img src="images/ltoop140.gif">
+<A NAME="TI157"></A><p>By defining default implementations for functions in the ancestor
+object, you get platform independence as well as the performance
+benefit of static lookup.</p>
+<A NAME="TI158"></A><h4>Using delegation</h4>
+<A NAME="TI159"></A><p>Delegation occurs when objects offload processing to other
+objects.</p>
+<p><b>Aggregate relationship</b>   In an aggregate relationship (sometimes called a <i>whole-part
+relationship</i>), an object (called an owner object) associates
+itself with a service object designed specifically for that object
+type.</p>
+<A NAME="TI160"></A><p>For example, you might create a service object that handles
+extended row selection in DataWindow objects. In this case, your
+DataWindow objects contain code in the Clicked event to call the
+row selection object.</p>
+<A NAME="TI161"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use objects in an aggregate relationship:</p>
+<ol><li class=fi><p>Create a service object (<b>u_sort_dw</b> in
+this example).</p></li>
+<li class=ds><p>Create an instance variable (also called a reference
+variable) in the owner (a DataWindow control in this example):</p><p><p><PRE> u_sort_dw iuo_sort</PRE></p></li>
+<li class=ds><p>Add code in the owner object to create the service
+object:</p><p><p><PRE> iuo_sort = CREATE u_sort_dw</PRE></p></li>
+<li class=ds><p>Add code to the owner's system events
+or user events to call service object events or functions. This
+example contains the code you might place in a <b>ue_sort</b> user
+event in the DataWindow control:</p><p><p><PRE> IF IsValid(iuo_sort) THEN<br>   Return iuo_sort.uf_sort()<br>ELSE<br>   Return -1<br>END IF</PRE></p></li>
+<li class=ds><p>Add code to call the owner object's user
+events. For example, you might create a CommandButton or Edit&gt;Sort
+menu item that calls the <b>ue_sort</b> user
+event on the DataWindow control.</p></li>
+<li class=ds><p>Add code to the owner object's Destructor
+event to destroy the service object:</p><p><p><PRE> IF IsValid(iuo_sort) THEN<br>   DESTROY iuo_sort<br>END IF</PRE></p></li></ol>
+<br><p><b>Associative relationship</b>   In an associative relationship, an object associates itself
+with a service to perform a specific type of processing.</p>
+<A NAME="TI162"></A><p>For example, you might create a string-handling service that
+can be enabled by any of your application's objects.</p>
+<A NAME="TI163"></A><p>The steps you use to implement objects in an associative relationship
+are the same as for aggregate relationships.</p>
+<A NAME="BABJHHIE"></A><h4>Using user objects as structures</h4>
+<A NAME="TI164"></A><p>When you enable a user object's AutoInstantiate property,
+PowerBuilder instantiates the user object along with the object,
+event, or function in which it is declared. You can also declare
+instance variables for a user object. By combining these two capabilities,
+you create user objects that function as structures. The advantages
+of creating this type of user object are that you can:<A NAME="TI165"></A>
+<ul>
+<li class=fi>Create descendent objects
+and extend them.</li>
+<li class=ds>Create functions to access the structure all at
+once.</li>
+<li class=ds>Use access modifiers to limit access to certain
+instance variables.
+</li>
+</ul>
+</p>
+<A NAME="TI166"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a user object to be used as a structure:</p>
+<ol><li class=fi><p>Create the user object, defining instance
+variables only.</p></li>
+<li class=ds><p>Enable the user object's AutoInstantiate
+property by checking AutoInstantiate on the General property page.</p></li>
+<li class=ds><p>Declare the user object as a variable in objects,
+functions, or events as appropriate.</p><p>PowerBuilder creates the user object when the object, event,
+or function is created and destroys it when the object is destroyed
+or the event or function ends.</p></li></ol>
+<br><A NAME="TI167"></A><h4>Subclassing DataStores</h4>
+<A NAME="TI168"></A><p>Many applications use a DataWindow visual user object instead
+of the standard DataWindow window control. This allows you to standardize
+error checking and other, application-specific DataWindow behavior.
+The <b>u_dwstandard</b> DataWindow visual
+user object found in the tutorial library <i>TUTOR_PB.PBL</i> provides
+an example of such an object.</p>
+<A NAME="TI169"></A><p>Since DataStores function as nonvisual DataWindow controls,
+many of the same application and consistency requirements apply
+to DataStores as to DataWindow controls. Consider creating a DataStore
+standard class user object to implement error checking and application-specific
+behavior for DataStores.</p>
+

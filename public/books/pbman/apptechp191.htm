@@ -1,0 +1,61 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Exception handling</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp190.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp192.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJBBGBCA"></A><h1>Exception handling</h1>
+<A NAME="TI6099"></A><p>Errors that occur
+in the execution of a method of an EJB component are mapped to exception
+proxies and thrown to the calling script. The methods of all the
+classes in <i>pbejbclient105.pbx</i> can also throw
+exceptions when, for example, connection to the server fails or
+the component cannot be located or created.</p>
+<A NAME="TI6100"></A><p>Building EJB proxy projects generates the proxies for the
+home and remote interfaces, proxies for any Java classes referenced
+by the EJB, proxies for ancestor classes, and proxies for any exceptions
+that can be thrown by the EJB and its supporting classes. The following
+exception proxies are among those that may display in the System
+Tree:</p>
+<A NAME="TI6101"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI6102"></A>Proxy name</th>
+<th  rowspan="1"  ><A NAME="TI6103"></A>Java object name</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6104"></A>createexception</td>
+<td  rowspan="1"  ><A NAME="TI6105"></A>javax.ejb.CreateException</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6106"></A>ejbexception</td>
+<td  rowspan="1"  ><A NAME="TI6107"></A>javax.ejb.EJBException</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6108"></A>finderexception</td>
+<td  rowspan="1"  ><A NAME="TI6109"></A>javax.ejb.FinderException</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6110"></A>remoteexception</td>
+<td  rowspan="1"  ><A NAME="TI6111"></A>java.rmi.RemoteException</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6112"></A>removeexception</td>
+<td  rowspan="1"  ><A NAME="TI6113"></A>javax.ejb.RemoveException</td>
+</tr>
+</table>
+<A NAME="TI6114"></A><h4>Catching exceptions</h4>
+<A NAME="TI6115"></A><p>A client application can handle communications errors in a
+number of ways. For example, if a client connects to a server and
+tries to invoke a method for an object that does not exist, the
+client can disconnect from the server, connect to a different server,
+or retry the operation. Alternatively, the client can display a message
+to the user and give the user the opportunity to control what happens next.</p>
+<A NAME="TI6116"></A><p>When an error occurs, if the client connects to a new server
+to retry the operation, it must instantiate the remote object on
+the new server before invoking a method of the remote object.</p>
+<A NAME="TI6117"></A><p>In the following example, the script simply displays a message
+box when a specific exception occurs:<p><PRE> // function char getChar() throws RemoteException<br>try<br>  conn.connectToServer(properties)<br>  mappinghome = conn.lookup("pbEjbMappingHome",<br>   "pbEjbTest/pbEjbMappingBeanSL",<br>   "pbejb.pbEjbMappingHome")<br>  mapping = mappinghome.create()<br>  ret = mapping.getChar()<br>  messagebox("char from EJB", ret)<br>catch (remoteexception re)<br>  messagebox("remoteexception", re.GetMessage())<br>catch (createexception ce)<br>  messagebox("createexception", ce.GetMessage())<br>end try</PRE></p>
+<A NAME="TI6118"></A><h4>Unhandled exceptions</h4>
+<A NAME="TI6119"></A><p>If no exception handler exists, or if the existing exception
+handlers do not handle the exception, the SystemError event on the
+Application object is executed. If the SystemError event has no
+script, an application error occurs and the application is terminated.</p>
+

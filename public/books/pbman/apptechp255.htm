@@ -1,0 +1,50 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Managing information in initialization files</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp254.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp256.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF355583769"></A><h1>Managing information in initialization files</h1>
+<A NAME="BFCBIGGC"></A><h4>Functions for accessing
+initialization files</h4>
+<A NAME="TI7599"></A><p>PowerBuilder provides several functions you can use to manage
+application settings in initialization files.</p>
+<A NAME="TI7600"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 38-1: PowerBuilder initialization file functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7601"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI7602"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7603"></A>ProfileInt</td>
+<td  rowspan="1"  ><A NAME="TI7604"></A>Obtains the integer value of a setting
+in a profile file</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7605"></A>ProfileString</td>
+<td  rowspan="1"  ><A NAME="TI7606"></A>Obtains the string value of a setting
+in a profile file</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7607"></A>SetProfileString</td>
+<td  rowspan="1"  ><A NAME="TI7608"></A>Writes a value in a profile file</td>
+</tr>
+</table>
+<A NAME="TI7609"></A><p>For complete information about these functions,
+see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI7610"></A><p>For how to use the <b>ProfileString</b> functions
+with the registry, see <A HREF="apptechp255.htm#BFCBIGGC">"Functions for accessing
+initialization files"</A>.</p>
+<A NAME="TI7611"></A><h4>The format of APP.INI</h4>
+<A NAME="TI7612"></A><p>The examples below manage application information in a profile
+file called <i>APP.INI</i>. This file keeps track
+of user preferences that control the appearance of the application.
+It has a Preferences section that stores four color settings:<p><PRE> [Preferences]</PRE><PRE> WindowColor=Silver</PRE><PRE> BorderColor=Red</PRE><PRE> BackColor=Black</PRE><PRE> TextColor=White</PRE></p>
+<A NAME="TI7613"></A><h4>Reading values </h4>
+<A NAME="TI7614"></A><p>The following
+script retrieves color settings from the<i> APP.INI</i> file:<p><PRE> wincolor = ProfileString("app.ini", "Preferences", "WindowColor", "")<br>brdcolor = ProfileString("app.ini", "Preferences", "BorderColor", "")<br>bckcolor = ProfileString("app.ini", "Preferences", "BackColor", "")<br>txtcolor = ProfileString("app.ini", "Preferences", "TextColor", "")</PRE></p>
+<A NAME="TI7615"></A><h4>Setting values </h4>
+<A NAME="TI7616"></A><p>The following
+script stores color settings in the <i>APP.INI</i> file:<p><PRE> SetProfileString("app.ini", "Preferences", "WindowColor", wincolor)<br>SetProfileString("app.ini", "Preferences", "BorderColor", brdcolor)<br>SetProfileString("app.ini", "Preferences", "BackColor", bckcolor)<br>SetProfileString("app.ini", "Preferences", "TextColor", txtcolor)</PRE></p>
+

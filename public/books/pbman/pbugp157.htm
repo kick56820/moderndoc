@@ -1,0 +1,81 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Selecting a data source </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp156.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp158.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CFHDGEIA"></A><h1>Selecting a data source </h1>
+<A NAME="TI4825"></A><p>The data source you choose determines how you select the data
+that will be used in the DataWindow object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About the term <i>data source</i></span> <A NAME="TI4826"></A>The term <i>data source</i> used here refers
+to how you use the DataWindow painter to specify the data to retrieve into
+the DataWindow object. Data source can also refer to where the data comes
+from, such as an Adaptive Server Anywhere data source (meaning a database file) or
+an XML data source (meaning an XML file). <i>Connecting to
+Your Database</i>
+ uses the term data source in this second
+sense.</p>
+<A NAME="TI4827"></A><h4>If the data is in the database </h4>
+<A NAME="TI4828"></A><p>If the data for the DataWindow object will be retrieved from a database,
+choose one of the following data sources:</p>
+<A NAME="TI4829"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI4830"></A>Data source</th>
+<th  rowspan="1"  ><A NAME="TI4831"></A>Use when</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4832"></A>Quick Select</td>
+<td  rowspan="1"  ><A NAME="TI4833"></A>The data is from a single table (or from
+tables that are related through foreign keys) and you need only
+to choose columns, selection criteria, and sorting. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4834"></A><ACRONYM title = "sequel" >SQL</ACRONYM> Select</td>
+<td  rowspan="1"  ><A NAME="TI4835"></A>You want more control over the <ACRONYM title = "sequel" >SQL</ACRONYM> <b>SELECT</b> statement generated
+for the data source <i>or</i> your data is from tables
+that are not connected through a key. For example, you need to specify
+grouping, computed columns, or retrieval arguments within the <ACRONYM title = "sequel" >SQL</ACRONYM> <b>SELECT</b> statement.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4836"></A>Query</td>
+<td  rowspan="1"  ><A NAME="TI4837"></A>The data has been defined as a query.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4838"></A>Stored Procedure</td>
+<td  rowspan="1"  ><A NAME="TI4839"></A>The data is defined in a stored procedure.</td>
+</tr>
+</table>
+<A NAME="TI4840"></A><h4>If the data is not in a database </h4>
+<A NAME="TI4841"></A><p>Select the External data source if:<A NAME="TI4842"></A>
+<ul>
+<li class=fi>The DataWindow object will be populated
+programmatically.</li>
+<li class=ds>Data will be imported from a DDE application.</li>
+<li class=ds>Data will be imported from an external file, such
+as an XML, comma-separated values (CSV), tab-separated
+text (TXT), or dBASE (DBF) file.
+</li>
+</ul>
+</p>
+<A NAME="TI4843"></A><p>You can also use an ODBC driver to access data from a file. PowerBuilder includes
+ODBC drivers for most file types.</p>
+<A NAME="TI4844"></A><p>For more information, see <i>Connecting
+to Your Database.</i>
+</p>
+<A NAME="TI4845"></A><p>After you choose a data source in the various DataWindow wizards,
+you specify the data. The data source you choose determines what
+displays in the wizards and how you define the data.</p>
+<A NAME="TI4846"></A><h4>Why use a DataWindow if the data is not from
+a DBMS</h4>
+<A NAME="TI4847"></A><p>Even when the data is not coming from the database, there
+are many times when you want to take advantage of the intelligence
+of a DataWindow object:<A NAME="TI4848"></A>
+<ul>
+<li class=fi><b>Data Validation</b>   You have full access to validation rules for data</li>
+<li class=ds><b>Display Formats</b>   You can use any existing display formats to present the data,
+or create your own</li>
+<li class=ds><b>Edit Styles</b>   You can use any existing edit styles, such as radio buttons and
+edit masks, to present the data, or create your own
+</li>
+</ul>
+</p>
+

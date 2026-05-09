@@ -1,0 +1,180 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating and executing SQL statements</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp140.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp142.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BDCDADGH"></A><h1>Creating and executing SQL statements</h1>
+<A NAME="TI4339"></A><p>The Database painter's Interactive <ACRONYM title = "sequel" >SQL</ACRONYM> view
+is a <ACRONYM title = "sequel" >SQL</ACRONYM> editor in which you
+can enter and execute <ACRONYM title = "sequel" >SQL</ACRONYM> statements.
+The view provides all editing capabilities needed for writing and
+modifying <ACRONYM title = "sequel" >SQL</ACRONYM> statements. You
+can cut, copy, and paste text; search for and replace text; and
+create <ACRONYM title = "sequel" >SQL</ACRONYM> statements. You can
+also set editing properties to make reading your <ACRONYM title = "sequel" >SQL</ACRONYM> files easier.</p>
+<A NAME="CCJCFJIF"></A><h2>Building and executing SQL statements</h2>
+<A NAME="TI4340"></A><p>You can use the Interactive <ACRONYM title = "sequel" >SQL</ACRONYM> view
+to build <ACRONYM title = "sequel" >SQL</ACRONYM> statements and
+execute them immediately. The view acts as a notepad in which you
+can enter <ACRONYM title = "sequel" >SQL</ACRONYM> statements.</p>
+<A NAME="TI4341"></A><h3>Creating stored procedures</h3>
+<A NAME="TI4342"></A><p>You can use the Interactive <ACRONYM title = "sequel" >SQL</ACRONYM> view
+to create stored procedures or triggers, but make sure that the Database painter's <ACRONYM title = "sequel" >SQL</ACRONYM> statement terminator character is
+not the same as the terminator character used in the stored procedure language
+of your DBMS.</p>
+<A NAME="TI4343"></A><h4>About the statement terminator</h4>
+<A NAME="TI4344"></A><p>By default, PowerBuilder uses the semicolon as the <ACRONYM title = "sequel" >SQL</ACRONYM> statement terminator. You can
+override the semicolon by specifying a different terminator character in
+the Database painter. To change the terminator character, select Design&gt;Options
+from the Database painter's menu bar.</p>
+<A NAME="TI4345"></A><p> Make sure that the character you choose is not reserved for
+another use by your database vendor. For example, using the slash
+character (/) causes compilation errors with some DBMSs.</p>
+<A NAME="TI4346"></A><h3>Controlling comments</h3>
+<A NAME="TI4347"></A><p>By default, PowerBuilder strips off comments when it sends <ACRONYM title = "sequel" >SQL</ACRONYM> to the DBMS. You can have comments
+included by clearing the check mark next to Strip Comments in the
+pop-up menu of the Interactive <ACRONYM title = "sequel" >SQL</ACRONYM> view.</p>
+<A NAME="TI4348"></A><h3>Entering SQL</h3>
+<A NAME="TI4349"></A><p>You can enter a <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+in four ways:<A NAME="TI4350"></A>
+<ul>
+<li class=fi>Pasting the
+statement</li>
+<li class=ds>Typing the statement in the view</li>
+<li class=ds>Opening a text file containing the <ACRONYM title = "sequel" >SQL</ACRONYM></li>
+<li class=ds>Dragging a procedure or function from the Objects
+view
+</li>
+</ul>
+</p>
+<A NAME="TI4351"></A><h4>Pasting <ACRONYM title = "sequel" >SQL</ACRONYM></h4>
+<A NAME="TI4352"></A><p>You can paste <b>SELECT</b>, <b>INSERT</b>, <b>UPDATE</b>,
+and <b>DELETE</b> statements to the view. Depending
+on which kind of statement you want to paste, PowerBuilder displays
+dialog boxes that guide you through painting the full statement.</p>
+<A NAME="TI4353"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To paste a <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+to the workspace:</p>
+<ol><li class=fi><p>Click the Paste <ACRONYM title = "sequel" >SQL</ACRONYM> button
+in the PainterBar, or select Paste Special&gt;<ACRONYM title = "sequel" >SQL</ACRONYM> from the Edit or pop-up menu.</p><p>The <ACRONYM title = "sequel" >SQL</ACRONYM> Statement Type
+dialog box displays, listing the types of <ACRONYM title = "sequel" >SQL</ACRONYM> statements
+you can use.</p></li>
+<li class=ds><p>Double-click the appropriate icon to select the
+statement type.</p><p>The Select Table dialog box displays.</p></li>
+<li class=ds><p>Select the table(s) you will reference in the <ACRONYM title = "sequel" >SQL</ACRONYM> statement.</p><p>You go to the Select, Insert, Update, or Delete painter, depending
+on the type of <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+you are pasting. The Insert, Update, and Delete painters are similar
+to the Select painter, but only the appropriate tabs display in
+the <ACRONYM title = "sequel" >SQL</ACRONYM> toolbox at the bottom
+of the workspace.</p><p>For more information about the SQL Select painter,
+see <A HREF="pbugp157.htm#CFHDGEIA">"Selecting a data source "</A>. </p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI4354"></A>
+<ul>
+<li class=fi>For
+a <b>SELECT</b> statement, define the statement exactly
+as in the SQL Select painter when building a view. <br>
+You choose the columns to select. You can define computed
+columns, specify sorting and joining criteria, and <b>WHERE</b>, <b>GROUP
+BY</b>, and <b>HAVING</b> criteria. For
+more information, see <A HREF="pbugp139.htm#CCJCAHJF">"Working with database views "</A>.<br></li>
+<li class=ds>For an <b>INSERT</b> statement, type
+the values to insert into each column. You can insert as many rows
+as you want.</li>
+<li class=ds>For an <b>UPDATE</b> statement, specify
+the new values for the columns in the Update Column Values dialog
+box. Then specify the <b>WHERE</b> criteria to indicate
+which rows to update.</li>
+<li class=ds>For a <b>DELETE</b> statement, specify
+the <b>WHERE</b> criteria to indicate which rows to
+delete.
+</li>
+</ul>
+
+                          </p></li>
+<li class=ds><p>When you have finished creating the <ACRONYM title = "sequel" >SQL</ACRONYM> statement, click the Return button
+in the PainterBar in the Select, Insert, Update, or Delete painter.</p><p>You return to the Database painter with the <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+pasted into the <ACRONYM title = "I sequel" >ISQL</ACRONYM> view.</p></li></ol>
+<br><A NAME="TI4355"></A><h4>Typing <ACRONYM title = "sequel" >SQL</ACRONYM></h4>
+<A NAME="TI4356"></A><p>Rather than paste, you can simply type one or more <ACRONYM title = "sequel" >SQL</ACRONYM> statements directly in the <ACRONYM title = "I sequel" >ISQL</ACRONYM> view.</p>
+<A NAME="TI4357"></A><p>You can enter most statements supported by your DBMS. This
+includes statements you can paint as well as statements you cannot
+paint, such as a database stored procedure or <b>CREATE TRIGGER</b> statement. </p>
+<A NAME="TI4358"></A><p>You cannot enter certain statements that could destabilize
+the PowerBuilder development environment. These include the <b>SET</b> statement
+and the <b>USE</b> <i>database</i> statement. However,
+you might want to use a <b>SET</b> statement to change
+a default setting in the development environment, such as <b>SET NOCOUNT
+ON</b> or <b>SET ANSI_WARNINGS OFF</b>.
+You can enable <b>SET</b> commands in the ISQL view
+for database interfaces that support them by adding the following
+line to the [Database] section in your <i>PB.INI</i> file:<p><PRE> EnableSet=1</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Sybase Adaptive Server Enterprise stored procedures</span> <A NAME="TI4359"></A>When you use the Database painter to execute a Sybase Adaptive Server Enterprise
+system stored procedure, you <i>must</i> start the
+syntax with the keyword <b>EXEC</b> or <b>EXECUTE</b>.
+For example, enter <FONT FACE="Courier New">EXEC SP_LOCK</FONT>.
+You cannot execute the stored procedure simply by entering its name. </p>
+<A NAME="TI4360"></A><h4>Importing <ACRONYM title = "sequel" >SQL</ACRONYM> from
+a text file</h4>
+<A NAME="TI4361"></A><p>You can import <ACRONYM title = "sequel" >SQL</ACRONYM> that
+has been saved in a text file into the Database painter.</p>
+<A NAME="TI4362"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To read <ACRONYM title = "sequel" >SQL</ACRONYM> from
+a file:</p>
+<ol><li class=fi><p>Put the insertion point where you want
+to insert the <ACRONYM title = "sequel" >SQL</ACRONYM>.</p></li>
+<li class=ds><p>Select Paste Special&gt;From File from the Edit
+or pop-up menu.</p></li>
+<li class=ds><p>Select the file containing the <ACRONYM title = "sequel" >SQL,</ACRONYM> and click OK.</p></li></ol>
+<br><A NAME="TI4363"></A><h4>Dragging a procedure or function from the Objects
+view</h4>
+<A NAME="TI4364"></A><p>From the tree view in the Objects view, you can select an
+existing procedure or function that contains a <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+you want to enter, and drag it to the Interactive <ACRONYM title = "sequel" >SQL</ACRONYM> view. </p>
+<A NAME="TI4365"></A><h3>Explaining SQL</h3>
+<A NAME="TI4366"></A><p>Sometimes there is more than one way to code <ACRONYM title = "sequel" >SQL</ACRONYM> statements to obtain the results
+you want. When this is the case, you can use Explain <ACRONYM title = "sequel" >SQL</ACRONYM> on the Design menu to help you
+select the most efficient method. Explain <ACRONYM title = "sequel" >SQL</ACRONYM> displays information
+about the path that PowerBuilder will use to execute the statements in
+the <ACRONYM title = "sequel" >SQL</ACRONYM> Statement Execution
+Plan dialog box. This is most useful when you are retrieving or
+updating data in an indexed column or using multiple tables.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>DBMS-specific information</span> <A NAME="TI4367"></A>The information displayed in the <ACRONYM title = "sequel" >SQL</ACRONYM> Statement
+Execution Plan dialog box depends on your DBMS. For more about the <ACRONYM title = "sequel" >SQL</ACRONYM> execution plan, see your DBMS
+documentation.</p>
+<A NAME="TI4368"></A><h3>Executing SQL</h3>
+<A NAME="TI4369"></A><p>When you have the <ACRONYM title = "sequel" >SQL</ACRONYM> statements
+you want in the workspace, you can submit them to the DBMS.</p>
+<A NAME="TI4370"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To execute the <ACRONYM title = "sequel" >SQL</ACRONYM>:</p>
+<ol><li class=fi><p>Click the Execute button, or select Design&gt;Execute <ACRONYM title = "sequel" >SQL</ACRONYM> from the menu bar.</p></li></ol>
+<br><A NAME="TI4371"></A><p>If the <ACRONYM title = "sequel" >SQL</ACRONYM> retrieves data,
+the data appears in grid format in the Results view. If there is
+a database error, you see a message box describing the problem.</p>
+<A NAME="TI4372"></A><p>For a description of what you can do with
+the data, see <A HREF="pbugp140.htm#CCJBGABA">"Manipulating data "</A>.</p>
+<A NAME="TI4373"></A><h2>Customizing the editor</h2>
+<A NAME="TI4374"></A><p>The Interactive <ACRONYM title = "sequel" >SQL</ACRONYM> view provides
+the same editing capabilities as the file editor. It also has Script,
+Font, and Coloring properties that you can change to make <ACRONYM title = "sequel" >SQL</ACRONYM> files easier to read. With no
+change in properties, <ACRONYM title = "sequel" >SQL</ACRONYM> files
+have black text on a white background and a tab stop setting of
+3 for indentation.</p>
+<A NAME="TI4375"></A><h4>Setting Script and Font properties</h4>
+<A NAME="TI4376"></A><p>Select Design&gt;Options from the menu bar to open the
+Database Preferences dialog box. The Script and Font properties
+are the same as those you can set for the file editor.</p>
+<A NAME="TI4377"></A><p>For more information, see <A HREF="pbugp12.htm#X-REF342804944">"Using the file editor"</A>. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Editor properties apply elsewhere</span> <A NAME="TI4378"></A>When you set Script and Font properties for the Database painter,
+the settings also apply to the Script view, the file editor, and
+the Debug window.</p>
+<A NAME="TI4379"></A><h4>Setting Coloring properties</h4>
+<A NAME="TI4380"></A><p>You can set the text color and background color for <ACRONYM title = "sequel" >SQL</ACRONYM> styles (such as datatypes and
+keywords) so that the style will stand out and the <ACRONYM title = "sequel" >SQL</ACRONYM> code will be more readable. You
+set Coloring properties on the Coloring tab page.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Enabling syntax coloring</span> <A NAME="TI4381"></A>Be sure the Enable Syntax Coloring check box is selected before
+you set colors for <ACRONYM title = "sequel" >SQL</ACRONYM> styles.
+You can turn off all Coloring properties by clearing the check box.</p>
+

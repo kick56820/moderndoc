@@ -1,0 +1,47 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About ADO.NET</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp22.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp24.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BCGBGBBJN"></A><h1>About ADO.NET</h1>
+<A NAME="TI558"></A><p>ADO.NET is a set of technologies that provides native access
+to data in the Microsoft .NET Framework. It is designed to support
+an n-tier programming environment and to handle a disconnected data
+architecture. ADO.NET is tightly integrated with XML and uses a
+common data representation that can combine data from disparate
+sources, including XML.</p>
+<A NAME="TI559"></A><p>One of the major components of ADO.NET is the .NET Framework
+data provider, which connects to a database, executes commands,
+and retrieves results. </p>
+<A NAME="TI560"></A><p>Microsoft provides .NET Framework data providers for SQL Server
+and OLE DB with the .NET Framework, and data providers for ODBC
+and Oracle can be downloaded from the Microsoft Web site. You can
+also obtain .NET Framework data providers from other vendors, such
+as the .NET Framework Data Provider for Adaptive Server Enterprise
+from Sybase.</p>
+<A NAME="TI561"></A><p>To connect to a database using the PowerBuilder ADO.NET database interface,
+you must use a .NET Framework data provider.</p>
+<A NAME="TI562"></A><h4>Accessing Unicode data</h4>
+<A NAME="TI563"></A><p>Using the ADO.NET interface, PowerBuilder can connect, save,
+and retrieve data in both ANSI/DBCS and Unicode databases
+but does not convert data between Unicode and ANSI/DBCS.
+When character data or command text is sent to the database, PowerBuilder sends
+a Unicode string. The data provider must guarantee that the data
+is saved as Unicode data correctly. When PowerBuilder retrieves character
+data, it assumes the data is Unicode.</p>
+<A NAME="TI564"></A><p>A Unicode database is a database whose character set is set
+to a Unicode format, such as UTF-8, UTF-16, UCS-2, or UCS-4. All
+data must be in Unicode format, and any data saved to the database
+must be converted to Unicode data implicitly or explicitly.</p>
+<A NAME="TI565"></A><p>A database that uses ANSI (or DBCS) as its character set might
+use special datatypes to store Unicode data. Columns with these
+datatypes can store <i>only</i> Unicode data. Any
+data saved into such a column must be converted to Unicode explicitly.
+This conversion must be handled by the database server or client.</p>
+

@@ -1,0 +1,222 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Putting a DataWindow object into a control</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp7.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp9.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF354980967"></A><h1>Putting a DataWindow object into a control</h1>
+<A NAME="TI206"></A><p>The DataWindow control is a container for DataWindow objects
+in an application. It provides properties, methods, and events for
+manipulating the data and appearance of the DataWindow object. The
+DataWindow control is part of the user interface of your application.</p>
+<A NAME="TI207"></A><p>You also use DataWindow objects in the nonvisual DataStore
+and in child DataWindows, such as drop-down DataWindows and composite
+presentation styles. For more information about DataStores, see <A HREF="dwprgugp26.htm#CFHCIHDJ">Chapter 4, "Using DataStore Objects ."</A> For more information
+about drop-down DataWindows and composite DataWindows, see the <i>PowerBuilder
+User's Guide</i>
+.</p>
+<A NAME="TI208"></A><p>To use the DataWindow object in an application, you add a
+DataWindow control to a window or form, then associate that control
+with the DataWindow object, as illustrated in <A HREF="dwprgugp8.htm#CEGFBGAJ">Figure 2-1</A>: </p>
+<A NAME="CEGFBGAJ"></A><caption><b>Figure 2-1: Putting a DataWindow object
+into a DataWindow control</b></captionls>
+<br><img src="images/udwo01d.gif">
+<A NAME="TI209"></A><p>This section has information about:<A NAME="TI210"></A>
+<ul>
+<li class=fi><A HREF="dwprgugp8.htm#CEGDJDAD">Names for DataWindow controls
+and DataWindow objects</A></li>
+<li class=ds>Procedures for inserting a control and assigning
+a DataWindow object to the control</li>
+<li class=ds><A HREF="dwprgugp8.htm#X-REF353866913">Specifying the DataWindow
+object during execution</A>
+</li>
+</ul>
+</p>
+<A NAME="TI211"></A><p>For information about assigning a DataWindow object to a Web
+DataWindow control, see <i>Working with Web and JSP Targets</i>
+ or <A HREF="dwprgugp49.htm#BABJJDCG">"Loading the DataWindow object"</A>. </p>
+<A NAME="TI212"></A><p>For information about assigning a DataWindow object to a Web
+control for ActiveX, see <A HREF="dwprgugp56.htm#BGBCDJFJ">"Specifying a DataWindow
+object for the control"</A>.</p>
+<A NAME="CEGDJDAD"></A><h2>Names for DataWindow controls and DataWindow objects</h2>
+<A NAME="TI213"></A><p>There are two names to be aware of when you are working with
+a DataWindow:<A NAME="TI214"></A>
+<ul>
+<li class=fi>The name of the DataWindow
+control</li>
+<li class=ds>The name of the DataWindow object associated with
+the control
+</li>
+</ul>
+</p>
+<p><b>The DataWindow control name</b>   When you place a DataWindow control in a window or form, it
+gets a default name. You should change the name to be something
+meaningful for your application.</p>
+<A NAME="TI215"></A><p>In PowerBuilder, the name of the control has traditionally
+had a prefix of dw_. This is a useful convention to observe
+in any development environment. For example, if the DataWindow control
+lists customers, you might want to name it dw_customer.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the name</span> <A NAME="TI216"></A>In code, always refer to a DataWindow by the name of the <i>control</i> (such
+as dw_customer). Do not refer to the DataWindow <i>object</i> that
+is in the control.</p>
+<p><b>The DataWindow object name</b>   To avoid confusion, you should use different prefixes for
+DataWindow objects and DataWindow controls. The prefix d_ is commonly
+used for DataWindow objects. For example, if the name of the DataWindow
+control is dw_customer, you might want to name the corresponding
+DataWindow object d_customer.</p>
+<A NAME="TI217"></A><h2>Working with the DataWindow control in PowerBuilder</h2>
+<A NAME="TI218"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To place a DataWindow control in a window:</p>
+<ol><li class=fi><p>Open the window that will contain the DataWindow
+control.</p></li>
+<li class=ds><p>Select Insert&gt;Control&gt;DataWindow
+from the menu bar.</p></li>
+<li class=ds><p>Click where you want the control to display.</p><p>PowerBuilder places an empty DataWindow control in the window:</p><br><img src="images/udwo02p.gif"><br>
+</li>
+<li class=ds><p>(Optional) Resize the DataWindow control by selecting
+it and dragging one of the handles.</p></li></ol>
+<br><A NAME="TI219"></A><h4>Specifying a DataWindow object</h4>
+<A NAME="TI220"></A><p>After placing the DataWindow control, you associate a DataWindow
+object with the control.</p>
+<A NAME="TI221"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To associate a DataWindow object with the control:</p>
+<ol><li class=fi><p>In the DataWindow Properties view, click
+the Browse button for the DataObject property. </p></li>
+<li class=ds><p>Select the DataWindow object that you want to
+place in the control and click OK.</p><p>The name of the DataWindow object displays in the DataObject
+box in the DataWindow Properties view.</p></li>
+<li class=ds><p>(Optional) Change the properties of the DataWindow
+control as needed.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Allowing users to move DataWindow controls</span> <A NAME="TI222"></A>If you want users to be able to move a DataWindow control
+during execution, give it a title and select the Title Bar check
+box. Then users can move the control by dragging the title bar.</p>
+</li></ol>
+<br><A NAME="TI223"></A><h3>Defining reusable DataWindow controls</h3>
+<A NAME="TI224"></A><p>You might want all the DataWindow controls in your application
+to have similar appearance and behavior. For example, you might
+want all of them to do the same error handling.</p>
+<A NAME="TI225"></A><p>To be able to define these behaviors once and reuse them in
+each window, you should create a standard user object based on the
+DataWindow control: define the user object's properties
+and write scripts that perform the generic processing you want,
+such as error handling. Then place the user object (instead of a
+new DataWindow control) in the window. The DataWindow user object
+has all the desired functionality predefined. You do not need to
+respecify it.</p>
+<A NAME="TI226"></A><p>For more information about creating and using
+user objects, see the PowerBuilder <i>User's Guide</i>
+.</p>
+<A NAME="TI227"></A><h3>Editing the DataWindow object in the control</h3>
+<A NAME="TI228"></A><p>Once you have associated a DataWindow object with a DataWindow
+control in a window, you can go directly to the DataWindow painter
+to edit the associated DataWindow object.</p>
+<A NAME="TI229"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To edit an associated DataWindow object:</p>
+<ol><li class=fi><p>Select Modify DataWindow from the DataWindow
+control's pop-up menu.</p><p>PowerBuilder opens the associated DataWindow object in the DataWindow
+painter.</p></li></ol>
+<br><A NAME="X-REF353866913"></A><h2>Specifying the DataWindow object during execution</h2>
+<A NAME="TI230"></A><h4>Changing the DataWindow object</h4>
+<A NAME="TI231"></A><p>The way to change the DataWindow object depends on the environment: <A NAME="TI232"></A>
+<ul>
+<li class=fi><b>PowerBuilder </b>   Set the DataObject property to one of the DataWindow objects
+built into the application.</li>
+<li class=ds><b>Web ActiveX</b>   Set the SourceFileName and DataWindowObject properties to
+select a new library file and DataWindow. </li>
+<li class=ds><b>Web DataWindow</b>   If you are not using the Web Target object model, you can
+call the SetDWObject method on the Web DataWindow generator component.
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Setting the transaction object when you change the
+DataWindow object</span> <A NAME="TI233"></A>When you change the DataWindow object during execution, you
+might need to call setTrans or setTransObject again. </p>
+<A NAME="TI234"></A>For more information, see <A HREF="dwprgugp9.htm#CAIBCAFJ">"Setting the transaction
+object for the DataWindow control"</A>.</p>
+<A NAME="TI235"></A><h4>Dynamically creating a DataWindow object</h4>
+<A NAME="TI236"></A><p>You can also create a new DataWindow object during execution
+and associate it with a control.</p>
+<A NAME="TI237"></A><p>For more information, see <A HREF="dwprgugp19.htm#BIIBCCDA">Chapter 3, "Dynamically Changing DataWindow
+Objects ."</A></p>
+<A NAME="TI238"></A><h3>Changing the DataWindow in PowerBuilder</h3>
+<A NAME="TI239"></A><p>When you associate a DataWindow object with a control in the
+window, you are setting the initial value of the DataWindow control's
+DataObject property.</p>
+<A NAME="TI240"></A><p>During execution, this tells your application to create an
+instance of the DataWindow object specified in the control's
+DataObject property and use it in the control.</p>
+<A NAME="TI241"></A><h4>Setting the DataObject property in code</h4>
+<A NAME="TI242"></A><p>In addition to specifying the DataWindow object in the Window
+painter, you can switch the object that displays in the control
+during execution by changing the value of the DataObject property
+in code.</p>
+<A NAME="TI243"></A><p>For example: to display the DataWindow object d_emp_hist
+from the library <i>emp.pbl</i> in the DataWindow
+control dw_emp, you can code:</p>
+<A NAME="TI244"></A><p><p><PRE> dw_emp.DataObject = "d_emp_hist"</PRE></p>
+<A NAME="TI245"></A><p>The DataWindow object d_emp_hist was created
+in the DataWindow painter and stored in a library on the application
+search path. The control dw_emp is contained in the window
+and is saved as part of the window definition.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Preventing redrawing</span> <A NAME="TI246"></A>You can use the SetRedraw method to turn off redrawing in
+order to avoid flicker and reduce redrawing time when you are making
+several changes to the properties of an object or control. Dynamically
+changing the DataWindow object at execution time implicitly turns
+redrawing on. To turn redrawing off again, call the SetRedraw method
+every time you change the DataWindow object:</p>
+<A NAME="TI247"></A><p><PRE> dw_emp.DataObject = "d_emp_hist"</PRE><PRE> dw_emp.SetRedraw(FALSE)</PRE></p>
+<A NAME="TI248"></A><h4>Using PSR files</h4>
+<A NAME="TI249"></A><p>To put a PSR file into a DataWindow control at execution time,
+change the control's DataObject property to specify that
+PSR file name. </p>
+<A NAME="TI250"></A><h3>Changing the DataWindow in the Web ActiveX</h3>
+<A NAME="TI251"></A><p>When you associate a DataWindow object with a DataWindow control,
+you are setting the initial value of the DataWindow control's
+SourceFileName and DataWindowObject properties.</p>
+<A NAME="TI252"></A><p>During execution, this tells your application to:<A NAME="TI253"></A>
+<ol>
+</li>
+<li class=ds>Look for DataWindow objects
+in the library (<ACRONYM title = "pibble" >PBL</ACRONYM> file) or
+runtime library (PBD file) specified in the control's SourceFileName
+property.</li>
+<li class=ds>Create an instance of the DataWindow object specified
+in the control's DataWindowObject property (which must
+be in the specified library) and use it in the control.
+</li>
+</ol>
+</p>
+<A NAME="TI254"></A><h4>Setting the SourceFileName and DataWindowObject properties
+in code</h4>
+<A NAME="TI255"></A><p>In addition to specifying the DataWindow object in the Window
+painter, you can switch the object that displays in the control
+during execution by changing the value of the SourceFileName and
+DataWindowObject properties in code.</p>
+<A NAME="TI256"></A><p>You might simply change the DataWindowObject property to use
+a different DataWindow object from the same library, or you might
+change both properties to use a DataWindow object from some other
+library.</p>
+<A NAME="TI257"></A><p>For information about URLs for SourceFileName,
+see <A HREF="dwprgugp56.htm#BGBCDJFJ">"Specifying a DataWindow
+object for the control"</A>.</p>
+<A NAME="TI258"></A><p>For more information about the SourceFileName
+and DataWindowObject properties, see the <i>DataWindow Reference</i>
+.</p>
+<p><b>Using PSR files</b>   If you want to dynamically put a PSR file into a DataWindow
+control at execution time, change the control's SourceFileName property
+to an empty string and specify a URL for the PSR file as the value
+for the DataWindowObject property.</p>
+<A NAME="TI259"></A><h4>Examples</h4>
+<A NAME="TI260"></A><p>This example shows the code to set the properties in JavaScript.
+The code changes the DataWindow object in dw_emp, a DataWindow
+control in a form or Web page. Dw_emp is saved as part
+of the form or Web page definition. The value for DataWindowObject
+is d_emp_hist; it was created in the DataWindow painter
+and is stored in the library named emp.pbl, the value for SourceFileName. </p>
+<p><b>Web ActiveX</b>   For the Web ActiveX on a Web page, you set the SourceFileName
+and DataWindowObject properties directly.</p>
+<A NAME="TI261"></A><p>To display the DataWindow object d_emp_hist
+from the library emp.pbl in the DataWindow control dw_emp,
+you can code:<p><PRE> dw_emp.<i>SourceFileName</i> = "dwlibs/emp.pbl";</PRE><PRE> dw_emp.<i>DataWindowObject</i> = "d_emp_hist";</PRE></p>
+

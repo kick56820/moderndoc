@@ -1,0 +1,56 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Setting Web DataWindow design-time control properties</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp40.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp42.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CEGGFFCA"></A><h1>Setting Web DataWindow design-time control properties</h1>
+<A NAME="TI1672"></A><p>The previous section, <A HREF="dwprgugp40.htm#BABDJJHI">"Designing DataWindow objects
+for the Web DataWindow,"</A> began on page <A HREF="dwprgugp40.htm#BABDJJHI"></A> and covered many topics
+about the design of DataWindow objects that are to be used as Web
+DataWindows. Now we look at the integrated support in PowerBuilder
+for creating and editing Java Server Pages (JSPs) for the Web DataWindow.</p>
+<A NAME="TI1673"></A><h4>JavaServer pages</h4>
+<A NAME="TI1674"></A><p>JSP pages can be written in any well-formed language, including
+XML, but they are usually written in HTML. In PowerBuilder, you
+usually create JSPs for use with Web DataWindows using the Web/JSP
+DataWindow Page wizard, and you edit them in much the same way as
+any other HTML page, using the HTML editor. In the Web/JSP
+DataWindow Page wizard, you specify whether you are using the Standard HTMLGenerator90 component,
+a custom HTMLGenerator90 component that you developed and deployed to <ABBR title = "e a server" >EAServer</ABBR>, or a DataWindow container.</p>
+<A NAME="TI1675"></A><h4>DTC properties</h4>
+<A NAME="TI1676"></A><p>When the page is created, it contains a Web DataWindow design-time
+control (DTC). A Web DataWindow DTC lets you add database-driven
+content to Web applications. </p>
+<A NAME="TI1677"></A><p>In the Sybase Web DataWindow DTC Properties dialog box, you
+can specify the type of generation you want. The generation type
+determines the method that PowerBuilder calls in the HTMLGenerator90 component
+to generate an XML, XHTML, or HTML Web DataWindow.</p>
+<A NAME="TI1678"></A><p>You specify the type of generation in the DataWindow design-time
+control by selecting the DataWindow (JSP) in the Page tab, right-clicking
+the design-time control, and selecting Sybase Web DataWindow DTC
+10.5 Properties:</p>
+<br><img src="images/dwdtcprp.gif">
+<A NAME="TI1679"></A><p>Then in the HTML Generator tab, you select the generation
+format&#8212;HTML, XHTML, or XML:</p>
+<br><img src="images/dtcprops.gif">
+<A NAME="TI1680"></A><p>For example, here the selected generation format is XML. This
+results in the generation of separate content (XML), layout (XSLT),
+and style (CSS), and a resulting transformation to XHTML. Setting
+the Generation Format property to XML is required for the XML Web
+DataWindow.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Also specify the rows per page for the XML or XHTML
+DataWindow</span> <A NAME="TI1681"></A>For optimal bandwidth savings when you use XML or XHTML as
+the generation format, you must also specify the rows per page in
+the Control tab.</p>
+<A NAME="TI1682"></A><h4>For more information</h4>
+<A NAME="TI1683"></A><p>For detailed information about working with JSPs and using
+the Web DataWindow DTC, see the <i>Working with Web and JSP
+Targets</i>
+ book.</p>
+

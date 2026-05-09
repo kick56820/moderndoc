@@ -1,0 +1,228 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About the PowerBuilder window plug-in</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp219.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp221.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF363985187"></A><h1>About the PowerBuilder window plug-in</h1>
+<A NAME="TI6622"></A><p>The PowerBuilder window plug-in lets you display a PowerBuilder
+child window on a Web page viewed in a browser that supports Netscape plug-ins. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Internet Explorer</span> <A NAME="TI6623"></A>Microsoft Internet Explorer 5.5 Service Pack 2 and later versions
+do not support Netscape plug-ins. As a result, the PowerBuilder
+window plug-in cannot be used to display PSR reports on those browsers. </p>
+<A NAME="TI6624"></A><p></p>
+<br><img src="images/webapp.gif">
+<A NAME="TI6625"></A><h4>Features</h4>
+<A NAME="TI6626"></A><p>The PowerBuilder child window can include all the familiar
+controls, including DataWindows, OLE objects, ActiveX (OCX) controls,
+and tree controls. You can also open other (pop-up or response)
+windows from the child window.</p>
+<A NAME="TI6627"></A><p>As the user interacts with controls in the child and other
+windows, scripts for the controls' events are executed
+just as they are in standalone PowerBuilder applications. Database
+access by the plug-in application occurs locally using the client's
+defined database connections.</p>
+<A NAME="TI6628"></A><p>The objects in the application can be contained in one or
+more PowerBuilder Dynamic Libraries (PBDs).</p>
+<A NAME="TI6629"></A><h4>Standard and secure versions</h4>
+<A NAME="TI6630"></A><p>There are two versions of the PowerBuilder window plug-in:
+standard and secure.</p>
+<p><b>Standard PowerBuilder window plug-in</b>   The standard PowerBuilder window plug-in displays a PowerBuilder
+child window in an HTML page. The standard window plug-in is implemented
+by <i>NPPBA105.DLL</i>.</p>
+<p><b>Secure PowerBuilder window plug-in</b>   The secure PowerBuilder window plug-in is a secure version
+of the standard window plug-in. Using the secure version ensures
+that PowerBuilder applications downloaded over the Internet do not
+damage a client system or access information on a client workstation. The
+secure window plug-in is implemented by <i>NPPBS105.DLL</i>.</p>
+<A NAME="TI6631"></A><p>For considerations to keep in mind when using
+the secure version of the PowerBuilder window plug-in, see <A HREF="apptechp222.htm#BFCCBEBI">"Using the secure PowerBuilder
+window plug-in"</A>.</p>
+<A NAME="CAIDIGCD"></A><h4>Supported browsers</h4>
+<A NAME="TI6632"></A><p><b></b>The PowerBuilder window plug-in requires
+use of a browser that supports Netscape plug-ins, such as Netscape Navigator
+Version 3.x or later. Microsoft Internet Explorer 5.5 Service Pack
+2 and later versions do not support Netscape plug-ins.</p>
+<A NAME="TI6633"></A><h4>Security</h4>
+<A NAME="TI6634"></A><p>The standard PowerBuilder window plug-in is a nonsecure application, meaning
+that it can access local files and run local applications. These
+types of processing are often undesirable in an uncontrolled Web
+environment but might be perfectly acceptable on a corporate intranet
+where access is controlled.</p>
+<A NAME="TI6635"></A><p>If security is important at your site, consider using the
+secure version of the PowerBuilder window plug-in to build your
+application.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Some events always execute in secure mode</span> <A NAME="TI6636"></A>As of PowerBuilder 7, the application Open event and some
+of the Constructor events for controls execute in secure mode even
+when you use the standard window plug-in. If your application logic
+depends on the ability to perform a nonsecure activity in these
+events, such as opening a file for writing, post an event message
+to yourself. These are processed once the plug-in returns to standard
+mode.</p>
+<A NAME="TI6637"></A><p>For more about the secure PowerBuilder window
+plug-in, see <A HREF="apptechp222.htm#BFCCBEBI">"Using the secure PowerBuilder
+window plug-in"</A>.</p>
+<A NAME="X-REF378676674"></A><h2>What kinds of applications make good plug-ins?</h2>
+<A NAME="TI6638"></A><p>HTML forms provide some user interaction by means of a limited
+user interface. The PowerBuilder window plug-in takes you beyond
+HTML. You can present a fully developed application window with
+a rich user interface design to a Web page. You can access data
+sources defined on the client workstation. </p>
+<A NAME="TI6639"></A><h4>Examples</h4>
+<A NAME="TI6640"></A><p>Your application might be:<A NAME="TI6641"></A>
+<ul>
+<li class=fi>A data analysis window with master and detail DataWindows</li>
+<li class=ds>A user interface design that lets the user make
+choices using TreeView, ListView, and PictureListBox controls</li>
+<li class=ds>A data entry form that processes data on a server</li>
+<li class=ds>A data entry form that uses the client's
+defined database connection (either network or local) to process
+the data on the client machine</li>
+<li class=ds>A window that uses PowerBuilder's OLEControl
+control to display an ActiveX control
+</li>
+</ul>
+</p>
+<A NAME="TI6642"></A><h2>How the PowerBuilder window plug-in works</h2>
+<A NAME="TI6643"></A><p>The PowerBuilder window plug-in displays a PowerBuilder child
+window inside a fixed space reserved on the Web page. The user can
+interact with the controls on the page, and the PowerBuilder scripts
+for the window and its controls can execute any PowerBuilder code.
+When the user switches to another Web page, the PowerBuilder window
+is closed and the PowerBuilder DLLs are unloaded from memory.</p>
+<A NAME="TI6644"></A><p>You include the plug-in on an HTML page using the HTML Embed
+element. The Embed element names one or more PBDs that contain PowerBuilder objects
+and the name of the child window object that is displayed on the
+page.</p>
+<A NAME="TI6645"></A><p>The PowerBuilder window plug-in implements the Netscape plug-in
+API and requires a browser that supports this API (for information,
+see <A HREF="apptechp220.htm#CAIDIGCD">"Supported browsers"</A>.) </p>
+<A NAME="TI6646"></A><h4>Client-server interactions, in detail</h4>
+<A NAME="TI6647"></A><p><A HREF="apptechp220.htm#CHDDBFED">Table 33-1</A> describes
+in detail what happens between the client and server when the user
+views an HTML document with a PowerBuilder window plug-in: </p>
+<A NAME="CHDDBFED"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-1: Client/server interaction
+for the Window plug-in</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6648"></A>Step</th>
+<th  rowspan="1"  ><A NAME="TI6649"></A>What the client does</th>
+<th  rowspan="1"  ><A NAME="TI6650"></A>How
+the server responds</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6651"></A>1</td>
+<td  rowspan="1"  ><A NAME="TI6652"></A>The Web browser requests the HTML document
+from the server</td>
+<td  rowspan="1"  ><A NAME="TI6653"></A>The server sends a header identifying the
+document's MIME type (text/html)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6654"></A>2</td>
+<td  rowspan="1"  ><A NAME="TI6655"></A>The browser receives the MIME type and
+prepares to receive an HTML document</td>
+<td  rowspan="1"  ><A NAME="TI6656"></A>The server sends the HTML document</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6657"></A>3</td>
+<td  rowspan="1"  ><A NAME="TI6658"></A>The browser receives the HTML document
+and displays it</td>
+<td  rowspan="1"  ><A NAME="TI6659"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6660"></A>4</td>
+<td  rowspan="1"  ><A NAME="TI6661"></A>The browser recognizes the Embed element,
+reserves space for the plug-in on the page, and requests the PBD
+file from the server</td>
+<td  rowspan="1"  ><A NAME="TI6662"></A>The server sends a header identifying the
+PBD's MIME type, which can be one of the following:<A NAME="TI6663"></A>
+<ul>
+<li class=fi><b>Standard window plug-in</b>    application/vnd.powerbuilder10.5</li>
+<li class=ds><b>Secure window plug-in</b>    application/vnd.powerbuilder10.5-s
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6664"></A>5</td>
+<td  rowspan="1"  ><A NAME="TI6665"></A>The browser receives the MIME type and
+prepares to receive a PBD file</td>
+<td  rowspan="1"  ><A NAME="TI6666"></A>The server sends the PBD file</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6667"></A>6</td>
+<td  rowspan="1"  ><A NAME="TI6668"></A>The browser receives the PBD file</td>
+<td  rowspan="1"  ><A NAME="TI6669"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6670"></A>7</td>
+<td  rowspan="1"  ><A NAME="TI6671"></A>The browser searches its Plugins directory
+for the DLL that corresponds to the MIME type (see server step 4)</td>
+<td  rowspan="1"  ><A NAME="TI6672"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6673"></A>8</td>
+<td  rowspan="1"  ><A NAME="TI6674"></A>The browser loads the plug-in DLL</td>
+<td  rowspan="1"  ><A NAME="TI6675"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6676"></A>9</td>
+<td  rowspan="1"  ><A NAME="TI6677"></A>The plug-in looks for and loads the PowerBuilder
+deployment DLLs</td>
+<td  rowspan="1"  ><A NAME="TI6678"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6679"></A>10</td>
+<td  rowspan="1"  ><A NAME="TI6680"></A>If the Embed element includes LIBRARY
+attributes, then the client requests the specified PBD files</td>
+<td  rowspan="1"  ><A NAME="TI6681"></A>The server sends a header identifying the
+PBD's MIME type (see server step 4)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6682"></A>11</td>
+<td  rowspan="1"  ><A NAME="TI6683"></A>The browser receives the MIME type and
+prepares to receive additional PBD files</td>
+<td  rowspan="1"  ><A NAME="TI6684"></A>The server sends the PBD file</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6685"></A>12</td>
+<td  rowspan="1"  ><A NAME="TI6686"></A>PowerBuilder displays the child window
+specified in the Embed element</td>
+<td  rowspan="1"  ><A NAME="TI6687"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6688"></A>13</td>
+<td  rowspan="1"  ><A NAME="TI6689"></A>The child window executes its Open script</td>
+<td  rowspan="1"  ><A NAME="TI6690"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6691"></A>14</td>
+<td  rowspan="1"  ><A NAME="TI6692"></A>If a script calls the CommandParm function, PowerBuilder
+queries the browser for the value of the COMMANDPARM attribute in the
+Embed element</td>
+<td  rowspan="1"  ><A NAME="TI6693"></A>&#8212;</td>
+</tr>
+</table>
+<A NAME="TI6694"></A><h4>Requirements</h4>
+<A NAME="TI6695"></A><p>The PowerBuilder window plug-in uses the PowerBuilder runtime
+DLLs as well as the plug-in DLL to provide a full range of PowerBuilder
+functionality.</p>
+<A NAME="TI6696"></A><p>Each client that will browse pages containing PowerBuilder
+window plug-ins needs supporting software installed on the local
+machine:<A NAME="TI6697"></A>
+<ul>
+<li class=fi>PowerBuilder runtime
+DLLs</li>
+<li class=ds>Window plug-in DLL, placed in the Web browser's <i>Plugins</i> directory
+</li>
+</ul>
+</p>
+<A NAME="TI6698"></A><p>The PowerBuilder window plug-in is especially useful in an
+intranet application where you have control over the setup of client
+machines.</p>
+<A NAME="TI6699"></A><p>For details about setting up client machines
+on each supported platform, see <A HREF="apptechp227.htm#X-REF364047747">"Setting up users' workstations"</A>.</p>
+<A NAME="TI6700"></A><h4>Name</h4>
+<A NAME="TI6701"></A><p>The name of the PowerBuilder window plug-in DLL depends on
+whether you are using the standard or secure version:</p>
+<A NAME="TI6702"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-2: PowerBuilder window plug-in DLLs</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6703"></A>Component</th>
+<th  rowspan="1"  ><A NAME="TI6704"></A>Name</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6705"></A>Standard PowerBuilder window plug-in</td>
+<td  rowspan="1"  ><A NAME="TI6706"></A><i>NPPBA105.DLL</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6707"></A>Secure PowerBuilder window plug-in</td>
+<td  rowspan="1"  ><A NAME="TI6708"></A><i>NPPBS105.DLL</i></td>
+</tr>
+</table>
+

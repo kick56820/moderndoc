@@ -1,0 +1,185 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Sybase Adaptive Server Anywhere</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp12.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp14.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJECADD"></A><h1>Sybase Adaptive Server Anywhere</h1>
+<A NAME="TI328"></A><p>This section describes how to prepare and define a Sybase
+ASA data source in order to connect to it using the ASA ODBC driver. </p>
+<A NAME="TI329"></A><p>ASA includes two database servers&#8212;a
+personal database server and a network database server. For information
+about using Sybase Adaptive Server Anywhere, see the ASA documentation.</p>
+<A NAME="TI330"></A><h2>Supported versions for ASA</h2>
+<A NAME="TI331"></A><p>The ASA ODBC driver supports connection to local and remote
+databases created with the following:<A NAME="TI332"></A>
+<ul>
+<li class=fi>PowerBuilder running on your
+computer</li>
+<li class=ds>ASA version 9.x</li>
+<li class=ds>ASA version 8.x</li>
+<li class=ds>ASA version 7.x</li>
+<li class=ds>ASA version 6.x</li>
+<li class=ds>SQL Anywhere version 5.x
+</li>
+</ul>
+</p>
+<A NAME="TI333"></A><h2>Basic software components for ASA</h2>
+<A NAME="TI334"></A><p><A HREF="connpbp13.htm#BABCJFGF">Figure 2-5</A> show
+the basic software components required to connect to an ASA data
+source in PowerBuilder.</p>
+<A NAME="BABCJFGF"></A><caption><b>Figure 2-5: Components of an ASA connection</b></captionls>
+<br><img src="images/cnw2any.gif">
+<A NAME="CCJDBJBJ"></A><h2>Preparing to use the ASA data source</h2>
+<A NAME="TI335"></A><p>Before you define and connect to an ASA data source in PowerBuilder,
+follow these steps to prepare the data source.</p>
+<A NAME="TI336"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To prepare an ASA data source:</p>
+<ol><li class=fi><p>Make sure the database file for the ASA
+data source already exists. You can create a new database by:<A NAME="TI337"></A>
+<ul>
+<li class=fi>Launching the Create ASA Database
+utility. You can access this utility from the Utilities folder for
+the ODBC interface in the Database profile or Database painter when PowerBuilder is running
+on your computer.<br>
+This method creates a local ASA database on your computer,
+and also creates the data source definition and database profile
+for this connection. (For instructions, see the <i>User's
+Guide</i>
+.)<br></li>
+<li class=ds>Creating the database some other way, such as with PowerBuilder running
+on another user's computer or by using ASA outside PowerBuilder.
+(For instructions, see the ASA documentation.) 
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>Make sure you have the log file associated with
+the ASA database so that you can fully recover the database if it
+becomes corrupted.</p><p>If the log file for the ASA database does not exist, the ASA
+database engine creates it. However, if you are copying or moving
+a database from another computer or directory, you should copy or
+move the log file with it.</p></li></ol>
+<br><A NAME="CCJEAGJH"></A><h2>Defining the ASA data source</h2>
+<A NAME="TI338"></A><p>When you create a local ASA database, PowerBuilder automatically
+creates the data source definition and database profile for you.
+Therefore, you need only use the following procedure to define an
+ASA data source when you want to access an ASA database not created
+using PowerBuilder on your computer. </p>
+<A NAME="TI339"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define an ASA data source for the ASA driver:</p>
+<ol><li class=fi><p>Select Create ODBC Data Source from the
+list of ODBC utilities in the Database Profiles dialog box or the
+Database painter.</p></li>
+<li class=ds><p>Select User Data Source and click Next.</p></li>
+<li class=ds><p>On the Create New Data Source page, select the
+ASA driver and click Finish.</p><p>The ODBC Configuration for ASA dialog box displays:</p><br><img src="images/cn2odbc.gif"><br>
+</li>
+<li class=ds><p>You must supply the following values:<A NAME="TI340"></A>
+<ul>
+<li class=fi>Data source name on the ODBC tab page</li>
+<li class=ds>User ID and password on the Login tab page</li>
+<li class=ds>Database file on the Database tab page
+</li>
+</ul>
+
+                      </p><p>Use the Help button to get information about fields in the
+dialog box. </p></li>
+<li class=ds><p>(Optional) To select an ODBC translator to translate
+your data from one character set to another, click the Select button
+on the ODBC tab.</p><p>See <A HREF="connpbp11.htm#CCJDDEEA">"Selecting an ODBC translator"</A>.</p></li>
+<li class=ds><p>Click OK to save the data source definition.</p></li></ol>
+<br><A NAME="TI341"></A><h4>Specifying a Start Line value</h4>
+<A NAME="TI342"></A><p>When the ASA ODBC driver cannot find a running personal or
+network database server using the PATH variable and Database Name
+setting, it uses the commands specified in the Start Line field
+to start the database servers. </p>
+<A NAME="TI343"></A><p>Specify one of the following commands in the Start Line field
+on the Database tab, where <i>n</i> is the version
+of ASA you are using.</p>
+<A NAME="TI344"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI345"></A>Specify
+this command</th>
+<th  rowspan="1"  ><A NAME="TI346"></A>To</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI347"></A><b>dbeng<i>n</i>.exe</b></td>
+<td  rowspan="1"  ><A NAME="TI348"></A>Start the personal database server and
+the database specified in the Database File box</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI349"></A><b>rteng<i>n</i>.exe</b></td>
+<td  rowspan="1"  ><A NAME="TI350"></A>Start the restricted runtime database
+server and the database specified in the Database File box</td>
+</tr>
+</table>
+<A NAME="TI351"></A><p>For information on completing the ODBC Configuration For Adaptive Server Anywhere dialog
+box, see the ASA documentation. </p>
+<A NAME="TI352"></A><h2>Support for Transact-SQL special timestamp columns</h2>
+<A NAME="TI353"></A><p>When you work with an ASA table in the DataWindow, Data Pipeline, or Database
+painter, the default behavior is to treat any column named <b>timestamp</b> as
+an ASA Transact-SQL special timestamp column.</p>
+<A NAME="TI354"></A><h4>Creating special timestamp columns</h4>
+<A NAME="TI355"></A><p>You can create a Transact-SQL special timestamp column in
+an ASA table.</p>
+<A NAME="TI356"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a Transact-SQL special timestamp column
+in an ASA table in PowerBuilder:</p>
+<ol><li class=fi><p>Give the name timestamp to any column having
+a <b>timestamp</b> datatype that you want treated
+as a Transact-SQL special timestamp column. Do this in one of the
+following ways:<A NAME="TI357"></A>
+<ul>
+<li class=fi>In the painter &#8211; Select
+timestamp as the column name. (For instructions, see the <i>User's
+Guide</i>
+.)</li>
+<li class=ds>In a SQL CREATE TABLE statement &#8211; Follow
+the <A HREF="connpbp13.htm#CCJDBHFJ">"CREATE TABLE example"</A>.
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>Specify <i>timestamp</i> as the
+default value for the column. Do this in one of the following ways:<A NAME="TI358"></A>
+<ul>
+<li class=fi>In the painter &#8211; Select
+timestamp as the default value for the column. (For instructions,
+see the <i>User's Guide</i>
+.)</li>
+<li class=ds>In a SQL <b>CREATE TABLE</b> statement &#8211; Follow
+the <A HREF="connpbp13.htm#CCJDBHFJ">"CREATE TABLE example"</A>.
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>If you are working with the table in the Data
+Pipeline painter, select the initial value exclude for the special
+timestamp column from the drop-down list in the Initial Value column
+of the workspace.</p><p>You must select exclude as the initial value to exclude the
+special timestamp column from <b>INSERT</b> or <b>UPDATE</b> statements.</p><p>For instructions, see the <i>User's
+Guide</i>
+.</p></li></ol>
+<br><A NAME="CCJDBHFJ"></A><h4>CREATE TABLE example</h4>
+<A NAME="TI359"></A><p>The following <b>CREATE TABLE</b> statement defines
+an ASA table named <b>timesheet</b> containing three
+columns: <b>employee_ID</b> (<b>integer</b> datatype), <b>hours</b> (<b>decimal</b> datatype),
+and <b>timestamp</b> (<b>timestamp</b> datatype
+and timestamp default value):</p>
+<A NAME="TI360"></A><p><p><PRE> CREATE TABLE timesheet (</PRE><PRE>    employee_ID INTEGER,</PRE><PRE>    hours DECIMAL,</PRE><PRE>    <i>timestamp TIMESTAMP default timestamp</i> )</PRE></p>
+<A NAME="TI361"></A><h4>Not using special timestamp columns</h4>
+<A NAME="TI362"></A><p>If you want to change the default behavior, you can specify
+that PowerBuilder <i>not</i> treat ASA columns named <i>timestamp</i> as
+Transact-SQL special timestamp columns. </p>
+<A NAME="TI363"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify that PowerBuilder <i>not</i> treat
+columns named <i>timestamp</i> as a Transact-SQL special
+timestamp column:</p>
+<ol><li class=fi><p>Edit the Sybase Adaptive Server Anywhere section of the
+PBODB105 initialization file to change the value of SQLSrvrTSName
+from <FONT FACE="Courier New">'Yes'</FONT> to <FONT FACE="Courier New">'No'</FONT>.</p><p>After making changes in the initialization
+file, you must reconnect to the database to have them take effect.
+See <A HREF="connpbp57.htm#BJBBHCIE">Appendix A, "Adding
+Functions to the PBODB105 Initialization File"</A></p></li></ol>
+<br><A NAME="TI364"></A><h2>What to do next</h2>
+<A NAME="TI365"></A><p>For instructions on connecting to the ODBC
+data source, see <A HREF="connpbp37.htm#CCJBAGDB">"Connecting to a database"</A>.</p>
+

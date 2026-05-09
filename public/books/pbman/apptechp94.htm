@@ -1,0 +1,128 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Rich text and the end user </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp93.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp95.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF354290716"></A><h1>Rich text and the end user </h1>
+<A NAME="TI2711"></A><p>All the editing tools described throughout this chapter and
+in the chapter on working with rich text in the <i>PowerBuilder
+User's Guide</i>
+ can be made available to your users. </p>
+<A NAME="TI2712"></A><h4>What users can do</h4>
+<A NAME="TI2713"></A><p>Users can:</p>
+<A NAME="TI2714"></A><p><A NAME="TI2715"></A>
+<ul>
+<li class=fi>Use the toolbars for
+text formatting</li>
+<li class=ds>Use the pop-up menu, which includes using the clipboard
+and opening other rich text and ASCII files</li>
+<li class=ds>Edit the contents of input fields</li>
+<li class=ds>Turn the editing tools on and off
+</li>
+</ul>
+</p>
+<A NAME="TI2716"></A><h4>What you can make available to users in your
+code</h4>
+<A NAME="TI2717"></A><p>You can program an application to allow users to:</p>
+<A NAME="TI2718"></A><p><A NAME="TI2719"></A>
+<ul>
+<li class=fi>Insert and delete
+input fields</li>
+<li class=ds>Insert pictures</li>
+<li class=ds>Switch to header and footer editing</li>
+<li class=ds>Preview the document for printing
+</li>
+</ul>
+</p>
+<A NAME="TI2720"></A><p>If a RichTextEdit control shares data with a DataWindow object
+or DataStore, you can program:</p>
+<A NAME="TI2721"></A><p><A NAME="TI2722"></A>
+<ul>
+<li class=fi>Scrolling from row
+to row (you do not need to program page-to-page scrolling, although
+you can)</li>
+<li class=ds>Updating the database with changes made in input
+fields
+</li>
+</ul>
+</p>
+<A NAME="TI2723"></A><p>The best way for you to prepare rich text for use in your
+application is to become a user yourself and edit the text in an
+application designed for the purpose. During execution, all the
+tools for text preparation are available. </p>
+<A NAME="TI2724"></A><h4>What the user sees</h4>
+<A NAME="TI2725"></A><p>The default view is the body text. You can also show header
+and footer text and a print preview.</p>
+<p><b>Header and footer text</b>   For either a RichText DataWindow object or the RichTextEdit
+control, you can call the <b>ShowHeadFoot</b> function
+in a menu or button script. To display the header editing panel,
+you can call:<p><PRE> dw_1.ShowHeadFoot(TRUE)</PRE></p>
+<A NAME="TI2726"></A><p>To display the footer editing panel, you must call:<p><PRE> dw_1.ShowHeadFoot(TRUE, FALSE)</PRE></p>
+<A NAME="TI2727"></A><p>In the overloaded function ShowHeadFoot, the second argument
+defaults to <b>TRUE</b> if a value is not provided.
+Call the function again to return to normal view.<p><PRE> dw_1.ShowHeadFoot(FALSE)</PRE></p>
+<p><b>The document as it would be printed</b>   The user can press ctrl+f2 to switch
+preview mode on and off. You can also control preview mode programmatically.</p>
+<A NAME="TI2728"></A><p>For a RichTextEdit control, call the <b>Preview</b> function:<p><PRE> rte_1.Preview(TRUE)</PRE></p>
+<A NAME="TI2729"></A><p>For a RichText DataWindow object, set the Preview property:<p><PRE> dw_1.Object.DataWindow.Print.Preview = TRUE</PRE></p>
+<A NAME="TI2730"></A><h4>Text elements and formatting</h4>
+<A NAME="TI2731"></A><p>The user can specify formatting for:<A NAME="TI2732"></A>
+<ul>
+<li class=fi>Selected text</li>
+<li class=ds>Paragraphs</li>
+<li class=ds>Pictures</li>
+<li class=ds>The whole rich text document
+</li>
+</ul>
+</p>
+<A NAME="TI2733"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display the property sheet for an object, the
+user can:</p>
+<ol><li class=fi><p>Select the object. For example:</p><p><A NAME="TI2734"></A>
+<ul>
+<li class=fi>Drag or use editing
+keys to select text</li>
+<li class=ds>Click on a picture</li>
+<li class=ds>Set an insertion point (nothing selected) for the
+rich text document
+</li>
+</ul>
+</p></li>
+<li class=ds><p>Right-click in the workspace and select Properties
+from the pop-up menu.</p></li></ol>
+<br><A NAME="TI2735"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To make settings for the paragraphs in the selection:</p>
+<ol><li class=fi><p>Double-click on the ruler bar</p><p><i>or</i></p><p>Type Ctrl+Shift+S.</p></li></ol>
+<br><A NAME="TI2736"></A><h4>Modifying input fields</h4>
+<A NAME="TI2737"></A><p>Unless you have made the rich text object display only, the
+user can modify the values of input fields.</p>
+<A NAME="TI2738"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify the value of an input field:</p>
+<ol><li class=fi><p>Click the input field to select it.</p></li>
+<li class=ds><p>Right-click in the workspace and choose Properties
+from the pop-up menu.</p><p>The Input Field Object property sheet displays.</p></li>
+<li class=ds><p>On the Input Field page, edit the Data Value text
+box.</p></li></ol>
+<br><p><b>Text formatting for input fields</b>   There are several ways to select the input field and apply
+text formatting. When the input field is selected, the Font page of
+the property sheet and the toolbar affect the text. When the input
+field is part of a text selection, changes affect all the text,
+including the input field.</p>
+<A NAME="TI2739"></A><p>The user cannot apply formatting to individual characters
+or words within the field. When the user selects the input field,
+the entire field is selected.</p>
+<p><b>Inserting and deleting input fields</b>   You write scripts that let the user insert and delete input
+fields. The user can also copy and paste existing input fields. All
+copies of an input field display the same data.</p>
+<A NAME="TI2740"></A><h4>Formatting keys and toolbars</h4>
+<A NAME="TI2741"></A><p>When the toolbar is visible, users can use its buttons to
+format text, or they can use designated keystrokes to format text
+in the RichTextEdit control.</p>
+<A NAME="TI2742"></A><p>For a list of keystrokes for formatting rich
+text, see the chapter on working with rich text in the <i>PowerBuilder
+User's Guide</i>
+.</p>
+

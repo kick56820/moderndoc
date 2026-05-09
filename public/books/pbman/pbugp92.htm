@@ -1,0 +1,148 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using inheritance to build a window </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp91.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp93.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CFHBDDIF"></A><h1>Using inheritance to build a window </h1>
+<A NAME="TI2485"></A><p>When you build a window that inherits its definition&#8212;its
+style, events, functions, structures, variables, controls, and scripts&#8212;from
+an existing window, you save coding time. All you have to do is
+modify the inherited definition to meet the requirements of the
+current situation. </p>
+<A NAME="TI2486"></A><p>This section provides an overview of using inheritance in
+the Window painter. The issues concerning inheritance with windows
+are the same as the issues concerning inheritance with user objects
+and menus. They are described in more detail in <A HREF="pbugp108.htm#CAIDCJFG">Chapter 13, "Understanding Inheritance ."</A></p>
+<A NAME="TI2487"></A><h2>Building two windows with similar definitions</h2>
+<A NAME="TI2488"></A><p>Assume your application needs two windows with similar definitions.
+One window, <b>w_employee</b>, needs:</p>
+<A NAME="TI2489"></A><p><A NAME="TI2490"></A>
+<ul>
+<li class=fi>A title (Employee
+Data)</li>
+<li class=ds>Text that says <FONT FACE="Courier New">Select a file:</FONT></li>
+<li class=ds>A drop-down list with a list of available employee
+files</li>
+<li class=ds>An Open button with a script that opens the selected
+file in a multiline edit box</li>
+<li class=ds>An Exit button with a script that asks the user
+to confirm closing the window and then closes the window
+</li>
+</ul>
+</p>
+<A NAME="TI2491"></A><p>The window looks like this:</p>
+<br><img src="images/win14.gif">
+<A NAME="TI2492"></A><p>The only differences in the second window, <b>w_customer</b>,
+are that the title is Customer Data, the drop-down list
+displays customer files instead of employee files, and there is
+a Delete button so the user can delete files.</p>
+<A NAME="TI2493"></A><h4>Your choices</h4>
+<A NAME="TI2494"></A><p>To build these windows, you have three choices:<A NAME="TI2495"></A>
+<ul>
+<li class=fi>Build two new windows from
+scratch as described in <A HREF="pbugp88.htm#X-REF361718469">"Building a new window"</A></li>
+<li class=ds>Build one window from scratch and then modify it
+and save it under another name</li>
+<li class=ds>Use inheritance to build two windows that inherit
+a definition from an ancestor window
+</li>
+</ul>
+</p>
+<A NAME="TI2496"></A><h4>Using inheritance</h4>
+<A NAME="TI2497"></A><p>To build the two windows using inheritance, follow these steps:<A NAME="TI2498"></A>
+<ol>
+</li>
+<li class=ds>Create an ancestor window, <b>w_ancestor</b>,
+that contains the text, drop-down list, and the open and exit buttons,
+and save and close it.<br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <A NAME="TI2499"></A>You cannot inherit a window from an existing window
+when the existing window is open, and you cannot open a window when
+its ancestor or descendant is open.
+<br>
+</li>
+<li class=ds>Select File&gt;Inherit, select <b>w_ancestor</b> in
+the Inherit From dialog box, and click OK.</li>
+<li class=ds>Add the Employee Data title, specify that the DropDownListBox
+control displays employee files, and save the window as <b>w_employee</b>.</li>
+<li class=ds>Select File&gt;Inherit, select <b>w_ancestor</b> in
+the Inherit From dialog box, and click OK.</li>
+<li class=ds>Add the Customer Data title, specify that the DropDownListBox
+control displays customer files, add the Delete button, and save
+the window as <b>w_customer</b>.
+</li>
+</ol>
+</p>
+<A NAME="TI2500"></A><h2>Advantages of using inheritance</h2>
+<A NAME="TI2501"></A><p>Using inheritance has a number of advantages:</p>
+<A NAME="TI2502"></A><p><A NAME="TI2503"></A>
+<ul>
+<li class=fi>When you change the ancestor window,
+the changes are reflected in all descendants of the window. You
+do not have to make changes manually in the descendants as you would
+in a copy. This saves you coding time and makes the application
+easier to maintain.</li>
+<li class=ds>Each descendant inherits the ancestor's
+scripts, so you do not have to re-enter the code to add
+to the script.</li>
+<li class=ds>You get consistency in the code and in the application
+windows.
+</li>
+</ul>
+</p>
+<A NAME="TI2504"></A><p>When you use inheritance to build an object, everything in
+the ancestor object is inherited in all its descendants. In the
+descendant, you can:<A NAME="TI2505"></A>
+<ul>
+<li class=fi>Change
+the properties of the window</li>
+<li class=ds>Add controls to the window and modify existing controls</li>
+<li class=ds>Size and position the window and the controls in
+the window</li>
+<li class=ds>Build new scripts for events in the window or its
+controls</li>
+<li class=ds>Reference the ancestor's functions and
+events</li>
+<li class=ds>Reference the ancestor's structures if
+the ancestor contains a public or protected instance variable of
+the structure data type</li>
+<li class=ds>Access ancestor properties, such as instance variables,
+if the scope of the property is public or protected</li>
+<li class=ds>Extend or override inherited scripts</li>
+<li class=ds>Declare functions, structures, and variables for
+the window</li>
+<li class=ds>Declare user events for the window and its controls
+</li>
+</ul>
+</p>
+<A NAME="TI2506"></A><p>The only thing you cannot do is delete inherited controls. If you do not need an inherited
+control, you can make it invisible in the descendent window.</p>
+<A NAME="TI2507"></A><h2>Instance variables in descendants</h2>
+<A NAME="TI2508"></A><p>If
+you create a window by inheriting it from an existing window that
+has public or protected instance variables with simple data types,
+the instance variables display and can be modified in the descendent
+window's Properties view. You see them at the bottom of
+the General tab page. In this illustration, the last two properties
+are inherited instance variables.</p>
+<br><img src="images/win17.gif">
+<A NAME="TI2509"></A><p>All public instance variables with simple data types such
+as <b>integer</b>, <b>boolean</b>, <b>character</b>, <b>date</b>, <b>string</b>,
+and so on display. Instance variables with the <b>any </b>or <b>blob </b>data
+type or instance variables that are objects or arrays do not display.</p>
+<A NAME="TI2510"></A><h2>Control names in descendants</h2>
+<A NAME="TI2511"></A><p>PowerBuilder uses this syntax to show names of inherited controls:<p><PRE><i>ancestorwindow</i><b>::</b><i>control</i></PRE></p>
+</p>
+<A NAME="TI2512"></A><p>For example, if you select the Open button in <b>w_customer</b>,
+which is inherited from <b>w_ancestor</b>,
+its name displays on the General page in the properties view as <FONT FACE="Courier New">w_ancestor::cb_open</FONT>.</p>
+<A NAME="TI2513"></A><p>Names of controls must be unique in an inheritance hierarchy.
+For example, you cannot have a CommandButton named <b>cb_close</b> defined
+in an ancestor and a different CommandButton named <b>cb_close</b> defined
+in a child. You should develop a naming convention for controls
+in windows that you plan to use as ancestors.</p>
+

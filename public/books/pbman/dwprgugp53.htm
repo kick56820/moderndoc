@@ -1,0 +1,170 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About the Web ActiveX</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp52.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp54.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBEAJBA"></A><h1>About the Web ActiveX</h1>
+<A NAME="TI2284"></A><h4>Features</h4>
+<A NAME="TI2285"></A><p>The Sybase DataWindow Web control for ActiveX is a fully interactive DataWindow
+control for use with Microsoft Internet Explorer. It implements
+all standard DataWindow features except rich text.</p>
+<A NAME="TI2286"></A><p>The Web ActiveX supports data retrieval with retrieval arguments
+and data update. You can use edit styles, display formats, and validation
+rules. Most of the standard methods for manipulating the DataWindow
+are available, including Modify for changing DataWindow object properties. Several
+functions that involve file system interactions, such as SaveAs and
+SaveAsAscii, are not supported, allowing the Web ActiveX to be in the <i>safely
+scriptable</i> category of ActiveX controls.</p>
+<A NAME="TI2287"></A><p>Included with the Web ActiveX is the Sybase DataWindow Transaction Object
+control for making database connections that can be shared by several
+Web ActiveX controls.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Browser support</span> <A NAME="TI2288"></A>The Web ActiveX and Transaction Object control are designed
+to work in browsers that support ActiveX controls, such as Microsoft
+Internet Explorer version 3 and higher.</p>
+<A NAME="TI2289"></A>The DataWindow controls are not designed to work in Netscape
+browsers, which do not support ActiveX controls. Even if you use
+third-party plug-ins to enable ActiveX support, scripting for the
+controls works differently and is not tested.</p>
+<A NAME="TI2290"></A><h4>Development environment</h4>
+<A NAME="TI2291"></A><p>When you install PowerBuilder, the Setup program registers
+the Web ActiveX and the Transaction Object controls in the Windows
+registry. The class information entered in the registry is visible
+in the PowerBuilder Browser under OLE Custom Controls on the OLE
+tab. You can also examine the properties, events, and methods of
+the controls on the OLE tab of the Browser.</p>
+<A NAME="TI2292"></A><p>To use the Web ActiveX, your development system must meet
+the following requirements, all of which are met when you install
+any PowerBuilder component that requires the Java VM:<A NAME="TI2293"></A>
+<ul>
+<li class=fi>The Sun JRE 1.2 or later must
+be installed on your system</li>
+<li class=ds>The path to the <i>jvm.dll</i> file
+must be in your system PATH environment variable<br>
+The path is <i>...\JRE\bin\client</i> for
+JRE 1.4 and .<i>..\JRE\bin\classic</i> for <br>JRE
+1.2 or 1.3<br></li>
+<li class=ds>The following files must be in a directory in your
+system PATH environment variable: <i>pbjvm105.dll</i>, <i>pbshr105.dll</i>,
+and <i>pbjdbc12105.jar</i></li>
+<li class=ds>If you are using Internet Infomation Services (IIS)
+6.0, you need to configure IIS to recognize the .<i>pbl</i>,
+.<i>pbd</i>, and .<i>psr</i> extensions
+as MIME types. See <A HREF="dwprgugp53.htm#CHDDGCBG">"Adding MIME types to IIS
+6.0"</A>.
+</li>
+</ul>
+</p>
+<A NAME="TI2294"></A><p>In addition, the Java classes required by your database vendor's
+client layer must be installed on your system.</p>
+<A NAME="TI2295"></A><p>In a Web target, you can develop Web (and JSP) pages that
+use the Web ActiveX and Transaction Object controls. You can drag
+and drop these controls from the Components tab of the System Tree
+to a Web page. You can also examine the properties, events, and
+methods of these controls from the System Tree. In the HTML editor,
+you can insert the control, set property values using the control
+property sheets, and write event scripts in the script editor.</p>
+<A NAME="TI2296"></A><p>For more information, see <A HREF="dwprgugp55.htm#BGBCBHCJ">"How to use the Web ActiveX
+in a Web target"</A>.</p>
+<A NAME="TI2297"></A><p>In addition to PowerBuilder's HTML editor, you can
+use any text editor to write HTML for the controls. However, other
+development environments are not supported and do not provide advanced
+authoring support.</p>
+<A NAME="TI2298"></A><p>For information about the required HTML, see <A HREF="dwprgugp54.htm#BGBDCAIG">"HTML for inserting the controls
+on a Web page"</A>.</p>
+<A NAME="TI2299"></A><h4>DataWindow objects</h4>
+<A NAME="TI2300"></A><p>The Web ActiveX uses a DataWindow object, which determines
+what data is retrieved and how it is displayed. The Web ActiveX
+can also display Powersoft reports (PSRs), which do not need to
+retrieve data.</p>
+<A NAME="TI2301"></A><p>A DataWindow object for the Web ActiveX can have any presentation
+style except RichText.</p>
+<A NAME="TI2302"></A><p>DataWindow objects are stored in PowerBuilder libraries (<ACRONYM title = "pibbles" >PBLs</ACRONYM>) or PowerBuilder dynamic libraries
+(PBDs). The DataWindow libraries are stored on the Web server and
+downloaded as needed by the Internet Explorer browser. You use a
+URL to point to the library. It can be relative or absolute, using
+any supported protocol&#8212;for example, http, ftp, or file. </p>
+<A NAME="TI2303"></A><p>For more information, see <A HREF="dwprgugp56.htm#BGBBADHJ">"DataWindow objects for the
+Web ActiveX"</A>.</p>
+<A NAME="CHDDGCBG"></A><h4>Adding MIME types to IIS
+6.0</h4>
+<A NAME="TI2304"></A><p>To use the Web ActiveX with IIS 6.0, which is the IIS version
+included in Windows Server 2003, you need to configure IIS to recognize
+the .<i>pbl</i>, .<i>pbd</i>, and .<i>psr</i> extensions.
+Previous versions of IIS include a wildcard character MIME mapping
+that allows IIS to serve any file.</p>
+<A NAME="TI2305"></A><p>You must be a member of the Administrators group on the local
+computer to perform the following procedure, or you must have been
+delegated the appropriate authority. For more information, see the
+Microsoft documentation for IIS 6.0 or this <A HREF="http://support.microsoft.com/default.aspx?scid=kb;en-us;326965">Microsoft support document</A>
+.</p>
+<A NAME="TI2306"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a global MIME type to IIS 6.0:</p>
+<ol><li class=fi><p>In IIS Manager, right-click the computer
+on which you want to add a MIME type, and click Properties. </p></li>
+<li class=ds><p>Click MIME Types. </p></li>
+<li class=ds><p>Click New. </p></li>
+<li class=ds><p>In the Extension box, type <FONT FACE="Courier New">pbl</FONT>. </p></li>
+<li class=ds><p>In the MIME type box, type <FONT FACE="Courier New">application/octet-stream</FONT>. </p></li>
+<li class=ds><p>Repeat steps 4 and 5 for the .<i>pbd</i> and
+.<i>psr</i> extensions, using <FONT FACE="Courier New">application/octet-stream</FONT> and <FONT FACE="Courier New">application/datawindow</FONT> respectively
+as the MIME types.</p></li>
+<li class=ds><p>Click OK. </p></li>
+<li class=ds><p>Restart IIS to apply the new settings.</p></li></ol>
+<br><A NAME="TI2307"></A><p>You can also add a MIME type to a specific Web site or directory
+from its HTTP Headers property page.</p>
+<A NAME="TI2308"></A><h4>Database connections</h4>
+<A NAME="TI2309"></A><p>The Web ActiveX uses JDBC for database connectivity. Users
+can connect to a data source on any server to which they have access,
+including databases and middle-tier servers on the Internet.</p>
+<A NAME="TI2310"></A><p>You can use internal transaction properties for specifying
+a connection; or you can make the connection with a separate Transaction
+object, the Sybase DataWindow Transaction Object control. When you
+connect using a separate transaction object, you can control when
+SQL <b>COMMIT</b> and <b>ROLLBACK</b> statements
+occur and you can use the same connection for multiple Web ActiveX
+controls.</p>
+<A NAME="TI2311"></A><p>For more information, see <A HREF="dwprgugp57.htm#BGBCBBDH">"Using the DataWindow Transaction
+Object control"</A>.</p>
+<A NAME="TI2312"></A><h4>Scripting</h4>
+<A NAME="TI2313"></A><p>Since the Web ActiveX is designed for Internet Explorer, you
+can use Jscript or another ECMAScript-compatible scripting language
+for scripting purposes. </p>
+<A NAME="TI2314"></A><p>In general, you can use the same methods as in a PowerBuilder
+application. However, there are a few differences:<A NAME="TI2315"></A>
+<ul>
+<li class=fi>Datatypes are mapped to the basic JavaScript types of string,
+number, boolean, and various object types</li>
+<li class=ds>ECMAScript languages do not support arguments passed
+by reference; so instead of checking the value of a reference argument,
+you call a separate method to retrieve the value</li>
+<li class=ds>Enumerated datatypes are not supported; instead,
+specify the integer that corresponds to the enumerated data value
+</li>
+</ul>
+</p>
+<A NAME="TI2316"></A><p>For more information, see <A HREF="dwprgugp59.htm#BGBCDGFJ">"Coding for the Web ActiveX"</A>.</p>
+<A NAME="TI2317"></A><h4>Events</h4>
+<A NAME="TI2318"></A><p>The Web ActiveX supports the same events as a standard DataWindow
+control, with these differences:<A NAME="TI2319"></A>
+<ul>
+<li class=fi>Event names
+are different to conform to Web conventions</li>
+<li class=ds>Events in ECMAScript languages do not have return
+values; instead you can call <b>SetActionCode</b> to
+affect the outcome of an event 
+</li>
+</ul>
+</p>
+<A NAME="TI2320"></A><h4>Deployment</h4>
+<A NAME="TI2321"></A><p>The Web ActiveX is provided as a CAB file, which allows the
+client browser to install and register the control. When the user
+downloads a Web page that refers to the CAB file, the browser also
+downloads the CAB file if necessary, unpacks it, and registers the
+control. Some additional files must also be deployed to the client.</p>
+<A NAME="TI2322"></A><p>For more information, see <A HREF="dwprgugp60.htm#BGBDBIAA">"Deploying the Web ActiveX"</A>.</p>
+

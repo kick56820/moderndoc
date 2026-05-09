@@ -1,0 +1,152 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using PBDOM</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp80.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp82.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABCHEHD"></A><h1>Using PBDOM</h1>
+<A NAME="TI2265"></A><p>This section describes how to accomplish basic tasks using
+PBDOM classes and methods. To check for complete code samples that
+you can download and test, select Programs&gt;Sybase&gt;PowerBuilder
+10.5&gt;PB 10 Code Samples from the Windows Start menu.</p>
+<A NAME="TI2266"></A><h2>Validating the XML</h2>
+<A NAME="TI2267"></A><p>Before you try to build a document from a file or string,
+you can test whether the XML is well formed or, optionally, whether
+it conforms to a DTD or Schema using the <b>XMLParseFile</b> or <b>XMLParseString</b> PowerScript
+functions. For example, this code tests whether the XML in a file
+is well formed:<p><PRE> long ll_ret<br>ll_ret = XMLParseFile("c:\temp\mydoc.xml", ValNever!)</PRE></p>
+<A NAME="TI2268"></A><p>By default, these functions display a message box if errors
+occur. You can also provide a <i>parsingerrors</i> string
+argument to handle them yourself. For more information about these
+functions, see their descriptions in the<i> PowerScript Reference</i>
+ or
+the online Help.</p>
+<A NAME="TI2269"></A><h2>Creating an XML document from XML</h2>
+<A NAME="TI2270"></A><p>The PBDOM_BUILDER class provides three methods for
+creating a PBDOM_DOCUMENT from an existing XML source.
+It also provides the GetParseErrors method to get a list of any
+parsing errors that occur.</p>
+<A NAME="TI2271"></A><h4>Using BuildFromString</h4>
+<A NAME="TI2272"></A><p>The following example uses an XML string and the PBDOM_BUILDER
+class to create a PBDOM_DOCUMENT. First the objects are
+declared:</p>
+<A NAME="TI2273"></A><p><p><PRE> PBDOM_BUILDER pbdom_builder_new<br>PBDOM_DOCUMENT pbdom_doc</PRE></p>
+<A NAME="TI2274"></A><p>The objects are then instantiated using the constructor and
+the PBDOM_BUILDER <b>BuildFromString</b> method:</p>
+<A NAME="TI2275"></A><p><p><PRE> pbdombuilder_new = Create PBDOM_Builder<br>pbdom_doc = pbdombuilder_new.BuildFromString(Xml_doc)</PRE></p>
+<A NAME="TI2276"></A><p>XML can also be loaded directly into a string variable, as
+in the following example:</p>
+<A NAME="TI2277"></A><p><p><PRE> string Xml_str<br>Xml_str = "&lt;?xml version="1.0" ?&gt;"<br>Xml_str += "&lt;WHITEPAPER&gt;"<br>Xml_str += "&lt;TITLE&gt;Document Title&lt;/TITLE&gt;"<br>Xml_str += "&lt;AUTHOR&gt;Author Name&lt;/AUTHOR&gt;"<br>Xml_str += "&lt;PARAGRAPH&gt;Document text.&lt;/PARAGRAPH&gt;"<br>Xml_str += "&lt;/WHITEPAPER&gt;"</PRE></p>
+<A NAME="TI2278"></A><h4>Using BuildFromFile</h4>
+<A NAME="TI2279"></A><p>You can create an XML file using the <b>BuildFromFile</b> method
+and a string containing the path to a file from which to create
+a PBDOM_DOCUMENT:<p><PRE> PBDOM_BUILDER     pbdombuilder_new<br>PBDOM_DOCUMENT     pbdom_doc<br>pbdombuilder_new = Create PBDOM_Builder<br>pbdom_doc = pbdombuilder_new.BuildFromFile &amp;<br>   ("c:\pbdom_doc_1.xml")</PRE></p>
+<A NAME="TI2280"></A><h4>Using BuildFromDataStore</h4>
+<A NAME="TI2281"></A><p>The following PowerScript code fragment demonstrates how to
+use the <b>BuildFromDataStore</b> method with a referenced
+DataStore object.</p>
+<A NAME="TI2282"></A><p><p><PRE> PBDOM_Builder pbdom_bldr<br>pbdom_document pbdom_doc<br>datastore ds<br> <br>ds = Create datastore<br>ds.DataObject = "d_customer"<br>ds.SetTransObject (SQLCA)<br>ds.Retrievepbdom_doc = pbdom_bldr.BuildFromDataStore(ds)</PRE></p>
+<A NAME="TI2283"></A><h4>Using GetParseErrors</h4>
+<A NAME="TI2284"></A><p>After a call to any of the Build methods, you can obtain a
+list of parsing and validating errors encountered by the Build methods
+with the <b>GetParseErrors</b> method:<p><PRE> PBDOM_Builder pbdom_bldr<br>pbdom_document pbdom_doc<br>string strParseErrors[]<br>BOOLEAN bRetTemp = FALSE<br> <br>pbdom_buildr = Create PBDOM_BUILDER<br>pbdom_doc = pbdom_buildr.BuildFromFile("D:\temp.xml")<br>bRetTemp = pbdom_buildr.GetParseErrors(strParseErrors)<br>if bRetTemp = true then<br>   for l = 1 to UpperBound(strParseErrors)<br>      MessageBox ("Parse Error", strParseErrors[l])<br>   next<br>end if</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Parsing errors</span> <A NAME="TI2285"></A>If parsing errors are found and <b>GetParseErrors</b> returns <b>true</b>,
+a complete PBDOM node tree that can be inspected might still be
+created.</p>
+<A NAME="TI2286"></A><h2>Creating an XML document from scratch</h2>
+<A NAME="TI2287"></A><p>You can create an XML document in a script using the appropriate PBDOM_OBJECT
+subclasses and methods. The following code uses the PBDOM_ELEMENT
+and PBDOM_DOCUMENT classes and some of their methods to
+create a simple XML document.</p>
+<A NAME="TI2288"></A><p>First, the objects are declared and instantiated:</p>
+<A NAME="TI2289"></A><p><p><PRE> PBDOM_ELEMENT pbdom_elem_1<br>PBDOM_ELEMENT pbdom_elem_2<br>PBDOM_ELEMENT pbdom_elem_3<br>PBDOM_ELEMENT pbdom_elem_root<br>PBDOM_DOCUMENT pbdom_doc1<br> <br>pbdom_elem_1 = Create PBDOM_ELEMENT<br>pbdom_elem_2 = Create PBDOM_ELEMENT<br>pbdom_elem_3 = Create PBDOM_ELEMENT</PRE></p>
+<A NAME="TI2290"></A><p>The instantiated objects are assigned names. Note that the PBDOM_DOCUMENT
+object <b>pbdom_doc1</b> is not named:</p>
+<A NAME="TI2291"></A><p><p><PRE> pbdom_elem_1.SetName("pbdom_elem_1")<br>pbdom_elem_2.SetName("pbdom_elem_2")<br>pbdom_elem_3.SetName("pbdom_elem_3")</PRE></p>
+<A NAME="TI2292"></A><p>The objects are arranged into a node tree using the <b>AddContent</b> method.
+The <b>AddContent</b> method adds the referenced object
+as a child node under the object from which <b>AddContent</b> is
+invoked:</p>
+<A NAME="TI2293"></A><p><p><PRE> pbdom_elem_1.AddContent(pbdom_elem_2)<br>pbdom_elem_2.AddContent(pbdom_elem_3)</PRE></p>
+<A NAME="TI2294"></A><p>Use the <b>NewDocument</b> method to create a
+new XML document. The parameter value supplied to the <b>NewDocument</b> method
+becomes the name of the root element. This name is then accessed
+from the PBDOM_DOCUMENT object <b>pbdom_doc1</b> and
+assigned to the PBDOM_ELEMENT object <b>pbdom_elem_root</b> using
+the <b>GetRootElement</b> method:</p>
+<A NAME="TI2295"></A><p><p><PRE> pbdom_doc1.NewDocument("Root_Element_From_Doc_1")<br>pbdom_elem_root = pbdom_doc1.GetRootElement()</PRE></p>
+<A NAME="TI2296"></A><p>The ELEMENT object <b>pbdom_elem_1</b> and
+all its child nodes are placed in the new XML document node tree
+under the root element using the <b>AddContent</b> method.
+Note that as the ancestor node <b>pbdom_elem_1</b> is
+placed in the node tree, all its child nodes move as well:</p>
+<A NAME="TI2297"></A><p><p><PRE> pbdom_elem_root.AddContent(pbdom_elem_1)</PRE></p>
+<A NAME="TI2298"></A><p>The XML document created looks like this:</p>
+<A NAME="TI2299"></A><p><p><PRE> &lt;!DOCTYPE Root_Element_From_Doc_1&gt; <br>&lt;Root_Element_From_Doc_1&gt;<br>    &lt;pbdom_elem_1&gt;<br>        &lt;pbdom_elem_2&gt;<br>            &lt;pbdom_elem_3/&gt; <br>        &lt;/pbdom_elem_2&gt;<br>    &lt;/pbdom_elem_1&gt;<br>&lt;/Root_Element_From_Doc_1&gt;</PRE></p>
+<A NAME="TI2300"></A><h2>Accessing node data</h2>
+<A NAME="TI2301"></A><p>An XML document can be read by accessing the elements of its
+node tree using the appropriate PBDOM_OBJECT subclasses
+and methods. The following code uses an array, the PBDOM_OBJECT,
+and its descendant class PBDOM_DOCUMENT, and the <b>GetContent</b> and <b>GetRootElement</b> methods
+of the PBDOM_DOCUMENT class to access node data on an XML
+document.</p>
+<A NAME="TI2302"></A><p>A PBDOM_DOCUMENT object named <b>pbdom_doc</b> contains
+the following XML document:<p><PRE> &lt;Root&gt;<br>    &lt;Element_1&gt;<br>        &lt;Element_1_1/&gt;<br>        &lt;Element_1_2/&gt;<br>        &lt;Element_1_3/&gt;<br>    &lt;/Element_1&gt;<br>    &lt;Element_2/&gt;<br>    &lt;Element_3/&gt;<br>&lt;/Root&gt;</PRE></p>
+<A NAME="TI2303"></A><p>The following code declares an array to hold the elements
+returned from the <b>GetContent</b> method, which reads
+the PBDOM_DOCUMENT object named <b>pbdom_doc</b>:</p>
+<A NAME="TI2304"></A><p><p><PRE> PBDOM_OBJECT pbdom_obj_array[]<br>...<br>pbdom_doc.GetContent(ref pbdom_obj_array)</PRE></p>
+<A NAME="TI2305"></A><p>The <b>pbdom_obj_array</b> array
+now contains one value representing the root element of pbdom_doc: <FONT FACE="Courier New">&lt;Root&gt;</FONT>.</p>
+<A NAME="TI2306"></A><p>To access the other nodes in <b>pbdom_doc</b>,
+the <b>GetRootElement</b> method is used with the <b>GetContent</b> method.</p>
+<A NAME="TI2307"></A><p><p><PRE> pbdom_doc.GetRootElement().GetContent &amp;<br>   (ref pbdom_obj_array)</PRE></p>
+<A NAME="TI2308"></A><p>The <b>pbdom_obj_array</b> array
+now contains three values corresponding to the three child nodes
+of the root element of <b>pbdom_doc</b>: <FONT FACE="Courier New">&lt;Element_1&gt;</FONT>, <FONT FACE="Courier New">&lt;Element_2&gt;</FONT>,
+and <FONT FACE="Courier New">&lt;Element_3&gt;</FONT>.</p>
+<A NAME="TI2309"></A><p>PBDOM provides other methods for accessing data, including <b>InsertContent</b>, <b>AddContent</b>, <b>RemoveContent</b>,
+and <b>SetContent</b>.</p>
+<A NAME="TI2310"></A><h4>Changing node content with arrays</h4>
+<A NAME="TI2311"></A><p>You can use the <b>AddContent</b> method to change
+node content:</p>
+<A NAME="TI2312"></A><p><p><PRE> pbdom_obj_array[3].AddContent("This is Element 3.")</PRE></p>
+<A NAME="TI2313"></A><p>This line of code changes the node tree as follows:</p>
+<A NAME="TI2314"></A><p><p><PRE> &lt;Root&gt;<br>    &lt;Element_1&gt;<br>        &lt;Element_1_1/&gt;<br>        &lt;Element_1_2/&gt;<br>        &lt;Element_1_3/&gt;<br>    &lt;/Element_1&gt;<br>    &lt;Element_2/&gt;<br>    &lt;Element_3&gt;This is Element 3.&lt;/Element_3&gt;<br>&lt;/Root&gt;</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Arrays and object references</span> <A NAME="TI2315"></A>When you use a method such as the <b>GetContent</b> method
+of the PBDOM_DOCUMENT class to return an array of PBDOM_OBJECT references,
+the references are to instantiated PBDOM objects. If you modify any
+of these objects through its array item, the changes are permanent
+and are reflected in any other arrays that hold the same object
+reference.</p>
+<A NAME="TI2316"></A><h2>Manipulating the node-tree hierarchy</h2>
+<A NAME="TI2317"></A><p>You can restructure an XML node tree by rearranging its nodes.
+One means of manipulating nodes involves detaching a child node
+from its parent node. This can be accomplished with the <b>Detach</b> method,
+as in the following example.</p>
+<A NAME="TI2318"></A><p>The root element of a PBDOM_DOCUMENT object named <b>pbdom_doc</b> is obtained
+using the <b>GetRootElement</b> method:</p>
+<A NAME="TI2319"></A><p><p><PRE> pbdom_obj = pbdom_doc.GetRootElement()</PRE></p>
+<A NAME="TI2320"></A><p>The root element is detached from the PBDOM_DOCUMENT
+object, which is the parent node of the root element:</p>
+<A NAME="TI2321"></A><p><p><PRE> pbdom_obj.Detach()</PRE></p>
+<A NAME="TI2322"></A><p>PBDOM provides the <b>SetParentObject</b> method
+to make an object a child of another object. </p>
+<A NAME="TI2323"></A><h4>Checking for parent node</h4>
+<A NAME="TI2324"></A><p>The <b>GetParentObject</b> method can be used
+to determine whether an element has a parent object, as in the following
+example:</p>
+<A NAME="TI2325"></A><p><p><PRE> pbdom_parent_obj = pbdom_obj.GetParentObject()<br>if not IsValid(pbdom_parent_obj) then<br>   MessageBox ("Invalid", "Root Element has no Parent")<br>end if</PRE></p>
+<A NAME="TI2326"></A><p>If the object on which <b>GetParentObject</b> is
+called has no parent object, the function returns <b>NULL</b>.</p>
+<A NAME="TI2327"></A><p>PBDOM provides similar methods that return information about
+an element's place in an XML node tree. These methods include <b>HasChildren</b>,
+which returns a boolean indicating whether an object has child objects,
+and <b>IsAncestorObjectOf</b>, which indicates whether
+an object is the ancestor of another object.</p>
+

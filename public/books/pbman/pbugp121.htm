@@ -1,0 +1,159 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Writing scripts for menu items </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp120.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp122.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CACDIAEFF"></A><h1>Writing scripts for menu items </h1>
+<A NAME="TI3560"></A><p>You write scripts for menu items in the Script view. The scripts
+specify what happens when users select a menu item.</p>
+<A NAME="TI3561"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To write a script for a menu item:</p>
+<ol><li class=fi><p>Double-click the menu item or select Script
+from the menu item's pop-up menu.</p><p>The Script view displays for the clicked event, which is the
+default event for a menu item.</p></li></ol>
+<br><A NAME="TI3562"></A><h2>Menu item events</h2>
+<A NAME="TI3563"></A><p>Menu items have the following events:<A NAME="TI3564"></A>
+<ul>
+<li class=fi><b>Clicked</b>   Typically, your application will contain Clicked scripts for
+each menu item in a drop-down or cascading menu. For example, the
+script for the Clicked event for the Open menu item on the File
+menu opens a file.</li>
+<li class=ds><b>Help</b>   You can
+provide Help on a menu item when a user presses the F1 key, or when
+the user clicks the context Help button [?] on
+the title bar of the window with which the menu is associated, and
+then clicks on a menu item.</li>
+<li class=ds><b>Selected</b>   You will probably
+use few Selected scripts since users do not expect things to happen
+when they simply highlight a menu item. One use of Selected scripts
+is to change MicroHelp displayed in an MDI application as the user
+scrolls through a menu.
+</li>
+</ul>
+</p>
+<A NAME="TI3565"></A><h4>About
+the Clicked event</h4>
+<A NAME="TI3566"></A><p>The Clicked event is triggered whenever:<A NAME="TI3567"></A>
+<ul>
+<li class=fi>The user clicks the menu item</li>
+<li class=ds>The user selects (highlights) the menu item using
+the keyboard and then presses ENTER</li>
+<li class=ds>The user presses the shortcut key for the menu item</li>
+<li class=ds>The menu containing the menu item is displayed and
+the user presses the accelerator key Alt+<i>key</i>.</li>
+<li class=ds>When a script executes the PopMenu function and
+displays a pop-up menu
+</li>
+</ul>
+A menu item responds
+to a mouse-click or the keyboard only if both its Visible and Enabled
+properties are set to "true".</p>
+<A NAME="TI3568"></A><p>If the menu item has a drop-down or cascading menu under it,
+the script for its Clicked event (if any) is executed when the mouse
+button is pressed, and then the drop-down or cascading menu displays.
+If the menu item does not have a menu under it, the script for the
+Clicked event is executed when the mouse button is released.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the Clicked event to specify menu item properties</span> <A NAME="TI3569"></A>When the user clicks an item on the menu bar to display a
+drop-down menu, the Clicked event for the menu item on the menu
+bar is triggered and then the drop-down menu is displayed.</p>
+<A NAME="TI3570"></A>You can use the menu bar's Clicked event to specify
+the properties of the menu items in the drop-down menu. For example,
+if you want to disable items in a drop-down menu, you can disable
+them in the script for the Clicked event for the menu item in the
+menu bar.</p>
+<A NAME="TI3571"></A><h4>About the Help event</h4>
+<A NAME="TI3572"></A><p>The Help event is triggered when the user presses F1or clicks
+the context Help button [?] on a window's
+title bar and then points and clicks on a menu item.</p>
+<A NAME="TI3573"></A><h4>About the Selected event</h4>
+<A NAME="TI3574"></A><p>The Selected event is triggered when the user selects a menu
+item.</p>
+<A NAME="TI3575"></A><h2>Using functions and variables</h2>
+<A NAME="TI3576"></A><p>You can use functions and variables in your scripts.</p>
+<A NAME="TI3577"></A><h4>Using functions</h4>
+<A NAME="TI3578"></A><p>PowerBuilder provides built-in functions that act on menu
+items. You can use these functions in scripts to manipulate menu
+items at runtime. For example, to hide a menu, you can use the built-in
+Hide function.</p>
+<A NAME="TI3579"></A><p>For a complete list of the menu-level built-in
+functions, look at the Function List view or use the Browser.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Defining menu-level functions</span> <A NAME="TI3580"></A>You can define your own menu-level functions to make it easier
+to manipulate your menus. One way you can do this is in the Function
+List view, by selecting Add from the pop-up menu.</p>
+<A NAME="TI3581"></A>For more information, see <A HREF="pbugp70.htm#CDECDFID">Chapter 8, "Working with User-Defined Functions ."</A></p>
+<A NAME="TI3582"></A><h4>Using variables</h4>
+<A NAME="TI3583"></A><p>Scripts for menu items have access to all global variables
+declared for the application. You can also declare local variables,
+which are accessible only in the script where they are declared.</p>
+<A NAME="TI3584"></A><p>You can declare instance variables for the menu when you have
+data that needs to be accessible to scripts in several menu items
+in a menu. Instance variables are accessible to all menu items in
+the menu.</p>
+<A NAME="TI3585"></A><p>For a complete description of variables and
+how to declare them, see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI3586"></A><h4>Defining menu-level structures</h4>
+<A NAME="TI3587"></A><p>If you need to manipulate a collection of related variables,
+you can define menu-level structures using the Structure view. You
+do this by displaying the Structure List view and then selecting
+Add from the pop-up menu. The Structure and Structure List views
+are not part of the default layout.</p>
+<A NAME="TI3588"></A><p>For more information, see <A HREF="pbugp79.htm#BEGEBIIC">Chapter 10, "Working with Structures ."</A></p>
+<A NAME="TI3589"></A><h2>Referring
+to objects in your application</h2>
+<A NAME="TI3590"></A><p>You can refer to any object in the application in scripts
+for menu items. You must fully qualify the reference, using the
+object name, as follows.</p>
+<A NAME="TI3591"></A><h4>Referring to
+windows</h4>
+<A NAME="TI3592"></A><p>When referring to a window, you simply name the window. When
+referring to a property in a window, you must always qualify the
+property with the window's name:<p><PRE><i>window.property</i></PRE></p>
+</p>
+<A NAME="TI3593"></A><p>For example, this statement moves the window <b>w_cust</b> from
+within a menu item script:<p><PRE> w_cust.Move(300, 300)</PRE></p>
+<A NAME="TI3594"></A><p>This statement minimizes <b>w_cust</b>:<p><PRE> w_cust.WindowState = Minimized!</PRE></p>
+<A NAME="TI3595"></A><p>You can use the reserved word <b>ParentWindow</b> to
+refer to the window that the menu is associated with at runtime.
+For example, the following statement closes the window the menu
+is associated with:</p>
+<A NAME="TI3596"></A><p><p><PRE> Close(ParentWindow)</PRE></p>
+<A NAME="TI3597"></A><p>You can also use <b>ParentWindow</b> to refer
+to properties of the window a menu is associated with, but not to
+refer to properties of controls or user objects in the window.</p>
+<A NAME="TI3598"></A><p>For example, the following statement is valid, because it
+refers to properties of the window itself:<p><PRE> ParentWindow.Height = ParentWindow.Height/2</PRE></p>
+<A NAME="TI3599"></A><p>But the following statement is invalid, because it refers
+to a control in the window:<p><PRE> ParentWindow.sle_result.Text = "Statement invalid"</PRE></p>
+<A NAME="TI3600"></A><h4>Referring to controls and user objects in windows</h4>
+<A NAME="TI3601"></A><p>When referring to a control or user object, you must always
+qualify the control or user object with the name of the window:<p><PRE><i>window.control.property</i></PRE></p>
+<p><PRE><i>window.userobject.property</i></PRE></p>
+</p>
+<A NAME="TI3602"></A><p>For example, this statement enables a CommandButton in window <b>w_cust</b> from a
+menu item script:<p><PRE> w_cust.cb_print.Enabled = TRUE</PRE></p>
+<A NAME="TI3603"></A><h4>Referring
+to menu items</h4>
+<A NAME="TI3604"></A><p>When referring to a menu item, use this syntax:<p><PRE><i>menu.menu item</i></PRE></p>
+<p><PRE><i>menu.menu item.property</i></PRE></p>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Reference within the same menu</span> <A NAME="TI3605"></A>When referring to a menu item within the same menu, you do
+not have to qualify the reference with the menu name.</p>
+<A NAME="TI3606"></A><p>When referring to a menu item in a drop-down or cascading
+menu, you must specify each menu item on the path to the menu item
+you are referencing, separating the names with periods.</p>
+<A NAME="TI3607"></A><p>For example, to place a check mark next to the menu item <b>m_bold</b>,
+which is on a drop-down menu under <b>m_text</b> in
+the menu saved in the library as <b>m_menu</b>, use
+this statement:</p>
+<A NAME="TI3608"></A><p><p><PRE> m_menu.m_text.m_bold.Check( )</PRE></p>
+<A NAME="TI3609"></A><p>If the previous script is for a menu item in the same menu
+(<b>m_menu</b>), you do not need to qualify
+the menu item with the name of the menu:</p>
+<A NAME="TI3610"></A><p><p><PRE> m_text.m_bold.Check( )</PRE></p>
+

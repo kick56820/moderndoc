@@ -1,0 +1,336 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the XML Web DataWindow</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp38.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp40.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CEGBIIDA"></A><h1>Using the XML Web DataWindow</h1>
+<A NAME="TI1289"></A><p>This section first provides you with a brief introduction
+to XML, XSLT, CSS, and XHTML and then describes what the XML Web
+DataWindow is and how to use it in Web applications. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the HTML Web DataWindow and the XHTML Web DataWindow</span> <A NAME="TI1290"></A>The process for using the HTML Web DataWindow and the XHTML
+Web DataWindow is similar to the process of using the XML Web DataWindow. The
+only difference is in selecting the type of Web Generation you specify
+and and the DataWindow object properties you set.</p>
+<A NAME="TI1291"></A><p>Before an XML Web DataWindow can be generated for use in a
+Web application, you must create the DataWindow object you want
+to use in the DataWindow painter. For information about designing
+DataWindow objects for any type of Web DataWindow, see <A HREF="dwprgugp40.htm#BABDJJHI">"Designing DataWindow objects
+for the Web DataWindow"</A>.</p>
+<A NAME="BABDJHCB"></A><h2>About XML, XSLT, CSS, and XHTML</h2>
+<A NAME="TI1292"></A><p>HTML is the most popular markup language in the world. The
+goal though of most HTML markup is appearance&#8212;the HTML
+tags do not provide you with any information. For example, if you
+see an HTML document with an element that has content as simple
+as &lt;td&gt;12345&lt;/td&gt;,
+you do not know what the content represents. The content could be
+the zip code of a particular town, or it might be the population
+of the town.</p>
+<A NAME="TI1293"></A><p>An XML document:<A NAME="TI1294"></A>
+<ul>
+<li class=fi>Contains information
+that is marked up with tags that describe all the pieces of information</li>
+<li class=ds>Models the relationships between all the pieces
+of information</li>
+<li class=ds>Is contained in a single element called the root
+element which becomes the root of a tree structure that contains
+other elements that represent the information
+</li>
+</ul>
+</p>
+<A NAME="TI1295"></A><p>An XML document might include the element &lt;zipcode&gt;12345&lt;/zipcode&gt;, and
+you know from the zipcode tag that 12345 is a zip code.</p>
+<A NAME="TI1296"></A><p>XML documents <i>separate the content from the presentation</i>,
+and they can be transformed (using XSLT, the Extensible Stylesheet
+Language for Transformations) into a variety of presentation types
+such as:<A NAME="TI1297"></A>
+<ul>
+<li class=fi>An HTML page that includes &lt;td&gt;12345&lt;/td&gt;</li>
+<li class=ds>A PDF file that includes zip code information</li>
+<li class=ds>A display of zip code information in wireless phones
+or pagers
+</li>
+</ul>
+</p>
+<A NAME="TI1298"></A><p>With XSLT, you can transform XML documents into other documents,
+which are often XML documents themselves. For example, Web pages
+created in XHTML (an XML-compliant version of HTML) are
+XML documents, and you can use XSLT to transform any XML document
+into a styled XHTML Web page for display in a browser. </p>
+<A NAME="TI1299"></A><p>A cascading style sheet (CSS) allows you to add style rules
+to the elements of a document that define how the content of the
+elements should be rendered. Using a CSS enables you to separate
+the contents of an HTML, XHTML, or XML document from its visual
+presentation. However, XSLT moves you beyond CSS because XSLT offers
+you complete flexibility to change the layout of content. XSLT also
+allows you to define rules that not only alter the design, but also
+add, change, or remove elements of the content if appropriate.</p>
+<A NAME="TI1300"></A><p>For an overview of XML, see the first section of the chapter
+on exporting and importing XML in the <i>PowerBuilder User's
+Guide</i>
+. For detailed information about XML and XSLT, see
+the O'Reilly and Associates, Inc. <i>Learning XML</i>
+ and <i>XSLT</i>
+ books.</p>
+<A NAME="BABIDHEC"></A><h2>How the XML Web DataWindow works</h2>
+<A NAME="TI1301"></A><p>The XML Web DataWindow generates DataWindow content, layout,
+and style separately at runtime and renders in the browser a fully
+functional DataWindow in XHTML.</p>
+<br><img src="images/xhtml01.gif">
+<A NAME="TI1302"></A><p>You can customize each of these XML Web DataWindow components
+at design time using a custom XHTML export template in the Export
+Template view for XHTML. For information, see <A HREF="dwprgugp46.htm#BABBFBDE">"Customizing Web DataWindow
+generation"</A>.</p>
+<A NAME="TI1303"></A><h3>Server-side and client-side activity</h3>
+<A NAME="TI1304"></A><p>When you have developed and deployed the pieces the XML Web DataWindow
+needs, here is what happens when a user requests the URL for a page
+containing the DataWindow.</p>
+<A NAME="TI1305"></A><h4>Server-side activity</h4>
+<A NAME="TI1306"></A><p>Server-side code is used to invoke the Web DataWindow generator.
+During the generation process:<A NAME="TI1307"></A>
+<ol>
+</li>
+<li class=ds>Using
+the default XHTML export template or a custom template you created,
+an XHTML rendering of the DataWindow is generated in a Document
+Object Model (DOM) tree.</li>
+<li class=ds>A CSS style sheet is generated in a DOM tree with
+the style information for the DataWindow elements.<br>
+Generating as many of the style rules in CSS as possible (including
+all absolute positions) can increase page download speed because
+the stylesheet is downloaded only once and cached. <br></li>
+<li class=ds>Client-side JavaScript files are generated for instantiating
+the control object and the array of row elements.<br>
+You can improve performance by generating most of this client-side JavaScript
+in static files. For information about how you create and deploy the
+static JavaScript files, see <A HREF="dwprgugp40.htm#BABCBICA">"Using JavaScript caching
+for Web DataWindow methods"</A>.<br></li>
+<li class=ds>A reverse transformation of the XHTML DOM tree to
+XML (DataWindow content) and XSLT (DataWindow layout) occurs.<br>
+XSLT also creates the structural layout of the page, saving
+bandwidth. Server processing is also reduced by offloading work
+to the client.<br></li>
+<li class=ds>A small amount of JavaScript is generated to perform
+explicit transformation on the client side to render in the browser
+a fully functional DataWindow in XHTML. 
+</li>
+</ol>
+</p>
+<A NAME="TI1308"></A><h4>Client-side activity</h4>
+<A NAME="TI1309"></A><p>When a user accesses a Web page containing the XML Web DataWindow,
+the client browser:<A NAME="TI1310"></A>
+<ol>
+</li>
+<li class=ds>Downloads
+the source XML file (DataWindow content for the page) and the XSLT
+stylesheet, which is cached locally.</li>
+<li class=ds>Performs the transformation using the built-in Microsoft
+or Netscape XSLT processor.</li>
+<li class=ds>Outputs the XHTML result into a &lt;DIV&gt; section
+on the page.</li>
+<li class=ds>Downloads, caches, and applies the CSS stylesheet
+for display in the browser.</li>
+<li class=ds>Downloads and caches JavaScript files. </li>
+<li class=ds>Regenerates and downloads the XML file and JavaScript
+row objects file for the updated DataWindow page after a specified
+action by the user (HTTP Get/HTTP response).
+</li>
+</ol>
+</p>
+<A NAME="TI1311"></A><h3>Benefits of XHTML Web pages</h3>
+<A NAME="TI1312"></A><p>XHTML Web pages are processed and rendered more quickly in
+the browser than HTML pages because extensive browser code is not
+needed to handle the more complex rules of HTML. Web users benefit
+from faster download of DataWindow pages because the XSLT and CSS
+stylesheets are downloaded only once and cached, resulting in bandwidth
+savings. Enterprises also benefit from the greater efficiency, scalability,
+extensibility, and accessibility gained by using standard W3C technologies.</p>
+<p><b>Which type of Web DataWindow to use?</b>   The XML and XHTML Web DataWindow expand on the functionality
+provided by the HTML Web DataWindow. The following table shows you
+when you should use the XML or XHTML Web DataWindow and when you
+should use the HTML Web DataWindow: </p>
+<A NAME="BABEJIJE"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-2: Features of Web DataWindow rendering formats</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1313"></A>Feature</th>
+<th  rowspan="1"  ><A NAME="TI1314"></A>XML</th>
+<th  rowspan="1"  ><A NAME="TI1315"></A>XHTML </th>
+<th  rowspan="1"  ><A NAME="TI1316"></A>HTML</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1317"></A>Web pages conform to industry standards</td>
+<td  rowspan="1"  ><A NAME="TI1318"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1319"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1320"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1321"></A>Pages can be customized using an XHTML
+export template</td>
+<td  rowspan="1"  ><A NAME="TI1322"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1323"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1324"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1325"></A>XSLT stylesheets are cached</td>
+<td  rowspan="1"  ><A NAME="TI1326"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1327"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI1328"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1329"></A>CSS stylesheets are cached</td>
+<td  rowspan="1"  ><A NAME="TI1330"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1331"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1332"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1333"></A>Common JavaScript files can be cached</td>
+<td  rowspan="1"  ><A NAME="TI1334"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1335"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1336"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1337"></A>Most efficient handling of large amounts
+of paged data</td>
+<td  rowspan="1"  ><A NAME="TI1338"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1339"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI1340"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1341"></A>Callback mechanism for paging and other
+client actions</td>
+<td  rowspan="1"  ><A NAME="TI1342"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1343"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1344"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1345"></A>Client-side mechanism for paging and
+other client actions</td>
+<td  rowspan="1"  ><A NAME="TI1346"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1347"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI1348"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1349"></A>A Grid DataWindow page can be sorted
+on the client without a postback</td>
+<td  rowspan="1"  ><A NAME="TI1350"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1351"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI1352"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1353"></A>Composite and nested DataWindows are
+supported</td>
+<td  rowspan="1"  ><A NAME="TI1354"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI1355"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1356"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1357"></A>Absolute positioning is supported in
+Grid DataWindows</td>
+<td  rowspan="1"  ><A NAME="TI1358"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1359"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1360"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1361"></A>Greatest compatibility with accessibility
+software (Section 508)</td>
+<td  rowspan="1"  ><A NAME="TI1362"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI1363"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI1364"></A>No</td>
+</tr>
+</table>
+<A NAME="TI1365"></A><p>The XML rendering format does not support accessibility software.
+Some aspects of the HTML generated using the HTML rendering format
+do not support accessibility software.</p>
+<A NAME="TI1366"></A><p>The caching and bandwidth savings and the client-side paging
+feature of the XML Web DataWindow result in better performance.
+In addition, you can customize the XHTML rendering of the XML Web
+DataWindow using XHTML export templates.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Customizing the XSLT transformation</span> <A NAME="TI1367"></A>The XSLT stylesheet that transforms the DataWindow content
+to XHTML can be customized by applying a custom XHTML export template
+to the default generation. The CSS stylesheet can be customized
+by applying custom <i>style</i> attributes in a custom
+XHTML export template. Using stylesheets to target the presentation
+enables the DataWindow to be rendered on virtually every device. For
+information about using the new Export Template view for XHTML in
+the DataWindow painter, see <A HREF="dwprgugp46.htm#BABBFBDE">"Customizing Web DataWindow
+generation"</A>.</p>
+<A NAME="CEGJGJAF"></A><h3>Browser requirements for the XML Web DataWindow</h3>
+<A NAME="TI1368"></A><p>The XML Web DataWindow requires browsers that support the
+latest client-side technologies&#8212;XML, XSLT, XHTML,
+CSS, and JavaScript. You can select the browser to use for the XML
+Web DataWindow (XHTML format) in the Web Generation page in the
+DataWindow object property view. </p>
+<A NAME="TI1369"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI1370"></A>Browser</th>
+<th  rowspan="1"  ><A NAME="TI1371"></A>XML parser/XSLT processor</th>
+<th  rowspan="1"  ><A NAME="TI1372"></A>XSLT version</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1373"></A>Internet Explorer 5, 5.5</td>
+<td  rowspan="1"  ><A NAME="TI1374"></A>MSXML 2.0, 2.5 (update required)</td>
+<td  rowspan="1"  ><A NAME="TI1375"></A>XSL-WD</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1376"></A>Internet Explorer 6.0</td>
+<td  rowspan="1"  ><A NAME="TI1377"></A>MSXML 3.0+</td>
+<td  rowspan="1"  ><A NAME="TI1378"></A>XSLT 1.0</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1379"></A>Netscape 6+</td>
+<td  rowspan="1"  ><A NAME="TI1380"></A>TransforMiiX</td>
+<td  rowspan="1"  ><A NAME="TI1381"></A>XSLT 1.0</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1382"></A>Mozilla 1.0+</td>
+<td  rowspan="1"  ><A NAME="TI1383"></A>TransforMiiX</td>
+<td  rowspan="1"  ><A NAME="TI1384"></A>XSLT 1.0</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>MSXML 2.6 or higher is required with Internet Explorer</span> <A NAME="TI1385"></A>The XML Web DataWindow requires MSXML 2.6 or higher with Internet Explorer.
+Internet Explorer 5 or 5.5 includes MSXML 2.0 or 2.5, so you must either
+update MSXML to 2.6 or higher or use Internet Explorer 6.0. For information
+about MSXML versions, refer to Microsoft Knowledge Base article
+269238 on the Microsoft Web site.</p>
+<A NAME="CEGHEJAE"></A><h2>How to use the XML Web DataWindow</h2>
+<A NAME="TI1386"></A><p>The easiest way to use the XML Web DataWindow in your Web
+applications is to do the following:<A NAME="TI1387"></A>
+<ol>
+</li>
+<li class=ds>Create a new DataWindow object or select an existing
+DataWindow object that you want to display in a Web browser.<br>
+For information, see <A HREF="dwprgugp40.htm#BABDJJHI">"Designing DataWindow objects
+for the Web DataWindow"</A>.<br></li>
+<li class=ds>Set JavaScript Generation properties for the static
+JavaScript of the XML Web DataWindow if you have not already done
+so.<br>
+For information, see <A HREF="dwprgugp40.htm#BABCBICA">"Using JavaScript caching
+for Web DataWindow methods"</A>.<br><br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Reusing static JavaScript for the XML Web DataWindow</span> <A NAME="TI1388"></A>If you are using the static JavaScript caching feature that
+was introduced with the HTML Web DataWindow, then you must regenerate
+and redeploy this static JavaScript for the XML Web DataWindow (and
+the XHTML Web DataWindow). You need to do this only once.
+<br>
+</li>
+<li class=ds>In the Web server's root publishing folder,
+create distinct Web publishing folders (for static JavaScript) and
+JavaScript publishing folders (for dynamic JavaScript) and set the
+Web and JavaScript Generation properties (that point to these folders)
+for your DataWindow.<br>
+If you do not create these folders, the generator creates
+them for you. If you do not set these properties, then the default
+object model creates a temp publishing folder <i>_tmp</i> automatically.<br><br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>The next three steps</span> <A NAME="TI1389"></A>The next three steps involve creating a JSP target and a Web/JSP DataWindow
+page and using the Web DataWindow DTC. For information about these
+topics, see the <i>Working with Web and JSP Targets</i>
+ book.
+<br>
+</li>
+<li class=ds>Create a new JSP target using the JSP Target wizard
+on the Target tab page in the New dialog box.<br>
+In the JSP Target wizard in the Select Object Model page,
+you specify whether you are using the default object model or not
+using any object model. You can also specify that the object model
+automatically clear the <i>_tmp</i> folder
+(if one is created).<br></li>
+<li class=ds>Create a Java Server Page (JSP) using the Web/JSP
+DataWindow Page wizard on the JSP tab page in the New dialog box.<br>
+In the Web/JSP DataWindow Page wizard, you specify
+whether you are using the Standard HTMLGenerator90 component, a custom HTMLGenerator90 component
+that you developed and deployed to <ABBR title = "e a server" >EAServer</ABBR>,
+or a DataWindow container.<br></li>
+<li class=ds>In the Sybase Web DataWindow DTC Properties, select
+the XML generation format.<br>
+The XML generation format results in the separate generation
+of data and presentation in XML and XSLT for transformation to XHTML,
+and is the optimal format for the XML Web DataWindow.<br></li>
+<li class=ds>Build and deploy the JSP target.</li>
+<li class=ds>Display the results in the browser by typing in
+the URL.
+</li>
+</ol>
+</p>
+

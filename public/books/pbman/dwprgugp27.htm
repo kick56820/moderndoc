@@ -1,0 +1,119 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About DataStores</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp26.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp28.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299270043"></A><h1>About DataStores</h1>
+<A NAME="TI904"></A><p>A DataStore is a nonvisual DataWindow control. DataStores
+act just like DataWindow controls except that they do not have many
+of the visual characteristics associated with DataWindow controls.
+Like a DataWindow control, a DataStore has a DataWindow object associated
+with it.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Availability</span> <A NAME="TI905"></A>In PowerBuilder, a DataStore is a nonvisual object. The Web
+control for ActiveX does not support DataStores. </p>
+<A NAME="TI906"></A>The Web DataWindow server component uses an instance of a
+custom DataStore object to hold the DataWindow definition and data.
+See <A HREF="dwprgugp29.htm#X-REF355846943">"Using a custom DataStore
+object "</A>.</p>
+<A NAME="TI907"></A><h4>When to use a DataStore</h4>
+<A NAME="TI908"></A><p>DataStores are useful when you need to access data but do
+not need the visual presentation of a DataWindow control. DataStores
+allow you to:<A NAME="TI909"></A>
+<ul>
+<li class=fi><b>Perform
+background processing against the database without having to hide
+DataWindow controls in a window</b>   <br>
+Suppose that the DataWindow object displayed in a DataWindow
+control is suitable for online display but not for printing. In
+this case, you could define a second DataWindow object for printing
+that has the same result set description and assign this object
+to a DataStore. You could then share data between the DataStore
+and the DataWindow control. Whenever the user asked to print the
+data in the window, you could print the contents of the DataStore.<br></li>
+<li class=ds><b>Hold data used to show multiple views
+of the same information</b>   <br>
+When a window shows multiple views of the same information,
+you can use a DataStore to hold the result set. By sharing data
+between a DataStore and one or more DataWindow controls, you can
+provide different views of the same information without retrieving
+the data more than once.<br></li>
+<li class=ds><b>Manipulate table rows without using
+embedded SQL statements</b>   <br>
+In places where an application calls for row manipulation
+without the need for display, you can use DataStores to handle the
+database processing instead of embedded SQL statements. DataStores
+typically perform faster at execution time than embedded SQL statements.
+Also, because the SQL is stored with the DataWindow object when
+you use a DataStore, you can easily reuse the SQL.<br></li>
+<li class=ds><b>Perform database access on an application
+server</b>   <br>
+In a multitier application, the objects in a remote server
+can use DataStores to interact with the database. DataStores let
+you take advantage of the computer resources provided by a server
+machine, removing the need to perform database operations on each
+client.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI910"></A><h4>DataStore methods</h4>
+<A NAME="TI911"></A><p>Most of the methods and events available for DataWindows are
+also available for DataStores. However, some of the methods that
+handle online interaction with the user are not available. For example,
+DataStores support the Retrieve, Update, InsertRow, and DeleteRow
+methods, but not GetClickedRow and SetRowFocusIndicator.</p>
+<A NAME="TI912"></A><h4>Prompting for information</h4>
+<A NAME="TI913"></A><p>When you are working with DataStores, you cannot use functionality
+that causes a dialog box to display to prompt the user for more
+information. Here are some examples of ways to overcome this restriction:</p>
+<p><b>SetSort and SetFilter</b>    You can use the SetSort and SetFilter methods to specify
+sort and filter criteria for a DataStore object, just as you would
+with a DataWindow control. However, when you are working with a
+DataWindow control, if you pass a NULL value to either SetSort or
+SetFilter, the DataWindow prompts the user to enter information.
+When you are working with a DataStore, you must supply a valid format
+when you call the method. Moreover, you must supply a valid format
+when you share data between a DataStore and a DataWindow control;
+you cannot pass the NULL value to the DataWindow control rather
+than the DataStore.</p>
+<p><b>Prompt for Criteria</b>   You can define your DataWindow objects so that the user is
+prompted for retrieval criteria before the DataWindow retrieves
+data. This feature works with DataWindow controls only. It is not
+supported with DataStores.</p>
+<p><b>SaveAs </b>   When you use the SaveAs method with a DataWindow object, you can
+pass an empty string for the filename argument so that the user
+is prompted for a file name to save to. If you are working with
+a DataStore, you must supply the filename argument. </p>
+<p><b>Prompt for Printing</b>   For DataWindow controls, you can specify that a print setup
+dialog box display at execution time, either by checking the Prompt Before
+Printing check box on the DataWindow object's Print Specifications property
+page, or by setting the DataWindow object's Print.Prompt
+property in a script. This is not supported with DataStores.</p>
+<p><b>Retrieval arguments</b>   If you call the Retrieve method for a DataWindow control that
+has a DataWindow object that expects an argument, but do not specify
+the argument in the method call, the DataWindow prompts the user
+for a retrieval argument. This behavior is not supported with DataStores.</p>
+<A NAME="TI914"></A><h4>DataStores have some visual methods</h4>
+<A NAME="TI915"></A><p>Many of the methods and events that pertain to the visual
+presentation of the data in a DataWindow do not apply to DataStores.
+However, because you can print the contents of a DataStore and also
+import data into a DataStore, DataStores have some visually oriented
+events and methods. For example, DataStores support the SetBorderStyle
+and SetSeriesStyle methods so that you can control the presentation
+of the data at print time. Similarly, DataStores support the ItemError
+event, because data imported from a string or file that does not
+pass the validation rules for a column triggers this event.</p>
+<A NAME="TI916"></A><p>For a complete list of the methods and events
+for the DataStore object and information about each method, see
+the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI917"></A><h4>DataStores require no visual overhead</h4>
+<A NAME="TI918"></A><p>Unlike DataWindow controls, DataStores do not require any
+visual overhead in a window. Using a DataStore is therefore more
+efficient than hiding a DataWindow control in a window.</p>
+

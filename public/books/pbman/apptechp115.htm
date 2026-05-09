@@ -1,0 +1,156 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the runtime automation server</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp114.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp116.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF350585435"></A><h1>Using the runtime automation server</h1>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Use PowerBuilder COM servers</span> <A NAME="TI3692"></A>This chapter focuses on the use of the PowerBuilder runtime
+automation server. PowerBuilder COM/COM+ server
+generation is the preferred technique for building COM-compliant
+servers. The PowerBuilder automation server technology might be
+discontinued in a future release. </p>
+<A NAME="TI3693"></A>For information about generating PowerBuilder COM objects
+from custom class user objects, see <A HREF="apptechp167.htm#CHDDHCED">Chapter 27, "Building a COM or COM+ Component."</A></p>
+<A NAME="TI3694"></A><p><A HREF="apptechp105.htm#CAIBCEAE">Chapter 19, "Using OLE in an Application ,"</A> explains
+how PowerBuilder provides containers for OLE objects and custom
+controls and how you can use automation to program those objects.
+The functionality for those objects is provided by server applications.
+The programming tells a server application how to manipulate its
+data.</p>
+<A NAME="TI3695"></A><h4>What the automation server is</h4>
+<A NAME="TI3696"></A><p>The PowerBuilder automation server is an OLE server for <i>programmable objects</i>&#8212;rather
+than insertable, visible objects. It provides access to class user objects
+(nonvisual user objects) that you have defined in a PowerBuilder library.
+You can initiate a server session, create one or more objects, and
+send commands to those objects using automation syntax.</p>
+<A NAME="TI3697"></A><p>The class user object can create instances of other objects,
+and the server can pass references to these objects to the client.</p>
+<A NAME="TI3698"></A><caption><b>Figure 20-1: Server passes class user object references to client</b></captionls>
+<br><img src="images/olesv01.gif">
+<A NAME="TI3699"></A><h4>Client applications</h4>
+<A NAME="TI3700"></A><p>Any client application that supports automation and programmable
+objects can access the PowerBuilder automation server. You can create
+your client application in any COM-compliant tool such as PowerBuilder,
+Visual C++, or Visual Basic.</p>
+<A NAME="TI3701"></A><h4>Runtime overhead</h4>
+<A NAME="TI3702"></A><p>Each time you connect to a server, you invoke an instance
+of the PowerBuilder runtime environment. However, this is not a
+huge penalty&#8212;each runtime shares the definition of the
+system classes in the client's runtime session.</p>
+<A NAME="TI3703"></A><p>User class definitions are not shared. Therefore, if you create
+the same large objects in each of several runtime sessions, memory
+usage for an object is multiplied by the number of sessions in which
+you create it. You could make your application more memory-efficient
+by reorganizing the application and creating the objects in a single
+session.</p>
+<A NAME="TI3704"></A><h2>Uses for runtime automation</h2>
+<A NAME="TI3705"></A><p>Any user object that encapsulates functionality and provides
+information can be a useful automation server. The information you
+want to access must be stored in public instance variables or available
+as return values or reference arguments of functions.</p>
+<A NAME="TI3706"></A><p>Examples of an automation server include:<A NAME="TI3707"></A>
+<ul>
+<li class=fi>A user object that creates a DataStore and includes
+functions that report statistics on the retrieved data</li>
+<li class=ds>A user object that defines business rules, such
+as functions that validate data
+</li>
+</ul>
+</p>
+<A NAME="TI3708"></A><h2>Three methods</h2>
+<A NAME="TI3709"></A><p>There are three ways to access PowerBuilder user objects.
+You can access:<A NAME="TI3710"></A>
+<ul>
+<li class=fi>A PowerBuilder
+class user object that you have defined and registered</li>
+<li class=ds>PowerBuilder itself as the server, after which you
+can create any object whose definition is in the libraries you have
+specified</li>
+<li class=ds>A named server that allows you to use a name appropriate
+for your business while giving you access to the PowerBuilder server
+</li>
+</ul>
+</p>
+<A NAME="TI3711"></A><h4>A user object as automation server</h4>
+<A NAME="TI3712"></A><p>You can define a class user object and register it in the
+registry. When you use your client's functions for accessing
+an external object, you have access to the user object's
+properties and functions. (Automation accesses the object's instance
+variables as properties.)</p>
+<A NAME="TI3713"></A><p>The advantages of a registered user object as an automation
+server include:<A NAME="TI3714"></A>
+<ul>
+<li class=fi>Browsable
+information about the object in the registry, making it easy for others
+to program the object</li>
+<li class=ds>Simpler client code for accessing the object</li>
+<li class=ds>Restriction of client access to classes you publish
+in the registry, return from function calls, or declare as instance
+variables of the user object
+</li>
+</ul>
+</p>
+<A NAME="TI3715"></A><caption><b>Figure 20-2: Interaction of class user object as server with client</b></captionls>
+<br><img src="images/olesv03.gif">
+<A NAME="TI3716"></A><p>For you to access an independent user object, it must be installed
+as an independent entity in the registry. You connect to it by means
+of an OLEObject variable and use automation to access it. The object
+invokes a PowerBuilder runtime session to support it.</p>
+<A NAME="TI3717"></A><p>When you access the object in your runtime session, you create
+a single instance of the object, and PowerBuilder invokes a runtime
+session to support it. For each registered object you create, you
+incur the overhead of additional runtime sessions.</p>
+<A NAME="TI3718"></A><p>The steps you take to register and use a user
+object are described in <A HREF="apptechp116.htm#X-REF349029352">"Using a user object
+as an automation server "</A>.</p>
+<A NAME="TI3719"></A><h4>PowerBuilder as automation server</h4>
+<A NAME="TI3720"></A><p>When you install PowerBuilder, an entry is added to the registry
+for PowerBuilder.Application, a general-purpose PowerBuilder automation server.
+You can create instances of any number of class user objects and
+access their properties and methods. (Automation accesses the object's
+instance variables as properties.)</p>
+<A NAME="TI3721"></A><p>The advantages of using PowerBuilder.Application include:<A NAME="TI3722"></A>
+<ul>
+<li class=fi>Access to more than one object
+without invoking the overhead of more than one PowerBuilder runtime
+environment.</li>
+<li class=ds>Direct access to all system and private classes
+available in the library list. These classes can be instantiated
+using the <b>CreateObject</b> function of PowerBuilder.Application.
+</li>
+</ul>
+</p>
+<A NAME="TI3723"></A><p>When you connect to PowerBuilder.Application, you specify
+the libraries that you will access. You can instantiate any number
+of user objects whose definitions reside in those libraries, as
+well as system classes.</p>
+<A NAME="TI3724"></A><p>Each object you create in the client exists as an independent
+OLEObject in the client, and you can address each one using automation.
+If the client passes a server object reference back to another server
+object in the same runtime session, PowerBuilder recognizes the
+PowerBuilder datatype of the object. This allows the two objects
+to interact in the server session, rather than being limited to
+automation commands from the client.</p>
+<A NAME="TI3725"></A><caption><b>Figure 20-3: Objects interacting in a server session</b></captionls>
+<br><img src="images/olesv02.gif">
+<A NAME="TI3726"></A><p>The steps you take to set up and use PowerBuilder.Application
+are described in <A HREF="apptechp117.htm#X-REF350572694">"Using PowerBuilder
+as an automation server"</A>.</p>
+<A NAME="TI3727"></A><h4>Named automation server</h4>
+<A NAME="TI3728"></A><p>For business reasons, you might want to avoid references to PowerBuilder.Application,
+but still have access to the additional functionality it provides&#8212;for
+example, the efficiency of instantiating more than one object in
+a server session.</p>
+<A NAME="TI3729"></A><p>You can create an entry in the registry that serves as a second
+pointer to PowerBuilder.Application, allowing you to give the server
+a name appropriate for your business.</p>
+<A NAME="TI3730"></A><p>The steps involved in setting up a named server
+are described in <A HREF="apptechp118.htm#X-REF350572988">"Creating and using
+a named server "</A>.</p>
+

@@ -1,0 +1,59 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Sizing the client area </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp32.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp34.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF352147820"></A><h1>Sizing the client area </h1>
+<A NAME="TI687"></A><p>PowerBuilder sizes the client area in a standard MDI frame
+window automatically and displays open sheets unclipped within the
+client area. It also sizes the client area automatically if you
+have defined a toolbar based on menu items, as described in the
+preceding section.</p>
+<A NAME="TI688"></A><p>However, in a custom MDI frame window&#8212;where the client
+area contains controls in addition to open sheets&#8212;PowerBuilder
+does not size the client area; you must size it. If you do not size
+the client area, the sheets open but may not be visible and are
+clipped if they exceed the size of the client area.</p>
+<A NAME="TI689"></A><p>If you plan to use an MDI toolbar with a custom MDI frame,
+make sure the controls you place in the frame's client
+area are far enough away from the client area's borders
+so that the toolbar does not obscure them when displayed.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Scrollbars display when a sheet is clipped</span> <A NAME="TI690"></A>If you selected HScrollBar and VScrollBar when defining the
+window, the scrollbars display when a sheet is clipped. This means
+not all the information in the sheet is displayed. The user can
+then scroll to display the information.</p>
+<A NAME="TI691"></A><p>When you create a custom MDI frame window, PowerBuilder creates
+a control named <b>MDI_1</b> to identify
+the client area of the frame. If you have enabled AutoScript, <b>MDI_1</b> displays
+in the list of objects in the AutoScript pop-up window when you
+create a script for the frame.</p>
+<A NAME="TI692"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To size or resize the client area when the frame
+is opened or resized:</p>
+<ol><li class=fi><p>Write a script for the frame's
+Open or Resize event that:</p><p><A NAME="TI693"></A>
+<ul>
+<li class=fi>Determines the size
+of the frame</li>
+<li class=ds>Sizes the client area (<b>MDI_1</b>)
+appropriately
+</li>
+</ul>
+</p></li></ol>
+<br><A NAME="TI694"></A><p>For example, the following script sizes the client area for
+the frame <b>w_genapp_frame</b>.
+The frame has a series of buttons running across the frame just
+below the menu, and MicroHelp at the bottom:</p>
+<br><img src="images/mdi15.gif">
+<A NAME="TI695"></A><p><p><PRE> int li_width, li_height<br> <br>//Get the width and height of the frame's workspace.<br>//<br>//Note that if the frame displays any MDI toolbars,<br>//those toolbars take away from the size of the<br>//workspace as returned by the WorkSpaceWidth and<br>//WorkSpaceHeight functions. Later, you see how to<br>//to adjust for this.<br>//<br>li_width = w_genapp_frame.WorkSpaceWidth()<br> <br>li_height = w_genapp_frame.WorkSpaceHeight()<br> <br>//Next, determine the desired height of the client<br>//area by doing the following:<br>//<br>// 1) Subtract from the WorkSpaceHeight value: the<br>//   height of your control and the Y coordinate of<br>//   the control (which is the distance between the<br>//   top of the frame's workspace -- as if no<br>//   toolbars were there -- and the top of your<br>//   control).<br>//<br>// 2) Then subtract: the height of the frame's<br>//   MicroHelp bar (if present)<br>//<br>// 3) Then add back: the height of any toolbars that<br>//   are displayed (to adjust for the fact that the<br>//   original WorkSpaceHeight value we started with<br>//   is off by this amount). The total toolbar<br>//   height is equal to the Y coordinate returned <br>//   by the WorkspaceY function.<br> <br>li_height = li_height - (cb_print.y + cb_print.height)<br> <br>li_height = li_height - MDI_1.MicroHelpHeight<br> <br>li_height = li_height + WorkspaceY()<br> <br>//Now, move the client area to begin just below your<br>//control in the workspace.<br> <br>mdi_1.Move (WorkspaceX (), cb_print.y +  &amp; <br>   cb_print.height)<br> <br>//Finally, resize the client area based on the width<br>//and height you calculated earlier.<br> <br>mdi_1.Resize (li_width, li_height)</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About MicroHelpHeight</span> <A NAME="TI696"></A>MicroHelpHeight is a property of <b>MDI_1</b> that
+PowerBuilder sets when you select a window type for your MDI window.
+If you select MDI Frame, there is no MicroHelp and MicroHelpHeight
+is 0; if you select MDI Frame with MicroHelp, MicroHelpHeight is
+the height of the MicroHelp.</p>
+

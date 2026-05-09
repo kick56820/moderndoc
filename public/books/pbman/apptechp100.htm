@@ -1,0 +1,159 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Handling row errors </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp99.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp101.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF304004456"></A><h1>Handling row errors </h1>
+<A NAME="TI2902"></A><p>When a pipeline executes, it may be unable to write particular
+rows to the destination table. For instance, this could happen with
+a row that has the same primary key as a row already in the destination
+table.</p>
+<A NAME="TI2903"></A><h4>Using the pipeline-error DataWindow</h4>
+<A NAME="TI2904"></A><p>To help you handle such error rows, the pipeline places them
+in the DataWindow control you painted in your window and specified
+in the <b>Start</b> function. It does this by automatically
+associating its own special DataWindow object (the PowerBuilder
+pipeline-error DataWindow) with your DataWindow control.</p>
+<A NAME="TI2905"></A><p>Consider what happens in the order entry application. When
+a pipeline executes in the <b>w_sales_extract</b> window,
+the <b>Start</b> function places all error rows in the <b>dw_pipe_errors</b> DataWindow
+control. It includes an error message column to identify the problem
+with each row:</p>
+<br><img src="images/piperrs.gif">
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Making the error messages shorter</span> <A NAME="TI2906"></A>If the pipeline's destination Transaction object
+points to an ODBC data source, you can set its DBParm MsgTerse parameter
+to make the error messages in the DataWindow shorter. Specifically,
+if you type:<p><PRE> MsgTerse = 'Yes'</PRE></p>
+<A NAME="TI2907"></A>then the SQLSTATE error number does not display.</p>
+<A NAME="TI2908"></A>For more information on the MsgTerse DBParm,
+see the online Help.</p>
+<A NAME="TI2909"></A><h4>Deciding what to do with error rows</h4>
+<A NAME="TI2910"></A><p>Once there are error rows in your DataWindow control, you
+need to decide what to do with them. Your alternatives include:<A NAME="TI2911"></A>
+<ul>
+<li class=fi><i>Repairing</i> some
+or all of those rows</li>
+<li class=ds><i>Abandoning</i> some or all of those
+rows
+</li>
+</ul>
+</p>
+<A NAME="TI2912"></A><h2>Repairing error rows</h2>
+<A NAME="TI2913"></A><p>In many situations it is appropriate to try fixing error rows
+so that they can be applied to the destination table. Making these
+fixes typically involves modifying one or more of their column values
+so that the destination table will accept them. You can do this
+in a couple of different ways:<A NAME="TI2914"></A>
+<ul>
+<li class=fi><i>By letting the user edit</i> one
+or more of the rows in the error DataWindow control (the easy way
+for you, because it does not require any coding work)</li>
+<li class=ds><i>By executing script code</i> in
+your application that edits one or more of the rows in the error
+DataWindow control for the user
+</li>
+</ul>
+</p>
+<A NAME="TI2915"></A><p>In either case, the next step is to apply the modified rows
+from this DataWindow control to the destination table.</p>
+<A NAME="TI2916"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To apply row repairs to the destination table:</p>
+<ol><li class=fi><p>Code
+the <b>Repair</b> function in an appropriate script.
+In this function, specify the Transaction object for the destination
+database.</p></li>
+<li class=ds><p>Test the result of the <b>Repair</b> function.</p></li></ol>
+<br><A NAME="TI2917"></A><p>For more information on coding the <b>Repair</b> function,
+see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI2918"></A><h4>Example</h4>
+<A NAME="TI2919"></A><p>In the following example, users can edit the contents of the <b>dw_pipe_errors</b> DataWindow
+control to fix error rows that appear. They can then apply those modified
+rows to the destination table. </p>
+<p><b>Providing a CommandButton</b>   When painting the <b>w_sales_extract</b> window, include
+a CommandButton control named <b>cb_applyfixes</b>.
+Then write code in a few of the application's scripts to
+enable this CommandButton when <b>dw_pipe_errors</b> contains
+error rows and to disable it when no error rows appear.</p>
+<p><b>Calling the Repair function</b>   Next write a script for the Clicked event of <b>cb_applyfixes</b>.
+This script calls the <b>Repair</b> function and tests
+whether or not it worked properly:<p><PRE> IF iuo_pipe_logistics.Repair(itrans_destination) &amp;</PRE><PRE>    &lt;&gt; 1 THEN</PRE><PRE>    Beep (1)</PRE><PRE>    MessageBox("Operation Status", "Error when &amp;</PRE><PRE>    trying to apply fixes.", Exclamation!)</PRE><PRE> END IF</PRE></p>
+<A NAME="TI2920"></A><p>Together, these features let a user of the application click
+the <b>cb_applyfixes</b> CommandButton to
+try updating the destination table with one or more corrected rows
+from <b>dw_pipe_errors</b>.</p>
+<A NAME="TI2921"></A><h4>Canceling row repairs</h4>
+<A NAME="TI2922"></A><p>Earlier in this chapter you learned how to let users (or the
+application itself) stop writing rows to the destination table during
+the initial execution of a pipeline. If appropriate, you can use
+the same technique while row repairs are being applied.</p>
+<A NAME="TI2923"></A><p>For details, see <A HREF="apptechp99.htm#X-REF304951794">"Canceling pipeline
+execution"</A>.</p>
+<A NAME="TI2924"></A><h4>Committing row repairs</h4>
+<A NAME="TI2925"></A><p>The <b>Repair</b> function commits (or rolls back)
+database updates in the same way the <b>Start</b> function
+does.</p>
+<A NAME="TI2926"></A><p>For details, see <A HREF="apptechp99.htm#X-REF304954378">"Committing updates
+to the database"</A>.</p>
+<A NAME="TI2927"></A><h4>Handling rows that still are not repaired</h4>
+<A NAME="TI2928"></A><p>Sometimes after the <b>Repair</b> function has
+executed, there may still be error rows left in the error DataWindow
+control. This may be because these rows:<A NAME="TI2929"></A>
+<ul>
+<li class=fi>Were modified by the user or application but still
+have errors</li>
+<li class=ds>Were not modified by the user or application</li>
+<li class=ds>Were never written to the destination table because
+the <b>Cancel</b> function was called (or were rolled
+back from the destination table following the cancellation)
+</li>
+</ul>
+</p>
+<A NAME="TI2930"></A><p>At this point, the user or application can try again to modify
+these rows and then apply them to the destination table with the <b>Repair</b> function.
+There is also the alternative of abandoning one or more of these
+rows. You will learn about that technique next.</p>
+<A NAME="TI2931"></A><h2>Abandoning error rows</h2>
+<A NAME="TI2932"></A><p>In some cases, you may want to enable users or your application
+to completely discard one or more error rows from the error DataWindow
+control. This can be useful for dealing with error rows that it
+is not desirable to repair.</p>
+<A NAME="TI2933"></A><p><A HREF="apptechp100.htm#CHDJJFCC">Table 17-4</A> shows
+some techniques you can use for abandoning such error rows.</p>
+<A NAME="CHDJJFCC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 17-4: Abandoning error rows</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2934"></A>If
+you want to abandon</th>
+<th  rowspan="1"  ><A NAME="TI2935"></A>Use</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2936"></A>All error rows in the error DataWindow
+control</td>
+<td  rowspan="1"  ><A NAME="TI2937"></A>The <b>Reset</b> function</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2938"></A>One or more particular error rows in
+the error DataWindow control</td>
+<td  rowspan="1"  ><A NAME="TI2939"></A>The <b>RowsDiscard</b> function</td>
+</tr>
+</table>
+<A NAME="TI2940"></A><p>For more information on coding these functions,
+see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI2941"></A><h4>Example</h4>
+<A NAME="TI2942"></A><p>In the following example, users can choose to abandon all
+error rows in the <b>dw_pipe_errors</b> DataWindow
+control. </p>
+<p><b>Providing a CommandButton</b>   When painting the <b>w_sales_extract</b> window, include
+a CommandButton control named <b>cb_forgofixes</b>.
+Write code in a few of the application's scripts to enable
+this CommandButton when <b>dw_pipe_errors</b> contains
+error rows and to disable it when no error rows appear.</p>
+<p><b>Calling the Reset function</b>   Next write a script for the Clicked event of <b>cb_forgofixes</b>.
+This script calls the <b>Reset</b> function:<p><PRE> dw_pipe_errors.Reset()</PRE></p>
+<A NAME="TI2943"></A><p>Together, these features let a user of the application click
+the <b>cb_forgofixes</b> CommandButton to
+discard all error rows from <b>dw_pipe_errors</b>.</p>
+

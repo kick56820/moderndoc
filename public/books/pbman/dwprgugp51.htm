@@ -1,0 +1,173 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using service classes</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp50.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp52.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABCDFBF"></A><h1>Using service classes</h1>
+<A NAME="TI2245"></A><p>You can use the methods available on the server component
+to perform most server-side processing, including validation routines
+and error handling. The Web DataWindow also provides another way
+to add specialized processing. </p>
+<A NAME="TI2246"></A><p>To include server-side processing not available on the server
+component, you can define one or more PowerBuilder custom class
+user objects called service classes. These service classes are stored
+in the same PBL or PBD as the DataWindow object for the server component.
+They can be used whenever you want to include additional processing
+on the server. For example, you might want to use this technique
+to access the SQLPreview event so that you can examine the syntax
+of a SQL statement before it is committed to the database.</p>
+<A NAME="TI2247"></A><h4>Where you implement the code</h4>
+<A NAME="TI2248"></A><p>The service classes implement user-defined events with prescribed
+signatures. These events correspond to standard DataWindow events.
+In the user-defined events, you perform the processing and specify
+return codes that tell the server component whether to cancel the
+corresponding DataWindow event.</p>
+<A NAME="TI2249"></A><p>In the server component, you set a property or call a method
+that identifies these user objects as service classes for the server
+component.</p>
+<A NAME="TI2250"></A><h4>How the code is called</h4>
+<A NAME="TI2251"></A><p>Service classes work like this:<A NAME="TI2252"></A>
+<ol>
+</li>
+<li class=ds>Service classes are instantiated when the component is instantiated
+(if they are specified in an <ABBR title = "e a server" >EAServer</ABBR> property)
+or when they are first registered by the SetServerServiceClasses
+method. </li>
+<li class=ds>An event occurs in the server component for the
+DataStore.</li>
+<li class=ds>The server component calls an event of the same
+name in each registered service class.</li>
+<li class=ds>If the service class implements the event, the event
+script is executed and a return code is sent back to the server
+component.</li>
+<li class=ds>If the event can be canceled via a return code and
+if any of the service classes returns that code, the event is canceled
+in the server component.
+</li>
+</ol>
+</p>
+<A NAME="TI2253"></A><caption><b>Figure 7-2: How service classes work</b></captionls>
+<br><img src="images/hdw03val.gif">
+<A NAME="TI2254"></A><h2>Defining a service class for PowerBuilder components</h2>
+<A NAME="TI2255"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create and register a service class for PowerBuilder
+components:</p>
+<ol><li class=fi><p>In the PBL that contains the DataWindow
+object for the server component, define one or more PowerBuilder
+custom class user objects.</p></li>
+<li class=ds><p>In each custom class user object, define one or
+more user-defined events. The event signatures must match one of
+these (all these events return a long):<A NAME="TI2256"></A>
+<ul>
+<li class=fi>DBError
+(long sqldbcode, string sqlerrtext, string sqlsyntax, DWBuffer buffer,
+long row, DataStore ds) </li>
+<li class=ds>HTMLContextApplied (string action, DataStore ds)</li>
+<li class=ds>RetrieveEnd (long rowcount, DataStore ds) </li>
+<li class=ds>RetrieveStart (DataStore ds) </li>
+<li class=ds>SQLPreview (SQLPreviewFunction request, SQLPreviewType sqltype,
+string sqlsyntax, DWBuffer buffer, long row, DataStore ds) </li>
+<li class=ds>UpdateEnd (long rowsinserted, long rowsupdated,
+long rowsdeleted, DataStore ds) </li>
+<li class=ds>UpdateStart (DataStore ds) 
+</li>
+</ul>
+
+                    </p><p>The arguments are the same as those documented for the similarly
+named DataWindow events in the <i>DataWindow Reference</i>
+,
+with the exception of the additional DataStore argument, which gives
+the user object access to the Web DataWindow data. </p></li>
+<li class=ds><p>In the event script, use return codes to specify
+whether the server component should cancel the event. </p><p>The return codes are also the same as those documented in
+the <i>DataWindow Reference</i>
+. Any of the service
+classes that implements the event can specify that the event be
+canceled.</p></li>
+<li class=ds><p>Register the service classes for the component. </p><p>There are two ways to make the user object available as a
+service class:<A NAME="TI2257"></A>
+<ul>
+<li class=fi>For any component in <ABBR title = "e a server" >EAServer</ABBR> or another supported server
+such as COM+, call the SetServerServiceClasses method in
+the Web page template's server-side script:<p><PRE> dwGen.SetServerServiceClasses</PRE><PRE>             ("uo_update_validate;uo_retrieve_process");</PRE></li>
+<li class=ds>For a custom component in <ABBR title = "e a server" >EAServer</ABBR>,
+add this property in <ABBR title = "e a server" >EAServer</ABBR> Manager: <p><PRE> com.sybase.datawindow.serverServiceClasses</PRE><br>
+Set its value to the list of user object names, with names
+separated by semicolons. For example:<p><PRE> uo_update_validate;uo_retrieve_process</PRE><br>
+</li>
+</ul>
+</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using server component methods with the DTC</span> <A NAME="TI2258"></A>If you are using the Web DataWindow DTC or the JSP Target
+object model, you can use methods of the server component by using
+the Component property. For example:<p><PRE> webDW.connectToComponent();</PRE><PRE> webDW.Component.SetServerServiceClasses<br>        ("uo_updatestart");</PRE></p>
+<A NAME="TI2259"></A><h4>Example</h4>
+<A NAME="TI2260"></A><p>Suppose that you want to check that data did not exceed a
+budgeted total before it was updated in the database. You might
+set up a service class that implements the UpdateStart event.</p>
+<A NAME="TI2261"></A><p>In the custom class user object in PowerBuilder, select Insert&gt;Event
+and declare a new event called UpdateStart that returns a long and
+has one argument of type DataStore called ds:<p><PRE> UpdateStart (DataStore ds) returns long</PRE></p>
+<A NAME="TI2262"></A><p>This script for the UpdateStart event has a DataStore that
+retrieves data from a budget table and compares it to the component's
+data:<p><PRE> DataStore ds_budget<br>double darray[], total<br>long ll_upper<br>integer i<br> <br>ds_budget = CREATE datastore<br>ds_budget.DataObject = "d_budget"<br>ds_budget.SetTransObject(...)<br>ds_budget.Retrieve( )<br> <br>// Get data to be validateddarray[] = ds.Object.expenses.Primary<br>// Add up values in darray<br>ll_upper = UpperBound(darray)<br> <br>FOR i = 1 to ll_upper<br>        total = total + darray[i]<br>NEXT<br>IF ds_budget.Object.cf_expense_total &lt; total THEN<br>        RETURN 1<br>END IF</PRE></p>
+<A NAME="BABBIJJC"></A><h2>Defining a service class for Java components</h2>
+<A NAME="TI2263"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create and register a service class for Java
+components:</p>
+<ol><li class=fi><p>Make sure your Java service class is in
+the system classpath.</p></li>
+<li class=ds><p>In your Java service class, define one or more
+methods. Method prototypes must match one of these (all event datatypes
+are in the powersoft.datawindow.event package):<A NAME="TI2264"></A>
+<ul>
+<li class=fi>DBError
+(DatabaseEvent event, DataStore ds) </li>
+<li class=ds>RetrieveEnd (RetrieveEvent event, DataStore ds) </li>
+<li class=ds>RetrieveStart (RetrieveEvent event, DataStore ds) </li>
+<li class=ds>SQLPreview (DatabaseEvent event, DataStore ds) </li>
+<li class=ds>UpdateEnd (UpdateEvent event, DataStore ds) </li>
+<li class=ds>UpdateStart (UpdateEvent event, DataStore ds) 
+</li>
+</ul>
+
+                    </p><p>The arguments are the same as those documented for the similarly
+named DataWindow, Java Edition events in the <i>DataWindow
+Reference</i>
+, with the exception of the additional DataStore
+argument, which gives the Java class access to the Web DataWindow
+data. </p></li>
+<li class=ds><p>In the class methods, set the return codes to
+specify whether the server component should cancel the event. </p><p>The return codes are also the same as those documented in
+the <i>DataWindow Reference</i>
+. Any of the service
+classes that implements the event can specify that the event be
+canceled.</p></li>
+<li class=ds><p>Register the service classes for the component. </p><p>There are two ways to make the Java class available as a service
+class:<A NAME="TI2265"></A>
+<ul>
+<li class=fi>For any component in <ABBR title = "e a server" >EAServer</ABBR> or another supported server
+such as COM+, call the SetServerServiceClasses method in
+the Web page template's server-side script:<p><PRE> dwGen.SetServerServiceClasses</PRE><PRE>                 ("UpdateValidate;RetrieveProcess");</PRE></li>
+<li class=ds>For a custom component in <ABBR title = "e a server" >EAServer</ABBR>,
+add this property in <ABBR title = "e a server" >EAServer</ABBR> Manager: <p><PRE> com.sybase.datawindow.serverServiceClasses</PRE><br>
+Set its value to the list of user object names, with names
+separated by semicolons. For example:<p><PRE> UpdateValidate;RetrieveProcess</PRE><br>
+</li>
+</ul>
+</p></li></ol>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using server component methods with the DTC</span> <A NAME="TI2266"></A>If you are using the Web DataWindow DTC or the Web Target
+object model, you can use methods of the server component by using
+the Component property. For example:<p><PRE> webDW.connectToComponent();</PRE><PRE> webDW.Component.SetServerServiceClasses<br>        ("UpdateStart");</PRE></p>
+<br><A NAME="TI2267"></A><h4>Example</h4>
+<A NAME="TI2268"></A><p>Suppose that you want to check that data did not exceed a
+budgeted total before it was updated in the database. You might
+set up a service class that implements the UpdateStart event.</p>
+<A NAME="TI2269"></A><p>The method declaration would be:<p><PRE> public void UpdateStart (UpdateEvent event, <br>   DataStore ds)</PRE></p>
+<A NAME="TI2270"></A><p>The body of this method has a DataStore that retrieves data
+from a budget table and compares it to the component's
+data:<p><PRE> import powersoft.datawindow.event.*;</PRE><PRE> import powersoft.datawindow.*;</PRE><PRE> </PRE><PRE> public void UpdateStart (UpdateEvent event, DataStore ds)</PRE><PRE> {</PRE><PRE>         DataStore ds_budget;</PRE><PRE>         ds_budget = new DataStore();</PRE><PRE>         ds_budget.setSourceFileName<br>            ("c:\\mydirectory\\mypbd.pbd");</PRE><PRE>         ds_budget.setDataWindowObjectName            ("d_object");</PRE><PRE>         ds_budget.setTransObject(...);    </PRE><PRE>         ds_budget.retrieve( );    </PRE><PRE>         // Get data to be validated</PRE><PRE>         int rowcount = ds.getRowCount();</PRE><PRE>         int total = 0;</PRE><PRE>         for (int i = 1; i&lt;=rowcount;i++){</PRE><PRE>             total=total + ds.getItemNumber(i, "expenses",</PRE><PRE>                 ds.Primary);</PRE><PRE>         }</PRE><PRE>         String expense_total = ds_1.describe (...);</PRE><PRE>         double d_expense_total = Double.parseDouble</PRE><PRE>             (expense_total);</PRE><PRE>         if (d_expense_total&lt;total){</PRE><PRE>             event.setReturnCode(1);</PRE><PRE>         }</PRE><PRE> )<br></PRE></p>
+

@@ -1,0 +1,117 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Compiling the script </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp67.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp69.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF342976055"></A><h1>Compiling the script </h1>
+<A NAME="TI1968"></A><p>Before you can execute a script, you must compile it. </p>
+<A NAME="TI1969"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To compile a script:</p>
+<ol><li class=fi><p>Click the Compile button, or select Edit&gt;Compile
+from the menu bar.</p><p>PowerBuilder compiles the script and reports any problems
+it finds, as described in <A HREF="pbugp68.htm#X-REF355664176">"Handling problems"</A>.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>PowerBuilder compiles automatically</span> <A NAME="TI1970"></A>When you attempt to open a different script in a Script view,
+PowerBuilder compiles the current script. When you save the object,
+such as the window containing a control you wrote a script for,
+PowerBuilder recompiles all scripts in the object to make sure they
+are still valid. For example, PowerBuilder checks that all objects
+that were referenced when you wrote the script still exist.</p>
+<A NAME="X-REF355664176"></A><h2>Handling problems</h2>
+<A NAME="TI1971"></A><p>If problems occur when a script is compiled, PowerBuilder
+displays messages in a Message window below the script.</p>
+<br><img src="images/sc09.gif">
+<A NAME="TI1972"></A><p>There are three kinds of messages:</p>
+<A NAME="TI1973"></A><p><A NAME="TI1974"></A>
+<ul>
+<li class=fi>Errors</li>
+<li class=ds>Warnings</li>
+<li class=ds>Information messages
+</li>
+</ul>
+</p>
+<A NAME="TI1975"></A><h4>Understanding errors</h4>
+<A NAME="TI1976"></A><p>Errors indicate serious problems that you must fix before
+a script will compile and before you can close the Script view or
+open another script in the same view. Errors are shown in the Message
+window as:</p>
+<A NAME="TI1977"></A><p><p><PRE><i>line number</i><i>:</i> Error <i>error number</i><i>:</i><i>message</i></PRE></p>
+</p>
+<A NAME="TI1978"></A><h4>Understanding warnings</h4>
+<A NAME="TI1979"></A><p>Warnings indicate problems that you should be aware of but
+that do not prevent a script from compiling. </p>
+<A NAME="TI1980"></A><p>There are three kinds of warnings.</p>
+<p><b>Compiler warnings</b>   Compiler warnings inform you of syntactic problems, such as
+undeclared variables. PowerBuilder lets you compile a script that contains
+compiler warnings, but you must fix the problem in the script before you
+can save the object that the script is for, such as the window or
+menu. Compiler warnings
+are shown in the Message window as:</p>
+<A NAME="TI1981"></A><p><p><PRE><i>line number</i><i>:</i> Warning <i>warning number</i><i>:</i><i>message</i></PRE></p>
+</p>
+<p><b>Obsolete warnings</b>   Obsolete warnings inform you when you use any obsolete functions
+or syntax in your script. Obsolete functions, although they still
+compile and run, have been replaced by more efficient functions
+and will be discontinued in a future release of PowerBuilder. You
+should replace all references to obsolete functions as soon as possible. Obsolete warnings are shown in the
+Message window as:</p>
+<A NAME="TI1982"></A><p><p><PRE><i>line number</i><i>:</i> Warning <i>warning number</i><i>:</i><i>message</i></PRE></p>
+</p>
+<p><b>Database warnings</b>   Database warnings come from the database manager you are connected
+to. PowerBuilder connects to the database manager when you compile
+a script containing embedded <ACRONYM title = "sequel" >SQL</ACRONYM>.
+Typically, these warnings arise because you are referencing a database
+you are not connected to. Database
+warnings are shown in the Message window as:</p>
+<A NAME="TI1983"></A><p><p><PRE><i>line number</i><i>:</i> Database <i>warning number</i><i>:</i><i>message</i></PRE></p>
+</p>
+<A NAME="TI1984"></A><p>PowerBuilder lets you compile scripts with database warnings
+and also lets you save the associated object. It does this because
+it does not know whether the problem will apply during execution,
+since the execution environment might be different from the compile-time
+environment.</p>
+<A NAME="TI1985"></A><p>You should study database warnings carefully to make sure
+the problems will not occur at runtime.</p>
+<A NAME="TI1986"></A><h4>Understanding information messages</h4>
+<A NAME="TI1987"></A><p>Information messages are issued when there is a potential
+problem. For example, an information message is issued when you
+have used a global variable name as a local variable, because that
+might result in a conflict later.</p>
+<A NAME="TI1988"></A><p>Information messages are shown in the Message window as:</p>
+<A NAME="TI1989"></A><p><p><PRE><i>line number</i><i>:</i> Information <i>number</i><i>:</i><i>message</i></PRE></p>
+</p>
+<A NAME="TI1990"></A><h4>Displaying warnings and messages</h4>
+<A NAME="TI1991"></A><p>To specify which messages display when you compile, select
+Design&gt;Options to open the Options dialog box, select the
+Script tab page, and check or clear the Display Compiler Warnings,
+Display Obsolete Messages, Display Information Messages, and Display
+Database Warnings check boxes. The default is to display compiler
+and database warning messages. Error messages always display.</p>
+<A NAME="TI1992"></A><h4>Fixing problems</h4>
+<A NAME="TI1993"></A><p>To fix a problem, click the message. The Script view scrolls
+to display the statement that triggered the message. After you fix
+all the problems, compile the script again.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>To save a script with errors</span> <A NAME="TI1994"></A>Comment out the lines containing errors.</p>
+<A NAME="TI1995"></A><h4>Disabling database connection when compiling
+and building</h4>
+<A NAME="TI1996"></A><p>When PowerBuilder compiles an application that contains embedded
+SQL, it connects to the database profile last used in order to check
+for database access errors during the build process. For applications
+that use multiple databases, this can result in spurious warnings
+during the build since the embedded SQL can be validated only against
+that single last-used database and not against the databases actually
+used by the application.  In addition, an unattended build, such
+as a lengthy overnight rebuild, can stall if the database connection
+cannot be made. </p>
+<A NAME="TI1997"></A><p>To avoid these issues, you can select the Disable Database
+Connection When Compiling and Building check box on the general
+page of the System Options dialog box.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Caution</span> <A NAME="TI1998"></A>Select the check box only when you want to compile without
+signing on to the database. Compiling without connecting to a database
+prevents the build process from checking for database errors and
+may therefore result in runtime errors later.</p>
+

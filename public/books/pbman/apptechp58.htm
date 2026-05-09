@@ -1,0 +1,107 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Drag-and-drop properties, events, and functions</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp57.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp59.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCECBGE"></A><h1>Drag-and-drop properties, events, and functions</h1>
+<A NAME="TI1399"></A><h4>Drag-and-drop properties</h4>
+<A NAME="TI1400"></A><p>Each PowerBuilder control has two drag-and-drop properties:<A NAME="TI1401"></A>
+<ul>
+<li class=fi>DragAuto</li>
+<li class=ds>DragIcon
+</li>
+</ul>
+</p>
+<p><b>The DragAuto property</b>   DragAuto is a boolean property.</p>
+<A NAME="TI1402"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 10-1: DragAuto property values</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1403"></A>Value</th>
+<th  rowspan="1"  ><A NAME="TI1404"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1405"></A><b>TRUE</b></td>
+<td  rowspan="1"  ><A NAME="TI1406"></A>When the object is clicked, the control
+is placed automatically in drag mode</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1407"></A><b>FALSE</b></td>
+<td  rowspan="1"  ><A NAME="TI1408"></A>When the object is clicked, the control
+is not placed automatically in drag mode; you have to put the object
+in drag mode manually by using the <b>Drag</b> function
+in a script</td>
+</tr>
+</table>
+<A NAME="TI1409"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify automatic drag mode for a control in
+the Window painter:</p>
+<ol><li class=fi><p>Select the Other property page in the Properties
+view for the control.</p></li>
+<li class=ds><p>Check the Drag Auto check box.</p></li></ol>
+<br><p><b>The DragIcon property</b>   Use the DragIcon property to specify the icon you want displayed
+when the control is in drag mode. The DragIcon property is a stock
+icon or a string identifying the file that contains the icon (the <i>ICO</i> file). The
+default icon is a box the size of the control.</p>
+<A NAME="TI1410"></A><p>When the user drags a control, the icon displays when the
+control is over an area in which the user can drop it (a valid drop
+area). When the control is over an area that is not a valid drop
+area (such as a window scroll bar), the No-Drop icon displays.</p>
+<A NAME="TI1411"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a drag icon:</p>
+<ol><li class=fi><p>Select the Other property page in the Properties
+view for the control.</p></li>
+<li class=ds><p>Choose the icon you want to use from the list
+of stock icons or use the Browse button to select an <i>ICO</i> file
+and click OK.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Creating icons</span> <A NAME="TI1412"></A>To create icons, use a drawing application that can save files
+in the Microsoft Windows <i>ICO</i> format.</p>
+<A NAME="TI1413"></A><h4>Drag-and-drop events</h4>
+<A NAME="TI1414"></A><p>There are six drag-and-drop events.</p>
+<A NAME="TI1415"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 10-2: Drag-and-drop events</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1416"></A>Event</th>
+<th  rowspan="1"  ><A NAME="TI1417"></A>Occurs</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1418"></A>BeginDrag</td>
+<td  rowspan="1"  ><A NAME="TI1419"></A>When the user presses the left mouse
+button in a ListView or TreeView control and begins dragging</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1420"></A>BeginRightDrag</td>
+<td  rowspan="1"  ><A NAME="TI1421"></A>When the user presses the right mouse
+button in a ListView or TreeView control and begins dragging</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1422"></A>DragDrop</td>
+<td  rowspan="1"  ><A NAME="TI1423"></A>When the hot spot of a drag icon (usually
+its center) is over a target (a PowerBuilder control or window to
+which you drag a control) and the mouse button is released</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1424"></A>DragEnter</td>
+<td  rowspan="1"  ><A NAME="TI1425"></A>When the hot spot of a drag icon enters
+the boundaries of a target</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1426"></A>DragLeave</td>
+<td  rowspan="1"  ><A NAME="TI1427"></A>When the hot spot of a drag icon leaves
+the boundaries of a target</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1428"></A>DragWithin</td>
+<td  rowspan="1"  ><A NAME="TI1429"></A>When the hot spot of a drag icon moves
+within the boundaries of a target</td>
+</tr>
+</table>
+<A NAME="TI1430"></A><h4>Drag-and-drop functions</h4>
+<A NAME="TI1431"></A><p>Each PowerBuilder control has two functions you can use to
+write scripts for drag-and-drop events.</p>
+<A NAME="TI1432"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 10-3: Drag-and-drop event functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1433"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI1434"></A>Action</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1435"></A><b>Drag</b></td>
+<td  rowspan="1"  ><A NAME="TI1436"></A>Starts or ends the dragging of a control</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1437"></A><b>DraggedObject</b></td>
+<td  rowspan="1"  ><A NAME="TI1438"></A>Returns the control being dragged</td>
+</tr>
+</table>
+<A NAME="TI1439"></A><p>For more information about these events and
+functions, see the <i>PowerScript Reference</i>
+.</p>
+

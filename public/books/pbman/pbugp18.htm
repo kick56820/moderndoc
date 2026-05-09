@@ -1,0 +1,280 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using toolbars</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp17.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp19.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF342804801"></A><h1>Using toolbars</h1>
+<A NAME="TI576"></A><p>Toolbars provide buttons for the most common tasks in PowerBuilder.
+You can move (dock) toolbars, customize them, and create your own.</p>
+<A NAME="TI577"></A><h2>Toolbar basics</h2>
+<A NAME="TI578"></A><p>PowerBuilder uses three toolbars: the PowerBar, PainterBar,
+and StyleBar:</p>
+<A NAME="TI579"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI580"></A>This toolbar</th>
+<th  rowspan="1"  ><A NAME="TI581"></A>Has buttons for</th>
+<th  rowspan="1"  ><A NAME="TI582"></A>And (unless hidden) displays</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI583"></A>PowerBar</td>
+<td  rowspan="1"  ><A NAME="TI584"></A>Opening painters and tools</td>
+<td  rowspan="1"  ><A NAME="TI585"></A>Always</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI586"></A>PainterBar</td>
+<td  rowspan="1"  ><A NAME="TI587"></A>Performing tasks in the current painter</td>
+<td  rowspan="1"  ><A NAME="TI588"></A>In each painter or editor; some painters
+have more than one PainterBar</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI589"></A>StyleBar</td>
+<td  rowspan="1"  ><A NAME="TI590"></A>Changing properties of text, such as
+font and alignment</td>
+<td  rowspan="1"  ><A NAME="TI591"></A>In appropriate painters</td>
+</tr>
+</table>
+<A NAME="TI592"></A><h2>Drop-down toolbars</h2>
+<A NAME="TI593"></A><p>To reduce the size of toolbars, some toolbar buttons have
+a down arrow on the right that you can click to display a drop-down
+toolbar containing related buttons. </p>
+<A NAME="TI594"></A><p>For example, the down arrow next to the Text button in the
+DataWindow painter displays the Controls drop-down toolbar, which
+has a button for each control you can place on a DataWindow object.</p>
+<br><img src="images/wrkg16.gif">
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Default button replaced</span> <A NAME="TI595"></A>The button you select from a drop-down toolbar replaces the
+default button on the main toolbar. For example, if you select the
+Picture button from the Controls drop-down toolbar, it replaces
+the Text button in the PainterBar.</p>
+<A NAME="X-REF301581333"></A><h2>Controlling the display of toolbars</h2>
+<A NAME="TI596"></A><p>You can control:<A NAME="TI597"></A>
+<ul>
+<li class=fi>Whether
+to display individual toolbars and where</li>
+<li class=ds>Whether to display text on the buttons</li>
+<li class=ds>Whether to display PowerTips
+</li>
+</ul>
+</p>
+<A NAME="TI598"></A><p>Choosing to display text and PowerTips affects all toolbars.</p>
+<A NAME="TI599"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To control a toolbar using the pop-up menu:</p>
+<ol><li class=fi><p>Position the pointer on a toolbar and display
+the pop-up menu.</p></li>
+<li class=ds><p>Click the items you want. </p><p>A check mark means the item is currently selected.</p></li></ol>
+<br><A NAME="TI600"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To control a toolbar using the Toolbars dialog
+box:</p>
+<ol><li class=fi><p>Select Tools&gt;Toolbars from the
+menu bar.</p><p>The Toolbars dialog box displays.</p></li>
+<li class=ds><p>Click the toolbar you want to work with (the current
+toolbar is highlighted) and the options you want.</p></li></ol>
+<br><A NAME="TI601"></A><p>PowerBuilder saves your toolbar preferences in the registry
+and the PowerBuilder initialization file.</p>
+<A NAME="TI602"></A><h2>Moving toolbars using the mouse</h2>
+<A NAME="TI603"></A><p>You can use the mouse to move a toolbar.</p>
+<A NAME="TI604"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To move a toolbar with the mouse:</p>
+<ol><li class=fi><p>Position the pointer on the grab bar at
+the left of the toolbar or on any vertical line separating groups
+of buttons.</p></li>
+<li class=ds><p>Press and hold the left mouse button.</p></li>
+<li class=ds><p>Drag the toolbar and drop it where you want it.</p><p>As you move the mouse, an outlined box shows how the toolbar
+will display when you drop it. You can line it up along any frame
+edge or float it in the middle of the frame.</p></li></ol>
+<br><A NAME="TI605"></A><h3>Docking toolbars</h3>
+<A NAME="TI606"></A><p>When you first start PowerBuilder, all the toolbars display
+one above another at the top left of the workspace. When you move
+a toolbar, you can dock (position) it:<A NAME="TI607"></A>
+<ul>
+<li class=fi>At the top or
+bottom of the workspace, at any point from the left edge to the
+right edge</li>
+<li class=ds>At the left or right of the workspace, at any point
+from the top edge to the bottom edge</li>
+<li class=ds>To the left or right of, or above or below, another
+toolbar
+</li>
+</ul>
+</p>
+<A NAME="X-REF342453953"></A><h2>Customizing toolbars</h2>
+<A NAME="TI608"></A><p>You can customize toolbars with PowerBuilder buttons and with
+buttons that invoke other applications, such as a clock or text
+processor.</p>
+<A NAME="TI609"></A><h4>Adding, moving, and deleting buttons</h4>
+<A NAME="TI610"></A><p>You can add, move, and delete buttons in any toolbar.</p>
+<A NAME="TI611"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a button to a toolbar:</p>
+<ol><li class=fi><p>Position the pointer on the toolbar and
+display the pop-up menu.</p></li>
+<li class=ds><p>Select Customize.</p><p>The Customize dialog box displays.</p><br><img src="images/wrkg19.gif"><br>
+</li>
+<li class=ds><p>Click the palette of buttons you want to use in
+the Select Palette group box.</p></li>
+<li class=ds><p>Choose a button from the Selected Palette box
+and drag it to the position you want in the Current Toolbar box. </p><p>If you choose a button from the Custom palette, another dialog
+box displays so you can define the button.</p><p>For more information, see <A HREF="pbugp18.htm#CHDEAEJI">"Adding a custom button"</A>.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Seeing what is available in the PowerBar</span> <A NAME="TI612"></A>PowerBuilder provides several buttons that do not display
+by default in the PowerBar, but which you can add. To see what is
+available, scroll the list of buttons and select one. PowerBuilder
+lists the description for the selected button.</p>
+</li></ol>
+<br><A NAME="TI613"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To move a button on a toolbar:</p>
+<ol><li class=fi><p>Position the pointer on the toolbar, display
+the pop-up menu, and select Customize.</p></li>
+<li class=ds><p>In the Current toolbar box, select the button
+and drag it to its new position.</p></li></ol>
+<br><A NAME="TI614"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete a button from a toolbar:</p>
+<ol><li class=fi><p>Position the pointer on the toolbar, display
+the pop-up menu, and select Customize.</p></li>
+<li class=ds><p>In the Current toolbar box, select the button
+and drag it outside the Current toolbar box.</p></li></ol>
+<br><A NAME="TI615"></A><h4>Resetting a toolbar</h4>
+<A NAME="TI616"></A><p>You can restore the original setup of buttons on a toolbar
+at any time.</p>
+<A NAME="TI617"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To reset a toolbar:</p>
+<ol><li class=fi><p>Position the pointer on the toolbar, display
+the pop-up menu, and select Customize.</p></li>
+<li class=ds><p>Click the Reset button, then Yes to confirm, then
+OK.</p></li></ol>
+<br><A NAME="TI618"></A><h4>Clearing or deleting a toolbar</h4>
+<A NAME="TI619"></A><p>Whenever you want, you can remove all buttons from a toolbar.
+If you do not add new buttons to the empty toolbar, the toolbar
+is deleted. You can delete both built-in toolbars and toolbars you
+have created.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>To recreate a toolbar</span> <A NAME="TI620"></A>If you delete one of PowerBuilder's built-in toolbars,
+you can recreate it easily. For example, to recreate the PowerBar,
+display the pop-up menu, select New, and then select PowerBar1 in
+the New Toolbar dialog box.</p>
+<A NAME="TI621"></A>For information about creating new toolbars and about the
+meaning of PowerBar1, see <A HREF="pbugp18.htm#CAIDDCDJ">"Creating new toolbars"</A>.</p>
+<A NAME="TI622"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps">     To clear or delete a toolbar:</p>
+<ol><li class=fi><p>Position the pointer on the toolbar, display
+the pop-up menu, and select Customize.</p></li>
+<li class=ds><p>Click the Clear button, then Yes to confirm.</p><p>The Current toolbar box in the Customize dialog box is emptied.</p></li>
+<li class=ds><p>If you want to add new buttons, select them.</p></li>
+<li class=ds><p>Click OK to save the toolbar if you added new
+buttons, or delete the toolbar if you did not.</p></li></ol>
+<br><A NAME="CHDEAEJI"></A><h4>Adding a custom button</h4>
+<A NAME="TI623"></A><p>You can add a custom button to a toolbar. A custom button
+can:</p>
+<A NAME="TI624"></A><p><A NAME="TI625"></A>
+<ul>
+<li class=fi>Invoke a PowerBuilder
+menu item</li>
+<li class=ds>Run an executable (application) outside PowerBuilder</li>
+<li class=ds>Run a query or preview a DataWindow object</li>
+<li class=ds>Place a user object in a window or in a custom user
+object</li>
+<li class=ds>Assign a display format or create a computed field
+in a DataWindow object
+</li>
+</ul>
+</p>
+<A NAME="TI626"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a custom button:</p>
+<ol><li class=fi><p>Position the pointer on the toolbar, display
+the pop-up menu, and select Customize.</p></li>
+<li class=ds><p>Select Custom in the Select Palette group box.</p><p>The custom buttons display in the Selected Palette box.</p></li>
+<li class=ds><p>Select a custom button and drag it to where you
+want it in the Current Toolbar box.</p><p>The Toolbar Item Command dialog box displays. Different buttons
+display in the dialog box depending on which toolbar you are customizing:</p><br><img src="images/wrkg20.gif"><br>
+</li>
+<li class=ds><p>Fill in the Command Line box using <A HREF="pbugp18.htm#CHDJEFGJ">Table 2-2</A>.</p></li>
+<li class=ds><p>In the Item Text box, specify the text associated
+with the button in two parts separated by a comma: the text that
+displays on the button and text for the button's PowerTip:</p><p><p><PRE><i>ButtonText, PowerTip</i></PRE></p>
+</p><p>For example:<p><PRE> Save, Save File</PRE></p><p>If you specify only one piece of text, it is used for both
+the button text and the PowerTip.</p></li>
+<li class=ds><p>In the Item MicroHelp box, specify the text to
+appear as MicroHelp when the pointer is on the button.</p></li></ol>
+<br><A NAME="CHDJEFGJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-2: Defining custom buttons</caption>
+<tr><th  rowspan="1"  ><A NAME="TI627"></A>Button action</th>
+<th  rowspan="1"  ><A NAME="TI628"></A>Toolbar Item Command dialog
+box entry</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI629"></A>Invoke a PowerBuilder menu item</td>
+<td  rowspan="1"  ><A NAME="TI630"></A>Type <p><PRE> <i>@MenuBarItem.MenuItem</i></PRE>in
+the Command Line box. For example, to make the button mimic the
+Open item on the File menu, type <PRE> <i>@File.Open</i></PRE><A NAME="TI631"></A><p>You can also use a number to refer to a menu item. The first
+item in a drop-down or cascading menu is 1, the second item is 2,
+and so on. Separator lines in the menu count as items. This example
+creates a button that pastes a FOR...NEXT statement into a script: <p><PRE> @Edit.Paste Special.Statement.6</PRE></p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI632"></A>Run an executable file outside PowerBuilder</td>
+<td  rowspan="1"  ><A NAME="TI633"></A>Type the name of the executable file
+in the Command Line box. Specify the full path name if the executable
+is not in the current search path.<A NAME="TI634"></A><p>To search for the file name, click the Browse button.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI635"></A>Run a query</td>
+<td  rowspan="1"  ><A NAME="TI636"></A>Click the Query button and select the
+query from the displayed list.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI637"></A>Preview a DataWindow object</td>
+<td  rowspan="1"  ><A NAME="TI638"></A>Click the Report button and select a
+DataWindow object from the displayed list. You can then modify the command-line
+arguments in the Command Line box.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI639"></A>Select a user object for placement in
+a window or custom user object</td>
+<td  rowspan="1"  ><A NAME="TI640"></A>(Window and User Object painters only)
+Click the UserObject button and select the user object from the displayed
+list.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI641"></A>Assign a display format to a column in
+a DataWindow object</td>
+<td  rowspan="1"  ><A NAME="TI642"></A>(DataWindow painter only) Click the Format
+button to display the Display Formats dialog box. Select a data
+type, then choose an existing display format from the list or define
+your own in the Format box.<A NAME="TI643"></A><p>For more about specifying display formats, see <A HREF="pbugp188.htm#CAIDCCJB">Chapter 22, "Displaying and Validating
+Data ."</A></p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI644"></A>Create a computed field in a DataWindow object</td>
+<td  rowspan="1"  ><A NAME="TI645"></A>(DataWindow painter only) Click the Function
+button to display the Function for Toolbar dialog box. Select the function
+from the list.</td>
+</tr>
+</table>
+<A NAME="CHDGCCEJ"></A><h3>Modifying a custom button</h3>
+<A NAME="TI646"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify a custom button:</p>
+<ol><li class=fi><p>Position the pointer on the toolbar, display
+the pop-up menu, and select Customize.</p></li>
+<li class=ds><p>Double-click the button in the Current toolbar
+box.</p><p>The Toolbar Item Command dialog box displays.</p></li>
+<li class=ds><p>Make your changes, as described in <A HREF="pbugp18.htm#CHDEAEJI">"Adding a custom button"</A>.</p></li></ol>
+<br><A NAME="CAIDDCDJ"></A><h2>Creating new toolbars</h2>
+<A NAME="TI647"></A><p>PowerBuilder has built-in toolbars. When you start PowerBuilder,
+you see what is called the PowerBar. In each painter, you also see
+one or more PainterBars. But PowerBar and PainterBar are actually
+types of toolbars you can create to make it easier to work in PowerBuilder.</p>
+<A NAME="TI648"></A><h4>PowerBars and PainterBars</h4>
+<A NAME="TI649"></A><p>A PowerBar is a toolbar that always displays in PowerBuilder,
+unless you hide it. A PainterBar is a toolbar that always displays
+in the specific painter for which it was defined, unless you hide
+it:</p>
+<A NAME="TI650"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI651"></A>For this toolbar type</th>
+<th  rowspan="1"  ><A NAME="TI652"></A>The default is named</th>
+<th  rowspan="1"  ><A NAME="TI653"></A>And you can have up to</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI654"></A>PowerBar</td>
+<td  rowspan="1"  ><A NAME="TI655"></A>PowerBar1</td>
+<td  rowspan="1"  ><A NAME="TI656"></A>Four PowerBars</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI657"></A>PainterBar</td>
+<td  rowspan="1"  ><A NAME="TI658"></A>PainterBar1<br>PainterBar2<br>and
+so on</td>
+<td  rowspan="1"  ><A NAME="TI659"></A>Eight PainterBars in each painter</td>
+</tr>
+</table>
+<A NAME="TI660"></A><h4>Where you create them</h4>
+<A NAME="TI661"></A><p>You can create a new PowerBar anywhere in PowerBuilder, but
+to create a new PainterBar, you must be in the workspace of the
+painter for which you want to define the PainterBar.</p>
+<A NAME="TI662"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new toolbar:</p>
+<ol><li class=fi><p>Position the pointer on any toolbar, display
+the pop-up menu, and select New.</p><p>The New Toolbar dialog box displays.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About the StyleBar</span> <A NAME="TI663"></A>In painters that do not have a StyleBar, StyleBar is on the
+list in the New Toolbar dialog box. You can define a toolbar with
+the name StyleBar, but you can add only painter-specific buttons,
+not style buttons, to it.</p>
+</li>
+<li class=ds><p>Select a PowerBar name or a PainterBar name and
+click OK.</p><p>The Customize dialog box displays with the Current toolbar
+box empty.</p></li>
+<li class=ds><p>One at a time, drag the toolbar buttons you want
+from the Selected palette box to the Current toolbar box and then
+click OK.</p></li></ol>
+<br>

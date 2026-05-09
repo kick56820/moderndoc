@@ -1,0 +1,73 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+PowerBuilder COM servers</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp287.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp289.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBDACJF"></A><h1>PowerBuilder COM servers</h1>
+<A NAME="TI8414"></A><p>In addition to the COM server file generated in PowerBuilder,
+the PowerBuilder runtime files listed in <A HREF="apptechp288.htm#BAJBFGAJ">Table 41-18</A> should be installed
+on the computer on which the server will run if the component uses
+the feature listed in the table.</p>
+<A NAME="BAJBFGAJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-18: PowerBuilder files required on
+COM server host</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8415"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8416"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8417"></A><i>PBVM105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8418"></A>PowerBuilder virtual machine (required
+for all PowerBuilder components)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8419"></A><i>PBCOMRT105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8420"></A>PowerBuilder COM runtime</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8421"></A><i>PBSHR105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8422"></A>Required by <i>PBVM105.DLL</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8423"></A><i>LIBJCC.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8424"></A>Required by <i>PBVM105.DLL</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8425"></A><i>LIBJUTILS.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8426"></A>Required by <i>LIBJCC.DLL</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8427"></A><i>PBDWE105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8428"></A>Required if the component uses DataStores</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8429"></A><i>PBRTC105.DLL</i> and additional
+runtime files listed in <A HREF="apptechp280.htm#BAJFAHDA">Table 41-4</A></td>
+<td  rowspan="1"  ><A NAME="TI8430"></A>Required if the component uses Rich Text</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8431"></A><i>PBODB105.INI</i></td>
+<td  rowspan="1"  ><A NAME="TI8432"></A>PowerBuilder ODBC initialization file
+required for database connectivity </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8433"></A><i>PBODB105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8434"></A>PowerBuilder ODBC interface required
+for database connectivity </td>
+</tr>
+</table>
+<p><b>Installed path</b>   <i>\Program Files\Sybase\Shared\PowerBuilder</i></p>
+<p><b>Deployment path</b>   In the same directory as the COM server or a directory on the
+system path.</p>
+<p><b>Registry entries</b>   The PowerBuilder COM server is self registering, which means
+that you can use the <b>REGSVR32</b> utility to register
+it on the computer on which it will be used.</p>
+<p><b>Notes</b>   For information about deploying PowerBuilder COM servers,
+see <A HREF="apptechp183.htm#CEGDFIJA">"Deploying a PowerBuilder
+COM server"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Database drivers</span> <A NAME="TI8435"></A>If your component connects to a database, you must also deploy
+the appropriate database drivers. You can use any database driver
+with a COM component, but you <i>must use ODBC</i> if
+you want to take advantage of COM+ support for transaction
+management and connection pooling. If you require support for connection
+pooling only, you can use any thread-safe ODBC driver. If you also require
+support for transactions, you must use a driver that supports the Microsoft
+Distributed Transaction Coordinator (DTC), such as the Microsoft ODBC
+driver for Oracle or the Microsoft ODBC driver for SQL Server.</p>
+<A NAME="TI8436"></A>For more information about database drivers, see <A HREF="apptechp281.htm#BAJIGDCH">"Database connections"</A>.</p>
+

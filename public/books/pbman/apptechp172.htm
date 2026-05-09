@@ -1,0 +1,104 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Providing support for transactions</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp171.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp173.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCCAAADD"></A><h1>Providing support for transactions</h1>
+<A NAME="TI5746"></A><p>If a component supports transactions, COM+ ensures
+that the component's database operations execute as part
+of a transaction. </p>
+<A NAME="TI5747"></A><h4>Using the transaction service context object</h4>
+<A NAME="TI5748"></A><p>PowerBuilder components running in COM+ can use a
+transaction context service to control transactions. A PowerBuilder
+COM object creates a context object that enables the component to
+take advantage of Microsoft DTC support. The <strong>TransactionServer</strong> object
+enables a COM object running in COM+ to access the context
+associated with the object, giving it tighter control of transactions
+and activation. It also provides some control of the security context.</p>
+<A NAME="TI5749"></A><p>For more information about the TransactionServer object and
+its methods, see <i>Objects and Controls</i>
+ and the <i>PowerScript
+Reference</i>
+.</p>
+<A NAME="TI5750"></A><p>Before you can use the transaction context service, you need
+to declare a variable of type TransactionServer and call the <b>GetContextService</b> function
+to create an instance of the service:<p><PRE> TransactionServer txninfo_base<br>this.GetContextService("TransactionServer", &amp;<br>    txninfo_base)</PRE></p>
+<A NAME="TI5751"></A><p>To access information about the component's transaction
+context and control the transaction, call methods on the instance
+of the TransactionServer object&#8212;for example:<p><PRE> IF txninfo_base.IsInTransaction() THEN<br>    txninfo_base.DisableCommit()    <br>END IF<br>...<br>txninfo_base.SetComplete()</PRE></p>
+<A NAME="TI5752"></A><p>When you no longer need the reference to the service, you
+should destroy it:<p><PRE> DESTROY txninfo_base</PRE></p>
+<A NAME="TI5753"></A><h4>Behavior of COMMIT and ROLLBACK</h4>
+<A NAME="TI5754"></A><p>When a PowerBuilder component is running in COM+,
+the TransactionServer interface is used to control transactions
+when the <strong>UseContextObject</strong> DBParm parameter
+is set to Yes. When the <strong>UseContextObject</strong> DBParm
+parameter is set to Yes, <b>COMMIT</b> and <b>ROLLBACK</b> statements
+result in a database error. The transaction remains active until <b>SetComplete</b> or <b>SetAbort</b> is
+issued using an instance of the TransactionServer context object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Migrating PowerBuilder 6 components</span> <A NAME="TI5755"></A>Components built with PowerBuilder 6 relied on the PowerBuilder
+database driver to issue <b>SetComplete</b> or <b>SetAbort</b> calls
+to COM+. If you are migrating these components to the current
+version of PowerBuilder, modify your code to use the TransactionServer
+interface. Alternatively, you can set the UseContextObject DBParm
+to No. In this case, <b>COMMIT</b> is equivalent to <b>SetComplete</b> and <b>ROLLBACK</b> is
+equivalent to <b>SetAbort</b>. This approach is recommended
+only when you want to migrate PowerBuilder 6 objects without modifying
+the code. </p>
+<A NAME="BABBBHHG"></A><h4>Specifying whether a component
+supports transactions </h4>
+<A NAME="TI5756"></A><p>Each COM+ component has a transaction property that
+indicates how the component participates in transactions. PowerBuilder
+COM objects create a new context object when the component transaction
+property in COM+ is set to <i>Requires a new transaction</i>.
+A PowerBuilder COM object whose component transaction property is
+set to <i>Requires a transaction</i> or <i>Supports
+transactions</i> either inherits a transaction from an existing
+object or creates a new transaction. </p>
+<A NAME="TI5757"></A><p>You set this property in the COM/COM+ Project
+wizard or the Project painter. <A HREF="apptechp172.htm#CEGGDAJD">Table 27-4</A> describes the values you can set.</p>
+<A NAME="CEGGDAJD"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 27-4: Component transaction property
+values</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5758"></A>Transaction type</th>
+<th  rowspan="1"  ><A NAME="TI5759"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5760"></A>Not supported</td>
+<td  rowspan="1"  ><A NAME="TI5761"></A>The component never executes as part
+of a transaction. If the component is activated by another component
+that is executing within a transaction, the new instance's
+work is performed outside the existing transaction.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5762"></A>Supports Transaction</td>
+<td  rowspan="1"  ><A NAME="TI5763"></A>The component can execute in the context
+of a COM+ transaction, but a connection is not required
+to execute the component's methods. If the component is
+instantiated directly by a client, COM+ does not begin
+a transaction. If component A is instantiated by component B and component
+B is executing within a transaction, component A executes in the
+same transaction.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5764"></A>Requires Transaction</td>
+<td  rowspan="1"  ><A NAME="TI5765"></A>The component always executes in a transaction.
+When the component is instantiated directly by a client, a new transaction
+begins. If component A is activated by component B, and B is executing
+within a transaction, A executes within the same transaction; if
+B is not executing in a transaction, A executes in a new transaction.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5766"></A>Requires New Transaction</td>
+<td  rowspan="1"  ><A NAME="TI5767"></A>Whenever the component is instantiated,
+a new transaction begins. If component A is activated by component
+B, and B is executing within a transaction, then A begins a new transaction
+that is unaffected by the outcome of B's transaction; if
+B is not executing in a transaction, A executes in a new transaction.</td>
+</tr>
+</table>
+<A NAME="TI5768"></A><p>For more information about how transactions work, see the
+Microsoft COM+ documentation in the <A HREF="http://msdn.microsoft.com/library/default.asp">MSDN Library</A>
+.</p>
+

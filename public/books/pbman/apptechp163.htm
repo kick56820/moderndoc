@@ -1,0 +1,224 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+SSL connections in PowerBuilder</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp162.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp164.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDEJDFB"></A><h1>SSL connections in PowerBuilder</h1>
+<A NAME="TI5385"></A><p>PowerBuilder provides two system objects for use with secure
+connections:<A NAME="TI5386"></A>
+<ul>
+<li class=fi><b>SSLServiceProvider
+service object</b>   The SSLServiceProvider object is an implementation of the <ABBR title = "e a server" >EAServer</ABBR> CtsSecurity::SSLServiceProvider interface.
+For more information about this interface, you can view the <ABBR title = "e a server" >EAServer</ABBR> interface repository documentation
+in a Web browser by connecting to your server at http://<i>hostname</i>:<i>portnumber</i>/ir.<br>
+You use the <b>GetGlobalProperty</b> and <b>SetGlobalProperty</b> functions
+of the SSLServiceProvider object to configure global SSL properties. For a description
+of the global properties you can set and/or get, see <A HREF="apptechp163.htm#BABBCBFJ">"SSL properties"</A>.<br><br>
+You can also set SSL properties at the connection level by
+specifying them in an options string for the Connection or JaguarORB
+object. Interactive applications typically use the SSLServiceProvider
+object in conjunction with the SSLCallback object. Applications
+that run without user interaction typically configure SSL settings
+at the connection level. For information about setting properties
+at the connection level, see <A HREF="apptechp163.htm#CBHHDEHC">"ORB properties"</A>.<br></li>
+<li class=ds><b>SSLCallback object</b>   To enable <ABBR title = "e a server" >EAServer</ABBR> to request
+additional information from the client using a callback method,
+you can implement your own logic for the callback methods in an
+instance of the SSLCallBack object. The SSLCallback object is an
+implementation of the <ABBR title = "e a server" >EAServer</ABBR> CtsSecurity::SSLCallback
+interface. 
+</li>
+</ul>
+</p>
+<A NAME="BABBCBFJ"></A><h2>SSL properties</h2>
+<A NAME="TI5387"></A><p><A HREF="apptechp163.htm#BABCFFDE">Table 26-1</A> lists
+the properties that can be set or retrieved using <b>SetGlobalProperty</b> or <b>GetGlobalProperty</b>.
+For any SSL connection, you must set the qop (quality of protection)
+property and, unless you implement a callback to obtain it, you
+must also set the pin property. You also need to connect to a server
+address that can support your chosen level of security, as described
+in <A HREF="apptechp163.htm#CHDCIBGB">"Secure server addresses"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Setting global properties in a PowerBuilder session</span> <A NAME="TI5388"></A>When you run a client application in PowerBuilder, you can
+set global properties only <i>once</i> during the
+PowerBuilder session. You will need to restart PowerBuilder each
+time you test the code that sets global SSL properties.</p>
+<A NAME="TI5389"></A><p>If some properties are
+not set or are set incorrectly, an SSL callback method is invoked.
+If you do not specify an instance of the SSLCallback object, the default
+callback implementation aborts the connection attempt.</p>
+<A NAME="BABCFFDE"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 26-1: List of SSL properties</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5390"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI5391"></A>Description</th>
+<th  rowspan="1"  ><A NAME="TI5392"></A>Get</th>
+<th  rowspan="1"  ><A NAME="TI5393"></A>Set</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5394"></A>callbackImpl</td>
+<td  rowspan="1"  ><A NAME="TI5395"></A>Instance of the SSLCallback object. For
+more information, see <A HREF="apptechp165.htm#CIHBDGIC">"Using SSL callbacks"</A>.</td>
+<td  rowspan="1"  ><A NAME="TI5396"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5397"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5398"></A>certificateLabel</td>
+<td  rowspan="1"  ><A NAME="TI5399"></A>The client certificate to use if the
+connection requires mutual authentication. The label is a simple
+name that identifies an X.509 certificate/private key in
+a PKCS #11 token. <A NAME="TI5400"></A><p>Required for mutual authentication. If not set and the connection requires
+mutual authentication, invokes the <b>getCertificateLabel</b> callback
+method, passing an array of available certificate names as an input
+parameter.</p></td>
+<td  rowspan="1"  ><A NAME="TI5401"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5402"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5403"></A>qop</td>
+<td  rowspan="1"  ><A NAME="TI5404"></A>The name of a security characteristic
+to use. Required for SSL. See <A HREF="apptechp163.htm#BABBGDIE">"Choosing a security characteristic"</A> for more information.</td>
+<td  rowspan="1"  ><A NAME="TI5405"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5406"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5407"></A>cacheSize</td>
+<td  rowspan="1"  ><A NAME="TI5408"></A>The size of the SSL session ID cache.
+Default is 100.</td>
+<td  rowspan="1"  ><A NAME="TI5409"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5410"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5411"></A>SessLingerTime</td>
+<td  rowspan="1"  ><A NAME="TI5412"></A>The number of seconds that a session
+ID entry is kept in the cache after the last connection that used
+it is terminated. Default is 28800 seconds (8 hours).</td>
+<td  rowspan="1"  ><A NAME="TI5413"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5414"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5415"></A>SessShareCount</td>
+<td  rowspan="1"  ><A NAME="TI5416"></A>The number of concurrent SSL sessions
+that can use the same session ID. Default is 10.</td>
+<td  rowspan="1"  ><A NAME="TI5417"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5418"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5419"></A>pin</td>
+<td  rowspan="1"  ><A NAME="TI5420"></A>The PKCS #11 token PIN.<A NAME="TI5421"></A><p>This is required for logging in to a PKCS #11 token
+for client authentication and for retrieving trust information.
+Required for SSL.</p><A NAME="TI5422"></A><p>If not set, set to <FONT FACE="Courier New">any</FONT>,
+or set incorrectly, the <b>getPin</b> callback method
+is invoked.</p></td>
+<td  rowspan="1"  ><A NAME="TI5423"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5424"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5425"></A>availableQop</td>
+<td  rowspan="1"  ><A NAME="TI5426"></A>A list of available security characteristics.
+The qop property can be set only to values that appear in this list.</td>
+<td  rowspan="1"  ><A NAME="TI5427"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5428"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5429"></A>availableQopDesc</td>
+<td  rowspan="1"  ><A NAME="TI5430"></A>A list of descriptions for the available
+security characteristics, in the same order as listed in the value
+of the availableQop property.</td>
+<td  rowspan="1"  ><A NAME="TI5431"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5432"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5433"></A>availableVersions</td>
+<td  rowspan="1"  ><A NAME="TI5434"></A>A list of SSL protocol versions supported
+by the SSL runtime engine.</td>
+<td  rowspan="1"  ><A NAME="TI5435"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5436"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5437"></A>entrustReady</td>
+<td  rowspan="1"  ><A NAME="TI5438"></A>TRUE if Entrust PKI software is available
+on the client, FALSE otherwise.</td>
+<td  rowspan="1"  ><A NAME="TI5439"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5440"></A>No</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5441"></A>entrustIniFile</td>
+<td  rowspan="1"  ><A NAME="TI5442"></A>The path name for the Entrust INI file
+that provides information on how to access Entrust. Required when
+the <b>useEntrustid</b> property is set to true.<A NAME="TI5443"></A><p>If not set, the <b>getCredentialAttribute</b> callback
+method is invoked.</p></td>
+<td  rowspan="1"  ><A NAME="TI5444"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5445"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5446"></A>entrustUserProfile</td>
+<td  rowspan="1"  ><A NAME="TI5447"></A>The full path to the file containing
+an Entrust user profile. Optional when the Entrust single-login
+feature is available, required otherwise.<A NAME="TI5448"></A><p>If not set, the <b>getCredentialAttribute</b> callback
+method is invoked.</p></td>
+<td  rowspan="1"  ><A NAME="TI5449"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5450"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5451"></A>useEntrustID</td>
+<td  rowspan="1"  ><A NAME="TI5452"></A>Whether to use the Entrust ID or the
+Sybase PKCS #11 token for authentication. This is a boolean
+property. <A NAME="TI5453"></A><p>If this property is set to FALSE, Sybase PKCS #11
+token properties are valid and Entrust-specific properties are ignored.
+If this property is set to TRUE, Entrust-specific properties are
+valid and Sybase PKCS #11 token properties are ignored.</p></td>
+<td  rowspan="1"  ><A NAME="TI5454"></A>Yes</td>
+<td  rowspan="1"  ><A NAME="TI5455"></A>Yes</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5456"></A>entrustPassword</td>
+<td  rowspan="1"  ><A NAME="TI5457"></A>The password for logging in to Entrust
+with the specified user profile. Optional when the Entrust single-login
+feature is available, required otherwise.<A NAME="TI5458"></A><p>If the password is required but not set or set incorrectly,
+the <b>getPin</b> callback method is invoked.</p></td>
+<td  rowspan="1"  ><A NAME="TI5459"></A>No</td>
+<td  rowspan="1"  ><A NAME="TI5460"></A>Yes</td>
+</tr>
+</table>
+<A NAME="BABBGDIE"></A><h4>Choosing a security characteristic</h4>
+<A NAME="TI5461"></A><p>To use SSL, you must specify the name of an available security
+characteristic for the qop property. The characteristic describes
+the CipherSuites the client uses when negotiating an SSL connection.
+When connecting, the client sends the list of CipherSuites that
+it uses to the server, and the server selects a CipherSuite from
+that list. The server chooses the first CipherSuite in the list that
+it can use. If the server cannot use any of the available CipherSuites,
+the connection fails.</p>
+<A NAME="TI5462"></A><p>The <i>EAServer Security Administration and Programming
+Guide</i>
+ describes the security characteristics that are
+provided with <ABBR title = "e a server" >EAServer</ABBR>. You can
+retrieve a list of characteristics available on the server and their
+descriptions by retrieving the availableQop and availableQopDesc
+properties with <b>GetGlobalProperty</b>. </p>
+<A NAME="CHDCIBGB"></A><h4>Secure server addresses</h4>
+<A NAME="TI5463"></A><p>You can connect only to a server listener that uses a security
+level that is equivalent to or greater than the level requested
+in the qop setting. If you use <b>JaguarORB</b>.<b>string_to_object</b> to
+instantiate a proxy for the SessionManager::Manager interface, the
+listener specified by the server address must use a security profile
+that matches the client's qop setting.</p>
+<A NAME="CBHHDEHC"></A><h2>ORB properties</h2>
+<A NAME="TI5464"></A><p>When you connect to <ABBR title = "e a server" >EAServer</ABBR> using
+either the Connection object or the JaguarORB object, you are using
+the <ABBR title = "e a server" >EAServer</ABBR> C++ client
+ORB. You can set its properties in the Options string of the Connection
+object or using JaguarORB's <b>Init</b> function.
+These are the ORB properties that apply specifically to secure connections:<A NAME="TI5465"></A>
+<ul>
+<li class=fi>ORBqop</li>
+<li class=ds>ORBcertificateLabel</li>
+<li class=ds>ORBpin</li>
+<li class=ds>ORBuseEntrustID</li>
+<li class=ds>ORBentrustPassword</li>
+<li class=ds>ORBentrustIniFile</li>
+<li class=ds>ORBentrustUserProfile
+</li>
+</ul>
+</p>
+<A NAME="TI5466"></A><p>The meaning of each of these properties is the same as that
+of the corresponding SSL property, but the value affects only the
+connection that is being established and not the entire session.
+Set ORBqop to <FONT FACE="Courier New">sybpks_none</FONT> to prevent
+any use of SSL on a connection. This setting is useful if you have
+set the QOP globally for all ORBs using the SSLServiceProvider object,
+and you want to override the QOP for a single connection.</p>
+<A NAME="TI5467"></A><p>For a complete list of ORB properties, see the Help for the
+Connection object.</p>
+<A NAME="TI5468"></A><p>This example sets the ORBqop property to sybpks_simple
+and specifies a log file: <p><PRE> myconnect.options = "ORBqop='sybpks_simple', " &amp;<br>   + "ORBLogFile='C:\tmp\log.txt'"</PRE></p>
+

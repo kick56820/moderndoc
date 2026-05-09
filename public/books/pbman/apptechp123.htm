@@ -1,0 +1,123 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+GenerateRegFile function</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp122.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp124.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIEBFGD"></A><A NAME="TI4026"></A><h1>GenerateRegFile function</h1>
+<A NAME="TI4027"></A><p>
+<FORM>
+<INPUT
+ TYPE = "BUTTON"
+ VALUE = "Examples"
+ onClick = "window.location = 'apptechp123.htm#EX3';">
+<INPUT
+  TYPE = "BUTTON"
+ VALUE = "See also"
+ onClick = "window.location = 'apptechp123.htm#SA3';">
+</FORM>
+</p>
+<h3>Description</h3><A NAME="TI4028"></A><p>Creates a file with registry update instructions for deploying
+a PowerBuilder object as an automation server. </p>
+
+<h3>Controls</h3><A NAME="TI4029"></A><p>PowerBuilder.Application (automation server)</p>
+
+<h3>Syntax</h3><p><PRE>{ <i>automationobject</i>.} GenerateRegFile ( <i>guid</i>, <i>classname</i>, <i>progid</i>, <br>   <i>majorversion</i>, <i>minorversion</i>, <i>description</i>, <i>outputfilename</i> )</PRE></p>
+<A NAME="TI4030"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI4031"></A>Argument</th>
+<th  rowspan="1"  ><A NAME="TI4032"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4033"></A><i>automationobject</i></td>
+<td  rowspan="1"  ><A NAME="TI4034"></A>When PowerBuilder is the OLE client,
+the name of the OLEObject instantiated with the PowerBuilder.Application automation
+server. For other clients, use syntax appropriate for calling a
+function belonging to an automation object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4035"></A><i>guid</i></td>
+<td  rowspan="1"  ><A NAME="TI4036"></A>A string whose value is the globally
+unique identifier (GUID) you want to use for the object<A NAME="TI4037"></A><p>You can specify a GUID that you:</p><A NAME="TI4038"></A><p><A NAME="TI4039"></A>
+<ul>
+<li class=fi>Generated with a call
+to GenerateGUID</li>
+<li class=ds>Generated earlier and are reusing (because this
+object replaces an earlier version)</li>
+<li class=ds>Received from Microsoft
+</li>
+</ul>
+</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4040"></A><i>classname</i></td>
+<td  rowspan="1"  ><A NAME="TI4041"></A>A string whose value is the name of the
+class user object that will be the automation server. The object
+must be in one of the libraries specified in the LibraryList property.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4042"></A><i>progid</i></td>
+<td  rowspan="1"  ><A NAME="TI4043"></A>A string whose value is the programmatic
+identifier that people will use to connect to your server.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4044"></A><i>majorversion</i></td>
+<td  rowspan="1"  ><A NAME="TI4045"></A>An integer whose value you want to use
+for the major version number of your server object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4046"></A><i>minorversion</i></td>
+<td  rowspan="1"  ><A NAME="TI4047"></A>An integer whose value you want to use
+for the minor version number of your server object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4048"></A><i>description</i></td>
+<td  rowspan="1"  ><A NAME="TI4049"></A>A string whose value is a description
+of your server object. The description will be displayed in the
+Registry Editor and other OLE browsers.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4050"></A><i>outputfilename</i></td>
+<td  rowspan="1"  ><A NAME="TI4051"></A>A string whose value is the name of the
+file the <b>GenerateRegFile</b> will create. The default
+file name extension recognized by the registry is <i>REG</i>.</td>
+</tr>
+</table>
+
+<h3>Return Values</h3><A NAME="TI4052"></A><p><b>Long</b>. Returns a status code indicating
+whether an error occurred. Values are:<A NAME="TI4053"></A>
+<ul>
+<li class=fi><b>0</b>   The registry update file was generated successfully.        </li>
+<li class=ds><b>-1</b>   Memory allocation error.</li>
+<li class=ds><b>-2</b>   No output file name was provided.</li>
+<li class=ds><b>-3</b>   Unable to open the output file.</li>
+<li class=ds><b>-9</b>   Unknown error.
+</li>
+</ul>
+</p>
+
+<h3>Usage</h3><A NAME="TI4054"></A><p>Before you call <b>GenerateRegFile</b>, you must
+start a PowerBuilder.Application session and set the LibraryList
+and MachineCode properties to the value that the server object will
+use. You also need a GUID to serve as the object's class identifier
+(CLSID). For information about the format of a GUID, see the <A HREF="apptechp122.htm#CAIBCBBA">GenerateGUID function</A>.</p>
+<A NAME="TI4055"></A><p>After you create a registry update file, you can also generate
+a type library file for the object, which provides browsing information
+for your server object. See the <A HREF="apptechp124.htm#CAICHGII">GenerateTypeLib function</A>.</p>
+<A NAME="TI4056"></A><p>The default extension for a registry update file is <i>REG</i>.
+You can install the object in the registry by double-clicking on
+the update file. Information is installed in the registry about
+the object, including the location of its <i>DLL</i> and the
+location of its type library file, if any. For how to use a PowerBuilder
+tool to register objects, see <A HREF="apptechp116.htm#X-REF350582645">"Registering the object"</A>.</p>
+
+<A NAME="EX3"></A><h3>Examples</h3><A NAME="TI4057"></A><p>This example calls <b>GenerateRegFile</b>.
+(Do not use this GUID in your own applications.)<p><PRE> long ll_result</PRE><PRE> ll_result = <i>GenerateRegFile</i>( &amp;</PRE><PRE>    "{12345678-1234-1234-1234-123456789012}", &amp;</PRE><PRE>    "uo_salary_formulas",   "MyCompany.SalaryFormulas", &amp;</PRE><PRE>    1, 0, &amp;</PRE><PRE>    "PowerBuilder functions for calculating salaries", &amp;</PRE><PRE>    "c:\pbds\bizrules.reg")</PRE></p>
+<A NAME="TI4058"></A><p>This example establishes a PowerBuilder.Application server
+session and sets all the values necessary for generating a registry
+update file.<p><PRE> oleObject PBObject</PRE><PRE> string ls_GUID</PRE><PRE> long ll_result</PRE><PRE> </PRE><PRE> PBObj = CREATE oleObject</PRE><PRE> </PRE><PRE> result = &amp;</PRE><PRE>   PBObj.ConnectToNewObject("PowerBuilder.Application")</PRE><PRE> IF result &lt; 0 THEN</PRE><PRE>    // Handle the error</PRE><PRE> ELSE</PRE><PRE>    PBObject.LibraryList = "c:\myappl\mylibrary.pbd"</PRE><PRE>    PBObject.MachineCode = FALSE</PRE><PRE> </PRE><PRE>    ll_result = PBObject.GenerateGUID(REF ls_GUID)</PRE><PRE>    IF ll_result &lt; 0 THEN</PRE><br><PRE>    // Handle the error</PRE><PRE>    ELSE</PRE><PRE>    ll_result = PBObject.<i>GenerateRegFile</i>(   ls_GUID, &amp;</PRE><PRE>       "uo_myserverobject",   "MyCompany.Object", &amp;      </PRE><PRE>       1, 0,    "My object's description", &amp;   </PRE><PRE>       "c:\myappl\object.reg")</PRE><PRE> </PRE><PRE>    IF ll_result &lt; 0 THEN</PRE><PRE>       // Handle the error</PRE><PRE>    ELSE</PRE><PRE>       // Generate Type Library</PRE><PRE>    END IF</PRE><PRE>    END IF</PRE><PRE> END IF</PRE></p>
+
+<A NAME="SA3"></A><h3>See Also</h3><A NAME="TI4059"></A><p><A NAME="TI4060"></A>
+<ul>
+<li class=fi><b>GenerateGUID</b></li>
+<li class=ds><b>GenerateTypeLib</b>
+</li>
+</ul>
+</p>
+
+

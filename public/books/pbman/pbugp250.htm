@@ -1,0 +1,441 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+OLE objects and the OLE presentation style </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp249.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp251.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCDDHAJ"></A><h1>OLE objects and the OLE presentation style </h1>
+<A NAME="TI8848"></A><p>Whether you insert an OLE object into a DataWindow object or create
+a new DataWindow object using the OLE presentation style, you are working
+with an OLE container object within the DataWindow object. </p>
+<A NAME="TI8849"></A><h4>Similarities</h4>
+<A NAME="TI8850"></A><p>They have these characteristics in common:<A NAME="TI8851"></A>
+<ul>
+<li class=fi><b>Icon or contents</b>    The DataWindow object can display the OLE object as an icon, or
+it can display an image of the contents when display of contents
+is supported by the server.</li>
+<li class=ds><b>Data from the DataWindow object</b>    You specify which DataWindow columns you want to transfer
+to the OLE object. The data that is sent to the OLE server replaces
+the OLE object template specified in the painter.
+</li>
+</ul>
+</p>
+<A NAME="TI8852"></A><h4>Differences</h4>
+<A NAME="TI8853"></A><p>The OLE object in a DataWindow object and the OLE presentation style
+have these main differences:<A NAME="TI8854"></A>
+<ul>
+<li class=fi><b>Associating the object with rows</b>   When the OLE object is added to a DataWindow object, you can associate
+it with individual rows, groups of rows, or all rows. In the presentation
+style, the OLE object is <i>always</i> associated
+with all rows.</li>
+<li class=ds><b>Properties view</b>   The Properties view for an OLE object has different pages
+and some different properties from the OLE DataWindow object. For example,
+the Properties view for an OLE object in a DataWindow object does not contain
+detailed print specification settings because these are set in the DataWindow object's
+own Properties view. However, it does have settings related to the
+position of the OLE object within the DataWindow object. 
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Not all servers are appropriate</span> <A NAME="TI8855"></A>The features of the OLE server application determine whether
+it can provide useful information in a DataWindow object.</p>
+<A NAME="TI8856"></A>If the server does not support display of contents, it is
+not useful for objects associated with rows. The user sees only
+the icon. Some servers support the display of contents, but the
+view is scaled too small to be readable even when the object is
+activated.</p>
+<A NAME="TI8857"></A><h4>In this section</h4>
+<A NAME="TI8858"></A><p>This section includes procedures for:<A NAME="TI8859"></A>
+<ul>
+<li class=fi>Adding an OLE object to a DataWindow object</li>
+<li class=ds>Using the OLE presentation style</li>
+<li class=ds>Defining the OLE object</li>
+<li class=ds>Previewing the DataWindow object</li>
+<li class=ds>Specifying DataWindow data for the OLE object
+</li>
+</ul>
+</p>
+<A NAME="CCJCFIDF"></A><h2>Adding an OLE object to a DataWindow object </h2>
+<A NAME="TI8860"></A><p>To add an OLE object to a DataWindow object, you begin by specifying
+where you want the OLE object and opening the Insert Object dialog
+box so you can define the OLE object. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Adding an ActiveX control</span> <A NAME="TI8861"></A>Adding an ActiveX control to a DataWindow object is similar to adding
+an OLE object. Both exist within the DataWindow object with other controls, such
+as columns, computed fields, and text controls. Use the following procedure
+whether you want to add an OLE object or an ActiveX control to an existing DataWindow object. </p>
+<A NAME="TI8862"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To place an OLE object in a DataWindow object:</p>
+<ol><li class=fi><p>Open the DataWindow object that will contain the
+OLE object.</p></li>
+<li class=ds><p>Select Insert&gt;Control&gt;OLE Object
+from the menu bar, or from the toolbar, click the Object drop-down
+arrow and select the OLE button (<i>not</i> OLE Database
+Blob).</p></li>
+<li class=ds><p>Click where you want to place the OLE object.</p><p>PowerBuilder displays the Insert Object dialog box.</p><p>To use the Insert Object dialog box, see <A HREF="pbugp250.htm#BFCBGDEJ">"Defining the OLE object"</A>.</p></li></ol>
+<br><A NAME="TI8863"></A><h2>Using the OLE presentation style</h2>
+<A NAME="TI8864"></A><p>Use the OLE presentation style to create a DataWindow object that
+consists of a single OLE object. The following procedure creates
+the new DataWindow object and opens the Insert Object dialog box.</p>
+<A NAME="TI8865"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new DataWindow object using the OLE presentation
+style:</p>
+<ol><li class=fi><p>In the New dialog box, select OLE 2.0 from
+the DataWindow tab and click OK.</p></li>
+<li class=ds><p>Select data for the DataWindow object as you do for any DataWindow object.</p><p>For more information about selecting data,
+see <A HREF="pbugp153.htm#BFCDDADG">Chapter 18, "Defining DataWindow Objects ."</A></p></li>
+<li class=ds><p>Specify how the OLE object will use the DataWindow object's
+data on the Specify OLE Data page:</p><br><img src="images/oledw2.gif"><br>
+<p>You can drag the columns you want the OLE object to use to
+the Target Data box. You can also control the grouping of data and
+edit the expression for a column. If necessary, you can change these
+specifications later.</p><p>For more information, see <A HREF="pbugp250.htm#BFCBHDHD">"Specifying data for the
+OLE object"</A>.</p></li>
+<li class=ds><p>Click Next, and then click Finish.</p><p>PowerBuilder displays the Insert Object dialog box in which
+you define the OLE object.</p><p>To use the Insert Object dialog box, see <A HREF="pbugp250.htm#BFCBGDEJ">"Defining the OLE object"</A>.</p></li></ol>
+<br><A NAME="BFCBGDEJ"></A><h2>Defining the OLE object</h2>
+<A NAME="TI8866"></A><p>You define the OLE object in the Insert Object dialog box.
+It has three tab pages:</p>
+<A NAME="TI8867"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI8868"></A>If you want
+to</th>
+<th  rowspan="1"  ><A NAME="TI8869"></A>Select
+this tab page</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8870"></A>Embed an OLE server object in the DataWindow object</td>
+<td  rowspan="1"  ><A NAME="TI8871"></A>Create New</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8872"></A>Link or embed the contents of an existing
+file as an OLE object so that it can be activated using the application
+that created it</td>
+<td  rowspan="1"  ><A NAME="TI8873"></A>Create From File</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8874"></A>Insert an ActiveX control in the DataWindow object</td>
+<td  rowspan="1"  ><A NAME="TI8875"></A>Insert Control</td>
+</tr>
+</table>
+<A NAME="TI8876"></A><p>This section contains procedures for each of these selections.</p>
+<A NAME="CCJBBFEG"></A><h4>Create New</h4>
+<A NAME="TI8877"></A><p>Use the following procedure if you want to embed a new OLE
+server object.</p>
+<A NAME="TI8878"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To embed a new OLE server object using the Create
+New tab:</p>
+<ol><li class=fi><p>Select the Create New tab.</p></li>
+<li class=ds><p>In the Object Type box, highlight the OLE server
+you want to use.</p><p>You can click Browse to get information about the server from
+the registry.</p></li>
+<li class=ds><p>Optionally display the OLE object as an icon by
+doing one of the following:<A NAME="TI8879"></A>
+<ul>
+<li class=fi>Check
+Display as Icon to display the server application's default
+icon in the control.</li>
+<li class=ds>Check Display as Icon and then select Change Icon
+to supply a nondefault icon and icon label.
+</li>
+</ul>
+
+                    </p></li>
+<li class=ds><p>Click OK.</p><p>The OLE object is inserted in your DataWindow object and the OLE server
+is activated. Depending on the OLE server and whether or not you have
+already specified how the OLE object will use the DataWindow object's
+data, the object may be empty or may show an initial presentation of
+the OLE object. Close the server application and, if you are inserting
+an OLE object in a DataWindow object, specify the object's properties
+(see <A HREF="pbugp250.htm#CIADJDGD">"Specifying properties for
+OLE objects"</A>).</p></li></ol>
+<br><A NAME="TI8880"></A><h4>Create From File</h4>
+<A NAME="TI8881"></A><p>Use the following procedure if you want to link or embed the
+contents of an existing file as an OLE object so that it can be
+activated using the application that created it. Most of the steps
+in this procedure are the same as those for embedding a new OLE
+server object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>A server application must be available</span> <A NAME="TI8882"></A>You (and the user) must have an application that can act as
+a server for the type of object you link or embed. For example,
+if you insert a BMP file, it displays because an application that
+can handle bitmaps is installed with Windows. If you insert a GIF
+or JPEG file, it displays only if you have a third-party graphics application
+installed. </p>
+<A NAME="TI8883"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To link or embed an existing object using the
+Create From File tab:</p>
+<ol><li class=fi><p>Select the Create From File tab.</p></li>
+<li class=ds><p>Specify the file name in the File Name box. If
+you do not know the name of the file, click the Browse button and
+select a file in the dialog box.</p></li>
+<li class=ds><p>To create a link to the file, rather than embed
+a copy of the object in the control, select the Link check box.</p></li>
+<li class=ds><p>Click OK.</p><p>The OLE object is inserted in your DataWindow object and the OLE server
+is activated. Depending on the OLE server and whether or not you have
+already specified how the OLE object will use the DataWindow object's
+data, the object might be empty or might show an initial presentation
+of the OLE object. Close the server application and, if you are inserting
+an OLE object in a DataWindow object, specify the object's properties
+(see <A HREF="pbugp250.htm#CIADJDGD">"Specifying properties for
+OLE objects"</A>).</p></li></ol>
+<br><A NAME="TI8884"></A><h4>Insert Control</h4>
+<A NAME="TI8885"></A><p>Use the following procedure if you want to insert an ActiveX
+control (OLE custom control) in the DataWindow object.</p>
+<A NAME="TI8886"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To insert an ActiveX control using the Insert
+Control tab:</p>
+<ol><li class=fi><p>Select the Insert Control tab.</p></li>
+<li class=ds><p>In the Control Type box, highlight the ActiveX
+control you want to use, or, if the ActiveX control you want has
+not been registered, click Register New. </p><p>If you select an existing ActiveX control, you can click Browse
+to get more information about it. ActiveX controls are self documenting. PowerBuilder gets
+the property, event, and function information from the ActiveX control
+itself from the registry.</p><p>If you click Register New, you are prompted for the file that
+contains the registration information for the ActiveX control.</p></li>
+<li class=ds><p>Click OK.</p></li>
+<li class=ds><p>If you did not specify how the OLE object will
+use the DataWindow object's data when you created the DataWindow object,
+do so on the Data property page. </p><p>If you have inserted an ActiveX control that does not display
+data, such as the Clock control, you do not need to transfer data
+to it.</p><p>For more information, see <A HREF="pbugp250.htm#BFCBHDHD">"Specifying data for the
+OLE object"</A>.</p></li></ol>
+<br><A NAME="CIADJDGD"></A><h4>Specifying properties for
+OLE objects</h4>
+<A NAME="TI8887"></A><p>For OLE objects, you need to specify how the OLE object will
+use the DataWindow object's data. If you used the OLE presentation
+style, you did this when you created the DataWindow object. </p>
+<A NAME="TI8888"></A><p>If you are inserting an OLE object in an existing DataWindow object,
+you can also associate the object with the current row. If you are
+using the OLE presentation style, the OLE object is always associated
+with all rows.</p>
+<A NAME="TI8889"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify properties for an OLE object:</p>
+<ol><li class=fi><p>Select the Data property page in the Properties
+view.</p></li>
+<li class=ds><p>Specify how the OLE object will use the DataWindow object's
+data.</p><p>For more information, see <A HREF="pbugp250.htm#BFCBHDHD">"Specifying data for the
+OLE object"</A>.</p></li>
+<li class=ds><p>(Optional) To associate the object with the current
+row, select the Position property page and change the value in the
+Layer box to Band. </p></li>
+<li class=ds><p>Click OK when you have finished.</p></li></ol>
+<br><A NAME="BFCBHDHD"></A><h2>Specifying data for the OLE object</h2>
+<A NAME="TI8890"></A><p>You set data specifications for an OLE object in a DataWindow object on
+the Data property page in the Properties view. You can also use
+the Data property page to modify the data specifications you made
+in the wizard for a DataWindow object using the OLE presentation style. </p>
+<A NAME="TI8891"></A><h4>What the data is for</h4>
+<A NAME="TI8892"></A><p>When an OLE object is part of a DataWindow object, you can specify
+that some or all of the data the DataWindow object retrieves be transferred
+to the OLE object too. You can specify expressions instead of the
+actual columns so that the data is grouped, aggregated, or processed
+in some way before being transferred.</p>
+<A NAME="TI8893"></A><p>The way the OLE object uses the data depends on the server.
+For example, data transferred to Microsoft Excel is displayed as
+a spreadsheet. Data transferred to Microsoft Graph populates its
+datasheet, which becomes the data being graphed. </p>
+<A NAME="TI8894"></A><p>Some ActiveX controls do not display data, so you would not
+transfer any data to them. For an ActiveX control such as Visual
+Speller, you would use automation to process text when the user
+requests it.</p>
+<A NAME="TI8895"></A><h4>Group By and Target Data boxes</h4>
+<A NAME="TI8896"></A><p>Two boxes on the Data property page list data columns or expressions:<A NAME="TI8897"></A>
+<ul>
+<li class=fi><b>Group By</b>   Specifies how PowerBuilder groups the data it transfers to the OLE
+object. Aggregation functions in the target data expressions use
+the groupings specified here.</li>
+<li class=ds><b>Target Data</b>   Specifies the data that you want to transfer to the OLE object. 
+</li>
+</ul>
+</p>
+<A NAME="TI8898"></A><h4>Populating the Group By and Target Data boxes</h4>
+<A NAME="TI8899"></A><p>If you are using the OLE presentation style, you populated
+the Group By and Target Data boxes when you created the DataWindow object.
+If you placed an OLE object in an existing DataWindow object, the boxes
+are empty. You use the browse buttons next to the Group By and Target
+Data boxes to open dialog boxes where you can select the data you
+want to use or modify your selections.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Modifying source data</span> <A NAME="TI8900"></A>You cannot modify the source data for the DataWindow object on the
+Data property page. Select Design&gt;Data Source from the
+menu bar if you need to modify the data source.</p>
+<A NAME="TI8901"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select or modify how data will be grouped in
+the OLE object:</p>
+<ol><li class=fi><p>Click the Browse button next to the Group
+By box.</p></li>
+<li class=ds><p>In the Modify Group By dialog box, drag one or
+more columns from the Source Data box to the Group By box.</p><p>You can rearrange columns and specify an expression instead
+of the column name if you need to. For more information, see the
+next procedure.</p></li></ol>
+<br><A NAME="TI8902"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select or modify which data columns display
+in the OLE object:</p>
+<ol><li class=fi><p>Click the Browse button next to the Target
+Data box.</p></li>
+<li class=ds><p>In the Modify Target Data dialog box, drag one
+or more columns from the Source Data box to the Target Data box.</p><p>The same source column can appear in both the Group By and
+Target Data box.</p></li>
+<li class=ds><p>If necessary, change the order of columns by dragging
+them up or down within the Target Data box.</p><p>The order of the columns and expressions is important to the
+OLE server. You need to know how the server will use the data to
+choose the order. </p></li>
+<li class=ds><p>Double-click an item in the Target Data box to
+specify an expression instead of a column.</p><p> In the Modify Expression dialog box, you can edit the expression
+or use the Functions or Columns boxes and the operator buttons to
+select elements of the expression. For example, you may want to
+specify an aggregation function for a column. Use the range <FONT FACE="Courier New">for
+object</FONT> if you use an aggregation function; for
+example, <FONT FACE="Courier New">sum (salary for object)</FONT>. </p><p>For more information about using operators, expressions, and
+functions, see the <i>DataWindow Reference</i>
+.</p></li></ol>
+<br><p><b>Example of a completed Data property page</b>   This example of the Data property page specifies two columns
+to transfer to Microsoft Graph: <b>city</b> and <b>salary</b>.
+Graph expects the first column to be the categories and the second column
+to be the data values. The second column is an aggregate so that
+the graph will show the sum of all salaries in each city:</p>
+<br><img src="images/oledw1.gif">
+<A NAME="TI8903"></A><h4>Specifying a value for Rows</h4>
+<A NAME="TI8904"></A><p>The last setting on the Data property page specifies how the
+OLE object is associated with rows in the DataWindow object. The selection
+(all rows, current row, or page) usually corresponds with the band
+where you placed the OLE object, as explained in this table. If
+you used the OLE presentation style to create the DataWindow object, this
+setting does not display on the property page: the OLE object is
+always associated with all the rows in the DataWindow object.</p>
+<A NAME="TI8905"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 31-1: Associating an OLE object with rows in the DataWindow</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8906"></A>Range of rows</th>
+<th  rowspan="1"  ><A NAME="TI8907"></A>When to
+use it</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8908"></A>All</td>
+<td  rowspan="1"  ><A NAME="TI8909"></A>When the OLE object is in the summary,
+header, or footer band, or the foreground or background layer.<A NAME="TI8910"></A><p>Rows must be All and Layer must be Foreground or Background if
+you want the user to be able to activate the object.</p><A NAME="TI8911"></A><p>Target data for all rows is transferred to the object.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8912"></A>Current Row</td>
+<td  rowspan="1"  ><A NAME="TI8913"></A>When the OLE object is in the detail
+band.<A NAME="TI8914"></A><p>There is an instance of the OLE object for every row. Target
+data for a single row is transferred to each object.</p><A NAME="TI8915"></A><p>Because ActiveX controls must be in the foreground or background
+layer, they cannot be associated with individual rows in the detail
+band.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8916"></A>Page</td>
+<td  rowspan="1"  ><A NAME="TI8917"></A>When the OLE object is in the group header
+or trailer, foreground, or background.<A NAME="TI8918"></A><p>Target data for the rows on the current page is transferred
+to the OLE object.</p></td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Range of rows and activating the object</span> <A NAME="TI8919"></A>When the range of rows is Current Row or Page, the user <i>cannot</i> activate
+the OLE object. The user can see contents of the object in the form
+of an image presented by the server but cannot activate it.</p>
+<A NAME="TI8920"></A>If you want the user to activate the object, Rows must be
+set to All and Layer on the Position property page must be Foreground
+or Background.</p>
+<A NAME="TI8921"></A><h4>Additional settings in the Properties view</h4>
+<A NAME="TI8922"></A><p>The Options property page in the OLE object's Properties
+view has some additional settings. They are similar to the settings
+you can make for the OLE control in a window. These settings display
+on the General property page for OLE DataWindow objects. <A HREF="pbugp250.htm#CACGBCFJ">Table 31-2</A> describes the settings
+you can make.</p>
+<A NAME="CACGBCFJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 31-2: Settings on the OLE object's
+Options property page</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8923"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI8924"></A>Effect</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8925"></A>Client Name</td>
+<td  rowspan="1"  ><A NAME="TI8926"></A>A name for the OLE object that some server
+applications use in the title bar of their window.<A NAME="TI8927"></A><p>Corresponds to the ClientName DataWindow property.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8928"></A>Activation</td>
+<td  rowspan="1"  ><A NAME="TI8929"></A>How the OLE object is activated. Choices
+are:<A NAME="TI8930"></A>
+<ul>
+<li class=fi><b>Double click</b>    When the user double-clicks on the object, the server application
+is activated.</li>
+<li class=ds><b>Manual</b>    The object can only be activated programmatically.
+</li>
+</ul>
+<A NAME="TI8931"></A><p>The object can always be activated programmatically, regardless
+of the Activation setting.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8932"></A>Contents</td>
+<td  rowspan="1"  ><A NAME="TI8933"></A>Whether the object in the OLE container
+is linked or embedded. The default is Any, which allows either method.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8934"></A>Display Type</td>
+<td  rowspan="1"  ><A NAME="TI8935"></A>What the OLE container displays. You
+can choose:<A NAME="TI8936"></A>
+<ul>
+<li class=fi><b>Manual</b>    Display a representation of the object, reduced to fit within
+the container.</li>
+<li class=ds><b>Icon</b>    Display the icon associated with the data. This is usually
+an icon provided by the server application.
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8937"></A>Link Update</td>
+<td  rowspan="1"  ><A NAME="TI8938"></A>When the object in the OLE container
+is linked, the method for updating link information. Choices are:<A NAME="TI8939"></A>
+<ul>
+<li class=fi><b>Automatic</b>    If the link is broken and PowerBuilder cannot find the linked
+file, it displays a dialog box in which the user can specify the
+file.</li>
+<li class=ds><b>Manual</b>    If the link is broken, the object cannot be activated.<br>
+You can let the user re-establish the link in a script using the <b>UpdateLinksDialog</b> function.<br>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+<A NAME="TI8940"></A><h2>Previewing the DataWindow object</h2>
+<A NAME="TI8941"></A><p>Previewing the DataWindow object lets you see how the OLE object
+displays the data from the DataWindow object. You can preview in the Preview
+view or in preview mode</p>
+<A NAME="TI8942"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To preview the DataWindow object with the OLE object
+in preview mode:</p>
+<ol><li class=fi><p>Select File&gt;Run/Preview
+from the menu bar, or click the Run/Preview button on the
+PowerBar.</p></li>
+<li class=ds><p>Select Rows&gt;Retrieve from the menu bar.</p><p>The DataWindow object retrieves rows from the database and replaces
+the initial presentation of the OLE object with an image of the
+data that the OLE server provides.</p></li>
+<li class=ds><p>If you associated the OLE object with all rows,
+activate the OLE object by double-clicking on it.</p><p>Although you can edit the presentation or the data in the
+server, your changes do not affect the DataWindow object's
+data.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>You cannot always activate the OLE object</span> <A NAME="TI8943"></A>If the OLE object is associated with individual rows in the
+detail band or with the page, you (and the user) cannot activate
+it; you can only view it.</p>
+</li>
+<li class=ds><p>Close the preview window.</p><p>Closing the preview window or the Preview view deactivates
+the OLE object.</p></li></ol>
+<br><A NAME="TI8944"></A><h2>Activating and editing the OLE object</h2>
+<A NAME="TI8945"></A><h4>In the Design view</h4>
+<A NAME="TI8946"></A><p>PowerBuilder stores an initial presentation of the OLE object
+that it displays before data is retrieved and in newly inserted
+rows. When you activate the OLE object in the Design view, you are
+editing the initial presentation of the OLE object. Any changes
+you make and save affect only this initial presentation. After rows
+are retrieved and data transferred to the OLE object, an object
+built using the data replaces the initial presentation.</p>
+<A NAME="TI8947"></A><h4>In preview or at execution time</h4>
+<A NAME="TI8948"></A><p>PowerBuilder displays the initial presentation of the OLE object
+while it is retrieving rows and then replaces it with the retrieved
+data. </p>
+<A NAME="TI8949"></A><p> After you activate the OLE object in preview or at execution
+time, you can edit the presentation of the data. However, you cannot
+save these changes. The object is recreated whenever data from retrieved
+rows is transferred to the OLE object.</p>
+<A NAME="TI8950"></A><p>For more information, see <A HREF="pbugp249.htm#BFCDHAEF">"Activating OLE objects"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Saving as a PSR</span> <A NAME="TI8951"></A>You can save the object with its data by saving the DataWindow object as
+a Powersoft report (PSR). Select File&gt;Save As File or File&gt;Save
+Rows As from the menu bar.</p>
+<A NAME="TI8952"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To activate the OLE object in the container in
+the Design view:</p>
+<ol><li class=fi><p>Select Open from the container's
+pop-up menu.</p><p>Selecting Open from an ActiveX control's pop-up menu
+has no effect. ActiveX controls are always active.</p></li></ol>
+<br><A NAME="TI8953"></A><h2>Changing the object in the control</h2>
+<A NAME="TI8954"></A><p>In the DataWindow painter, you can change or remove the OLE object
+in the OLE container object.</p>
+<A NAME="TI8955"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete the OLE object in the container:</p>
+<ol><li class=fi><p>Select Delete from the container's
+pop-up menu.</p><p>The container object is now empty and cannot be activated.</p></li></ol>
+<br><A NAME="TI8956"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the OLE object in the container:</p>
+<ol><li class=fi><p>Select Insert from the container's
+pop-up menu.</p><p>PowerBuilder displays the Insert Object dialog box.</p></li>
+<li class=ds><p>Choose one of the tabs and specify the type of
+object you want to insert, as you did when you defined the object.</p></li>
+<li class=ds><p>Click OK.</p></li></ol>
+<br>

@@ -1,0 +1,91 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Advantages of an OOM class diagram in PowerBuilder</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp31.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp33.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CACFCABJ"></A><h1>Advantages of an OOM class diagram in PowerBuilder</h1>
+<A NAME="TI1048"></A><h4>Purposes of a class diagram</h4>
+<A NAME="TI1049"></A><p>The ability to represent a PowerBuilder application as a class
+diagram is especially useful for design, documentation, and maintenance
+purposes. In particular, if you are inheriting responsibility for
+a legacy application, perhaps one that was created by developers
+who are no longer in your group, converting it to a class diagram
+helps you to:<A NAME="TI1050"></A>
+<ul>
+<li class=fi>Understand how the application
+was developed</li>
+<li class=ds>See a graphical display of the relationship between
+objects</li>
+<li class=ds>Improve existing code and regenerate any modified
+classes as objects in your PowerBuilder application
+</li>
+</ul>
+</p>
+<A NAME="TI1051"></A><h4>About the class diagram display</h4>
+<A NAME="TI1052"></A><p>A class diagram displays each PowerBuilder object with a class
+stereotype and miniature icon, allowing instant recognition of the
+type of object it represents. PowerBuilder objects that can be represented
+as classes include windows, user objects, structure, function, and
+proxy objects. A class diagram illustrates dependencies between
+classes (that is, PowerBuilder objects), such as those between a
+menu or DataWindow and a user object, and it displays controls as inner
+classes. </p>
+<A NAME="TI1053"></A><p>Each class in a class diagram can be displayed as a box with
+three parts, corresponding to the class type, its attributes, and
+its operations. Operations are the equivalent of events on a PowerBuilder
+object. <A HREF="pbugp32.htm#CACJFAFF">Figure 4-2</A> shows
+a diagram for a window class, <b>w_products</b>.</p>
+<A NAME="CACJFAFF"></A><caption><b>Figure 4-2: Window class in a plug-in
+class diagram</b></captionls>
+<br><img src="images/clsdgm1.gif">
+<A NAME="TI1054"></A><p>Before you generate a PowerBuilder application from a class
+diagram, you can check whether or not the application model is well
+defined. For more information about checking the validity of a class
+diagram, see <A HREF="pbugp36.htm#CEGBHAEJ">"Checking the
+OOM model"</A>.</p>
+<A NAME="TI1055"></A><h4>Plug-in options </h4>
+<A NAME="TI1056"></A><p>The Plug-in Options dialog box lets you set automatic synchronization between
+a PowerBuilder target and a linked OOM. It also lets you reload
+the linked OOM automatically when you open the PowerBuilder workspace containing
+the linked target. When you set these options, they are set automatically
+for all subsequent PowerBuilder sessions. By default, the automatic
+synchronization option is set to false and the automatic reload
+option is set to true.</p>
+<A NAME="TI1057"></A><p>Synchronization is one-way only: changes that you make in
+the class diagram are not automatically reflected in the linked
+PowerBuilder object. The PowerBuilder target must be generated again
+to update it with changes that you make to the OOM. If automatic
+synchronization is set to true and the linked class diagram is not
+open in the background when you make a change to a PowerBuilder
+object, the class diagram opens automatically to show the class that
+is abstracted from the new or modified PowerBuilder object.</p>
+<A NAME="TI1058"></A><p>Automatic synchronization is not activated for copy, move,
+or import operations. It is activated for additions, deletions,
+and attribute modifications.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Last opened versus last linked OOM file</span> <A NAME="TI1059"></A>A PowerDesigner general option lets you open the most recently
+used OOM file rather than the last linked OOM file for a specific
+PowerBuilder target. If you set this value for the plug-in, you
+also set it for PowerDesigner and vice versa. This option is accessible
+from the Tools&gt;General Options menu of the plug-in, which
+is enabled whenever a class diagram is open. You can set this option
+to false to avoid loading an OOM file that has nothing to do with
+the PowerBuilder targets that you open.</p>
+<A NAME="TI1060"></A><p>For more information about generating PowerBuilder targets
+or objects from an OOM, see <A HREF="pbugp35.htm#CACJECED">"Generating PowerBuilder objects"</A>.</p>
+<A NAME="TI1061"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> <b>To set plug-in options</b></p>
+<ol><li class=fi><p>Open a class diagram in the PowerBuilder
+painter area.</p></li>
+<li class=ds><p>Select Tools&gt;Plug-in Options from the
+PowerBuilder menu or select the Plug-in Options button on the plug-in
+View toolbar.</p><p>The Plug-in Options dialog box displays. </p></li>
+<li class=ds><p>Click in the row for the option you want to change
+and select the value you want from the drop-down list that displays
+in the clicked row.</p></li>
+<li class=ds><p>Click OK.</p></li></ol>
+<br>

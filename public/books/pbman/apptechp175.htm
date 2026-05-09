@@ -1,0 +1,136 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Building COM/COM+ components in the Project painter</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp174.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp176.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDBDIC"></A><h1>Building COM/COM+ components in the Project painter</h1>
+<A NAME="TI5782"></A><p>You build PowerBuilder COM servers in the Project painter. </p>
+<A NAME="TI5783"></A><p>If you did not create a project when you created the user
+object, you can use the COM/COM+ Project wizard
+to create one. You can also set up a project to build a COM component
+directly in the Project painter by selecting the COM/COM+ Component
+icon on the Projects tab. </p>
+<A NAME="TI5784"></A><p>If you have already created a COM/COM+ project
+for one or more of the objects you want to build into a COM server,
+you can modify it in the Project painter, adding additional objects
+if necessary.</p>
+<A NAME="TI5785"></A><p>The Project painter workspace is a read-only display that
+shows the options you selected in the wizard or in the Select Objects
+and Properties dialog boxes in the painter. When you build a PowerBuilder
+COM server, the workspace also displays an object inspection report
+and the status of each phase of the build process.</p>
+<A NAME="TI5786"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define and build a PowerBuilder COM server
+project:</p>
+<ol><li class=fi><p>Select COM/COM+ Component
+Wizard from the Projects tab in the New dialog box.</p></li>
+<li class=ds><p>Specify project properties including the project's
+name and location.</p></li>
+<li class=ds><p>Select one or more objects that you want to build
+into a server.</p></li>
+<li class=ds><p>Specify the properties of each object and optional
+COM+ deployment options and click Finish.</p><p>For help specifying properties, see the context-sensitive
+Help in the wizard or the following topics:</p><A NAME="TI5787"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI5788"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI5789"></A>For information see</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5790"></A>Interface options</td>
+<td  rowspan="1"  ><A NAME="TI5791"></A><A HREF="apptechp175.htm#CEGEBFIG">"Choosing a custom or dual
+interface"</A> and <A HREF="apptechp170.htm#BABCDGFH">"Instance variables"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5792"></A>Build options</td>
+<td  rowspan="1"  ><A NAME="TI5793"></A><A HREF="apptechp175.htm#BABDJIJI">"Setting up the embedded
+PBD "</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5794"></A>Registering components</td>
+<td  rowspan="1"  ><A NAME="TI5795"></A><A HREF="apptechp175.htm#BABBIEHC">"Registering components automatically"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5796"></A>COM+ deployment and package
+options</td>
+<td  rowspan="1"  ><A NAME="TI5797"></A> <A HREF="apptechp175.htm#CEGFEFHB">"Deploying components to
+COM+"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5798"></A>COM+ transaction settings</td>
+<td  rowspan="1"  ><A NAME="TI5799"></A><A HREF="apptechp172.htm#BABBBHHG">"Specifying whether a component
+supports transactions "</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5800"></A>COM+ security</td>
+<td  rowspan="1"  ><A NAME="TI5801"></A><A HREF="apptechp174.htm#CHDDJCAC">"Security issues"</A></td>
+</tr>
+</table>
+</li>
+<li class=ds><p>Select File&gt;Open and select the project
+you just created to open the Project painter.</p><p>You can verify that the correct objects are selected by selecting Edit&gt;Select
+Objects from the menu bar.</p></li>
+<li class=ds><p>Select Edit&gt;Properties to verify and
+optionally modify the properties you set in the wizard.</p><p>Some advanced COM+ package properties can be set
+only in the Project painter.</p></li>
+<li class=ds><p>Click the Build button in the Project painter
+to build the PowerBuilder COM server. </p><p>The build process creates an IDL file and a PowerBuilder COM
+server (DLL) containing a PowerBuilder COM object for each user
+object you selected. If you specified deployment to COM+ and
+it is installed and running on the computer where you are generating
+the component, the component is deployed directly to the server,
+and additional deployment files can be created. </p><p>The PowerBuilder COM server also contains an embedded PBD
+file that contains the custom class user objects and any additional
+objects they reference, and an embedded type library.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Building a project after calling an object</span> <A NAME="TI5802"></A>When you call a COM object in the development environment,
+the COM object stays in memory until you exit PowerBuilder, because
+it is hosted in the same process as PowerBuilder. If you make a
+change to the object after calling it and try to regenerate it in
+the Project painter, you receive compile and link errors. Before
+you build the project, shut down and restart PowerBuilder to free
+the object from memory. </p>
+<A NAME="BABBIEHC"></A><h2>Registering components automatically</h2>
+<A NAME="TI5803"></A><p>In the Project wizard or Project painter, you can choose to
+register all generated PowerBuilder COM objects automatically when
+a build is successful. This makes it easy to test the component
+on your computer. To avoid making unnecessary registry entries on
+your computer, select this option only when you are ready to test
+the PowerBuilder COM server.</p>
+<A NAME="CEGFEFHB"></A><h2>Deploying components to COM+</h2>
+<A NAME="TI5804"></A><p>You can deploy components to
+COM+ automatically when a build is successful. You can
+also export the application to a Microsoft Windows Installer (MSI)
+file that you can use to import the package into a COM+ server on
+another computer, and export an application proxy as an MSI file
+that can be installed on a client computer so that it can access
+the COM+ server remotely. For more information about deploying
+COM+ components, see the Microsoft COM+ documentation
+in the <A HREF="http://msdn.microsoft.com/library/default.asp">MSDN Library</A>
+.</p>
+<A NAME="CEGEBFIG"></A><h2>Choosing a custom or dual interface</h2>
+<A NAME="TI5805"></A><p>When you generate a PowerBuilder COM object, you must choose
+whether to expose a custom interface or a dual interface to clients.
+In PowerBuilder COM objects, both interface types are currently
+restricted to the use of standard OLE automation datatypes.</p>
+<A NAME="TI5806"></A><h4>Custom interfaces</h4>
+<A NAME="TI5807"></A><p>Custom interfaces provide access to server object virtual
+function tables (VTBL), offering higher performance than dispatch-based
+interfaces and a cleaner usage model than dual interfaces. Consider
+using a custom interface if the intended client is in a compiled
+language such as C++ or if you want to take advantage
+of the support for custom interfaces in a tool such as Visual Basic. </p>
+<A NAME="TI5808"></A><p>PowerBuilder COM objects that use custom interfaces use the
+standard marshaling provided by COM.</p>
+<A NAME="TI5809"></A><h4>Dual interfaces</h4>
+<A NAME="TI5810"></A><p>Dual interfaces allow programmers to call methods in the COM
+object through virtual function tables as well as through the dispatch
+interface. They support a wide range of clients and give fast access
+to methods. </p>
+<A NAME="BABDJIJI"></A><h2>Setting up the embedded PBD </h2>
+<A NAME="TI5811"></A><p>The COM server contains an embedded PowerBuilder dynamic library
+(PBD) file that contains compiled versions of all the custom class
+user objects you selected plus any dependent objects. You can include
+additional, unreferenced objects in the PBD by selecting the library
+that contains the objects on the Library properties page. All the
+objects in selected libraries are included in the PBD. </p>
+<A NAME="TI5812"></A><p>You can specify the name of a PowerBuilder Resource (PBR)
+file associated with the library. A PBR file is a text file that
+lists dynamically assigned resources such as bitmaps. For more information,
+see <A HREF="apptechp267.htm#BABDGJAJ">"About resources"</A>.</p>
+

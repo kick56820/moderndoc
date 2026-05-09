@@ -1,0 +1,56 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Setting up the Web server</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp216.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp218.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJCJGGJ"></A><h1>Setting up the Web server</h1>
+<A NAME="TI6567"></A><p>Setting up the Web server involves:<A NAME="TI6568"></A>
+<ol>
+</li>
+<li class=ds>Specifying the MIME type</li>
+<li class=ds>Putting the files on the server
+</li>
+</ol>
+</p>
+<A NAME="CCJDBGEE"></A><h4>Specifying the MIME type</h4>
+<A NAME="TI6569"></A><p>Using the appropriate software for your Web server, register
+the MIME type for the DataWindow plug-in. For PowerBuilder 10.5,
+the MIME type is:<p><PRE> application/datawindow10.5</PRE></p>
+<A NAME="TI6570"></A><p>The file extension associated with the MIME type is PSR.</p>
+<A NAME="TI6571"></A><p>Your server documentation might use the term content type
+instead of MIME type.</p>
+<A NAME="CCJBIDIJ"></A><h4>Putting the files on
+the server</h4>
+<A NAME="TI6572"></A><p>You must copy the PSR and HTML files to appropriate directories
+on your server.</p>
+<A NAME="TI6573"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 32-4: PSR and HTML file locations on server</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6574"></A>Files</th>
+<th  rowspan="1"  ><A NAME="TI6575"></A>Location</th>
+<th  rowspan="1"  ><A NAME="TI6576"></A>What you do</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6577"></A>HTML page</td>
+<td  rowspan="1"  ><A NAME="TI6578"></A>The HTML documents directory or subdirectory</td>
+<td  rowspan="1"  ><A NAME="TI6579"></A>Copy the HTML page to the directory specified
+in any URLs that link to the page.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6580"></A>PSR file named in the SRC attribute of
+the Embed element</td>
+<td  rowspan="1"  ><A NAME="TI6581"></A>The HTML documents directory or some
+other directory as appropriate</td>
+<td  rowspan="1"  ><A NAME="TI6582"></A>Copy the PSR file to the directory you
+specified in the Embed element attribute.</td>
+</tr>
+</table>
+<p><b>About URLs</b>   The URLs you specify in your HTML page are logical paths as defined
+by the Web server. For example, the system path for your PSR might be:<p><PRE> C:\WEBSITE\HTDOCS\PB\DWB_ATT_CROSSOUT.PSR</PRE></p>
+<A NAME="TI6583"></A><p>If htdocs is defined as the server's documents directory,
+the logical path for the URL would be relative to the documents
+directory:</p>
+<A NAME="TI6584"></A><p><p><PRE> pb/dwb_att_crossout.psr</PRE></p>
+

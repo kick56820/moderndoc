@@ -1,0 +1,131 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using graphs</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp84.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp86.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF361795246"></A><h1>Using graphs</h1>
+<A NAME="TI2373"></A><p>In PowerBuilder, there are two ways to display graphs:<A NAME="TI2374"></A>
+<ul>
+<li class=fi>In a DataWindow, using data retrieved from the DataWindow
+data source</li>
+<li class=ds>In a graph control in a window or user object, using
+data supplied by your application code
+</li>
+</ul>
+</p>
+<A NAME="TI2375"></A><p>This chapter discusses the graph control and describes how
+your application code can supply data for the graph and manipulate
+its appearance.</p>
+<A NAME="TI2376"></A><p>For information about graphs in DataWindows, see the <i>DataWindow Programmer's
+Guide</i>
+ and the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI2377"></A><p>To learn about designing graphs and setting
+graph properties in the painters, see the <i>PowerBuilder User's
+Guide</i>
+.</p>
+<A NAME="X-REF377543596"></A><h2>Working with graph controls in code</h2>
+<A NAME="TI2378"></A><p>Graph controls in a window can be enabled or disabled, visible
+or invisible, and can be used in drag and drop. You can also write
+code that uses events of graph controls and additional graph functions.</p>
+<A NAME="TI2379"></A><h4>Properties of graph controls</h4>
+<A NAME="TI2380"></A><p>You can access (and optionally modify) a graph by addressing
+its properties in code at runtime. There are two kinds of graph
+properties:<A NAME="TI2381"></A>
+<ul>
+<li class=fi><b>Properties
+of the graph definition itself</b>   These properties are initially set in the painter when you
+create a graph. They include a graph's type, title, axis
+labels, whether axes have major divisions, and so on.</li>
+<li class=ds><b>Properties of the data</b>   These properties are relevant only at runtime, when data has
+been loaded into the graph. They include the number of series in
+a graph (series are created at runtime), colors of bars or columns for
+a series, whether the series is an overlay, text that identifies
+the categories (categories are created at runtime), and so on.
+</li>
+</ul>
+</p>
+<A NAME="TI2382"></A><h4>Events of graph controls</h4>
+<A NAME="TI2383"></A><p>Graph controls have the events listed in <A HREF="apptechp85.htm#CEGJFJGC">Table 15-1</A>.</p>
+<A NAME="CEGJFJGC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 15-1: Graph control events</caption>
+<tr><td  rowspan="1"  ><A NAME="TI2384"></A>Clicked</td>
+<td  rowspan="1"  ><A NAME="TI2385"></A>DragLeave</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2386"></A>Constructor</td>
+<td  rowspan="1"  ><A NAME="TI2387"></A>DragWithin</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2388"></A>Destructor</td>
+<td  rowspan="1"  ><A NAME="TI2389"></A>GetFocus</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2390"></A>DoubleClicked</td>
+<td  rowspan="1"  ><A NAME="TI2391"></A>LoseFocus</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2392"></A>DragDrop</td>
+<td  rowspan="1"  ><A NAME="TI2393"></A>Other</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2394"></A>DragEnter</td>
+<td  rowspan="1"  ><A NAME="TI2395"></A>RButtonDown</td>
+</tr>
+</table>
+<A NAME="TI2396"></A><p>So, for example, you can write a script that is invoked when
+a user clicks a graph or drags an object on a graph (as long as
+the graph is enabled).</p>
+<A NAME="TI2397"></A><h4>Functions for graph controls</h4>
+<A NAME="TI2398"></A><p>You use the PowerScript graph functions in <A HREF="apptechp85.htm#CEGBFCJB">Table 15-2</A> to manipulate data
+in a graph.</p>
+<A NAME="CEGBFCJB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 15-2: PowerScript graph functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2399"></A>Function</th>
+<th  rowspan="1"  ><A NAME="TI2400"></A>Action</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2401"></A><b>AddCategory</b></td>
+<td  rowspan="1"  ><A NAME="TI2402"></A>Adds a category</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2403"></A><b>AddData</b></td>
+<td  rowspan="1"  ><A NAME="TI2404"></A>Adds a data point</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2405"></A><b>AddSeries</b></td>
+<td  rowspan="1"  ><A NAME="TI2406"></A>Adds a series</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2407"></A><b>DeleteCategory</b></td>
+<td  rowspan="1"  ><A NAME="TI2408"></A>Deletes a category</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2409"></A><b>DeleteData</b></td>
+<td  rowspan="1"  ><A NAME="TI2410"></A>Deletes a data point</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2411"></A><b>DeleteSeries</b></td>
+<td  rowspan="1"  ><A NAME="TI2412"></A>Deletes a series</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2413"></A><b>ImportClipboard</b></td>
+<td  rowspan="1"  ><A NAME="TI2414"></A>Copies data from the clipboard to a graph</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2415"></A><b>ImportFile</b></td>
+<td  rowspan="1"  ><A NAME="TI2416"></A>Copies the data in a text file to a graph</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2417"></A><b>ImportString</b></td>
+<td  rowspan="1"  ><A NAME="TI2418"></A>Copies the contents of a string to a
+graph</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2419"></A><b>InsertCategory</b></td>
+<td  rowspan="1"  ><A NAME="TI2420"></A>Inserts a category before another category</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2421"></A><b>InsertData</b></td>
+<td  rowspan="1"  ><A NAME="TI2422"></A>Inserts a data point before another data
+point in a series</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2423"></A><b>InsertSeries</b></td>
+<td  rowspan="1"  ><A NAME="TI2424"></A>Inserts a series before another series</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2425"></A><b>ModifyData</b></td>
+<td  rowspan="1"  ><A NAME="TI2426"></A>Changes the value of a data point</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2427"></A><b>Reset</b></td>
+<td  rowspan="1"  ><A NAME="TI2428"></A>Resets the graph's data</td>
+</tr>
+</table>
+

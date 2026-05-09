@@ -1,0 +1,87 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+PowerBuilder Runtime Packager</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp270.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp272.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BAJDBEAB"></A><h1>PowerBuilder Runtime Packager</h1>
+<A NAME="TI8057"></A><p>The PowerBuilder Runtime
+Packager is a tool that packages the PowerBuilder files an application
+needs at runtime into a Microsoft Windows Installer (MSI) package
+file. Windows Installer is an installation and configuration service
+that is installed with more recent Microsoft Windows operating systems.</p>
+<A NAME="TI8058"></A><p>You must have Microsoft Windows Installer on your system in
+order to run the RuntimePackager successfully. Microsoft provides
+a redistributable package for installation and upgrade on Windows
+2000. The Installer is always available
+on Windows XP and Windows 2003.</p>
+<A NAME="TI8059"></A><p>To get more information and to obtain the latest version of
+Windows Installer, see the <A HREF="http://msdn.microsoft.com">Microsoft documentation</A>
+.</p>
+<A NAME="TI8060"></A><p>The Runtime Packager is intended for use with client applications
+installed on Windows systems. It does not package the files required
+if your application uses the DataWindow Web control for ActiveX
+or a plug-in, and it does not install most third-party components.
+See <A HREF="apptechp272.htm#CHDIJCFC">"Third-party components and
+deployment"</A> for
+more information. Make sure that you read the sections referenced
+in <A HREF="apptechp270.htm#BAJBIECB">Table 41-2</A> that
+apply to your application before using the Runtime Packager.</p>
+<A NAME="TI8061"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use the PowerBuilder Runtime Packager:</p>
+<ol><li class=fi><p>Select Programs&gt;Sybase&gt;PowerBuilder
+10.5&gt;PowerBuilder Runtime Packager from the Windows Start
+menu or launch the <b>pbpack105</b> executable file
+in your <i>Shared\PowerBuilder</i> directory. </p><br><img src="images/pbpack01.gif"><br>
+</li>
+<li class=ds><p>Select a location for the generated MSI file.</p></li>
+<li class=ds><p>Select the database interfaces your application
+requires.</p><p>The DLLs for the database interfaces you select are added
+to the package. For ODBC, the <i>pbodb105.ini</i> file
+is also added. For JDBC, the <i>pbjdbc12105.jar</i> and <i>pbjvm105.dll </i>files
+are also added. The Java Runtime Environment (JRE) is not added.
+For more information, see <A HREF="apptechp274.htm#BGBCJHAF">"JDBC database interface"</A>.</p><p>Other ODBC or OLE DB files your application may require, such
+as DataDirect drivers, are not added. For information about deploying
+these files, see <A HREF="apptechp274.htm#BGBCBACD">"ODBC database drivers and
+supporting files"</A> and <A HREF="apptechp274.htm#BGBCFFEH">"OLE DB database providers"</A>. </p></li>
+<li class=ds><p>If your application uses DataWindow XML export
+or import or XML Web DataWindows, check the XML support check box.</p><p>The Runtime Packager adds <i>PBXerces105.DLL</i>, <i>xerces-c_2_6.dll</i>,
+and <i>xerces-depdom_2_6.dll</i> to
+the package</p></li>
+<li class=ds><p>If your application uses the XML services provided
+by the PowerBuilder Document Object Model, if it is an EJB or SOAP
+Web services client, or if it uses a rich text control or DataWindow,
+select the appropriate check boxes.</p><p>The Runtime Packager adds the DLLs, PBXs, and JAR files required
+to the package. The Runtime Packager adds required files for both
+the EasySoap and .NET Web service engines when you select the SOAP Client
+for Web Service check box. For more information about required files
+for these services, see <A HREF="apptechp276.htm#BAJHJBBB">"PowerBuilder extensions"</A>.</p></li>
+<li class=ds><p>Click Create.</p><p>The Runtime Packager creates an MSI file that includes the
+files required by the components you selected, as well as the following
+PowerBuilder runtime DLLs:<A NAME="TI8062"></A>
+<ul>
+<li class=fi><i>libjcc.dll</i></li>
+<li class=ds><i>libjutils.dll</i></li>
+<li class=ds><i>pbacc105.dll</i></li>
+<li class=ds><i>pbdwe105.dll</i></li>
+<li class=ds><i>pbdwr105.dll</i></li>
+<li class=ds><i>pbdwr105.pbd</i></li>
+<li class=ds><i>pbjag105.dll</i></li>
+<li class=ds><i>pbjvm105.dll</i></li>
+<li class=ds><i>pbshr105.dll</i></li>
+<li class=ds><i>pbtra105.dll</i></li>
+<li class=ds><i>pbvm105.dll</i>
+</li>
+</ul>
+</p><p>The MSI file is a compressed file that can be executed directly
+on any Windows platform. It registers any self-registering DLLs,
+adds the installation destination path to the Windows Registry,
+sets the system PATH environment variable, and adds information
+to the Registry for the Install/Uninstall page in the Windows
+Control Panel. It can also be used in some third-party installation
+software packages.</p></li></ol>
+<br>

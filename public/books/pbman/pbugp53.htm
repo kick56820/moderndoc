@@ -1,0 +1,70 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Searching targets, libraries, and objects</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp52.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp54.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDCJEGF"></A><h1>Searching targets, libraries, and objects</h1>
+<A NAME="CHDEAJFJ"></A><h4>Global search of targets</h4>
+<A NAME="TI1672"></A><p>You can search a target to locate where a specified text string
+is used. For example, you could search for:</p>
+<A NAME="TI1673"></A><p><A NAME="TI1674"></A>
+<ul>
+<li class=fi>All scripts that use
+the <b>SetTransObject</b> function</li>
+<li class=ds>All windows that contain the CommandButton <b>cb_exit</b> (all
+controls contained in a window are listed in the window definition's
+source form in the library so they can be searched for as text)</li>
+<li class=ds>All DataWindow objects accessing the <b>Employee</b> table
+in the database
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Working with targets</span> <A NAME="TI1675"></A>To see the pop-up menu that lets you perform operations on
+a target, such as search, build, and migrate, you must set the root
+of the System Tree or the view in the Library painter to the current
+workspace.</p>
+<A NAME="TI1676"></A><h4>Searching selected libraries and objects</h4>
+<A NAME="TI1677"></A><p>You can also select a library or one or more PowerBuilder
+objects to search. The following procedure applies whatever the
+scope of your search is.</p>
+<A NAME="TI1678"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To search a target, library, or object for a text
+string:</p>
+<ol><li class=fi><p>Select the target, library, or objects
+you want to search. </p><p>You can select multiple objects in the List view using Shift+Click
+and Ctrl+Click.</p></li>
+<li class=ds><p>Select Search from the pop-up menu or the PainterBar.</p><p>The Search Library Entries dialog box displays. </p><br><img src="images/lib08.gif"><br>
+</li>
+<li class=ds><p>Enter the string you want to locate (the search
+string) in the Search For box. </p><p>The string can be all or part of a word or phrase used in
+a property, script, or variable. You cannot use wildcards in the
+search string.</p></li>
+<li class=ds><p>In the Display group box, select the information
+you want to display in the results of the search.</p></li>
+<li class=ds><p>In the Search In group box, select the parts of
+the object that you want PowerBuilder to inspect: properties, scripts,
+and/or variables.</p></li>
+<li class=ds><p>Click OK.</p><p>PowerBuilder searches the libraries for matching entries.
+When the search is complete, PowerBuilder displays the matching
+entries in the Output window.</p></li></ol>
+<br><A NAME="TI1679"></A><p>For example, the following screen displays the results of
+a search for the string <FONT FACE="Courier New">garbagecollect</FONT>:</p>
+<br><img src="images/lib09.gif">
+<A NAME="TI1680"></A><p>From the Output window, you can:</p>
+<A NAME="TI1681"></A><p><A NAME="TI1682"></A>
+<ul>
+<li class=fi>Jump to the painter
+in which an entry was created<br>
+To do this, double-click the entry or select it and then select
+Edit from the pop-up menu.<br></li>
+<li class=ds>Print the contents of the window</li>
+<li class=ds>Copy the search results to a text file
+</li>
+</ul>
+</p>
+

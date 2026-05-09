@@ -1,0 +1,78 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating Help files</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp60.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp62.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF364587793"></A><h1>Creating Help files</h1>
+<A NAME="TI1451"></A><h4>About Help authoring tools</h4>
+<A NAME="TI1452"></A><p>There are many authoring tools and related products available
+for creating online Help files on Windows. All of the authoring
+tools for <i>RTF</i>-based Help files use the Microsoft
+Help compiler to compile a set of source files into a finished Help
+file.</p>
+<A NAME="TI1453"></A><h4>What to include</h4>
+<A NAME="TI1454"></A><p>The source files for any Help system typically include: <A NAME="TI1455"></A>
+<ul>
+<li class=fi><i>Topic files</i> (<i>RTF</i>),
+which contain the text of your Help system as well as footnote codes
+and commands that serve to identify the topics and provide navigation
+and other features</li>
+<li class=ds><i>Graphics files</i>, typically bitmaps
+(<i>BMP</i>), which are associated with specific topics</li>
+<li class=ds><i>A project file</i> (<i>HPJ</i>),
+which does not become part of the finished Help system but contains
+instructions for the compiler, some of which can affect the appearance
+and functionality of the Help windows you specify</li>
+<li class=ds><i>A contents file</i> (<i>CNT</i>),
+which is not compiled into the finished Help file but is deployed
+along with the Help file as part of the overall Help system<br>
+The contents file provides the entries that populate the Contents
+tab of the Help Topics dialog box and other information that can
+affect the overall behavior of the Help system.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI1456"></A><h4>How to proceed</h4>
+<A NAME="TI1457"></A><p>If you are using one of the full-featured Help authoring tools,
+you can follow its instructions for creating the necessary source
+files and compiling them.</p>
+<A NAME="TI1458"></A><p>If you are using the Microsoft Help Workshop that comes with
+the Microsoft SDK, you can use the tool to create your project file
+and contents file and to compile the finished Help file. However,
+you will need to author your Help topics directly in Microsoft Word.
+The online Help for the Microsoft Help Workshop provides much information
+on Help authoring, including instructions on how to use the various
+footnote codes recognized by the Help compiler, the WinHelp macros,
+and the WinHelp API.</p>
+<A NAME="TI1459"></A><h4>Sample project file</h4>
+<A NAME="TI1460"></A><p>For your convenience,
+the text of a sample project file is provided in one of the topics
+of the <i>PBUSR105.HLP</i> file that is installed
+with PowerBuilder. To access it:</p>
+<A NAME="TI1461"></A><p><A NAME="TI1462"></A>
+<ol>
+</li>
+<li class=ds>Open PowerBuilder Help
+and click the User button.</li>
+<li class=ds>Navigate to the Sample Help Project File topic from
+the Contents tab in the Help Topics dialog box, under User-defined
+Help.</li>
+<li class=ds>Copy the Help topic to the Windows clipboard.</li>
+<li class=ds>Open a text editor such as Notepad and paste the
+clipboard text into a blank document.</li>
+<li class=ds>Save the document in text format as <i>PBUSR105.HPJ</i>.
+</li>
+</ol>
+</p>
+<A NAME="TI1463"></A><p>You need to edit your project file to reflect the details
+of your Help development environment, such as source file names
+and directory path names. You can do this in a text editor, or open
+the project file in Help Workshop or another Help authoring tool
+and edit it there. </p>
+

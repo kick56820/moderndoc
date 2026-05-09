@@ -1,0 +1,67 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Distributing resources </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp266.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp268.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF302356230"></A><h1>Distributing resources </h1>
+<A NAME="TI9910"></A><p>You can choose to distribute your resources (pictures, pointers,
+and icons) separately or include them in your executable file or
+dynamic library.</p>
+<A NAME="TI9911"></A><h2>Distributing resources separately</h2>
+<A NAME="TI9912"></A><p>When a resource is referenced at runtime, if the resource
+has not been included in the executable file or in a dynamic library,
+PowerBuilder looks for it in the search path. You need to distribute
+resources with your application and make sure they get installed
+in the user's search path.</p>
+<A NAME="TI9913"></A><p>For example, assume you use two bitmap files as in the following
+script:<p><PRE> IF Balance &lt; 0 THEN<br>   p_logo.PictureName = "frown.bmp"<br>ELSE<br>   p_logo.PictureName = "smile.bmp"<br>END IF</PRE></p>
+<A NAME="TI9914"></A><p>You can distribute the files<i> frown.bmp</i> and <i>smile.bmp</i> with
+your application. If the files are on the search path at runtime,
+the application can load them when they are needed.</p>
+<A NAME="TI9915"></A><p>The Windows search path is as follows:<A NAME="TI9916"></A>
+<ol>
+</li>
+<li class=ds>The current directory</li>
+<li class=ds>The Windows directory</li>
+<li class=ds>The Windows system directory</li>
+<li class=ds>All directories in the PATH environment variable
+</li>
+</ol>
+</p>
+<A NAME="X-REF364141074"></A><h2>Using PowerBuilder resource files</h2>
+<A NAME="TI9917"></A><p>Instead of distributing resources separately, you can create
+a PowerBuilder resource file (a PBR file) that lists all dynamically
+assigned resources.</p>
+<A NAME="TI9918"></A><p>A PBR file is an ASCII text file in which you list resource
+names (such as BMP, CUR, GIF, ICO, JPEG, RLE, and WMF files) and
+DataWindow objects. To create a PBR file, use a text editor. List
+the name of each resource, one resource on each line, then save
+the list as a file with the extension PBR. </p>
+<A NAME="TI9919"></A><p>Here is a sample PBR file:<p><PRE> ct_graph.ico<br>document.ico<br>codes.ico<br>button.bmp<br>next1.bmp<br>prior1.bmp</PRE></p>
+<A NAME="TI9920"></A><p>PowerBuilder compiles the listed resources into the executable
+file or a dynamic library file, so the resources are available directly
+at runtime.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using DataWindow objects</span> <A NAME="TI9921"></A>If the objects in one <ACRONYM title = "pibble" >PBL</ACRONYM> reference
+DataWindow objects, either statically or dynamically, that are in
+a different <ACRONYM title = "pibble" >PBL</ACRONYM>, you must either
+specify a PowerBuilder resource file that includes the DataWindow
+objects, or define the library that includes them as a PBD or DLL
+that you distribute with your application. You cannot distribute
+them separately as you can image files. </p>
+<A NAME="TI9922"></A><p>For more information about creating and using PBR files, see
+the chapter on packaging your application for deployment in <i>Application
+Techniques</i>
+.</p>
+<A NAME="TI9923"></A><h2>What happens at runtime</h2>
+<A NAME="TI9924"></A><p>When a resource such as a bitmap is referenced at runtime,
+PowerBuilder first looks in the executable file for it. Failing
+that, it looks in the PBDs that are defined for the application.
+Failing that, it looks in directories in the search path for the
+file.</p>
+

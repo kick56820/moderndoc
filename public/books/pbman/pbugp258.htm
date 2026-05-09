@@ -1,0 +1,247 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Collecting trace information</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp257.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp259.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAIDAABJ"></A><h1>Collecting trace information</h1>
+<A NAME="TI9475"></A><p>There are three ways to collect trace information. You can
+use:<A NAME="TI9476"></A>
+<ul>
+<li class=fi>The Profiling tab on the System Options dialog box</li>
+<li class=ds>A window similar to the Profiling tab</li>
+<li class=ds>Trace objects and functions
+</li>
+</ul>
+</p>
+<A NAME="TI9477"></A><p>Use the Profiling tab if you want to trace an entire application
+run in the development environment. For more information, see <A HREF="pbugp258.htm#CAIBGHHG">"Tracing an entire application
+in PowerBuilder"</A>.</p>
+<A NAME="TI9478"></A><p>Use a window or trace objects and functions if you want to
+create a trace file for selected parts of the application or the
+entire application, either in the development environment or when
+running an executable file. See <A HREF="pbugp258.htm#CAICECAB">"Using a window"</A> and <A HREF="pbugp258.htm#CAIEBBAC">"Collecting trace information
+using PowerScript functions"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Collection time</span> <A NAME="TI9479"></A>The timer values in the trace file exclude the time taken
+to collect the trace data. Because an application can be idle (while
+displaying a MessageBox, for example), percentage metrics are most
+meaningful when you control tracing programmatically, which can
+help minimize idle time. Percentages are less meaningful when you
+create a trace file for a complete application.</p>
+<A NAME="TI9480"></A><p>Whichever method you use, you can specify:</p>
+<A NAME="TI9481"></A><p><A NAME="TI9482"></A>
+<ul>
+<li class=fi>The name and location
+of the trace file and optional labels for blocks of trace data</li>
+<li class=ds>The kind of timer used in the trace file</li>
+<li class=ds>The activities you want recorded in the trace file
+</li>
+</ul>
+</p>
+<A NAME="TI9483"></A><h4>Trace file names and labels</h4>
+<A NAME="TI9484"></A><p>The default name of the trace file is the name of the application
+with the extension <i>PBP</i>. The trace file is saved
+in the directory where the <ACRONYM title = "pibble" >PBL</ACRONYM> or executable
+file resides and overwrites any existing file of the same name.
+If you run several different tests on the same application, you
+should change the trace file name for each test.</p>
+<A NAME="TI9485"></A><p>You can also associate a label with the trace data. If you
+are tracing several different parts of an application in a single
+test run, you can associate a different label with the trace data
+(the trace block) for each part of the application.</p>
+<A NAME="TI9486"></A><h4>Timer kinds</h4>
+<A NAME="TI9487"></A><p>There are three kinds of timer: clock, process, and thread.
+If your analysis does not require timing information, you can omit
+timing information from the trace file to improve performance.</p>
+<A NAME="TI9488"></A><p>If you do not specify a timer kind, the time at which each
+activity begins and ends is recorded using the clock timer, which
+measures an absolute time with reference to an external activity,
+such as the machine's start-up time. The clock timer measures
+time in microseconds. Depending on the speed of your machine's
+central processing unit, the clock timer can offer a resolution
+of less than one microsecond. A timer's resolution is the
+smallest unit of time the timer can measure.</p>
+<A NAME="TI9489"></A><p>You can also use process or thread timers, which measure time
+in microseconds with reference to when the process or thread being
+executed started. You should always use the thread timer for distributed
+applications. Both process and thread timers exclude the time taken
+by any other running processes or threads so that they give you
+a more accurate measurement of how long the process or thread is
+taking to execute, but both have a lower resolution than the clock
+timer.</p>
+<A NAME="CAIBEACA"></A><h4>Trace activities</h4>
+<A NAME="TI9490"></A><p>You can choose to record in the trace file the time at which
+any of the following activities occurs. If you are using the System
+Options dialog box or a window, you select the check boxes for the
+activities you want. If you are using PowerScript functions to collect
+trace information, you use the <b>TraceActivity</b> enumerated
+type to identify the activity.</p>
+<A NAME="TI9491"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-1: Trace activities</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9492"></A>Trace Activities check
+box</th>
+<th  rowspan="1"  ><A NAME="TI9493"></A>What is recorded</th>
+<th  rowspan="1"  ><A NAME="TI9494"></A>TraceActivity value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9495"></A>Routine Entry/Exit</td>
+<td  rowspan="1"  ><A NAME="TI9496"></A>Routine entry or exit</td>
+<td  rowspan="1"  ><A NAME="TI9497"></A>ActRoutine!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9498"></A>Routine Line Hits</td>
+<td  rowspan="1"  ><A NAME="TI9499"></A>Execution of any line in any routine</td>
+<td  rowspan="1"  ><A NAME="TI9500"></A>ActLine!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9501"></A>Embedded <ACRONYM title = "sequel" >SQL</ACRONYM></td>
+<td  rowspan="1"  ><A NAME="TI9502"></A>Use of an embedded <ACRONYM title = "sequel" >SQL</ACRONYM> verb</td>
+<td  rowspan="1"  ><A NAME="TI9503"></A><ACRONYM title = "act e sequel !" >ActESQL!</ACRONYM></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9504"></A>Object Creation/<br>Destruction</td>
+<td  rowspan="1"  ><A NAME="TI9505"></A>Object creation or destruction</td>
+<td  rowspan="1"  ><A NAME="TI9506"></A>ActObjectCreate!, ActObjectDestroy!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9507"></A>User Defined Activities</td>
+<td  rowspan="1"  ><A NAME="TI9508"></A>A user-defined activity that records
+an informational message</td>
+<td  rowspan="1"  ><A NAME="TI9509"></A>ActUser!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9510"></A>System Errors</td>
+<td  rowspan="1"  ><A NAME="TI9511"></A>A system error or warning</td>
+<td  rowspan="1"  ><A NAME="TI9512"></A>ActError!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9513"></A>Garbage Collection</td>
+<td  rowspan="1"  ><A NAME="TI9514"></A>Garbage collection</td>
+<td  rowspan="1"  ><A NAME="TI9515"></A>ActGarbageCollect!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9516"></A>Not available</td>
+<td  rowspan="1"  ><A NAME="TI9517"></A>Routine entry and exit, embedded <ACRONYM title = "sequel" >SQL</ACRONYM> verbs, object creation and destruction, and
+garbage collection</td>
+<td  rowspan="1"  ><A NAME="TI9518"></A>ActProfile!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9519"></A>Not available</td>
+<td  rowspan="1"  ><A NAME="TI9520"></A>All except ActLine!</td>
+<td  rowspan="1"  ><A NAME="TI9521"></A>ActTrace!</td>
+</tr>
+</table>
+<A NAME="TI9522"></A><p>When you begin and end tracing, an activity of type ActBegin!
+is automatically recorded in the trace file. User-defined activities,
+which you use to log informational messages to the trace file, are
+the only trace activities enabled by default.</p>
+<A NAME="CAIBGHHG"></A><h2>Tracing an entire application in PowerBuilder</h2>
+<A NAME="TI9523"></A><p>Use the Profiling tab on the System Options dialog box if
+you want to collect trace data for an entire application run in
+the PowerBuilder development environment.</p>
+<A NAME="TI9524"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To trace an entire application in PowerBuilder:</p>
+<ol><li class=fi><p>Select Tools&gt;System Options from
+the PowerBar and select the Profiling tab.</p></li>
+<li class=ds><p>Specify a name for the trace file, select the
+trace options you want, and click OK.</p><p>When you run the application, the activities you selected
+are logged in the trace file.</p></li></ol>
+<br><A NAME="CAICECAB"></A><h2>Using a window</h2>
+<A NAME="TI9525"></A><p>You can create a window that is similar to the Profiling tab
+on the System Options dialog box and add it to any application that
+is under development, so that you can start and stop tracing when
+testing specific actions. </p>
+<A NAME="TI9526"></A><p>The <i>w_start_trace</i> window
+is available in the PowerBuilder Profiler sample in the General
+section of the <A HREF="http://powerbuilder.codexchange.sybase.com">PowerBuilder Samples and Utilities page</A>
+. This sample
+also shows the code used to create the profiling tools described
+in <A HREF="pbugp259.htm#BABGFCCJ">"Analyzing trace information
+using profiling tools"</A>.</p>
+<A NAME="TI9527"></A><p>The <i>w_start_trace</i> window
+lets you specify a trace file name, label, and timer kind, as well
+as which activities you want to trace:</p>
+<br><img src="images/trace02.gif">
+<A NAME="TI9528"></A><p>The following instance variables are defined for the window:<p><PRE> TimerKind itk_kind<br>string is_title = 'Trace Options '<br>string is_starttext</PRE></p>
+<A NAME="TI9529"></A><p>The open event for the window sets some defaults:<p><PRE> application lapp_current<br>lapp_current = getapplication()<br>itk_kind = Clock!<br>is_starttext = cb_startstop.text<br>sle_filename.text = classname(lapp_current)+'.pbp'</PRE></p>
+<A NAME="TI9530"></A><p>The following code shows the script for the Clicked event
+of the Start Trace button. The text for the button is set to Start
+Trace in the painter. When the user clicks Start Trace, the button
+label changes to Stop Trace. The Clicked event script checks the
+text on the button before either starting or stopping tracing. This
+script uses the functions described in <A HREF="pbugp258.htm#CAIEBBAC">"Collecting trace information
+using PowerScript functions"</A>:<p><PRE> // instance variables:<br>// errorreturn le_errorreturn<br>integer li_key<br> <br>// Check that the button label is Start Trace<br>// and a trace file name has been entered<br>if this.text = is_starttext then<br> <br>   if len(trim(sle_filename.text)) = 0 then<br>       messagebox(parent.title, &amp;<br>         'Trace file name is required',information!)<br>       sle_filename.setfocus()<br>       return<br>   end if<br> <br>   // If Prompt for overwrite is checked and the<br>   // file exists, pop up a response window<br>   if cbx_prompt.checked and &amp;<br>      fileexists(sle_filename.text) then<br>      li_key = messagebox(parent.title, &amp;<br>         'OK to overwrite '+sle_filename.text, &amp;<br>         question!,okcancel!,1)<br>      if li_key = 2 then return<br>   end if<br>      <br>   // Open the trace file<br>   TraceOpen( sle_filename.text, itk_kind )<br>   <br>   // Enable tracing for checked activities<br>   // For each activity, check for errors and close<br>   // the trace file if an error occurs<br>   if cbx_embeddedsql.checked then <br>      le_errorreturn = TraceEnableActivity( ActESql! )<br>      if le_errorreturn &lt;&gt; Success! then<br>         of_errmsg(le_errorreturn, &amp;<br>            'TraceEnableActivity( ActESql! )')<br>          le_errorreturn = Traceclose()<br>         if le_errorreturn &lt;&gt; Success! then<br>            of_errmsg(le_errorreturn,'TraceClose')<br>         end if<br>         return<br>      end if<br>   end if<br> <br>   if cbx_routineentry.checked then <br>      le_errorreturn =TraceEnableActivity(ActRoutine!)<br>      if le_errorreturn &lt;&gt; Success! then<br>         of_errmsg(le_errorreturn, &amp;<br>            'TraceEnableActivity( ActRoutine! )')<br>         Traceclose()<br>         if le_errorreturn &lt;&gt; Success! then<br>            of_errmsg(le_errorreturn,'TraceClose')<br>         end if<br>         return<br>      end if<br>   end if<br> <br>   if cbx_userdefined.checked then <br>      le_errorreturn = TraceEnableActivity( ActUser! )<br>      if le_errorreturn &lt;&gt; Success! then<br>         of_errmsg(le_errorreturn, &amp;<br>            'TraceEnableActivity( ActUser! )')<br>         Traceclose()<br>         if le_errorreturn &lt;&gt; Success! then<br>            of_errmsg(le_errorreturn,'TraceClose')<br>         end if<br>         return<br>      end if<br>   end if<br> <br>   if cbx_systemerrors.checked then <br>      le_errorreturn = TraceEnableActivity(ActError! )<br>      if le_errorreturn &lt;&gt; Success! then<br>         of_errmsg(le_errorreturn, &amp;<br>            'TraceEnableActivity( ActError! )')<br>         Traceclose()<br>         if le_errorreturn &lt;&gt; Success! then<br>            of_errmsg(le_errorreturn,'TraceClose')<br>         end if<br>         return<br>      end if<br>   end if<br> <br>   if cbx_routineline.checked then <br>      le_errorreturn = TraceEnableActivity( ActLine! )<br>      if le_errorreturn &lt;&gt; Success! then<br>         of_errmsg(le_errorreturn, &amp;<br>            ' TraceEnableActivity( ActLine! )')<br>         Traceclose()<br>         if le_errorreturn &lt;&gt; Success! then<br>            of_errmsg(le_errorreturn,'TraceClose')<br>         end if<br>         return<br>      end if<br>   end if<br>   if cbx_objectcreate.checked then <br>      le_errorreturn = &amp;<br>         TraceEnableActivity( ActObjectCreate! )<br>      if le_errorreturn &lt;&gt; Success! then<br>         of_errmsg(le_errorreturn, &amp;<br>            'TraceEnableActivity( ActObject! )')<br>         Traceclose()<br>         if le_errorreturn &lt;&gt; Success! then<br>            of_errmsg(le_errorreturn,'TraceClose')<br>         end if<br>         return<br>      end if<br>      le_errorreturn = &amp;<br>         TraceEnableActivity( ActObjectDestroy! )<br>      if le_errorreturn &lt;&gt; Success! then<br>         of_errmsg(le_errorreturn, &amp;<br>           'TraceEnableActivity(ActObjectDestroy!)')<br>         Traceclose()<br>         if le_errorreturn &lt;&gt; Success! then<br>            of_errmsg(le_errorreturn,'TraceClose')<br>         end if<br>         return<br>      end if<br>   end if<br> <br>   if cbx_garbagecoll.checked then <br>      le_errorreturn = &amp;<br>         TraceEnableActivity( ActGarbageCollect! )<br>      if le_errorreturn &lt;&gt; Success! then<br>         of_errmsg(le_errorreturn, &amp;<br>          'TraceEnableActivity(ActGarbageCollect! )')<br>         Traceclose()<br>         if le_errorreturn &lt;&gt; Success! then<br>            of_errmsg(le_errorreturn,'TraceClose')<br>         end if<br>         return<br>      end if<br>   end if<br> <br>   // Start tracing<br>   le_errorreturn =TraceBegin( sle_tracelabel.text )<br>   if le_errorreturn &lt;&gt; Success! then<br>      of_errmsg(le_errorreturn,'TraceBegin')<br>      return<br>   end if<br>   <br>   // Change the title of the window and the <br>   // text of the Start Trace button<br>   parent.title = is_title + '(Tracing)'<br>   this.text = 'Stop &amp;Tracing'<br> <br>// If the button label is Stop Trace, stop tracing<br>// and close the trace file<br>else<br>   le_errorreturn =TraceEnd()<br>   if le_errorreturn &lt;&gt; Success! then<br>      of_errmsg(le_errorreturn,'TraceEnd')<br>      return<br>   end if<br> <br>   le_errorreturn =TraceClose()<br>   if le_errorreturn &lt;&gt; Success! then<br>      of_errmsg(le_errorreturn,'TraceClose')<br>   end if<br>   this.text = is_starttext<br>   parent.title = is_title <br>end if</PRE></p>
+<A NAME="TI9531"></A><h4>of_errmsg function</h4>
+<A NAME="TI9532"></A><p>The window uses two functions to handle error messages. The <b>of_errmsg</b> function
+displays a message box:<p><PRE> // of_errmsg<br>Messagebox( this.title,'Error executing '+ as_msg + &amp;<br>   '. Error code : '+ of_converterror(ae_error) ) </PRE></p>
+<A NAME="TI9533"></A><h4>of_converterror function</h4>
+<A NAME="TI9534"></A><p>The <b>of_converterror</b> function converts
+the ErrorReturn parameter to a string:<p><PRE> // of_converterror: convert enumerated type <br>// ErrorReturn parameter to text.<br>String ls_result<br>choose case a_error<br>   Case Success!<br>      ls_result =  "Success!"<br>   Case FileCloseError!<br>      ls_result =  "FileCloseError!"<br>   Case FileOpenError!<br>      ls_result =  "FileOpenError!"<br>   Case FileReadError!<br>      ls_result =  "FileReadError!"<br>   Case FileWriteError!<br>      ls_result =  "FileWriteError!"<br>   Case FileNotOpenError!<br>      ls_result =  "FileNotOpenError!"<br>   Case FileAlreadyOpenError!<br>      ls_result =  "FileAlreadyOpenError!"<br>   Case FileInvalidFormatError!<br>      ls_result =  "FileInvalidFormatError!"<br>   Case FileNotSetError!<br>      ls_result =  "FileNotSetError!"<br>   Case EventNotExistError!<br>      ls_result =  "EventNotExistError!"<br>   Case EventWrongPrototypeError!<br>      ls_result =  "EventWrongPrototypeError!"<br>   Case ModelNotExistsError!<br>      ls_result =  "ModelNotExistsError!"<br>   Case ModelExistsError!<br>      ls_result =  "ModelExistsError!"<br>   Case TraceStartedError!<br>      ls_result =  "TraceStartedError!"<br>   Case TraceNotStartedError!<br>      ls_result =  "TraceNotStartedError!"<br>   Case TraceNoMoreNodes!<br>      ls_result =  "TraceNoMoreNodes!"<br>   Case TraceGeneralError!<br>      ls_result =  "TraceGeneralError!"<br>   Case FeatureNotSupportedError!<br>      ls_result =  "FeatureNotSupportedError!"<br>   Case else<br>      ls_result =  "Unknown Error Code"<br>end choose<br>return ls_result </PRE></p>
+<A NAME="CAIEBBAC"></A><h2>Collecting trace information using PowerScript functions</h2>
+<A NAME="TI9535"></A><p>You use the PowerScript system functions listed in <A HREF="pbugp258.htm#BABDFJHF">Table 33-2</A> to collect information
+in a trace file. Each of these functions returns a value of type <b>ErrorReturn</b>,
+an enumerated datatype. </p>
+<A NAME="BABDFJHF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 33-2: PowerScript trace functions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI9536"></A>Use this PowerScript function</th>
+<th  rowspan="1"  ><A NAME="TI9537"></A>To do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9538"></A><b>TraceOpen</b></td>
+<td  rowspan="1"  ><A NAME="TI9539"></A>Open a named trace file and set the timer
+kind.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9540"></A><b>TraceEnableActivity</b></td>
+<td  rowspan="1"  ><A NAME="TI9541"></A>Enable logging of the specified activity.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9542"></A><b>TraceBegin</b></td>
+<td  rowspan="1"  ><A NAME="TI9543"></A>Start logging all enabled activities.
+You can pass an optional label for the trace block.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9544"></A><b>TraceError</b></td>
+<td  rowspan="1"  ><A NAME="TI9545"></A>Log a severity level and error message
+to the trace file.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9546"></A><b>TraceUser</b></td>
+<td  rowspan="1"  ><A NAME="TI9547"></A>Log a reference number and informational
+message to the trace file.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9548"></A><b>TraceEnd</b></td>
+<td  rowspan="1"  ><A NAME="TI9549"></A>Stop logging all enabled activities.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9550"></A><b>TraceDisableActivity</b></td>
+<td  rowspan="1"  ><A NAME="TI9551"></A>Disable logging of the specified activity.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI9552"></A><b>TraceClose</b></td>
+<td  rowspan="1"  ><A NAME="TI9553"></A>Close the open trace file.</td>
+</tr>
+</table>
+<A NAME="TI9554"></A><p>In general, you call the functions in the order shown in the
+table. That is, you must call <b>TraceOpen</b> before
+you call any other trace functions. You call <b>TraceClose</b> when
+you have finished tracing.</p>
+<A NAME="TI9555"></A><p><b>TraceEnableActivity</b> and <b>TraceDisableActivity</b> can
+be called only when a trace file is open but tracing has not begun
+or has stopped&#8212;that is, before you call <b>TraceBegin</b> or
+after you call <b>TraceEnd</b>.</p>
+<A NAME="TI9556"></A><p><b>TraceUser</b> and <b>TraceError</b> can
+be called only when the trace file is open and tracing is active&#8212;that
+is, after you call <b>TraceBegin</b> and before you
+call <b>TraceEnd</b>.</p>
+<A NAME="TI9557"></A><h4>About TraceUser and TraceError</h4>
+<A NAME="TI9558"></A><p>You can use <b>TraceUser</b> to record specific
+events in the trace file, such as the beginning and end of a body
+of code. You can also record the execution of a statement you never
+expected to reach, such as the <b>DEFAULT</b> statement
+in a <b>CHOOSE CASE</b> block. <b>TraceError</b> works
+just like <b>TraceUser</b>, but you can use it to signal
+more severe problems.</p>
+<A NAME="TI9559"></A><p>Both <b>TraceUser</b> and <b>TraceError</b> take
+a number and text string as arguments. You can use a simple text
+string that states what activity occurred, or you can build a string
+that provides more diagnostic information by including some context, such
+as the current values of variables. Run the application with only
+ActUser! or ActError! tracing turned on and then use the Profiling
+Trace View to pinpoint problems quickly.</p>
+<A NAME="TI9560"></A><h4>Example: trace data collection</h4>
+<A NAME="TI9561"></A><p>In this example, the user selects a timer kind from a drop-down
+list and enters a name for the trace file in a single-line edit
+box. Typically you would use the <b>ErrorReturn</b> return
+value from every trace call to return an error message if the call
+fails. For brevity, the example shows this only for the <b>TraceOpen</b> call. </p>
+<A NAME="TI9562"></A><p>Several trace activities are disabled for a second trace block.
+The activities that are <i>not</i> specifically disabled
+remain enabled until <b>TraceClose</b> is called.<p><PRE> ErrorReturn le_err<br>integer li_key<br>TimerKind ltk_kind<br> <br>CHOOSE CASE ddlb_timerkind.Text<br>   CASE "None"<br>      ltk_kind = TimerNone!<br>   CASE "Clock"<br>      ltk_kind = Clock!<br>   CASE "Process"<br>      ltk_kind = Process!<br>   CASE "Thread"<br>      ltk_kind = Thread!<br>END CHOOSE<br> <br>// Open the trace file and return an error message<br>// if the open fails<br>le_err = <i>TraceOpen</i>( sle_fileName.Text, ltk_kind )<br>IF le_err &lt;&gt; Success! THEN &amp;<br>   of_errmsg(le_err, 'TraceOpen failed')<br>   RETURN<br>END IF<br> <br>// Enable trace activities. Enabling ActLine!<br>// enables ActRoutine! implicitly<br>TraceEnableActivity(ActESQL!)<br>TraceEnableActivity(ActUser!)<br>TraceEnableActivity(ActError!)<br>TraceEnableActivity(ActLine!)<br>TraceEnableActivity(ActObjectCreate!)<br>TraceEnableActivity(ActObjectDestroy!)<br>TraceEnableActivity(ActGarbageCollect!)<br> <br><i>TraceBegin</i>("Trace_block_1")<br>// first block of code to be traced<br>// this block has the label Trace_block_1<br>...<i><br> <br>TraceEnd</i>()<br> <br>// disable trace activities not needed for<br>// second block<br>TraceDisableActivity(ActLine! )<br>TraceDisableActivity(ActObjectCreate!)<br>TraceDisableActivity(ActObjectDestroy!)<br>TraceDisableActivity(ActGarbageCollect!)<br> <br><i>TraceBegin</i>("Trace_block_2")<br>// second block of code to be traced<br>...<i><br> <br>TraceEnd</i>()<br><i>TraceClose</i>()</PRE></p>
+

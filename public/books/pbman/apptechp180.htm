@@ -1,0 +1,37 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About building a COM or COM+ client</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp179.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp181.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABECBEI"></A><h1>About building a COM or COM+ client</h1>
+<A NAME="TI5877"></A><p>A PowerBuilder application can act as a client to a COM server.
+The server can be built using PowerBuilder or any other COM-compliant application
+development tool and it can run locally, on a remote computer as
+an in-process server, or in COM+.</p>
+<A NAME="TI5878"></A><p>You can use the Template Application start wizard to help
+you build COM and COM+ clients.</p>
+<A NAME="CHDDDFFE"></A><h4>Configuring a client computer
+to access a remote component</h4>
+<A NAME="TI5879"></A><p>When a COM component is running on a remote computer, the
+client computer needs to be able to access its methods transparently.
+To do this, the client needs a local proxy DLL for the server and
+it needs registry entries that identify the remote server. The client
+computer must be running Windows 2000 or Windows XP. </p>
+<A NAME="TI5880"></A><p>If the component is installed in COM+, the COM+ Component
+Services tool can create a Microsoft Windows Installer (MSI) file
+that installs an application proxy on the client computer.</p>
+<A NAME="TI5881"></A><p>If the server is not installed in COM+, the client
+and proxy files must be copied to the client and the server must
+be configured to run in a surrogate process. For more information,
+see <A HREF="apptechp178.htm#BABCAFDC">"Using PowerBuilder COM servers
+and objects with DCOM"</A>.
+  </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Remote server name written to registry</span> <A NAME="TI5882"></A>If the COM server is moved to a different computer, the registry
+entries on the client must be updated.</p>
+

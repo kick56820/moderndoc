@@ -1,0 +1,252 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Providing support for transactions</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp140.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp142.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJEABBG"></A><h1>Providing support for transactions</h1>
+<A NAME="TI4576"></A><h4>Benefits of <ABBR title = "e a servers" >EAServer's</ABBR> transaction
+support</h4>
+<A NAME="TI4577"></A><p><ABBR title = "e a server" >EAServer</ABBR> components that
+you develop in PowerBuilder can participate in <ABBR title = "e a server" >EAServer</ABBR> transactions. An <strong>EAServer
+transaction</strong> is a transaction whose boundaries and outcome
+are determined by <ABBR title = "e a server" >EAServer</ABBR>. You
+can mark components to indicate that they will provide transaction
+support. When a component provides transaction support, <ABBR title = "e a server" >EAServer</ABBR> ensures that the component's
+database operations execute as part of a transaction. </p>
+<A NAME="TI4578"></A><p>Multiple <ABBR title = "e a server" >EAServer</ABBR> components
+can participate in a single <ABBR title = "e a server" >EAServer</ABBR> transaction; <ABBR title = "e a server" >EAServer</ABBR> ensures that database changes
+performed by the participating components are all committed or rolled
+back. By defining components to use <ABBR title = "e a server" >EAServer</ABBR> transactions,
+you can ensure that all work performed by components that participate
+in a transaction occurs as intended.</p>
+<A NAME="TI4579"></A><h4>Indicating how the component will support transactions</h4>
+<A NAME="TI4580"></A><p>Each <ABBR title = "e a server" >EAServer</ABBR> component
+has a transaction attribute that indicates how the component participates
+in <ABBR title = "e a server" >EAServer</ABBR> transactions. When
+you develop an <ABBR title = "e a server" >EAServer</ABBR> component
+in PowerBuilder, you can specify the transaction attribute in the
+wizards. <A HREF="apptechp141.htm#CEGDHDEI">Table 24-4</A> lists
+the options.</p>
+<A NAME="CEGDHDEI"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 24-4: Transaction attribute options</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4581"></A>Transaction type</th>
+<th  rowspan="1"  ><A NAME="TI4582"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4583"></A>Not supported</td>
+<td  rowspan="1"  ><A NAME="TI4584"></A>The component never executes as part
+of a transaction. If the component is activated by another component
+that is executing within a transaction, the new instance's
+work is performed outside the existing transaction.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4585"></A>Supports Transaction</td>
+<td  rowspan="1"  ><A NAME="TI4586"></A>The component can execute in the context
+of an <ABBR title = "e a server" >EAServer</ABBR> transaction, but
+a transaction is not required to execute the component's
+methods. If the component is instantiated directly by a client, <ABBR title = "e a server" >EAServer</ABBR> does not begin a transaction. If
+component A is instantiated by component B and component B is executing
+within a transaction, component A executes in the same transaction.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4587"></A>Requires Transaction</td>
+<td  rowspan="1"  ><A NAME="TI4588"></A>The component always executes in a transaction.
+When the component is instantiated directly by a client, a new transaction
+begins. If component A is activated by component B and B is executing
+within a transaction, A executes within the same transaction; if
+B is not executing in a transaction, A executes in a new transaction.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4589"></A>Requires New Transaction</td>
+<td  rowspan="1"  ><A NAME="TI4590"></A>Whenever the component is instantiated,
+a new transaction begins. If component A is activated by component
+B, and B is executing within a transaction, then A begins a new transaction
+that is unaffected by the outcome of B's transaction; if
+B is not executing in a transaction, A executes in a new transaction.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4591"></A>Mandatory</td>
+<td  rowspan="1"  ><A NAME="TI4592"></A>Methods can be invoked only by a client
+that has an outstanding transaction. Calling this component when there
+is no outstanding transaction generates a runtime error.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4593"></A>OTS Style</td>
+<td  rowspan="1"  ><A NAME="TI4594"></A>The component can manage transactions.
+It can inherit a client's transaction. If called without
+a transaction, the component can explicitly begin, commit, and roll
+back transactions using an instance of the CORBACurrent context
+service object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4595"></A>Never</td>
+<td  rowspan="1"  ><A NAME="TI4596"></A>Methods cannot be invoked when there
+is an outstanding transaction. Calling this component when there
+is an outstanding transaction generates a runtime error.</td>
+</tr>
+</table>
+<A NAME="TI4597"></A><h4>Using the transaction service context object</h4>
+<A NAME="TI4598"></A><p>Component methods can call <ABBR title = "e a servers" >EAServer's</ABBR> transaction
+state primitives to influence whether <ABBR title = "e a server" >EAServer</ABBR> commits
+or aborts the current transaction. To give you access to <ABBR title = "e a servers" >EAServer's</ABBR> transaction
+state primitives, PowerBuilder provides a transaction service context
+object called TransactionServer. </p>
+<A NAME="TI4599"></A><p>If you plan to use
+the TransactionServer context object, you should set the UseContextObject DBParm
+parameter to Yes. </p>
+<A NAME="TI4600"></A><p>For transactional components, setting UseContextObject to
+Yes tells PowerBuilder that you will be using the methods of the
+TransactionServer object rather than <b>COMMIT</b> and <b>ROLLBACK</b> to
+indicate whether the component has completed its work for the current
+transaction. If your scripts contain <b>COMMIT</b> and <b>ROLLBACK</b> statements,
+they will generate a runtime error. Setting UseContextObject to
+No causes <b>COMMIT</b> and <b>ROLLBACK</b> statements
+to call the EAServer transaction service's <b>CommitWork</b> and <b>AbortWork</b> methods.
+You should only use this setting if you want to retain legacy code
+and you do not want to use the TransactionServer object.</p>
+<A NAME="TI4601"></A><p>For components that do not need to be in a transaction, the
+UseContextObject setting is ignored and PowerBuilder drivers handle <b>COMMIT</b> and <b>ROLLBACK</b> statements.</p>
+<A NAME="TI4602"></A><p>To use the transaction context service, declare a variable
+of type TransactionServer and call the <b>GetContextService</b> function
+to create an instance of the service. </p>
+<p><b>Example</b>   In the Activate (or Constructor) event for a component, you
+can call <b>GetContextService</b> to instantiate the
+TransactionServer service: <p><PRE> // Instance variable:<br>// TransactionServer ts<br> <br>Integer li_rc<br>li_rc = this.GetContextService("TransactionServer", &amp;<br>   ts)<br>IF li_rc &lt;&gt; 1 THEN<br>   // handle the error<br>END IF</PRE></p>
+<A NAME="TI4603"></A><p>In one of the component methods, you can then update the database
+and call <b>SetComplete</b> if the update succeeds or <b>SetAbort</b> if
+it fails: <p><PRE> //Instance variable:<br>//DataStore ids_datastore<br>long ll_rv<br>...<br>...<br>ll_rv = ids_datastore.Update()<br>IF ll_rv = 1 THEN<br>   ts.SetComplete()<br>ELSE<br>   ts.SetAbort()<br>END IF</PRE></p>
+<A NAME="TI4604"></A><p>The TransactionServer interface provides the methods in <A HREF="apptechp141.htm#CEGJGJHG">Table 24-5</A> to allow you to
+access <ABBR title = "e a servers" >EAServer's</ABBR> transaction
+primitives.</p>
+<A NAME="CEGJGJHG"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 24-5: TransactionServer methods</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4605"></A>Method</th>
+<th  rowspan="1"  ><A NAME="TI4606"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4607"></A><b>DisableCommit</b></td>
+<td  rowspan="1"  ><A NAME="TI4608"></A>Indicates that the current transaction
+cannot be committed because the component's work has not
+been completed. The instance remains active after the current method
+returns.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4609"></A><b>EnableCommit</b></td>
+<td  rowspan="1"  ><A NAME="TI4610"></A>Indicates that the component should not
+be deactivated after the current method invocation; allows the current transaction
+to be committed if the component instance is deactivated.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4611"></A><b>IsInTransaction</b></td>
+<td  rowspan="1"  ><A NAME="TI4612"></A>Determines whether the current method
+is executing in a transaction.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4613"></A><b>IsTransactionAborted</b></td>
+<td  rowspan="1"  ><A NAME="TI4614"></A>Determines whether the current transaction
+has been aborted.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4615"></A><b>SetAbort</b></td>
+<td  rowspan="1"  ><A NAME="TI4616"></A>Indicates that the component cannot complete
+its work for the current transaction and that the transaction should
+be rolled back. The component instance will be deactivated when
+the method returns.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4617"></A><b>SetComplete</b></td>
+<td  rowspan="1"  ><A NAME="TI4618"></A>Indicates that the component has completed
+its work in the current transaction and that, as far as it is concerned,
+the transaction can be committed and the component instance can
+be deactivated.</td>
+</tr>
+</table>
+<A NAME="TI4619"></A><h4>Automatic Demarcation/ Deactivation</h4>
+<A NAME="TI4620"></A><p>If you want a component to be automatically deactivated after
+each method invocation, you can enable Automatic Demarcation/Deactivation
+for the component. This sets the component's tx_vote
+property to <b>FALSE</b>. When Automatic Demarcation/Deactivation
+is enabled, you do not need to make explicit calls to <b>SetComplete</b> to
+cause deactivation because <b>SetComplete</b> is assumed
+by default. To roll back the transaction, you can call <b>SetAbort</b>.</p>
+<A NAME="TI4621"></A><p>If you do not want the component to be automatically deactivated
+after each method invocation, disable the Automatic Demarcation/Deactivation
+setting for the component. This sets the component's tx_vote
+property to <b>TRUE</b>. When you disable Automatic
+Demarcation/Deactivation, <ABBR title = "e a server" >EAServer</ABBR> waits
+for notification before completing transactions; therefore, be sure
+to deactivate programmatically by making an explicit call to <b>SetComplete</b> (or <b>SetAbort</b>).</p>
+<A NAME="TI4622"></A><h4>COMMIT and ROLLBACK</h4>
+<A NAME="TI4623"></A><p>You have the option to disable the TransactionServer context
+object and use the <b>COMMIT</b> and <b>ROLLBACK</b> statements
+instead to specify the <ABBR title = "e a server" >EAServer</ABBR> transaction
+state for a component. This capability is provided to allow you
+to migrate PowerBuilder 6 objects to <ABBR title = "e a server" >EAServer</ABBR> without
+modifying the code. To disable the TransactionServer context object,
+set the <strong>UseContextObject</strong> DBParm parameter
+to No. When you do this, <b>COMMIT</b> is equivalent
+to <b>SetComplete</b> and <b>ROLLBACK</b> is
+equivalent to <b>SetAbort</b>. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>COMMIT and ROLLBACK in nontransactional components</span> <A NAME="TI4624"></A>In nontransactional components that disable the TransactionServer
+context object, <b>COMMIT</b> does not invoke <b>SetComplete</b> and <b>ROLLBACK</b> does
+not invoke <b>SetAbort</b>. For example, if you specify
+Not Supported as the transaction type, disable Automatic Demarcation/Deactivation
+(set tx_vote to <b>TRUE</b>), and set the UseContextObject
+parameter to No, the PowerBuilder virtual machine does <i>not</i> issue
+a <b>SetComplete</b> when you execute a <b>COMMIT</b> (or
+a <b>SetAbort</b> when you execute a <b>ROLLBACK</b>).
+In this case, <ABBR title = "e a server" >EAServer</ABBR> never releases
+the component because it is waiting for a call to <b>SetComplete</b> or <b>SetAbort</b>.</p>
+<A NAME="TI4625"></A>If you disable Automatic Demarcation/Deactivation
+for a component that performs no database access whatsoever, then
+you must use the TransactionServer object to call <b>SetComplete</b> (or <b>SetAbort</b>)
+to deactivate the component. Otherwise, the component will never
+be deactivated.</p>
+<A NAME="TI4626"></A><h4>Transaction handling and runtime errors</h4>
+<A NAME="TI4627"></A><p>You can control the behavior of <ABBR title = "e a server" >EAServer</ABBR> when
+an internal exception occurs in the PBVM or a PowerBuilder component
+raises a runtime exception. To do so, set the PBOnFatalError or
+PBRollbackOnRTError environment variables in a batch file or as
+a system environment variable on the server on which the component
+runs.</p>
+<A NAME="TI4628"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 24-6: Environment variables for handling exceptions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4629"></A>Variable</th>
+<th  rowspan="1"  ><A NAME="TI4630"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4631"></A>PBOnFatalError</td>
+<td  rowspan="1"  ><A NAME="TI4632"></A>Specifies whether <ABBR title = "e a server" >EAServer</ABBR> should
+continue, shut down, or restart when an internal exception occurs
+in the PBVM. The default behavior is that <ABBR title = "e a server" >EAServer</ABBR> shuts
+down. An unhandled internal exception raised by a PowerBuilder component
+running in <ABBR title = "e a server" >EAServer</ABBR> can cause
+the PBVM to become unstable, resulting in unpredictable behavior. <A NAME="TI4633"></A><p>Values are:<A NAME="TI4634"></A>
+<ul>
+<li class=fi><b>continue</b> &#8211; <ABBR title = "e a server" >EAServer</ABBR> continues to run, and the CORBA_TRANSACTION_ROLLEDBACK
+exception is thrown </li>
+<li class=ds><b>restart</b> &#8211; <ABBR title = "e a server" >EAServer</ABBR> restarts automatically</li>
+<li class=ds><b>shutdown</b> &#8211; <ABBR title = "e a server" >EAServer</ABBR> shuts down automatically
+(default)
+</li>
+</ul>
+</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4635"></A>PBRollbackOnRTError</td>
+<td  rowspan="1"  ><A NAME="TI4636"></A>Specifies how a transaction is handled
+when a runtime exception is raised by a PowerBuilder component running
+in EAServer. By default, the transaction is rolled back and the
+exception is thrown back to the client. <A NAME="TI4637"></A><p>Values are:<A NAME="TI4638"></A>
+<ul>
+<li class=fi><b>n</b>, <b>no</b>,
+or <b>false</b> &#8211; the transaction is committed
+before the exception is thrown back to the client</li>
+<li class=ds><b>y</b>, <b>yes</b>, or <b>true</b> &#8211; the
+transaction is rolled back before the exception is thrown back to
+the client (default)
+</li>
+</ul>
+</p></td>
+</tr>
+</table>
+<A NAME="TI4639"></A><h4>Transactions and the component lifecycle</h4>
+<A NAME="TI4640"></A><p><ABBR title = "e a servers" >EAServer's</ABBR> transaction
+model and the component lifecycle are tightly integrated. Component
+instances that participate in a transaction are never deactivated
+until the transaction ends or until the component indicates that
+its contribution to the transaction is over (its work is done and
+ready for commit or its work must be rolled back). An instance's
+time in the active state corresponds exactly to the beginning and
+end of its participation in a transaction.</p>
+<A NAME="TI4641"></A><p>For more information, see the <ABBR title = "e a server" >EAServer</ABBR> documentation<i></i>
+.</p>
+

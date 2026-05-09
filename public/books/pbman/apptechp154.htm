@@ -1,0 +1,86 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Generating EAServer proxy objects</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp153.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp155.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDFHEA"></A><h1>Generating EAServer proxy objects</h1>
+<A NAME="TI5166"></A><h4>About <ABBR title = "e a server" >EAServer</ABBR> proxy objects</h4>
+<A NAME="TI5167"></A><p>Each <ABBR title = "e a server" >EAServer</ABBR> component
+has a corresponding proxy object in the client application. To access
+an <ABBR title = "e a server" >EAServer</ABBR> component, you need
+to communicate through the <ABBR title = "e a server" >EAServer</ABBR> proxy. </p>
+<A NAME="TI5168"></A><p>An EJB component has two corresponding proxy objects in the
+client application&#8212;one for the home interface and one for
+the remote interface. For example, an EJB component named Cart produces
+two proxies, CartHome and Cart. To access an EJB component, you
+need to communicate through these two proxies. </p>
+<A NAME="TI5169"></A><p>Before you can generate proxy objects for an <ABBR title = "e a server" >EAServer</ABBR> client, you need to create
+a new project. The new project lists the objects that will be included
+and specifies the name of the output library that will contain the
+generated proxy objects.</p>
+<A NAME="TI5170"></A><h4>Using the <ABBR title = "e a server" >EAServer</ABBR> Proxy
+wizard</h4>
+<A NAME="TI5171"></A><p>The <ABBR title = "e a server" >EAServer</ABBR> Proxy wizard helps create
+projects for building <ABBR title = "e a server" >EAServer</ABBR> proxy objects.
+It allows you to connect to <ABBR title = "e a server" >EAServer</ABBR> and
+select the components you want to be able to access from the client.
+Once you have created the project, you can then use the Project
+painter to modify your project settings and build the proxy library. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Building EJB clients</span> <A NAME="TI5172"></A>To build an EJB client that can use the services of an EJB
+component on <ABBR title = "e a server" >EAServer</ABBR> and other
+J2EE-compliant servers, you can use the EJB Client Proxy wizard.
+For more information, see <A HREF="apptechp184.htm#CDECHFKM">Chapter 29, "Building an EJB client ."</A></p>
+<A NAME="TI5173"></A><h4>Reserved words in method names</h4>
+<A NAME="TI5174"></A><p>When you generate a proxy for an <ABBR title = "e a server" >EAServer</ABBR> component
+that was not created in PowerBuilder, the names of any methods that
+use a PowerBuilder reserved word are changed. The proxy generator
+automatically adds an underscore (_) prefix to these methods.
+For example, if the component has a method with the name <b>destroy</b>,
+the method in the proxy will be <b>_destroy</b>. </p>
+<A NAME="TI5175"></A><h4>Using arrays with a TO clause</h4>
+<A NAME="TI5176"></A><p>When you generate a proxy for a PowerBuilder component containing
+an array that uses a <b>TO</b> clause, the proxy object
+represents the range as a single value because CORBA IDL does not
+support the <b>TO</b> clause. For example, <FONT FACE="Courier New">Int
+ar1[5 TO 10]</FONT> is represented
+as <FONT FACE="Courier New">Int ar1[6]</FONT>,
+with <FONT FACE="Courier New">[6]</FONT> representing
+the number of array elements. Client applications must declare the
+array using a single value instead of a range.</p>
+<A NAME="TI5177"></A><h4>Prepending module names</h4>
+<A NAME="TI5178"></A><p>You can choose to prepend the name of the IDL module that
+defines the component to the name of the proxy object created, which
+makes it easier to identify proxy objects with similar names. For
+example, if you select the SessionInfo component in the CTSSecurity
+module and check the Prepend <ABBR title = "e a server" >EAServer</ABBR> Package
+Name to Object Name option in the wizard or Project painter, the
+proxy object will be named <FONT FACE="Courier New">ctssecurity_sessioninfo</FONT>.
+For some <ABBR title = "e a server" >EAServer</ABBR> system modules,
+currently CtsComponents and XDT, the module name is always prepended
+to objects to avoid naming conflicts.</p>
+<A NAME="TI5179"></A><p>The package name and the name of the IDL module are often
+the same, but they can be different, and it is always the name of
+the IDL module that is prepended. </p>
+<A NAME="TI5180"></A><h4>Excluding exceptions</h4>
+<A NAME="TI5181"></A><p>Many <ABBR title = "e a server" >EAServer</ABBR> components
+throw exceptions that you can handle in your client application.
+If you want to use the proxy you are generating with an existing
+client application that does not handle exceptions, or if you do
+not want to declare the exceptions in the client you are building,
+you can choose to exclude exceptions from the generated proxy, either
+in the wizard or in the Project painter. See <A HREF="apptechp159.htm#CCJBBGBC">"Handling errors "</A> for more information
+about handling errors in clients.</p>
+<A NAME="TI5182"></A><h4>Datatype mappings</h4>
+<A NAME="TI5183"></A><p>All <ABBR title = "e a server" >EAServer</ABBR> component interfaces
+are defined in standard CORBA IDL. For a list of datatypes used
+in <ABBR title = "e a server" >EAServer</ABBR>, their CORBA IDL equivalents,
+and the PowerBuilder datatypes to which they map, see the <i>PowerScript
+Reference</i>
+ or the online Help.</p>
+

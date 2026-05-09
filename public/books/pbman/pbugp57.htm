@@ -1,0 +1,153 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Migrating targets</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp56.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp58.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBJHCBC"></A><h1>Migrating targets</h1>
+<A NAME="TI1707"></A><p>When you upgrade to a new version of PowerBuilder, your existing
+targets need to be migrated to the new version. Typically, when
+you open a workspace that contains targets that need to be migrated,
+or add a target that needs to be migrated to your workspace, PowerBuilder
+prompts you to migrate the targets. However, there are some situations
+when you need to migrate a target manually. For example, if you
+add a library that has not been migrated to a target's
+library list, you will not be able to open objects in that library
+until the target has been migrated.</p>
+<A NAME="TI1708"></A><p>You cannot migrate a target that is not in your current workspace
+and you must set the root of the System Tree or the view in the
+Library painter to the current workspace.</p>
+<A NAME="TI1709"></A><h4>Before you migrate</h4>
+<A NAME="TI1710"></A><p>There are some steps you should take before you migrate a
+target:<A NAME="TI1711"></A>
+<ul>
+<li class=fi>Use the Migration Assistant to check
+for obsolete syntax or the use of reserved words in your code</li>
+<li class=ds>Check the release notes for migration issues</li>
+<li class=ds>Make backup copies of the target and libraries</li>
+<li class=ds>Make sure that the libraries you will migrate are
+writable
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Always back up your PBLs before migrating</span> <A NAME="TI1712"></A>Make sure you make a copy of your PBLs before migrating. After
+migration, you cannot open them in an earlier version of PowerBuilder.</p>
+<A NAME="TI1713"></A><p>The Migration Assistant is available on the Tool page of the
+New dialog box. For help using the Migration Assistant, click the
+Help (?) button in the upper-right corner of the window
+and click the field you need help with, or click the field and press
+F1. If the Migration Assistant finds obsolete code, you can fix
+it in an earlier version of PowerBuilder to avoid errors when you migrate
+to the current version.</p>
+<A NAME="CHDIJIDI"></A><h4>PowerBuilder libraries and
+migration</h4>
+<A NAME="TI1714"></A><p>PowerBuilder libraries (PBLs) contain a header, source code
+for the objects in the PBL, and binary code. There are two differences
+between PowerBuilder 10 and later PBLs and PBLs developed in earlier
+versions of PowerBuilder:<A NAME="TI1715"></A>
+<ul>
+<li class=fi>The source code in
+PowerBuilder 10 and later PBLs is encoded in Unicode (UTF-16LE,
+where LE stands for little endian) instead of DBCS (versions 7,
+8, and 9) or ANSI (version 6 and earlier).</li>
+<li class=ds>The format of the header lets PowerBuilder determine
+whether it uses Unicode encoding. The header format for PowerBuilder
+10 is the same as that used for PUL files in PowerBuilder 6.5 and
+for PKL files in PocketBuilder. These files do not need to be converted
+to Unicode when they are migrated to PowerBuilder 10 or later.
+</li>
+</ul>
+</p>
+<A NAME="TI1716"></A><h4>When PBLs are migrated</h4>
+<A NAME="TI1717"></A><p>Before opening a PBL, PowerBuilder checks its header to determine
+whether or not it uses Unicode encoding. PBLs are not converted
+to Unicode unless you specifically request that they be migrated. </p>
+<A NAME="TI1718"></A><p>You cannot expand the icon for a PBL from PowerBuilder 9 or
+earlier in the Library painter. To examine its contents, you must
+migrate it to PowerBuilder 10 or later.</p>
+<A NAME="TI1719"></A><p>When you attempt to open a workspace that contains targets
+from a previous release in PowerBuilder, the Targets to be Migrated
+dialog box displays. You can migrate targets from this dialog box,
+or clear the No Prompting check box to open the Migrate Application
+dialog box. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>PowerBuilder dynamic libraries</span> <A NAME="TI1720"></A>If you plan to reference a PowerBuilder dynamic library (PBD)
+that was encoded in ANSI formatting (for example, if it was created
+in PowerBuilder 9 or earlier), you must regenerate the PBD to use
+Unicode formatting. Dynamic libraries that you create in PowerBuilder
+10 or later use Unicode formatting exclusively.</p>
+<A NAME="TI1721"></A>For information on creating PBDs, see <A HREF="pbugp59.htm#X-REF345205729">"Creating runtime libraries"</A>.</p>
+<A NAME="CHDHCGIG"></A><h4>The Migrate Application
+dialog box</h4>
+<A NAME="TI1722"></A><p>The Migrate Application dialog box lists each PBL that will
+be migrated and lets you choose the type of messages that display
+during the migration process.</p>
+<br><img src="images/lib19.gif">
+<A NAME="TI1723"></A><p>If you click OK, each PBL is first migrated to the new version
+of PowerBuilder. Then PowerBuilder converts the source code from
+DBCS to Unicode, performs a full build, and saves the source code
+back to the same file. It might also make some changes to your scripts.
+These changes display in informational messages in the Output window
+and are written to a log file for each PBL so that you can examine
+the changes later. Recommended changes are also written to the log file.</p>
+<A NAME="TI1724"></A><p>These two lines from a log file indicate that the <b>FromAnsi</b> function
+is obsolete and was replaced with the <b>String</b> function,
+and that an encoding parameter should be added to an existing instance
+of the <b>String</b> function:<p><PRE>2006/01/27 08:20:11    test.pbl(w_main).cb_1.clicked.4: Information C0205: Function 'FromAnsi' is replaced with function 'String'.<br>2006/01/27 08:20:11    test.pbl(w_main).cb_2.clicked.4: Information C0206: Append extra argument 'EncodingAnsi!' to function 'String' for backward compatibility.</PRE></p>
+</p>
+<A NAME="TI1725"></A><p>The log file has the same name as the PBL with the string <i>_mig</i> appended
+and the extension <i>.log</i> and is created in the
+same directory as the PBL. If no changes are made, PowerBuilder
+creates an empty log file. If the PBL is migrated more than once,
+output is appended to the existing file.</p>
+<A NAME="TI1726"></A><p>PowerBuilder makes the following changes:<A NAME="TI1727"></A>
+<ul>
+<li class=fi>The <b>FromUnicode</b> function
+is replaced with the <b>String</b> function and the second
+argument EncodingUTF16LE! is added</li>
+<li class=ds>The <b>ToUnicode</b> function is replaced
+with the <b>Blob</b> function and the second argument
+EncodingUTF16LE! is added</li>
+<li class=ds>The <b>FromAnsi</b> function is replaced
+with the <b>String</b> function and the second argument
+EncodingAnsi! is added</li>
+<li class=ds>The <b>ToAnsi</b> function is replaced
+with the <b>Blob</b> function and the second argument
+EncodingAnsi! is added</li>
+<li class=ds>An Alias For clause with the following format is
+appended to declarations of external functions that take strings,
+chars, or structures as arguments or return any of these datatypes: <p><PRE>ALIAS FOR "<i>functionname</i>;ansi"</PRE></p>
+<br>
+If the declaration already has an Alias For clause, only the
+string ;ansi is appended.<br>
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>DBCS users only</span> <A NAME="TI1728"></A>If you select the Automatically Convert DBCS String Manipulation
+Functions check box, PowerBuilder automatically makes appropriate
+conversions to scripts in PowerBuilder 9 applications. For example,
+if you used the <b>LenW</b> function, it is converted
+to <b>Len</b>, and if you used the <b>Len</b> function,
+it is converted to <b>LenA</b>. The changes are written
+to the Output window and the log file. This box should be selected
+only in DBCS environments.</p>
+<A NAME="TI1729"></A><h4>Adding PBLs to a PowerBuilder target</h4>
+<A NAME="TI1730"></A><p>When you add PBLs from a previous release to a PowerBuilder
+target's library list, the PBLs display in the System Tree.
+The PBLs are not migrated when you add them to the library list.
+Their contents do not display because they have not yet been converted.
+To display their contents, you must migrate the target. </p>
+<A NAME="TI1731"></A><p>You can migrate a target from the Workspace tab of the System
+Tree by selecting Migrate from the pop-up menu for the target. You
+can also migrate targets in the Library painter if they are in your
+current workspace.</p>
+<A NAME="TI1732"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To migrate a target in the Library painter:</p>
+<ol><li class=fi><p>Select the target you want to migrate and
+select Entry&gt;Target&gt;Migrate from the menu bar.</p><p>The Migrate Application dialog box displays.</p></li>
+<li class=ds><p>Select OK to migrate all objects and libraries
+in the target's path to the current version.</p></li></ol>
+<br>

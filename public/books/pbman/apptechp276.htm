@@ -1,0 +1,39 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+PowerBuilder extensions</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp275.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp277.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BAJHJBBB"></A><h1>PowerBuilder extensions</h1>
+<A NAME="TI8281"></A><p>Several PowerBuilder extension files are provided with PowerBuilder
+10.5. If your application uses one of these extensions, you must
+deploy the files listed in <A HREF="apptechp276.htm#BAJFGIHJ">Table 41-12</A>. </p>
+<A NAME="BAJFGIHJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-12:  Files required for PowerBuilder
+built-in extensions</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8282"></A>Extension</th>
+<th  rowspan="1"  ><A NAME="TI8283"></A>Files</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8284"></A>PowerBuilder Document Object Model</td>
+<td  rowspan="1"  ><A NAME="TI8285"></A><i>pbdom105.pbx</i>, <i>PBXerces105.dll</i>, <i>xerces-c_2_6.dll</i>, <i> <br>xerces-depdom_2_6.dll</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8286"></A>EJB client</td>
+<td  rowspan="1"  ><A NAME="TI8287"></A><i>pbejbclient105.pbx</i>, <i>pbejbclient105.jar</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8288"></A>SOAP client for Web services </td>
+<td  rowspan="1"  ><A NAME="TI8289"></A><i>ExPat105.dll </i>, <i>libeay32.dll</i>, <i>ssleay32.dll</i>,<br><i>xerces-c_2_6.dll</i>, <i>xerces-depdom_2_6.dll</i>,<br><i>EasySoap105.DLL</i>, <i>pbnetwsruntime105.dll</i>,<br><i>pbsoapclient105.pbx</i>, <i>pbwsclient105.pbx</i>,<br><i>Sybase.PowerBuilder.WebService.Runtime.dll</i>, <br><i>Sybase.PowerBuilder.WebService.RuntimeRemoteLoader.dll</i></td>
+</tr>
+</table>
+<A NAME="TI8290"></A><p>In addition to the files listed in the table for EJB client,
+a Java Runtime Environment (JRE) compatible with the JDK on the
+EJB server must be available on the client and listed in the CLASSPATH.
+Sun JRE version 1.4 is provided in the <i>Support</i> directory
+on the PowerBuilder CD. </p>
+<A NAME="TI8291"></A><p>For more information, see <A HREF="apptechp275.htm#BAJBFFIA">"Java support"</A>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Note</span> <A NAME="TI8292"></A>The JRE is not added to the MSI file created by the Runtime
+Packager when you select EJB Client.</p>
+

@@ -1,0 +1,213 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Editing scripts</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp64.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp66.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABBIIHD"></A><h1>Editing scripts</h1>
+<A NAME="TI1823"></A><p>You can perform standard editing tasks in the Script view
+using the Edit menu, the pop-up menu in the Script view, or the
+PainterBars. There are shortcuts for many editing actions. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Setting up shortcuts</span> <A NAME="TI1824"></A>In a painter with a Script view, select Tools&gt;Keyboard
+Shortcuts. Expand the Edit menu to view existing shortcuts and set
+up your own shortcuts.</p>
+<A NAME="TI1825"></A><h2>Limiting size of scripts</h2>
+<A NAME="TI1826"></A><p>There is an internal limit on the size of compiled Pcode on
+any script. Pcode is the interpreted language into which scripts
+are compiled. A script that exceeds this limit can be compiled successfully,
+but the error "Maximum script size exceeded" displays
+when you attempt to save the script. Note that the amount of Pcode
+generated from a given script is not directly proportional to the number
+of lines of code, so you might encounter this error in a script
+with 1200 lines of code, but not in a script with 1500 lines of
+code. To avoid receiving this error, move code to functions that
+you post or trigger in the event script.</p>
+<A NAME="TI1827"></A><h2>Printing scripts</h2>
+<A NAME="TI1828"></A><p>You can print a description of the object you are editing,
+including all its scripts, by selecting File&gt;Print from
+the menu bar. To print a specific script, select
+File&gt;Print Script.</p>
+<A NAME="X-REF297000138"></A><h2>Pasting information into scripts</h2>
+<A NAME="TI1829"></A><p>You can paste the names of variables, functions, objects,
+controls, and other items directly into your scripts. (You can also
+use AutoScript. See <A HREF="pbugp66.htm#BABIEJFG">"Using AutoScript"</A>.) If what you paste includes commented
+text that you need to replace, such as function arguments or clauses
+in a statement, you can use Edit&gt;Go To&gt;Next Marker
+to move your cursor to the next commented item in the template. </p>
+<A NAME="TI1830"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 7-2: Pasting information into scripts</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1831"></A>To paste</th>
+<th  rowspan="1"  ><A NAME="TI1832"></A>Use</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1833"></A>PowerBuilder objects and their properties,
+functions, and events</td>
+<td  rowspan="1"  ><A NAME="TI1834"></A>System Tree</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1835"></A>Properties, data types, functions, structures,
+variables, and objects</td>
+<td  rowspan="1"  ><A NAME="TI1836"></A>Browser</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1837"></A>Contents of clipboard</td>
+<td  rowspan="1"  ><A NAME="TI1838"></A>Edit&gt;Paste</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1839"></A>Contents of Clipboard window</td>
+<td  rowspan="1"  ><A NAME="TI1840"></A>Drag and drop</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1841"></A>Objects, controls, arguments, and global and
+instance variables</td>
+<td  rowspan="1"  ><A NAME="TI1842"></A>Paste buttons on PainterBar <br><i>or </i> <br>Edit&gt;Paste
+Special</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1843"></A>PowerScript statements</td>
+<td  rowspan="1"  ><A NAME="TI1844"></A>Paste Statement button <br><i>or </i> <br>Edit&gt;Paste
+Special&gt;Statement</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1845"></A><ACRONYM title = "sequel" >SQL</ACRONYM> statements</td>
+<td  rowspan="1"  ><A NAME="TI1846"></A>Paste <ACRONYM title = "sequel" >SQL</ACRONYM> button<i> <br>or </i> <br>Edit&gt;Paste
+Special&gt;<ACRONYM title = "sequel" >SQL</ACRONYM></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1847"></A>Built-in, user-defined, and external functions</td>
+<td  rowspan="1"  ><A NAME="TI1848"></A>Paste Function button <i><br>or</i> <br>Edit&gt;Paste
+Special&gt;Function</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1849"></A>Contents of text files</td>
+<td  rowspan="1"  ><A NAME="TI1850"></A>Edit&gt;Paste Special&gt;From
+File</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Undoing a paste</span> <A NAME="TI1851"></A>If you paste information into your script by mistake, click
+the Undo button or select Edit&gt;Undo from the menu bar.</p>
+<A NAME="TI1852"></A><p>Some of these techniques are explained in the sections that
+follow. </p>
+<A NAME="TI1853"></A><h4>Using the System Tree</h4>
+<A NAME="TI1854"></A><p>To paste the name of a PowerBuilder object or of any of its
+properties, functions, or events, select the item you want to paste
+on the Workspace tab of the System Tree and drag it into your script. </p>
+<A NAME="TI1855"></A><h4>Using the Browser</h4>
+<A NAME="TI1856"></A><p>You can use the Browser to paste the name of any property,
+data type, function, structure, variable, or object in the application.</p>
+<A NAME="TI1857"></A><p>Most tab pages in the Browser have two panes:</p>
+<br><img src="images/sc05.gif">
+<A NAME="TI1858"></A><p>The left pane displays a single type of object, such as a
+window or menu. The right pane displays the properties, events,
+functions, external functions, instance variables, shared variables,
+and structures associated with the object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Getting context-sensitive Help in the Browser</span> <A NAME="TI1859"></A>To get context-sensitive Help for an object, control, or function,
+select Help from its pop-up menu. </p>
+<A NAME="TI1860"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use the Browser to paste information into the
+Script view:</p>
+<ol><li class=fi><p>Click the Browser button in the PowerBar,
+or select Tools&gt;Browser.</p></li>
+<li class=ds><p>Select the PowerScript target you want to browse. </p></li>
+<li class=ds><p>Select the appropriate tab and then select the
+object in the left pane. </p></li>
+<li class=ds><p>Select the category of information you want to
+display by expanding the appropriate folder in the right pane.</p></li>
+<li class=ds><p>Select the information and click Copy.</p></li>
+<li class=ds><p>In the Script view, move the cursor where you
+want to paste the information and select any text you want to replace
+with the pasting.</p></li>
+<li class=ds><p>Select Paste from the pop-up menu.</p><p>PowerBuilder displays the information at the insertion point
+in the script, replacing any selected text.</p></li></ol>
+<br><A NAME="TI1861"></A><p>For information about using the Browser to
+paste OLE object information into a script, see <i>Application
+Techniques</i>
+.</p>
+<A NAME="TI1862"></A><h4>Pasting statements</h4>
+<A NAME="TI1863"></A><p>You can paste a template for all basic forms of the following
+PowerScript statements:<A NAME="TI1864"></A>
+<ul>
+<li class=fi><b>IF...THEN</b></li>
+<li class=ds><b>DO...LOOP</b></li>
+<li class=ds><b>FOR...NEXT</b></li>
+<li class=ds><b>CHOOSE CASE</b></li>
+<li class=ds><b>TRY...CATCH... FINALLY</b>
+</li>
+</ul>
+</p>
+<A NAME="TI1865"></A><p>When you paste these statements into a script, prototype values
+display in the syntax to indicate conditions or actions. By default, the statements
+are pasted in lowercase. To paste statements in uppercase, add the
+following line to the [PB] section of the <i>PB.INI</i> file:<p><PRE> PasteLowercase=0</PRE></p>
+<A NAME="TI1866"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To paste a PowerScript statement into the script:</p>
+<ol><li class=fi><p>Place the insertion point where you want
+to paste the statement in the script.</p></li>
+<li class=ds><p>Select the Paste Statement button from the PainterBar,
+or select Edit&gt;Paste Special&gt;Statement from the
+menu bar.</p></li>
+<li class=ds><p>Select the statement you want to paste from the
+cascading menu.</p><p>The statement prototype displays at the insertion point in
+the script.</p></li>
+<li class=ds><p>Replace the prototype values with the conditions
+you want to test and the actions you want to take based on the test
+results.</p></li></ol>
+<br><A NAME="TI1867"></A><p>For more about PowerScript statements, see
+the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI1868"></A><h4>Pasting <ACRONYM title = "sequel" >SQL</ACRONYM></h4>
+<A NAME="TI1869"></A><p>You can paste a <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+into your script instead of typing the statement. </p>
+<A NAME="TI1870"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To paste a <ACRONYM title = "sequel" >SQL</ACRONYM> statement:</p>
+<ol><li class=fi><p>Place the insertion point where you want
+to paste the <ACRONYM title = "sequel" >SQL</ACRONYM> statement in
+the script.</p></li>
+<li class=ds><p>Click the Paste <ACRONYM title = "sequel" >SQL</ACRONYM> button
+in the PainterBar, or select Edit&gt;Paste Special&gt;<ACRONYM title = "sequel" >SQL</ACRONYM> from the menu bar.</p></li>
+<li class=ds><p>Select the type of statement you want to insert
+from the cascading menu by double-clicking the appropriate button.</p><p>The appropriate dialog box displays so that you can create
+the <ACRONYM title = "sequel" >SQL</ACRONYM> statement.</p></li>
+<li class=ds><p>Create the statement, then return to the Script
+view.</p><p>The statement displays at the insertion point in the workspace.</p></li></ol>
+<br><A NAME="TI1871"></A><p>For more about embedding <ACRONYM title = "sequel" >SQL</ACRONYM> in
+scripts, see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI1872"></A><h4>Pasting functions</h4>
+<A NAME="TI1873"></A><p>You can paste any function into a script. </p>
+<A NAME="TI1874"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To paste a function into a script:</p>
+<ol><li class=fi><p>Place the insertion point where you want
+to paste the function in the script.</p></li>
+<li class=ds><p>Click the Paste Function button in the PainterBar,
+or select <br>Edit&gt;Paste Special&gt;Function
+from the menu bar.</p></li>
+<li class=ds><p>Choose the type of function you want to paste:
+built-in, user-defined, or external.</p></li>
+<li class=ds><p>Double-click the function you want from the list
+that displays.</p><p>PowerBuilder pastes the function into the script and places
+the cursor within the parentheses so that you can define any needed
+arguments.</p></li></ol>
+<br><A NAME="TI1875"></A><p>For more about pasting user-defined functions, see <A HREF="pbugp74.htm#CDEBAHAH">"Pasting user-defined functions"</A>. For more
+about external and built-in functions, see <i>Application
+Techniques</i>
+.</p>
+<A NAME="TI1876"></A><h4>Pasting contents of files</h4>
+<A NAME="TI1877"></A><p>If you have code that is common across different scripts,
+you can keep that code in a text file, then paste it into new scripts
+you write. For shorter snippets of code, you can also use the Clip
+window. See <A HREF="pbugp5.htm#CEGDJEHA">"The Clip window"</A>.</p>
+<A NAME="TI1878"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To import the contents of a file into the Script
+view:</p>
+<ol><li class=fi><p>Place the insertion point where you want
+the file contents pasted.</p></li>
+<li class=ds><p>Select Edit&gt;Paste Special&gt;From
+File from the menu bar.</p><p>The Paste From File dialog box displays, listing all files
+with the extension SCR. If necessary, navigate to the directory
+that contains the script you want to paste.</p></li>
+<li class=ds><p>Choose the file containing the code you want.
+You can change the type of files displayed by changing the file
+specification in the File Name box.</p><p>PowerBuilder copies the file into the Script view at the insertion
+point.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Saving a script to a file</span> <A NAME="TI1879"></A>To save all or part of a script to an external text file,
+select the code you want to save and copy and paste it to the file
+editor. Use the extension .<i>SCR</i> to identify
+it as PowerScript code. You might want to use this technique to
+save a backup copy before you make major changes or so that you
+can use the code in other scripts.</p>
+<A NAME="TI1880"></A><h2>Reverting to the unedited version of a script</h2>
+<A NAME="TI1881"></A><p>You can discard the edits you have made to a script and revert
+to the unedited version by selecting Edit&gt;Revert Script
+from the menu. </p>
+

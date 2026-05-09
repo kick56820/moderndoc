@@ -1,0 +1,104 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the style</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp263.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp265.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF306081753"></A><h1>Using the style</h1>
+<A NAME="TI7753"></A><p>Once you complete a form style (or at least have a version
+that you want to test), you can put it to use.</p>
+<A NAME="TI7754"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To make a style available to InfoMaker users:</p>
+<ol><li class=fi><p>Make sure the window and menu that define
+the form style are in a library that is accessible to InfoMaker
+users (the <strong>style library</strong>).</p></li>
+<li class=ds><p>Add any other PowerBuilder objects that you use
+in the form style (such as windows, user objects, global user-defined
+functions, and global structures) to the same library.</p></li>
+<li class=ds><p>Add the style library to the path for an InfoMaker
+user.</p><p>For more information, see the <i>InfoMaker
+User's Guide</i>
+.</p></li></ol>
+<br><A NAME="TI7755"></A><h2>Building a form with the custom form style</h2>
+<A NAME="TI7756"></A><p>When an InfoMaker user using the style library creates a new
+form, all custom form styles display in the Form Style box in the
+New Form dialog box:</p>
+<br><img src="images/bdsty12.gif">
+<A NAME="TI7757"></A><p>Custom styles display with a generic icon.</p>
+<A NAME="TI7758"></A><p>InfoMaker users simply select a data source and a custom style
+to start building a form based on your form style. You should provide
+documentation to users of your form styles.</p>
+<A NAME="TI7759"></A><h4>Understanding inheritance</h4>
+<A NAME="TI7760"></A><p>When users build a form, they are working with a window that
+is a descendant of the window that you built for the form <i>style</i>.
+That is, the form style window you built in PowerBuilder is the
+ancestor, and the form window used in InfoMaker is the descendant.
+This means that if you change the form style, the changes are picked
+up the next time users work with a form using that style.</p>
+<A NAME="TI7761"></A><p>For example, you can add controls to the form style and have
+the controls display automatically when users later open existing
+forms using the style.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Caution</span> <A NAME="TI7762"></A>Be careful: do not make changes that invalidate forms already
+built using the style.</p>
+<A NAME="TI7763"></A><h2>Managing the use of form styles</h2>
+<A NAME="TI7764"></A><p>You can store style libraries on the network to make them
+readily available to all InfoMaker users. You do this with a shared
+initialization file on a network: you place an InfoMaker initialization
+file that references the shared style libraries out on the network,
+then set up InfoMaker users so that they can access the initialization
+file.</p>
+<A NAME="TI7765"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To make style libraries available throughout your
+organization:</p>
+<ol><li class=fi><p>Place the style libraries on the network
+in a directory accessible to InfoMaker users.</p></li>
+<li class=ds><p>Open InfoMaker, go to the Library painter, and
+make sure all style libraries are listed in the search path.</p></li>
+<li class=ds><p>Close InfoMaker.</p></li>
+<li class=ds><p>Copy your InfoMaker initialization file to a directory
+on the network that is accessible to all InfoMaker users.</p><p>This is the shared initialization file. It records all the
+style libraries in the StyleLib variable in the [Application] section.</p></li>
+<li class=ds><p>Set up InfoMaker users so that they can access
+the shared initialization file.</p><p>Each InfoMaker user needs to specify the location of the shared initialization
+file in InfoMaker.</p><p>For more information, see <A HREF="apptechp264.htm#X-REF355595432">"Specifying the
+location of the shared InfoMaker initialization file in InfoMaker"</A>.</p></li></ol>
+<br><A NAME="X-REF355595432"></A><h4>Specifying the
+location of the shared InfoMaker initialization file in InfoMaker</h4>
+<A NAME="TI7766"></A><p>Once the shared initialization file has been defined in a
+user's InfoMaker initialization file, the user's
+style library search path consists of the style libraries defined
+in the user's local InfoMaker initialization file plus
+all style libraries defined in the shared initialization file. When
+the user creates a new form, the form styles defined in all the
+style libraries display in the New Form dialog box.</p>
+<A NAME="TI7767"></A><p>Each InfoMaker user needs to tell InfoMaker where to find
+the shared initialization file.</p>
+<A NAME="TI7768"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the location of a shared InfoMaker
+initialization file:</p>
+<ol><li class=fi><p>Select Tools&gt;System Options from
+the InfoMaker menu bar.</p></li>
+<li class=ds><p>On the General property page, enter the path for
+the shared InfoMaker initialization file.</p></li>
+<li class=ds><p>Click OK.</p><p>InfoMaker saves the path for InfoMaker initialization in the
+registry.</p></li></ol>
+<br><A NAME="TI7769"></A><h4>Preventing the use of built-in styles</h4>
+<A NAME="TI7770"></A><p>You might not want the built-in form styles to be available
+to InfoMaker users. That is, you might want all forms to be based
+on one of your organization's user-defined styles. You
+can ensure this by suppressing the display of the built-in
+styles in the New Form dialog box.</p>
+<A NAME="TI7771"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To suppress the display of built-in styles:</p>
+<ol><li class=fi><p>Set up a shared initialization file on
+the network as described in the preceding section.</p></li>
+<li class=ds><p>Add this line to the [Window] section
+of the shared initialization file:</p><p><p><PRE> ShowStandardStyles = 0</PRE></p></li></ol>
+<br><A NAME="TI7772"></A><p>With this line specified in the shared initialization file,
+users can choose only from user-defined form styles when creating
+a new form. (Note that a ShowStandardStyles line in a user's
+local InfoMaker initialization file is ignored by InfoMaker.)</p>
+<A NAME="TI7773"></A><A NAME="TI7774"></A><p>This part explains how to package your application
+for deployment and what files you need to deploy.</p>
+

@@ -1,0 +1,42 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Interacting with the COM component</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp181.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp183.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDCHHHG"></A><h1>Interacting with the COM component</h1>
+<A NAME="TI5888"></A><h4>Invoking component methods</h4>
+<A NAME="TI5889"></A><p>Once a connection to a COM component has been established,
+the client application can begin using the component methods.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Use the REF keyword for output parameters</span> <A NAME="TI5890"></A>You must use the REF keyword when you call a method on a COM
+object that has an output parameter. For example: <b>of_add</b>( <i>arg1</i>, <i>arg2</i>, <b>REF</b> <i>sum</i> )</p>
+<p><b>Example</b>   Using the <b>EmpObj</b> object created in the
+previous example, this example calls two methods on the component,
+then disconnects and destroys the instance:</p>
+<A NAME="TI5891"></A><p><p><PRE> Long units, time<br>Double  avg, ld_retn<br>String  ls_retn<br> <br>ld_retn = EmpObj.f_calcdayavg(units, time, REF avg) <br>ls_retn = EmpObj.f_teststring()<br> <br>EmpObj.DisconnectObject()<br>DESTROY EmpObj</PRE></p>
+<A NAME="CHDDCFFG"></A><h4>Passing result sets</h4>
+<A NAME="TI5892"></A><p>PowerBuilder provides three system objects to handle getting
+result sets from components running in transaction server environments
+and returning result sets from PowerBuilder user objects running
+as transaction server components. These system objects (ResultSet,
+ResultSets, and ADOResultSet) are designed to simplify the conversion
+of transaction server result sets to and from DataStore objects
+and do not contain any state information.</p>
+<A NAME="TI5893"></A><p>For more information, see <A HREF="apptechp171.htm#BABDACEE">"Passing result sets"</A>.</p>
+<A NAME="BABDJJAD"></A><h4>Handling runtime errors</h4>
+<A NAME="TI5894"></A><p>Runtime error information from custom class user objects executing
+as OLE automation objects, COM objects, or COM+ components
+is reported to the container holding the object as exceptions (or,
+for automation objects, as exceptions or facility errors). Calls
+to the PowerBuilder <b>SignalError</b> function are
+also reported to the container. To handle runtime errors generated
+by PowerBuilder objects, code the ExternalException event of the
+OLE client. </p>
+<A NAME="TI5895"></A><p>For more information about handling runtime errors in OLE
+or COM objects, see <A HREF="apptechp111.htm#X-REF348260087">"Handling errors"</A>.</p>
+

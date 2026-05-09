@@ -1,0 +1,179 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining the component interface</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp142.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp144.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJEABHC"></A><h1>Defining the component interface</h1>
+<A NAME="TI4769"></A><h4>How the interface is specified</h4>
+<A NAME="TI4770"></A><p><ABBR title = "e a server" >EAServer</ABBR> stores all component
+interfaces in CORBA Interface Definition Language (IDL) modules.
+IDL is defined by the Object Management Group as a standard language
+for defining component interfaces. When you deploy a PowerBuilder
+custom class user object as an <ABBR title = "e a server" >EAServer</ABBR> component,
+the methods (functions and events) and instance variables defined
+for the object are added to the component interface. You do not
+need to write IDL for the interface, because the <ABBR title = "e a server" >EAServer</ABBR> component generator writes
+the IDL for you. </p>
+<A NAME="TI4771"></A><p>In <ABBR title = "e a server" >EAServer</ABBR> 6.0 and later,
+PowerBuilder components are wrapped as EJBs. For more information,
+see the <i>CORBA Components Guide</i>
+ in the <ABBR title = "e a server" >EAServer</ABBR> documentation set on the
+Sybase Product Manuals Web site.</p>
+<A NAME="TI4772"></A><h4>What gets included in the interface</h4>
+<A NAME="TI4773"></A><p>The <ABBR title = "e a server" >EAServer</ABBR> component generator
+includes all public functions declared for the user object in the
+component interface. Depending on the build options you specify
+for the component, the generator may also include accessor methods for
+the public instance variables and also expose user events as methods. </p>
+<A NAME="TI4774"></A><h4>Method names and method overloading</h4>
+<A NAME="TI4775"></A><p>Although IDL does not provide support for method overloading,
+you can nonetheless deploy PowerBuilder custom class user objects
+to <ABBR title = "e a server" >EAServer</ABBR> that have overloaded
+methods. To work around the IDL restriction, the component generator
+appends two underscores (__) and a unique suffix
+to the method name that will be overloaded. If you look at the IDL
+generated for a PowerBuilder object, you therefore see suffixes
+appended to methods that were overloaded in PowerBuilder. </p>
+<A NAME="TI4776"></A><p>When you generate stubs or proxy objects for components that
+have overloaded methods, <ABBR title = "e a server" >EAServer</ABBR> strips
+off the IDL suffix so that the client can access the method by using
+its correct name.</p>
+<A NAME="TI4777"></A><p>For more information about IDL, see the <ABBR title = "e a server" >EAServer</ABBR> documentation.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Do not use two consecutive underscores in your method
+names</span> <A NAME="TI4778"></A>Because <ABBR title = "e a server" >EAServer</ABBR> treats
+two underscores (__) as a reserved delimiter,
+you should not use two consecutive underscores in a function name
+in a custom class user object that you plan to deploy as an <ABBR title = "e a server" >EAServer</ABBR> component.</p>
+<A NAME="TI4779"></A><h4>Datatypes</h4>
+<A NAME="TI4780"></A><p>You can use the following datatypes in the interface of a
+user object that you deploy as an <ABBR title = "e a server" >EAServer</ABBR> component:<A NAME="TI4781"></A>
+<ul>
+<li class=fi>Standard datatypes (except
+for the <b>Any</b> datatype)</li>
+<li class=ds>Structures</li>
+<li class=ds>Custom class (nonvisual) user objects that have
+been deployed as <ABBR title = "e a server" >EAServer</ABBR> components
+</li>
+</ul>
+</p>
+<A NAME="TI4782"></A><p>These datatypes can be used for public instance variables
+as well as for the arguments and return values of public methods.
+Private and protected instance variables and methods can use all
+datatypes supported by PowerBuilder.</p>
+<A NAME="TI4783"></A><p>The <b>Any</b> datatype is not supported in
+the public interface of a component. In addition, with the exception
+of the ResultSet and ResultSets objects, the component interface
+cannot include built-in PowerBuilder system objects (for example,
+the Transaction or DataStore object). The component interface also cannot
+include visual objects (such as windows or menus). </p>
+<A NAME="TI4784"></A><p>Component methods can pass arrays of standard datatypes and
+arrays of structures, and they can use custom class user objects
+to pass arrays.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>int and uint map to short</span> <A NAME="TI4785"></A>In <ABBR title = "e a server" >EAServer</ABBR> 6.0, both the <b>int</b> and <b>uint</b> PowerBuilder
+datatypes map to <b>short</b>, so if you have defined
+a function that returns <b>int</b> and has an <b>int</b> argument, deployment
+will fail if you define a function with the same name on the same component
+that returns <b>uint</b> and has a <b>uint</b> argument.</p>
+<A NAME="TI4786"></A><p>For a list of datatypes used in <ABBR title = "e a server" >EAServer</ABBR>,
+their CORBA IDL equivalents, and the PowerBuilder datatypes to which
+they map, see the <i>PowerScript Reference</i>
+ or
+the online Help. For a list of PowerBuilder to EJB datatype mappings,
+see the <i>CORBA Components Guide</i>
+ in the <ABBR title = "e a server" >EAServer</ABBR> documentation set on the Sybase
+Product Manuals Web site.</p>
+<A NAME="TI4787"></A><h4>Passing by reference</h4>
+<A NAME="TI4788"></A><p>You can pass arguments to component methods by reference.
+However, the behavior is somewhat different in a distributed application
+than in a nondistributed application.</p>
+<A NAME="TI4789"></A><p>When you pass by reference, the variable is actually copied
+to the server before the method is executed and then copied back
+when the method completes execution. This behavior is usually transparent
+to the application, but in some situations it can affect the outcome
+of processing.</p>
+<A NAME="TI4790"></A><p>For example, suppose you define a method called <b>increment_values</b> that
+takes two arguments called <b>x</b> and <b>y</b>,
+both of which are passed by reference. The script for the method
+increments <b>x</b> and <b>y</b> as shown
+below:<p><PRE> x = x + 1<br>y = y + 1</PRE></p>
+<A NAME="TI4791"></A><p>The client uses the following code to call the method:<p><PRE> int z<br>z = 1<br>increment_values(z,z)</PRE></p>
+<A NAME="TI4792"></A><p>In a nondistributed application, the value of <b>z</b> after
+the method completed execution would be 3 (because the local invocation
+passes a <i>pointer</i> to <b>z</b>, and <b>z</b> is
+incremented twice). In a distributed application, the value of <b>z</b> would
+be 2 (because the remote invocation passes two <i>copies</i> of <b>z</b>,
+which are incremented separately).</p>
+<A NAME="TI4793"></A><h4>Passing a read-only value</h4>
+<A NAME="TI4794"></A><p>When
+you pass a read-only value, the behavior is similar to passing by
+value, except that the data cannot be modified. A copy of the data
+is passed across the wire to the server.</p>
+<A NAME="TI4795"></A><h4>Passing objects</h4>
+<A NAME="TI4796"></A><p>Objects created within <ABBR title = "e a server" >EAServer</ABBR> components
+can be passed back to clients, but these objects must be installed <ABBR title = "e a server" >EAServer</ABBR> components. If you try
+to pass back a PowerBuilder object that is not an <ABBR title = "e a server" >EAServer</ABBR> component, you will get
+a runtime error. To use a component that was passed back from the
+server, the client must have the corresponding <ABBR title = "e a server" >EAServer</ABBR> proxy (for a PowerBuilder client)
+or stub (for a non-PowerBuilder client).</p>
+<A NAME="TI4797"></A><p>A client application <i>cannot</i> pass a PowerBuilder
+object reference to <ABBR title = "e a server" >EAServer</ABBR>. Therefore,
+you cannot use a PowerBuilder object reference to push messages from
+the server back to a PowerBuilder client. However, you can simulate
+this behavior by using a shared object on the client to communicate
+with <ABBR title = "e a server" >EAServer</ABBR>. </p>
+<A NAME="TI4798"></A><p>To simulate server push, the client uses the <b>SharedObjectRegister</b> and <b>SharedObjectGet</b> functions
+to create a shared object. Once the object has been created, the
+client can post a method to the shared object, passing it a callback object
+that should be notified when processing has finished on the server.
+The method on the shared object makes a synchronous call to the <ABBR title = "e a server" >EAServer</ABBR> component method that performs
+processing. Since the shared object is running in a separate thread
+on the client, the client application can proceed with other work
+while the process is running on the server. </p>
+<A NAME="TI4799"></A><h4>Providing support for NULL values</h4>
+<A NAME="TI4800"></A><p>PowerBuilder allows you to specify whether the methods of
+an <ABBR title = "e a server" >EAServer</ABBR> component can accept <b>NULL</b> values
+as function arguments or return types. To provide support for <b>NULL</b> values
+in the component interface, check the Support <b>NULL</b> Values
+check box in the property sheet for the project used to generate the <ABBR title = "e a server" >EAServer</ABBR> component. If this box
+is not checked, clients cannot pass <b>NULL</b> values
+in any argument and the server cannot set any argument to <b>NULL</b> or return
+a <b>NULL</b> value.</p>
+<A NAME="TI4801"></A><p>If you allow null values in the prototype for a component
+method, PowerBuilder appends a "_N" suffix
+to the method name in the <ABBR title = "e a server" >EAServer</ABBR> proxy
+that you generate from the Project painter. To call this method,
+you must create an instance of the proxy, rather than an instance
+of the NVO, and you must reference the method with the "_N" suffix. For
+example, if <b>of_gen</b> is the name of a
+method in the NVO, and you create an <ABBR title = "e a server" >EAServer</ABBR> proxy
+that allows null return values, you must instantiate the proxy and
+call <b>of_gen_N</b> to use this method.</p>
+<A NAME="TI4802"></A><h4><ABBR title = "e a server" >EAServer</ABBR> validation</h4>
+<A NAME="TI4803"></A><p>If you are designing a custom class user object that you plan
+to deploy as an <ABBR title = "e a server" >EAServer</ABBR> component,
+you can have PowerBuilder warn you when you use code elements that
+are not valid in <ABBR title = "e a server" >EAServer</ABBR>. <ABBR title = "e a server" >EAServer</ABBR> validation checks public
+instance variables and public functions for system types, visual
+types, structures, and any variables. </p>
+<A NAME="TI4804"></A><p><ABBR title = "e a server" >EAServer</ABBR> validation is on
+by default if you created the user object using an <ABBR title = "e a server" >EAServer</ABBR> wizard. To check, select
+the Design menu in the User Object painter and make sure <ABBR title = "e a server" >EAServer</ABBR> Validation is checked.
+When you save the object, the Output window lists warnings such
+as the following:<p><PRE>---------- Compiler: Information messages<br>Information C0197: Component Validation<br>Warning     C0198: illegal Jaguar type: 'window' return type for function: 'of_badfunc'<br>Warning     C0198: illegal Jaguar type: 'any' return type for function: 'of_badfunc'</PRE></p>
+</p>
+<A NAME="TI4805"></A><p>Validation is associated with the object you are editing,
+not with the User Object painter. When you reopen an object, it
+has the same validation state as when you closed it. </p>
+<A NAME="TI4806"></A><h4>Throwing exceptions</h4>
+<A NAME="TI4807"></A><p>When you declare an exception on a function of a user object
+deployed to EAServer, the exceptions are translated to CORBA IDL
+as part of the method prototype. The exceptions can be handled by
+any type of <ABBR title = "e a server" >EAServer</ABBR> client application
+or calling component. For more information, see <A HREF="apptechp20.htm#BABDCHCF">"Exception handling in PowerBuilder"</A>.</p>
+

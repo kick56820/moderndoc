@@ -1,0 +1,188 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About the DataWindow plug-in</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp213.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp215.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF364150459"></A><h1>About the DataWindow plug-in</h1>
+<A NAME="TI6456"></A><p>The DataWindow plug-in lets you display a Powersoft report
+(PSR) on a Web page viewed in a browser that supports Netscape plug-ins.</p>
+<A NAME="TI6457"></A><p>A PSR file contains a report definition (source and object)
+as well as the data contained in the report when the PSR file was
+created. Because its data is saved with it, a PSR file does not
+require a database connection, but the data is static and cannot
+be refreshed.</p>
+<A NAME="CCJDGBGD"></A><h4>Supported browsers</h4>
+<A NAME="TI6458"></A><p>The DataWindow plug-in requires use of a Web browser that
+supports Netscape plug-ins, such as the Netscape browser and Microsoft
+Internet Explorer versions 3 through 5.5 Service Pack 1.</p>
+<A NAME="TI6459"></A><p>Microsoft Internet Explorer 5.5 Service Pack 2 and later versions
+do not support Netscape plug-ins. If you are using the Enterprise
+or Professional edition of PowerBuilder, you can use the DataWindow
+Web control for ActiveX to display a PSR in Internet Explorer. For
+more information, see the <i>DataWindow Programmer's
+Guide</i>
+.</p>
+<A NAME="TI6460"></A><h4>Security</h4>
+<A NAME="TI6461"></A><p>There are no security issues for the DataWindow plug-in. It
+does not run any local applications and it does not write local
+files unless the user explicitly chooses to save the report locally.</p>
+<A NAME="TI6462"></A><p>The DataWindow plug-in displays PSR files only. PSR files
+are read-only, so there is no need for a secure version of the DataWindow
+plug-in.</p>
+<A NAME="TI6463"></A><h4>Restrictions</h4>
+<A NAME="TI6464"></A><p>The PSR <i>cannot</i> use the RichText presentation
+style.</p>
+<A NAME="TI6465"></A><h2>How the DataWindow plug-in works</h2>
+<A NAME="TI6466"></A><p>The DataWindow plug-in displays a PSR with its data and formatting
+as it was previewed and saved from the Report painter, DataWindow
+painter, DataWindow control, or DataStore. The PSR displays all
+the formatting in the DataWindow or report object, including rotated
+text, colored text, shading, or edit styles like check boxes or
+radio buttons.</p>
+<A NAME="TI6467"></A><p>The data is a report&#8212;there is no data entry or database
+access.</p>
+<A NAME="TI6468"></A><p>A pop-up menu in the Web browser lets the client print the
+report or save it in several formats. If clients save the report
+as a local PSR file, they can view it in InfoMaker, which has more
+tools for searching, filtering, and sorting the data.</p>
+<A NAME="TI6469"></A><p>The DataWindow plug-in implements the Netscape plug-in API
+and requires a browser that supports this API (for information,
+see <A HREF="apptechp214.htm#CCJDGBGD">"Supported browsers"</A>). </p>
+<A NAME="TI6470"></A><h4>Client-server interactions, in detail</h4>
+<A NAME="TI6471"></A><p><A HREF="apptechp214.htm#BABDDGII">Table 32-1</A> describes
+in detail what happens between the client and server when the user
+views an HTML document containing a DataWindow plug-in. </p>
+<A NAME="BABDDGII"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 32-1: Client-server transactions for
+the DataWindow plug-in</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6472"></A>Step</th>
+<th  rowspan="1"  ><A NAME="TI6473"></A>What
+the client does</th>
+<th  rowspan="1"  ><A NAME="TI6474"></A>How
+the server responds</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6475"></A>1</td>
+<td  rowspan="1"  ><A NAME="TI6476"></A>The Web browser requests the HTML document
+from the server</td>
+<td  rowspan="1"  ><A NAME="TI6477"></A>The server sends a header identifying the
+document's MIME type (text/html)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6478"></A>2</td>
+<td  rowspan="1"  ><A NAME="TI6479"></A>The browser receives the MIME type and
+prepares to receive an HTML document</td>
+<td  rowspan="1"  ><A NAME="TI6480"></A>The server sends the HTML document</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6481"></A>3</td>
+<td  rowspan="1"  ><A NAME="TI6482"></A>The browser receives the HTML document
+and displays it</td>
+<td  rowspan="1"  ><A NAME="TI6483"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6484"></A>4</td>
+<td  rowspan="1"  ><A NAME="TI6485"></A>The browser recognizes the Embed element,
+reserves space for the plug-in on the page, and requests the PSR
+file from the server</td>
+<td  rowspan="1"  ><A NAME="TI6486"></A>The server sends a header identifying the
+PSR's MIME type (application/data window)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6487"></A>5</td>
+<td  rowspan="1"  ><A NAME="TI6488"></A>The browser receives the MIME type and
+prepares to receive a PSR file</td>
+<td  rowspan="1"  ><A NAME="TI6489"></A>The server sends the PSR file</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6490"></A>6</td>
+<td  rowspan="1"  ><A NAME="TI6491"></A>The Web browser receives the PSR file</td>
+<td  rowspan="1"  ><A NAME="TI6492"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6493"></A>7</td>
+<td  rowspan="1"  ><A NAME="TI6494"></A>The browser searches its Plugins directory
+for the DLL that corresponds to the MIME type (application/data
+window)</td>
+<td  rowspan="1"  ><A NAME="TI6495"></A>&#8212;</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6496"></A>8</td>
+<td  rowspan="1"  ><A NAME="TI6497"></A>The Web browser loads the plug-in DLL
+and displays the PSR file</td>
+<td  rowspan="1"  ><A NAME="TI6498"></A>&#8212;</td>
+</tr>
+</table>
+<A NAME="TI6499"></A><h4>Requirements</h4>
+<A NAME="TI6500"></A><p>Each client that will browse pages containing DataWindow plug-ins
+needs the DataWindow plug-in DLL installed on the local machine.</p>
+<A NAME="TI6501"></A><h4>Name and location</h4>
+<A NAME="TI6502"></A><p>The name of the DataWindow plug-in DLL is <i>NPDWE105.DLL</i>.
+PowerBuilder installs it in the <i>PowerBuilder 10.5\Internet
+Tools\Plugins</i> directory.</p>
+<A NAME="CAIDIAEIA"></A><h2>Installing and configuring the DataWindow plug-in</h2>
+<A NAME="TI6503"></A><p>The DataWindow plug-in is not installed on your computer if
+you select the Typical setup type when you install PowerBuilder.
+You can install the plug-in by running a custom installation of
+PowerBuilder and checking the Web Plugins box on the Select Components
+page. Click the Change button on that page to select the plug-ins
+and controls you want to install. This section describes setup tasks
+that you may need to perform <i>after</i> installing
+the plug-in.</p>
+<A NAME="TI6504"></A><h4>Installation location</h4>
+<A NAME="TI6505"></A><p>The DataWindow plug-in is installed in the <i>PowerBuilder
+10.5\Internet Tools\Plugins</i> directory.
+The PowerBuilder installation program might also install a copy
+of the plug-in in your Web browser's <i>Plugins</i> directory
+if you have Netscape installed.</p>
+<A NAME="TI6506"></A><p>If you have no browser installed or the installation program
+did not find the browser, you need to install the Netscape Web browser
+and then copy or move the plug-ins to your browser's <i>Plugins</i> directory.
+Current versions of Microsoft Internet Explorer do not support plug-ins.</p>
+<A NAME="TI6507"></A><h2>Developing and deploying a DataWindow plug-in</h2>
+<A NAME="TI6508"></A><h4>What you do</h4>
+<A NAME="TI6509"></A><p>There are four main tasks involved in displaying a PSR in
+the DataWindow plug-in.</p>
+<A NAME="TI6510"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display a PSR in the DataWindow plug-in:</p>
+<ol><li class=fi><p>Save a PSR file.</p></li>
+<li class=ds><p>Create an HTML page that embeds the DataWindow
+plug-in.</p></li>
+<li class=ds><p>Configure the Web server by registering the appropriate
+content type (MIME type) and copying the HTML page and PSR files
+to appropriate directories.</p></li>
+<li class=ds><p>On all client workstations, install the DataWindow
+plug-in DLL.</p></li></ol>
+<br><A NAME="TI6511"></A><h4>Resulting components</h4>
+<A NAME="TI6512"></A><p>When everything is set up, the various computers will have
+the components listed in <A HREF="apptechp214.htm#BABIIHJH">Table 32-2</A>.</p>
+<A NAME="BABIIHJH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 32-2: Server and client configuration
+for DataWindow plug-in</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6513"></A>Computer</th>
+<th  rowspan="1"  ><A NAME="TI6514"></A>Component</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6515"></A>Server</td>
+<td  rowspan="1"  ><A NAME="TI6516"></A>MIME type application/data window
+registered for the file extension PSR</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6517"></A></td>
+<td  rowspan="1"  ><A NAME="TI6518"></A>HTML page with an Embed element for the
+PSR</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6519"></A></td>
+<td  rowspan="1"  ><A NAME="TI6520"></A>PSR file</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6521"></A>Client</td>
+<td  rowspan="1"  ><A NAME="TI6522"></A>DataWindow plug-in DLL in the browser's <i>Plugins</i> directory
+and supporting DLLs</td>
+</tr>
+</table>
+<A NAME="TI6523"></A><h4>What's next</h4>
+<A NAME="TI6524"></A><p>The rest of this chapter describes the four steps for displaying
+a PSR in the DataWindow plug-in:<A NAME="TI6525"></A>
+<ul>
+<li class=fi><A HREF="apptechp215.htm#X-REF364150474">Saving a Powersoft
+report (PSR)</A></li>
+<li class=ds><A HREF="apptechp216.htm#X-REF364150483">Creating an HTML page</A></li>
+<li class=ds><A HREF="apptechp217.htm#CCJCJGGJ">Setting up the Web server</A></li>
+<li class=ds><A HREF="apptechp218.htm#X-REF363985240">Setting up users' workstations</A>
+</li>
+</ul>
+</p>
+

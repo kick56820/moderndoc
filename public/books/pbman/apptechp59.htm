@@ -1,0 +1,19 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Identifying the dragged control</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp58.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp60.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCDJCIB"></A><h1>Identifying the dragged control</h1>
+<A NAME="TI1440"></A><p>To identify the type of control that was dropped, use the
+source argument of the DragDrop event. </p>
+<A NAME="TI1441"></A><p>This script for the DragDrop event in a picture declares two
+variables, then determines the type of object that was dropped:<p><PRE> CommandButton lcb_button</PRE><PRE> StaticText lst_info</PRE><PRE> </PRE><PRE> IF source.TypeOf() = CommandButton! THEN</PRE><PRE>         lcb_button = source</PRE><PRE>         lcb_button.Text = "You dropped a Button!"</PRE><PRE> ELSEIF source.TypeOf() = StaticText! THEN</PRE><PRE>         lst_info = source</PRE><PRE>         lst_info.Text = "You dropped the text!"</PRE><PRE> END IF<i></i></PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using CHOOSE CASE</span> <A NAME="TI1442"></A>If your window has a large number of controls that can be
+dropped, use a <b>CHOOSE CASE</b> statement.</p>
+

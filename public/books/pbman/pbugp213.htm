@@ -1,0 +1,100 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Placing a nested report in another report </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp212.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp214.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCBAJDF"></A><h1>Placing a nested report in another report </h1>
+<A NAME="TI7265"></A><p>When you place a nested report in another report, the two
+reports can be independent of each other, or they can be related
+in the database sense by sharing some common data such as a customer
+number or a department number. If the reports are related, you need
+to do some extra things to both the base report and the related
+nested report.</p>
+<A NAME="TI7266"></A><p>Usually, when you place a report within a report rather than
+create a composite report, you want to relate the reports. Those
+instructions are first.</p>
+<A NAME="BFCCACGF"></A><h2>Placing a related nested report in another report</h2>
+<A NAME="TI7267"></A><p>Typically, a related nested report provides the details for
+a master report. For example, a master report might provide information
+about customers. A related nested report placed in the master report
+could provide information about all the orders that belong to each
+customer.</p>
+<A NAME="TI7268"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To place a related nested report in another report:</p>
+<ol><li class=fi><p>Create the nested report (DataWindow object) that
+you plan to place in the base report.</p></li>
+<li class=ds><p>Define a retrieval argument for the nested report.</p><p>For example, suppose the nested report lists orders and you
+want to list orders for a particular customer. To define a retrieval
+argument, you would:<A NAME="TI7269"></A>
+<ul>
+<li class=fi>Select Design&gt;Data
+Source to go to the SQL Select painter.</li>
+<li class=ds>Select Design&gt;Retrieval Arguments from
+the menu bar in the SQL Select painter.</li>
+<li class=ds>Define a retrieval argument in the Specify Retrieval
+Arguments dialog box. In the example, <i>customerID</i> is
+the name assigned to the retrieval argument.
+</li>
+</ul>
+</p></li>
+<li class=ds><p>Specify the retrieval argument in a <b>WHERE</b> clause
+for the <b>SELECT</b> statement.</p><p>The <b>WHERE</b> clause in this example tells
+the DBMS to retrieve rows where the value in the column <b>cust_id</b> equals
+the value of the argument <i>:customerid</i>:</p><br><img src="images/nest14.gif"><br>
+<p>At this point, when you run the report to retrieve data, you
+are prompted to enter a value for <i>:customerid</i>.
+Later in these steps, you will specify that the base report supply
+the values for <i>:customerid</i> instead of prompting
+for values.</p></li>
+<li class=ds><p>Open or create the report you want to have as
+the base report.</p><p>In the example, the base report is one that lists customers
+and has a place for the order history of each customer:</p><br><img src="images/nest15.gif"><br>
+</li>
+<li class=ds><p>Select Insert&gt;Control&gt;Report
+from the menu bar.</p></li>
+<li class=ds><p>In the Design view, click where you want to place
+the report.</p><p>The Select Report dialog box displays, listing defined reports (DataWindow
+objects) in the current target's library search path.</p></li>
+<li class=ds><p>Select the report you want, and click OK.</p><p>A box representing the report displays in the Design view.</p></li>
+<li class=ds><p>With the report still selected, select the General
+page of the Properties view. </p><p>The Arguments box lists arguments defined for the nested report
+and provides a way for you to specify how information from the base
+report will be used to supply the values of arguments to the nested
+report.</p><br><img src="images/nest15a.gif"><br>
+</li>
+<li class=ds><p>Supply the base report column or the expression
+that will supply the argument's value. To do this, click
+the button in the Expression column.</p><p>The Modify Expression dialog box displays. In this dialog
+box, you can easily select one of the columns or develop an expression. In
+the example, the column named <b>id</b> from the base
+report will supply the value for the argument <i>:customerid</i> in
+the nested report.</p></li>
+<li class=ds><p>Select File&gt;Save from the menu bar and
+assign a name to the report.</p></li>
+<li class=ds><p>In the Preview view, you can see what your report
+looks like:</p><br><img src="images/nest20.gif"><br>
+</li></ol>
+<br><A NAME="BFCDGAHG"></A><h2>Placing an unrelated nested report in another report</h2>
+<A NAME="TI7270"></A><p>When you place an unrelated nested report in a base report,
+the entire nested report appears with <i>each</i> row
+of the base report.</p>
+<A NAME="TI7271"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To place an unrelated nested report in another
+report:</p>
+<ol><li class=fi><p>Create or open the report you want as the
+base report.</p></li>
+<li class=ds><p>Select Insert&gt;Control&gt;Report
+from the menu bar.</p></li>
+<li class=ds><p>In the Design view, click where you want to place
+the report.</p><p>The Select Report dialog box displays, listing defined reports (DataWindow
+objects) in the current target's library search path.</p></li>
+<li class=ds><p>Select the report you want to nest in the base
+report, and click OK.</p><p>A box representing the nested report displays in the Design
+view.</p></li>
+<li class=ds><p>Select File&gt;Save from the menu bar and
+if the base report is newly created, assign a name to it.</p></li></ol>
+<br>

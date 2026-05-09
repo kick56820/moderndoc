@@ -1,0 +1,258 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using inheritance to build a menu </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp121.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp123.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CACDIAEFG"></A><h1>Using inheritance to build a menu </h1>
+<A NAME="TI3611"></A><p>When you build a menu that inherits its style, events, functions,
+structures, variables, and scripts from an existing menu, you save
+coding time. All you have to do is modify the descendent object
+to meet the requirements of the current situation.</p>
+<A NAME="TI3612"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use inheritance to build a descendent menu:</p>
+<ol><li class=fi><p>Click the Inherit button on the PowerBar.</p></li>
+<li class=ds><p>In the Inherit From Object dialog box, select
+Menus from the Object Type drop-down list, the library or libraries
+you want to look in, and the menu you want to use to create the
+descendant, and click OK.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Displaying menus from many libraries</span> <A NAME="TI3613"></A>To find a menu more easily, you can select more than one library
+in the Application Libraries list. Use Ctrl+Click to toggle
+selected libraries and Shift+Click to select a range.</p>
+<p>The selected menu displays in the WYSIWYG Menu view and the
+Tree Menu view in the Menu painter. The title in the painter's
+title bar indicates that the menu is a descendant.</p></li>
+<li class=ds><p>Make the changes you want to the descendent menu
+as described in the next section.</p></li>
+<li class=ds><p>Save the menu under a new name.</p></li></ol>
+<br><A NAME="TI3614"></A><h2>Using the inherited information</h2>
+<A NAME="TI3615"></A><p>When you build and save a menu, PowerBuilder treats the menu
+as a unit that includes:</p>
+<A NAME="TI3616"></A><p><A NAME="TI3617"></A>
+<ul>
+<li class=fi>All menu items and
+their scripts</li>
+<li class=ds>Any variables, functions, and structures declared
+for the menu
+</li>
+</ul>
+</p>
+<A NAME="TI3618"></A><p>When you use inheritance to build a menu, everything in the
+ancestor menu is inherited in all of its descendants.</p>
+<A NAME="TI3619"></A><h4>What you can do</h4>
+<A NAME="TI3620"></A><p>You can do the following in a descendent menu:</p>
+<A NAME="TI3621"></A><p><A NAME="TI3622"></A>
+<ul>
+<li class=fi>Add menu items to
+the end of a menu</li>
+<li class=ds>Insert menu items in a menu (with some restrictions)<br>
+For more information, see <A HREF="pbugp122.htm#X-REF351790758">"Where you can insert menu
+items in a descendent menu"</A>.<br></li>
+<li class=ds>Modify existing menu items<br>
+For example, you can change the text displayed for a menu
+item or change its initial appearance, such as making it disabled
+or invisible.<br></li>
+<li class=ds>Build scripts for menu items that do not have scripts
+in the ancestor menu</li>
+<li class=ds>Extend or override inherited scripts</li>
+<li class=ds>Declare functions, structures, and variables for
+the menu
+</li>
+</ul>
+</p>
+<A NAME="TI3623"></A><h4>What you cannot do</h4>
+<A NAME="TI3624"></A><p>You cannot do the following in a descendent menu:</p>
+<A NAME="TI3625"></A><p><A NAME="TI3626"></A>
+<ul>
+<li class=fi>Change the order of
+inherited menu items</li>
+<li class=ds>Delete an inherited menu item</li>
+<li class=ds>Insert menu items between inherited menu items that
+do not have the ShiftToRight property set (see <A HREF="pbugp122.htm#BGEHJHJI">"Modifying the ShiftToRight
+property"</A>)</li>
+<li class=ds>Change the name of an inherited menu item</li>
+<li class=ds>Change the type of an inherited menu item
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Hiding a menu item</span> <A NAME="TI3627"></A>If you do not need a menu item in a descendent menu, you can
+hide it by clearing the visible property in the Properties view
+or by using the <b>Hide</b> function.</p>
+<A NAME="TI3628"></A><h4>About menu item names in a descendant</h4>
+<A NAME="TI3629"></A><p>PowerBuilder uses the following syntax to show names of inherited
+menu items:</p>
+<A NAME="TI3630"></A><p><p><PRE>AncestorMenuName::MenuItemName</PRE></p>
+</p>
+<A NAME="TI3631"></A><p>For example, in a menu inherited from <b>m_update_file</b>,
+you see <b>m_update_file</b>::<b>m_file</b> for
+the <b>m_file</b> menu item, which is defined
+in <b>m_update_file</b>.</p>
+<A NAME="TI3632"></A><p>The inherited menu item name is also locked, so you cannot
+change it.</p>
+<A NAME="TI3633"></A><h4>Understanding inheritance</h4>
+<A NAME="TI3634"></A><p>The issues concerning inheritance with menus are similar to
+the issues concerning inheritance with windows and user objects.
+For information, see <A HREF="pbugp108.htm#CAIDCJFG">Chapter 13, "Understanding Inheritance ."</A></p>
+<A NAME="CACBECAH"></A><h2>Inserting menu items in a descendent menu</h2>
+<A NAME="BGEHJHJI"></A><h4>Modifying the ShiftToRight
+property</h4>
+<A NAME="TI3635"></A><p>When defining a descendent menu, you might want to insert
+menu items in the middle of the menu bar or in the middle of a drop-down
+or cascading menu. To do this, you set the ShiftToRight property
+in a menu item's Properties view on the General property
+page.</p>
+<A NAME="TI3636"></A><p>If the ancestor menu has no menu items with ShiftToRight set,
+you can add a new menu item to the end of the descendent menu. To
+add new menu items elsewhere in the menu, set the ShiftToRight property
+for the descendent menu items that will follow the new menu item.</p>
+<A NAME="TI3637"></A><p>The ShiftToRight property is used for menu items on the menu
+bar (where items need to shift right if a new item is inserted)
+and for menu items in a drop-down or cascading menu (where
+items might need to shift <i>down</i> if a new item
+is inserted). The property name is ShiftToRight, but it means shift
+down in drop-down or cascading menus.</p>
+<A NAME="TI3638"></A><h4>Where you set the ShiftToRight property</h4>
+<A NAME="TI3639"></A><p>You set the ShiftToRight property in an ancestor menu only
+if you know that you will always want a group of menu items to shift
+right (or down) when you inherit from the menu and add a new menu
+item. For example, if you have File, Edit, Window, and Help menus
+on the menu bar, set the ShiftToRight property for the Window and
+Help menu items if you are going to inherit from this menu, because
+Window and Help are usually the last items on a menu bar.</p>
+<A NAME="X-REF351790758"></A><h4>Where you can insert menu
+items in a descendent menu</h4>
+<A NAME="TI3640"></A><p>In a descendent menu, a group of menu items can be one of
+four types. Each type has an insertion rule.</p>
+<A NAME="TI3641"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 14-7: Insertion rules for groups of menu items</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3642"></A>Type of group</th>
+<th  rowspan="1"  ><A NAME="TI3643"></A>Insertion rule</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3644"></A>Inherited menu items without ShiftToRight
+set</td>
+<td  rowspan="1"  ><A NAME="TI3645"></A>You cannot insert a new menu item before any
+of these menu items</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3646"></A>Inherited menu items with ShiftToRight
+set in ancestor</td>
+<td  rowspan="1"  ><A NAME="TI3647"></A>You can insert before the first menu
+item in the group but not before the others</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3648"></A>New items without ShiftToRight set</td>
+<td  rowspan="1"  ><A NAME="TI3649"></A>You can insert a new menu item before
+any of these menu items</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3650"></A>New items with ShiftToRight set</td>
+<td  rowspan="1"  ><A NAME="TI3651"></A>You can insert a new menu item before
+any of these menu items</td>
+</tr>
+</table>
+<A NAME="TI3652"></A><p>The <A HREF="pbugp122.htm#BGECBDGB">"Example with no ShiftToRight
+in ancestor"</A> and
+the <A HREF="pbugp122.htm#BGECBCCG">"Example with ShiftToRight
+in ancestor"</A> demonstrate
+some of these rules.</p>
+<A NAME="TI3653"></A><h4>How to insert menu items in a descendent menu</h4>
+<A NAME="TI3654"></A><p>If you can insert a menu item in a descendent menu, the Insert
+Menu Item option on the Insert menu and the pop-up menu
+is enabled. The Insert Menu Item is enabled if ShiftToRight is set
+in the selected item that will follow the item you are inserting
+and all menu items following it.</p>
+<A NAME="TI3655"></A><p>To insert a menu item in a descendant, you use the same method
+you use to insert an item in a new menu, whether the menu item is
+on the menu bar or on a drop-down or cascading menu. For information
+about inserting menu items, see <A HREF="pbugp118.htm#CACDIGBC">"Working with menu items"</A>.</p>
+<A NAME="TI3656"></A><p>The following examples illustrate where you can insert menu
+items in a descendent menu and demonstrate the rules that govern
+where you can insert them.</p>
+<A NAME="BGECBDGB"></A><h4>Example with no ShiftToRight
+in ancestor</h4>
+<A NAME="TI3657"></A><p>Suppose you have a menu with File, Edit, Window, and Help
+items on the menu bar. The menu is inherited from an ancestor frame
+menu with no items set as ShiftToRight in the ancestor.</p>
+<br><img src="images/menu25.gif">
+<A NAME="TI3658"></A><p>Here is how you might add some new menu items. Since ShiftToRight
+is not set anywhere at first, you can add a menu item only to the
+end.</p>
+<A NAME="TI3659"></A><p><A NAME="TI3660"></A>
+<ol>
+</li>
+<li class=ds>Select any item in
+the menu bar and select Insert&gt;Menu Item At End.</li>
+<li class=ds>Name the new menu item New1 and press Enter.<br>
+The New1 menu item is added to the right of the Help menu.<br><br><img src="images/menu27.gif">
+<br>
+Now add a new Menu item before the New1 menu item. You can
+do this without setting ShiftToRight on New1, because New1 is a
+new menu item in the inherited menu.<br></li>
+<li class=ds>Select Insert Menu Item from the pop-up menu for
+New1.</li>
+<li class=ds>Name the new menu item New2 and press Enter.<br><img src="images/menu29.gif">
+<br>
+Now add a new Menu item before the Help menu item. You cannot
+do this unless you set ShiftToRight on the Help menu item, the New2
+Menu item, and the New1 menu item, because Help is an inherited
+menu item without ShiftToRight set in the ancestor menu. For Help
+to shift right, New2 and New1 must also be able to shift right.<br></li>
+<li class=ds>Select the Help menu item and in the Properties
+view, select the ShiftToRight property, and then do the same for
+New1 and New2.<br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Order for setting ShiftToRight for the three menu items</span> <A NAME="TI3661"></A>You can set ShiftToRight in any order, but you see the items
+shifting only if you set ShiftToRight from left to right.
+<br>
+<br>
+Now you can add a new menu item before the Help menu item.<br></li>
+<li class=ds>Select the Help menu item, then select Insert New
+Item from the pop-up menu, name the new item New3, and then press
+Enter.<br><img src="images/menu30.gif">
+<br>
+If you want to add a new Menu item before the New3 menu item,
+you can do it without setting ShiftToRight on New3, because New3
+is a new menu item and ShiftToRight is set in all items that follow.<br><br>
+However, if you want to add a new menu item before the Window
+menu item, you cannot do this by working only in the descendent
+menu because the Window menu item is an ancestor menu item and ShiftToRight
+is not set in the ancestor. To be able to do this, you must set
+Window as ShiftToRight in the ancestor.<br>
+</li>
+</ol>
+</p>
+<A NAME="BGECBCCG"></A><h4>Example with ShiftToRight
+in ancestor</h4>
+<A NAME="TI3662"></A><p>In this example, the inherited menu has the same four menu
+bar items, but ShiftToRight has been set in the Window and Help
+menu items in the ancestor menu. Suppose you want to insert a new
+menu item before the Help menu item and the Window menu item.</p>
+<A NAME="TI3663"></A><p><A NAME="TI3664"></A>
+<ol>
+</li>
+<li class=ds>Select the Help menu
+item and display the pop-up menu.<br>
+The Insert Menu Item option is disabled because the Help item <i>is
+not</i> the first item in a group of ancestor menu items
+(Window and Help) with ShiftToRight set in the ancestor. <br></li>
+<li class=ds>Select the Window menu item and display the pop-up
+menu.<br>
+The Insert Menu Item option is enabled because the Window
+item <i>is</i> the first item in a group of ancestor
+menu items with ShiftToRight set in the ancestor. <br></li>
+<li class=ds>Select Insert Menu Item At End from the pop-up menu
+to insert a new menu item after Help, name it New1, and press Enter.<br>
+The New1 item's ShiftToRight property is set automatically.<br><br>
+Now the Window, Help, and New1 items are set ShiftToRight.
+You can insert a new item before Window and New1, but not before
+Help. This is because the Window and Help menu items are a group
+for which ShiftToRight is set in the ancestor.<br><br>
+You cannot insert a new item before the Edit menu item because
+Edit is in a group (File and Edit) that are inherited items with
+no ShiftToRight set in the ancestor.<br></li>
+<li class=ds>Select the Edit menu item, select ShiftToRight in
+the Properties view, and then add a new menu item.<br><img src="images/menu34.gif">
+<br>
+You could also have set the ShiftToRight property in the ancestor
+menu, but it is easier to work just in the descendant.<br>
+</li>
+</ol>
+</p>
+

@@ -1,0 +1,45 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+DataWindow Web control for ActiveX</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp284.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp286.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBBGBEI"></A><h1>DataWindow Web control for ActiveX</h1>
+<A NAME="TI8309"></A><p>The following files must be deployed to your Web server if
+you are using the DataWindow Web control for ActiveX.</p>
+<A NAME="TI8310"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-13: PowerBuilder file for DataWindow Web control for ActiveX</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8311"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8312"></A>Required for</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8313"></A><i>PSDWC105.CAB</i> </td>
+<td  rowspan="1"  ><A NAME="TI8314"></A>CAB file containing an Open Software
+Distribution information file and DLLs for the Web ActiveX and the Transaction
+control</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8315"></A><i>PBJDBC12105.JAR</i> </td>
+<td  rowspan="1"  ><A NAME="TI8316"></A>JAR file containing required Java classes</td>
+</tr>
+</table>
+<A NAME="TI8317"></A><p>If the target system does not have a Sun JRE installed, the
+user must download a JRE from the Sun Java Web site. To make the
+Web ActiveX and the Transaction control available to the client
+browser, code the CODEBASE attribute in the Object element in the
+deployed HTML page.</p>
+<A NAME="BGBCAAEE"></A><h4>About the CODEBASE attribute</h4>
+<A NAME="TI8318"></A><p>The CODEBASE attribute identifies the location of a CAB or
+OCX file so that a browser can download it, unpack it if it is a
+CAB file, and register it on the user's computer. A typical
+value for CODEBASE uses a relative URL to identify the location
+of the CAB or OCX file followed by a # sign and a four-part
+version number separated by commas. The version number is the same
+as the version number of PowerBuilder. For example:<p><PRE>  CODEBASE="cabs/psdwc105.cab#10,0,0,5031"</PRE></p>
+<A NAME="TI8319"></A><p>Additional files may be required. For more information see "Deploying
+the DataWindow Web control" in the PowerBuilder online
+books or the <i>DataWindow Programmer's Guide</i>
+.</p>
+

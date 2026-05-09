@@ -1,0 +1,40 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Printing basics </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp247.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp249.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299755109"></A><h1>Printing basics </h1>
+<A NAME="TI7536"></A><p>All printing is defined in terms of the print area. The print
+area is the physical page size less any margins. For example, if
+the page size is 8.5 inches by 11 inches, and the top, bottom, and
+side margins are all a half-inch, the print area is 7.5 inches by
+10 inches.</p>
+<A NAME="TI7537"></A><h4>Measurements</h4>
+<A NAME="TI7538"></A><p>All measurements in the print area are in thousandths of an
+inch. For example, if the print area is 7.5 inches by 10 inches,
+then:<A NAME="TI7539"></A>
+<ul>
+<li class=fi>The upper-left corner
+is 0,0</li>
+<li class=ds>The upper-right corner is 7500,0</li>
+<li class=ds>The lower-left corner is 0,10000</li>
+<li class=ds>The lower-right corner is 7500,10000
+</li>
+</ul>
+</p>
+<A NAME="TI7540"></A><h4>Print cursor</h4>
+<A NAME="TI7541"></A><p>When printing, PowerBuilder uses a print cursor to keep track
+of the print location. The print cursor stores the coordinates of
+the upper-left corner of the location at which printing begins.
+PowerBuilder updates the print cursor (including tab position if
+required) after each print operation except <b>PrintBitmap</b>, <b>PrintLine</b>, <b>PrintRectangle</b>,
+or <b>PrintRoundRect</b>. To position text, objects,
+lines, and pictures when you are creating complex reports, specify
+the cursor position as part of each print function call.</p>
+

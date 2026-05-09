@@ -1,0 +1,93 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About MDI </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp27.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp29.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF352147628"></A><h1>About MDI </h1>
+<A NAME="TI590"></A><p><strong>Multiple Document Interface</strong> (MDI) is
+an application style you can use to open multiple windows (called <strong>sheets</strong>)
+in a single window and move among the sheets. To build an MDI application,
+you define a window whose type is MDI Frame and open other windows
+as sheets within the frame.</p>
+<A NAME="TI591"></A><p>Most large-scale Windows applications are MDI applications.
+For example, PowerBuilder is an MDI application: the PowerBuilder
+window is the frame and the painters are the sheets.</p>
+<A NAME="TI592"></A><p>If you expect your users to want to open several windows and
+easily move from window to window, you should make your application
+an MDI application.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using the Template Application feature</span> <A NAME="TI593"></A>When you create a new application, you can select the Template
+Application Start wizard and then choose to create an SDI or MDI
+application. If you select MDI application, PowerBuilder generates
+the shell of an MDI application that includes an MDI frame (complete
+with window functions that do such things as open or close a sheet),
+a sheet manager object and several sheets, an About dialog box,
+menus, toolbars, and scripts.</p>
+<A NAME="TI594"></A><h4>MDI frame windows</h4>
+<A NAME="TI595"></A><p>An MDI frame window is a window with several parts: a menu
+bar, a frame, a client area, sheets, and (usually) a status area,
+which can display <strong>MicroHelp</strong> (a short description
+of the current menu item or current activity).</p>
+<br><img src="images/mdi01.gif">
+<A NAME="TI596"></A><h4>The frame</h4>
+<A NAME="TI597"></A><p>The MDI frame is the outside area of the MDI window that contains
+the client area. There are two types of MDI frames:<A NAME="TI598"></A>
+<ul>
+<li class=fi>Standard</li>
+<li class=ds>Custom
+</li>
+</ul>
+</p>
+<p><b>Standard frames</b>   A standard MDI frame window has a menu bar and (usually) a
+status area for displaying MicroHelp. The client area is empty, except
+when sheets are open. Sheets can have their own menus, or they can inherit
+their menus from the MDI frame. Menu bars in MDI applications always
+display in the frame, never in a sheet. The menu bar typically has
+an item that lists all open sheets and lets the user tile, cascade,
+or layer the open sheets. </p>
+<p><b>Custom frames</b>   Like a standard frame, a custom frame window usually has a
+menu bar and a status area. The difference between standard and
+custom frames is in the client area: in standard frames, the client
+area contains only open sheets; in custom frames, the client area
+contains the open sheets as well as other objects, such as buttons
+and StaticText. For example, you might want to add a set of buttons
+with some explanatory text in the client area.</p>
+<A NAME="TI599"></A><h4>Client area</h4>
+<A NAME="TI600"></A><p>In a standard frame window, PowerBuilder sizes the client
+area automatically and the open sheets display within the client
+area. In custom frame windows containing objects in the client area,
+you must size the client area yourself. If you do not size the client
+area, the sheets will open, but may not be visible.</p>
+<p><b>The MDI_1 control</b>   When you build an MDI frame window, PowerBuilder creates a
+control named <b>MDI_1</b>, which it uses
+to identify the client area of the frame window. In standard frames,
+PowerBuilder manages <b>MDI_1</b> automatically.
+In custom frames, you write a script for the frame's Resize
+event to size <b>MDI_1</b> appropriately.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Displaying information about MDI_1</span> <A NAME="TI601"></A>You can see the properties and functions for <b>MDI_1</b> in
+the Browser. Create a window of type MDI and select the Window tab
+in the Browser. Select the MDI frame window and select Expand All
+from the pop-up menu. <b>MDI_1</b> is listed
+as a window control, and you can examine its properties, functions,
+and so forth in the right pane of the Browser.</p>
+<A NAME="TI602"></A><h4>MDI sheets</h4>
+<A NAME="TI603"></A><p>Sheets are windows that can be opened in the client area of
+an MDI frame. You can use any type of window except an MDI frame
+as a sheet in an MDI application. To open a sheet, use either the <b>OpenSheet</b> or <b>OpenSheetWithParm</b> function.</p>
+<A NAME="TI604"></A><h4>Toolbars</h4>
+<A NAME="TI605"></A><p>Often you want to provide a toolbar for users of an MDI application.
+You can have PowerBuilder automatically create and manage a toolbar
+that is based on the current menu, or you can create your own custom
+toolbar (generally as a user object) and size the client area yourself.</p>
+<A NAME="TI606"></A><p>For information on providing a toolbar, see
+the chapter on menus and toolbars in the <i>User's
+Guide</i>
+. For more information on sizing the client area,
+see <A HREF="apptechp33.htm#X-REF352147820">"Sizing the client
+area "</A>.</p>
+

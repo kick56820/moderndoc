@@ -1,0 +1,86 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About displaying and validating data </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp188.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp190.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF356196798"></A><h1>About displaying and validating data </h1>
+<A NAME="TI6050"></A><p>When PowerBuilder generates a basic DataWindow object, it uses the extended
+attributes defined for the data and stored in the extended attribute
+system tables. </p>
+<A NAME="TI6051"></A><p>For more information about the extended attribute
+system tables, see <A HREF="pbugp271.htm#CCJEBFGB">Appendix A, "The Extended
+Attribute System Tables"</A></p>
+<A NAME="TI6052"></A><p>In the Database painter, you can create the extended attribute definitions that
+specify a column's display format, edit style, and validation
+rules.</p>
+<A NAME="TI6053"></A><p>In the DataWindow painter, you can override these extended attribute definitions
+for a column in a DataWindow object. These overrides do not change the
+information stored with the column definition in the extended attribute
+system tables.</p>
+<A NAME="X-REF301085922"></A><h2>Presenting the data</h2>
+<A NAME="TI6054"></A><p>When you generate a new DataWindow object, PowerBuilder presents the
+data according to the properties already defined for a column, such
+as a column's display format and edit style. </p>
+<A NAME="TI6055"></A><h4>Display formats</h4>
+<A NAME="TI6056"></A><p>Display formats embellish data values while still displaying
+them as letters, numbers, and special characters. Using display
+formats, for example, you can:<A NAME="TI6057"></A>
+<ul>
+<li class=fi>Change
+the color of numbers to display a negative value</li>
+<li class=ds>Add parentheses and dashes to format a telephone
+number</li>
+<li class=ds>Add a dollar sign and period to indicate a currency
+format
+</li>
+</ul>
+</p>
+<A NAME="TI6058"></A><p>For information, see <A HREF="pbugp190.htm#X-REF377802618">"About display formats "</A>.</p>
+<A NAME="TI6059"></A><h4>Edit styles</h4>
+<A NAME="TI6060"></A><p>Edit styles usually take precedence over display formats and
+specify how column data is presented. For example, using edit styles,
+you can:<A NAME="TI6061"></A>
+<ul>
+<li class=fi>Display valid values
+in a drop-down list</li>
+<li class=ds>Indicate that a single value is selected by a check
+box</li>
+<li class=ds>Indicate which of a group of values is selected
+with radio buttons
+</li>
+</ul>
+</p>
+<A NAME="TI6062"></A><p>Edit styles affect not only the way data displays, they also
+affect how the user interacts with the data at runtime.</p>
+<A NAME="TI6063"></A><p>For more information, see <A HREF="pbugp193.htm#BFCBBIBJ">"About edit styles "</A>.</p>
+<A NAME="CHDBDABD"></A><h4>About display format masks
+and EditMask masks</h4>
+<A NAME="TI6064"></A><p>The differences between display format masks and EditMask
+masks can be confusing. A display format mask determines the appearance
+of the column when the focus is <i>off</i> the column,
+or when the DataWindow object is in print preview mode. When you apply
+an EditMask edit style, the mask you use determines the appearance
+of the column when focus is <i>on</i> the column.</p>
+<A NAME="TI6065"></A><p>If you want data to display differently depending on whether
+the focus is on or off the column, specify an edit mask (on the
+Edit property page for the column) as well as a display format (on
+the Format property page for the column), then check the Use Format
+check box on the Format property page. The Use Format check box
+displays only when an edit mask has been specified. </p>
+<A NAME="TI6066"></A><p>If you want the data to display in the same way whether focus
+is on or off the column and you have defined an edit mask, you do
+not need to define a display format. The edit mask is used for display
+if the Use Format box is not checked (the default).</p>
+<A NAME="TI6067"></A><h2>Validating data</h2>
+<A NAME="TI6068"></A><p>When data is entered in the Database painter or in a DataWindow object, PowerBuilder evaluates
+the data against validation rules defined for that column. If the
+data is valid, PowerBuilder accepts the entry; otherwise, PowerBuilder displays
+an error message and does not accept the entry.</p>
+<A NAME="TI6069"></A><p>For more information, see <A HREF="pbugp197.htm#X-REF301085948">"About validation rules "</A>.</p>
+

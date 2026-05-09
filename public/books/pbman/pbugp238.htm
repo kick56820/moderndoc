@@ -1,0 +1,71 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+XML support in the DataWindow painter</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp237.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp239.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABEFCEB"></A><h1>XML support in the DataWindow painter</h1>
+<A NAME="TI8236"></A><p>PowerBuilder supports
+both the export and import of XML in DataStore and DataWindow objects using
+XML template objects. You construct XML templates for export and
+import graphically in the Export/Import Template view for
+XML. Each template you create is encapsulated in the DataWindow object.
+A template enables you to specify the XML logical structure of how
+the row data iterates inside the root element of the XML document.</p>
+<A NAME="TI8237"></A><p>The possible uses of this feature include the following: <A NAME="TI8238"></A>
+<ul>
+<li class=fi>You can code events in data entry or data reporting
+applications to export selected data values, or the entire contents
+of a DataWindow object, to a structured XML document. The structure
+of the XML document can be customized for use by other internal
+or external applications, processes, or systems.</li>
+<li class=ds>You can add a method to a custom class user object
+that uses DataStore objects for server-side database processing
+or middle-tier management of a client-side DataWindow object. The
+method would export data to XML, which could then be processed by
+a different component or subsystem, such as an Enterprise JavaBeans
+component or a Web service.</li>
+<li class=ds>A similar method could be added to a Web application
+that uses a Web DataWindow. The method might be invoked by a user
+action, such as selecting checkout in a shopping cart application. 
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>XML services</span> <A NAME="TI8239"></A>In addition to the support for XML in the DataWindow painter,
+PowerBuilder also provides the PowerBuilder Document Object Model
+(PBDOM). For more information, see the chapter on XML services in <i>Application
+Techniques</i>
+.</p>
+<A NAME="TI8240"></A><h4>Export templates</h4>
+<A NAME="TI8241"></A><p>An XML export template lets you customize the XML that is
+generated.</p>
+<A NAME="TI8242"></A><p>You can specify optional XML and document type declarations
+that precede the root element in the exported XML, as well as the
+logical structure and nesting level of iterative DataWindow row
+data inside the root element. The children of the root element can
+contain elements, character references, and processing instructions
+as well as the row data, using explicit markup. For more information,
+see <A HREF="pbugp239.htm#BABCHCGE">"Header and Detail sections"</A>.</p>
+<A NAME="TI8243"></A><p>If the exported XML is used by different applications or processes,
+you can define a separate export template for each use.</p>
+<A NAME="TI8244"></A><h4>Import templates</h4>
+<A NAME="TI8245"></A><p>You need to create an import template if you want to import
+data that does not match the DataWindow column definition or is
+associated with a schema, or if you want to import attribute values.</p>
+<A NAME="TI8246"></A><p>Only the mapping of column names to element and attribute
+names is used for import. All other information in the template
+is ignored. </p>
+<A NAME="TI8247"></A><h4>Validating XML</h4>
+<A NAME="TI8248"></A><p>XML export and import do
+not validate the data after export or before import. You can use
+the <b>XMLParseFile</b> and <b>XMLParseString</b> functions
+to validate an XML file or string against a DTD or XML schema before
+proceeding with additional processing. If no DTD or schema is included
+or referenced, <b>XMLParseFile</b> and <b>XMLParseString</b> check
+whether the content is well-formed XML.</p>
+

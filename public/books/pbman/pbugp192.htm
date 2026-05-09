@@ -1,0 +1,525 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining display formats</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp191.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp193.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCCJFHF"></A><h1>Defining display formats</h1>
+<A NAME="TI6102"></A><p>Display formats are represented through masks, where certain
+characters have special significance. PowerBuilder supports four kinds
+of display formats, each using different mask characters:<A NAME="TI6103"></A>
+<ul>
+<li class=fi>Numbers</li>
+<li class=ds>Strings</li>
+<li class=ds>Dates</li>
+<li class=ds>Times
+</li>
+</ul>
+</p>
+<A NAME="TI6104"></A><p>For example, in a string format mask, each <b>@</b> represents
+a character in the string and all other characters represent themselves.
+You can use the following mask to display phone numbers:    <p><PRE> (@@@) @@@-@@@@</PRE></p>
+<A NAME="TI6105"></A><h4>Combining formats</h4>
+<A NAME="TI6106"></A><p>You can include different types of display format masks in
+a single format. Use a space to separate the masks. For example,
+the following format section includes a date and time format:<p><PRE>mmmm/dd/yyyy h:mm</PRE></p>
+</p>
+<A NAME="TI6107"></A><h4>Using sections</h4>
+<A NAME="TI6108"></A><p>Each type of display format can have multiple sections, with
+each section corresponding to a form of the number, string, date,
+or time. Only one section is required; additional sections are optional
+and should be separated with semicolons (;). You cannot use sections in
+edit masks. Semicolons can be used only in display formats.</p>
+<A NAME="TI6109"></A><p>The following format specifies different displays for positive
+and negative numbers&#8212;negative numbers are displayed in
+parentheses:<p><PRE>$#,##0;($#,##0)</PRE></p>
+</p>
+<A NAME="TI6110"></A><h4>Using keywords</h4>
+<A NAME="TI6111"></A><p>Enclose display format keywords in square brackets. For example,
+you can use the keyword <b>[General]</b> when
+you want PowerBuilder to determine the appropriate format for a number.</p>
+<A NAME="TI6112"></A><h4>Using colors</h4>
+<A NAME="TI6113"></A><p>You can define a color for each display format section by
+specifying a color keyword before the format. The color keyword
+is the name of the color, or a number that represents the color,
+enclosed in square brackets: <b>[RED]</b> or <b>[255]</b>. The
+number is usually used only when a color is required that is not
+provided by name. The named color keywords
+are:<A NAME="TI6114"></A>
+<ul>
+<li class=fi><b>[BLACK]</b></li>
+<li class=ds><b>[BLUE]</b></li>
+<li class=ds><b>[CYAN]</b></li>
+<li class=ds><b>[GREEN]</b></li>
+<li class=ds><b>[MAGENTA]</b></li>
+<li class=ds><b>[RED]</b></li>
+<li class=ds><b>[WHITE]</b></li>
+<li class=ds><b>[YELLOW]</b>
+</li>
+</ul>
+</p>
+<A NAME="TI6115"></A><p>The formula for combining primary color values into a number
+is:<p><PRE>256*256*<i>blue</i> + 256*<i>green</i> + <i>red</i><i>=</i><i>number</i></PRE></p>
+</p>
+<A NAME="TI6116"></A><p>where the amount of each primary color is specified as a value
+from 0 to 255. For example, to specify cyan, substitute 255 for
+blue, 255 for green, and 0 for red. The result is 16776960.</p>
+<A NAME="TI6117"></A><p>If you want to add text to a numeric display format and use
+a color attribute, you must include the escape character (\)
+before each literal in the mask. For example:<p><PRE> [red]\D\e\p\t\: ###</PRE></p>
+<A NAME="TI6118"></A><p><A HREF="pbugp192.htm#BHAHIEDH">Table 22-1</A> lists
+the blue, green, and red values you can use in the formula to create
+other colors.</p>
+<A NAME="BHAHIEDH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 22-1: Numeric values used to create
+colors</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6119"></A>Blue</th>
+<th  rowspan="1"  ><A NAME="TI6120"></A>Green</th>
+<th  rowspan="1"  ><A NAME="TI6121"></A>Red</th>
+<th  rowspan="1"  ><A NAME="TI6122"></A>Number</th>
+<th  rowspan="1"  ><A NAME="TI6123"></A>Color</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6124"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI6125"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI6126"></A>255</td>
+<td  rowspan="1"  ><A NAME="TI6127"></A>255</td>
+<td  rowspan="1"  ><A NAME="TI6128"></A>Red</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6129"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI6130"></A>255</td>
+<td  rowspan="1"  ><A NAME="TI6131"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI6132"></A>65280</td>
+<td  rowspan="1"  ><A NAME="TI6133"></A>Green</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6134"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI6135"></A>128</td>
+<td  rowspan="1"  ><A NAME="TI6136"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI6137"></A>32768</td>
+<td  rowspan="1"  ><A NAME="TI6138"></A>Dark green</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6139"></A>255</td>
+<td  rowspan="1"  ><A NAME="TI6140"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI6141"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI6142"></A>16711680</td>
+<td  rowspan="1"  ><A NAME="TI6143"></A>Blue</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6144"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI6145"></A>255</td>
+<td  rowspan="1"  ><A NAME="TI6146"></A>255</td>
+<td  rowspan="1"  ><A NAME="TI6147"></A>65535</td>
+<td  rowspan="1"  ><A NAME="TI6148"></A>Yellow</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6149"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI6150"></A>128</td>
+<td  rowspan="1"  ><A NAME="TI6151"></A>128</td>
+<td  rowspan="1"  ><A NAME="TI6152"></A>32896</td>
+<td  rowspan="1"  ><A NAME="TI6153"></A>Brown</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6154"></A>255</td>
+<td  rowspan="1"  ><A NAME="TI6155"></A>255</td>
+<td  rowspan="1"  ><A NAME="TI6156"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI6157"></A>16776960</td>
+<td  rowspan="1"  ><A NAME="TI6158"></A>Cyan</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6159"></A>192</td>
+<td  rowspan="1"  ><A NAME="TI6160"></A>192</td>
+<td  rowspan="1"  ><A NAME="TI6161"></A>192</td>
+<td  rowspan="1"  ><A NAME="TI6162"></A>12632256</td>
+<td  rowspan="1"  ><A NAME="TI6163"></A>Light gray</td>
+</tr>
+</table>
+<A NAME="TI6164"></A><h4>Using special characters</h4>
+<A NAME="TI6165"></A><p>To include a character in a mask that has special meaning
+in a display format, such as [, precede the character with
+a backslash (\). For example, to display a single quotation
+mark, enter \'.</p>
+<A NAME="TI6166"></A><h4>Setting display formats at runtime</h4>
+<A NAME="TI6167"></A><p>In scripts, you can use <b>GetFormat</b> to get
+the current format for a column and <b>SetFormat</b> to
+change the format for a column at runtime.</p>
+<A NAME="TI6168"></A><h2>Number display formats</h2>
+<A NAME="TI6169"></A><p>A number display format can have up to four sections. Only
+the first is required. The three other sections determine how the
+data displays if its value is negative, zero, or <b>NULL</b>.
+The sections are separated by semi-colons:<p><PRE>Positive-format;negative-format;zero-format;null-format</PRE></p>
+</p>
+<A NAME="TI6170"></A><h4>Special characters</h4>
+<A NAME="TI6171"></A><p><A HREF="pbugp192.htm#BHAJDBII">Table 22-2</A> lists
+characters that have special meaning in number display formats.</p>
+<A NAME="BHAJDBII"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 22-2: Characters with special meaning
+in display formats</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6172"></A>Character</th>
+<th  rowspan="1"  ><A NAME="TI6173"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6174"></A>#</td>
+<td  rowspan="1"  ><A NAME="TI6175"></A>A number</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6176"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI6177"></A>A required number; a number will display
+for every 0 in the mask</td>
+</tr>
+</table>
+<A NAME="TI6178"></A><p>Percent signs, decimal points, parentheses, and spaces display
+as entered in the mask. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Use at least one 0</span> <A NAME="TI6179"></A>In general, a number display format should include at least
+one 0. If users enter 0 in a field with the mask ###,
+the field will appear to be blank if you do not provide a zero-format
+section. If the mask is ###.##,
+only the period displays. If you want two decimal places to display
+even if both are 0, use the mask ##0.00. </p>
+<A NAME="TI6180"></A><h4>Number keywords</h4>
+<A NAME="TI6181"></A><p>You can use the following keywords as number display formats
+when you want PowerBuilder to determine an appropriate format to use:<A NAME="TI6182"></A>
+<ul>
+<li class=fi><b>[General]</b></li>
+<li class=ds><b>[Currency]</b>
+</li>
+</ul>
+</p>
+<A NAME="TI6183"></A><p>Note that<b> [Currency(7)]</b> and <b>[Currency(n)] </b>are
+legal edit masks, but they are <i>not</i> legal display
+formats. </p>
+<A NAME="TI6184"></A><h4>Number and currency settings</h4>
+<A NAME="TI6185"></A><p>To ensure that an application behaves the same in every country
+where it is deployed, DataWindow expressions and the masks used in display
+formats and edit masks require U.S. notation for numbers. That is,
+when you specify a number in a DataWindow expression or in a number mask, a
+comma always represents the thousands delimiter and a period always
+represents the decimal place. You should also always use the $ sign
+to represent the symbol for currency.</p>
+<A NAME="TI6186"></A><p>At runtime, the locally correct symbols are displayed for
+numbers and currency. The comma and period are replaced by the delimiters
+defined in the user's Number settings in the Regional or
+International Settings property sheet in the Windows Control Panel.
+The $ sign in the mask is replaced by the local currency
+symbol as defined in the user's Currency setting in the
+Windows Control Panel. For example, in countries where a comma represents
+the decimal place and a period represents thousands, users see numbers
+in those formats. In a Web DataWindow, you must set ClientFormatting
+to <b>true</b> to display regional settings correctly.</p>
+<A NAME="TI6187"></A><h4>Percentages</h4>
+<A NAME="TI6188"></A><p>Use caution when defining an edit mask for a percentage. When
+you enter a number in a column with a percent edit mask and tab
+off the column, PowerBuilder divides the number by 100 and stores
+the result in the buffer. For example, if you enter 23, PowerBuilder passes
+.23 to the buffer. When you retrieve from the database, PowerBuilder multiplies
+the number by 100 and, if the mask is ##0%,
+displays 23%. </p>
+<A NAME="TI6189"></A><p>The datatype for the column must be numeric or decimal to
+handle the result of a division by 100. If the column has an integer
+datatype, a percentage entered as 333 is retrieved from the database
+as 300, and 33 is retrieved as 0.</p>
+<A NAME="TI6190"></A><p>If you use an edit mask with decimals, such as ##0.00%,
+the datatype must have enough decimal places to handle the division.
+For example, if you enter 33.33, the datatype for the column must
+have at least four decimal places because the result of the division
+is .3333. If the datatype has only three decimal places, the percentage
+is retrieved as 33.30. </p>
+<A NAME="TI6191"></A><h4>Examples</h4>
+<A NAME="TI6192"></A><p><A HREF="pbugp192.htm#BHAEAAFG">Table 22-3</A> shows
+how the values 5, &#8211;5, and .5 display when different format masks
+are applied.</p>
+<A NAME="BHAEAAFG"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 22-3: Number display format examples</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6193"></A>Format</th>
+<th  rowspan="1"  ><A NAME="TI6194"></A>5</th>
+<th  rowspan="1"  ><A NAME="TI6195"></A>-5</th>
+<th  rowspan="1"  ><A NAME="TI6196"></A>.5</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6197"></A>[General]</td>
+<td  rowspan="1"  ><A NAME="TI6198"></A>5</td>
+<td  rowspan="1"  ><A NAME="TI6199"></A>-5</td>
+<td  rowspan="1"  ><A NAME="TI6200"></A>0.5</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6201"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI6202"></A>5</td>
+<td  rowspan="1"  ><A NAME="TI6203"></A>-5</td>
+<td  rowspan="1"  ><A NAME="TI6204"></A>1</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6205"></A>0.00</td>
+<td  rowspan="1"  ><A NAME="TI6206"></A>5.00</td>
+<td  rowspan="1"  ><A NAME="TI6207"></A>-5.00</td>
+<td  rowspan="1"  ><A NAME="TI6208"></A>0.50</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6209"></A>#,##0</td>
+<td  rowspan="1"  ><A NAME="TI6210"></A>5</td>
+<td  rowspan="1"  ><A NAME="TI6211"></A>-5</td>
+<td  rowspan="1"  ><A NAME="TI6212"></A>1</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6213"></A>#,##0.00</td>
+<td  rowspan="1"  ><A NAME="TI6214"></A>5.00</td>
+<td  rowspan="1"  ><A NAME="TI6215"></A>-5.00</td>
+<td  rowspan="1"  ><A NAME="TI6216"></A>0.50</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6217"></A>$#,##0;($#,##0)</td>
+<td  rowspan="1"  ><A NAME="TI6218"></A>$5</td>
+<td  rowspan="1"  ><A NAME="TI6219"></A>($5)</td>
+<td  rowspan="1"  ><A NAME="TI6220"></A>$1</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6221"></A>$#,##0;-$#,##0</td>
+<td  rowspan="1"  ><A NAME="TI6222"></A>$5</td>
+<td  rowspan="1"  ><A NAME="TI6223"></A>-$5</td>
+<td  rowspan="1"  ><A NAME="TI6224"></A>$1</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6225"></A>$#,##0;[RED]($#,##0)</td>
+<td  rowspan="1"  ><A NAME="TI6226"></A>$5</td>
+<td  rowspan="1"  ><A NAME="TI6227"></A>($5)</td>
+<td  rowspan="1"  ><A NAME="TI6228"></A>$1</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6229"></A>[Currency]</td>
+<td  rowspan="1"  ><A NAME="TI6230"></A>$5.00</td>
+<td  rowspan="1"  ><A NAME="TI6231"></A>($5.00)</td>
+<td  rowspan="1"  ><A NAME="TI6232"></A>$0.50</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6233"></A>$#,##0.00;($#,##0.00)</td>
+<td  rowspan="1"  ><A NAME="TI6234"></A>$5.00</td>
+<td  rowspan="1"  ><A NAME="TI6235"></A>($5.00)</td>
+<td  rowspan="1"  ><A NAME="TI6236"></A>$0.50</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6237"></A>$#,##0.00;[RED]($#,##0.00)</td>
+<td  rowspan="1"  ><A NAME="TI6238"></A>$5.00</td>
+<td  rowspan="1"  ><A NAME="TI6239"></A>($5.00)</td>
+<td  rowspan="1"  ><A NAME="TI6240"></A>$0.50</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6241"></A>##0%</td>
+<td  rowspan="1"  ><A NAME="TI6242"></A>500%</td>
+<td  rowspan="1"  ><A NAME="TI6243"></A>-500%</td>
+<td  rowspan="1"  ><A NAME="TI6244"></A>50%</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6245"></A>##0.00%</td>
+<td  rowspan="1"  ><A NAME="TI6246"></A>500.00%</td>
+<td  rowspan="1"  ><A NAME="TI6247"></A>-500.00%</td>
+<td  rowspan="1"  ><A NAME="TI6248"></A>50.00%</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6249"></A>0.00E+00</td>
+<td  rowspan="1"  ><A NAME="TI6250"></A>5.00E+00</td>
+<td  rowspan="1"  ><A NAME="TI6251"></A>-5.00E+00</td>
+<td  rowspan="1"  ><A NAME="TI6252"></A>5.00E-01</td>
+</tr>
+</table>
+<A NAME="TI6253"></A><h2>String display formats</h2>
+<A NAME="TI6254"></A><p>String display formats can have two sections. The first is
+required and contains the format for strings; the second is optional
+and specifies how to represent <b>NULLs</b>:<p><PRE>string-format;null-format</PRE></p>
+</p>
+<A NAME="TI6255"></A><p>In a string format mask, each at-sign (<b>@</b>)
+represents a character in the string and all other characters represent
+themselves.</p>
+<A NAME="TI6256"></A><h4>Example</h4>
+<A NAME="TI6257"></A><p>This format mask:<p><PRE> [red](@@@) @@@-@@@@</PRE></p>
+<A NAME="TI6258"></A><p>displays the string <FONT FACE="Courier New">800YESCELT</FONT> in
+red as:    <p><PRE> (800) YES-CELT</PRE></p>
+<A NAME="TI6259"></A><h2>Date display formats</h2>
+<A NAME="TI6260"></A><p>Date display formats can have two sections. The first is required
+and contains the format for dates; the second is optional and specifies
+how to represent <b>NULLs</b>:<p><PRE>date-format;null-format</PRE></p>
+</p>
+<A NAME="TI6261"></A><h4>Special characters</h4>
+<A NAME="TI6262"></A><p><A HREF="pbugp192.htm#BHAICCBC">Table 22-4</A> shows
+characters that have special meaning in date display formats.</p>
+<A NAME="BHAICCBC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 22-4: Characters with special meaning
+in data display formats</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6263"></A>Character</th>
+<th  rowspan="1"  ><A NAME="TI6264"></A>Meaning</th>
+<th  rowspan="1"  ><A NAME="TI6265"></A>Example</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6266"></A>d</td>
+<td  rowspan="1"  ><A NAME="TI6267"></A>Day number with no leading zero</td>
+<td  rowspan="1"  ><A NAME="TI6268"></A>9</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6269"></A>dd</td>
+<td  rowspan="1"  ><A NAME="TI6270"></A>Day number with leading zero if appropriate</td>
+<td  rowspan="1"  ><A NAME="TI6271"></A>09</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6272"></A>ddd</td>
+<td  rowspan="1"  ><A NAME="TI6273"></A>Day name abbreviation</td>
+<td  rowspan="1"  ><A NAME="TI6274"></A>Mon</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6275"></A>dddd</td>
+<td  rowspan="1"  ><A NAME="TI6276"></A>Day name</td>
+<td  rowspan="1"  ><A NAME="TI6277"></A>Monday</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6278"></A>m</td>
+<td  rowspan="1"  ><A NAME="TI6279"></A>Month number with no leading zero</td>
+<td  rowspan="1"  ><A NAME="TI6280"></A>6</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6281"></A>mm</td>
+<td  rowspan="1"  ><A NAME="TI6282"></A>Month number with leading zero if appropriate</td>
+<td  rowspan="1"  ><A NAME="TI6283"></A>06</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6284"></A>mmm</td>
+<td  rowspan="1"  ><A NAME="TI6285"></A>Month name abbreviation</td>
+<td  rowspan="1"  ><A NAME="TI6286"></A>Jun</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6287"></A>mmmm</td>
+<td  rowspan="1"  ><A NAME="TI6288"></A>Month name</td>
+<td  rowspan="1"  ><A NAME="TI6289"></A>June</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6290"></A>yy</td>
+<td  rowspan="1"  ><A NAME="TI6291"></A>Two-digit year</td>
+<td  rowspan="1"  ><A NAME="TI6292"></A>97</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6293"></A>yyyy</td>
+<td  rowspan="1"  ><A NAME="TI6294"></A>Four-digit year</td>
+<td  rowspan="1"  ><A NAME="TI6295"></A>1997</td>
+</tr>
+</table>
+<A NAME="TI6296"></A><p>Colons, slashes, and spaces display as entered in the mask.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About 2-digit years</span> <A NAME="TI6297"></A>If users specify a 2-digit year in a DataWindow object, PowerBuilder assumes the
+date is the 20th century if the year is greater than or equal to
+50. If the year is less than 50, PowerBuilder assumes the 21st century.
+For example:<A NAME="TI6298"></A>
+<ul>
+<li class=fi>1/1/85 is interpreted
+as January 1, 1985. </li>
+<li class=ds>1/1/40 is interpreted as January 1,
+2040.
+</li>
+</ul>
+</p>
+<A NAME="TI6299"></A><h4>Date keywords</h4>
+<A NAME="TI6300"></A><p>You can use the following keywords as date display formats
+when you want PowerBuilder to determine an appropriate format to use:<A NAME="TI6301"></A>
+<ul>
+<li class=fi><b>[ShortDate]</b></li>
+<li class=ds><b>[LongDate]</b>
+</li>
+</ul>
+</p>
+<A NAME="TI6302"></A><p>The format used is determined by the regional settings for
+date in the registry. Note that <b>[Date] </b>is
+not a valid display format.</p>
+<A NAME="TI6303"></A><h4>Examples</h4>
+<A NAME="TI6304"></A><p><A HREF="pbugp192.htm#BHAIHFBI">Table 22-5</A> shows
+how the date Friday, January 30, 1998, displays when different format
+masks are applied.</p>
+<A NAME="BHAIHFBI"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 22-5: Date display format examples</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6305"></A>Format</th>
+<th  rowspan="1"  ><A NAME="TI6306"></A>Displays</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6307"></A>[red]m/d/yy</td>
+<td  rowspan="1"  ><A NAME="TI6308"></A>1/30/98 in red</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6309"></A>d-mmm-yy</td>
+<td  rowspan="1"  ><A NAME="TI6310"></A>30-Jan-98</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6311"></A>dd-mmmm</td>
+<td  rowspan="1"  ><A NAME="TI6312"></A>30-January</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6313"></A>mmm-yy</td>
+<td  rowspan="1"  ><A NAME="TI6314"></A>Jan-98</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6315"></A>dddd, mmm d, yyyy</td>
+<td  rowspan="1"  ><A NAME="TI6316"></A>Friday, Jan 30, 1998</td>
+</tr>
+</table>
+<A NAME="TI6317"></A><h2>Time display formats</h2>
+<A NAME="TI6318"></A><p>Time display formats can have two sections. The first is required
+and contains the format for times; the second is optional and specifies
+how to represent <b>NULLs</b>:<p><PRE>time-format;null-format</PRE></p>
+</p>
+<A NAME="TI6319"></A><h4>Special characters</h4>
+<A NAME="TI6320"></A><p><A HREF="pbugp192.htm#BHADJFID">Table 22-6</A> shows
+characters that have special meaning in time display formats.</p>
+<A NAME="BHADJFID"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 22-6: Characters with special meaning
+in time display formats</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6321"></A>Character</th>
+<th  rowspan="1"  ><A NAME="TI6322"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6323"></A>h</td>
+<td  rowspan="1"  ><A NAME="TI6324"></A>Hour with no leading zero (for example,
+1)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6325"></A>hh</td>
+<td  rowspan="1"  ><A NAME="TI6326"></A>Hour with leading zero if appropriate
+(for example, 01)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6327"></A>m</td>
+<td  rowspan="1"  ><A NAME="TI6328"></A>Minute with no leading zero (must follow
+h or hh)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6329"></A>mm</td>
+<td  rowspan="1"  ><A NAME="TI6330"></A>Minute with leading zero if appropriate
+(must follow h or hh)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6331"></A>s</td>
+<td  rowspan="1"  ><A NAME="TI6332"></A>Second with no leading zero (must follow
+m or mm)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6333"></A>ss</td>
+<td  rowspan="1"  ><A NAME="TI6334"></A>Second with leading zero (must follow
+m or mm)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6335"></A>ffffff</td>
+<td  rowspan="1"  ><A NAME="TI6336"></A>Microseconds with no leading zeros. You
+can enter one to six f's; each f represents a fraction
+of a second (must follow s or ss)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6337"></A>AM/PM</td>
+<td  rowspan="1"  ><A NAME="TI6338"></A>Two-character, uppercase abbreviation
+(AM or PM as appropriate)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6339"></A>am/pm</td>
+<td  rowspan="1"  ><A NAME="TI6340"></A>Two-character, lowercase abbreviation
+(am or pm as appropriate)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6341"></A>A/P</td>
+<td  rowspan="1"  ><A NAME="TI6342"></A>One-character, uppercase abbreviation
+(A or P as appropriate)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6343"></A>a/p</td>
+<td  rowspan="1"  ><A NAME="TI6344"></A>One-character, lowercase abbreviation
+(a or p as appropriate)</td>
+</tr>
+</table>
+<A NAME="TI6345"></A><p>Colons, slashes, and spaces display as entered in the mask.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>24-hour format is the default</span> <A NAME="TI6346"></A>Times display in 24-hour format unless you specify AM/PM,
+am/pm, A/P, or a/p.</p>
+<A NAME="TI6347"></A><h4>Time keyword</h4>
+<A NAME="TI6348"></A><p>You can use the following keyword as a time display format
+to specify the format specified in the Windows control panel:<A NAME="TI6349"></A>
+<ul>
+<li class=fi><b>[Time]</b>
+</li>
+</ul>
+</p>
+<A NAME="TI6350"></A><h4>Examples</h4>
+<A NAME="TI6351"></A><p><A HREF="pbugp192.htm#BHAIJIAC">Table 22-7</A> shows
+how the time 9:45:33:234567 PM displays when different format masks
+are applied.</p>
+<A NAME="BHAIJIAC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 22-7: Time display format examples</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6352"></A>Format</th>
+<th  rowspan="1"  ><A NAME="TI6353"></A>Displays</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6354"></A>h:mm AM/PM</td>
+<td  rowspan="1"  ><A NAME="TI6355"></A>9:45 PM</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6356"></A>hh:mm A/P</td>
+<td  rowspan="1"  ><A NAME="TI6357"></A>09:45 P</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6358"></A>h:mm:ss am/pm</td>
+<td  rowspan="1"  ><A NAME="TI6359"></A>9:45:33 pm</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6360"></A>h:mm</td>
+<td  rowspan="1"  ><A NAME="TI6361"></A>21:45</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6362"></A>h:mm:ss</td>
+<td  rowspan="1"  ><A NAME="TI6363"></A>21:45:33</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6364"></A>h:mm:ss:f</td>
+<td  rowspan="1"  ><A NAME="TI6365"></A>21:45:33:2</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6366"></A>h:mm:ss:fff</td>
+<td  rowspan="1"  ><A NAME="TI6367"></A>21:45:33:234</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6368"></A>h:mm:ss:ffffff</td>
+<td  rowspan="1"  ><A NAME="TI6369"></A>21:45:33:234567</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6370"></A>m/d/yy h:mm</td>
+<td  rowspan="1"  ><A NAME="TI6371"></A>1/30/98 21:45</td>
+</tr>
+</table>
+

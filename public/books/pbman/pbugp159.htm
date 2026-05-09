@@ -1,0 +1,553 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using SQL Select</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp158.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp160.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CFHDDDHF"></A><h1>Using SQL Select</h1>
+<A NAME="TI4954"></A><p>In specifying data for a DataWindow object, you have more options
+for specifying complex <ACRONYM title = "sequel" >SQL</ACRONYM> statements
+when you use <ACRONYM title = "sequel" >SQL</ACRONYM> Select as the
+data source. When you choose <ACRONYM title = "sequel" >SQL</ACRONYM> Select,
+you go to the SQL Select painter, where you can paint a <b>SELECT</b> statement
+that includes the following:<A NAME="TI4955"></A>
+<ul>
+<li class=fi>More than one table</li>
+<li class=ds>Selection criteria (<b>WHERE</b> clause)</li>
+<li class=ds>Sorting criteria (<b>ORDER BY</b> clause)</li>
+<li class=ds>Grouping criteria (<b>GROUP BY</b> and <b>HAVING</b> clauses)</li>
+<li class=ds>Computed columns</li>
+<li class=ds>One or more arguments to be supplied at runtime
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Saving your work as a query</span> <A NAME="TI4956"></A>While in the SQL Select painter, you can save the current <b>SELECT</b> statement as
+a query by selecting File&gt;Save As from the menu bar. Doing
+so allows you to easily use this data specification again in other DataWindows.</p>
+<A NAME="TI4957"></A>For more information about queries, see <A HREF="pbugp165.htm#CFHECFDH">"Defining queries "</A>.</p>
+<A NAME="TI4958"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define the data using <ACRONYM title = "sequel" >SQL</ACRONYM> Select:</p>
+<ol><li class=fi><p>Click <ACRONYM title = "sequel" >SQL</ACRONYM> Select
+in the Choose Data Source dialog box in the wizard and click Next.</p><p>The Select Tables dialog box displays.</p></li>
+<li class=ds><p>Select the tables and/or views that you
+will use in the DataWindow object.</p><p>For more information, see <A HREF="pbugp159.htm#CFHDACIE">"Selecting tables and views"</A>.</p></li>
+<li class=ds><p>Select the columns to be retrieved from the database.</p><p>For more information, see <A HREF="pbugp159.htm#CFHBFFFG">"Selecting columns"</A>.</p></li>
+<li class=ds><p>Join the tables if you have selected more than
+one.</p><p>For more information, see <A HREF="pbugp159.htm#CFHBIAHB">"Joining tables"</A>.</p></li>
+<li class=ds><p>Select retrieval arguments if appropriate.</p><p>For more information, see <A HREF="pbugp159.htm#BABBBGJI">"Using retrieval arguments"</A>.</p></li>
+<li class=ds><p>Limit the retrieved rows with <b>WHERE</b>, <b>ORDER
+BY</b>, <b>GROUP BY</b>, and <b>HAVING</b> criteria,
+if appropriate.</p><p>For more information, see <A HREF="pbugp159.htm#CFHBADIA">"Specifying selection, sorting,
+and grouping criteria"</A>.</p></li>
+<li class=ds><p>If you want to eliminate duplicate rows, select
+Distinct from the Design menu. This adds the <b>DISTINCT</b> keyword
+to the <b>SELECT</b> statement.</p></li>
+<li class=ds><p>Click the Return button on the PainterBar.</p><p>You return to the wizard to complete the definition of the DataWindow object.</p></li></ol>
+<br><A NAME="CFHDACIE"></A><h2>Selecting tables and views</h2>
+<A NAME="TI4959"></A><p>After you have chosen <ACRONYM title = "sequel" >SQL</ACRONYM> Select,
+the Select Tables dialog box displays in front of the Table Layout
+view of the SQL Select painter. What tables and views
+display in the dialog box depends on the DBMS. For some DBMSs, all tables
+and views display, whether or not you have authorization. Then,
+if you select a table or view you are not authorized to access,
+the DBMS issues a message.</p>
+<A NAME="TI4960"></A><p>For ODBC databases, the tables and views that display depend
+on the driver for the data source. Adaptive Server Anywhere does not restrict
+the display, so all tables and views display, whether or not you
+have authorization.</p>
+<A NAME="TI4961"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select the tables and views:</p>
+<ol><li class=fi><p>Do one of the following:<A NAME="TI4962"></A>
+<ul>
+<li class=fi>Click the name of each table or view you want to
+open.<br>
+Each table you select is highlighted. (To deselect a table,
+click it again.) Click the Open button to close the Select Tables
+dialog box.<br></li>
+<li class=ds>Double-click the name of each table or view you
+want to open.<br>
+Each object opens immediately behind the Select Tables dialog
+box. Click the Cancel button to close the Select Tables dialog box.<br>
+</li>
+</ul>
+
+                      </p></li></ol>
+<br><A NAME="TI4963"></A><p>Representations of the selected tables and views display.
+You can move or size each table to fit the space as needed.</p>
+<A NAME="TI4964"></A><p>Below the Table Layout view, several tabbed views also display
+by default. You use the views (for example, Compute, Having, Group)
+to specify the <ACRONYM title = "sequel" >SQL</ACRONYM> <b>SELECT</b> statement
+in more detail. You can turn the views on and off from the View
+menu on the menu bar. </p>
+<br><img src="images/db0030.gif">
+<A NAME="TI4965"></A><h4>Specifying what is displayed</h4>
+<A NAME="TI4966"></A><p>You can display the label and datatype of each column in the
+tables (the label information comes from the extended attribute
+system tables). If you need more space, you can choose to hide this
+information. </p>
+<A NAME="TI4967"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To hide or display comments, datatypes, and labels:</p>
+<ol><li class=fi><p>Position the pointer on any unused area of the
+Table Layout view and select Show from the pop-up menu.</p><p>A cascading menu displays.</p></li>
+<li class=ds><p>Select or clear Datatypes, Labels, or Comments as needed.</p></li></ol>
+<br><A NAME="TI4968"></A><h4>Colors in the SQL Select painter</h4>
+<A NAME="TI4969"></A><p>The colors used by the SQL Select painter to display the Table Layout
+view background and table information are specified in the Database painter.
+You can also set colors for the text and background components in
+the table header and detail areas.</p>
+<A NAME="TI4970"></A><p>For more information about specifying colors
+in the Database painter, see <A HREF="pbugp134.htm#BABDFCJG">"Modifying database preferences"</A>.</p>
+<A NAME="TI4971"></A><h4>Adding and removing tables and views</h4>
+<A NAME="TI4972"></A><p>You can add tables and views to your Table Layout view at
+any time. </p>
+<A NAME="TI4973"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 18-3: Adding tables and views in the SQL Select painter</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4974"></A>To do this</th>
+<th  rowspan="1"  ><A NAME="TI4975"></A>Do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4976"></A>Add tables or views</td>
+<td  rowspan="1"  ><A NAME="TI4977"></A>Click the Tables button in the PainterBar and
+select tables or views to add</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4978"></A>Remove a table or view</td>
+<td  rowspan="1"  ><A NAME="TI4979"></A>Display its pop-up menu and select Close</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4980"></A>Remove all tables and views</td>
+<td  rowspan="1"  ><A NAME="TI4981"></A>Select Design&gt;Undo All from
+the menu bar</td>
+</tr>
+</table>
+<A NAME="TI4982"></A><p>You can also remove individual tables and views from the Table
+Layout view, or clear them all at once and begin selecting a new
+set of tables.</p>
+<A NAME="TI4983"></A><h4>How PowerBuilder joins tables</h4>
+<A NAME="TI4984"></A><p>If you select more than one table in the SQL Select painter, PowerBuilder joins columns
+based on their key relationship.</p>
+<A NAME="TI4985"></A><p>For information about joins, see <A HREF="pbugp159.htm#CFHBIAHB">"Joining tables"</A>.</p>
+<A NAME="CFHBFFFG"></A><h2>Selecting columns</h2>
+<A NAME="TI4986"></A><p>You can click each column you want to include from the table
+representations in the Table Layout view. PowerBuilder highlights
+selected columns and places them in the Selection List at the top
+of the SQL Select painter.</p>
+<A NAME="TI4987"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To reorder the selected columns:</p>
+<ol><li class=fi><p>Drag a column in the Selection List with
+the mouse. Release the mouse button when the column is in the proper
+position in the list.</p></li></ol>
+<br><br><img src="images/defin37.gif">
+<A NAME="TI4988"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To select all columns from a table:</p>
+<ol><li class=fi><p>Move the pointer to the table name and
+select Select All from the pop-up menu.</p></li></ol>
+<br><A NAME="TI4989"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To include computed columns:</p>
+<ol><li class=fi><p>Click the Compute tab to make the Compute
+view available (or select View&gt;Compute if the Compute view
+is not currently displayed).</p><p>Each row in the Compute view is a place for entering an expression
+that defines a computed column.</p></li>
+<li class=ds><p>Enter one of the following:<A NAME="TI4990"></A>
+<ul>
+<li class=fi>An
+expression for the computed column. For example: <FONT FACE="Courier New">salary/12</FONT></li>
+<li class=ds>A function supported by your DBMS. For example,
+the following is a SQL Anywhere function: <p><PRE> substr("employee"."emp_fname",1,2)</PRE>
+</li>
+</ul>
+
+                      </p><p>You can display the pop-up menu for any row in the Compute
+view. Using the pop-up menu, you can select and paste the following
+into the expression:<A NAME="TI4991"></A>
+<ul>
+<li class=fi>Names
+of columns in the tables used in the DataWindow or pipeline</li>
+<li class=ds>Any retrieval arguments you have specified</li>
+<li class=ds>Functions supported by the DBMS<br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About these functions</span> <A NAME="TI4992"></A>The functions listed here are provided <i>by your DBMS</i>.
+They are not PowerBuilder functions. This is so because you are now
+defining a <b>SELECT</b> statement that will be sent
+to your DBMS for processing.
+<br>
+
+</li>
+</ul>
+</p></li>
+<li class=ds><p>Press the Tab key to get to the next row to define
+another computed column, or click another tab to make additional
+specifications.</p><p>PowerBuilder adds the computed columns to the list of columns
+you have selected.</p></li></ol>
+<br><A NAME="TI4993"></A><h4>About computed columns and computed fields</h4>
+<A NAME="TI4994"></A><p>Computed columns you define in the SQL Select painter are added to
+the <ACRONYM title = "sequel" >SQL</ACRONYM> statement and used by
+the DBMS to retrieve the data. The expression you define here follows
+your DBMS's rules.</p>
+<A NAME="TI4995"></A><p>You can also choose to define computed fields, which are created
+and processed dynamically by PowerBuilder after the data has been
+retrieved from the DBMS. There are advantages to doing this. For
+example, work is offloaded from the database server, and the computed
+fields update dynamically as data changes in the DataWindow object. (If
+you have many rows, however, this updating can result in slower
+performance.) For more information, see <A HREF="pbugp167.htm#CAICGCGD">Chapter 19, "Enhancing DataWindow Objects ."</A></p>
+<A NAME="TI4996"></A><h2>Displaying the underlying SQL statement</h2>
+<A NAME="TI4997"></A><p>As you specify the data for the DataWindow object in the SQL Select painter, PowerBuilder generates
+a <ACRONYM title = "sequel" >SQL</ACRONYM> <b>SELECT</b> statement.
+It is this <ACRONYM title = "sequel" >SQL</ACRONYM> statement that will
+be sent to the DBMS when you retrieve data into the DataWindow object. You
+can look at the <ACRONYM title = "sequel" >SQL</ACRONYM> as it is
+being generated while you continue defining the data for the DataWindow object.</p>
+<A NAME="TI4998"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display the <ACRONYM title = "sequel" >SQL</ACRONYM> statement:</p>
+<ol><li class=fi><p>Click the Syntax tab to make the Syntax view
+available, or select View&gt;Syntax if the Syntax view is
+not currently displayed.</p><p>You may need to use the scroll bar to see all parts of the <ACRONYM title = "sequel" >SQL</ACRONYM> <b>SELECT</b> statement.
+This statement is updated each time you make a change.</p></li></ol>
+<br><A NAME="TI4999"></A><h4>Editing the SELECT statement syntactically</h4>
+<A NAME="TI5000"></A><p>Instead of modifying the data source graphically, you can
+directly edit the <b>SELECT</b> statement in the SQL Select painter.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Converting from syntax to graphics</span> <A NAME="TI5001"></A>If the <ACRONYM title = "sequel" >SQL</ACRONYM> statement contains
+unions or the <b>BETWEEN</b> operator, it may not be possible
+to convert the syntax back to graphics mode. In general, once you convert
+the <ACRONYM title = "sequel" >SQL</ACRONYM> statement to syntax,
+you should maintain it in syntax mode.</p>
+<A NAME="TI5002"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To edit the SELECT statement:</p>
+<ol><li class=fi><p>Select Design&gt;Convert to Syntax
+from the menu bar.</p><p>PowerBuilder displays the <b>SELECT</b> statement
+in a text window.</p></li>
+<li class=ds><p>Edit the <b>SELECT</b> statement.</p></li>
+<li class=ds><p>Do one of the following:</p><p><A NAME="TI5003"></A>
+<ul>
+<li class=fi>Select Design&gt;Convert
+to Graphics from the menu bar to return to the SQL Select painter.</li>
+<li class=ds>Click the Return button to return to the wizard
+if you are building a new DataWindow object, or to the DataWindow painter if you
+are modifying an existing DataWindow object.
+</li>
+</ul>
+</p></li></ol>
+<br><A NAME="CFHBIAHB"></A><h2>Joining tables</h2>
+<A NAME="TI5004"></A><p>If the DataWindow object will contain data from more than one table,
+you should join the tables on their common columns. If you have
+selected more than one table, PowerBuilder joins columns according
+to whether they have a key relationship:<A NAME="TI5005"></A>
+<ul>
+<li class=fi>Columns with a primary/foreign key relationship
+are joined automatically.</li>
+<li class=ds>Columns with no key relationship are joined, if
+possible, based on common column names and types.
+</li>
+</ul>
+</p>
+<A NAME="TI5006"></A><p>PowerBuilder links joined tables in the SQL Select painter Table Layout
+view. PowerBuilder joins can differ depending on the order in which
+you select the tables, and sometimes the PowerBuilder best-guess join
+is incorrect, so you may need to delete a join and manually define
+a join.</p>
+<A NAME="TI5007"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete a join:</p>
+<ol><li class=fi><p>Click the join operator connecting the
+tables.</p><p>The Join dialog box displays.</p></li>
+<li class=ds><p>Click Delete.</p></li></ol>
+<br><A NAME="TI5008"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To join tables:</p>
+<ol><li class=fi><p>Click the Join button in the PainterBar.</p></li>
+<li class=ds><p>Click the columns on which you want to join the
+tables.</p></li>
+<li class=ds><p>To create a join other than an equality join,
+click the join operator in the Table Layout view.</p><p>The Join dialog box displays:</p><br><img src="images/db0019.gif"><br>
+</li>
+<li class=ds><p>Select the join operator you want and click OK.</p><p>If your DBMS supports outer joins, outer join options also
+display in the Join dialog box.</p></li></ol>
+<br><A NAME="CACJAHDI"></A><h3>Using ANSI outer joins</h3>
+<A NAME="TI5009"></A><p>All PowerBuilder database interfaces provide support for ANSI <ACRONYM title = "sequel" >SQL</ACRONYM>-92 outer join <ACRONYM title = "sequel" >SQL</ACRONYM> syntax generation. PowerBuilder supports
+both left and right outer joins in graphics mode in the SQL Select painter,
+and full outer and inner joins in syntax mode. Depending on your
+database interface, you might need to set the OJSyntax DBParm to
+enable ANSI outer joins. For more information, see OJSyntax in the
+online Help.</p>
+<A NAME="TI5010"></A><p>.</p>
+<A NAME="TI5011"></A><p>The syntax for ANSI outer joins is generated according to
+the following BNF (Backus Naur form): </p>
+<A NAME="TI5012"></A><p><p><PRE>OUTER-join ::= <br><i>table-reference</i> {LEFT | RIGHT} OUTER JOIN <i>table-reference</i> ON <i>search-condition</i> <br> <br><i>table-reference</i> ::= <br><i>table_view_name</i> [<i>correlation_name</i>] | OUTER-join</PRE></p>
+</p>
+<A NAME="TI5013"></A><h4>Order of evaluation and nesting</h4>
+<A NAME="TI5014"></A><p>In ANSI <ACRONYM title = "sequel" >SQL</ACRONYM>-92, when nesting
+joins, the result of the first outer join (determined by order of <b>ON</b> conditions)
+is the operand of the outer join that follows it. In PowerBuilder,
+an outer join is considered to be nested if the <i>table-reference</i> on
+the left of the <b>JOIN</b> has been used before within
+the same outer join nested sequence. </p>
+<A NAME="TI5015"></A><p>The order of evaluation for ANSI syntax nested outer joins
+is determined by the order of the <b>ON</b> search conditions.
+This means that you must create the outer joins in the intended
+evaluation order and add nested outer joins to the end of the existing
+sequence, so that the second <i>table-reference </i>in
+the outer join BNF above will always be a <i>table_view_name</i>. </p>
+<A NAME="TI5016"></A><h4>Nesting example</h4>
+<A NAME="TI5017"></A><p>For example, if you create a left outer join between a column
+in <b>Table1</b> and a column in <b>Table2</b>,
+then join the column in <b>Table2</b> to a column
+in <b>Table3</b>, the product of the outer join between <b>Table1</b> and <b>Table2</b> is
+the operand for the outer join with <b>Table3</b>. </p>
+<A NAME="TI5018"></A><p>For standard database connections, the default generated syntax
+encloses the outer joins in escape notation <FONT FACE="Courier New">{oj
+...} </FONT>that is parsed by the driver
+and replaced with DBMS-specific grammar: <p><PRE>SELECT Table1.col1, Table2.col1, Table3.col1<br>FROM {oj {oj Table1 LEFT OUTER JOIN Table2 ON Table1.col1 = Table2.col1}<br>LEFT OUTER JOIN Table3 ON Table2.col1 = Table3.col1} </PRE></p>
+</p>
+<A NAME="TI5019"></A><h4>Table references</h4>
+<A NAME="TI5020"></A><p>Table references are considered equal when the table names
+are equal and there is either no alias (correlation name) or the
+same alias for both. Reusing the operand on the right is not allowed,
+because ANSI does not allow referencing the <i>table_view_name</i> twice
+in the same statement without an alias. </p>
+<A NAME="TI5021"></A><h4>Determining left and right outer joins</h4>
+<A NAME="TI5022"></A><p>When you create a join condition, the table you select first
+in the painter is the left operand of the outer join. The table
+that you select second is the right operand. The condition you select
+from the Joins dialog box determines whether the join is a left
+or right outer join.</p>
+<A NAME="TI5023"></A><p>For example, suppose you select the <b>dept_id</b> column
+in the <b>employee</b> table, then select the <b>dept_id</b> column
+in the department table, then choose the following condition: <p><PRE>employee.dept_id = department.dept_id and rows from department that have no employee</PRE></p>
+</p>
+<A NAME="TI5024"></A><p>The syntax generated is: <p><PRE>SELECT employee.dept_id, department.dept_id<br>FROM {oj "employee" LEFT OUTER JOIN "department" ON "employee"."dept_id" = "department"."dept_id"}</PRE></p>
+</p>
+<A NAME="TI5025"></A><p>If you select the condition with <FONT FACE="Courier New">rows
+from department that have no employee</FONT>, you
+create a right outer join instead.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Equivalent statements</span> <A NAME="TI5026"></A>The syntax generated when you select table <b>A</b> then
+table <b>B</b> and create a left outer join is equivalent
+to the syntax generated when you select table <b>B</b> then table <b>A</b> and
+create a right outer join.</p>
+<A NAME="TI5027"></A><p>For more about outer joins, see your DBMS
+documentation.</p>
+<A NAME="BABBBGJI"></A><h2>Using retrieval arguments</h2>
+<A NAME="TI5028"></A><p>If you know which rows will be retrieved into the DataWindow
+object at runtime&#8212;that is, if you can fully specify the <b>SELECT</b> statement
+without having to provide a variable&#8212;you do not need to
+specify retrieval arguments.</p>
+<A NAME="TI5029"></A><h4>Adding retrieval arguments</h4>
+<A NAME="TI5030"></A><p>If you decide later that you need arguments, you can return
+to the SQL Select painter to define the arguments.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Defining retrieval arguments in the DataWindow painter</span> <A NAME="TI5031"></A>You can select View&gt;Column Specifications from the
+menu bar. In the Column Specification view, a column of check boxes
+next to the columns in the data source lets you identify the columns
+users should be prompted for. This, like the Retrieval Arguments
+prompt, calls the <b>Retrieve</b> method.</p>
+<A NAME="TI5032"></A>See <A HREF="pbugp167.htm#CAICGCGD">Chapter 19, "Enhancing DataWindow Objects ."</A></p>
+<A NAME="TI5033"></A><p>If you want the user to be prompted to identify which rows
+to retrieve, you can define retrieval arguments when defining the <ACRONYM title = "sequel" >SQL</ACRONYM> <b>SELECT</b> statement.
+For example, consider these situations:<A NAME="TI5034"></A>
+<ul>
+<li class=fi>Retrieving the row in the Employee table for an
+employee ID entered into a text box. You must pass that information
+to the <b>SELECT</b> statement as an argument at runtime.</li>
+<li class=ds>Retrieving all rows from a table for a department
+selected from a drop-down list. The department is passed
+as an argument at runtime.<br><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using retrieval arguments at runtime</span> <A NAME="TI5035"></A>If a DataWindow object has retrieval arguments, call the <b>Retrieve</b> method of
+the DataWindow control to retrieve data at runtime and pass the arguments
+in the method.
+<br>
+
+</li>
+</ul>
+</p>
+<A NAME="TI5036"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define retrieval arguments:</p>
+<ol><li class=fi><p>In the SQL Select painter, select Design&gt;Retrieval
+Arguments from the menu bar.</p></li>
+<li class=ds><p>Enter a name and select a datatype for each argument.</p><p>You can enter any valid <ACRONYM title = "sequel" >SQL</ACRONYM> identifier
+for the argument name. The position number identifies the argument
+position in the <b>Retrieve</b> method you code in a
+script that retrieves data into the DataWindow object. </p></li>
+<li class=ds><p>Click Add to define additional arguments as needed
+and click OK when done.</p></li></ol>
+<br><A NAME="TI5037"></A><h4>Specifying an array as a retrieval argument</h4>
+<A NAME="TI5038"></A><p>You can specify an array of values as your retrieval argument.
+Choose the type of array from the Type drop-down list in the Specify
+Retrieval Arguments dialog box. You specify an array if you want
+to use the <b>IN</b> operator in your <b>WHERE</b> clause
+to retrieve rows that match one of a set of values. For example:</p>
+<A NAME="TI5039"></A><p><p><PRE> SELECT * from employee</PRE></p>
+<A NAME="TI5040"></A><p><p><PRE> WHERE dept_id IN (100, 200, 500)</PRE></p>
+<A NAME="TI5041"></A><p>retrieves all employees in department 100, 200, or 500. If
+you want your user to specify the list of departments to retrieve,
+you define the retrieval argument as a number array (such as <i>100,
+200, 500</i>).</p>
+<A NAME="TI5042"></A><p>In the code that does the retrieval, you declare an array
+and reference it in the <b>Retrieve</b> method, as in:<p><PRE> int x[3]<br>// Now populate the array with values<br>// such as x[1] = sle_dept.Text, and so on,<br>// then retrieve the data, as follows.<br>dw_1.Retrieve(x)</PRE></p>
+<A NAME="TI5043"></A><p>PowerBuilder passes the appropriate comma-delimited list to
+the method (such as <i>100, 200, 500</i> if x[1] = 100,
+x[2] = 200, and x[3] = 500 ).</p>
+<A NAME="TI5044"></A><p>When building the <b>SELECT</b> statement, you
+reference the retrieval arguments in the <b>WHERE</b> or <b>HAVING</b> clause,
+as described in the next section.</p>
+<A NAME="CFHBADIA"></A><h2>Specifying selection, sorting, and grouping criteria</h2>
+<A NAME="TI5045"></A><p>In the <b>SELECT</b> statement associated with
+a DataWindow object, you can add selection, sorting, and grouping criteria
+that are added to the <ACRONYM title = "sequel" >SQL</ACRONYM> statement and
+processed by the DBMS as part of the retrieval.</p>
+<A NAME="TI5046"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 18-4: Adding selection, sorting, and grouping criteria to the <b>SELECT</b> statement</caption>
+<tr><th  rowspan="1"  ><A NAME="TI5047"></A>To do this</th>
+<th  rowspan="1"  ><A NAME="TI5048"></A>Use this clause</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5049"></A>Limit the data that is retrieved from
+the database</td>
+<td  rowspan="1"  ><A NAME="TI5050"></A><b>WHERE</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5051"></A>Sort the retrieved data before it is
+brought into the DataWindow object</td>
+<td  rowspan="1"  ><A NAME="TI5052"></A><b>ORDER BY</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5053"></A>Group the retrieved data before it is
+brought into the DataWindow object</td>
+<td  rowspan="1"  ><A NAME="TI5054"></A><b>GROUP BY</b></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5055"></A>Limit the groups specified in the <b>GROUP
+BY</b> clause</td>
+<td  rowspan="1"  ><A NAME="TI5056"></A><b>HAVING</b></td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Dynamically selecting, sorting, and grouping data</span> <A NAME="TI5057"></A>Selection, sorting, and grouping criteria that you define
+in the SQL Select painter are added to the <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+and processed by the DBMS as part of the retrieval. You can also
+define selection, sorting, and grouping criteria that are created
+and processed dynamically by PowerBuilder <i>after</i> data
+has been retrieved from the DBMS.</p>
+<A NAME="TI5058"></A>For more information, see <A HREF="pbugp201.htm#BFCBAIEB">Chapter 23, "Filtering, Sorting, and
+Grouping Rows ."</A></p>
+<A NAME="TI5059"></A><h4>Referencing retrieval arguments</h4>
+<A NAME="TI5060"></A><p>If you have defined retrieval arguments, you reference them
+in the <b>WHERE</b> or <b>HAVING</b> clause.
+In <ACRONYM title = "sequel" >SQL</ACRONYM> statements, variables
+(called host variables) are always prefaced with a colon to distinguish
+them from column names.</p>
+<A NAME="TI5061"></A><p>For example, if the DataWindow object is retrieving all rows from
+the <b>Department</b> table where the <b>dept_id</b> matches
+a value provided by the user at runtime, your <b>WHERE</b> clause
+will look something like this:<p><PRE> WHERE dept_id = :Entered_id</PRE></p>
+<A NAME="TI5062"></A><p>where <b>Entered_id</b> was defined
+previously as an argument in the Specify Retrieval Arguments dialog
+box.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Referencing arrays</span> <A NAME="TI5063"></A>Use the <b>IN</b> operator and reference the retrieval
+argument in the <b>WHERE</b> or <b>HAVING</b> clause.</p>
+<A NAME="TI5064"></A>For example, if you reference an array defined as deptarray,
+the expression in the <b>WHERE</b> view might look like
+this:<p><PRE> "employee.dept_id" IN (:deptarray)</PRE></p>
+<A NAME="TI5065"></A>You need to supply the parentheses yourself.</p>
+<A NAME="CEADJJDC"></A><h4>Defining WHERE criteria</h4>
+<A NAME="TI5066"></A><p>You can limit the rows that are retrieved into the DataWindow object by specifying
+selection criteria that correspond to the <b>WHERE</b> clause
+in the <b>SELECT</b> statement.</p>
+<A NAME="TI5067"></A><p>For example, if you are retrieving information about employees,
+you can limit the employees to those in Sales and Marketing, or
+to those in Sales and Marketing who make more than $50,000.</p>
+<A NAME="TI5068"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define WHERE criteria:</p>
+<ol><li class=fi><p>Click the Where tab to make the Where view
+available (or select View&gt;Where if the Where view is not
+currently displayed).</p><p>Each row in the Where view is a place for entering an expression
+that limits the retrieval of rows.</p></li>
+<li class=ds><p>Click in the first row under Column to display
+columns in a drop-down list, or select Columns from the pop-up menu.</p></li>
+<li class=ds><p>Select the column you want to use in the left-hand
+side of the expression.</p><p>The equality (<b>=</b>) operator displays
+in the Operator column.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using a function or retrieval argument in the expression</span> <A NAME="TI5069"></A>To use a function, select Functions from the pop-up menu and
+click a listed function. These are the functions provided by the
+DBMS.</p>
+<A NAME="TI5070"></A>To use a retrieval argument, select Arguments from the pop-up
+menu. You must have defined a retrieval argument already.</p>
+</li>
+<li class=ds><p>(Optional) Change the default equality operator.</p><p>Enter the operator you want, or click to display a list of
+operators and select an operator.</p></li>
+<li class=ds><p>Under Value, specify the right-hand side of the
+expression. You can:<A NAME="TI5071"></A>
+<ul>
+<li class=fi>Type
+a value.</li>
+<li class=ds>Paste a column, function, or retrieval argument
+(if there is one) by selecting Columns, Functions, or Arguments
+from the pop-up menu. </li>
+<li class=ds>Paste a value from the database by selecting Value
+from the pop-up menu, then selecting a value from the list of values
+retrieved from the database. (It may take some time to display values
+if the column has many values in the database.)</li>
+<li class=ds>Define a nested <b>SELECT</b> statement
+by selecting Select from the pop-up menu. In the Nested Select dialog
+box, you can define a nested <b>SELECT</b> statement.
+Click Return when you have finished.
+</li>
+</ul>
+
+                        </p></li>
+<li class=ds><p>Continue to define additional <b>WHERE</b> expressions
+as needed.</p><p>For each additional expression, select a logical operator
+(<b>AND</b> or <b>OR</b>) to connect the
+multiple boolean expressions into one expression that PowerBuilder evaluates
+as true or false to limit the rows that are retrieved.</p></li>
+<li class=ds><p>Define sorting (Sort view), grouping (Group view),
+and limiting (Having view) criteria as appropriate.</p></li>
+<li class=ds><p>Click the Return button to return to the DataWindow painter.</p></li></ol>
+<br><A NAME="TI5072"></A><h4>Defining ORDER BY criteria</h4>
+<A NAME="TI5073"></A><p>You can sort the rows that are retrieved into the DataWindow object by specifying
+columns that correspond to the <b>ORDER BY</b> clause
+in the <b>SELECT</b> statement.</p>
+<A NAME="TI5074"></A><p>For example, if you are retrieving information about employees,
+you can sort on department, and then within each department, you
+can sort on employee ID.</p>
+<A NAME="TI5075"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define ORDER BY criteria:</p>
+<ol><li class=fi><p>Click the Sort tab to make the Sort view
+available (or select View&gt;Sort if the Sort view is not
+currently displayed).</p><p>The columns you selected display in the order of selection.
+You might need to scroll to see your selections.</p></li>
+<li class=ds><p>Drag the first column you want to sort on to the
+right side of the Sort view.</p><p>This specifies the column for the first level of sorting.
+By default, the column is sorted in ascending order. To specify
+descending order, clear the Ascending check box.</p></li>
+<li class=ds><p>Continue to specify additional columns for sorting
+in ascending or descending order as needed. </p><p>You can change the sorting order by dragging the selected
+column names up or down. With the following sorting specification,
+rows will be sorted first by department name, then by employee ID:</p><br><img src="images/defin40.gif"><br>
+</li>
+<li class=ds><p>Define limiting (Where view), grouping (Group
+view), and limiting groups (Having view) criteria as appropriate.</p></li>
+<li class=ds><p>Click the <ACRONYM title = "sequel" >SQL</ACRONYM> Select
+button to return to the DataWindow painter.</p></li></ol>
+<br><A NAME="TI5076"></A><h4>Defining GROUP BY criteria</h4>
+<A NAME="TI5077"></A><p>You can group the retrieved rows by specifying groups that
+correspond to the <b>GROUP BY</b> clause in the <b>SELECT</b> statement.
+This grouping happens <i>before</i> the data is retrieved
+into the DataWindow object. Each group is retrieved as one row into the DataWindow object.</p>
+<A NAME="TI5078"></A><p>For example, if in the <b>SELECT</b> statement
+you group data from the Employee table by department ID, you will
+get one row back from the database for every department represented
+in the Employee table. You can also specify computed columns, such
+as total and average salary, for the grouped data. This is the corresponding <b>SELECT</b> statement:<p><PRE> SELECT dept_id, sum(salary), avg(salary)<br>FROM employee<i><br>GROUP BY dept_id</i></PRE></p>
+<A NAME="TI5079"></A><p>If you specify this with the <b>Employee</b> table
+in the EAS Demo DB, you get five rows back, one for each department.</p>
+<br><img src="images/defin41.gif">
+<A NAME="TI5080"></A><p>For more about <b>GROUP BY</b>,
+see your DBMS documentation.</p>
+<A NAME="TI5081"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define GROUP BY criteria:</p>
+<ol><li class=fi><p>Click the Group tab to make the Group view
+available (or select View&gt;Group if the Group view is not
+currently displayed).</p><p>The columns in the tables you selected display in the left
+side of the Group view. You might need to scroll to see your selections.</p></li>
+<li class=ds><p>Drag the first column you want to group onto the
+right side of the Group view.</p><p>This specifies the column for grouping. Columns are grouped
+in the order in which they are displayed in the right side of the
+Group view. </p></li>
+<li class=ds><p>Continue to specify additional columns for grouping
+within the first grouping column as needed.</p><p>To change the grouping order, drag the column names in the
+right side to the positions you want.</p></li>
+<li class=ds><p>Define sorting (Sort view), limiting (Where view),
+and limiting groups (Having view) criteria as appropriate.</p></li>
+<li class=ds><p>Click the Return button to return to the DataWindow painter.</p></li></ol>
+<br><A NAME="TI5082"></A><h4>Defining HAVING criteria</h4>
+<A NAME="TI5083"></A><p>If you have defined groups, you can define <b>HAVING</b> criteria
+to restrict the retrieved groups. For example, if you group employees
+by department, you can restrict the retrieved groups to departments
+whose employees have an average salary of less than $50,000.
+This corresponds to:</p>
+<A NAME="TI5084"></A><p><p><PRE> SELECT dept_id, sum(salary), avg(salary)<br>FROM employee<br>GROUP BY dept_id<i><br>HAVING avg(salary) &lt; 50000</i></PRE></p>
+<A NAME="TI5085"></A><p>If you specify this with the <b>Employee</b> table
+in the EAS Demo DB, you will get three rows back, because there
+are three departments that have average salaries less than $50,000.</p>
+<br><img src="images/defin43.gif">
+<A NAME="TI5086"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define <b>HAVING</b> criteria:</p>
+<ol><li class=fi><p>Click the Having tab to make the Having
+view available (or select View&gt;Having if the Having view
+is not currently displayed).</p><p>Each row in the Having view is a place for entering an expression
+that limits which groups are retrieved. For information on how to
+define criteria in the Having view, see the procedure in <A HREF="pbugp159.htm#CEADJJDC">"Defining WHERE criteria"</A>.</p></li></ol>
+<br>

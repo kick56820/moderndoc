@@ -1,0 +1,222 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Sample registry update file</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp123.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp125.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAICHGII"></A><A NAME="TI4061"></A><h1>GenerateTypeLib function</h1>
+<A NAME="TI4062"></A><p>
+<FORM>
+<INPUT
+ TYPE = "BUTTON"
+ VALUE = "Examples"
+ onClick = "window.location = 'apptechp124.htm#EX4';">
+<INPUT
+  TYPE = "BUTTON"
+ VALUE = "See also"
+ onClick = "window.location = 'apptechp124.htm#SA4';">
+</FORM>
+</p>
+<h3>Description</h3><A NAME="TI4063"></A><p>Creates a file with type library information for a PowerBuilder
+object you are deploying as an automation server. </p>
+
+<h3>Controls</h3><A NAME="TI4064"></A><p>PowerBuilder.Application (automation server)</p>
+
+<h3>Syntax</h3><p><PRE>{ <i>automationobject</i>.} GenerateTypeLib ( <i>classguid</i>, <i>classname</i>, <i>progid</i>, <br>   <i>localeid</i>, <i>majorversion</i>, <i>minorversion</i>, <i>description</i>, <i>helpcontext</i>,<br>   <i>helpfile</i>, <i>typelibguid</i>, <i>typelibfilename</i>, <i>registryfilename</i> )</PRE></p>
+<A NAME="TI4065"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI4066"></A>Argument</th>
+<th  rowspan="1"  ><A NAME="TI4067"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4068"></A><i>automationobject</i></td>
+<td  rowspan="1"  ><A NAME="TI4069"></A>When PowerBuilder is the OLE client,
+the name of the OLEObject instantiated with the PowerBuilder.Application automation
+server. For other clients, use syntax appropriate for calling a
+function belonging to an automation object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4070"></A><i>classguid</i></td>
+<td  rowspan="1"  ><A NAME="TI4071"></A>A <b>String</b> whose value
+is the globally unique identifier (GUID) that you used for the object
+when you generated its registry file</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4072"></A><i>classname</i></td>
+<td  rowspan="1"  ><A NAME="TI4073"></A>A <b>String</b> whose value
+is the name of the object in the PowerBuilder library for which
+type information will be generated.<A NAME="TI4074"></A><p><i>classname</i> should be the same name you
+specified when you generated the registry file.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4075"></A><i>progid</i></td>
+<td  rowspan="1"  ><A NAME="TI4076"></A>A <b>String</b> whose value
+is the programmatic identifier that people will use to connect to
+your server.<A NAME="TI4077"></A><p><i>progid</i> should be the same value you specified
+when you generated the registry file.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4078"></A><i>localeid</i></td>
+<td  rowspan="1"  ><A NAME="TI4079"></A>A <b>Long</b> whose value
+is the locale identifier (LCID) for the language of your object.
+Values for specific languages are defined in Microsoft documentation.<A NAME="TI4080"></A><p>You can also specify a value of the PowerBuilder enumerated datatype <b>LanguageID</b>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4081"></A><i>majorversion</i></td>
+<td  rowspan="1"  ><A NAME="TI4082"></A>An <b>Integer</b> whose
+value you specified for the major version number of your server
+object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4083"></A><i>minorversion</i></td>
+<td  rowspan="1"  ><A NAME="TI4084"></A>An <b>Integer</b> whose
+value you specified for the minor version number of your server
+object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4085"></A><i>description</i></td>
+<td  rowspan="1"  ><A NAME="TI4086"></A>A <b>String</b> whose value
+you specified as the description of your server object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4087"></A><i>helpcontext</i></td>
+<td  rowspan="1"  ><A NAME="TI4088"></A>A <b>Long</b> whose value
+is the context ID for a Help topic in <i>helpfile</i>.
+Specify 0 to display the Help file's contents page.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4089"></A><i>helpfile</i></td>
+<td  rowspan="1"  ><A NAME="TI4090"></A>A <b>String</b> whose value
+is the name of a Help file containing Help topics for your server
+object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4091"></A><i>typelibguid</i></td>
+<td  rowspan="1"  ><A NAME="TI4092"></A>A <b>String</b> whose value
+will be the globally unique identifier (GUID) for the TypeLib information
+in the registry.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4093"></A><i>typelibfilename</i></td>
+<td  rowspan="1"  ><A NAME="TI4094"></A>A <b>String</b> whose value
+is the name of the file <b>GenerateTypeLib</b> will
+create. The default file name extension recognized by the registry
+is <i>TLB</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4095"></A><i>registryfilename</i></td>
+<td  rowspan="1"  ><A NAME="TI4096"></A>A <b>String</b> whose value
+is the name of the registry update file generated for this object
+with <b>GenerateRegFile.</b><A NAME="TI4097"></A><p>If you just want to generate a type library, specify an empty string
+for <i>registryfilename</i>.</p></td>
+</tr>
+</table>
+
+<h3>Return Values</h3><A NAME="TI4098"></A><p><b>Long</b>. Returns a status code indicating
+whether an error occurred. Values are:</p>
+<A NAME="TI4099"></A><p><A NAME="TI4100"></A>
+<ul>
+<li class=fi><b>0</b>   The registry update file was generated successfully.</li>
+<li class=ds><b>2</b>   No output file name was provided.</li>
+<li class=ds><b>3</b>   Cannot create the type library.</li>
+<li class=ds><b>4</b>   Invalid name or error setting name.</li>
+<li class=ds><b>5</b>   Invalid locale identifier or error setting the locale identifier.</li>
+<li class=ds><b>6</b>   Error converting the TypeLib GUID to a CLSID.</li>
+<li class=ds><b>7</b>   Invalid GUID or error setting GUID.</li>
+<li class=ds><b>7</b>   Error setting description.</li>
+<li class=ds><b>9</b>   Error setting version.</li>
+<li class=ds><b>10</b>   Error setting Help context.</li>
+<li class=ds><b>11</b>   Error setting Help file name.</li>
+<li class=ds><b>14</b>   Class not found in the libraries specified in LibraryList.</li>
+<li class=ds><b>18</b>   Error converting ClassName GUID to CLSID.</li>
+<li class=ds><b>30</b>   Error loading standard type library (OLE is not installed
+correctly).</li>
+<li class=ds><b>31</b>   Error getting IUnknown type information (OLE is not installed
+correctly).</li>
+<li class=ds><b>32</b>   Error getting IDispatch type information (OLE is not installed
+correctly).</li>
+<li class=ds><b>36</b>   Error opening the registry update file associated with this
+type library.
+</li>
+</ul>
+</p>
+
+<h3>Usage</h3><A NAME="TI4101"></A><p>The type library is optional. You need it only if you want
+OLE browsers to display information about the properties and methods
+of your object.</p>
+<A NAME="TI4102"></A><p>If you want to register your type library, then a valid registry
+update file must exist for the object before you create the Type
+Library file. The process of creating the Type Library adds information
+to the registry update file. </p>
+<A NAME="TI4103"></A><p>To generate the registry update file, see the <A HREF="apptechp123.htm#CAIEBFGD">GenerateRegFile function</A>.</p>
+<A NAME="TI4104"></A><p>The values you specify for the arguments of <b>GenerateTypeLib</b> must
+match the values in the associated registry update file that has
+already been created. Otherwise, you will create a TypeLib entry
+in the registry that is not associated with any object.</p>
+<A NAME="TI4105"></A><p>Before you call <b>GenerateTypeLib</b>, you must
+start a PowerBuilder.Application session and set the LibraryList
+and MachineCode properties to the values for the server object.
+You also need two GUIDs, the GUID used for the object's CLSID
+(specified when you created the registry update file) and a GUID
+for the type library itself. For information about the format of
+a GUID, see the <A HREF="apptechp122.htm#CAIBCBBA">GenerateGUID function</A>.</p>
+<A NAME="TI4106"></A><p>After you generate the registry update and type library files,
+you can register the object in the registry on your system or on
+other systems.</p>
+<A NAME="TI4107"></A><p>When you register your object in the registry, it stores information
+about the locations of the library file and the type library file.
+The path you specified for the LibraryList property specifies its
+location or must be in the path. The type library file should be
+in its intended directory when you register the object.</p>
+
+<A NAME="EX4"></A><h3>Examples</h3><A NAME="TI4108"></A><p>This example calls <b>GenerateTypeLib</b>.
+(Do not use this GUID in your own applications.)<p><PRE> long ll_result</PRE><PRE> ll_result = <i>GenerateTypeLib</i>( &amp;</PRE><PRE>    "{12345678-1234-1234-1234-123456789012}", &amp;</PRE><PRE>    "uo_salary_formulas", "MyCompany.SalaryFormulas", &amp;</PRE><PRE>    0, 1, 0, &amp;   </PRE><PRE>    "PowerBuilder functions for calculating salaries", &amp;</PRE><PRE>    0, "c:\pbds\bizrules.hlp", &amp;   </PRE><PRE>    "{12345679-1234-1234-1234-123456789012}", &amp;</PRE><PRE>    "c:\pbds\bizrules.tlb",   "c:\pbds\bizrules.reg")</PRE></p>
+<A NAME="TI4109"></A><p>This example establishes a PowerBuilder.Application server
+session and sets all the values necessary for generating a registry
+update file:<p><PRE> oleObject PBObject</PRE><PRE> string ls_GUID, ls_typelibGUID</PRE><PRE> long ll_result</PRE><PRE> </PRE><PRE> PBObject = CREATE oleObject</PRE><PRE> </PRE><PRE> result = PBObject.ConnectToNewObject &amp;</PRE><PRE>    ("PowerBuilder.Application")</PRE><PRE> IF result &lt; 0 THEN</PRE><PRE>    // Handle the error</PRE><PRE>    RETURN -1</PRE><PRE> END IF</PRE><PRE> </PRE><PRE> PBObject.LibraryList = "c:\myappl\mylibrary.pbd"</PRE><PRE> PBObject.MachineCode = FALSE</PRE><PRE> </PRE><PRE> // GUID for object's CLSID</PRE><PRE> ll_result = PBObject.GenerateGUID(REF ls_GUID)</PRE><PRE> IF ll_result &lt; 0 THEN</PRE><PRE>    // Handle the error</PRE><PRE>    RETURN -1</PRE><PRE> END IF</PRE><PRE> </PRE><PRE> // GUID for object's Type Library</PRE><PRE> ll_result = PBObject.GenerateGUID(REF ls_typelibGUID)</PRE><PRE> IF ll_result &lt; 0 THEN</PRE><PRE>    // Handle the error</PRE><PRE>    RETURN -1</PRE><PRE> END IF</PRE><PRE> </PRE><PRE> // Generate registry update file</PRE><PRE> ll_result = PBObject.GenerateRegFile( ls_GUID, &amp;</PRE><PRE>    "uo_myserverobject",   "MyCompany.Object", &amp;   </PRE><PRE>    1, 0,    "My object's description", &amp;   </PRE><PRE>    "c:\myappl\object.reg")</PRE><PRE> IF ll_result &lt; 0 THEN</PRE><PRE>    / Handle the error</PRE><PRE>    RETURN -1</PRE><PRE> END IF</PRE><PRE> </PRE><PRE> // Generate Type Library</PRE><PRE> ll_result = PBObject.<i>GenerateTypeLib</i>( ls_GUID, &amp;   </PRE><PRE>    uo_myserverobject",   "MyCompany.Object",      0, 1, 0, &amp;   </PRE><PRE>    "My object's description",   0, $</PRE><PRE>    "c:\myappl\myhelp.hlp", ls_typelibGUID, &amp;</PRE><PRE>    "c:\myappl\object.tlb",   "c:\myappl\object.reg")</PRE><PRE> IF ll_result &lt; 0 THEN</PRE><PRE>    // Handle the error</PRE><PRE>    RETURN -1</PRE><PRE> END IF</PRE></p>
+
+<A NAME="SA4"></A><h3>See Also</h3><A NAME="TI4110"></A><p><A NAME="TI4111"></A>
+<ul>
+<li class=fi><b>GenerateGUID</b></li>
+<li class=ds><b>GenerateRegFile</b>
+</li>
+</ul>
+</p>
+
+<A NAME="X-REF349370608"></A><h1>Exception codes</h1>
+<A NAME="TI4112"></A><p>Automation clients accessing a PowerBuilder server may generate
+OLE exceptions under certain circumstances. When user actions cause
+an exception, PowerBuilder populates the EXCEPINFO structure passed
+by the caller with an exception code identifying the type of exception.
+For a PowerBuilder client, the exception information is passed as
+arguments to the ExternalException event.</p>
+<A NAME="TI4113"></A><p>Client applications might receive these exception codes from
+the PowerBuilder automation server:</p>
+<A NAME="TI4114"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 20-10: PowerBuilder automation server exception codes</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4115"></A>Code</th>
+<th  rowspan="1"  ><A NAME="TI4116"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4117"></A>1001</td>
+<td  rowspan="1"  ><A NAME="TI4118"></A>Memory allocation failure.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4119"></A>1002</td>
+<td  rowspan="1"  ><A NAME="TI4120"></A>Requested Object is not in the library
+list.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4121"></A>1003</td>
+<td  rowspan="1"  ><A NAME="TI4122"></A>Object create failed.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4123"></A>1004</td>
+<td  rowspan="1"  ><A NAME="TI4124"></A>Binary format does not match version
+or is out of date.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4125"></A>1005</td>
+<td  rowspan="1"  ><A NAME="TI4126"></A>Property accessed as an array is not
+an array.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4127"></A>1006</td>
+<td  rowspan="1"  ><A NAME="TI4128"></A>Unexpected error executing script.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4129"></A>1007</td>
+<td  rowspan="1"  ><A NAME="TI4130"></A>No method was found matching the requested
+name and argument types.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4131"></A>1008</td>
+<td  rowspan="1"  ><A NAME="TI4132"></A>Unable to convert variant argument type.</td>
+</tr>
+</table>
+<A NAME="X-REF349370617"></A><h1>Sample registry update file</h1>
+<A NAME="TI4133"></A><p>This sample registry file has registration information for
+a class user object named <b>uo_salarydata</b>.</p>
+<A NAME="TI4134"></A><p><p><PRE> REGEDIT4<br>;;;;;;;;;;;;;;;;<br>;<br>; Registry entries for MyCompany.SalaryData<br>;<br>; CLSID = {E022EF01-6789-11CF-92BF-00805F9236E9}<br>;<br>; PowerBuilder Generated Registry File<br>;;;;;;;;;;;;;;;;<br>; Version independent entries:<br>[HKEY_CLASSES_ROOT\MyCompany.SalaryData]<br>@="DataStore with functions returning salary statistics"<br>[HKEY_CLASSES_ROOT\MyCompany.SalaryData\CLSID]<br>@="{E022EF01-6789-11CF-92BF-00805F9236E9}"<br>[HKEY_CLASSES_ROOT\MyCompany.SalaryData\CurVer]<br>@="MyCompany.SalaryData.1"<br>[HKEY_CLASSES_ROOT\MyCompany.SalaryData\NotInsertable"<br>@=""<br> <br>; Version specific entries:<br>[HKEY_CLASSES_ROOT\AppID\{E022EF01-6789-11CF-92BF-00805F9236E9}]<br>@="DataStore with functions returning salary statistics"<br>[HKEY_CLASSES_ROOT\MyCompany.SalaryData.1]<br>@="DataStore with functions returning salary statistics"<br>[HKEY_CLASSES_ROOT\MyCompany.SalaryData.1\CLSID]<br>@="{E022EF01-6789-11CF-92BF-00805F9236E9}"<br>[HKEY_CLASSES_ROOT\MyCompany.SalaryData.1\NotInsertable]<br>@=""<br> <br>; CLSID entries:<br>[HKEY_CLASSES_ROOT\CLSID\{E022EF01-6789-11CF-92BF-<br>00805F9236E9}]<br>@="DataStore with functions returning salary statistics"<br>"AppID"="{E022EF01-6789-11CF-92BF-00805F9236E9}"<br>[HKEY_CLASSES_ROOT\CLSID\{E022EF01-6789-11CF-92BF-0805F9236E9}\ProgID]<br>@="MyCompany.SalaryData.1"<br>[HKEY_CLASSES_ROOT\CLSID\{E022EF01-6789-11CF-92BF-00805F9236E9}\VersionIndependentProgID]<br>@="MyCompany.SalaryData"<br>[HKEY_CLASSES_ROOT\CLSID\{E022EF01-6789-11CF-92BF-00805F9236E9}\InProcServer32]<br>@="pbVM105.dll"<br>"ThreadingModel"="Apartment"<br>[HKEY_CLASSES_ROOT\CLSID\{E022EF01-6789-11CF-92BF 00805F9236E9}\NotInsertable]<br>@=""<br>[HKEY_CLASSES_ROOT\CLSID\{E022EF01-6789-11CF-92BF-00805F9236E9}\Programmable]<br>@=""<br>[HKEY_CLASSES_ROOT\CLSID\{E022EF01-6789-11CF-92BF-00805F9236E9}\PowerBuilder\ClassName]<br>@="uo_salarydata"<br>[HKEY_CLASSES_ROOT\CLSID\{E022EF01-6789-11CF-92BF-00805F9236E9}\PowerBuilder\LibraryList]<br>@="D:\\pbserver.pbd"<br>[HKEY_CLASSES_ROOT\CLSID\{E022EF01-6789-11CF-92BF-00805F9236E9}\PowerBuilder\BinaryType]<br>@="PCODE"<br>; Type Library Registration entries:<br>[HKEY_CLASSES_ROOT\CLSID\{E022EF01-6789-11CF-92BF-00805F9236E9}\TypeLib]<br>@="{E022EF02-6789-11CF-92BF-00805F9236E9}"<br>[HKEY_CLASSES_ROOT\TypeLib\{E022EF02-6789-11CF-92BF-00805F9236E9}\1.0]<br>@="Type Library for DataStore with functions returning salary statistics"<br>[HKEY_CLASSES_ROOT\TypeLib\{E022EF02-6789-11CF-92BF- 00805F9236E9}\1.0\9\Win32]<br>@="D:\\pbserver.tlb"</PRE></p>
+

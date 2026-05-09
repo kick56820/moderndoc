@@ -1,0 +1,61 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the DataWindow Transaction Object control</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp56.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp58.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBCBBDH"></A><h1>Using the DataWindow Transaction Object control</h1>
+<A NAME="TI2401"></A><h4>What it does</h4>
+<A NAME="TI2402"></A><p>The DataWindow Transaction Object control allows you to establish
+a database connection independent of the Web ActiveX. It is similar
+to the PowerBuilder Transaction object.</p>
+<A NAME="TI2403"></A><h4>Internal transaction management or separate Transaction object</h4>
+<A NAME="TI2404"></A><p>Both the Web ActiveX control and the Transaction Object control
+can establish a database connection. The one you use depends on
+your needs.</p>
+<A NAME="TI2405"></A><p>There are two main reasons to use the Transaction Object control:<A NAME="TI2406"></A>
+<ul>
+<li class=fi>You can make one database connection for several
+Web ActiveX controls, saving the overhead of multiple connections.</li>
+<li class=ds>You can control transaction processing with <b>Connect</b> and <b>Disconnect</b> methods,
+equivalent to the SQL statements <b>CONNECT</b> and <b>DISCONNECT</b>. If
+the AutoCommit property is set to <b>false</b>, you
+can control when an update is committed or rolled back (by calling
+the <b>Commit</b> and <b>Rollback</b> methods).
+</li>
+</ul>
+</p>
+<A NAME="TI2407"></A><p>If you have only one control and are simply retrieving data,
+you do not need either of these features. Instead of instantiating
+a separate control, you can set the connection properties of the
+Web ActiveX itself and allow it to connect and disconnect for each
+database access.</p>
+<A NAME="TI2408"></A><h4>Status and error information</h4>
+<A NAME="TI2409"></A><p>The Transaction Object control receives status information
+from the database. You can test the success or failure of a database
+operation and get status information with these methods, which are
+equivalent to PowerBuilder transaction object properties:<A NAME="TI2410"></A>
+<ul>
+<li class=fi>GetSQLCode</li>
+<li class=ds>GetDBCode</li>
+<li class=ds>GetSQLErrText</li>
+<li class=ds>GetSQLNRows</li>
+<li class=ds>GetSQLReturnData
+</li>
+</ul>
+</p>
+<A NAME="TI2411"></A><h4>Hiding the Transaction Object control</h4>
+<A NAME="TI2412"></A><p>The Transaction Object control has no visual aspect, but if
+it is in the BODY section of the Web page, it still takes up space.
+You can set its HEIGHT and WIDTH attributes to very small values
+or use stylesheet settings to make it invisible.</p>
+<A NAME="TI2413"></A><p>If you put it in the HEAD section, you will not have access
+to its property sheet in a PowerBuilder Web target.</p>
+<A NAME="TI2414"></A><p>For information on setting properties for making a database
+connection, see <A HREF="dwprgugp58.htm#BGBCHHGF">"Making database connections"</A>.</p>
+

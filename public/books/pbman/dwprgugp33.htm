@@ -1,0 +1,55 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using graphs</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp32.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp34.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF361795246"></A><h1>Using graphs</h1>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Supported environments</span> <p><b>PowerBuilder and Web ActiveX</b>   Graphs are supported. Because you can print DataStores, PowerBuilder
+provides some events and functions for DataStores that pertain to
+the visual presentation of the data. However, graph functions such
+as CategoryCount, CategoryName, GetData, SeriesCount, and so forth
+depend on the visual graph control, which is not created for a DataStore.
+These functions return an error value or an empty string when used
+with DataStore objects. </p>
+<p><b>Web DataWindow</b>   Graphs are not supported. If you use a DataWindow object that
+includes graphs, the graphs are ignored. If you use a DataWindow
+object with the Graph presentation style, nothing displays.</p>
+<A NAME="TI1043"></A><p>It is common for developers to design DataWindow objects that
+include one or more graphs. When users need to quickly understand
+and analyze data, a bar, line, or pie graph can often be the most
+effective format to display.</p>
+<A NAME="TI1044"></A><p>To learn about designing graphs, see the <i>PowerBuilder
+User's Guide</i>
+.</p>
+<A NAME="TI1045"></A><h4>Working with graphs in your code</h4>
+<A NAME="TI1046"></A><p>The following sections describe how you can access (and optionally
+modify) a graph by addressing its properties in code at execution
+time. There are two kinds of graph properties:<A NAME="TI1047"></A>
+<ul>
+<li class=fi><b>Properties of the graph definition
+itself</b>   These properties are initially set in the DataWindow painter
+when you create a graph. They include a graph's type, title,
+axis labels, whether axes have major divisions, and so on.</li>
+<li class=ds><b>Properties of the data</b>   These properties are relevant only at execution time, when
+data has been loaded into the graph. They include the number of
+series in a graph (series are created at execution time), colors
+of bars or columns for a series, whether the series is an overlay,
+text that identifies the categories (categories are created at execution
+time), and so on.
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Using graphs in other PowerBuilder controls</span> <A NAME="TI1048"></A>Although you will probably use graphs most often in DataWindow
+objects, you can also add graph controls to windows, and additional
+PowerScript functions and events are available for use with graph
+controls.</p>
+<A NAME="TI1049"></A>For more information, see PowerBuilder <i>Application
+Techniques</i>
+.</p>
+

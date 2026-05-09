@@ -1,0 +1,162 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Overview of class definition information</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp24.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp26.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJBJJGI"></A><h1>Overview of class definition information</h1>
+<A NAME="TI484"></A><p>A ClassDefinition object is a PowerBuilder object that provides information
+about the class of another PowerBuilder object. You can examine
+a class in a PowerBuilder library or the class of an instantiated object.
+By examining the properties of its ClassDefinition object, you can get
+details about how a class fits in the PowerBuilder object hierarchy.</p>
+<A NAME="TI485"></A><p>From the ClassDefinition object, you can discover:<A NAME="TI486"></A>
+<ul>
+<li class=fi>The variables, functions,
+and events defined for the class</li>
+<li class=ds>The class's ancestor</li>
+<li class=ds>The class's parent</li>
+<li class=ds>The class's children (nested classes)
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Related objects</span> <A NAME="TI487"></A>The ClassDefinition object is a member of a hierarchy of objects,
+including the TypeDefinition, VariableDefinition, and ScriptDefinition
+objects, that provide information about datatypes or about the variables,
+properties, functions, and event scripts associated with a class
+definition.</p>
+<A NAME="TI488"></A>For more information, see the Browser or <i>Objects
+and Controls</i>
+.</p>
+<p><b>Definitions for instantiated objects</b>   For each object instance, a ClassDefinition property makes
+available a ClassDefinition object to describe its definition. The
+ClassDefinition object does not provide information about the object
+instance, such as the values of its variables. You get that information by
+addressing the instance directly.</p>
+<p><b>Definitions for objects in libraries</b>   An object does not have to be instantiated to get class information.
+For an object in a PowerBuilder library, you can call the <b>FindClassDefinition</b> function
+to get its ClassDefinition object.</p>
+<p><b>Performance</b>   Class definition objects may seem to add a lot of overhead,
+but the overhead is incurred only when you refer to the ClassDefinition
+object. The ClassDefinition object is instantiated only when you
+call <b>FindClassDefinition</b> or access the ClassDefinition
+property of a PowerBuilder object. Likewise, for properties of the
+ClassDefinition object that are themselves ClassDefinition or VariableDefinition
+objects, the objects are instantiated only when you refer to those
+properties.</p>
+<A NAME="TI489"></A><h2>Terminology</h2>
+<A NAME="TI490"></A><p>The class information includes information about the relationships
+between objects. These definitions will help you understand what
+the information means.</p>
+<A NAME="TI491"></A><h4>object instance</h4>
+<A NAME="TI492"></A><p>A realization of an object. The instance exists in memory
+and has values assigned to its properties and variables. Object
+instances exist only when you run an application.</p>
+<A NAME="TI493"></A><h4>class</h4>
+<A NAME="TI494"></A><p>A definition of an object, containing the source code for
+creating an object instance. When you use PowerBuilder painters
+and save an object in a <ACRONYM title = "pibble" >PBL</ACRONYM>, you
+are creating class definitions for objects. When you run your application, the
+class is the datatype of object instances based on that class. In PowerBuilder,
+the term <i>object</i> usually refers to an instance
+of the object. It sometimes refers to an object's class.</p>
+<A NAME="TI495"></A><h4>system class</h4>
+<A NAME="TI496"></A><p>A class defined by PowerBuilder. An object you define in a
+painter is a descendant of a system class, even when you do not
+explicitly choose to use inheritance for the object you define.</p>
+<A NAME="CHDDIHFI"></A><h4>parent</h4>
+<A NAME="TI497"></A><p>The object that contains the current object or is connected
+to the object in a way other than inheritance. This table lists
+classes of objects and the classes that can be the parents of those
+objects:</p>
+<A NAME="TI498"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 4-1: Classes of objects and their parents</caption>
+<tr><th  rowspan="1"  ><A NAME="TI499"></A>Object</th>
+<th  rowspan="1"  ><A NAME="TI500"></A>Parent</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI501"></A>Window</td>
+<td  rowspan="1"  ><A NAME="TI502"></A>The window that opened the window.<A NAME="TI503"></A><p>A window might not have a parent. The parent is determined
+during execution and is not part of the class definition.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI504"></A>Menu item</td>
+<td  rowspan="1"  ><A NAME="TI505"></A>The menu item on the prior level in the
+menu.<A NAME="TI506"></A><p>The item on the menu bar is the parent of all the items on
+the associated drop-down menu.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI507"></A>Control on a window</td>
+<td  rowspan="1"  ><A NAME="TI508"></A>The window.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI509"></A>Control on user object</td>
+<td  rowspan="1"  ><A NAME="TI510"></A>The user object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI511"></A>TabPage</td>
+<td  rowspan="1"  ><A NAME="TI512"></A>The Tab control in which the TabPage
+is defined or in which it was opened.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI513"></A>ListViewItem or TreeViewItem</td>
+<td  rowspan="1"  ><A NAME="TI514"></A>The ListView or TreeView control.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI515"></A>Visual user object</td>
+<td  rowspan="1"  ><A NAME="TI516"></A>The window or user object on which the
+user object is placed.</td>
+</tr>
+</table>
+<A NAME="TI517"></A><h4>child</h4>
+<A NAME="TI518"></A><p>A class that is contained within another parent class. Also
+called a nested class. For the types of objects that have a parent
+and child relationship, see <A HREF="apptechp25.htm#CHDDIHFI">parent</A>.</p>
+<A NAME="TI519"></A><h4>ancestor</h4>
+<A NAME="TI520"></A><p>A class from whose definition another object is inherited.
+See also <A HREF="apptechp25.htm#CHDDIADF">descendant</A>.</p>
+<A NAME="CHDDIADF"></A><h4>descendant</h4>
+<A NAME="TI521"></A><p>An object that is inherited from another object and that incorporates
+the specifics of that object: its properties, functions, events,
+and variables. The descendant can use these values or override them
+with new definitions. All objects you define in painters and store
+in libraries are descendants of PowerBuilder system classes.</p>
+<A NAME="TI522"></A><h4>inheritance hierarchy</h4>
+<A NAME="TI523"></A><p>An object and all its ancestors.</p>
+<A NAME="TI524"></A><h4>collapsed hierarchy</h4>
+<A NAME="TI525"></A><p>A view of an object class definition that includes information
+from all the ancestors in the object's inheritance tree,
+not just items defined at the current level of inheritance.</p>
+<A NAME="TI526"></A><h4>scalar</h4>
+<A NAME="TI527"></A><p>A simple datatype that is not an object or an array. For example, <b>Integer</b>, <b>Boolean</b>, <b>Date</b>, <b>Any</b>,
+and <b>String</b>.</p>
+<A NAME="TI528"></A><h4>instance variable and property</h4>
+<A NAME="TI529"></A><p>Built-in properties of PowerBuilder system objects are called
+properties, but they are treated as instance variables in the class
+definition information.</p>
+<A NAME="CCJDBJJD"></A><h2>Who uses PowerBuilder class definitions</h2>
+<A NAME="TI530"></A><p>Most business applications do not need to use class definition
+information. Code that uses class definition information is written
+by groups that write class libraries, application frameworks, and
+productivity tools.</p>
+<A NAME="TI531"></A><p>Although your application might not include any code that
+uses class definition information, tools that you use for design,
+documentation, and class libraries will. These tools examine class
+definitions for your objects so that they can analyze your application
+and provide feedback to you.</p>
+<p><b>Scenarios</b>   Class information might be used when developing:<A NAME="TI532"></A>
+<ul>
+<li class=fi>A custom object browser</li>
+<li class=ds>A tool that needs to know the objects of an application
+and their relationships<br>
+The purpose might be to document the application or to provide
+a logical way to select and work with the objects.<br></li>
+<li class=ds>A CASE tool that deconstructs PowerBuilder objects,
+allows the user to redesign them, and reconstructs them<br>
+To do the reconstruction, the CASE tool needs both class definition information
+and a knowledge of PowerBuilder object source code syntax.<br></li>
+<li class=ds>A class library in which objects need to determine
+the class associated with an instantiated object, or a script needs
+to know the ancestor of an object in order to make assumptions about
+available methods and variables
+</li>
+</ul>
+</p>
+

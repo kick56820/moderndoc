@@ -1,0 +1,131 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Writing client-side scripts</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp44.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp46.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABDAFFA"></A><h1>Writing client-side scripts</h1>
+<A NAME="TI1733"></A><h4>Responding to events</h4>
+<A NAME="TI1734"></A><p>If you want to provide additional processing of newly entered
+data or have more control over user interactions with the data,
+you can choose to enable events in the Web DataWindow client control.
+To do so, you set the Client Events property on the Web Generation
+page in the DataWindow painter or call the SetWeight method in a
+server-side script.</p>
+<A NAME="TI1735"></A><p>The client control supports several events:</p>
+<A NAME="TI1736"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><td  rowspan="1"  ><A NAME="TI1737"></A>ButtonClicking</td>
+<td  rowspan="1"  ><A NAME="TI1738"></A>ItemError</td>
+<td  rowspan="1"  ><A NAME="TI1739"></A>RowFocusChanging</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1740"></A>ButtonClicked</td>
+<td  rowspan="1"  ><A NAME="TI1741"></A>ItemFocusChanged</td>
+<td  rowspan="1"  ><A NAME="TI1742"></A>UpdateStart</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1743"></A>Clicked</td>
+<td  rowspan="1"  ><A NAME="TI1744"></A>OnSubmit</td>
+<td  rowspan="1"  ><A NAME="TI1745"></A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1746"></A>ItemChanged</td>
+<td  rowspan="1"  ><A NAME="TI1747"></A>RowFocusChanged</td>
+<td  rowspan="1"  ><A NAME="TI1748"></A></td>
+</tr>
+</table>
+<A NAME="TI1749"></A><p>Most of these events have similar arguments and the same return
+codes as the events of the PowerBuilder DataWindow control. For
+information, see the <i>DataWindow Reference</i>
+ or
+online Help.</p>
+<A NAME="TI1750"></A><h4>Implementing an event</h4>
+<A NAME="TI1751"></A><p>To write a script for an event of the client control, you
+define a function whose name is the control name plus the event
+name, separated by an underscore:<p><PRE><i>HTMLGenObjectName_eventname</i> ( <i>arguments</i> )</PRE></p>
+</p>
+<A NAME="TI1752"></A><p>The control name is the one you specified using the SetHTMLObjectName method
+or the Object Name property on the Web Generation page in the DataWindow
+painter. The script must be enclosed in SCRIPT tags. You can include
+client methods in the script if client scripting is enabled (described next). </p>
+<A NAME="TI1753"></A><p>This example prevents focus from changing if the user tries
+to go back to an earlier row. In this case the name of the DataWindow
+control is dwMine:<p><PRE> &lt;SCRIPT Language=JavaScript&gt;</PRE><PRE> function dwMine_RowFocusChanging(curRow, newRow)</PRE><PRE> {</PRE><PRE>         if (newRow &lt; curRow) { return 1; }</PRE><PRE> }</PRE><PRE> &lt;/SCRIPT&gt;</PRE></p>
+<A NAME="TI1754"></A><p>You can put the script anywhere in your Web page template.
+If you are using a Web or JSP target, you do not need to define
+a function to wrap your event code. You can code client-side events
+directly in the editor by selecting the DataWindow control name
+in the leftmost drop-down list in the toolbar and the event name
+in the center drop-down list.</p>
+<A NAME="TI1755"></A><h4>Calling client methods</h4>
+<A NAME="TI1756"></A><p>To write scripts that call methods of the client control,
+you must enable client scripting. To do so, you can set the Client
+Scriptable property in the DataWindow painter or call the SetWeight
+method in a server-side script.</p>
+<A NAME="TI1757"></A><p>Several client methods accomplish the same tasks as actions
+of Button controls. If your DataWindow object uses Button controls
+to implement scrolling and updating, you might not need to do any
+client scripting.</p>
+<A NAME="TI1758"></A><p>You can use the following methods on the client (methods marked
+with an asterisk force the Web page to be reloaded):</p>
+<A NAME="TI1759"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><td  rowspan="1"  ><A NAME="TI1760"></A>AcceptText</td>
+<td  rowspan="1"  ><A NAME="TI1761"></A>GetItem </td>
+<td  rowspan="1"  ><A NAME="TI1762"></A>ScrollNextPage *</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1763"></A>DeletedCount</td>
+<td  rowspan="1"  ><A NAME="TI1764"></A>GetItemStatus</td>
+<td  rowspan="1"  ><A NAME="TI1765"></A>ScrollPriorPage *</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1766"></A>DeleteRow *</td>
+<td  rowspan="1"  ><A NAME="TI1767"></A>InsertRow *</td>
+<td  rowspan="1"  ><A NAME="TI1768"></A>SelectRow</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1769"></A>GetClickedColumn</td>
+<td  rowspan="1"  ><A NAME="TI1770"></A>IsRowSelected</td>
+<td  rowspan="1"  ><A NAME="TI1771"></A>SetItem</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1772"></A>GetClickedRow</td>
+<td  rowspan="1"  ><A NAME="TI1773"></A>ModifiedCount</td>
+<td  rowspan="1"  ><A NAME="TI1774"></A>SetColumn</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1775"></A>GetColumn</td>
+<td  rowspan="1"  ><A NAME="TI1776"></A>Retrieve *</td>
+<td  rowspan="1"  ><A NAME="TI1777"></A>SetRow</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1778"></A>GetFullContext</td>
+<td  rowspan="1"  ><A NAME="TI1779"></A>RowCount</td>
+<td  rowspan="1"  ><A NAME="TI1780"></A>SetSort</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1781"></A>GetNextModified </td>
+<td  rowspan="1"  ><A NAME="TI1782"></A>ScrollFirstPage *</td>
+<td  rowspan="1"  ><A NAME="TI1783"></A>Sort *</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1784"></A>GetRow</td>
+<td  rowspan="1"  ><A NAME="TI1785"></A>ScrollLastPage *</td>
+<td  rowspan="1"  ><A NAME="TI1786"></A>Update *</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>GetNextModified</span> <A NAME="TI1787"></A>The GetNextModified method finds modified rows in the current
+page only.</p>
+<A NAME="TI1788"></A><p>For information about these methods, see the <i>DataWindow
+Reference </i>
+or online Help.</p>
+<A NAME="TI1789"></A><p>This example includes a form with a button that causes data
+to be updated on the server: <p><PRE> &lt;FORM NAME="update"&gt;</PRE><PRE> &lt;INPUT type="button" value="Update" onClick="{dwMine.Update();}"&gt;</PRE></p>
+<A NAME="TI1790"></A><p>Note that you can get the same functionality with the Update
+action for a Button control in the DataWindow object.</p>
+<A NAME="TI1791"></A><h4>Multiple DataWindows on a page</h4>
+<A NAME="TI1792"></A><p>If you have multiple updatable Web DataWindows on the same
+Web page, you can script the OnSubmit client-side event to synchronize
+them before the changes on the page are submitted. You call the
+GetFullContext method to get a string that represents the context
+of the client side control that would be passed on a submit, and
+transfer the context to the other DataWindow control.</p>
+<A NAME="TI1793"></A><p>To enable the second DataWindow to create the required fields
+on the submit form, each of the DataWindows must have two arguments
+defined as self-link arguments:<p><PRE> dw_1.SetSelfLink(document.name,</PRE><PRE>          "dw_2_context=''|dw_2_action=''")</PRE><PRE> dw_2.SetSelfLink(document.name,</PRE><PRE>          "dw_1_context=''|dw_1_action=''")</PRE></p>
+<A NAME="TI1794"></A><p>This client-side script transfers the context and action from
+dw_2 to dw_1 when dw_1 is submitted,
+and from dw_1 to dw_2 when dw_2 is submitted:<p><PRE> &lt;SCRIPT&gt;</PRE><PRE>     function dw_1_OnSubmit()</PRE><PRE>     {</PRE><PRE>         dw_1.submitForm.dw_2_context.value =</PRE><PRE>             dw_2.GetFullContext();</PRE><PRE>         dw_1.submitForm.dw_2_action.value = "";</PRE><PRE>     }</PRE><PRE> </PRE><PRE>     function dw_2_OnSubmit()</PRE><PRE>     {</PRE><PRE>         dw_2.submitForm.dw_1_context.value =        </PRE><PRE>             dw_1.GetFullContext();</PRE><PRE>         dw_2.submitForm.dw_1_action.value = "";</PRE><PRE>     }</PRE><PRE> &lt;/SCRIPT&gt;</PRE></p>
+

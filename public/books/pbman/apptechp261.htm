@@ -1,0 +1,61 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Modifying an existing style </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp260.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp262.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF306081731"></A><h1>Modifying an existing style </h1>
+<A NAME="TI7700"></A><p>The easiest way to get started building form styles is to
+copy an existing form style and work with it. By examining its structure
+and making small changes, you can quickly understand how form styles
+work.</p>
+<A NAME="TI7701"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To begin by modifying an existing form style:</p>
+<ol><li class=fi><p>Open the Library painter in PowerBuilder.</p></li>
+<li class=ds><p>Copy the window and menu that serve as the foundation
+for a form style to a library that is on your application's
+library search path.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Starting from a built-in form style</span> <A NAME="TI7702"></A>The windows and menus that serve as the basis for the built-in
+form styles are in <i>IMSTYLE105.PBL</i>, which is
+shipped with InfoMaker and installed in the InfoMaker 10.5 directory.
+You can make a copy of this PBL and use it as the basis of your
+own form styles.</p>
+</li>
+<li class=ds><p>Open the window in the Window painter and select
+File&gt;Save As from the menu bar to save it with a new name.</p></li>
+<li class=ds><p>Give the window a new name.</p><p>You can use any name you want, except that names of windows
+that define form styles must be unique across all style libraries
+that are used by an InfoMaker user.</p></li>
+<li class=ds><p>Define a special comment for the window (for instructions,
+see <A HREF="apptechp261.htm#BFCCBJFC">"Identifying the window as
+the basis of a style"</A>).</p></li>
+<li class=ds><p>Click OK to save the window.</p></li>
+<li class=ds><p>Open the menu in the Menu painter and select File&gt;Save
+As from the menu bar to save it with a new name.</p></li>
+<li class=ds><p>Provide a new name and an optional comment, then
+click OK to save the menu.</p><p>You do not need to provide a comment for the menu, but it
+is a good idea to identify it as being used in the form style you
+are building.</p></li>
+<li class=ds><p>Enhance the form style (for instructions, see <A HREF="apptechp263.htm#BFCCFGCE">"Completing the style "</A>).</p></li></ol>
+<br><A NAME="BFCCBJFC"></A><h2>Identifying the window as the basis of a style</h2>
+<A NAME="TI7703"></A><p>In order for InfoMaker to recognize that a window in a library
+serves as the basis for a form style, you must specify a comment
+for the window that starts with the text <i>Style</i>:<p><PRE>Style: <i>text that describes the style</i></PRE></p>
+</p>
+<A NAME="TI7704"></A><p>The text that follows <i>Style</i>: is the text
+that displays below the icon for the form style in the New Form
+dialog box in InfoMaker.</p>
+<A NAME="TI7705"></A><p>For example, if you save a <b>w_pbstyle_freeform</b> window
+with the comment <FONT FACE="Courier New">Style: Maintain corporate data</FONT> in
+a style library, InfoMaker users see this when they create a new
+form:</p>
+<br><img src="images/bdsty08.gif">
+<A NAME="TI7706"></A><p>You can specify the comment either when first saving the window
+or in the Library painter.</p>
+<A NAME="TI7707"></A><p>For more information about designing windows,
+see the PowerBuilder <i>User's Guide</i>
+.</p>
+

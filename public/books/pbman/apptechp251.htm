@@ -1,0 +1,32 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Stopping a print job </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp250.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp252.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299755239"></A><h1>Stopping a print job </h1>
+<A NAME="TI7556"></A><p>There are two ways to stop a print job. The normal way is
+to close the job by calling the <b>PrintClose</b> function
+at the end of the print job. The other way is to cancel the job
+by calling <b>PrintCancel</b>.</p>
+<A NAME="TI7557"></A><h4>Using PrintClose</h4>
+<A NAME="TI7558"></A><p><b>PrintClose</b> sends the current page to the
+printer or spooler, closes the print job, and activates the window
+from which the printing started. After you execute a <b>PrintClose</b> function
+call, any function calls that refer to the job number fail.</p>
+<A NAME="TI7559"></A><h4>Using PrintCancel</h4>
+<A NAME="TI7560"></A><p><b>PrintCancel</b> ends the print job and deletes
+any output that has not been printed. The <b>PrintCancel</b> function
+provides a way for the user to cancel printing before the process
+is complete. A common way to use <b>PrintCancel</b> is
+to define a global variable and then check the variable periodically
+while processing the print job.</p>
+<A NAME="TI7561"></A><p>Assume <i>StopPrint</i> is a boolean global
+variable. The following statements check the <i>StopPrint</i> global
+variable and cancel the job when the value of <i>StopPrint</i> is <b>TRUE</b>:<p><PRE> IntJobNbr</PRE><PRE> JobNbr = PrintOpen()</PRE><PRE> //Set the initial value of the global variable.</PRE><PRE> StopPrint = FALSE</PRE><PRE> //Perform some print processing.</PRE><PRE> Do While <i>...</i></PRE><PRE> .</PRE><PRE> .</PRE><PRE> .</PRE><PRE> // Test the global variable.</PRE><PRE> // Cancel the print job if the variable is TRUE.</PRE><PRE> // Stop executing the script.</PRE><PRE>         If StopPrint then</PRE><PRE>         PrintCancel(JobNbr)</PRE><PRE>         Return</PRE><PRE>         End If</PRE><PRE> Loop</PRE></p>
+

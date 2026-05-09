@@ -1,0 +1,387 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Providing toolbars </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp119.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp121.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CACDIAEFE"></A><h1>Providing toolbars </h1>
+<A NAME="TI3441"></A><p>To make your application easier to use, you can add toolbars
+with buttons that users can click as a shortcut for choosing an
+item from a menu. In PowerBuilder, you can associate a toolbar with
+the window types listed in <A HREF="pbugp120.htm#BGEGBBDJ">Table 14-4</A>.</p>
+<A NAME="BGEGBBDJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 14-4: Window types that can use toolbars</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3442"></A>Window type</th>
+<th  rowspan="1"  ><A NAME="TI3443"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3444"></A>Main window</td>
+<td  rowspan="1"  ><A NAME="TI3445"></A>A main window is a standalone window
+that can be independent of all other windows. You use the main window
+as the anchor for your application. The first window your application
+opens is a main window (unless you are building an MDI application,
+in which case the first window is an MDI frame window).</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3446"></A>MDI window</td>
+<td  rowspan="1"  ><A NAME="TI3447"></A>A window in a Multiple Document Interface
+application, an application in which users work within a frame window
+that lets them perform activities on multiple sheets of information. This
+is useful in applications where users require the ability to do
+several different things at a time. An MDI frame window has a menu
+bar, a client area, sheets, and (usually) a toolbar. An MDI sheet
+window is a window that can be opened in the client area of an MDI
+frame.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3448"></A>MDI Help window</td>
+<td  rowspan="1"  ><A NAME="TI3449"></A>An MDI window with a status area that
+can display MicroHelp.</td>
+</tr>
+</table>
+<A NAME="TI3450"></A><h4>Creating windows in PowerBuilder</h4>
+<A NAME="TI3451"></A><p>You can create a main window, an MDI window, or an MDI Help
+window in PowerBuilder by clicking the New button in the PowerBar
+and selecting Window on the PB Object tab page. The new window's
+type is Main by default. To change it to MDI or MDI Help, select
+the window type on the General page in the Properties view.</p>
+<A NAME="TI3452"></A><p>In MDI windows, you can associate a toolbar with the MDI frame
+and a toolbar with the active sheet. This screen shows New, Print,
+and Exit buttons on the toolbar associated with the MDI Frame, and
+window management buttons on the toolbar associated with the sheet. The toolbar associated
+with the MDI frame is called the <strong>FrameBar</strong>.
+The toolbar associated with the active sheet is called the <strong>SheetBar</strong>.</p>
+<br><img src="images/mdi07.gif">
+<A NAME="TI3453"></A><p>This section provides you with the information you need to
+create and use toolbars. For information about customizing toolbar
+behavior and saving and restoring toolbar settings, see <i>Application
+Techniques</i>
+.</p>
+<A NAME="TI3454"></A><h2>How toolbars work</h2>
+<A NAME="TI3455"></A><p>Toolbars you add to a window behave like the toolbars provided
+in the PowerBuilder development environment:<A NAME="TI3456"></A>
+<ul>
+<li class=fi>Users can choose whether or not to display text
+in a toolbar, use PowerTips, float the toolbar, move the toolbar
+around the frame, and dock it underneath or beside any other toolbar.
+No coding is required to support these basic toolbar operations.</li>
+<li class=ds>Toolbar buttons map directly to menu items. Clicking
+a toolbar button is the same as clicking its corresponding menu
+item (or pressing the accelerator key for that item).</li>
+<li class=ds>Toolbars work only in MDI frame, MDI sheet, and
+Main windows. If you open a pop-up window with a menu that has a
+toolbar, the toolbar does not display.</li>
+<li class=ds>If both the MDI sheet and the frame have toolbars
+and the sheet is open, then the menu that is displayed is the menu
+for the sheet, but both toolbars appear and are operative.</li>
+<li class=ds>If the currently active sheet does not have a menu,
+then the menu and toolbar for the frame remain in place and are
+operative. This can be confusing to your user, because the displayed
+menu is not for the active sheet. If any sheet has a menu, then
+all sheets should probably have menus.
+</li>
+</ul>
+</p>
+<A NAME="TI3457"></A><h4>Menus with multiple toolbars</h4>
+<A NAME="TI3458"></A><p>A single menu can have more than one toolbar. When you associate
+a menu that has multiple toolbars with a window, PowerBuilder displays
+all the toolbars when you open the window. This screen shows a sheet
+open in an MDI frame, with one FrameBar and two SheetBars:</p>
+<br><img src="images/mdi08.gif">
+<A NAME="TI3459"></A><p>You can work with the toolbars independently. For example,
+you can float any of the toolbars, move them around the window,
+and dock them at different locations within the window.</p>
+<A NAME="TI3460"></A><p>The button associated with a menu item can appear on only
+one toolbar at a time. To indicate which toolbar a menu item's
+button belongs to, you set the ToolbarItemBarIndex property for
+the menu item. All items that have the same index number appear
+on the same toolbar.</p>
+<A NAME="TI3461"></A><h2>Adding toolbars to a window</h2>
+<A NAME="TI3462"></A><p>PowerBuilder provides an easy way to add toolbars to a window:
+when you are defining an item in the Menu painter for a menu that
+will be associated with an MDI frame window, an MDI sheet, or a
+main window, you simply specify that you want the menu item to display
+in the toolbar with a specific picture. At runtime, PowerBuilder
+automatically generates a toolbar for the window containing the
+menu.</p>
+<A NAME="TI3463"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add toolbars to a window:</p>
+<ol><li class=fi><p>In the Menu painter, specify the display
+characteristics of the menu items you want to display in the toolbar.</p><p>For details, see <A HREF="pbugp120.htm#CCCEDHIC">"Toolbar item display characteristics"</A>.</p></li>
+<li class=ds><p>(Optional) In the Menu painter, specify drop-down
+toolbars for menu items.</p></li>
+<li class=ds><p>In the Window painter, associate the menu with
+the window and turn on the display of the toolbar.</p></li>
+<li class=ds><p>(Optional) In the Window painter, specify other
+properties, such as the size and location of a floating toolbar,
+on the Toolbar property page.</p></li></ol>
+<br><A NAME="TI3464"></A><h2>Selecting a toolbar style</h2>
+<A NAME="TI3465"></A><p>You select a toolbar style on the Appearance tab of the Properties
+view for the top-level menu object in the Menu painter.</p>
+<A NAME="TI3466"></A><p>A toolbar can have a contemporary or traditional style.</p>
+<A NAME="TI3467"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI3468"></A>Menu style</th>
+<th  rowspan="1"  ><A NAME="TI3469"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3470"></A>Contemporary</td>
+<td  rowspan="1"  ><A NAME="TI3471"></A>A 3D-style toolbar similar to Microsoft
+Office 2003 and Visual Studio 2005 toolbars</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3472"></A>Traditional</td>
+<td  rowspan="1"  ><A NAME="TI3473"></A>A more traditional and older toolbar
+style</td>
+</tr>
+</table>
+<A NAME="TI3474"></A><p>Toolbars that you import or migrate from earlier versions
+of PowerBuilder have the traditional style, and new toolbars use
+the traditional toolbar style by default.</p>
+<A NAME="TI3475"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the toolbar style:</p>
+<ol><li class=fi><p>Select the top-level menu object.</p></li>
+<li class=ds><p>At the bottom of the Appearance tab page, select
+the toolbar style you want, contemporarytoolbar! or traditionaltoolbar!</p><br><img src="images/gentool.gif"><br>
+</li></ol>
+<br><A NAME="TI3476"></A><p>If you select <FONT FACE="Courier New">traditionaltoolbar!</FONT> in
+the Toolbar Style drop-down list, the rest of the toolbar style
+properties are grayed. If you select <FONT FACE="Courier New">contemporarytoolbar!</FONT> style,
+you can customize the display properties for that style and have
+them apply to all menu items with associated toolbar buttons in
+the current menu.</p>
+<p><b>Selecting the toolbar button style property</b>   Unless you are using the traditional toolbar style for the
+current menu object, you can select the ToolbarAnimation check box
+on the Toolbar tab or the Properties view for each menu item. If
+you do not select an image for the ToolbarItemName property of a
+menu item, the selection you make for the ToolbarAnimation property
+is ignored. </p>
+<A NAME="TI3477"></A><h2>Setting toolbar properties</h2>
+<A NAME="TI3478"></A><p>You can customize the display of toolbars in applications
+that you create with PowerBuilder by setting toolbar properties.</p>
+<A NAME="TI3479"></A><h3>Toolbar style properties</h3>
+<A NAME="TI3480"></A><p>In addition to customizing the style of a menu, you can customize
+the style of a toolbar associated with the menu. For example, the
+following picture shows a contemporary style toolbar with an expanded
+toolbar cascade and a highlighted Exit button:</p>
+<br><img src="images/ctmptool.gif">
+<p><b>Toolbar style properties</b>   Toolbars have style properties that you can change at design
+time on the top-level menu object. You can modify these properties only
+if you select <FONT FACE="Courier New">contemporarytoolbar!</FONT> as
+the toolbar style for the top-level menu object.</p>
+<A NAME="TI3481"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI3482"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI3483"></A>Datatype</th>
+<th  rowspan="1"  ><A NAME="TI3484"></A>Use to assign</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3485"></A>ToolbarBackColor</td>
+<td  rowspan="1"  ><A NAME="TI3486"></A>Long</td>
+<td  rowspan="1"  ><A NAME="TI3487"></A>Background color of the menu toolbar.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3488"></A>ToolbarGradient</td>
+<td  rowspan="1"  ><A NAME="TI3489"></A>Boolean</td>
+<td  rowspan="1"  ><A NAME="TI3490"></A>Gradient of the menu toolbar background.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3491"></A>ToolbarHighlightColor</td>
+<td  rowspan="1"  ><A NAME="TI3492"></A>Long</td>
+<td  rowspan="1"  ><A NAME="TI3493"></A>Highlight color for the toolbar buttons
+when they are selected. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3494"></A>ToolbarStyle</td>
+<td  rowspan="1"  ><A NAME="TI3495"></A>Enumerated</td>
+<td  rowspan="1"  ><A NAME="TI3496"></A>Overall style of the menu toolbar. Values are:
+contemporarytoolbar! and traditionaltoolbar!</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3497"></A>ToolbarTextColor</td>
+<td  rowspan="1"  ><A NAME="TI3498"></A>Long</td>
+<td  rowspan="1"  ><A NAME="TI3499"></A>Color of the text in the menu toolbar.</td>
+</tr>
+</table>
+<p><b>Toolbar item style property</b>   You can select the ToolbarAnimation property for a menu item
+toolbar button. This property offsets the button image by two pixels
+to the upper left when a user positions the cursor over the button.
+You cannot assign this property at the menu object or toolbar level.
+You must assign it to individual toolbar items (buttons) at design
+time. This property has a Boolean datatype. You can select it on
+the Toolbar tab for each menu item below the top-level menu object.
+With a contemporary menu, you can set the ToolbarAnimation property
+at runtime at runtime using scripts. </p>
+<A NAME="TI3500"></A><p>The customizable menu and toolbar styles can be used for MDI
+and main windows. Pop-up menus can also use menu style properties.
+The styles do not affect existing PowerBuilder applications that
+use a traditional style. You can, however, update an existing PowerBuilder
+application to use the new style properties. </p>
+<A NAME="CCCEDHIC"></A><h3>Toolbar item display characteristics</h3>
+<A NAME="TI3501"></A><p>In the Menu painter, you specify the menu items you want to
+display in the toolbar, the text for the toolbar button and tip,
+the pictures to use to represent the menu items, and other characteristics
+of the toolbar. </p>
+<A NAME="TI3502"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the display characteristics of a toolbar
+item:</p>
+<ol><li class=fi><p>Open the menu in the Menu painter and select
+the menu item you want to display in the toolbar.</p></li>
+<li class=ds><p>Select the Toolbar property page and set properties
+of the toolbar item as shown in <A HREF="pbugp120.htm#CCCDGGJA">Table 14-5</A>.</p><A NAME="CCCDGGJA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 14-5: Toolbar properties in the Menu
+painter</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3503"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI3504"></A>What to specify</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3505"></A>ToolbarItemText</td>
+<td  rowspan="1"  ><A NAME="TI3506"></A>Specify two different text values for
+the toolbar button and PowerTip with a comma-delimited string, as
+follows:<p><PRE><i>Text in button, PowerTip</i></PRE></p>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3507"></A>ToolbarItemName</td>
+<td  rowspan="1"  ><A NAME="TI3508"></A>Choose a stock picture from the drop-down
+list or browse to select a bitmap, GIF, JPEG or icon file. If you
+choose a stock picture, PowerBuilder uses the up version when the item
+is not clicked and the down version when the item is clicked. (The
+up version appears raised and the down version appears indented.)
+If you are specifying a file, the picture should be 16 pixels wide
+and 15 pixels high. For the best result, use 16*16 icons
+on a toolbar.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3509"></A>ToolbarItemDownName<A NAME="TI3510"></A><p></p></td>
+<td  rowspan="1"  ><A NAME="TI3511"></A>Specify a different picture to display
+when the item is clicked (optional).</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3512"></A>ToolbarItemVisible</td>
+<td  rowspan="1"  ><A NAME="TI3513"></A>Clear if you want the toolbar button
+to be hidden. The default is visible.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3514"></A>ToolbarItemDown</td>
+<td  rowspan="1"  ><A NAME="TI3515"></A>Check if you want the down version of
+the button to display initially.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3516"></A>ToolbarAnimation</td>
+<td  rowspan="1"  ><A NAME="TI3517"></A>If you want the toolbar image to be animated
+when selected, select the check box.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3518"></A>ToolbarItemSpace</td>
+<td  rowspan="1"  ><A NAME="TI3519"></A>Specify any integer if you want to leave
+space before the picture in the toolbar. Experiment with values
+to get the spacing the way you want it. If you leave the value at
+0, there will be no spacing before the picture. (Spacing is used
+only when the toolbar is not displaying text.)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3520"></A>ToolbarItemOrder</td>
+<td  rowspan="1"  ><A NAME="TI3521"></A>Specify the order in which the item displays
+in the toolbar. If you leave the value 0, PowerBuilder places the
+item in the order in which it goes through the menu to build the toolbar.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3522"></A>ToolbarItemBarIndex</td>
+<td  rowspan="1"  ><A NAME="TI3523"></A>Specify a number other than 1 if you
+want multiple toolbars to display for this menu. The number you
+specify determines which toolbar the current menu item appears on.
+All items that have the same index number appear on the same toolbar.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3524"></A>ObjectType<A NAME="TI3525"></A><p></p></td>
+<td  rowspan="1"  ><A NAME="TI3526"></A>Specify Menu or MenuCascade.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3527"></A>Columns</td>
+<td  rowspan="1"  ><A NAME="TI3528"></A>(This property displays only if you choose
+MenuCascade in the ObjectType drop-down list.) Indicate the number
+of columns you want to display in the cascading toolbar.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3529"></A>Drop Down</td>
+<td  rowspan="1"  ><A NAME="TI3530"></A>(This property displays only if you choose
+MenuCascade in the ObjectType drop-down list.) If you want the button to
+be a drop-down toolbar button, select the check box.</td>
+</tr>
+</table>
+</li></ol>
+<br><A NAME="TI3531"></A><h4>Menu items can have drop-down toolbars</h4>
+<A NAME="TI3532"></A><p>A menu item can have a toolbar button associated with it that
+displays a drop-down toolbar. When the user clicks on the
+button, PowerBuilder displays a drop-down toolbar that shows all
+of the toolbar buttons for menu items defined at the next level.
+For example, if you define a drop-down toolbar for the File menu
+item, the drop-down toolbar will show the buttons defined for the
+items on the File menu (such as New, Open, Close, and Exit).</p>
+<A NAME="TI3533"></A><p>PowerBuilder displays a drop-down toolbar at runtime by default
+if the Object Type of the menu item is MenuCascade. You can specify
+programmatically whether submenu items display in a drop-down toolbar
+or as normal toolbar items by setting the DropDown property of the
+menu item. For example, if you want a descendent menu item to have
+a drop-down toolbar, but not its ancestor, clear the DropDown check
+box on the ancestor's Toolbar property page, and set the
+DropDown property of the descendent menu item to <b>TRUE</b> in
+a script.</p>
+<A NAME="TI3534"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify a drop-down toolbar for a menu item:</p>
+<ol><li class=fi><p>In the Menu painter, select the menu item
+for which you want to add a drop-down toolbar.</p></li>
+<li class=ds><p>On the Toolbar property page, change the Object
+Type to MenuCascade.</p></li>
+<li class=ds><p> (Optional) Specify the number of columns you
+want to display in the Columns box. </p><p>The default is a single column. If there are many items on
+the submenu, as there are on the toolbar item for inserting controls
+in the Window painter, you will probably want to specify three or
+four columns.</p></li></ol>
+<br><A NAME="TI3535"></A><h2>Setting toolbar properties in the Window painter</h2>
+<A NAME="TI3536"></A><p>In the Window painter, you associate the menu with the window
+on the window's General property page. The window displays
+the toolbar by default. If you do not want the toolbar to display,
+clear the ToolbarVisible
+check box on the window's Toolbar property page. You can
+also specify the toolbar's alignment and position on this
+property page.</p>
+<A NAME="TI3537"></A><h2>Setting toolbar properties in the Application painter</h2>
+<A NAME="TI3538"></A><p>You can specify global properties for all toolbars in your
+application on the Toolbar property page in the Application painter
+or by setting properties of the Application object in a script.
+Typically you set these in the application's Open event,
+but you can set them anywhere. </p>
+<A NAME="TI3539"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 14-6: Toolbar properties in the Application painter</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3540"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI3541"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3542"></A>ToolbarFrameTitle</td>
+<td  rowspan="1"  ><A NAME="TI3543"></A>The text that displays as the title for
+the FrameBar when it is floating.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3544"></A>ToolbarSheetTitle</td>
+<td  rowspan="1"  ><A NAME="TI3545"></A>The text that displays as the title for
+the SheetBar when it is floating.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3546"></A>ToolbarPopMenuText</td>
+<td  rowspan="1"  ><A NAME="TI3547"></A>(<b>String</b>) Text to
+display on the pop-up menu for toolbars (see below).</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3548"></A>ToolbarUserControl</td>
+<td  rowspan="1"  ><A NAME="TI3549"></A>(<b>Boolean</b>) If <b>TRUE</b> (default),
+users can use the toolbar pop-up menu to hide or show the toolbars,
+move toolbars, or show text. If <b>FALSE</b>, users
+cannot manipulate the toolbar.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3550"></A>ToolbarText</td>
+<td  rowspan="1"  ><A NAME="TI3551"></A>(<b>Boolean</b>) If <b>TRUE</b>,
+text displays in the buttons. If <b>FALSE</b> (the default),
+text does not display.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3552"></A>ToolbarTips</td>
+<td  rowspan="1"  ><A NAME="TI3553"></A>(<b>Boolean</b>) If <b>TRUE</b> (default),
+PowerTips display when text is not displayed in the buttons. If <b>FALSE</b>,
+PowerTips do not display.</td>
+</tr>
+</table>
+<A NAME="TI3554"></A><h4>Specifying the text in the toolbar's
+pop-up menu</h4>
+<A NAME="TI3555"></A><p>By default, PowerBuilder provides a pop-up menu for the toolbar,
+which users can use to manipulate the toolbar. It is similar to
+the pop-up menu you use to manipulate the PowerBar and PainterBar.</p>
+<A NAME="TI3556"></A><p>You can change the text that displays in this menu, but you
+cannot change the functionality of the menu items in the menu. Typically,
+you do this when you are building an application in a language other
+than English. </p>
+<A NAME="TI3557"></A><p>You change the text as follows:<A NAME="TI3558"></A>
+<ul>
+<li class=fi>The first
+two items in the pop-up menu display the titles set in ToolbarFrameTitle
+and ToolbarSheetTitle (defaults: FrameBar and SheetBar).</li>
+<li class=ds>The remaining text items are specified by the property ToolbarPopMenuText.
+To specify values for this property, use a comma-delimited
+list of values to replace the text "Left," "Top," "Right," "Bottom," "Floating," "Show
+Text," and "Show PowerTips":<p><PRE>ToolbarPopMenuText = "<i>left, top, right, bottom, floating, showText,<br>   showPowerTips</i>"</PRE></p>
+
+</li>
+</ul>
+</p>
+<A NAME="TI3559"></A><p>For example, to change the text for the toolbar pop-up menu
+to German and have hot keys underlined for each, you would specify
+the following:<p><PRE> ToolbarPopMenuText = "&amp;Links, &amp;Oben, &amp;Rechts, " +   &amp;<br>   "&amp;Unten, &amp;Frei positionierbar, &amp;Text anzeigen, " &amp;<br>   + "&amp;PowerTips anzeigen"</PRE></p>
+

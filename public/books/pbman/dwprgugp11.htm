@@ -1,0 +1,325 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Manipulating data in a DataWindow control</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp10.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp12.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF354815179"></A><h1>Manipulating data in a DataWindow control</h1>
+<A NAME="TI337"></A><p>To handle user requests to add, modify, and delete data in
+a DataWindow, you can write code to process that data, but first
+you need to understand how DataWindow controls manage data.</p>
+<A NAME="TI338"></A><h2>How a DataWindow control manages data</h2>
+<A NAME="TI339"></A><p>As users add or change data, the data is first handled as
+text in an edit control. If the data is accepted, it is then stored
+as an item in a buffer.</p>
+<A NAME="TI340"></A><h4>About the DataWindow buffers</h4>
+<A NAME="TI341"></A><p>A DataWindow uses three buffers to store data:</p>
+<A NAME="TI342"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-1: DataWindow buffers</caption>
+<tr><th  rowspan="1"  ><A NAME="TI343"></A>Buffer</th>
+<th  rowspan="1"  ><A NAME="TI344"></A>Contents</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI345"></A>Primary</td>
+<td  rowspan="1"  ><A NAME="TI346"></A>Data that has not been deleted or filtered
+out (that is, the rows that are viewable)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI347"></A>Filter</td>
+<td  rowspan="1"  ><A NAME="TI348"></A>Data that was filtered out</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI349"></A>Delete</td>
+<td  rowspan="1"  ><A NAME="TI350"></A>Data that was deleted by the user or
+through code</td>
+</tr>
+</table>
+<A NAME="TI351"></A><h4>About the edit control</h4>
+<A NAME="TI352"></A><p>As the user moves around the DataWindow control, the DataWindow
+places an edit control over the current cell (row and column):</p>
+<br><img src="images/udwo09.gif">
+<A NAME="TI353"></A><h4>About text</h4>
+<A NAME="TI354"></A><p>The contents of the edit control are called text. Text is
+data that has not yet been accepted by the DataWindow control. Data
+entered in the edit control is not in a DataWindow buffer yet; it
+is simply text in the edit control.</p>
+<A NAME="TI355"></A><h4>About items</h4>
+<A NAME="TI356"></A><p>When the user changes the contents of the edit control and
+presses enter or leaves the cell (by tabbing,
+using the mouse, or pressing up arrow or down arrow),
+the DataWindow processes the data and either accepts or rejects
+it, depending on whether it meets the requirements specified for
+the column. If the data is accepted, the text is moved to the current
+row and column in the DataWindow Primary buffer. The data in the
+Primary buffer for a particular column is referred to as an item.</p>
+<A NAME="TI357"></A><h4>Events for changing text and items</h4>
+<A NAME="TI358"></A><p>When data is changed in the edit control, several events occur.
+The names of the events are different in each environment, as shown
+in the table. This chapter refers to events using PowerBuilder names.</p>
+<A NAME="TI359"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-2: Event names in different environments</caption>
+<tr><th  rowspan="1"  ><A NAME="TI360"></A>Event</th>
+<th  rowspan="1"  ><A NAME="TI361"></A></th>
+<th  rowspan="1"  ><A NAME="TI362"></A>Description</th>
+</tr>
+<tr><th  rowspan="1"  ><A NAME="TI363"></A>For PowerBuilder, Web DataWindow client
+control</th>
+<th  rowspan="1"  ><A NAME="TI364"></A>For Web ActiveX</th>
+<th  rowspan="1"  ><A NAME="TI365"></A></th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI366"></A>EditChanged (not available on client control)</td>
+<td  rowspan="1"  ><A NAME="TI367"></A>onEditChange</td>
+<td  rowspan="1"  ><A NAME="TI368"></A>Occurs for each keystroke the user types
+in the edit control</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI369"></A>ItemChanged</td>
+<td  rowspan="1"  ><A NAME="TI370"></A>beforeItemChange</td>
+<td  rowspan="1"  ><A NAME="TI371"></A>Occurs when a cell has been modified
+and loses focus</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI372"></A>ItemError</td>
+<td  rowspan="1"  ><A NAME="TI373"></A>onItemError</td>
+<td  rowspan="1"  ><A NAME="TI374"></A>Occurs when new data fails the validation
+rules for the column</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI375"></A>ItemFocusChanged</td>
+<td  rowspan="1"  ><A NAME="TI376"></A>onItemFocusChange</td>
+<td  rowspan="1"  ><A NAME="TI377"></A>Occurs when the current item in the control
+changes</td>
+</tr>
+</table>
+<A NAME="TI378"></A><h4>How text is processed in the edit control</h4>
+<A NAME="TI379"></A><p>When the data in a column in a DataWindow has been changed
+and the column loses focus (for example, because the user tabs to
+the next column), the following sequence of events occurs:<A NAME="TI380"></A>
+<ol>
+</li>
+<li class=ds>The DataWindow control converts
+the text into the correct datatype for the column. For example,
+if the user is in a numeric column, the DataWindow control converts
+the string that was entered into a number. If the data cannot be
+converted, the ItemError event is triggered.</li>
+<li class=ds>If the data converts successfully to the correct
+type, the DataWindow control applies any validation rule used by
+the column. If the data fails validation, the ItemError event is
+triggered.</li>
+<li class=ds>If the data passes validation, then the ItemChanged
+event is triggered. If you set an action/return code of
+1 in the ItemChanged event, the DataWindow control rejects the data
+and does not allow the focus to change. In this case, the ItemError
+event is triggered.</li>
+<li class=ds>If the ItemChanged event accepts the data, the ItemFocusChanged
+event is triggered next and the data is stored as an item in a buffer.
+</li>
+</ol>
+</p>
+<A NAME="TI381"></A><caption><b>Figure 2-2: How text is processed in edit controls</b></captionls>
+<br><img src="images/udwo10d.gif">
+<A NAME="TI382"></A><h4>Action/return codes for events</h4>
+<A NAME="TI383"></A><p>You can affect the outcome of events by specifying numeric
+values in the event's program code. For example, step 3
+above describes how you can force data to be rejected with a code
+of 1 in the ItemChanged event. </p>
+<A NAME="TI384"></A><p>To specify action/return codes:<A NAME="TI385"></A>
+<ul>
+<li class=fi><b>PowerBuilder and Web DataWindow</b>   Use a RETURN statement</li>
+<li class=ds><b>Web ActiveX</b>   Call the SetActionCode or setActionCode method 
+</li>
+</ul>
+</p>
+<A NAME="TI386"></A><p>For information about codes for individual
+events, see the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI387"></A><h2>Accessing the text in the edit control</h2>
+<A NAME="TI388"></A><h4>Using methods</h4>
+<A NAME="TI389"></A><p>The following methods allow you to access the text in the
+edit control:<A NAME="TI390"></A>
+<ul>
+<li class=fi>GetText&#8212;Obtains the
+text in the edit control</li>
+<li class=ds>SetText&#8212;Sets the text in the edit control
+</li>
+</ul>
+</p>
+<A NAME="TI391"></A><h4>In event code</h4>
+<A NAME="TI392"></A><p>In addition to these methods, the following events provide
+access to the text in the edit control:<A NAME="TI393"></A>
+<ul>
+<li class=fi>EditChanged</li>
+<li class=ds>ItemChanged</li>
+<li class=ds>ItemError
+</li>
+</ul>
+</p>
+<A NAME="TI394"></A><p>Use the Data parameter, which is passed into the event, to
+access the text of the edit control. In your code for these events,
+you can test the text value and perform special processing depending
+on that value.</p>
+<A NAME="TI395"></A><p>For an example, see <A HREF="dwprgugp11.htm#X-REF377369201">"Coding the ItemChanged
+event"</A>.</p>
+<A NAME="TI396"></A><h2>Manipulating the text in the edit control</h2>
+<A NAME="TI397"></A><p>When you want to further manipulate the contents of the edit
+control within your DataWindow control, you can use any of these
+methods:</p>
+<A NAME="TI398"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><td  rowspan="1"  ><A NAME="TI399"></A>CanUndo <br>Clear <br>Copy <br>Cut <br>LineCount <br>Paste <br>Position <br>ReplaceText</td>
+<td  rowspan="1"  ><A NAME="TI400"></A>Scroll <br>SelectedLength <br>SelectedLine <br>SelectedStart <br>SelectedText <br>SelectText <br>TextLine <br>Undo</td>
+</tr>
+</table>
+<A NAME="TI401"></A><p>For more information about these methods,
+see the <i>DataWindow Reference</i>
+.</p>
+<A NAME="X-REF377369201"></A><h2>Coding the ItemChanged event</h2>
+<A NAME="TI402"></A><p>If data passes conversion and validation, the ItemChanged
+event is triggered. By default, the ItemChanged event accepts the
+data value and allows focus to change. You can write code for the
+ItemChanged event to do some additional processing. For example,
+you could perform some tests, set a code to reject the data, have
+the column regain focus, and trigger the ItemError event.</p>
+<A NAME="TI403"></A><h4>Example</h4>
+<A NAME="TI404"></A><p>The following sample code for the ItemChanged event for a
+DataWindow control called dw_Employee sets the return code
+in dw_Employee to reject data that is less than the employee's
+age, which is specified in a SingleLineEdit text box control in
+the window.</p>
+<A NAME="TI405"></A><p>This is the PowerBuilder version of the code:<p><PRE> int a, age</PRE><PRE> age = Integer(sle_age.text)</PRE><PRE> a = Integer(data)</PRE><PRE> </PRE><PRE> // Set the return code to 1 in the ItemChanged</PRE><PRE> // event to tell PowerBuilder to reject the data</PRE><PRE> // and not change the focus.</PRE><PRE> IF a &lt; age THEN RETURN 1</PRE></p>
+<A NAME="TI406"></A><h2>Coding the ItemError event</h2>
+<A NAME="TI407"></A><p>The ItemError event is triggered if there is a problem with
+the data. By default, it rejects the data value and displays a message
+box. You can write code for the ItemError event to do some other
+processing. For example, you can set a code to accept the data value,
+or reject the data value but allow focus to change.</p>
+<A NAME="TI408"></A><p>For more information about the events of the
+DataWindow control, see the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI409"></A><h2>Accessing the items in a DataWindow</h2>
+<A NAME="TI410"></A><p>You can access data values in a DataWindow by using methods
+or DataWindow data expressions. Both methods allow you to access
+data in any buffer and to get original or current values.</p>
+<A NAME="TI411"></A><p>The method you use depends on how much data you are accessing
+and whether you know the names of the DataWindow columns when the
+script is compiled.</p>
+<A NAME="TI412"></A><p>For guidelines on deciding which method to
+use, see the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI413"></A><h4>Using methods</h4>
+<A NAME="TI414"></A><p>There are several methods for manipulating data in a DataWindow
+control.</p>
+<A NAME="TI415"></A><p>These methods obtain the data in a specified row and column
+in a specified buffer (Web DataWindow methods have separate methods
+for overloaded versions):<A NAME="TI416"></A>
+<ul>
+<li class=fi><b>PowerBuilder</b>   GetItemDate, GetItemDateTime, GetItemDecimal, GetItemNumber,
+GetItemString, GetItemTime </li>
+<li class=ds><b>Web ActiveX</b>   GetItemDate, GetItemNumber, GetItemString</li>
+<li class=ds><b>Web DataWindow server component</b>   GetItemDate, GetItemDateByColNum, GetItemDateByColNumEx, GetItemDateEx, GetItemDateTime,
+GetItemDateTimeByColNum, GetItemDateTimeByColNumEx, GetItemDateTimeEx,
+GetItemNumber, GetItemNumberByColNum, GetItemNumberByColNumEx, GetItemNumberEx,
+GetItemStatus, GetItemStatusByColNum, GetItemString, GetItemStringByColNum,
+GetItemStringByColNumEx, GetItemStringEx, GetItemTime, GetItemTimeByColNum, GetItemTimeByColNumEx,
+GetItemTimeEx 
+</li>
+</ul>
+</p>
+<A NAME="TI417"></A><p>This method sets the value of a specified row and column:<A NAME="TI418"></A>
+<ul>
+<li class=fi><b>PowerBuilder
+and Web ActiveX</b>   SetItem</li>
+<li class=ds><b>Web DataWindow server component</b>   SetItemDate, SetItemDateByColNum, SetItemDateTime, SetItemDateTimeByColNum,
+SetItemNumber, SetItemNumberByColNum, SetItemStatus, SetItemStatusByColNum, SetItemString,
+SetItemStringByColNum, SetItemTime, SetItemTimeByColNum 
+</li>
+</ul>
+</p>
+<A NAME="TI419"></A><p>For example, the following statement, using PowerBuilder syntax,
+assigns the value from the empname column of the first row to the
+variable ls_Name in the Primary buffer:<p><PRE> ls_Name = dw_1.<i>GetItemString</i> (1, "empname")</PRE></p>
+<A NAME="TI420"></A><p>This PowerBuilder statement sets the value of the empname
+column in the first row to the string Waters:<p><PRE> dw_1.<i>SetItem</i>(1, "empname", "Waters")</PRE></p>
+<p><b>Uses</b>   You call the GetItem methods to obtain the data that has been
+accepted into a specific row and column. You can also use them to
+check the data in a specific buffer before you update the database.
+You must use the method appropriate for the column's datatype.</p>
+<A NAME="TI421"></A><p>For more information about the methods listed
+above, see the <i>DataWindow Reference</i>
+<i></i>
+.</p>
+<A NAME="TI422"></A><h4>Using expressions</h4>
+<A NAME="TI423"></A><p>DataWindow data expressions refer to single items, columns,
+blocks of data, selected data, or the whole DataWindow.</p>
+<A NAME="TI424"></A><p>The way you construct data expressions depends on the environment:<A NAME="TI425"></A>
+<ul>
+<li class=fi><b>PowerBuilder</b>   Use dot notation</li>
+<li class=ds><b>Web ActiveX</b>   Data expressions are not supported
+</li>
+</ul>
+</p>
+<p><b>Expressions in PowerBuilder</b>   The Object property of the DataWindow control lets you specify
+expressions that refer directly to the data of the DataWindow object
+in the control. This direct data manipulation allows you to access
+small and large amounts of data in a single statement, without calling methods:<p><PRE> dw_1.Object.jobtitle[3] = "Programmer"</PRE></p>
+<A NAME="TI426"></A><p>The next statement sets the value of the first column in the
+first row in the DataWindow to Smith:<p><PRE> dw_1.Object.Data[1,1] = "Smith"</PRE></p>
+<A NAME="TI427"></A><p>For complete instructions on how to construct
+DataWindow data expressions, see the <i>DataWindow Reference</i>
+.</p>
+<A NAME="X-REF299327835"></A><h2>Using other DataWindow methods</h2>
+<A NAME="TI428"></A><p>There are many more methods you can use to perform activities
+in DataWindow controls. Here are some of the more common ones:</p>
+<A NAME="TI429"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-3: Common methods in DataWindow controls</caption>
+<tr><th  rowspan="1"  ><A NAME="TI430"></A>Method</th>
+<th  rowspan="1"  ><A NAME="TI431"></A>Purpose</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI432"></A>AcceptText</td>
+<td  rowspan="1"  ><A NAME="TI433"></A>Applies the contents of the edit control
+to the current item in the DataWindow control</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI434"></A>DeleteRow</td>
+<td  rowspan="1"  ><A NAME="TI435"></A>Removes the specified row from the DataWindow control,
+placing it in the Delete buffer; does not delete the row from the
+database</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI436"></A>Filter</td>
+<td  rowspan="1"  ><A NAME="TI437"></A>Displays rows in the DataWindow control
+based on the current filter</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI438"></A>GetRow</td>
+<td  rowspan="1"  ><A NAME="TI439"></A>Returns the current row number</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI440"></A>InsertRow</td>
+<td  rowspan="1"  ><A NAME="TI441"></A>Inserts a new row</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI442"></A>Reset</td>
+<td  rowspan="1"  ><A NAME="TI443"></A>Clears all rows in the DataWindow control</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI444"></A>Retrieve</td>
+<td  rowspan="1"  ><A NAME="TI445"></A>Retrieves rows from the database</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI446"></A>RowsCopy, RowsMove</td>
+<td  rowspan="1"  ><A NAME="TI447"></A>Copies or moves rows from one DataWindow control
+to another</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI448"></A>ScrollToRow</td>
+<td  rowspan="1"  ><A NAME="TI449"></A>Scrolls to the specified row</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI450"></A>SelectRow</td>
+<td  rowspan="1"  ><A NAME="TI451"></A>Highlights a specified row</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI452"></A>ShareData</td>
+<td  rowspan="1"  ><A NAME="TI453"></A>Shares data among different DataWindow
+controls.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI454"></A>Update</td>
+<td  rowspan="1"  ><A NAME="TI455"></A>Sends to the database all inserts, changes,
+and deletions that have been made in the DataWindow control</td>
+</tr>
+</table>
+<A NAME="TI456"></A><p>Some, but not all, of these methods are available
+for the Web DataWindow client control, server component, or both.
+Each development environment provides a reference list of methods.
+For a complete list of DataWindow methods, see the PowerBuilder
+Browser for PowerScript targets or the Components tab of the System
+Tree for Web targets.For complete information on DataWindow methods,
+see the <i>DataWindow Reference</i>
+<i></i>
+.</p>
+

@@ -1,0 +1,461 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Database connections</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp273.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp275.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BAJIGDCH"></A><h1>Database connections</h1>
+<A NAME="TI8117"></A><p>If you are deploying an executable or component that accesses
+a database, your users need access to the DBMS and to the database
+your application uses. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Where to install database connectivity files</span> <A NAME="TI8118"></A>You <i>do not need to deploy database connectivity
+files</i> with a client application that relies on a middle-tier
+component on another computer to perform database transactions.
+Database connectivity files must be deployed on the computer that
+interacts with the database server.</p>
+<A NAME="TI8119"></A><p>You need to:<A NAME="TI8120"></A>
+<ul>
+<li class=fi>If necessary,
+install the DBMS runtime (client) files in the application directory
+or in a directory on the system path<br>
+If your application uses a standalone <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+database, you can install the <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+Runtime Edition files on the user's computer. For more
+information, see <A HREF="apptechp274.htm#BGBDIGCC">"<ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+files"</A>. Otherwise follow the instructions
+and licensing rules specified by the vendor.<br></li>
+<li class=ds>Make sure each user has access to the database the
+application uses<br>
+If your application uses a local database, install the database
+and any associated files, such as a log file, on the user's
+computer.<br><br>
+If your application uses a server database, make sure the
+user's computer is set up to access the database. This
+may be the task of a database administrator.<br></li>
+<li class=ds>Install any database interfaces your application
+uses on the user's computer</li>
+<li class=ds>If your application uses the ODBC interface, configure
+the ODBC database drivers and data sources, as described in <A HREF="apptechp274.htm#BGBDCJAI">"Configuring ODBC data
+sources and drivers"</A>
+</li>
+</ul>
+</p>
+<A NAME="TI8121"></A><p>For more information about database drivers and interfaces,
+see: <A NAME="TI8122"></A>
+<ul>
+<li class=fi><A HREF="apptechp274.htm#BGBEAAHB">"Native database drivers"</A></li>
+<li class=ds><A HREF="apptechp274.htm#BGBCBACD">"ODBC database drivers and
+supporting files"</A></li>
+<li class=ds><A HREF="apptechp274.htm#BGBCFFEH">"OLE DB database providers"</A></li>
+<li class=ds><A HREF="apptechp274.htm#CHDGJGJI">"ADO.NET database interface"</A></li>
+<li class=ds><A HREF="apptechp274.htm#BGBCJHAF">"JDBC database interface"</A>
+</li>
+</ul>
+</p>
+<A NAME="BGBEAAHB"></A><h2>Native database drivers</h2>
+<A NAME="TI8123"></A><p><A HREF="apptechp274.htm#BAJDEJJI">Table 41-5</A> lists
+the native database drivers supplied with PowerBuilder. If an application
+or component uses the database specified, the file is required on
+the computer. The first two characters of the native database file
+name are PB, the next three characters identify the database, and
+the last two identify the version of PowerBuilder.</p>
+<A NAME="BAJDEJJI"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-5: PowerBuilder native database
+drivers</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8124"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8125"></A>Required for</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8126"></A><i>PBIN9105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8127"></A>INFORMIX I-Net 9</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8128"></A><i>PBO84105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8129"></A>Oracle 8.0.x and Oracle8<i>i</i> 8.1.x</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8130"></A><i>PBO90105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8131"></A>Oracle9<i>i</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8132"></A><i>PBO10105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8133"></A>Oracle 10<i>g</i></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8134"></A><i>PBDIR105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8135"></A>Sybase DirectConnect</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8136"></A><i>PBASE105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8137"></A>Sybase Adaptive Server Enterprise CT-LIB
+for Adaptive Server 15 only</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8138"></A><i>PBSYC105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8139"></A>Sybase Adaptive Server Enterprise CT-LIB </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8140"></A><i>PBSYJ105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8141"></A>Sybase Adaptive Server Enterprise CT-LIB
+for <ABBR title = "e a server" >EAServer</ABBR> deployment only</td>
+</tr>
+</table>
+<p><b>Installed path</b>   <i>\Program Files\Sybase\Shared\PowerBuilder</i></p>
+<p><b>Deployment path</b>   Same directory as the application, in a directory on the system
+path, or in the <A HREF="apptechp270.htm#BGBCIHAF">App Path registry key</A>. </p>
+<p><b>Registry entries</b>   See <A HREF="apptechp270.htm#BGBCIHAF">"App Path registry key"</A>.</p>
+<p><b>Notes</b>   When you deploy a PowerBuilder custom class user object to <ABBR title = "e a server" >EAServer</ABBR>, you need to use the SYJ
+database interface rather than SYC to connect to an Adaptive Server
+Enterprise database. You cannot use SYJ in the PowerBuilder development
+environment, but you can use the SYJ Database Profile Setup dialog
+box to set the appropriate connection parameters. You can then copy
+the syntax from the Preview tab into the script for your Transaction object.</p>
+<A NAME="BGBCBACD"></A><h2>ODBC database drivers and supporting files</h2>
+<A NAME="TI8142"></A><p>This section lists files that are required for all ODBC database
+connections from PowerBuilder or InfoMaker applications, as well
+as files required for a specific database interface or DBMS.</p>
+<A NAME="TI8143"></A><h4>PowerBuilder ODBC interface files</h4>
+<A NAME="TI8144"></A><p>The following PowerBuilder ODBC interface files are required
+if your application uses ODBC:</p>
+<A NAME="TI8145"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-6: PowerBuilder ODBC interface files</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8146"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8147"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8148"></A><i>PBODB105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8149"></A>PowerBuilder ODBC interface</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8150"></A><i>PBODB105.INI</i></td>
+<td  rowspan="1"  ><A NAME="TI8151"></A>PowerBuilder ODBC initialization file</td>
+</tr>
+</table>
+<p><b>Installed path</b>   <i>\Program Files\Sybase\Shared\PowerBuilder</i></p>
+<p><b>Deployment path</b>   Same directory as the application, in a directory on the system
+path, or in the <A HREF="apptechp270.htm#BGBCIHAF">App Path registry key</A>. </p>
+<p><b>Registry entries</b>   See <A HREF="apptechp270.htm#BGBCIHAF">"App Path registry key"</A>.</p>
+<p><b>Notes</b>   The INI and DLL files must be in the same directory. If you
+have modified the <i>PBODB105</i> initialization file,
+make sure you deploy the modified version.</p>
+<A NAME="BGBCHJFB"></A><h4>Microsoft ODBC files</h4>
+<A NAME="TI8152"></A><p><A HREF="apptechp274.htm#BAJFDBIF">Table 41-7</A> lists
+the Microsoft ODBC files that are required if your application uses
+ODBC.</p>
+<A NAME="BAJFDBIF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-7: Microsoft ODBC files</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8153"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8154"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8155"></A><i>DS16GT.DLL <br>DS32GT.DLL<br>ODBC32.DLL <br>ODBC32GT.DLL<br>ODBCAD32.EXE<br>ODBCCP32.CPL<br>ODBCCP32.DLL <br>ODBCCR32.DLL<br>ODBCINST.CNT <br>ODBCINST.HLP <br>ODBCINT.DLL<br>ODBCTRAC.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8156"></A>Microsoft ODBC driver manager, DLLs,
+and Help files</td>
+</tr>
+</table>
+<p><b>Installed path</b>   Windows system directory. </p>
+<p><b>Deployment path</b>   Windows system directory.</p>
+<p><b>Registry entries</b>   None.</p>
+<p><b>Notes</b>   The Microsoft ODBC Driver Manager (<i>ODBC32.DLL</i>)
+and supporting files are usually already installed in the user's
+Windows system directory. You can use the redistributable <i>MDAC_TYP.EXE</i> setup
+file in the <i>Support</i> directory on the CD to
+update users' systems if necessary.</p>
+<A NAME="TI8157"></A><h4>PB DataDirect ODBC drivers and supporting files</h4>
+<A NAME="TI8158"></A><p>The PB DataDirect ODBC files in <A HREF="apptechp274.htm#BAJHDIGD">Table 41-8</A> are required if you use the database
+interface specified. For each database interface, the table shows required
+registry entries. In the string values, replace %SHARED% with
+the path to the directory where the drivers are installed.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Optional Help files</span> <A NAME="TI8159"></A>Help files need only be deployed if you expect users to perform
+database administration tasks. The help files are in HTML format
+and are installed in the <i>Help</i> subdirectory
+of the <i>DataDirect</i> directory. The names of the
+Help files for each driver begin with the letter R and include the
+name of the database interface. For example, the files for Adaptive
+Server are named <i>Rase.html</i>, <i>Rase2.html</i>,
+and so forth.</p>
+<A NAME="BAJHDIGD"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-8: PowerBuilder DataDirect ODBC
+files</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8160"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8161"></A>Driver and registry entry:</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8162"></A><i>IVPB.LIC<br>PBICU22.dll<br>PBTRN22.dll </i></td>
+<td  rowspan="1"  ><A NAME="TI8163"></A>All PB DataDirect OEM 5.20 drivers. Registry
+entry:<p><PRE> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\ODBC Translators]<br>"OEM to ANSI"="Installed"<br> <br>[HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\OEM to ANSI]<br>"Setup"="%SHARED%\\DataDirect\\PBicu22.dll"</PRE><PRE> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\OEM to ANSI]<br>"Translator"="%SHARED%\\DataDirect\\PBtrn22.dll"<br>"Setup"="%SHARED%\\DataDirect\\PBtrn22.dll"</PRE></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8164"></A><i>PBBTR22.DLL <br>PBBTR22R.DLL <br>PBBTR22S.DLL </i></td>
+<td  rowspan="1"  ><A NAME="TI8165"></A>PB DataDirect OEM 5.20 Btrieve. Registry
+entry:<p><PRE> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers] <br>"PB DataDirect OEM 5.20 Btrieve (*.dta)"="Installed" <br> <br>[HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\PB DataDirect OEM 5.20 Btrieve (*.dta)] <br>"UsageCount"="1" <br>"Driver"="%SHARED%\\DataDirect\\PBBTR22.DLL" <br>"Setup"="%SHARED%\\DataDirect\\PBBTR22S.DLL" <br>"APILevel"="1" <br>"ConnectFunctions"="YYY" <br>"DriverODBCVer"="3.51" <br>"FileUsage"="1" <br>"FileExtns"="*.dta" <br>"SQLLevel"="0" <br>"CPTimeout"="60"</PRE></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8166"></A><i>PBDB222.DLL <br>PBDB222R.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8167"></A>PB DataDirect OEM 5.20 DB2 Wire Protocol.
+Registry entry: <p><PRE> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers] <br>"PB DataDirect OEM 5.20 DB2 Wire Protocol"="Installed" <br> <br> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\PB DataDirect OEM 5.20 DB2 Wire Protocol] <br>"UsageCount"="1" <br>"Driver"="%SHARED%\\DataDirect\\PBDB222.DLL" <br>"Setup"="%SHARED%\\DataDirect\\PBDB222.DLL" <br>"APILevel"="1" <br>"ConnectFunctions"="YYY" <br>"DriverODBCVer"="03.51" <br>"FileUsage"="0" <br>"SQLLevel"="1" <br>"CPTimeout"="60"</PRE></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8168"></A><i>PBDBF22.DLL <br>PBDBF22R.DLL </i></td>
+<td  rowspan="1"  ><A NAME="TI8169"></A>PB DataDirect OEM 5.20 dBASE. Registry
+entry:<p><PRE> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers] <br>"PB DataDirect OEM 5.20 dBASEFile (*.dbf)"="Installed" <br> <br> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\PB DataDirect OEM 5.20 dBASEFile (*.dbf)] <br>"UsageCount"="1" <br>"Driver"="%SHARED%\\DataDirect\\PBDBF22.DLL" <br>"Setup"="%SHARED%\\DataDirect\\PBDBF22.DLL" <br>"APILevel"="1" <br>"ConnectFunctions"="YYY" <br>"DriverODBCVer"="3.51" <br>"FileUsage"="1" <br>"FileExtns"="*.dbf" <br>"SQLLevel"="0" <br>"CPTimeout"="60"</PRE></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8170"></A><i>PBIFCL22.DLL <br>PBIFCL22R.DLL                                 </i></td>
+<td  rowspan="1"  ><A NAME="TI8171"></A>PB DataDirect OEM 5.20 Informix Wire
+Protocol. Registry entry:<p><PRE> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers] <br>"PB DataDirect OEM 5.20 INFORMIX Wire Protocol"="Installed" <br> <br> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\PB DataDirect OEM 5.20 INFORMIX Wire Protocol] <br>"UsageCount"="1" <br>"Driver"="%SHARED%\\DataDirect\\PBIFCL22.DLL" <br>"Setup"="%SHARED%\\DataDirect\\PBIFCL22.DLL" <br>"APILevel"="1" <br>"ConnectFunctions"="YYY" <br>"DriverODBCVer"="3.51" <br>"FileUsage"="0" <br>"SQLLevel"="1" <br>"CPTimeout"="60"</PRE></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8172"></A><i>PBORA22.DLL <br>PBORA22R.DLL </i></td>
+<td  rowspan="1"  ><A NAME="TI8173"></A>PB DataDirect OEM 5.20 Oracle Wire Protocol.
+Registry entry:<p><PRE> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers] <br>"PB DataDirect OEM 5.20 Oracle Wire Protocol"="Installed" <br> <br> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\PB DataDirect OEM 5.20 Oracle Wire Protocol] <br>"UsageCount"="1" <br>"Driver"="%SHARED%\\DataDirect\\PBORA22.DLL" <br>"Setup"="%SHARED%\\DataDirect\\PBORA22.DLL" <br>"APILevel"="1" <br>"ConnectFunctions"="YYY" <br>"DriverODBCVer"="3.51" <br>"FileUsage"="0" <br>"SQLLevel"="1" <br>"CPTimeout"="60"</PRE></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8174"></A><i>PBIDP22.DLL <br>PBIDP22R.DLL <br>PBIDP22S.DLL </i></td>
+<td  rowspan="1"  ><A NAME="TI8175"></A>PB DataDirect OEM 5.20 Paradox. Registry
+entry:<p><PRE> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers] <br>"PB DataDirect OEM 5.20 ParadoxFile (*.db)"="Installed" <br> <br>[HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\PB DataDirect OEM 5.20 ParadoxFile (*.db)] <br>"UsageCount"="1" <br>"Driver"="%SHARED%\\DataDirect\\PBIDP22.DLL" <br>"Setup"="%SHARED%\\DataDirect\\PBIDP22S.DLL" <br>"APILevel"="1" <br>"ConnectFunctions"="YYY" <br>"DriverODBCVer"="3.51" <br>"FileUsage"="1" <br>"FileExtns"="*.db" <br>"SQLLevel"="0" <br>"CPTimeout"="60"</PRE></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8176"></A><i>PBMSSS22.DLL <br>PBMSSS22R.DLL </i></td>
+<td  rowspan="1"  ><A NAME="TI8177"></A>PB DataDirect OEM 5.20 SQL Server Wire
+Protocol. Registry entry:<p><PRE> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers] <br>"PB DataDirect OEM 5.20 SQL Server Wire Protocol"="Installed" <br> <br>[HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\PB DataDirect OEM 5.20 SQL Server Wire Protocol] <br>"UsageCount"="1" <br>"Driver"="%SHARED%\\DataDirect\\PBMSSS22.DLL" <br>"Setup"="%SHARED%\\DataDirect\\PBMSSS22.DLL" <br>"APILevel"="1" <br>"ConnectFunctions"="YYY" <br>"DriverODBCVer"="3.51" <br>"FileUsage"="0" <br>"SQLLevel"="1" <br>"CPTimeout"="60"</PRE></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8178"></A><i>PBASE22.DLL <br>PBASE22R.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8179"></A>PB DataDirect OEM 5.20 Sybase Adaptive
+Server Enterprise Wire Protocol. Registry entry:<p><PRE> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers] <br>"PB DataDirect OEM 5.20 Sybase ASE Wire Protocol" = "Installed" <br> <br> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\PB DataDirect OEM 5.20 Sybase ASE Wire Protocol] <br>"UsageCount"="1" <br>"Driver"="%SHARED%\\DataDirect\\PBASE22.DLL" <br>"Setup"="%SHARED%\\DataDirect\\PBASE22.DLL" <br>"APILevel"="1" <br>"ConnectFunctions"="YYY" <br>"DriverODBCVer"="3.51" <br>"FileUsage"="0" <br>"SQLLevel"="0" <br>"UsageCount"="1" <br>"CPTimeout"="60"</PRE></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8180"></A><i>PBTXT22.DLL <br>PBTXT22R.DLL </i></td>
+<td  rowspan="1"  ><A NAME="TI8181"></A>PB DataDirect OEM 5.20 Text File. Registry
+entry:<p><PRE> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers] <br>"PB DataDirect OEM 5.20 TextFile (*.*)"="Installed" <br> <br> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\PB DataDirect OEM 5.20 TextFile (*.*)] <br>"UsageCount"="1" <br>"Driver"="%SHARED%\\DataDirect\\PBTXT22.DLL" <br>"Setup"="%SHARED%\\DataDirect\\PBTXT22.DLL" <br>"APILevel"="1" <br>"ConnectFunctions"="YYY" <br>"DriverODBCVer"="3.51" <br>"FileUsage"="1" <br>"FileExtns"="*.*" <br>"SQLLevel"="0" <br>"CPTimeout"="60"</PRE></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8182"></A><i>PBXML22.DLL <br>PBXML22R.DLL <br>PBXML22S.DLL <br>PBIADX09.DLL <br>PBIADX09R.DLL <br>PBXMLX09.DLL <br>PBXMLX09R.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8183"></A>PB DataDirect OEM 5.20 XML. Registry
+entry:<p><PRE> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers] <br>"PB DataDirect OEM 5.20 XML (*.*)"="Installed" <br> <br> [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\PB DataDirect OEM 5.20 XML (*.*)] <br>"UsageCount"="1" <br>"Driver"="%SHARED%\\DataDirect\\PBXML22.DLL" <br>"Setup"="%SHARED%\\DataDirect\\PBXML22S.DLL" <br>"APILevel"="1" <br>"ConnectFunctions"="YYY" <br>"DriverODBCVer"="3.51" <br>"FileUsage"="1" <br>"SQLLevel"="0" <br>"CPTimeout"="60"</PRE></td>
+</tr>
+</table>
+<p><b>Installed path</b>   <i>\Program Files\Sybase\Shared\DataDirect52</i></p>
+<p><b>Deployment path</b>   Same directory as the application, in a directory on the system
+path, or in the <A HREF="apptechp270.htm#BGBCIHAF">App Path registry key</A>. </p>
+<p><b>Registry entries</b>   See table, and also <A HREF="apptechp270.htm#BGBCIHAF">"App Path registry key"</A> and <A HREF="apptechp274.htm#BGBDCJAI">"Configuring ODBC data
+sources and drivers"</A> on page <A HREF="apptechp274.htm#BGBDCJAI"></A>.</p>
+<A NAME="BGBDIGCC"></A><h4><ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+files</h4>
+<A NAME="TI8184"></A><p>If your PowerBuilder application uses a <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+database, you need to deploy the <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+DBMS as well as <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere's
+ODBC database drivers. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Restrictions</span> <A NAME="TI8185"></A>PowerBuilder includes <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+for use during the development process. However, this product cannot
+be deployed royalty-free to your users.</p>
+<A NAME="TI8186"></A>If your application requires the data definition language
+(DDL), a transaction log, stored procedures, or triggers, see your
+Sybase sales representative.</p>
+<A NAME="TI8187"></A><p>For more information about deploying <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+databases and applications, see the <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+documentation.</p>
+<A NAME="TI8188"></A><p>If your application uses a standalone database, you can deploy
+the <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere Desktop Runtime
+System to users' computers without incurring additional
+license fees. The runtime system allows the user to retrieve and modify
+data in the database, but does not allow modifications to the database schema.
+It does not support transaction logs, stored procedures, or triggers.</p>
+<A NAME="TI8189"></A><p><A HREF="apptechp274.htm#BAJGIECF">Table 41-9</A> lists
+some of the files that are included in the <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere Desktop
+Runtime System installation. For more information see the <i>RuntimeEdition.html</i>
+ file
+in the installed directory.</p>
+<A NAME="BAJGIECF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-9: <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+files</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8190"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8191"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8192"></A><i>dbodbc10.dll</i></td>
+<td  rowspan="1"  ><A NAME="TI8193"></A><ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+ODBC driver</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8194"></A><i>dbbackup.exe</i></td>
+<td  rowspan="1"  ><A NAME="TI8195"></A><ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+backup utility</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8196"></A><i>dbcon10.dll</i></td>
+<td  rowspan="1"  ><A NAME="TI8197"></A>Connection dialog box, required if you
+do not provide your own dialog box and your end users are to create their
+own data sources, if they need to enter user IDs and passwords when
+connecting to the database, or if they need to display the Connection
+dialog box for any other purpose</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8198"></A><i>dbisqlc.exe</i></td>
+<td  rowspan="1"  ><A NAME="TI8199"></A>Interactive <ACRONYM title = "sequel" >SQL</ACRONYM> utility</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8200"></A><i>dblgen10.dll</i></td>
+<td  rowspan="1"  ><A NAME="TI8201"></A>Language-specific string library (<i>EN</i> indicates
+the English version)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8202"></A><i>dblib10.dll</i></td>
+<td  rowspan="1"  ><A NAME="TI8203"></A>Interface library</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8204"></A><i>dbtool10.dll</i></td>
+<td  rowspan="1"  ><A NAME="TI8205"></A><ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+database tools</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8206"></A><i>dbunlspt.exe</i></td>
+<td  rowspan="1"  ><A NAME="TI8207"></A><ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+unload utility</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8208"></A><i>dbvalid.exe</i></td>
+<td  rowspan="1"  ><A NAME="TI8209"></A><ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+validation utility</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8210"></A><i>rteng10.exe</i></td>
+<td  rowspan="1"  ><A NAME="TI8211"></A>Restricted runtime engine</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8212"></A><i>dbctrs10.dll</i></td>
+<td  rowspan="1"  ><A NAME="TI8213"></A>Performance utility</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8214"></A><i>dbserv10.dll</i></td>
+<td  rowspan="1"  ><A NAME="TI8215"></A>Server utility</td>
+</tr>
+</table>
+<p><b>Installed path</b>   <i>\Program Files\Sybase\SQL
+Anywhere 10\win32</i></p>
+<p><b>Deployment path</b>   Same directory as the application, in a directory on the system
+path, or in the <A HREF="apptechp270.htm#BGBCIHAF">App Path registry key</A>. </p>
+<p><b>Registry entries</b>   See <A HREF="apptechp270.htm#BGBCIHAF">"App Path registry key"</A> and <A HREF="apptechp274.htm#BGBDCJAI">"Configuring ODBC data
+sources and drivers"</A>.</p>
+<p><b>Notes</b>   Supporting files should be installed in the same directory
+as <i>dbodbc10.dll</i>. If you are not using the English
+string library, make sure you deploy the appropriate version of
+the language-specific string library.</p>
+<A NAME="BGBDCJAI"></A><h4>Configuring ODBC data
+sources and drivers</h4>
+<p><b>ODBC.INI</b>   To allow the user to connect to a particular data source,
+your installation program must provide a definition for that data
+source in the ODBC.INI key in the registry on the computer that
+accesses the data source, in <i>HKEY_CURRENT_USER</i> for
+a user DSN or in <i>HKEY_LOCAL_MACHINE</i> for a
+system DSN. The data source definition specifies the name and location
+of the database driver as well as the command required to start
+the database engine. The data source in the ODBC Data Sources key
+must also be listed in ODBC.INI.</p>
+<A NAME="TI8216"></A><p>The following shows typical registry entries for a data source
+called MyApp DB that uses <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere.
+Registry keys are enclosed in square brackets and are followed by
+string values for that key in the format <FONT FACE="Courier New">"<i>Name</i>"="<i>Value</i>"</FONT>:<p><PRE> [HKEY_CURRENT_USER\SOFTWARE\ODBC\ODBC.INI\MyApp DB]<br>"Driver"="C:\Program Files\Sybase\SQL Anywhere 10\<br>   win32\dbodbc10.dll"<br>"Start"="c:\program files\sybase\SQL Anywhere 10\win32\<br>   rteng10.exe -c9m"<br>"UID"="dba"<br>"PWD"="sql"<br>"Description"="Database for my application"<br>"DatabaseFile"="C:\Program Files\myapps\myapp.db"<br>"AutoStop"="Yes"<br> <br><br>[HKEY_CURRENT_USER\SOFTWARE\ODBC\ODBC.INI\<br>   ODBC Data Sources]<br>"MyApp DB"="SQL Anywhere 10.0"</PRE></p>
+<p><b>ODBCINST.INI</b>   Your installation program needs to make two types of entry
+in the <i>ODBCINST.INI </i>key in <i>HKEY_LOCAL_MACHINE\SOFTWARE\ODBC</i> for
+each driver that your deployed application uses:<A NAME="TI8217"></A>
+<ul>
+<li class=fi>Add
+a string value with the name of the driver and the data value "Installed"
+to the <i>ODBC DRIVERS</i> key in <i>ODBCINST.INI</i> </li>
+<li class=ds>Add a new key for each driver to the<i> ODBCINST.INI</i> key
+with string values for Driver and Setup<br>
+Some drivers require additional string values in <i>ODBCINST.INI</i>.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI8218"></A><p>If the ODBC database driver files are not located in a directory
+on the system path, you also need to add their location to the App
+Paths key for the executable file. </p>
+<A NAME="TI8219"></A><p>If you are using ODBC drivers obtained from a vendor, you
+can use the driver's setup program to install the driver
+and create registry entries.</p>
+<A NAME="TI8220"></A><p>The following shows typical registry entries for <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere. A registry key is enclosed
+in square brackets and is followed by string values for the key
+in the format <FONT FACE="Courier New">"<i>Name</i>"="<i>Value</i>"</FONT>:<p><PRE> [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\<br>   CurrentVersion\App Paths\myapp.exe]<br>"Default"="C:\Program Files\myapps\MYAPP.EXE"<br>"Path"="Program Files\sybase\shared\PowerBuilder;<br>   c:\program files\sybase\SQL Anywhere 10\win32\;<br>   c:\program files\sybase\shared\DataDirect;"<br> <br>[HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\<br>   ODBC Drivers]<br>"SQL Anywhere 10.0"="Installed"<br>"PB DataDirect OEM 3.60 32-BIT Sybase"="Installed"<br> <br>[HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\<br>   SQL Anywhere 10.0]<br>"Driver"="c:\program files\sybase\SQL Anywhere 10\<br>   win32\dbodbc10.dll"<br>"Setup"="c:\program files\sybase\SQL Anywhere 10\<br>   win32\dbodbc10.dll"</PRE></p>
+<A NAME="TI8221"></A><p>For more information about the contents of
+the registry entries for ODBC drivers and data sources, see <i>Connecting
+to Your Database</i>
+.</p>
+<A NAME="BGBCFFEH"></A><h2>OLE DB database providers</h2>
+<A NAME="TI8222"></A><p>If your application uses OLE DB to access data, you must install
+Microsoft's Data Access Components software on each user's
+computer if it is not installed already. </p>
+<A NAME="TI8223"></A><p>You can use the <i>MDAC_TYP.EXE</i> setup
+file in the <i>Support</i> directory on the CD to
+update users' computers. The Microsoft OLE DB providers, <ACRONYM title = "sequel" >SQL</ACRONYM>OLEDB and MSDA<ACRONYM title = "sequel" >SQL</ACRONYM>, are installed when you run <i>MDAC_TYP.EXE</i>. </p>
+<A NAME="TI8224"></A><p>The files listed in <A HREF="apptechp274.htm#BAJEBDGH">Table 41-10</A> are required if you use the PB DataDirect
+OLE DB data provider specified. If your application uses an OLE
+DB data provider from another vendor, you must still deploy <i>PBOLE105.DLL</i> as
+well as the files specified by the vendor. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Optional Help files</span> <A NAME="TI8225"></A>Help (.<i>HLP</i> and .<i>CNT</i>)
+files need only be deployed if you expect users to perform database
+administration tasks.</p>
+<A NAME="BAJEBDGH"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-10: PowerBuilder DataDirect OLE DB
+files</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8226"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8227"></A>Required for</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8228"></A><i>PBOLE105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8229"></A>PowerBuilder OLE DB interface required
+for all OLE DB connections</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8230"></A><i>401COMUPD.EXE    <br>IVODBC.LIC    <br>PBADMIN.CNT    <br>PBADMIN.EXE    <br>PBADMIN.HLP    <br>PBADMINR.DLL <br>PBIAC09.CNT <br>PBIAC09.DLL <br>PBIAC09.HLP <br>PBIAC09R.DLL <br>PBIAD09.DLL <br>PBIAC09R.DLL <br>PBIAG09.DLL <br>PBIAG09R.DLL </i></td>
+<td  rowspan="1"  ><A NAME="TI8231"></A>License and help files and administration
+utilities required for all PB DataDirect OEM 2.70 OLE DB data providers</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8232"></A><i>PBINF09.CNT     <br>PBINF09.DLL    <br>PBINF09.HLP     <br>PBINF09R.DLL</i>     </td>
+<td  rowspan="1"  ><A NAME="TI8233"></A>PB DataDirect OEM 2.70 Informix9.x </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8234"></A><i>PBOR809.CNT     <br>PBOR809.DLL     <br>PBOR809.HLP     <br>PBOR809R.DLL</i>     </td>
+<td  rowspan="1"  ><A NAME="TI8235"></A>PB DataDirect OEM 2.70 Oracle 8 </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8236"></A><i>PBSYB09.CNT    <br>PBSYB09.DLL    <br>PBSYB09.HLP    <br>PBSYB09R.DLL</i>        </td>
+<td  rowspan="1"  ><A NAME="TI8237"></A>PB DataDirect OEM 2.70 Sybase Adaptive
+Server Enterprise</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8238"></A><i>PBXML09.CNT    <br>PBXML09.DLL    <br>PBXML09.HLP    <br>PBXML09R.DLL</i>        </td>
+<td  rowspan="1"  ><A NAME="TI8239"></A>PB DataDirect OEM 2.70 XML </td>
+</tr>
+</table>
+<p><b>Installed path</b>   <i>Program Files\Sybase\Shared\DataDirectOLEDB</i></p>
+<p><b>Deployment path</b>   Same directory as the application, in a directory on the system
+path, or in the <A HREF="apptechp270.htm#BGBCIHAF">App Path registry key</A>. </p>
+<p><b>Registry entries</b>   Register <i>PBADMINR.DLL</i>, <i>PBINF90R.DLL</i>, <i>PBOR890R.DLL</i>, <i>PBSYB09R.DLL</i>,
+and <i>PBXML09R.DLL</i> as shared DLLs. See also<A HREF="apptechp270.htm#BGBCIHAF">"App Path registry key"</A>.</p>
+<A NAME="CHDGJGJI"></A><h2>ADO.NET database interface</h2>
+<A NAME="TI8240"></A><p>The PowerBuilder ADO.NET interface supports the OLE DB, Microsoft <ACRONYM title = "sequel" >SQL</ACRONYM> Server .NET, Oracle ODP.NET,
+and Sybase ASE data providers. If you use ADO.NET, you must deploy <i>PBADO105.DLL</i>, <i>Sybase.PowerBuilder.Db.dll</i>, <i>Sybase.PowerBuilder.DbExt.dll</i>,
+and, for OLE DB, the OLE DB data provider.</p>
+<A NAME="TI8241"></A><p>The file <i>PBADO105.DLL</i> is a standard DLL
+file, and you can deploy it in the same way as other PowerBuilder
+DLLs. However, <i>Sybase.PowerBuilder.Db.dll</i> and <i>Sybase.PowerBuilder.DbExt.dll</i> are
+.NET assemblies. You can use one of three techniques to deploy the
+files:<A NAME="TI8242"></A>
+<ul>
+<li class=fi>Deploy <i>Sybase.PowerBuilder.Db.dll</i> and <i>Sybase.PowerBuilder.DbExt.dll</i> in
+the same directory as the executable file that calls the ADO.NET
+driver.</li>
+<li class=ds>Use a .NET application configuration file to assign
+the path of <i>Sybase.PowerBuilder.Db.dll</i> and <i>Sybase.PowerBuilder.DbExt.dll</i>.
+The file contains configuration settings that the common language
+runtime (CLR) reads as well as settings that the application reads.
+For an executable file, the configuration file has the same name
+as the executable file with the extension .<i>config</i>.
+The <i>pb105.exe.config</i> file in your PowerBuilder
+10.5 directory is an example. <br>
+For more information about configuration files, see the Microsoft
+Visual Studio SDK documentation.<br></li>
+<li class=ds>Add the <i>Sybase.PowerBuilder.Db.dll</i> and <i>Sybase.PowerBuilder.DbExt.dll</i> assemblies
+to the Global Assembly Cache (GAC). Use this technique only when
+an assembly must be shared by several applications. You can no longer
+install an application using <b>xcopy</b> if one of
+the assemblies it uses is in the GAC.<br>
+For more information about the GAC, see the section on the
+Global Assembly Cache in the Microsoft Visual Studio SDK documentation.<br>
+</li>
+</ul>
+</p>
+<A NAME="BGBCJHAF"></A><h2>JDBC database interface</h2>
+<A NAME="TI8243"></A><p>The PowerBuilder JDB interface supports the Sun Java Runtime
+Environment (JRE) versions 1.2 and later. </p>
+<A NAME="TI8244"></A><p>If your application or component uses JDBC connections, you
+must deploy the JDB driver as well as the appropriate Java package
+for the Java VM you are using. The Java virtual machine and a vendor-supplied
+JDBC-compliant driver, such as Sybase jConnect&#174; for JDBC,
+must also be installed and configured on the computer that accesses
+the data source. </p>
+<A NAME="TI8245"></A><p>For more information about the Java VM, see <A HREF="apptechp275.htm#BAJBFFIA">"Java support"</A>.</p>
+<A NAME="TI8246"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-11: PowerBuilder JDB files</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8247"></A>Name</th>
+<th  rowspan="1"  ><A NAME="TI8248"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8249"></A><i>PBJDB105.DLL</i></td>
+<td  rowspan="1"  ><A NAME="TI8250"></A>PowerBuilder JDBC Driver (JDB) for JRE
+1.2 or later</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8251"></A><i>pbjdbc12105.jar</i></td>
+<td  rowspan="1"  ><A NAME="TI8252"></A>Java package for PowerBuilder JDB driver
+and JRE 1.2 or later</td>
+</tr>
+</table>
+<p><b>Installed path</b>   <i>\Program Files\Sybase\Shared\PowerBuilder</i></p>
+<p><b>Deployment path</b>   Same directory as the application, in a directory on the system
+path, or in the <A HREF="apptechp270.htm#BGBCIHAF">App Path registry key</A>. </p>
+<p><b>Registry entries</b>   Make sure the CLASSPATH environment variable includes the
+PowerBuilder <i>pbjdbc12105.jar</i> file. For example:<p><PRE> [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control</PRE><PRE>     \Session Manager\Environment]</PRE><PRE> "CLASSPATH"="C:\Program Files\sybase\shared\</PRE><PRE>     PowerBuilder\pbjdbc12105.jar;...</PRE></p>
+<p><b>Notes</b>   See <A HREF="apptechp280.htm#BGBBJEIE">"PowerBuilder components
+on <ABBR title = "e a server" >EAServer</ABBR> "</A> and <A HREF="apptechp283.htm#BGBDJAHI">"Web DataWindow on <ABBR title = "e a server" >EAServer</ABBR> "</A>.</p>
+

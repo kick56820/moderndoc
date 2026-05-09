@@ -1,0 +1,75 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Coding for the Web ActiveX</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp58.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp60.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBCDGFJ"></A><h1>Coding for the Web ActiveX</h1>
+<A NAME="TI2456"></A><p>You can write scripts in the Web page to manipulate the DataWindow
+data and presentation. The methods and events are similar to those
+available in a standard DataWindow, but the events have been renamed
+to match JavaScript naming conventions.</p>
+<A NAME="TI2457"></A><p>The properties, methods, and events&#8212;as well as the
+DataWindow object properties and expression functions&#8212;are
+documented in the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI2458"></A><p>You can see a list of the properties, methods, and events
+for the controls on the Components page of the System Tree or in
+another tool for examining ActiveX controls.</p>
+<A NAME="TI2459"></A><p>The Script editor lets you write scripts for all events of
+the Web ActiveX. </p>
+<A NAME="TI2460"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To write a script for a particular event in a
+Web target:</p>
+<ol><li class=fi><p>In Page view, select a Web ActiveX that
+you have inserted in the Web page<i><br>or</i><br>In
+the Script editor, select the name of the DataWindow Web ActiveX
+in the leftmost drop-down list.</p></li>
+<li class=ds><p>In the Script editor, select an event from the
+second drop-down list. The drop-down list shows the event name and
+the parameters whose values are available in the script.</p></li>
+<li class=ds><p>In the third drop-down list, select JScript as
+the scripting language.</p></li>
+<li class=ds><p>Write code for the event. To call methods or access
+properties without typing, drag them from the Page tab of the System
+Tree to the editor.</p></li></ol>
+<br><A NAME="TI2461"></A><h2>Datatypes for method arguments and return values</h2>
+<A NAME="TI2462"></A><h4>Primitive types</h4>
+<A NAME="TI2463"></A><p>JScript supports three primitive datatypes:<A NAME="TI2464"></A>
+<ul>
+<li class=fi>string</li>
+<li class=ds>number</li>
+<li class=ds>boolean
+</li>
+</ul>
+</p>
+<A NAME="TI2465"></A><p>Method arguments and return values and event parameters are
+one of these basic types, or an object type. </p>
+<A NAME="TI2466"></A><p>DataWindow methods that deal with specific datatypes, such
+as GetItemDecimal, are not available for the Web ActiveX. Instead,
+you use the method that handles the more general data type, such
+as GetItemNumber.</p>
+<A NAME="TI2467"></A><h4>Date datatypes</h4>
+<A NAME="TI2468"></A><p>PowerBuilder has several date and time datatypes, but in JScript
+these all map to the Date object.</p>
+<A NAME="TI2469"></A><h4>Enumerated datatypes</h4>
+<A NAME="TI2470"></A><p>PowerBuilder enumerated datatypes have named values, but in
+JScript, each value is a number. The list of numbers (and their
+meaning) is documented in the <i>DataWindow Reference</i>
+ for
+each enumerated data type.</p>
+<A NAME="TI2471"></A><h2>Setting event return codes</h2>
+<A NAME="TI2472"></A><p>The event return codes documented for DataWindow events are
+also valid for the Web ActiveX. However, JScript does not support
+return values for events. Instead, to specify a return code, you
+call the SetActionCode method as the last line in the event script.</p>
+<A NAME="TI2473"></A><p>For example, the return code of the onItemError event allows
+you to determine what happens when user-entered data fails a validation
+rule. By specifying a return code of 3, you cause the Web ActiveX
+to reject the data but allow focus to change. This statement would
+be the last line of the onItemError event script:<p><PRE> This.SetActionCode(3);</PRE></p>
+

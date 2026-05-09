@@ -1,0 +1,298 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+OrcaScript Commands</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp276.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp278.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDDCIEA"></A><h1>OrcaScript Commands</h1>
+<A NAME="TI10674"></A><p>OrcaScript commands
+are not case sensitive. The generic command parameters can include
+only strings delimited by quotation marks, or predefined variables and
+constants without quotation marks. White space is used to separate multiple
+parameters for a single command. Any place a string is expected,
+a name that has been previously defined (set) in an OrcaScript command
+can be used. </p>
+<A NAME="TI10675"></A><p>In the OrcaScript command prototype syntax that follows, brackets
+indicate a parameter is optional. A pipe character inside angle
+brackets ( &lt; | &gt; ) indicates that a selection
+must be made from one of the values inside the angle brackets. As
+elsewhere in the PowerBuilder documentation, text in italic type
+indicates a variable. </p>
+<A NAME="TI10676"></A><p>For commands where a string variable is required by the command
+syntax but is not essential to the command function (such as <i>pbrName</i> for
+the <b>build library</b> command), you can use an empty
+string inside quotation marks for the string value. Most of the
+OrcaScript commands and parameters are self-explanatory. For usage
+notes and an example of an OrcaScript batch file for obtaining a PowerScript
+target from source control, see <A HREF="pbugp278.htm#CHDDGAEE">"Usage notes for OrcaScript
+commands and parameters"</A>.</p>
+<A NAME="TI10677"></A><h4>OrcaScript commands</h4>
+<A NAME="TI10678"></A><p>OrcaScript supports the following commands:<A NAME="TI10679"></A>
+<ul>
+<li class=fi><b>start session</b></li>
+<li class=ds><b>end session</b></li>
+<li class=ds><b>set <i>name</i> = <i>value</i></b></li>
+<li class=ds><b>set <i>name</i> += <i>value</i></b></li>
+<li class=ds><b>set liblist <i>pbl_list</i> [<i>pbl_list</i> ...]</b></li>
+<li class=ds><b>set application <i>pblName</i> <i>applicationName</i></b></li>
+<li class=ds><b>set exeinfo property &lt;companyname | <i>productname | copyright | description&gt;    propertyString</i></b></li>
+<li class=ds><b>set exeinfo property &lt;fileversion | fileversionnum | productversion |    productversionnum&gt; <i>versionString</i></b></li>
+<li class=ds><b>echo <i>value</i> [<i>value</i> ...]</b></li>
+<li class=ds><b>file copy <i>fromFile</i> <i>toFile</i> [ <i>clobberAttribute</i> ]</b></li>
+<li class=ds><b>file delete <i>fileName</i> [ <i>clobberAttribute</i> ]</b></li>
+<li class=ds><b>regenerate <i>pblName</i> <i>entryName</i> <i>entryType</i></b></li>
+<li class=ds><b>copy entry <i>pblName</i> <i>entryName </i><i>entryType</i> <i>toPblName</i></b></li>
+<li class=ds><b>build library <i>pblName</i> <i>pbrName</i> &lt;pbd | 32&gt;</b></li>
+<li class=ds><b>build executable <i>exeName</i> <i>iconName</i> <i>pbrName</i> <i>pbdflags</i> [machinecode]    [newvstylecontrols]</b></li>
+<li class=ds><b>build application &lt;full | migrate | incremental &gt;</b></li>
+<li class=ds><b>build project <i>pblName</i> <i>projectName</i> [ <i>serverName</i> <i>serverPort</i> ]<i></i></b></li>
+<li class=ds><b>create library <i>pblName</i> <i>pblComments</i></b></li>
+<li class=ds><b>scc get connect properties <i>workspaceName</i></b></li>
+<li class=ds><b>scc set connect property deletetempfiles &lt;true|false&gt;</b></li>
+<li class=ds><b>scc set connect property provider <i>sccProvider</i></b></li>
+<li class=ds><b>scc set connect property userid <i>userID</i></b></li>
+<li class=ds><b>scc set connect property password <i>password</i></b></li>
+<li class=ds><b>scc set connect property logfile <i>logFileName</i></b></li>
+<li class=ds><b>scc set connect property project <i>projectPath</i></b></li>
+<li class=ds><b>scc set connect property localprojpath <i>localProjectPath</i></b></li>
+<li class=ds><b>scc set connect property auxproject <i>auxProjectPath</i></b></li>
+<li class=ds><b>scc set connect property logappend &lt; true | false &gt;</b></li>
+<li class=ds><b>scc connect [offline]</b></li>
+<li class=ds><b>scc set target <i>targetName </i>[<i>refreshType</i>][<i>refreshOption</i>][<i>refreshOption</i>]                </b></li>
+<li class=ds><b>scc get latest version <i>file_list</i> [<i>file_list</i> ...]</b></li>
+<li class=ds><b>scc exclude liblist <i>pblName</i> [ <i>pblName</i> ...]</b></li>
+<li class=ds><b>scc refresh target &lt;full | migrate | incremental &gt;</b></li>
+<li class=ds><b>scc close</b>
+</li>
+</ul>
+</p>
+<A NAME="TI10680"></A><h4>Argument description</h4>
+<A NAME="TI10681"></A><p>Arguments for OrcaScript commands are described in the table
+below:</p>
+<A NAME="TI10682"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI10683"></A>Argument</th>
+<th  rowspan="1"  ><A NAME="TI10684"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10685"></A><i>name</i></td>
+<td  rowspan="1"  ><A NAME="TI10686"></A>String you define for an OrcaScript session.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10687"></A><i>value</i></td>
+<td  rowspan="1"  ><A NAME="TI10688"></A>Value of a string that you set for the
+OrcaScript session.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10689"></A><i>pbl_list</i></td>
+<td  rowspan="1"  ><A NAME="TI10690"></A>String containing the list of <ACRONYM title = "pibbles" >PBLs</ACRONYM> for the session application. <ACRONYM title = "pibble" >PBL</ACRONYM> names can be separated by semicolons
+in a single string, or separated by a blank space in multiple strings.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10691"></A><i>pblName</i></td>
+<td  rowspan="1"  ><A NAME="TI10692"></A>Name of a <ACRONYM title = "pibble" >PBL</ACRONYM> for
+an OrcaScript action or for the OrcaScript session application.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10693"></A><i>applicationName</i></td>
+<td  rowspan="1"  ><A NAME="TI10694"></A>Name of the application for an OrcaScript
+action.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10695"></A><i>propertyString</i></td>
+<td  rowspan="1"  ><A NAME="TI10696"></A>String for setting the company or product
+name, copyright owner, or application description.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10697"></A><i>versionString</i></td>
+<td  rowspan="1"  ><A NAME="TI10698"></A>String for setting the product or file
+version numbers. The FileVersionNum and ProductVersionNum strings
+must consist of four integer values representing the major version
+number, minor version number, fix version number, and build number, with
+each value separated by a decimal point, for example "10.5.0.3012".</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10699"></A><i>fromFile</i></td>
+<td  rowspan="1"  ><A NAME="TI10700"></A>File that you want to copy during an
+OrcaScript session.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10701"></A><i>toFile</i></td>
+<td  rowspan="1"  ><A NAME="TI10702"></A>File name for a file that you copy during
+an OrcaScript session.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10703"></A><i>fileName</i></td>
+<td  rowspan="1"  ><A NAME="TI10704"></A>File that you want to delete during an
+OrcaScript session.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10705"></A><i>clobberAttribute</i></td>
+<td  rowspan="1"  ><A NAME="TI10706"></A>Determines whether the file copy command
+overwrites an existing file. If the destination file does not already
+exist, the file copy command creates the file regardless of the <i>clobberAttribute</i> value
+you select. Possible values are: <A NAME="TI10707"></A>
+<ul>
+<li class=fi><b>Clobber
+(default)</b>   File copy command overwrites an existing file marked read/write,
+but does not overwrite an existing file marked read-only</li>
+<li class=ds><b>NoClobber</b>   File copy command does not overwrite an existing file even
+if it is marked read/write</li>
+<li class=ds><b>Clobber Always</b>   File copy command overwrites an existing file even if it is
+marked read-only
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10708"></A><i>entryName</i></td>
+<td  rowspan="1"  ><A NAME="TI10709"></A>Pointer to a string whose value is the
+name of the referenced object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10710"></A><i>entryType</i></td>
+<td  rowspan="1"  ><A NAME="TI10711"></A>Value specifying the type of the referenced
+object. Values can be: application, datawindow, function, menu,
+query, struct, userobject, window, pipe, project, or proxy. Certain abbreviations
+(app, dw, fn, struct, uo, and win) are allowed as substitute values.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10712"></A><i>toPblName</i></td>
+<td  rowspan="1"  ><A NAME="TI10713"></A>Name of the <ACRONYM title = "pibble" >PBL</ACRONYM> to
+which you copy an entry.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10714"></A><i>pbrName</i></td>
+<td  rowspan="1"  ><A NAME="TI10715"></A>Name of a resource file you want to include
+in a build.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10716"></A><b>pbd | 32</b></td>
+<td  rowspan="1"  ><A NAME="TI10717"></A>Select PBD to generate PowerBuilder dynamic
+libraries. Select 32 to generate platform-specific machine code.
+You must enter a full path for a <ACRONYM title = "pibble" >PBL</ACRONYM> or
+PBR if you select 32 as the value of this argument in an OrcaScript <b>build
+library</b> command.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10718"></A><i>exeName</i></td>
+<td  rowspan="1"  ><A NAME="TI10719"></A>Name of the executable you want to build.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10720"></A><i>iconName</i></td>
+<td  rowspan="1"  ><A NAME="TI10721"></A>Name of an icon to use for an executable
+you build with OrcaScript.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10722"></A><i>pbdFlags</i></td>
+<td  rowspan="1"  ><A NAME="TI10723"></A>String composed of a series of Y and
+N values for each library in the library list. A value of "nnyy"
+indicates that there are four libraries in the library list, the
+last two being PBDs. Objects from <ACRONYM title = "pibbles" >PBL</ACRONYM>s
+are copied into the executable; objects from PBDs are not copied.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10724"></A><b>machinecode</b></td>
+<td  rowspan="1"  ><A NAME="TI10725"></A>Use to compile a project as machine code.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10726"></A><b>newvstylecontrols</b></td>
+<td  rowspan="1"  ><A NAME="TI10727"></A>Use Microsoft XP visual style for controls.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10728"></A><b>full | migrate | incremental</b></td>
+<td  rowspan="1"  ><A NAME="TI10729"></A>Build strategy for the session application. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10730"></A><i>projectName</i></td>
+<td  rowspan="1"  ><A NAME="TI10731"></A>Name of the project object you want to
+build and deploy.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10732"></A><i>serverName</i></td>
+<td  rowspan="1"  ><A NAME="TI10733"></A>Name of the server where you want to
+deploy a project.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10734"></A><i>serverPort</i></td>
+<td  rowspan="1"  ><A NAME="TI10735"></A>Port for the server where you want to
+deploy a project.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10736"></A><i>pbdName</i></td>
+<td  rowspan="1"  ><A NAME="TI10737"></A>Name of a PBD you append to an EXE.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10738"></A><i>pblComments</i></td>
+<td  rowspan="1"  ><A NAME="TI10739"></A>Comments for a <ACRONYM title = "pibble" >PBL</ACRONYM> you
+create in an OrcaScript session.</td>
+</tr>
+</table>
+<A NAME="TI10740"></A><h4>Arguments for source control commands</h4>
+<A NAME="TI10741"></A><p>In addition to some of the arguments listed in the preceding
+table, OrcaScript source control commands use the following arguments:</p>
+<A NAME="TI10742"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI10743"></A>Argument</th>
+<th  rowspan="1"  ><A NAME="TI10744"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10745"></A><i>workspaceName</i></td>
+<td  rowspan="1"  ><A NAME="TI10746"></A>Name of the workspace to connect to source
+control. You must include the path to the workspace, although you
+can use a relative path.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10747"></A><i>sccProvider</i></td>
+<td  rowspan="1"  ><A NAME="TI10748"></A>Name of the source control provider.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10749"></A><i>userID</i></td>
+<td  rowspan="1"  ><A NAME="TI10750"></A>Name of the user registered to source
+control.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10751"></A><i>password</i></td>
+<td  rowspan="1"  ><A NAME="TI10752"></A>Password for the user ID.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10753"></A><i>logFileName</i></td>
+<td  rowspan="1"  ><A NAME="TI10754"></A>Name of a log file used to record SCC
+transactions.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10755"></A><i>projectPath</i></td>
+<td  rowspan="1"  ><A NAME="TI10756"></A>Path to the source control project.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10757"></A><i>localProjectPath</i></td>
+<td  rowspan="1"  ><A NAME="TI10758"></A>Local root directory for the project.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10759"></A><i>auxProjectPath</i></td>
+<td  rowspan="1"  ><A NAME="TI10760"></A>Contains any string that the SCC provider
+wants to associate with the project. It has a different meaning
+for every SCC vendor.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10761"></A><i>targetName</i></td>
+<td  rowspan="1"  ><A NAME="TI10762"></A>Name of the target for source control
+operations. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10763"></A><b>true | false</b></td>
+<td  rowspan="1"  ><A NAME="TI10764"></A>Boolean value for appending to the source
+control log file. If this command is not used but a log file is
+specified, the session value defaults to true.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10765"></A><b>offline</b></td>
+<td  rowspan="1"  ><A NAME="TI10766"></A>Keyword indicating that an actual SCC
+connection will not be required for this session. It is appropriate
+only when the         ImportOnly refresh option is used
+on a subsequent <FONT FACE="Courier New">scc set target</FONT> command.
+When refreshing a target using ImportOnly, no communication with
+the SCC provider is required at runtime, so the job may be run offline. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10767"></A><i>refreshType</i></td>
+<td  rowspan="1"  ><A NAME="TI10768"></A>Value can be: <A NAME="TI10769"></A>
+<ul>
+<li class=fi><b>refresh_all</b>   Gets latest version of all objects from the SCC provider and
+refreshes all target libraries. Does not perform comparisons. </li>
+<li class=ds><b>outofdate</b>   Performs comparisons and updates objects that are out of date.
+If no <i>refreshType</i> value is specified, the <i>refreshType</i> defaults
+to outofdate.
+</li>
+</ul>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Combining values</span> <A NAME="TI10770"></A>You can combine compatible <i>refreshType</i> and <i>refreshOption</i> values
+(for example, outofdate and exclude_checkout) in the same
+string if the values are separated by a blank space.</p>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10771"></A><i>refreshOption</i></td>
+<td  rowspan="1"  ><A NAME="TI10772"></A>Value can be:<A NAME="TI10773"></A>
+<ul>
+<li class=fi><b>importonly</b>   Does not perform comparisons and does not refresh. Use to
+build targets if you refreshed the local path using the SCC provider's
+administration tool.</li>
+<li class=ds><b>exclude_checkout</b>   Prevents objects that are currently checked out by the current
+user from being overwritten. Can be used with outofdate parameter
+in the same OrcaScript command.
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10774"></A><i>file_list</i></td>
+<td  rowspan="1"  ><A NAME="TI10775"></A>String containing one or more resource
+file names (such as GIFs, HLPs, or PBRs) using relative or absolute
+path specification. The string should not include file names for
+objects contained in application PBLs. File names can be separated
+by semicolons in a single string, or separated by a blank space
+in multiple strings. The list of files must be on a single line
+even when file names are contained in multiple strings.</td>
+</tr>
+</table>
+

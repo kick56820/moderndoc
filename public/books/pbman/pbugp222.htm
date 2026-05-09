@@ -1,0 +1,231 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About crosstabs </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp221.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp223.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF352128827"></A><h1>About crosstabs </h1>
+<A NAME="TI7778"></A><p>Cross tabulation is a useful technique for analyzing data.
+By presenting data in a spreadsheet-like grid, a crosstab lets users view
+summary data instead of a long series of rows and columns. For example,
+in a sales application you might want to summarize the quarterly
+unit sales of each product.</p>
+<A NAME="TI7779"></A><p>In PowerBuilder, you create crosstabs by using the Crosstab
+presentation style. When data is retrieved into the DataWindow object,
+the crosstab processes all the data and presents the summary information
+you have defined for it.</p>
+<A NAME="TI7780"></A><h4>An example</h4>
+<A NAME="TI7781"></A><p>Crosstabs are easiest to understand through an example. Consider the <b>Printer</b> table
+in the EAS Demo DB. It records quarterly unit sales of printers
+made by sales representatives in one year. (This is the same data used
+to illustrate graphs in <A HREF="pbugp215.htm#CCJCJJAE">Chapter 26, "Working with Graphs ."</A>)</p>
+<A NAME="TI7782"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 27-1: The Printer table in the <ACRONYM title = "E A S" >EAS </ACRONYM>Demo
+DB</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7783"></A>Rep</th>
+<th  rowspan="1"  ><A NAME="TI7784"></A>Quarter</th>
+<th  rowspan="1"  ><A NAME="TI7785"></A>Product</th>
+<th  rowspan="1"  ><A NAME="TI7786"></A>Units</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7787"></A>Simpson</td>
+<td  rowspan="1"  ><A NAME="TI7788"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7789"></A>Stellar</td>
+<td  rowspan="1"  ><A NAME="TI7790"></A>12</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7791"></A>Jones</td>
+<td  rowspan="1"  ><A NAME="TI7792"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7793"></A>Stellar</td>
+<td  rowspan="1"  ><A NAME="TI7794"></A>18</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7795"></A>Perez</td>
+<td  rowspan="1"  ><A NAME="TI7796"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7797"></A>Stellar</td>
+<td  rowspan="1"  ><A NAME="TI7798"></A>15</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7799"></A>Simpson</td>
+<td  rowspan="1"  ><A NAME="TI7800"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7801"></A>Cosmic</td>
+<td  rowspan="1"  ><A NAME="TI7802"></A>33</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7803"></A>Jones</td>
+<td  rowspan="1"  ><A NAME="TI7804"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7805"></A>Cosmic</td>
+<td  rowspan="1"  ><A NAME="TI7806"></A>5</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7807"></A>Perez</td>
+<td  rowspan="1"  ><A NAME="TI7808"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7809"></A>Cosmic</td>
+<td  rowspan="1"  ><A NAME="TI7810"></A>26</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7811"></A>Simpson</td>
+<td  rowspan="1"  ><A NAME="TI7812"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7813"></A>Galactic</td>
+<td  rowspan="1"  ><A NAME="TI7814"></A>6</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7815"></A>Jones</td>
+<td  rowspan="1"  ><A NAME="TI7816"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7817"></A>Galactic</td>
+<td  rowspan="1"  ><A NAME="TI7818"></A>2</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7819"></A>Perez</td>
+<td  rowspan="1"  ><A NAME="TI7820"></A>Q1</td>
+<td  rowspan="1"  ><A NAME="TI7821"></A>Galactic</td>
+<td  rowspan="1"  ><A NAME="TI7822"></A>1</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7823"></A>.</td>
+<td  rowspan="1"  ><A NAME="TI7824"></A>.</td>
+<td  rowspan="1"  ><A NAME="TI7825"></A>.</td>
+<td  rowspan="1"  ><A NAME="TI7826"></A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7827"></A>.</td>
+<td  rowspan="1"  ><A NAME="TI7828"></A>.</td>
+<td  rowspan="1"  ><A NAME="TI7829"></A>.</td>
+<td  rowspan="1"  ><A NAME="TI7830"></A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7831"></A>.</td>
+<td  rowspan="1"  ><A NAME="TI7832"></A>.</td>
+<td  rowspan="1"  ><A NAME="TI7833"></A>.</td>
+<td  rowspan="1"  ><A NAME="TI7834"></A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7835"></A>Simpson</td>
+<td  rowspan="1"  ><A NAME="TI7836"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7837"></A>Stellar</td>
+<td  rowspan="1"  ><A NAME="TI7838"></A>30</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7839"></A>Jones</td>
+<td  rowspan="1"  ><A NAME="TI7840"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7841"></A>Stellar</td>
+<td  rowspan="1"  ><A NAME="TI7842"></A>24</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7843"></A>Perez</td>
+<td  rowspan="1"  ><A NAME="TI7844"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7845"></A>Stellar</td>
+<td  rowspan="1"  ><A NAME="TI7846"></A>36</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7847"></A>Simpson</td>
+<td  rowspan="1"  ><A NAME="TI7848"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7849"></A>Cosmic</td>
+<td  rowspan="1"  ><A NAME="TI7850"></A>60</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7851"></A>Jones</td>
+<td  rowspan="1"  ><A NAME="TI7852"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7853"></A>Cosmic</td>
+<td  rowspan="1"  ><A NAME="TI7854"></A>52</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7855"></A>Perez</td>
+<td  rowspan="1"  ><A NAME="TI7856"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7857"></A>Cosmic</td>
+<td  rowspan="1"  ><A NAME="TI7858"></A>48</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7859"></A>Simpson</td>
+<td  rowspan="1"  ><A NAME="TI7860"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7861"></A>Galactic</td>
+<td  rowspan="1"  ><A NAME="TI7862"></A>3</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7863"></A>Jones</td>
+<td  rowspan="1"  ><A NAME="TI7864"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7865"></A>Galactic</td>
+<td  rowspan="1"  ><A NAME="TI7866"></A>3</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7867"></A>Perez</td>
+<td  rowspan="1"  ><A NAME="TI7868"></A>Q4</td>
+<td  rowspan="1"  ><A NAME="TI7869"></A>Galactic</td>
+<td  rowspan="1"  ><A NAME="TI7870"></A>6</td>
+</tr>
+</table>
+<A NAME="TI7871"></A><p>This information can be summarized in a crosstab. Here is
+a crosstab that shows unit sales by printer for each quarter:</p>
+<br><img src="images/cros02.gif">
+<A NAME="TI7872"></A><p>The first-quarter sales of Cosmic printers displays in the
+first data cell. (As you can see from the data in the <b>Printer</b> table
+shown before the crosstab, in Q1 Simpson sold 33 units, Jones sold
+5 units, and Perez sold 26 units&#8212;totaling 64 units.) PowerBuilder calculates
+each of the other data cells the same way.</p>
+<A NAME="TI7873"></A><p>To create this crosstab, you only have to tell PowerBuilder which
+database columns contain the raw data for the crosstab, and PowerBuilder does
+all the data summarization automatically.</p>
+<A NAME="TI7874"></A><h4>What crosstabs do</h4>
+<A NAME="TI7875"></A><p>Crosstabs perform two-dimensional analysis:<A NAME="TI7876"></A>
+<ul>
+<li class=fi>The first dimension is displayed as columns across
+the crosstab.<br>
+In the preceding crosstab, the first dimension is the quarter,
+whose values are in the Quarter column in the database table.<br></li>
+<li class=ds>The second dimension is displayed as rows down the
+crosstab.<br>
+In the preceding crosstab, the second dimension is the type
+of printer, whose values are in the Product column in the database
+table.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI7877"></A><p>Each cell in a crosstab is the intersection of a column (the
+first dimension) and a row (the second dimension). The numbers that
+appear in the cells are calculations based on both dimensions. In
+the preceding crosstab, it is the sum of unit sales for the quarter
+in the corresponding column and printer in the corresponding row.</p>
+<A NAME="TI7878"></A><p>Crosstabs also include summary statistics. The preceding crosstab
+totals the sales for each quarter in the last row and the total
+sales for each printer in the last column.</p>
+<A NAME="TI7879"></A><h4>How crosstabs are implemented in PowerBuilder</h4>
+<A NAME="TI7880"></A><p>Crosstabs in PowerBuilder are implemented as grid DataWindow objects. Because
+crosstabs are grid DataWindow objects, users can resize and reorder columns
+at runtime (if you let them).</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Import methods return empty result</span> <A NAME="TI7881"></A>A crosstab report takes the original result set that was retrieved
+from the database, sorts it, summarizes it, and generates a new
+summary result set to fit the design of the crosstab. The <b>ImportFile</b>, <b>ImportClipboard</b>,
+and <b>ImportString</b> methods can handle only the
+original result set, and they return an empty result when used with
+a crosstab report.</p>
+<A NAME="TI7882"></A><h2>Two types of crosstabs</h2>
+<A NAME="TI7883"></A><p>There are two types of crosstabs:<A NAME="TI7884"></A>
+<ul>
+<li class=fi>Dynamic</li>
+<li class=ds>Static
+</li>
+</ul>
+</p>
+<A NAME="TI7885"></A><h4>Dynamic crosstabs</h4>
+<A NAME="TI7886"></A><p>With dynamic crosstabs, PowerBuilder builds all the columns
+and rows in the crosstab dynamically when you run the crosstab.
+The number of columns and rows in the crosstab match the data that
+exists at runtime.</p>
+<A NAME="TI7887"></A><p>Using the preceding crosstab as an example, if a new printer
+was added to the database after the crosstab was saved, there would
+be an additional row in the crosstab when it is run. Similarly,
+if one of the quarter's results was deleted from the database
+after the crosstab was saved, there would be one less column in
+the crosstab when it is run.</p>
+<A NAME="TI7888"></A><p>By default, crosstabs you build are dynamic.</p>
+<A NAME="TI7889"></A><h4>Static crosstabs</h4>
+<A NAME="TI7890"></A><p>Static crosstabs are quite different from dynamic crosstabs. With static crosstabs, PowerBuilder establishes
+the columns in the crosstab based on the data in the database when
+you <i>define</i> the crosstab. (It does this by retrieving data
+from the database when you initially define the crosstab.) No matter
+what values are in the database when you later run the crosstab,
+the crosstab always has the same columns as when you defined it.</p>
+<A NAME="TI7891"></A><p>Using the preceding crosstab as an example, if there were
+four quarters in the database when you defined and saved the crosstab,
+there would always be four columns (Q1, Q2, Q3, and Q4) in the crosstab
+at runtime, even if the number of columns changed in the database.</p>
+<A NAME="TI7892"></A><h4>Advantages of dynamic crosstabs</h4>
+<A NAME="TI7893"></A><p>Dynamic crosstabs are used more often than static crosstabs,
+for the following reasons:<A NAME="TI7894"></A>
+<ul>
+<li class=fi>You
+can define dynamic crosstabs very quickly because no database access
+is required at definition time.</li>
+<li class=ds>Dynamic crosstabs always use the current data to
+build the columns and rows in the crosstab. Static crosstabs show
+a snapshot of columns as they were when the crosstab was defined.</li>
+<li class=ds>Dynamic crosstabs are easy to modify: all properties
+for the dynamically built columns are replicated at runtime automatically.
+With static crosstabs, you must work with one column at a time. 
+</li>
+</ul>
+</p>
+

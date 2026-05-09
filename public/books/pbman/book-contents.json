@@ -1,0 +1,4280 @@
+[
+  {
+    "level": 1,
+    "title": "About the HTML Books",
+    "local": "pboverview.htm",
+    "id": "b0001"
+  },
+  {
+    "level": 1,
+    "title": "PowerBuilder User's Guide",
+    "local": "",
+    "id": "b0002"
+  },
+  {
+    "level": 2,
+    "title": "About This Book",
+    "local": "pbugp1.htm",
+    "id": "b0003"
+  },
+  {
+    "level": 2,
+    "title": "The PowerBuilder Environment",
+    "local": "",
+    "id": "b0004"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 1  Working with PowerBuilder",
+    "local": "pbugp2.htm",
+    "id": "b0005"
+  },
+  {
+    "level": 4,
+    "title": "About PowerBuilder",
+    "local": "pbugp3.htm",
+    "id": "b0006"
+  },
+  {
+    "level": 4,
+    "title": "Concepts and terms",
+    "local": "pbugp4.htm",
+    "id": "b0007"
+  },
+  {
+    "level": 4,
+    "title": "The PowerBuilder environment",
+    "local": "pbugp5.htm",
+    "id": "b0008"
+  },
+  {
+    "level": 4,
+    "title": "Creating and opening workspaces",
+    "local": "pbugp6.htm",
+    "id": "b0009"
+  },
+  {
+    "level": 4,
+    "title": "Using wizards",
+    "local": "pbugp7.htm",
+    "id": "b0010"
+  },
+  {
+    "level": 4,
+    "title": "Creating a target",
+    "local": "pbugp8.htm",
+    "id": "b0011"
+  },
+  {
+    "level": 4,
+    "title": "Target types",
+    "local": "pbugp9.htm",
+    "id": "b0012"
+  },
+  {
+    "level": 4,
+    "title": "Managing workspaces",
+    "local": "pbugp10.htm",
+    "id": "b0013"
+  },
+  {
+    "level": 4,
+    "title": "Building workspaces",
+    "local": "pbugp11.htm",
+    "id": "b0014"
+  },
+  {
+    "level": 4,
+    "title": "Working with tools",
+    "local": "pbugp12.htm",
+    "id": "b0015"
+  },
+  {
+    "level": 4,
+    "title": "Using online Help",
+    "local": "pbugp13.htm",
+    "id": "b0016"
+  },
+  {
+    "level": 4,
+    "title": "Building an application",
+    "local": "pbugp14.htm",
+    "id": "b0017"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 2  Customizing PowerBuilder",
+    "local": "pbugp15.htm",
+    "id": "b0018"
+  },
+  {
+    "level": 4,
+    "title": "Starting PowerBuilder with an open workspace",
+    "local": "pbugp16.htm",
+    "id": "b0019"
+  },
+  {
+    "level": 4,
+    "title": "Changing default layouts",
+    "local": "pbugp17.htm",
+    "id": "b0020"
+  },
+  {
+    "level": 4,
+    "title": "Using toolbars",
+    "local": "pbugp18.htm",
+    "id": "b0021"
+  },
+  {
+    "level": 4,
+    "title": "Customizing keyboard shortcuts",
+    "local": "pbugp19.htm",
+    "id": "b0022"
+  },
+  {
+    "level": 4,
+    "title": "Changing fonts",
+    "local": "pbugp20.htm",
+    "id": "b0023"
+  },
+  {
+    "level": 4,
+    "title": "Defining colors",
+    "local": "pbugp21.htm",
+    "id": "b0024"
+  },
+  {
+    "level": 4,
+    "title": "How the PowerBuilder environment is managed",
+    "local": "pbugp22.htm",
+    "id": "b0025"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 3  Using Source Control",
+    "local": "pbugp23.htm",
+    "id": "b0026"
+  },
+  {
+    "level": 4,
+    "title": "About source control systems",
+    "local": "pbugp24.htm",
+    "id": "b0027"
+  },
+  {
+    "level": 4,
+    "title": "Using a source control system with PowerBuilder",
+    "local": "pbugp25.htm",
+    "id": "b0028"
+  },
+  {
+    "level": 4,
+    "title": "Source control operations in PowerBuilder",
+    "local": "pbugp26.htm",
+    "id": "b0029"
+  },
+  {
+    "level": 4,
+    "title": "Modifying source-controlled targets and objects",
+    "local": "pbugp27.htm",
+    "id": "b0030"
+  },
+  {
+    "level": 4,
+    "title": "Migrating existing projects under source control",
+    "local": "pbugp28.htm",
+    "id": "b0031"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 4  PowerDesigner Integration",
+    "local": "pbugp29.htm",
+    "id": "b0032"
+  },
+  {
+    "level": 4,
+    "title": "About PowerDesigner and the PowerDesigner plug-in",
+    "local": "pbugp30.htm",
+    "id": "b0033"
+  },
+  {
+    "level": 4,
+    "title": "What is an OOM?",
+    "local": "pbugp31.htm",
+    "id": "b0034"
+  },
+  {
+    "level": 4,
+    "title": "Advantages of an OOM class diagram in PowerBuilder",
+    "local": "pbugp32.htm",
+    "id": "b0035"
+  },
+  {
+    "level": 4,
+    "title": "Reverse-engineering a PowerBuilder target",
+    "local": "pbugp33.htm",
+    "id": "b0036"
+  },
+  {
+    "level": 4,
+    "title": "Using PowerDesigner menu items in PowerBuilder",
+    "local": "pbugp34.htm",
+    "id": "b0037"
+  },
+  {
+    "level": 4,
+    "title": "Class diagram menu commands",
+    "local": "pbugp35.htm",
+    "id": "b0038"
+  },
+  {
+    "level": 4,
+    "title": "Checking the OOM model",
+    "local": "pbugp36.htm",
+    "id": "b0039"
+  },
+  {
+    "level": 4,
+    "title": "Plug-in toolbars",
+    "local": "pbugp37.htm",
+    "id": "b0040"
+  },
+  {
+    "level": 2,
+    "title": "Working with PowerScript Targets",
+    "local": "",
+    "id": "b0041"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 5  Working with PowerScript Targets",
+    "local": "pbugp38.htm",
+    "id": "b0042"
+  },
+  {
+    "level": 4,
+    "title": "About PowerScript targets",
+    "local": "pbugp39.htm",
+    "id": "b0043"
+  },
+  {
+    "level": 4,
+    "title": "Working in painters",
+    "local": "pbugp40.htm",
+    "id": "b0044"
+  },
+  {
+    "level": 4,
+    "title": "About the Application painter",
+    "local": "pbugp41.htm",
+    "id": "b0045"
+  },
+  {
+    "level": 4,
+    "title": "Specifying application properties",
+    "local": "pbugp42.htm",
+    "id": "b0046"
+  },
+  {
+    "level": 4,
+    "title": "Writing application-level scripts",
+    "local": "pbugp43.htm",
+    "id": "b0047"
+  },
+  {
+    "level": 4,
+    "title": "Specifying the target's library search path",
+    "local": "pbugp44.htm",
+    "id": "b0048"
+  },
+  {
+    "level": 4,
+    "title": "Looking at an application's structure",
+    "local": "pbugp45.htm",
+    "id": "b0049"
+  },
+  {
+    "level": 4,
+    "title": "Working with objects",
+    "local": "pbugp46.htm",
+    "id": "b0050"
+  },
+  {
+    "level": 4,
+    "title": "Using the Source editor",
+    "local": "pbugp47.htm",
+    "id": "b0051"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 6  Working with Libraries",
+    "local": "pbugp48.htm",
+    "id": "b0052"
+  },
+  {
+    "level": 4,
+    "title": "About libraries",
+    "local": "pbugp49.htm",
+    "id": "b0053"
+  },
+  {
+    "level": 4,
+    "title": "Opening the Library painter",
+    "local": "pbugp50.htm",
+    "id": "b0054"
+  },
+  {
+    "level": 4,
+    "title": "About the Library painter",
+    "local": "pbugp51.htm",
+    "id": "b0055"
+  },
+  {
+    "level": 4,
+    "title": "Working with libraries",
+    "local": "pbugp52.htm",
+    "id": "b0056"
+  },
+  {
+    "level": 4,
+    "title": "Searching targets, libraries, and objects",
+    "local": "pbugp53.htm",
+    "id": "b0057"
+  },
+  {
+    "level": 4,
+    "title": "Optimizing libraries",
+    "local": "pbugp54.htm",
+    "id": "b0058"
+  },
+  {
+    "level": 4,
+    "title": "Regenerating library entries",
+    "local": "pbugp55.htm",
+    "id": "b0059"
+  },
+  {
+    "level": 4,
+    "title": "Rebuilding workspaces and targets",
+    "local": "pbugp56.htm",
+    "id": "b0060"
+  },
+  {
+    "level": 4,
+    "title": "Migrating targets",
+    "local": "pbugp57.htm",
+    "id": "b0061"
+  },
+  {
+    "level": 4,
+    "title": "Exporting and importing entries",
+    "local": "pbugp58.htm",
+    "id": "b0062"
+  },
+  {
+    "level": 4,
+    "title": "Creating runtime libraries",
+    "local": "pbugp59.htm",
+    "id": "b0063"
+  },
+  {
+    "level": 4,
+    "title": "Creating reports on library contents",
+    "local": "pbugp60.htm",
+    "id": "b0064"
+  },
+  {
+    "level": 2,
+    "title": "Coding Fundamentals",
+    "local": "",
+    "id": "b0065"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 7  Writing Scripts",
+    "local": "pbugp61.htm",
+    "id": "b0066"
+  },
+  {
+    "level": 4,
+    "title": "About the Script view",
+    "local": "pbugp62.htm",
+    "id": "b0067"
+  },
+  {
+    "level": 4,
+    "title": "Opening Script views",
+    "local": "pbugp63.htm",
+    "id": "b0068"
+  },
+  {
+    "level": 4,
+    "title": "Modifying Script view properties",
+    "local": "pbugp64.htm",
+    "id": "b0069"
+  },
+  {
+    "level": 4,
+    "title": "Editing scripts",
+    "local": "pbugp65.htm",
+    "id": "b0070"
+  },
+  {
+    "level": 4,
+    "title": "Using AutoScript",
+    "local": "pbugp66.htm",
+    "id": "b0071"
+  },
+  {
+    "level": 4,
+    "title": "Getting context-sensitive Help",
+    "local": "pbugp67.htm",
+    "id": "b0072"
+  },
+  {
+    "level": 4,
+    "title": "Compiling the script",
+    "local": "pbugp68.htm",
+    "id": "b0073"
+  },
+  {
+    "level": 4,
+    "title": "Declaring variables and external functions",
+    "local": "pbugp69.htm",
+    "id": "b0074"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 8  Working with User-Defined Functions",
+    "local": "pbugp70.htm",
+    "id": "b0075"
+  },
+  {
+    "level": 4,
+    "title": "About user-defined functions",
+    "local": "pbugp71.htm",
+    "id": "b0076"
+  },
+  {
+    "level": 4,
+    "title": "Defining user-defined functions",
+    "local": "pbugp72.htm",
+    "id": "b0077"
+  },
+  {
+    "level": 4,
+    "title": "Modifying user-defined functions",
+    "local": "pbugp73.htm",
+    "id": "b0078"
+  },
+  {
+    "level": 4,
+    "title": "Using your functions",
+    "local": "pbugp74.htm",
+    "id": "b0079"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 9  Working with User Events",
+    "local": "pbugp75.htm",
+    "id": "b0080"
+  },
+  {
+    "level": 4,
+    "title": "About user events",
+    "local": "pbugp76.htm",
+    "id": "b0081"
+  },
+  {
+    "level": 4,
+    "title": "Defining user events",
+    "local": "pbugp77.htm",
+    "id": "b0082"
+  },
+  {
+    "level": 4,
+    "title": "Using a user event",
+    "local": "pbugp78.htm",
+    "id": "b0083"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 10  Working with Structures",
+    "local": "pbugp79.htm",
+    "id": "b0084"
+  },
+  {
+    "level": 4,
+    "title": "About structures",
+    "local": "pbugp80.htm",
+    "id": "b0085"
+  },
+  {
+    "level": 4,
+    "title": "Defining structures",
+    "local": "pbugp81.htm",
+    "id": "b0086"
+  },
+  {
+    "level": 4,
+    "title": "Modifying structures",
+    "local": "pbugp82.htm",
+    "id": "b0087"
+  },
+  {
+    "level": 4,
+    "title": "Using structures",
+    "local": "pbugp83.htm",
+    "id": "b0088"
+  },
+  {
+    "level": 2,
+    "title": "Working with Windows",
+    "local": "",
+    "id": "b0089"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 11  Working with Windows",
+    "local": "pbugp84.htm",
+    "id": "b0090"
+  },
+  {
+    "level": 4,
+    "title": "About windows",
+    "local": "pbugp85.htm",
+    "id": "b0091"
+  },
+  {
+    "level": 4,
+    "title": "Types of windows",
+    "local": "pbugp86.htm",
+    "id": "b0092"
+  },
+  {
+    "level": 4,
+    "title": "About the Window painter",
+    "local": "pbugp87.htm",
+    "id": "b0093"
+  },
+  {
+    "level": 4,
+    "title": "Building a new window",
+    "local": "pbugp88.htm",
+    "id": "b0094"
+  },
+  {
+    "level": 4,
+    "title": "Viewing your work",
+    "local": "pbugp89.htm",
+    "id": "b0095"
+  },
+  {
+    "level": 4,
+    "title": "Writing scripts in windows",
+    "local": "pbugp90.htm",
+    "id": "b0096"
+  },
+  {
+    "level": 4,
+    "title": "Running a window",
+    "local": "pbugp91.htm",
+    "id": "b0097"
+  },
+  {
+    "level": 4,
+    "title": "Using inheritance to build a window",
+    "local": "pbugp92.htm",
+    "id": "b0098"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 12  Working with Controls",
+    "local": "pbugp93.htm",
+    "id": "b0099"
+  },
+  {
+    "level": 4,
+    "title": "About controls",
+    "local": "pbugp94.htm",
+    "id": "b0100"
+  },
+  {
+    "level": 4,
+    "title": "Inserting controls in a window",
+    "local": "pbugp95.htm",
+    "id": "b0101"
+  },
+  {
+    "level": 4,
+    "title": "Selecting controls",
+    "local": "pbugp96.htm",
+    "id": "b0102"
+  },
+  {
+    "level": 4,
+    "title": "Defining a control's properties",
+    "local": "pbugp97.htm",
+    "id": "b0103"
+  },
+  {
+    "level": 4,
+    "title": "Naming controls",
+    "local": "pbugp98.htm",
+    "id": "b0104"
+  },
+  {
+    "level": 4,
+    "title": "Changing text",
+    "local": "pbugp99.htm",
+    "id": "b0105"
+  },
+  {
+    "level": 4,
+    "title": "Moving and resizing controls",
+    "local": "pbugp100.htm",
+    "id": "b0106"
+  },
+  {
+    "level": 4,
+    "title": "Copying controls",
+    "local": "pbugp101.htm",
+    "id": "b0107"
+  },
+  {
+    "level": 4,
+    "title": "Defining the tab order",
+    "local": "pbugp102.htm",
+    "id": "b0108"
+  },
+  {
+    "level": 4,
+    "title": "Defining accelerator keys",
+    "local": "pbugp103.htm",
+    "id": "b0109"
+  },
+  {
+    "level": 4,
+    "title": "Specifying accessibility of controls",
+    "local": "pbugp104.htm",
+    "id": "b0110"
+  },
+  {
+    "level": 4,
+    "title": "Choosing colors",
+    "local": "pbugp105.htm",
+    "id": "b0111"
+  },
+  {
+    "level": 4,
+    "title": "Using the 3D look",
+    "local": "pbugp106.htm",
+    "id": "b0112"
+  },
+  {
+    "level": 4,
+    "title": "Using the individual controls",
+    "local": "pbugp107.htm",
+    "id": "b0113"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 13  Understanding Inheritance",
+    "local": "pbugp108.htm",
+    "id": "b0114"
+  },
+  {
+    "level": 4,
+    "title": "About inheritance",
+    "local": "pbugp109.htm",
+    "id": "b0115"
+  },
+  {
+    "level": 4,
+    "title": "Creating new objects using inheritance",
+    "local": "pbugp110.htm",
+    "id": "b0116"
+  },
+  {
+    "level": 4,
+    "title": "The inheritance hierarchy",
+    "local": "pbugp111.htm",
+    "id": "b0117"
+  },
+  {
+    "level": 4,
+    "title": "Browsing the class hierarchy",
+    "local": "pbugp112.htm",
+    "id": "b0118"
+  },
+  {
+    "level": 4,
+    "title": "Working with inherited objects",
+    "local": "pbugp113.htm",
+    "id": "b0119"
+  },
+  {
+    "level": 4,
+    "title": "Using inherited scripts",
+    "local": "pbugp114.htm",
+    "id": "b0120"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 14  Working with Menus and Toolbars",
+    "local": "pbugp115.htm",
+    "id": "b0121"
+  },
+  {
+    "level": 4,
+    "title": "Menus and menu items",
+    "local": "pbugp116.htm",
+    "id": "b0122"
+  },
+  {
+    "level": 4,
+    "title": "Using the Menu painter",
+    "local": "pbugp117.htm",
+    "id": "b0123"
+  },
+  {
+    "level": 4,
+    "title": "Building a new menu",
+    "local": "pbugp118.htm",
+    "id": "b0124"
+  },
+  {
+    "level": 4,
+    "title": "Defining the appearance and behavior of menu items",
+    "local": "pbugp119.htm",
+    "id": "b0125"
+  },
+  {
+    "level": 4,
+    "title": "Providing toolbars",
+    "local": "pbugp120.htm",
+    "id": "b0126"
+  },
+  {
+    "level": 4,
+    "title": "Writing scripts for menu items",
+    "local": "pbugp121.htm",
+    "id": "b0127"
+  },
+  {
+    "level": 4,
+    "title": "Using inheritance to build a menu",
+    "local": "pbugp122.htm",
+    "id": "b0128"
+  },
+  {
+    "level": 4,
+    "title": "Using menus in your applications",
+    "local": "pbugp123.htm",
+    "id": "b0129"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 15  Working with User Objects",
+    "local": "pbugp124.htm",
+    "id": "b0130"
+  },
+  {
+    "level": 4,
+    "title": "About user objects",
+    "local": "pbugp125.htm",
+    "id": "b0131"
+  },
+  {
+    "level": 4,
+    "title": "About the User Object painter",
+    "local": "pbugp126.htm",
+    "id": "b0132"
+  },
+  {
+    "level": 4,
+    "title": "Building a new user object",
+    "local": "pbugp127.htm",
+    "id": "b0133"
+  },
+  {
+    "level": 4,
+    "title": "Using inheritance to build user objects",
+    "local": "pbugp128.htm",
+    "id": "b0134"
+  },
+  {
+    "level": 4,
+    "title": "Using user objects",
+    "local": "pbugp129.htm",
+    "id": "b0135"
+  },
+  {
+    "level": 4,
+    "title": "Communicating between a window and a user object",
+    "local": "pbugp130.htm",
+    "id": "b0136"
+  },
+  {
+    "level": 2,
+    "title": "Working with Databases",
+    "local": "",
+    "id": "b0137"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 16  Managing the Database",
+    "local": "pbugp131.htm",
+    "id": "b0138"
+  },
+  {
+    "level": 4,
+    "title": "Working with database components",
+    "local": "pbugp132.htm",
+    "id": "b0139"
+  },
+  {
+    "level": 4,
+    "title": "Managing databases",
+    "local": "pbugp133.htm",
+    "id": "b0140"
+  },
+  {
+    "level": 4,
+    "title": "Using the Database painter",
+    "local": "pbugp134.htm",
+    "id": "b0141"
+  },
+  {
+    "level": 4,
+    "title": "Creating and deleting an Adaptive Server Anywhere database",
+    "local": "pbugp135.htm",
+    "id": "b0142"
+  },
+  {
+    "level": 4,
+    "title": "Working with tables",
+    "local": "pbugp136.htm",
+    "id": "b0143"
+  },
+  {
+    "level": 4,
+    "title": "Working with keys",
+    "local": "pbugp137.htm",
+    "id": "b0144"
+  },
+  {
+    "level": 4,
+    "title": "Working with indexes",
+    "local": "pbugp138.htm",
+    "id": "b0145"
+  },
+  {
+    "level": 4,
+    "title": "Working with database views",
+    "local": "pbugp139.htm",
+    "id": "b0146"
+  },
+  {
+    "level": 4,
+    "title": "Manipulating data",
+    "local": "pbugp140.htm",
+    "id": "b0147"
+  },
+  {
+    "level": 4,
+    "title": "Creating and executing SQL statements",
+    "local": "pbugp141.htm",
+    "id": "b0148"
+  },
+  {
+    "level": 4,
+    "title": "Controlling access to the current database",
+    "local": "pbugp142.htm",
+    "id": "b0149"
+  },
+  {
+    "level": 4,
+    "title": "Adding objects for MobiLink synchronization",
+    "local": "pbugp143.htm",
+    "id": "b0150"
+  },
+  {
+    "level": 4,
+    "title": "Managing MobiLink synchronization on the server",
+    "local": "pbugp144.htm",
+    "id": "b0151"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 17  Working with Data Pipelines",
+    "local": "pbugp145.htm",
+    "id": "b0152"
+  },
+  {
+    "level": 4,
+    "title": "About data pipelines",
+    "local": "pbugp146.htm",
+    "id": "b0153"
+  },
+  {
+    "level": 4,
+    "title": "Creating a data pipeline",
+    "local": "pbugp147.htm",
+    "id": "b0154"
+  },
+  {
+    "level": 4,
+    "title": "Modifying the data pipeline definition",
+    "local": "pbugp148.htm",
+    "id": "b0155"
+  },
+  {
+    "level": 4,
+    "title": "Correcting pipeline errors",
+    "local": "pbugp149.htm",
+    "id": "b0156"
+  },
+  {
+    "level": 4,
+    "title": "Saving a pipeline",
+    "local": "pbugp150.htm",
+    "id": "b0157"
+  },
+  {
+    "level": 4,
+    "title": "Using an existing pipeline",
+    "local": "pbugp151.htm",
+    "id": "b0158"
+  },
+  {
+    "level": 4,
+    "title": "Pipeline examples",
+    "local": "pbugp152.htm",
+    "id": "b0159"
+  },
+  {
+    "level": 2,
+    "title": "Working with DataWindows",
+    "local": "",
+    "id": "b0160"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 18  Defining DataWindow Objects",
+    "local": "pbugp153.htm",
+    "id": "b0161"
+  },
+  {
+    "level": 4,
+    "title": "About DataWindow objects",
+    "local": "pbugp154.htm",
+    "id": "b0162"
+  },
+  {
+    "level": 4,
+    "title": "Choosing a presentation style",
+    "local": "pbugp155.htm",
+    "id": "b0163"
+  },
+  {
+    "level": 4,
+    "title": "Building a DataWindow object",
+    "local": "pbugp156.htm",
+    "id": "b0164"
+  },
+  {
+    "level": 4,
+    "title": "Selecting a data source",
+    "local": "pbugp157.htm",
+    "id": "b0165"
+  },
+  {
+    "level": 4,
+    "title": "Using Quick Select",
+    "local": "pbugp158.htm",
+    "id": "b0166"
+  },
+  {
+    "level": 4,
+    "title": "Using SQL Select",
+    "local": "pbugp159.htm",
+    "id": "b0167"
+  },
+  {
+    "level": 4,
+    "title": "Using Query",
+    "local": "pbugp160.htm",
+    "id": "b0168"
+  },
+  {
+    "level": 4,
+    "title": "Using External",
+    "local": "pbugp161.htm",
+    "id": "b0169"
+  },
+  {
+    "level": 4,
+    "title": "Using Stored Procedure",
+    "local": "pbugp162.htm",
+    "id": "b0170"
+  },
+  {
+    "level": 4,
+    "title": "Choosing DataWindow object-wide options",
+    "local": "pbugp163.htm",
+    "id": "b0171"
+  },
+  {
+    "level": 4,
+    "title": "Generating and saving a DataWindow object",
+    "local": "pbugp164.htm",
+    "id": "b0172"
+  },
+  {
+    "level": 4,
+    "title": "Defining queries",
+    "local": "pbugp165.htm",
+    "id": "b0173"
+  },
+  {
+    "level": 4,
+    "title": "What's next",
+    "local": "pbugp166.htm",
+    "id": "b0174"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 19  Enhancing DataWindow Objects",
+    "local": "pbugp167.htm",
+    "id": "b0175"
+  },
+  {
+    "level": 4,
+    "title": "Working in the DataWindow painter",
+    "local": "pbugp168.htm",
+    "id": "b0176"
+  },
+  {
+    "level": 4,
+    "title": "Using the Preview view of a DataWindow object",
+    "local": "pbugp169.htm",
+    "id": "b0177"
+  },
+  {
+    "level": 4,
+    "title": "Saving data in an external file",
+    "local": "pbugp170.htm",
+    "id": "b0178"
+  },
+  {
+    "level": 4,
+    "title": "Modifying general DataWindow object properties",
+    "local": "pbugp171.htm",
+    "id": "b0179"
+  },
+  {
+    "level": 4,
+    "title": "Storing data in a DataWindow object using the Data view",
+    "local": "pbugp172.htm",
+    "id": "b0180"
+  },
+  {
+    "level": 4,
+    "title": "Retrieving data",
+    "local": "pbugp173.htm",
+    "id": "b0181"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 20  Working with Controls in DataWindow Objects",
+    "local": "pbugp174.htm",
+    "id": "b0182"
+  },
+  {
+    "level": 4,
+    "title": "Adding controls to a DataWindow object",
+    "local": "pbugp175.htm",
+    "id": "b0183"
+  },
+  {
+    "level": 4,
+    "title": "Reorganizing controls in a DataWindow object",
+    "local": "pbugp176.htm",
+    "id": "b0184"
+  },
+  {
+    "level": 4,
+    "title": "Positioning controls in a DataWindow object",
+    "local": "pbugp177.htm",
+    "id": "b0185"
+  },
+  {
+    "level": 4,
+    "title": "Rotating controls in a DataWindow object",
+    "local": "pbugp178.htm",
+    "id": "b0186"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 21  Controlling Updates in DataWindow Objects",
+    "local": "pbugp179.htm",
+    "id": "b0187"
+  },
+  {
+    "level": 4,
+    "title": "About controlling updates",
+    "local": "pbugp180.htm",
+    "id": "b0188"
+  },
+  {
+    "level": 4,
+    "title": "Specifying the table to update",
+    "local": "pbugp181.htm",
+    "id": "b0189"
+  },
+  {
+    "level": 4,
+    "title": "Specifying the unique key columns",
+    "local": "pbugp182.htm",
+    "id": "b0190"
+  },
+  {
+    "level": 4,
+    "title": "Specifying an identity column",
+    "local": "pbugp183.htm",
+    "id": "b0191"
+  },
+  {
+    "level": 4,
+    "title": "Specifying updatable columns",
+    "local": "pbugp184.htm",
+    "id": "b0192"
+  },
+  {
+    "level": 4,
+    "title": "Specifying the WHERE clause for update/delete",
+    "local": "pbugp185.htm",
+    "id": "b0193"
+  },
+  {
+    "level": 4,
+    "title": "Specifying update when key is modified",
+    "local": "pbugp186.htm",
+    "id": "b0194"
+  },
+  {
+    "level": 4,
+    "title": "Using stored procedures to update the database",
+    "local": "pbugp187.htm",
+    "id": "b0195"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 22  Displaying and Validating Data",
+    "local": "pbugp188.htm",
+    "id": "b0196"
+  },
+  {
+    "level": 4,
+    "title": "About displaying and validating data",
+    "local": "pbugp189.htm",
+    "id": "b0197"
+  },
+  {
+    "level": 4,
+    "title": "About display formats",
+    "local": "pbugp190.htm",
+    "id": "b0198"
+  },
+  {
+    "level": 4,
+    "title": "Working with display formats",
+    "local": "pbugp191.htm",
+    "id": "b0199"
+  },
+  {
+    "level": 4,
+    "title": "Defining display formats",
+    "local": "pbugp192.htm",
+    "id": "b0200"
+  },
+  {
+    "level": 4,
+    "title": "About edit styles",
+    "local": "pbugp193.htm",
+    "id": "b0201"
+  },
+  {
+    "level": 4,
+    "title": "Working with edit styles",
+    "local": "pbugp194.htm",
+    "id": "b0202"
+  },
+  {
+    "level": 4,
+    "title": "Defining edit styles",
+    "local": "pbugp195.htm",
+    "id": "b0203"
+  },
+  {
+    "level": 4,
+    "title": "Defining a code table",
+    "local": "pbugp196.htm",
+    "id": "b0204"
+  },
+  {
+    "level": 4,
+    "title": "About validation rules",
+    "local": "pbugp197.htm",
+    "id": "b0205"
+  },
+  {
+    "level": 4,
+    "title": "Working with validation rules",
+    "local": "pbugp198.htm",
+    "id": "b0206"
+  },
+  {
+    "level": 4,
+    "title": "Defining validation rules",
+    "local": "pbugp199.htm",
+    "id": "b0207"
+  },
+  {
+    "level": 4,
+    "title": "How to maintain extended attributes",
+    "local": "pbugp200.htm",
+    "id": "b0208"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 23  Filtering, Sorting, and Grouping Rows",
+    "local": "pbugp201.htm",
+    "id": "b0209"
+  },
+  {
+    "level": 4,
+    "title": "Filtering rows",
+    "local": "pbugp202.htm",
+    "id": "b0210"
+  },
+  {
+    "level": 4,
+    "title": "Sorting rows",
+    "local": "pbugp203.htm",
+    "id": "b0211"
+  },
+  {
+    "level": 4,
+    "title": "Grouping rows",
+    "local": "pbugp204.htm",
+    "id": "b0212"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 24  Highlighting Information in DataWindow Objects",
+    "local": "pbugp205.htm",
+    "id": "b0213"
+  },
+  {
+    "level": 4,
+    "title": "Highlighting information",
+    "local": "pbugp206.htm",
+    "id": "b0214"
+  },
+  {
+    "level": 4,
+    "title": "Modifying properties conditionally at runtime",
+    "local": "pbugp207.htm",
+    "id": "b0215"
+  },
+  {
+    "level": 4,
+    "title": "Supplying property values",
+    "local": "pbugp208.htm",
+    "id": "b0216"
+  },
+  {
+    "level": 4,
+    "title": "Specifying colors",
+    "local": "pbugp209.htm",
+    "id": "b0217"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 25  Using Nested Reports",
+    "local": "pbugp210.htm",
+    "id": "b0218"
+  },
+  {
+    "level": 4,
+    "title": "About nested reports",
+    "local": "pbugp211.htm",
+    "id": "b0219"
+  },
+  {
+    "level": 4,
+    "title": "Creating a report using the Composite presentation style",
+    "local": "pbugp212.htm",
+    "id": "b0220"
+  },
+  {
+    "level": 4,
+    "title": "Placing a nested report in another report",
+    "local": "pbugp213.htm",
+    "id": "b0221"
+  },
+  {
+    "level": 4,
+    "title": "Working with nested reports",
+    "local": "pbugp214.htm",
+    "id": "b0222"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 26  Working with Graphs",
+    "local": "pbugp215.htm",
+    "id": "b0223"
+  },
+  {
+    "level": 4,
+    "title": "About graphs",
+    "local": "pbugp216.htm",
+    "id": "b0224"
+  },
+  {
+    "level": 4,
+    "title": "Using graphs in DataWindow objects",
+    "local": "pbugp217.htm",
+    "id": "b0225"
+  },
+  {
+    "level": 4,
+    "title": "Using the Graph presentation style",
+    "local": "pbugp218.htm",
+    "id": "b0226"
+  },
+  {
+    "level": 4,
+    "title": "Defining a graph's properties",
+    "local": "pbugp219.htm",
+    "id": "b0227"
+  },
+  {
+    "level": 4,
+    "title": "Using graphs in windows",
+    "local": "pbugp220.htm",
+    "id": "b0228"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 27  Working with Crosstabs",
+    "local": "pbugp221.htm",
+    "id": "b0229"
+  },
+  {
+    "level": 4,
+    "title": "About crosstabs",
+    "local": "pbugp222.htm",
+    "id": "b0230"
+  },
+  {
+    "level": 4,
+    "title": "Creating crosstabs",
+    "local": "pbugp223.htm",
+    "id": "b0231"
+  },
+  {
+    "level": 4,
+    "title": "Associating data with a crosstab",
+    "local": "pbugp224.htm",
+    "id": "b0232"
+  },
+  {
+    "level": 4,
+    "title": "Previewing crosstabs",
+    "local": "pbugp225.htm",
+    "id": "b0233"
+  },
+  {
+    "level": 4,
+    "title": "Enhancing crosstabs",
+    "local": "pbugp226.htm",
+    "id": "b0234"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 28  Working with TreeViews",
+    "local": "pbugp227.htm",
+    "id": "b0235"
+  },
+  {
+    "level": 4,
+    "title": "TreeView presentation style",
+    "local": "pbugp228.htm",
+    "id": "b0236"
+  },
+  {
+    "level": 4,
+    "title": "Creating a new TreeView DataWindow",
+    "local": "pbugp229.htm",
+    "id": "b0237"
+  },
+  {
+    "level": 4,
+    "title": "Adding and deleting TreeView levels",
+    "local": "pbugp230.htm",
+    "id": "b0238"
+  },
+  {
+    "level": 4,
+    "title": "Selecting a tree node and navigating the tree",
+    "local": "pbugp231.htm",
+    "id": "b0239"
+  },
+  {
+    "level": 4,
+    "title": "Sorting rows in a TreeView DataWindow",
+    "local": "pbugp232.htm",
+    "id": "b0240"
+  },
+  {
+    "level": 4,
+    "title": "TreeView DataWindow Design view",
+    "local": "pbugp233.htm",
+    "id": "b0241"
+  },
+  {
+    "level": 4,
+    "title": "Setting properties for the TreeView DataWindow",
+    "local": "pbugp234.htm",
+    "id": "b0242"
+  },
+  {
+    "level": 4,
+    "title": "TreeView DataWindow samples",
+    "local": "pbugp235.htm",
+    "id": "b0243"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 29  Exporting and Importing XML Data",
+    "local": "pbugp236.htm",
+    "id": "b0244"
+  },
+  {
+    "level": 4,
+    "title": "About XML",
+    "local": "pbugp237.htm",
+    "id": "b0245"
+  },
+  {
+    "level": 4,
+    "title": "XML support in the DataWindow painter",
+    "local": "pbugp238.htm",
+    "id": "b0246"
+  },
+  {
+    "level": 4,
+    "title": "The Export/Import Template view for XML",
+    "local": "pbugp239.htm",
+    "id": "b0247"
+  },
+  {
+    "level": 4,
+    "title": "Editing XML templates",
+    "local": "pbugp240.htm",
+    "id": "b0248"
+  },
+  {
+    "level": 4,
+    "title": "Exporting to XML",
+    "local": "pbugp241.htm",
+    "id": "b0249"
+  },
+  {
+    "level": 4,
+    "title": "Importing XML",
+    "local": "pbugp242.htm",
+    "id": "b0250"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 30  Working with Rich Text",
+    "local": "pbugp243.htm",
+    "id": "b0251"
+  },
+  {
+    "level": 4,
+    "title": "About rich text",
+    "local": "pbugp244.htm",
+    "id": "b0252"
+  },
+  {
+    "level": 4,
+    "title": "Using the RichText presentation style",
+    "local": "pbugp245.htm",
+    "id": "b0253"
+  },
+  {
+    "level": 4,
+    "title": "Using the RichTextEdit control",
+    "local": "pbugp246.htm",
+    "id": "b0254"
+  },
+  {
+    "level": 4,
+    "title": "Formatting keys and toolbars",
+    "local": "pbugp247.htm",
+    "id": "b0255"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 31  Using OLE in a DataWindow Object",
+    "local": "pbugp248.htm",
+    "id": "b0256"
+  },
+  {
+    "level": 4,
+    "title": "About using OLE in DataWindow objects",
+    "local": "pbugp249.htm",
+    "id": "b0257"
+  },
+  {
+    "level": 4,
+    "title": "OLE objects and the OLE presentation style",
+    "local": "pbugp250.htm",
+    "id": "b0258"
+  },
+  {
+    "level": 4,
+    "title": "Using OLE columns in a DataWindow object",
+    "local": "pbugp251.htm",
+    "id": "b0259"
+  },
+  {
+    "level": 2,
+    "title": "Running Your Application",
+    "local": "",
+    "id": "b0260"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 32  Debugging and Running Applications",
+    "local": "pbugp252.htm",
+    "id": "b0261"
+  },
+  {
+    "level": 4,
+    "title": "Overview of debugging and running applications",
+    "local": "pbugp253.htm",
+    "id": "b0262"
+  },
+  {
+    "level": 4,
+    "title": "Debugging an application",
+    "local": "pbugp254.htm",
+    "id": "b0263"
+  },
+  {
+    "level": 4,
+    "title": "Running an application",
+    "local": "pbugp255.htm",
+    "id": "b0264"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 33  Tracing and Profiling Applications",
+    "local": "pbugp256.htm",
+    "id": "b0265"
+  },
+  {
+    "level": 4,
+    "title": "About tracing and profiling an application",
+    "local": "pbugp257.htm",
+    "id": "b0266"
+  },
+  {
+    "level": 4,
+    "title": "Collecting trace information",
+    "local": "pbugp258.htm",
+    "id": "b0267"
+  },
+  {
+    "level": 4,
+    "title": "Analyzing trace information using profiling tools",
+    "local": "pbugp259.htm",
+    "id": "b0268"
+  },
+  {
+    "level": 4,
+    "title": "Analyzing trace information programmatically",
+    "local": "pbugp260.htm",
+    "id": "b0269"
+  },
+  {
+    "level": 4,
+    "title": "Generating a trace file without timing information",
+    "local": "pbugp261.htm",
+    "id": "b0270"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 34  Creating Executables and Components",
+    "local": "pbugp262.htm",
+    "id": "b0271"
+  },
+  {
+    "level": 4,
+    "title": "About building PowerBuilder targets",
+    "local": "pbugp263.htm",
+    "id": "b0272"
+  },
+  {
+    "level": 4,
+    "title": "Creating a project",
+    "local": "pbugp264.htm",
+    "id": "b0273"
+  },
+  {
+    "level": 4,
+    "title": "Defining an executable application project",
+    "local": "pbugp265.htm",
+    "id": "b0274"
+  },
+  {
+    "level": 4,
+    "title": "Using dynamic libraries",
+    "local": "pbugp266.htm",
+    "id": "b0275"
+  },
+  {
+    "level": 4,
+    "title": "Distributing resources",
+    "local": "pbugp267.htm",
+    "id": "b0276"
+  },
+  {
+    "level": 4,
+    "title": "Tracing execution",
+    "local": "pbugp268.htm",
+    "id": "b0277"
+  },
+  {
+    "level": 4,
+    "title": "Building an executable file and dynamic libraries",
+    "local": "pbugp269.htm",
+    "id": "b0278"
+  },
+  {
+    "level": 4,
+    "title": "Building components and proxies",
+    "local": "pbugp270.htm",
+    "id": "b0279"
+  },
+  {
+    "level": 2,
+    "title": "Appendixes",
+    "local": "",
+    "id": "b0280"
+  },
+  {
+    "level": 3,
+    "title": "Appendix A  The Extended Attribute System Tables",
+    "local": "pbugp271.htm",
+    "id": "b0281"
+  },
+  {
+    "level": 4,
+    "title": "About the extended attribute system tables",
+    "local": "pbugp272.htm",
+    "id": "b0282"
+  },
+  {
+    "level": 4,
+    "title": "The extended attribute system tables",
+    "local": "pbugp273.htm",
+    "id": "b0283"
+  },
+  {
+    "level": 3,
+    "title": "Appendix B  The OrcaScript Language",
+    "local": "pbugp275.htm",
+    "id": "b0284"
+  },
+  {
+    "level": 4,
+    "title": "About OrcaScript",
+    "local": "pbugp276.htm",
+    "id": "b0285"
+  },
+  {
+    "level": 4,
+    "title": "OrcaScript Commands",
+    "local": "pbugp277.htm",
+    "id": "b0286"
+  },
+  {
+    "level": 4,
+    "title": "Usage notes for OrcaScript commands and parameters",
+    "local": "pbugp278.htm",
+    "id": "b0287"
+  },
+  {
+    "level": 1,
+    "title": "Application Techniques",
+    "local": "",
+    "id": "b0288"
+  },
+  {
+    "level": 2,
+    "title": "About This Book",
+    "local": "apptechp1.htm",
+    "id": "b0289"
+  },
+  {
+    "level": 2,
+    "title": "Sample Applications",
+    "local": "",
+    "id": "b0290"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 1  Using Sample Applications",
+    "local": "apptechp2.htm",
+    "id": "b0291"
+  },
+  {
+    "level": 4,
+    "title": "About the sample applications",
+    "local": "apptechp3.htm",
+    "id": "b0292"
+  },
+  {
+    "level": 4,
+    "title": "Installing the sample applications",
+    "local": "apptechp4.htm",
+    "id": "b0293"
+  },
+  {
+    "level": 4,
+    "title": "Opening the sample applications",
+    "local": "apptechp5.htm",
+    "id": "b0294"
+  },
+  {
+    "level": 4,
+    "title": "Using the Code Examples application",
+    "local": "apptechp6.htm",
+    "id": "b0295"
+  },
+  {
+    "level": 2,
+    "title": "Language Techniques",
+    "local": "",
+    "id": "b0296"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 2  Selected Object-Oriented Programming Topics",
+    "local": "apptechp7.htm",
+    "id": "b0297"
+  },
+  {
+    "level": 4,
+    "title": "Terminology review",
+    "local": "apptechp8.htm",
+    "id": "b0298"
+  },
+  {
+    "level": 4,
+    "title": "PowerBuilder techniques",
+    "local": "apptechp9.htm",
+    "id": "b0299"
+  },
+  {
+    "level": 4,
+    "title": "Other techniques",
+    "local": "apptechp10.htm",
+    "id": "b0300"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 3  Selected PowerScript Topics",
+    "local": "apptechp11.htm",
+    "id": "b0301"
+  },
+  {
+    "level": 4,
+    "title": "Dot notation",
+    "local": "apptechp12.htm",
+    "id": "b0302"
+  },
+  {
+    "level": 4,
+    "title": "Constant declarations",
+    "local": "apptechp13.htm",
+    "id": "b0303"
+  },
+  {
+    "level": 4,
+    "title": "Controlling access for instance variables",
+    "local": "apptechp14.htm",
+    "id": "b0304"
+  },
+  {
+    "level": 4,
+    "title": "Resolving naming conflicts",
+    "local": "apptechp15.htm",
+    "id": "b0305"
+  },
+  {
+    "level": 4,
+    "title": "Return values from ancestor scripts",
+    "local": "apptechp16.htm",
+    "id": "b0306"
+  },
+  {
+    "level": 4,
+    "title": "Types of arguments for functions and events",
+    "local": "apptechp17.htm",
+    "id": "b0307"
+  },
+  {
+    "level": 4,
+    "title": "Ancestor and descendent variables",
+    "local": "apptechp18.htm",
+    "id": "b0308"
+  },
+  {
+    "level": 4,
+    "title": "Optimizing expressions for DataWindow and external objects",
+    "local": "apptechp19.htm",
+    "id": "b0309"
+  },
+  {
+    "level": 4,
+    "title": "Exception handling in PowerBuilder",
+    "local": "apptechp20.htm",
+    "id": "b0310"
+  },
+  {
+    "level": 4,
+    "title": "Garbage collection and memory management",
+    "local": "apptechp21.htm",
+    "id": "b0311"
+  },
+  {
+    "level": 4,
+    "title": "Efficient compiling and performance",
+    "local": "apptechp22.htm",
+    "id": "b0312"
+  },
+  {
+    "level": 4,
+    "title": "Reading and writing text or binary files",
+    "local": "apptechp23.htm",
+    "id": "b0313"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 4  Getting Information About PowerBuilder Class Definitions",
+    "local": "apptechp24.htm",
+    "id": "b0314"
+  },
+  {
+    "level": 4,
+    "title": "Overview of class definition information",
+    "local": "apptechp25.htm",
+    "id": "b0315"
+  },
+  {
+    "level": 4,
+    "title": "Examining a class definition",
+    "local": "apptechp26.htm",
+    "id": "b0316"
+  },
+  {
+    "level": 2,
+    "title": "User Interface Techniques",
+    "local": "",
+    "id": "b0317"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 5  Building an MDI Application",
+    "local": "apptechp27.htm",
+    "id": "b0318"
+  },
+  {
+    "level": 4,
+    "title": "About MDI",
+    "local": "apptechp28.htm",
+    "id": "b0319"
+  },
+  {
+    "level": 4,
+    "title": "Building an MDI frame window",
+    "local": "apptechp29.htm",
+    "id": "b0320"
+  },
+  {
+    "level": 4,
+    "title": "Using sheets",
+    "local": "apptechp30.htm",
+    "id": "b0321"
+  },
+  {
+    "level": 4,
+    "title": "Providing MicroHelp",
+    "local": "apptechp31.htm",
+    "id": "b0322"
+  },
+  {
+    "level": 4,
+    "title": "Using toolbars in MDI applications",
+    "local": "apptechp32.htm",
+    "id": "b0323"
+  },
+  {
+    "level": 4,
+    "title": "Sizing the client area",
+    "local": "apptechp33.htm",
+    "id": "b0324"
+  },
+  {
+    "level": 4,
+    "title": "About keyboard support in MDI applications",
+    "local": "apptechp34.htm",
+    "id": "b0325"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 6  Managing Window Instances",
+    "local": "apptechp35.htm",
+    "id": "b0326"
+  },
+  {
+    "level": 4,
+    "title": "About window instances",
+    "local": "apptechp36.htm",
+    "id": "b0327"
+  },
+  {
+    "level": 4,
+    "title": "Declaring instances of windows",
+    "local": "apptechp37.htm",
+    "id": "b0328"
+  },
+  {
+    "level": 4,
+    "title": "Using window arrays",
+    "local": "apptechp38.htm",
+    "id": "b0329"
+  },
+  {
+    "level": 4,
+    "title": "Referencing entities in descendants",
+    "local": "apptechp39.htm",
+    "id": "b0330"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 7  Using Tab Controls in a Window",
+    "local": "apptechp40.htm",
+    "id": "b0331"
+  },
+  {
+    "level": 4,
+    "title": "About Tab controls",
+    "local": "apptechp41.htm",
+    "id": "b0332"
+  },
+  {
+    "level": 4,
+    "title": "Defining and managing tab pages",
+    "local": "apptechp42.htm",
+    "id": "b0333"
+  },
+  {
+    "level": 4,
+    "title": "Customizing the Tab control",
+    "local": "apptechp43.htm",
+    "id": "b0334"
+  },
+  {
+    "level": 4,
+    "title": "Using Tab controls in scripts",
+    "local": "apptechp44.htm",
+    "id": "b0335"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 8  Using TreeView Controls",
+    "local": "apptechp45.htm",
+    "id": "b0336"
+  },
+  {
+    "level": 4,
+    "title": "About TreeView controls",
+    "local": "apptechp46.htm",
+    "id": "b0337"
+  },
+  {
+    "level": 4,
+    "title": "Populating TreeViews",
+    "local": "apptechp47.htm",
+    "id": "b0338"
+  },
+  {
+    "level": 4,
+    "title": "Managing TreeView items",
+    "local": "apptechp48.htm",
+    "id": "b0339"
+  },
+  {
+    "level": 4,
+    "title": "Managing TreeView pictures",
+    "local": "apptechp49.htm",
+    "id": "b0340"
+  },
+  {
+    "level": 4,
+    "title": "Using DataWindow information to populate a TreeView",
+    "local": "apptechp50.htm",
+    "id": "b0341"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 9  Using Lists in a Window",
+    "local": "apptechp51.htm",
+    "id": "b0342"
+  },
+  {
+    "level": 4,
+    "title": "About presenting lists",
+    "local": "apptechp52.htm",
+    "id": "b0343"
+  },
+  {
+    "level": 4,
+    "title": "Using lists",
+    "local": "apptechp53.htm",
+    "id": "b0344"
+  },
+  {
+    "level": 4,
+    "title": "Using drop-down lists",
+    "local": "apptechp54.htm",
+    "id": "b0345"
+  },
+  {
+    "level": 4,
+    "title": "Using ListView controls",
+    "local": "apptechp55.htm",
+    "id": "b0346"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 10  Using Drag and Drop in a Window",
+    "local": "apptechp56.htm",
+    "id": "b0347"
+  },
+  {
+    "level": 4,
+    "title": "About drag and drop",
+    "local": "apptechp57.htm",
+    "id": "b0348"
+  },
+  {
+    "level": 4,
+    "title": "Drag-and-drop properties, events, and functions",
+    "local": "apptechp58.htm",
+    "id": "b0349"
+  },
+  {
+    "level": 4,
+    "title": "Identifying the dragged control",
+    "local": "apptechp59.htm",
+    "id": "b0350"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 11  Providing Online Help for an Application",
+    "local": "apptechp60.htm",
+    "id": "b0351"
+  },
+  {
+    "level": 4,
+    "title": "Creating Help files",
+    "local": "apptechp61.htm",
+    "id": "b0352"
+  },
+  {
+    "level": 4,
+    "title": "Providing online Help for developers",
+    "local": "apptechp62.htm",
+    "id": "b0353"
+  },
+  {
+    "level": 4,
+    "title": "Providing online Help for users",
+    "local": "apptechp63.htm",
+    "id": "b0354"
+  },
+  {
+    "level": 2,
+    "title": "Data Access Techniques",
+    "local": "",
+    "id": "b0355"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 12  Using Transaction Objects",
+    "local": "apptechp64.htm",
+    "id": "b0356"
+  },
+  {
+    "level": 4,
+    "title": "About Transaction objects",
+    "local": "apptechp65.htm",
+    "id": "b0357"
+  },
+  {
+    "level": 4,
+    "title": "Working with Transaction objects",
+    "local": "apptechp66.htm",
+    "id": "b0358"
+  },
+  {
+    "level": 4,
+    "title": "Using Transaction objects to call stored procedures",
+    "local": "apptechp67.htm",
+    "id": "b0359"
+  },
+  {
+    "level": 4,
+    "title": "Supported DBMS features when calling stored procedures",
+    "local": "apptechp68.htm",
+    "id": "b0360"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 13  Using MobiLink Synchronization",
+    "local": "apptechp69.htm",
+    "id": "b0361"
+  },
+  {
+    "level": 4,
+    "title": "About MobiLink synchronization",
+    "local": "apptechp70.htm",
+    "id": "b0362"
+  },
+  {
+    "level": 4,
+    "title": "Working with PowerBuilder synchronization objects",
+    "local": "apptechp71.htm",
+    "id": "b0363"
+  },
+  {
+    "level": 4,
+    "title": "Preparing consolidated databases",
+    "local": "apptechp72.htm",
+    "id": "b0364"
+  },
+  {
+    "level": 4,
+    "title": "Creating remote databases",
+    "local": "apptechp73.htm",
+    "id": "b0365"
+  },
+  {
+    "level": 4,
+    "title": "Synchronization techniques",
+    "local": "apptechp74.htm",
+    "id": "b0366"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 14  Using PowerBuilder XML Services",
+    "local": "apptechp75.htm",
+    "id": "b0367"
+  },
+  {
+    "level": 4,
+    "title": "About XML and PowerBuilder",
+    "local": "apptechp76.htm",
+    "id": "b0368"
+  },
+  {
+    "level": 4,
+    "title": "About PBDOM",
+    "local": "apptechp77.htm",
+    "id": "b0369"
+  },
+  {
+    "level": 4,
+    "title": "PBDOM object hierarchy",
+    "local": "apptechp78.htm",
+    "id": "b0370"
+  },
+  {
+    "level": 4,
+    "title": "PBDOM node objects",
+    "local": "apptechp79.htm",
+    "id": "b0371"
+  },
+  {
+    "level": 4,
+    "title": "Adding pbdom105.pbx to your application",
+    "local": "apptechp80.htm",
+    "id": "b0372"
+  },
+  {
+    "level": 4,
+    "title": "Using PBDOM",
+    "local": "apptechp81.htm",
+    "id": "b0373"
+  },
+  {
+    "level": 4,
+    "title": "Handling PBDOM exceptions",
+    "local": "apptechp82.htm",
+    "id": "b0374"
+  },
+  {
+    "level": 4,
+    "title": "XML namespaces",
+    "local": "apptechp83.htm",
+    "id": "b0375"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 15  Manipulating Graphs",
+    "local": "apptechp84.htm",
+    "id": "b0376"
+  },
+  {
+    "level": 4,
+    "title": "Using graphs",
+    "local": "apptechp85.htm",
+    "id": "b0377"
+  },
+  {
+    "level": 4,
+    "title": "Populating a graph with data",
+    "local": "apptechp86.htm",
+    "id": "b0378"
+  },
+  {
+    "level": 4,
+    "title": "Modifying graph properties",
+    "local": "apptechp87.htm",
+    "id": "b0379"
+  },
+  {
+    "level": 4,
+    "title": "Accessing data properties",
+    "local": "apptechp88.htm",
+    "id": "b0380"
+  },
+  {
+    "level": 4,
+    "title": "Using point and click",
+    "local": "apptechp89.htm",
+    "id": "b0381"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 16  Implementing Rich Text",
+    "local": "apptechp90.htm",
+    "id": "b0382"
+  },
+  {
+    "level": 4,
+    "title": "Using rich text in an application",
+    "local": "apptechp91.htm",
+    "id": "b0383"
+  },
+  {
+    "level": 4,
+    "title": "Using a RichText DataWindow object",
+    "local": "apptechp92.htm",
+    "id": "b0384"
+  },
+  {
+    "level": 4,
+    "title": "Using a RichTextEdit control",
+    "local": "apptechp93.htm",
+    "id": "b0385"
+  },
+  {
+    "level": 4,
+    "title": "Rich text and the end user",
+    "local": "apptechp94.htm",
+    "id": "b0386"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 17  Piping Data Between Data Sources",
+    "local": "apptechp95.htm",
+    "id": "b0387"
+  },
+  {
+    "level": 4,
+    "title": "About data pipelines",
+    "local": "apptechp96.htm",
+    "id": "b0388"
+  },
+  {
+    "level": 4,
+    "title": "Building the objects you need",
+    "local": "apptechp97.htm",
+    "id": "b0389"
+  },
+  {
+    "level": 4,
+    "title": "Performing some initial housekeeping",
+    "local": "apptechp98.htm",
+    "id": "b0390"
+  },
+  {
+    "level": 4,
+    "title": "Starting the pipeline",
+    "local": "apptechp99.htm",
+    "id": "b0391"
+  },
+  {
+    "level": 4,
+    "title": "Handling row errors",
+    "local": "apptechp100.htm",
+    "id": "b0392"
+  },
+  {
+    "level": 4,
+    "title": "Performing some final housekeeping",
+    "local": "apptechp101.htm",
+    "id": "b0393"
+  },
+  {
+    "level": 2,
+    "title": "Program Access Techniques",
+    "local": "",
+    "id": "b0394"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 18  Using DDE in an Application",
+    "local": "apptechp102.htm",
+    "id": "b0395"
+  },
+  {
+    "level": 4,
+    "title": "About DDE",
+    "local": "apptechp103.htm",
+    "id": "b0396"
+  },
+  {
+    "level": 4,
+    "title": "DDE functions and events",
+    "local": "apptechp104.htm",
+    "id": "b0397"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 19  Using OLE in an Application",
+    "local": "apptechp105.htm",
+    "id": "b0398"
+  },
+  {
+    "level": 4,
+    "title": "OLE support in PowerBuilder",
+    "local": "apptechp106.htm",
+    "id": "b0399"
+  },
+  {
+    "level": 4,
+    "title": "OLE controls in a window",
+    "local": "apptechp107.htm",
+    "id": "b0400"
+  },
+  {
+    "level": 4,
+    "title": "OLE controls and insertable objects",
+    "local": "apptechp108.htm",
+    "id": "b0401"
+  },
+  {
+    "level": 4,
+    "title": "OLE custom controls",
+    "local": "apptechp109.htm",
+    "id": "b0402"
+  },
+  {
+    "level": 4,
+    "title": "Programmable OLE Objects",
+    "local": "apptechp110.htm",
+    "id": "b0403"
+  },
+  {
+    "level": 4,
+    "title": "OLE objects in scripts",
+    "local": "apptechp111.htm",
+    "id": "b0404"
+  },
+  {
+    "level": 4,
+    "title": "OLE information in the Browser",
+    "local": "apptechp112.htm",
+    "id": "b0405"
+  },
+  {
+    "level": 4,
+    "title": "Advanced ways to manipulate OLE objects",
+    "local": "apptechp113.htm",
+    "id": "b0406"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 20  PowerBuilder Runtime Automation Server",
+    "local": "apptechp114.htm",
+    "id": "b0407"
+  },
+  {
+    "level": 4,
+    "title": "Using the runtime automation server",
+    "local": "apptechp115.htm",
+    "id": "b0408"
+  },
+  {
+    "level": 4,
+    "title": "Using a user object as an automation server",
+    "local": "apptechp116.htm",
+    "id": "b0409"
+  },
+  {
+    "level": 4,
+    "title": "Using PowerBuilder as an automation server",
+    "local": "apptechp117.htm",
+    "id": "b0410"
+  },
+  {
+    "level": 4,
+    "title": "Creating and using a named server",
+    "local": "apptechp118.htm",
+    "id": "b0411"
+  },
+  {
+    "level": 4,
+    "title": "More about user objects and the registry",
+    "local": "apptechp119.htm",
+    "id": "b0412"
+  },
+  {
+    "level": 4,
+    "title": "Deploying an application that uses the automation server",
+    "local": "apptechp120.htm",
+    "id": "b0413"
+  },
+  {
+    "level": 4,
+    "title": "Runtime automation server reference",
+    "local": "apptechp120.htm",
+    "id": "b0414"
+  },
+  {
+    "level": 4,
+    "title": "PowerBuilder.Application server object",
+    "local": "apptechp120.htm",
+    "id": "b0415"
+  },
+  {
+    "level": 4,
+    "title": "CreateObject function",
+    "local": "apptechp121.htm",
+    "id": "b0416"
+  },
+  {
+    "level": 4,
+    "title": "GenerateGUID function",
+    "local": "apptechp122.htm",
+    "id": "b0417"
+  },
+  {
+    "level": 4,
+    "title": "GenerateRegFile function",
+    "local": "apptechp123.htm",
+    "id": "b0418"
+  },
+  {
+    "level": 4,
+    "title": "GenerateTypeLib function",
+    "local": "apptechp124.htm",
+    "id": "b0419"
+  },
+  {
+    "level": 4,
+    "title": "Exception codes",
+    "local": "apptechp124.htm",
+    "id": "b0420"
+  },
+  {
+    "level": 4,
+    "title": "Sample registry update file",
+    "local": "apptechp124.htm",
+    "id": "b0421"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 21  Building a Mail-Enabled Application",
+    "local": "apptechp125.htm",
+    "id": "b0422"
+  },
+  {
+    "level": 4,
+    "title": "About MAPI",
+    "local": "apptechp126.htm",
+    "id": "b0423"
+  },
+  {
+    "level": 4,
+    "title": "Using MAPI",
+    "local": "apptechp127.htm",
+    "id": "b0424"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 22  Using External Functions and Other Processing Extensions",
+    "local": "apptechp128.htm",
+    "id": "b0425"
+  },
+  {
+    "level": 4,
+    "title": "Using external functions",
+    "local": "apptechp129.htm",
+    "id": "b0426"
+  },
+  {
+    "level": 4,
+    "title": "Using utility functions to manage information",
+    "local": "apptechp130.htm",
+    "id": "b0427"
+  },
+  {
+    "level": 4,
+    "title": "Sending Windows messages",
+    "local": "apptechp131.htm",
+    "id": "b0428"
+  },
+  {
+    "level": 4,
+    "title": "The Message object",
+    "local": "apptechp132.htm",
+    "id": "b0429"
+  },
+  {
+    "level": 4,
+    "title": "Context information",
+    "local": "apptechp133.htm",
+    "id": "b0430"
+  },
+  {
+    "level": 2,
+    "title": "Developing Distributed Applications",
+    "local": "",
+    "id": "b0431"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 23  Distributed Application Development with PowerBuilder",
+    "local": "apptechp134.htm",
+    "id": "b0432"
+  },
+  {
+    "level": 4,
+    "title": "Distributed application architecture",
+    "local": "apptechp135.htm",
+    "id": "b0433"
+  },
+  {
+    "level": 4,
+    "title": "Server support",
+    "local": "apptechp136.htm",
+    "id": "b0434"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 24  Building an EAServer Component",
+    "local": "apptechp137.htm",
+    "id": "b0435"
+  },
+  {
+    "level": 4,
+    "title": "About building an EAServer component",
+    "local": "apptechp138.htm",
+    "id": "b0436"
+  },
+  {
+    "level": 4,
+    "title": "Working with shared and service components",
+    "local": "apptechp139.htm",
+    "id": "b0437"
+  },
+  {
+    "level": 4,
+    "title": "Providing support for instance pooling",
+    "local": "apptechp140.htm",
+    "id": "b0438"
+  },
+  {
+    "level": 4,
+    "title": "Providing support for transactions",
+    "local": "apptechp141.htm",
+    "id": "b0439"
+  },
+  {
+    "level": 4,
+    "title": "Accessing a database from an EAServer component",
+    "local": "apptechp142.htm",
+    "id": "b0440"
+  },
+  {
+    "level": 4,
+    "title": "Defining the component interface",
+    "local": "apptechp143.htm",
+    "id": "b0441"
+  },
+  {
+    "level": 4,
+    "title": "Implementing an existing interface",
+    "local": "apptechp144.htm",
+    "id": "b0442"
+  },
+  {
+    "level": 4,
+    "title": "Invoking another server component's methods",
+    "local": "apptechp145.htm",
+    "id": "b0443"
+  },
+  {
+    "level": 4,
+    "title": "Accessing component properties",
+    "local": "apptechp146.htm",
+    "id": "b0444"
+  },
+  {
+    "level": 4,
+    "title": "Exposing an NVO as a Web service",
+    "local": "apptechp147.htm",
+    "id": "b0445"
+  },
+  {
+    "level": 4,
+    "title": "Testing and debugging the component",
+    "local": "apptechp148.htm",
+    "id": "b0446"
+  },
+  {
+    "level": 4,
+    "title": "Printing data",
+    "local": "apptechp149.htm",
+    "id": "b0447"
+  },
+  {
+    "level": 4,
+    "title": "Deploying a component to EAServer",
+    "local": "apptechp150.htm",
+    "id": "b0448"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 25  Building an EAServer Client",
+    "local": "apptechp151.htm",
+    "id": "b0449"
+  },
+  {
+    "level": 4,
+    "title": "About building an EAServer client",
+    "local": "apptechp152.htm",
+    "id": "b0450"
+  },
+  {
+    "level": 4,
+    "title": "Connecting to EAServer",
+    "local": "apptechp153.htm",
+    "id": "b0451"
+  },
+  {
+    "level": 4,
+    "title": "Generating EAServer proxy objects",
+    "local": "apptechp154.htm",
+    "id": "b0452"
+  },
+  {
+    "level": 4,
+    "title": "Invoking component methods",
+    "local": "apptechp155.htm",
+    "id": "b0453"
+  },
+  {
+    "level": 4,
+    "title": "Using the JaguarORB object",
+    "local": "apptechp156.htm",
+    "id": "b0454"
+  },
+  {
+    "level": 4,
+    "title": "Client- and component-demarcated transactions",
+    "local": "apptechp157.htm",
+    "id": "b0455"
+  },
+  {
+    "level": 4,
+    "title": "Requesting a message back from the server",
+    "local": "apptechp158.htm",
+    "id": "b0456"
+  },
+  {
+    "level": 4,
+    "title": "Handling errors",
+    "local": "apptechp159.htm",
+    "id": "b0457"
+  },
+  {
+    "level": 4,
+    "title": "Deploying the client application",
+    "local": "apptechp160.htm",
+    "id": "b0458"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 26  Using SSL in PowerBuilder clients",
+    "local": "apptechp161.htm",
+    "id": "b0459"
+  },
+  {
+    "level": 4,
+    "title": "Using secure connections with EAServer",
+    "local": "apptechp162.htm",
+    "id": "b0460"
+  },
+  {
+    "level": 4,
+    "title": "SSL connections in PowerBuilder",
+    "local": "apptechp163.htm",
+    "id": "b0461"
+  },
+  {
+    "level": 4,
+    "title": "Establishing a secure connection",
+    "local": "apptechp164.htm",
+    "id": "b0462"
+  },
+  {
+    "level": 4,
+    "title": "Using SSL callbacks",
+    "local": "apptechp165.htm",
+    "id": "b0463"
+  },
+  {
+    "level": 4,
+    "title": "Retrieving session security information",
+    "local": "apptechp166.htm",
+    "id": "b0464"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 27  Building a COM or COM+ Component",
+    "local": "apptechp167.htm",
+    "id": "b0465"
+  },
+  {
+    "level": 4,
+    "title": "About building COM and COM+ components",
+    "local": "apptechp168.htm",
+    "id": "b0466"
+  },
+  {
+    "level": 4,
+    "title": "About the Component Object Model",
+    "local": "apptechp169.htm",
+    "id": "b0467"
+  },
+  {
+    "level": 4,
+    "title": "Defining the component interface",
+    "local": "apptechp170.htm",
+    "id": "b0468"
+  },
+  {
+    "level": 4,
+    "title": "Accessing a database from a COM component",
+    "local": "apptechp171.htm",
+    "id": "b0469"
+  },
+  {
+    "level": 4,
+    "title": "Providing support for transactions",
+    "local": "apptechp172.htm",
+    "id": "b0470"
+  },
+  {
+    "level": 4,
+    "title": "Invoking another server component's methods",
+    "local": "apptechp173.htm",
+    "id": "b0471"
+  },
+  {
+    "level": 4,
+    "title": "Security issues",
+    "local": "apptechp174.htm",
+    "id": "b0472"
+  },
+  {
+    "level": 4,
+    "title": "Building COM/COM+ components in the Project painter",
+    "local": "apptechp175.htm",
+    "id": "b0473"
+  },
+  {
+    "level": 4,
+    "title": "How the PowerBuilder COM object executes",
+    "local": "apptechp176.htm",
+    "id": "b0474"
+  },
+  {
+    "level": 4,
+    "title": "Deploying a PowerBuilder COM server",
+    "local": "apptechp177.htm",
+    "id": "b0475"
+  },
+  {
+    "level": 4,
+    "title": "Accessing PowerBuilder COM servers from clients",
+    "local": "apptechp178.htm",
+    "id": "b0476"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 28  Building a COM or COM+ Client",
+    "local": "apptechp179.htm",
+    "id": "b0477"
+  },
+  {
+    "level": 4,
+    "title": "About building a COM or COM+ client",
+    "local": "apptechp180.htm",
+    "id": "b0478"
+  },
+  {
+    "level": 4,
+    "title": "Connecting to a COM server",
+    "local": "apptechp181.htm",
+    "id": "b0479"
+  },
+  {
+    "level": 4,
+    "title": "Interacting with the COM component",
+    "local": "apptechp182.htm",
+    "id": "b0480"
+  },
+  {
+    "level": 4,
+    "title": "Controlling transactions from a client",
+    "local": "apptechp183.htm",
+    "id": "b0481"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 29  Building an EJB client",
+    "local": "apptechp184.htm",
+    "id": "b0482"
+  },
+  {
+    "level": 4,
+    "title": "About building an EJB client",
+    "local": "apptechp185.htm",
+    "id": "b0483"
+  },
+  {
+    "level": 4,
+    "title": "Adding pbejbclient105.pbx to your application",
+    "local": "apptechp186.htm",
+    "id": "b0484"
+  },
+  {
+    "level": 4,
+    "title": "Generating EJB proxy objects",
+    "local": "apptechp187.htm",
+    "id": "b0485"
+  },
+  {
+    "level": 4,
+    "title": "Creating a Java VM",
+    "local": "apptechp188.htm",
+    "id": "b0486"
+  },
+  {
+    "level": 4,
+    "title": "Connecting to the server",
+    "local": "apptechp189.htm",
+    "id": "b0487"
+  },
+  {
+    "level": 4,
+    "title": "Invoking component methods",
+    "local": "apptechp190.htm",
+    "id": "b0488"
+  },
+  {
+    "level": 4,
+    "title": "Exception handling",
+    "local": "apptechp191.htm",
+    "id": "b0489"
+  },
+  {
+    "level": 4,
+    "title": "Client-managed transactions",
+    "local": "apptechp192.htm",
+    "id": "b0490"
+  },
+  {
+    "level": 4,
+    "title": "Debugging the client",
+    "local": "apptechp193.htm",
+    "id": "b0491"
+  },
+  {
+    "level": 2,
+    "title": "Developing Web Applications",
+    "local": "",
+    "id": "b0492"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 30  Web Application Development with PowerBuilder",
+    "local": "apptechp194.htm",
+    "id": "b0493"
+  },
+  {
+    "level": 4,
+    "title": "Building Web applications",
+    "local": "apptechp195.htm",
+    "id": "b0494"
+  },
+  {
+    "level": 4,
+    "title": "Web services",
+    "local": "apptechp196.htm",
+    "id": "b0495"
+  },
+  {
+    "level": 4,
+    "title": "Web targets",
+    "local": "apptechp197.htm",
+    "id": "b0496"
+  },
+  {
+    "level": 4,
+    "title": "JSP targets",
+    "local": "apptechp198.htm",
+    "id": "b0497"
+  },
+  {
+    "level": 4,
+    "title": "Web DataWindow",
+    "local": "apptechp199.htm",
+    "id": "b0498"
+  },
+  {
+    "level": 4,
+    "title": "DataWindow Web control for ActiveX",
+    "local": "apptechp200.htm",
+    "id": "b0499"
+  },
+  {
+    "level": 4,
+    "title": "DataWindow plug-in",
+    "local": "apptechp201.htm",
+    "id": "b0500"
+  },
+  {
+    "level": 4,
+    "title": "PowerBuilder window plug-in",
+    "local": "apptechp202.htm",
+    "id": "b0501"
+  },
+  {
+    "level": 4,
+    "title": "PowerBuilder window ActiveX",
+    "local": "apptechp203.htm",
+    "id": "b0502"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 31  Building a Web Services Client",
+    "local": "apptechp204.htm",
+    "id": "b0503"
+  },
+  {
+    "level": 4,
+    "title": "About Web services",
+    "local": "apptechp205.htm",
+    "id": "b0504"
+  },
+  {
+    "level": 4,
+    "title": "Importing objects from an extension file",
+    "local": "apptechp206.htm",
+    "id": "b0505"
+  },
+  {
+    "level": 4,
+    "title": "Generating Web service proxy objects",
+    "local": "apptechp207.htm",
+    "id": "b0506"
+  },
+  {
+    "level": 4,
+    "title": "Connecting to a SOAP server",
+    "local": "apptechp208.htm",
+    "id": "b0507"
+  },
+  {
+    "level": 4,
+    "title": "Invoking the Web service method",
+    "local": "apptechp209.htm",
+    "id": "b0508"
+  },
+  {
+    "level": 4,
+    "title": "Using .NET Web services with custom headers",
+    "local": "apptechp210.htm",
+    "id": "b0509"
+  },
+  {
+    "level": 4,
+    "title": "Exception handling",
+    "local": "apptechp211.htm",
+    "id": "b0510"
+  },
+  {
+    "level": 4,
+    "title": "Using the UDDI Inquiry API",
+    "local": "apptechp212.htm",
+    "id": "b0511"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 32  Using the DataWindow Plug-in",
+    "local": "apptechp213.htm",
+    "id": "b0512"
+  },
+  {
+    "level": 4,
+    "title": "About the DataWindow plug-in",
+    "local": "apptechp214.htm",
+    "id": "b0513"
+  },
+  {
+    "level": 4,
+    "title": "Saving a Powersoft report (PSR)",
+    "local": "apptechp215.htm",
+    "id": "b0514"
+  },
+  {
+    "level": 4,
+    "title": "Creating an HTML page",
+    "local": "apptechp216.htm",
+    "id": "b0515"
+  },
+  {
+    "level": 4,
+    "title": "Setting up the Web server",
+    "local": "apptechp217.htm",
+    "id": "b0516"
+  },
+  {
+    "level": 4,
+    "title": "Setting up users' workstations",
+    "local": "apptechp218.htm",
+    "id": "b0517"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 33  Using the PowerBuilder Window Plug-in",
+    "local": "apptechp219.htm",
+    "id": "b0518"
+  },
+  {
+    "level": 4,
+    "title": "About the PowerBuilder window plug-in",
+    "local": "apptechp220.htm",
+    "id": "b0519"
+  },
+  {
+    "level": 4,
+    "title": "Installing and configuring the PowerBuilder window plug-ins",
+    "local": "apptechp221.htm",
+    "id": "b0520"
+  },
+  {
+    "level": 4,
+    "title": "Using the secure PowerBuilder window plug-in",
+    "local": "apptechp222.htm",
+    "id": "b0521"
+  },
+  {
+    "level": 4,
+    "title": "Developing and deploying a PowerBuilder window plug-in application",
+    "local": "apptechp223.htm",
+    "id": "b0522"
+  },
+  {
+    "level": 4,
+    "title": "Creating the PowerBuilder application",
+    "local": "apptechp224.htm",
+    "id": "b0523"
+  },
+  {
+    "level": 4,
+    "title": "Creating an HTML page",
+    "local": "apptechp225.htm",
+    "id": "b0524"
+  },
+  {
+    "level": 4,
+    "title": "Setting up the server",
+    "local": "apptechp226.htm",
+    "id": "b0525"
+  },
+  {
+    "level": 4,
+    "title": "Setting up users' workstations",
+    "local": "apptechp227.htm",
+    "id": "b0526"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 34  Using the PowerBuilder Window ActiveX",
+    "local": "apptechp228.htm",
+    "id": "b0527"
+  },
+  {
+    "level": 4,
+    "title": "About the PowerBuilder window ActiveX",
+    "local": "apptechp229.htm",
+    "id": "b0528"
+  },
+  {
+    "level": 4,
+    "title": "Creating the PowerBuilder application",
+    "local": "apptechp230.htm",
+    "id": "b0529"
+  },
+  {
+    "level": 4,
+    "title": "Creating an HTML page",
+    "local": "apptechp231.htm",
+    "id": "b0530"
+  },
+  {
+    "level": 4,
+    "title": "Events for the PowerBuilder window ActiveX",
+    "local": "apptechp232.htm",
+    "id": "b0531"
+  },
+  {
+    "level": 4,
+    "title": "Setting up the server",
+    "local": "apptechp233.htm",
+    "id": "b0532"
+  },
+  {
+    "level": 4,
+    "title": "Setting up users' workstations",
+    "local": "apptechp234.htm",
+    "id": "b0533"
+  },
+  {
+    "level": 2,
+    "title": "General Techniques",
+    "local": "",
+    "id": "b0534"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 35  Internationalizing an Application",
+    "local": "apptechp235.htm",
+    "id": "b0535"
+  },
+  {
+    "level": 4,
+    "title": "Developing international applications",
+    "local": "apptechp236.htm",
+    "id": "b0536"
+  },
+  {
+    "level": 4,
+    "title": "Using Unicode",
+    "local": "apptechp237.htm",
+    "id": "b0537"
+  },
+  {
+    "level": 4,
+    "title": "Internationalizing the user interface",
+    "local": "apptechp238.htm",
+    "id": "b0538"
+  },
+  {
+    "level": 4,
+    "title": "Localizing the product",
+    "local": "apptechp239.htm",
+    "id": "b0539"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 36  Building Accessible Applications",
+    "local": "apptechp240.htm",
+    "id": "b0540"
+  },
+  {
+    "level": 4,
+    "title": "Understanding accessibility challenges",
+    "local": "apptechp241.htm",
+    "id": "b0541"
+  },
+  {
+    "level": 4,
+    "title": "Accessibility requirements for software and Web applications",
+    "local": "apptechp242.htm",
+    "id": "b0542"
+  },
+  {
+    "level": 4,
+    "title": "Creating accessible software applications with PowerBuilder",
+    "local": "apptechp243.htm",
+    "id": "b0543"
+  },
+  {
+    "level": 4,
+    "title": "About VPATs",
+    "local": "apptechp244.htm",
+    "id": "b0544"
+  },
+  {
+    "level": 4,
+    "title": "Testing product accessibility",
+    "local": "apptechp245.htm",
+    "id": "b0545"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 37  Printing from an Application",
+    "local": "apptechp246.htm",
+    "id": "b0546"
+  },
+  {
+    "level": 4,
+    "title": "Printing functions",
+    "local": "apptechp247.htm",
+    "id": "b0547"
+  },
+  {
+    "level": 4,
+    "title": "Printing basics",
+    "local": "apptechp248.htm",
+    "id": "b0548"
+  },
+  {
+    "level": 4,
+    "title": "Printing a job",
+    "local": "apptechp249.htm",
+    "id": "b0549"
+  },
+  {
+    "level": 4,
+    "title": "Using tabs",
+    "local": "apptechp250.htm",
+    "id": "b0550"
+  },
+  {
+    "level": 4,
+    "title": "Stopping a print job",
+    "local": "apptechp251.htm",
+    "id": "b0551"
+  },
+  {
+    "level": 4,
+    "title": "Advanced printing techniques",
+    "local": "apptechp252.htm",
+    "id": "b0552"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 38  Managing Initialization Files and the Windows Registry",
+    "local": "apptechp253.htm",
+    "id": "b0553"
+  },
+  {
+    "level": 4,
+    "title": "About preferences and default settings",
+    "local": "apptechp254.htm",
+    "id": "b0554"
+  },
+  {
+    "level": 4,
+    "title": "Managing information in initialization files",
+    "local": "apptechp255.htm",
+    "id": "b0555"
+  },
+  {
+    "level": 4,
+    "title": "Managing information in the Windows registry",
+    "local": "apptechp256.htm",
+    "id": "b0556"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 39  Building InfoMaker Styles and Actions",
+    "local": "apptechp257.htm",
+    "id": "b0557"
+  },
+  {
+    "level": 4,
+    "title": "About form styles",
+    "local": "apptechp258.htm",
+    "id": "b0558"
+  },
+  {
+    "level": 4,
+    "title": "Naming the DataWindow controls in a form style",
+    "local": "apptechp259.htm",
+    "id": "b0559"
+  },
+  {
+    "level": 4,
+    "title": "Building and using a form style",
+    "local": "apptechp260.htm",
+    "id": "b0560"
+  },
+  {
+    "level": 4,
+    "title": "Modifying an existing style",
+    "local": "apptechp261.htm",
+    "id": "b0561"
+  },
+  {
+    "level": 4,
+    "title": "Building a style from scratch",
+    "local": "apptechp262.htm",
+    "id": "b0562"
+  },
+  {
+    "level": 4,
+    "title": "Completing the style",
+    "local": "apptechp263.htm",
+    "id": "b0563"
+  },
+  {
+    "level": 4,
+    "title": "Using the style",
+    "local": "apptechp264.htm",
+    "id": "b0564"
+  },
+  {
+    "level": 2,
+    "title": "Deployment Techniques",
+    "local": "",
+    "id": "b0565"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 40  Packaging an Application for Deployment",
+    "local": "apptechp265.htm",
+    "id": "b0566"
+  },
+  {
+    "level": 4,
+    "title": "About deploying applications",
+    "local": "apptechp266.htm",
+    "id": "b0567"
+  },
+  {
+    "level": 4,
+    "title": "Creating an executable version of your application",
+    "local": "apptechp267.htm",
+    "id": "b0568"
+  },
+  {
+    "level": 4,
+    "title": "Delivering your application to end users",
+    "local": "apptechp268.htm",
+    "id": "b0569"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 41  Deploying Applications and Components",
+    "local": "apptechp269.htm",
+    "id": "b0570"
+  },
+  {
+    "level": 4,
+    "title": "Deploying applications, components, and supporting files",
+    "local": "apptechp270.htm",
+    "id": "b0571"
+  },
+  {
+    "level": 4,
+    "title": "PowerBuilder Runtime Packager",
+    "local": "apptechp271.htm",
+    "id": "b0572"
+  },
+  {
+    "level": 4,
+    "title": "Third-party components and deployment",
+    "local": "apptechp272.htm",
+    "id": "b0573"
+  },
+  {
+    "level": 4,
+    "title": "PowerBuilder runtime files",
+    "local": "apptechp273.htm",
+    "id": "b0574"
+  },
+  {
+    "level": 4,
+    "title": "Database connections",
+    "local": "apptechp274.htm",
+    "id": "b0575"
+  },
+  {
+    "level": 4,
+    "title": "Java support",
+    "local": "apptechp275.htm",
+    "id": "b0576"
+  },
+  {
+    "level": 4,
+    "title": "PowerBuilder extensions",
+    "local": "apptechp276.htm",
+    "id": "b0577"
+  },
+  {
+    "level": 4,
+    "title": "PDF and XSL-FO export",
+    "local": "apptechp277.htm",
+    "id": "b0578"
+  },
+  {
+    "level": 4,
+    "title": "DataWindow Web control for ActiveX",
+    "local": "apptechp278.htm",
+    "id": "b0579"
+  },
+  {
+    "level": 4,
+    "title": "Plug-ins and PowerBuilder window ActiveX controls",
+    "local": "apptechp279.htm",
+    "id": "b0580"
+  },
+  {
+    "level": 4,
+    "title": "PowerBuilder components on EAServer",
+    "local": "apptechp280.htm",
+    "id": "b0581"
+  },
+  {
+    "level": 4,
+    "title": "PowerBuilder COM servers",
+    "local": "apptechp281.htm",
+    "id": "b0582"
+  },
+  {
+    "level": 4,
+    "title": "PowerBuilder automation servers",
+    "local": "apptechp282.htm",
+    "id": "b0583"
+  },
+  {
+    "level": 4,
+    "title": "Web DataWindow on EAServer",
+    "local": "apptechp283.htm",
+    "id": "b0584"
+  },
+  {
+    "level": 4,
+    "title": "Web DataWindow on COM+ or IIS",
+    "local": "apptechp284.htm",
+    "id": "b0585"
+  },
+  {
+    "level": 1,
+    "title": "DataWindow Programmer's Guide",
+    "local": "",
+    "id": "b0586"
+  },
+  {
+    "level": 2,
+    "title": "About This Book",
+    "local": "dwprgugp1.htm",
+    "id": "b0587"
+  },
+  {
+    "level": 2,
+    "title": "Chapter 1  About DataWindow Technology",
+    "local": "dwprgugp2.htm",
+    "id": "b0588"
+  },
+  {
+    "level": 3,
+    "title": "About DataWindow objects, controls, and components",
+    "local": "dwprgugp3.htm",
+    "id": "b0589"
+  },
+  {
+    "level": 3,
+    "title": "Choosing a DataWindow technology",
+    "local": "dwprgugp4.htm",
+    "id": "b0590"
+  },
+  {
+    "level": 3,
+    "title": "PowerBuilder DataWindow control",
+    "local": "dwprgugp5.htm",
+    "id": "b0591"
+  },
+  {
+    "level": 2,
+    "title": "Chapter 2  Using DataWindow Objects",
+    "local": "dwprgugp6.htm",
+    "id": "b0592"
+  },
+  {
+    "level": 3,
+    "title": "About using DataWindow objects",
+    "local": "dwprgugp7.htm",
+    "id": "b0593"
+  },
+  {
+    "level": 3,
+    "title": "Putting a DataWindow object into a control",
+    "local": "dwprgugp8.htm",
+    "id": "b0594"
+  },
+  {
+    "level": 3,
+    "title": "Accessing the database",
+    "local": "dwprgugp9.htm",
+    "id": "b0595"
+  },
+  {
+    "level": 3,
+    "title": "Importing data from an external source",
+    "local": "dwprgugp10.htm",
+    "id": "b0596"
+  },
+  {
+    "level": 3,
+    "title": "Manipulating data in a DataWindow control",
+    "local": "dwprgugp11.htm",
+    "id": "b0597"
+  },
+  {
+    "level": 3,
+    "title": "Accessing the properties of a DataWindow object",
+    "local": "dwprgugp12.htm",
+    "id": "b0598"
+  },
+  {
+    "level": 3,
+    "title": "Handling DataWindow errors",
+    "local": "dwprgugp13.htm",
+    "id": "b0599"
+  },
+  {
+    "level": 3,
+    "title": "Updating the database",
+    "local": "dwprgugp14.htm",
+    "id": "b0600"
+  },
+  {
+    "level": 3,
+    "title": "Creating reports",
+    "local": "dwprgugp15.htm",
+    "id": "b0601"
+  },
+  {
+    "level": 3,
+    "title": "Using nested reports",
+    "local": "dwprgugp16.htm",
+    "id": "b0602"
+  },
+  {
+    "level": 3,
+    "title": "Using crosstabs",
+    "local": "dwprgugp17.htm",
+    "id": "b0603"
+  },
+  {
+    "level": 3,
+    "title": "Generating HTML",
+    "local": "dwprgugp18.htm",
+    "id": "b0604"
+  },
+  {
+    "level": 2,
+    "title": "Chapter 3  Dynamically Changing DataWindow Objects",
+    "local": "dwprgugp19.htm",
+    "id": "b0605"
+  },
+  {
+    "level": 3,
+    "title": "About dynamic DataWindow processing",
+    "local": "dwprgugp20.htm",
+    "id": "b0606"
+  },
+  {
+    "level": 3,
+    "title": "Modifying a DataWindow object",
+    "local": "dwprgugp21.htm",
+    "id": "b0607"
+  },
+  {
+    "level": 3,
+    "title": "Creating a DataWindow object",
+    "local": "dwprgugp22.htm",
+    "id": "b0608"
+  },
+  {
+    "level": 3,
+    "title": "Providing query ability to users",
+    "local": "dwprgugp23.htm",
+    "id": "b0609"
+  },
+  {
+    "level": 3,
+    "title": "Providing Help buttons",
+    "local": "dwprgugp24.htm",
+    "id": "b0610"
+  },
+  {
+    "level": 3,
+    "title": "Reusing a DataWindow object",
+    "local": "dwprgugp25.htm",
+    "id": "b0611"
+  },
+  {
+    "level": 2,
+    "title": "Chapter 4  Using DataStore Objects",
+    "local": "dwprgugp26.htm",
+    "id": "b0612"
+  },
+  {
+    "level": 3,
+    "title": "About DataStores",
+    "local": "dwprgugp27.htm",
+    "id": "b0613"
+  },
+  {
+    "level": 3,
+    "title": "Working with a DataStore",
+    "local": "dwprgugp28.htm",
+    "id": "b0614"
+  },
+  {
+    "level": 3,
+    "title": "Using a custom DataStore object",
+    "local": "dwprgugp29.htm",
+    "id": "b0615"
+  },
+  {
+    "level": 3,
+    "title": "Accessing and manipulating data in a DataStore",
+    "local": "dwprgugp30.htm",
+    "id": "b0616"
+  },
+  {
+    "level": 3,
+    "title": "Sharing information",
+    "local": "dwprgugp31.htm",
+    "id": "b0617"
+  },
+  {
+    "level": 2,
+    "title": "Chapter 5  Manipulating Graphs",
+    "local": "dwprgugp32.htm",
+    "id": "b0618"
+  },
+  {
+    "level": 3,
+    "title": "Using graphs",
+    "local": "dwprgugp33.htm",
+    "id": "b0619"
+  },
+  {
+    "level": 3,
+    "title": "Modifying graph properties",
+    "local": "dwprgugp34.htm",
+    "id": "b0620"
+  },
+  {
+    "level": 3,
+    "title": "Accessing data properties",
+    "local": "dwprgugp35.htm",
+    "id": "b0621"
+  },
+  {
+    "level": 3,
+    "title": "Using point and click",
+    "local": "dwprgugp36.htm",
+    "id": "b0622"
+  },
+  {
+    "level": 2,
+    "title": "Chapter 6  Using the Web DataWindow",
+    "local": "dwprgugp37.htm",
+    "id": "b0623"
+  },
+  {
+    "level": 3,
+    "title": "What the Web DataWindow is",
+    "local": "dwprgugp38.htm",
+    "id": "b0624"
+  },
+  {
+    "level": 3,
+    "title": "Using the XML Web DataWindow",
+    "local": "dwprgugp39.htm",
+    "id": "b0625"
+  },
+  {
+    "level": 3,
+    "title": "Designing DataWindow objects for the Web DataWindow",
+    "local": "dwprgugp40.htm",
+    "id": "b0626"
+  },
+  {
+    "level": 3,
+    "title": "Setting Web DataWindow design-time control properties",
+    "local": "dwprgugp41.htm",
+    "id": "b0627"
+  },
+  {
+    "level": 3,
+    "title": "Setting up database connections",
+    "local": "dwprgugp42.htm",
+    "id": "b0628"
+  },
+  {
+    "level": 3,
+    "title": "Deploying DataWindow objects to the component server",
+    "local": "dwprgugp43.htm",
+    "id": "b0629"
+  },
+  {
+    "level": 3,
+    "title": "Creating Web page templates",
+    "local": "dwprgugp44.htm",
+    "id": "b0630"
+  },
+  {
+    "level": 3,
+    "title": "Writing client-side scripts",
+    "local": "dwprgugp45.htm",
+    "id": "b0631"
+  },
+  {
+    "level": 3,
+    "title": "Customizing Web DataWindow generation",
+    "local": "dwprgugp46.htm",
+    "id": "b0632"
+  },
+  {
+    "level": 2,
+    "title": "Chapter 7  Server-Side Processing for the Web DataWindow",
+    "local": "dwprgugp47.htm",
+    "id": "b0633"
+  },
+  {
+    "level": 3,
+    "title": "Server configuration requirements",
+    "local": "dwprgugp48.htm",
+    "id": "b0634"
+  },
+  {
+    "level": 3,
+    "title": "Instantiating and configuring the server component",
+    "local": "dwprgugp49.htm",
+    "id": "b0635"
+  },
+  {
+    "level": 3,
+    "title": "Using a custom server component",
+    "local": "dwprgugp50.htm",
+    "id": "b0636"
+  },
+  {
+    "level": 3,
+    "title": "Using service classes",
+    "local": "dwprgugp51.htm",
+    "id": "b0637"
+  },
+  {
+    "level": 2,
+    "title": "Chapter 8  Using the DataWindow Web Control for ActiveX",
+    "local": "dwprgugp52.htm",
+    "id": "b0638"
+  },
+  {
+    "level": 3,
+    "title": "About the Web ActiveX",
+    "local": "dwprgugp53.htm",
+    "id": "b0639"
+  },
+  {
+    "level": 3,
+    "title": "HTML for inserting the controls on a Web page",
+    "local": "dwprgugp54.htm",
+    "id": "b0640"
+  },
+  {
+    "level": 3,
+    "title": "How to use the Web ActiveX in a Web target",
+    "local": "dwprgugp55.htm",
+    "id": "b0641"
+  },
+  {
+    "level": 3,
+    "title": "DataWindow objects for the Web ActiveX",
+    "local": "dwprgugp56.htm",
+    "id": "b0642"
+  },
+  {
+    "level": 3,
+    "title": "Using the DataWindow Transaction Object control",
+    "local": "dwprgugp57.htm",
+    "id": "b0643"
+  },
+  {
+    "level": 3,
+    "title": "Making database connections",
+    "local": "dwprgugp58.htm",
+    "id": "b0644"
+  },
+  {
+    "level": 3,
+    "title": "Coding for the Web ActiveX",
+    "local": "dwprgugp59.htm",
+    "id": "b0645"
+  },
+  {
+    "level": 3,
+    "title": "Deploying the Web ActiveX",
+    "local": "dwprgugp60.htm",
+    "id": "b0646"
+  },
+  {
+    "level": 1,
+    "title": "Connecting to Your Database",
+    "local": "",
+    "id": "b0647"
+  },
+  {
+    "level": 2,
+    "title": "About This Book",
+    "local": "connpbp1.htm",
+    "id": "b0648"
+  },
+  {
+    "level": 2,
+    "title": "Introduction to Database Connections",
+    "local": "",
+    "id": "b0649"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 1  Understanding Data Connections",
+    "local": "connpbp2.htm",
+    "id": "b0650"
+  },
+  {
+    "level": 4,
+    "title": "How to find the information you need",
+    "local": "connpbp3.htm",
+    "id": "b0651"
+  },
+  {
+    "level": 4,
+    "title": "Accessing data in PowerBuilder",
+    "local": "connpbp4.htm",
+    "id": "b0652"
+  },
+  {
+    "level": 4,
+    "title": "Accessing the EAS Demo DB",
+    "local": "connpbp5.htm",
+    "id": "b0653"
+  },
+  {
+    "level": 4,
+    "title": "Using database profiles",
+    "local": "connpbp6.htm",
+    "id": "b0654"
+  },
+  {
+    "level": 4,
+    "title": "What to do next",
+    "local": "connpbp7.htm",
+    "id": "b0655"
+  },
+  {
+    "level": 2,
+    "title": "Working with Standard Database Interfaces",
+    "local": "",
+    "id": "b0656"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 2  Using the ODBC Interface",
+    "local": "connpbp8.htm",
+    "id": "b0657"
+  },
+  {
+    "level": 4,
+    "title": "Using the ODBC interface",
+    "local": "connpbp9.htm",
+    "id": "b0658"
+  },
+  {
+    "level": 4,
+    "title": "Preparing ODBC data sources",
+    "local": "connpbp10.htm",
+    "id": "b0659"
+  },
+  {
+    "level": 4,
+    "title": "Defining ODBC data sources",
+    "local": "connpbp11.htm",
+    "id": "b0660"
+  },
+  {
+    "level": 4,
+    "title": "Defining the ODBC interface",
+    "local": "connpbp12.htm",
+    "id": "b0661"
+  },
+  {
+    "level": 4,
+    "title": "Sybase Adaptive Server Anywhere",
+    "local": "connpbp13.htm",
+    "id": "b0662"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 3  Using the JDBC Interface",
+    "local": "connpbp14.htm",
+    "id": "b0663"
+  },
+  {
+    "level": 4,
+    "title": "About the JDBC interface",
+    "local": "connpbp15.htm",
+    "id": "b0664"
+  },
+  {
+    "level": 4,
+    "title": "Preparing to use the JDBC interface",
+    "local": "connpbp16.htm",
+    "id": "b0665"
+  },
+  {
+    "level": 4,
+    "title": "Defining the JDBC interface",
+    "local": "connpbp17.htm",
+    "id": "b0666"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 4  Using the OLE DB interface",
+    "local": "connpbp18.htm",
+    "id": "b0667"
+  },
+  {
+    "level": 4,
+    "title": "About the OLE DB interface",
+    "local": "connpbp19.htm",
+    "id": "b0668"
+  },
+  {
+    "level": 4,
+    "title": "Preparing to use the OLE DB interface",
+    "local": "connpbp20.htm",
+    "id": "b0669"
+  },
+  {
+    "level": 4,
+    "title": "Defining the OLE DB interface",
+    "local": "connpbp21.htm",
+    "id": "b0670"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 5  Using the ADO.NET interface",
+    "local": "connpbp22.htm",
+    "id": "b0671"
+  },
+  {
+    "level": 4,
+    "title": "About ADO.NET",
+    "local": "connpbp23.htm",
+    "id": "b0672"
+  },
+  {
+    "level": 4,
+    "title": "About the PowerBuilder ADO.NET database interface",
+    "local": "connpbp24.htm",
+    "id": "b0673"
+  },
+  {
+    "level": 4,
+    "title": "Preparing to use the ADO.NET interface",
+    "local": "connpbp25.htm",
+    "id": "b0674"
+  },
+  {
+    "level": 4,
+    "title": "Defining the ADO.NET interface",
+    "local": "connpbp26.htm",
+    "id": "b0675"
+  },
+  {
+    "level": 2,
+    "title": "Working with Native Database Interfaces",
+    "local": "",
+    "id": "b0676"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 6  Using Native Database Interfaces",
+    "local": "connpbp27.htm",
+    "id": "b0677"
+  },
+  {
+    "level": 4,
+    "title": "About native database interfaces",
+    "local": "connpbp28.htm",
+    "id": "b0678"
+  },
+  {
+    "level": 4,
+    "title": "Informix",
+    "local": "connpbp29.htm",
+    "id": "b0679"
+  },
+  {
+    "level": 4,
+    "title": "Oracle",
+    "local": "connpbp30.htm",
+    "id": "b0680"
+  },
+  {
+    "level": 4,
+    "title": "Adaptive Server Enterprise",
+    "local": "connpbp31.htm",
+    "id": "b0681"
+  },
+  {
+    "level": 4,
+    "title": "Installing PowerBuilder stored procedures in Adaptive Server databases",
+    "local": "connpbp32.htm",
+    "id": "b0682"
+  },
+  {
+    "level": 4,
+    "title": "DirectConnect",
+    "local": "connpbp33.htm",
+    "id": "b0683"
+  },
+  {
+    "level": 4,
+    "title": "Creating the extended attribute system tables in DB2 databases",
+    "local": "connpbp34.htm",
+    "id": "b0684"
+  },
+  {
+    "level": 2,
+    "title": "Working with Database Connections",
+    "local": "",
+    "id": "b0685"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 7  Managing Database Connections",
+    "local": "connpbp35.htm",
+    "id": "b0686"
+  },
+  {
+    "level": 4,
+    "title": "About database connections",
+    "local": "connpbp36.htm",
+    "id": "b0687"
+  },
+  {
+    "level": 4,
+    "title": "Connecting to a database",
+    "local": "connpbp37.htm",
+    "id": "b0688"
+  },
+  {
+    "level": 4,
+    "title": "Maintaining database profiles",
+    "local": "connpbp38.htm",
+    "id": "b0689"
+  },
+  {
+    "level": 4,
+    "title": "Sharing database profiles",
+    "local": "connpbp39.htm",
+    "id": "b0690"
+  },
+  {
+    "level": 4,
+    "title": "Importing and exporting database profiles",
+    "local": "connpbp40.htm",
+    "id": "b0691"
+  },
+  {
+    "level": 4,
+    "title": "About the PowerBuilder extended attribute system tables",
+    "local": "connpbp41.htm",
+    "id": "b0692"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 8  Setting Additional Connection Parameters",
+    "local": "connpbp42.htm",
+    "id": "b0693"
+  },
+  {
+    "level": 4,
+    "title": "Basic steps for setting connection parameters",
+    "local": "connpbp43.htm",
+    "id": "b0694"
+  },
+  {
+    "level": 4,
+    "title": "About the Database Profile Setup dialog box",
+    "local": "connpbp44.htm",
+    "id": "b0695"
+  },
+  {
+    "level": 4,
+    "title": "Setting database parameters",
+    "local": "connpbp45.htm",
+    "id": "b0696"
+  },
+  {
+    "level": 4,
+    "title": "Setting database preferences",
+    "local": "connpbp46.htm",
+    "id": "b0697"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 9  Troubleshooting Your Connection",
+    "local": "connpbp47.htm",
+    "id": "b0698"
+  },
+  {
+    "level": 4,
+    "title": "Overview of troubleshooting tools",
+    "local": "connpbp48.htm",
+    "id": "b0699"
+  },
+  {
+    "level": 4,
+    "title": "Using the Database Trace tool",
+    "local": "connpbp49.htm",
+    "id": "b0700"
+  },
+  {
+    "level": 4,
+    "title": "Using the SQL statement trace utility",
+    "local": "connpbp50.htm",
+    "id": "b0701"
+  },
+  {
+    "level": 4,
+    "title": "Using the ODBC Driver Manager Trace",
+    "local": "connpbp51.htm",
+    "id": "b0702"
+  },
+  {
+    "level": 4,
+    "title": "Using the JDBC Driver Manager Trace",
+    "local": "connpbp52.htm",
+    "id": "b0703"
+  },
+  {
+    "level": 2,
+    "title": "Working with Transaction Servers",
+    "local": "",
+    "id": "b0704"
+  },
+  {
+    "level": 3,
+    "title": "Chapter 10  Making Database Connections in PowerBuilder Components",
+    "local": "connpbp53.htm",
+    "id": "b0705"
+  },
+  {
+    "level": 4,
+    "title": "Deploying a component to EAServer",
+    "local": "connpbp54.htm",
+    "id": "b0706"
+  },
+  {
+    "level": 4,
+    "title": "Deploying a COM component to COM+",
+    "local": "connpbp55.htm",
+    "id": "b0707"
+  },
+  {
+    "level": 4,
+    "title": "DBParm support for PowerBuilder components",
+    "local": "connpbp56.htm",
+    "id": "b0708"
+  },
+  {
+    "level": 2,
+    "title": "Appendix",
+    "local": "",
+    "id": "b0709"
+  },
+  {
+    "level": 3,
+    "title": "Appendix A  Adding Functions to the PBODB105 Initialization File",
+    "local": "connpbp57.htm",
+    "id": "b0710"
+  },
+  {
+    "level": 4,
+    "title": "About the PBODB105 initialization file",
+    "local": "connpbp58.htm",
+    "id": "b0711"
+  },
+  {
+    "level": 4,
+    "title": "Adding functions to PBODB105.INI",
+    "local": "connpbp59.htm",
+    "id": "b0712"
+  },
+  {
+    "level": 1,
+    "title": "Working with Web and JSP Targets",
+    "local": "",
+    "id": "b0713"
+  }
+]

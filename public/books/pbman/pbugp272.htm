@@ -1,0 +1,50 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About the extended attribute system tables</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp271.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp273.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF298232540"></A><h1>About the extended attribute system tables</h1>
+<A NAME="TI10033"></A><p>PowerBuilder stores application-based information you provide
+for a database table (such as the text to use for labels and headings
+for the columns, validation rules, display formats, and edit styles)
+in system tables in your database. These system tables are called
+the extended attribute system tables. The tables contain all the
+information related to the extended attributes for the tables and
+columns in the database. The extended attributes are used in DataWindow objects.</p>
+<A NAME="TI10034"></A><h4>The system tables</h4>
+<A NAME="TI10035"></A><p>There are five extended attribute system tables.</p>
+<A NAME="TI10036"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table A-1: List of extended attribute system tables</caption>
+<tr><th  rowspan="1"  ><A NAME="TI10037"></A>Table</th>
+<th  rowspan="1"  ><A NAME="TI10038"></A>Contains information about</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10039"></A><b>PBCatTbl</b></td>
+<td  rowspan="1"  ><A NAME="TI10040"></A>Tables in the database</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10041"></A><b>PBCatCol</b></td>
+<td  rowspan="1"  ><A NAME="TI10042"></A>Columns in the database</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10043"></A><b>PBCatFmt</b></td>
+<td  rowspan="1"  ><A NAME="TI10044"></A>Display formats</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10045"></A><b>PBCatVld</b></td>
+<td  rowspan="1"  ><A NAME="TI10046"></A>Validation rules</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI10047"></A><b>PBCatEdt</b></td>
+<td  rowspan="1"  ><A NAME="TI10048"></A>Edit styles</td>
+</tr>
+</table>
+<A NAME="TI10049"></A><h4>What to do with the tables</h4>
+<A NAME="TI10050"></A><p>You can open and look at these tables in the Database painter just
+like other tables. You might want to create a report of the extended
+attribute information used in your database by building a DataWindow object whose
+data source is the extended attribute system tables.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Caution</span> <A NAME="TI10051"></A>You should not change the values in the extended attribute
+system tables. PowerBuilder maintains this information automatically
+whenever you change information for a table or column in the Database painter.</p>
+

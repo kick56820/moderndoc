@@ -1,0 +1,365 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Context information </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp132.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp134.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CFHDGCJH"></A><h1>Context information </h1>
+<A NAME="TI4325"></A><p>The PowerBuilder context feature allows applications to access
+certain host (non-PowerBuilder) services. This is a PowerBuilder
+implementation of functionality similar to the COM QueryInterface.
+PowerBuilder provides access to the following host services:<A NAME="TI4326"></A>
+<ul>
+<li class=fi><A HREF="apptechp133.htm#CFHCHFBI">Context information service</A> </li>
+<li class=ds><A HREF="apptechp133.htm#CFHEAJDC">Context keyword service</A></li>
+<li class=ds><A HREF="apptechp133.htm#CACIDHAI">CORBACurrent service</A></li>
+<li class=ds><A HREF="apptechp133.htm#CHEBAIHD">Error logging service</A></li>
+<li class=ds><A HREF="apptechp133.htm#CFHDAICJ">Internet service</A></li>
+<li class=ds><A HREF="apptechp133.htm#CHEBGHHD">Secure Sockets Layer service</A></li>
+<li class=ds><A HREF="apptechp133.htm#CHECJBJH">Transaction server service</A>
+</li>
+</ul>
+</p>
+<A NAME="TI4327"></A><p>PowerBuilder creates service objects appropriate for the current
+execution context (native PowerBuilder, PowerBuilder window plug-in,
+PowerBuilder window ActiveX, transaction server). This allows your
+application to take full advantage of the execution environment.
+For example, in a PowerBuilder window plug-in, your application
+can access parameters specified in the Embed element. Additionally,
+when running the PowerBuilder window ActiveX under Internet Explorer,
+your application can access the ActiveX automation server, which
+allows your program to access and control the Internet browser.</p>
+<A NAME="TI4328"></A><p>The context feature uses seven PowerBuilder service objects: ContextInformation,
+ContextKeyword, CORBACurrent, ErrorLogging, Inet, SSLServiceProvider,
+and TransactionServer; it also uses the InternetResult object. (The
+context feature is sometimes called the Context object, but it is <i>not</i> a
+PowerBuilder system object.)</p>
+<A NAME="TI4329"></A><p>For more information about these objects,
+see <i>Objects and Controls</i>
+ or the PowerBuilder
+Browser.</p>
+<A NAME="TI4330"></A><h4>Enabling a service</h4>
+<A NAME="TI4331"></A><p>Before you use a service, you instantiate it by calling the <b>GetContextService</b> function.
+When you call this function, PowerBuilder returns a reference to
+the instantiated service. Use this reference in dot notation when
+calling the service's functions.</p>
+<A NAME="TI4332"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To enable a service:</p>
+<ol><li class=fi><p>Establish an instance variable of the appropriate
+type:</p><p><p><PRE> ContextInformation icxinfo_base</PRE><PRE> ContextKeyword     icxk_base</PRE><PRE> CORBACurrent       corbcurr_base</PRE><PRE> ErrorLogging       erl_base</PRE><PRE> Inet               iinet_base</PRE><PRE> SSLServiceProvider sslsp_base</PRE><PRE> TransactionServer  ts_base</PRE></p></li>
+<li class=ds><p>Instantiate the instance variable by calling the <b>GetContextService</b> function:</p><p><p><PRE> this.GetContextService("ContextInformation",  &amp;<br>   icxinfo_base)</PRE><PRE> this.GetContextService("ContextKeyword", icxk_base)</PRE><PRE> this.GetContextService("ContextKeyword", icxk_base)<br>// Use Keyword instead of ContextKeyword on EAServer</PRE><PRE> this.GetContextService("Keyword", icxk_base) </PRE><PRE> this.GetContextService("CORBACurrent", &amp;</PRE><PRE>    corbcurr_base)</PRE><PRE> this.GetContextService("ErrorLogging", erl_base)</PRE><PRE> this.GetContextService("Internet", iinet_base)</PRE><PRE> this.GetContextService("SSLServiceProvider", &amp;</PRE><PRE>    sslsp_base)</PRE><PRE> this.GetContextService("TransactionServer",ts_base)</PRE></p></li></ol>
+<br><A NAME="TI4333"></A><h4>Using a CREATE statement</h4>
+<A NAME="TI4334"></A><p>You can instantiate a service object with a PowerScript <b>CREATE</b> statement. However,
+this always creates an object for the default context (native PowerBuilder
+execution environment), regardless of where the application is running.</p>
+<A NAME="CFHCHFBI"></A><h2>Context information service</h2>
+<A NAME="TI4335"></A><p>You use the context information service to obtain information
+about an application's execution context. The service provides
+current version information, as well as whether the application
+is running in the PowerBuilder execution environment and whether
+as a PowerBuilder window plug-in or a PowerBuilder window ActiveX.
+Using this information, you can modify display characteristics and
+application behavior. For example, you might hide a Close command
+button when running as a plug-in or ActiveX. Additionally, when
+running in the PowerBuilder window ActiveX under Internet Explorer,
+the context information service can return a reference to an ActiveX
+automation server object. Your application can use this reference
+to call functions that control the Web browser.</p>
+<A NAME="TI4336"></A><h4>Accessing context information</h4>
+<A NAME="TI4337"></A><p>Using the context information service, you can access the
+information in <A HREF="apptechp133.htm#CACBJBID">Table 22-4</A>.</p>
+<A NAME="CACBJBID"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 22-4: Context information</caption>
+<tr><th  rowspan="1"  ><A NAME="TI4338"></A>Item</th>
+<th  rowspan="1"  ><A NAME="TI4339"></A>Use this function</th>
+<th  rowspan="1"  ><A NAME="TI4340"></A>Comment</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4341"></A>Full context name</td>
+<td  rowspan="1"  ><A NAME="TI4342"></A><b>GetName</b> </td>
+<td  rowspan="1"  ><A NAME="TI4343"></A>Value returned depends on the context:<A NAME="TI4344"></A>
+<ul>
+<li class=fi>Default: PowerBuilder Runtime</li>
+<li class=ds>Window plug-in: PowerBuilder window Plugin</li>
+<li class=ds>Window ActiveX: PowerBuilder window ActiveX
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4345"></A>Abbreviated context name </td>
+<td  rowspan="1"  ><A NAME="TI4346"></A><b>GetShortName</b> </td>
+<td  rowspan="1"  ><A NAME="TI4347"></A>Value returned depends on the context:<A NAME="TI4348"></A>
+<ul>
+<li class=fi>Default: PBRUN</li>
+<li class=ds>Window plug-in: PBWinPlugin</li>
+<li class=ds>Window ActiveX: PBRTX
+</li>
+</ul>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4349"></A>Company name</td>
+<td  rowspan="1"  ><A NAME="TI4350"></A><b>GetCompanyName</b> </td>
+<td  rowspan="1"  ><A NAME="TI4351"></A>Returns Sybase, Inc.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4352"></A>Version</td>
+<td  rowspan="1"  ><A NAME="TI4353"></A><b>GetVersionName</b> </td>
+<td  rowspan="1"  ><A NAME="TI4354"></A>Returns the full version number (for example,
+10.5.0.1)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4355"></A>Major version</td>
+<td  rowspan="1"  ><A NAME="TI4356"></A><b>GetMajorVersion</b> </td>
+<td  rowspan="1"  ><A NAME="TI4357"></A>Returns the major version number (for example,
+10.5)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4358"></A>Minor version</td>
+<td  rowspan="1"  ><A NAME="TI4359"></A><b>GetMinorVersion</b> </td>
+<td  rowspan="1"  ><A NAME="TI4360"></A>Returns the minor version number (for example,
+0)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI4361"></A>Fix version</td>
+<td  rowspan="1"  ><A NAME="TI4362"></A><b>GetFixesVersion</b> </td>
+<td  rowspan="1"  ><A NAME="TI4363"></A>Returns the fix version number (for example,
+1)</td>
+</tr>
+</table>
+<A NAME="TI4364"></A><h4>Using the ClassName function</h4>
+<A NAME="TI4365"></A><p>You can also use the <b>ClassName</b> function
+to determine the context of the object. The return value of the <b>ClassName</b> function
+differs by context. For example, for the Window plug-in the return
+value is <b>plugincontextinformation</b>, and for the Window
+ActiveX it is <b>rtxcontextinformation</b>.</p>
+<A NAME="TI4366"></A><p>You can use this information for many purposes, including:<A NAME="TI4367"></A>
+<ul>
+<li class=fi><b>Modifying application appearance based
+on execution context</b>   For example, you might hide a Close button when running in
+the PowerBuilder window plug-in and PowerBuilder window ActiveX.
+In a plug-in or ActiveX, closing the window results in a blank space
+in the HTML page.</li>
+<li class=ds><b>Verifying that the context supports
+the current version</b>   For example, if your application requires features or fixes
+from Version 10.5.0.1, you can use the context information service
+to check the version in the current execution context.
+</li>
+</ul>
+</p>
+<A NAME="TI4368"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To access context information:</p>
+<ol><li class=fi><p>Declare an instance or global variable
+of type ContextInformation:</p><p><p><PRE> ContextInformation icxinfo_base</PRE></p></li>
+<li class=ds><p>Create the context information service by calling
+the GetContextService function:</p><p><p><PRE> this.GetContextService("ContextInformation", &amp;</PRE><PRE>    icxinfo_base)</PRE></p></li>
+<li class=ds><p>Call context information service functions as
+necessary. </p><p>This example calls the <b>GetShortName</b> function
+to determine the current context and the <b>GetVersionName</b> function
+to determine the current version:<p><PRE> String  ls_name</PRE><PRE> String  ls_version</PRE><PRE> Constant String ls_currver = "7.0.01"</PRE><PRE> icxinfo_base.GetShortName(ls_name)</PRE><PRE> IF ls_name &lt;&gt; "PBRun" THEN</PRE><PRE>    cb_close.visible = FALSE</PRE><PRE> END IF</PRE><PRE> icxinfo_base.GetVersionName(ls_version)</PRE><PRE> IF ls_version &lt;&gt; ls_currver THEN</PRE><PRE>    MessageBox("Error",  &amp;</PRE><PRE>       "Must be at Version " + ls_currver)</PRE><PRE> END IF</PRE></p></li></ol>
+<br><A NAME="TI4369"></A><h4>Accessing the ActiveX automation server</h4>
+<A NAME="TI4370"></A><p>If you are running the PowerBuilder window ActiveX in Internet
+Explorer Version 3.0 or later, your application can call the context
+information service's <b>GetHostObject</b> function
+to obtain a reference to an ActiveX automation server object (the
+hosting object). Specifically, if you pass an uninstantiated OLEObject
+variable to <b>GetHostObject</b>, it returns a reference
+to the IWebBrowserApp automation server. </p>
+<A NAME="TI4371"></A><p>Your application can call and access IWebBrowserApp methods
+and properties, which allow you to access and control certain aspects
+of browser behavior, including:<A NAME="TI4372"></A>
+<ul>
+<li class=fi>Go back</li>
+<li class=ds>Go forward</li>
+<li class=ds>Go home</li>
+<li class=ds>Refresh</li>
+<li class=ds>Navigate to a specified Web page</li>
+<li class=ds>Exit the browser
+</li>
+</ul>
+For more
+information on the IWebBrowserApp interface, its methods, and its properties,
+see the Internet Explorer documentation or the Microsoft Web site.</p>
+<A NAME="TI4373"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To access the ActiveX automation server:</p>
+<ol><li class=fi><p>Declare instance or global variables of
+type ContextInformation and OLEObject:</p><p><p><PRE> ContextInformation   icxinfo_base</PRE><PRE> OLEObject   iole_browser</PRE></p></li>
+<li class=ds><p>Create the context information service by calling
+the <b>GetContextService</b> function:<p><PRE> GetContextService("ContextInformation",  &amp;<br>   icxinfo_base)</PRE></p></li>
+<li class=ds><p>Establish a reference to the ActiveX automation
+server by calling the <b>GetHostObject</b> function:</p><p><p><PRE> Integer li_rtrn</PRE><PRE> li_rtrn = icxinfo_base.GetHostObject(iole_browser)</PRE><PRE> IF li_rtrn = 1 THEN</PRE><PRE>    sle_host.Text = "GetHostObject succeeded"</PRE><PRE> ELSE</PRE><PRE>    sle_host.Text = "GetHostObject failed"<br>END IF</PRE></p></li>
+<li class=ds><p>Call IWebBrowserApp functions as necessary. This
+example calls the <b>Navigate</b> function to open the
+default Web browser displaying the Sybase home page:</p><p><p><PRE> IF IsValid(iole_browser) THEN</PRE><PRE>    iole_browser.Navigate  &amp;</PRE><PRE>       ("http://www.sybase.com", 0, 0, 0)</PRE><PRE> END IF</PRE></p></li></ol>
+<br><A NAME="CFHEAJDC"></A><h2>Context keyword service</h2>
+<A NAME="TI4374"></A><p>Use the context keyword service to access environment information
+for the current context. In the default environment, this service
+returns host workstation environment variables. In the PowerBuilder
+window plug-in, this service allows you to access parameters specified
+in the plug-in's Embed element. When running within <ABBR title = "e a server" >EAServer</ABBR>, you can use the keyword
+service to get a specific component property value (on all <ABBR title = "e a server" >EAServer </ABBR> platforms except AIX,
+you must use Keyword as the string parameter in the <b>GetContextService</b> function).</p>
+<A NAME="TI4375"></A><p>For information about using the context keyword service in <ABBR title = "e a server" >EAServer</ABBR>, see <A HREF="apptechp146.htm#CCJCIGFE">"Accessing component properties"</A>.</p>
+<A NAME="TI4376"></A><h4>Accessing environment variables</h4>
+<A NAME="TI4377"></A><p>When running in the PowerBuilder execution environment (the
+default context), you use this service to return environment variables. </p>
+<A NAME="TI4378"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To access environment variables:</p>
+<ol><li class=fi><p>Declare an instance or global variable
+of type ContextKeyword. Also declare an unbounded array of type
+String to contain returned values:</p><p><p><PRE> ContextKeyword  icxk_base</PRE><PRE> String   is_values[]</PRE></p></li>
+<li class=ds><p>Create the context information service by calling
+the <b>GetContextService</b> function:</p><p><p><PRE> this.GetContextService("Keyword", icxk_base)</PRE></p></li>
+<li class=ds><p>Call the <b>GetContextKeywords</b> function
+to access the environment variable you want. This example calls
+the <b>GetContextKeywords</b> function to determine
+the current application <i>Path</i>:</p><p><p><PRE> icxk_base.GetContextKeywords("Path", is_values)</PRE></p></li>
+<li class=ds><p>Extract values from the returned array as necessary.
+When accessing environment variables, the array should always have
+a single element:</p><p><p><PRE> MessageBox("Path", "Path is: " + is_values[1])</PRE></p></li></ol>
+<br><A NAME="TI4379"></A><h4>Accessing Embed element parameters</h4>
+<A NAME="TI4380"></A><p>The Embed element can contain additional, user-specified,
+parameters. Additionally, the Embed element allows more than one
+value for each parameter.</p>
+<A NAME="TI4381"></A><p>When running in the PowerBuilder window plug-in context, you
+use this service to access parameters specified in the Embed element.
+If the specified parameter is not found, the service tries to match
+the specified parameter with an environment variable.</p>
+<A NAME="TI4382"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To access Embed element parameters:</p>
+<ol><li class=fi><p>Declare an instance or global variable
+of type ContextKeyword. Also declare an unbounded array of type
+String to contain returned values:</p><p><p><PRE> ContextKeyword  icxk_base</PRE><PRE> String   is_values[ ]</PRE></p></li>
+<li class=ds><p>Create the context information service by calling
+the <b>GetContextService</b> function:</p><p><p><PRE> GetContextService("Keyword", icxk_base)</PRE></p></li>
+<li class=ds><p>Call the <b>GetContextKeywords</b> function.
+This example calls the <b>GetContextKeywords</b> function
+to access values for the user-specified parameter, <b>VALID</b>:</p><p><p><PRE> icxk_base.GetContextKeywords("VALID", is_values)</PRE></p></li>
+<li class=ds><p>Extract values from the returned array as necessary.
+This example displays parameters in a list:</p><p><p><PRE> Integer   li_count</PRE><PRE> FOR li_count = 1 to UpperBound(is_values)</PRE><PRE>             lb_parms.AddItem(is_values[li_count])</PRE><PRE> NEXT</PRE></p></li></ol>
+<br><A NAME="CACIDHAI"></A><h2>CORBACurrent service</h2>
+<A NAME="TI4383"></A><p>Client applications and <ABBR title = "e a server" >EAServer</ABBR> components
+marked as OTS style can create, control, and obtain information
+about <ABBR title = "e a server" >EAServer</ABBR> transactions using
+functions of the CORBACurrent context service object. The CORBACurrent
+object provides most of the methods defined for the CORBA Current
+interface. </p>
+<A NAME="TI4384"></A><p>For more information, see <A HREF="apptechp157.htm#BABJIAFE">"Client- and component-demarcated
+transactions"</A>.</p>
+<A NAME="CHEBAIHD"></A><h2>Error logging service</h2>
+<A NAME="TI4385"></A><p>To record errors generated by PowerBuilder objects running
+in a transaction server to a log file, create an instance of the
+ErrorLogging service object and invoke its log method. For example:</p>
+<A NAME="TI4386"></A><p><p><PRE> ErrorLogging erlinfo_base</PRE><PRE> this.GetContextService("ErrorLogging",  &amp;</PRE><PRE>    erlinfo_base)</PRE><PRE> erlinfo_base.log("Write this string to log")</PRE></p>
+<A NAME="TI4387"></A><p>The errors are recorded in the <ABBR title = "e a server" >EAServer</ABBR> log
+if the component is running in <ABBR title = "e a server" >EAServer</ABBR>,
+and in the Windows system application log if the component is running
+in COM+.</p>
+<A NAME="CFHDAICJ"></A><h2>Internet service</h2>
+<A NAME="TI4388"></A><p>Use the Internet service to:<A NAME="TI4389"></A>
+<ul>
+<li class=fi>Display
+a Web page in the default browser (<b>HyperLinkToURL</b> function, which
+starts the default browser with the specified URL)</li>
+<li class=ds>Access the HTML for a specified page (<b>GetURL</b> function,
+which performs an HTTP <b>Get</b>)</li>
+<li class=ds>Send data to a CGI, ISAPI, or NSAPI program (<b>PostURL</b> function,
+which performs an HTTP <b>Post</b>)
+</li>
+</ul>
+</p>
+<A NAME="TI4390"></A><h4>Hyperlinking to a URL</h4>
+<A NAME="TI4391"></A><p>You call the Internet service's <b>HyperLinkToURL</b> function
+to start the default browser with a specified URL.</p>
+<A NAME="TI4392"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To hyperlink to a URL:</p>
+<ol><li class=fi><p>Declare an instance or global variable
+of type Inet:</p><p><p><PRE> Inet  iinet_base</PRE></p></li>
+<li class=ds><p>Create the Internet service by calling the <b>GetContextService</b> function:</p><p><p><PRE> THIS.GetContextService("Inet", iinet_base)</PRE></p></li>
+<li class=ds><p>Call the <b>HyperLinkToURL</b> function,
+passing the URL of the page to display when the browser starts:</p><p><p><PRE> iinet_base.HyperlinkToURL  &amp;</PRE><PRE>    ("http://www.sybase.com")</PRE></p></li></ol>
+<br><A NAME="TI4393"></A><h4>Getting a URL</h4>
+<A NAME="TI4394"></A><p>You call the Internet service's <b>GetURL</b> function
+to perform an HTTP <b>Get</b>, returning raw HTML for
+a specified URL. This function returns the raw HTML using the InternetResult
+object.</p>
+<A NAME="TI4395"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To perform an HTTP Get:</p>
+<ol><li class=fi><p>Declare an instance or global variable
+of type Inet. Also declare an instance or global variable using
+the descendent InternetResult object as the datatype (<b>n_ir_msgbox</b> in
+this example):</p><p><p><PRE> Inet  iinet_base</PRE><PRE> n_ir_msgbox  iir_msgbox</PRE></p></li>
+<li class=ds><p>Create the Internet service by calling the <b>GetContextService</b> function:</p><p><p><PRE> THIS.GetContextService("Internet", iinet_base)</PRE></p></li>
+<li class=ds><p>Create an instance of the descendent InternetResult
+object:</p><p><p><PRE> iir_msgbox = CREATE n_ir_msgbox</PRE></p></li>
+<li class=ds><p>Call the <b>GetURL</b> function, passing
+the URL of the page to be returned and a reference to the instance
+of the descendent InternetResult object:</p><p><p><PRE> iinet_base.GetURL  &amp;</PRE><PRE>    ("http://www.sybase.com", iir_msgbox)</PRE></p><p>When the <b>GetURL</b> function completes, it
+calls the <b>InternetData</b> function defined in the
+descendent InternetResult object, passing the HTML for the specified
+URL.</p></li></ol>
+<br><A NAME="TI4396"></A><h4>Posting to a URL</h4>
+<A NAME="TI4397"></A><p>You call the Internet service's <b>PostURL</b> function
+to perform an HTTP <b>Post</b>, sending data to a CGI,
+ISAPI, or NSAPI program. This function returns the raw HTML using
+the InternetResult object.</p>
+<A NAME="TI4398"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To perform an HTTP Post:</p>
+<ol><li class=fi><p>Declare an instance or global variable
+of type Inet. Also declare an instance or global variable using
+the descendent InternetResult object as the datatype (<b>n_ir_msgbox</b> in
+this example):</p><p><p><PRE> Inet  iinet_base</PRE><PRE> n_ir_msgbox  iir_msgbox</PRE></p></li>
+<li class=ds><p>Create the Internet service by calling the <b>GetContextService</b> function:</p><p><p><PRE> THIS.GetContextService("Internet", iinet_base)</PRE></p></li>
+<li class=ds><p>Create an instance of the descendent InternetResult
+object:</p><p><p><PRE> iir_msgbox = CREATE n_ir_msgbox</PRE></p></li>
+<li class=ds><p>Establish the arguments to the <b>PostURL</b> function:</p><p><p><PRE> Blob    lblb_args</PRE><PRE> String  ls_headers</PRE><PRE> String  ls_url</PRE><PRE> Long    ll_length</PRE><PRE> ls_url = "http://coltrane.sybase.com/"</PRE><PRE> ls_url += "cgi-bin/pbcgi80.exe/"</PRE><PRE> ls_url += "myapp/n_cst_html/f_test?"</PRE><PRE> lblb_args = Blob("")</PRE><PRE> ll_length = Len(lblb_args)</PRE><PRE> ls_headers = "Content-Length: "  &amp;<br>   + String(ll_length) + "~n~n"</PRE></p></li>
+<li class=ds><p>Call the <b>PostURL</b> function,
+passing the URL of the routine to be executed, the arguments, the
+header, an optional server port specification, and a reference to
+the instance of the descendent InternetResult object:</p><p><p><PRE> iinet_base.PostURL  &amp;<br>   (ls_url, lblb_args, ls_headers, 8080, iir_msgbox)</PRE></p><p>When the <b>PostURL</b> function completes, it
+calls the <b>InternetData</b> function defined in the
+descendent InternetResult object, passing the HTML returned by the
+specified routine.</p></li></ol>
+<br><A NAME="TI4399"></A><h4>Using the InternetResult object</h4>
+<A NAME="TI4400"></A><p>The <b>GetURL</b> and <b>PostURL</b> functions
+both receive data in an InternetResult object. This object acts
+as a buffer, receiving and caching the asynchronous data as it is
+returned by means of the Internet. When all data is received, the InternetResult
+object calls its <b>InternetData</b> function, which
+you override to process the data as appropriate.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Implement in descendants of InternetResult</span> <A NAME="TI4401"></A>You implement this feature by creating standard class user
+objects of type InternetResult. In each of these descendent user
+objects, define an <b>InternetData</b> function to process
+the passed HTML as appropriate.</p>
+<A NAME="TI4402"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To implement a descendent InternetResult object:</p>
+<ol><li class=fi><p>Create a standard class user object of
+type InternetResult.</p></li>
+<li class=ds><p>Declare a new user object function as follows:<A NAME="TI4403"></A>
+<ul>
+<li class=fi><b>Name</b>   InternetData</li>
+<li class=ds><b>Access</b>   Public</li>
+<li class=ds><b>Returns</b>   Integer</li>
+<li class=ds><b>Argument name</b>   Data, passed by value</li>
+<li class=ds><b>Argument datatype</b>   Blob
+</li>
+</ul>
+
+                        </p></li>
+<li class=ds><p>Add code to the <b>InternetData</b> function
+that processes the returned HTML as appropriate. This example simply
+displays the HTML in a MessageBox:</p><p><p><PRE> MessageBox("Returned HTML", &amp;<br>   String(data, EncodingANSI!))</PRE><PRE> Return 1</PRE></p></li></ol>
+<br><A NAME="CHEBGHHD"></A><h2>Secure Sockets Layer service</h2>
+<A NAME="TI4404"></A><p>PowerBuilder allows you to establish Secure Sockets Layer
+(SSL) connections to <ABBR title = "e a server" >EAServer</ABBR>.
+The SSL protocol allows connections to be secured using public-key
+encryption and authentication algorithms that are based on digital certificates.
+SSL is a "wrapper" protocol: packets for another protocol are secured
+by embedding them inside SSL packets. For example, HTTPS is HTTP secured
+by embedding each HTTP packet within an SSL packet. Likewise, IIOPS
+is IIOP embedded within SSL.</p>
+<A NAME="TI4405"></A><p>You use an instance of the SSLServiceProvider object to establish
+the connection from the client to the server. For more information,
+see the <i>PowerScript Reference</i>
+ and <A HREF="apptechp161.htm#CHDGJFAA">Chapter 26, "Using SSL in PowerBuilder clients."</A></p>
+<A NAME="CHECJBJH"></A><h2>Transaction server service</h2>
+<A NAME="TI4406"></A><p>Use the transaction server service to access information about
+the context of an object running in a transaction server such as <ABBR title = "e a server" >EAServer</ABBR> or COM+. You can
+use the TransactionServer object to influence transaction behavior programmatically,
+and to access the methods of another component on the transaction
+server.</p>
+<A NAME="TI4407"></A><p>For more information, see <A HREF="apptechp137.htm#CBBBFDAD">Chapter 24, "Building an <ABBR title = "e a server" >EAServer</ABBR> Component"</A> and <A HREF="apptechp167.htm#CHDDHCED">Chapter 27, "Building a COM or COM+ Component."</A></p>
+<A NAME="TI4408"></A><A NAME="TI4409"></A><p>This part describes tools and techniques for building distributed
+applications with PowerBuilder. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>PowerBuilder Enterprise edition only</span> <A NAME="TI4410"></A>The tools for building multitier applications available with PowerBuilder
+are supported in the Enterprise edition only. </p>
+

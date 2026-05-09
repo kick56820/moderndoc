@@ -1,0 +1,64 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Modifying graph properties</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp86.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp88.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF377543562"></A><h1>Modifying graph properties</h1>
+<A NAME="TI2444"></A><p>When you define a graph in the Window or User Object painter,
+you specify its behavior and appearance. For example, you might
+define a graph as a column graph with a certain title, divide its
+Value axis into four major divisions, and so on. Each of these entries
+corresponds to a property of a graph. For example, all graphs have
+an enumerated attribute GraphType, which specifies the type of graph.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>When dynamically changing the graph type</span> <A NAME="TI2445"></A>If you change the graph type, be sure to change other properties
+as needed to define the new graph properly.</p>
+<A NAME="TI2446"></A><p>You can change these graph properties at runtime by assigning
+values to the graph's properties in scripts. For example,
+to change the type of the graph gr_emp to Column, you could
+code:<p><PRE> gr_emp.GraphType = ColGraph!</PRE></p>
+<A NAME="TI2447"></A><p>To change the title of the graph at runtime, you could code:<p><PRE> gr_emp.Title = "New title"</PRE></p>
+<A NAME="TI2448"></A><h2>How parts of a graph are represented</h2>
+<A NAME="TI2449"></A><p>Graphs consist of parts: a title, a legend, and axes. Each
+of these parts has a set of display properties. These display properties
+are themselves stored as properties in a subobject (structure) of
+Graph called <b>grDispAttr</b>.</p>
+<A NAME="TI2450"></A><p>For example, graphs have a Title property, which specifies
+the title's text. Graphs also have a property TitleDispAttr,
+of type grDispAttr, which itself contains properties that specify
+all the characteristics of the title text, such as the font, size,
+whether the text is italicized, and so on.</p>
+<A NAME="TI2451"></A><p>Similarly, graphs have axes, each of which also has a set
+of properties. These properties are stored in a subobject (structure)
+of Graph called <b>grAxis</b>. For example, graphs
+have a property Values of type grAxis, which contains properties
+that specify the Value axis's properties, such as whether
+to use autoscaling of values, the number of major and minor divisions,
+the axis label, and so on.</p>
+<A NAME="TI2452"></A><p>Here is a representation of the properties of a graph:</p>
+<A NAME="TI2453"></A><p><p><PRE> Graph<br>        int Height<br>        int Depth<br>        grGraphType GraphType<br>        boolean Border<br>        string Title<br>        ...<br>grDispAttr TitleDispAttr, LegendDispAttr, PieDispAttr<br>        string FaceName<br>        int TextSize<br>        boolean Italic<br>        ...<br>grAxis Values, Category, Series<br>        boolean AutoScale<br>        int MajorDivisions<br>        int MinorDivisions<br>        string Label<br>        ...</PRE></p>
+<A NAME="TI2454"></A><h2>Referencing parts of a graph</h2>
+<A NAME="TI2455"></A><p>You use dot notation to reference these display properties.
+For example, one of the properties of a graph's title is
+whether the text is italicized or not. That information is stored
+in the boolean Italic property in the TitleDispAttr property of
+the graph.</p>
+<A NAME="TI2456"></A><p>For example, to italicize title of graph <b>gr_emp</b>,
+code:<p><PRE> gr_emp.TitleDispAttr.Italic = TRUE</PRE></p>
+<A NAME="TI2457"></A><p>Similarly, to turn on autoscaling of a graph's Values
+axis, code:<p><PRE> gr_emp.Values.Autoscale = TRUE</PRE></p>
+<A NAME="TI2458"></A><p>To change the label text for the Values axis, code:<p><PRE> gr_emp.Values.Label = "New label"</PRE></p>
+<A NAME="TI2459"></A><p>To change the alignment of the label text in the Values axis,
+code:<p><PRE> gr_emp.Values.LabelDispAttr.Alignment = Left!</PRE></p>
+<A NAME="TI2460"></A><p>For a complete list of graph properties, see <i>Objects
+and Controls </i>
+or use the Browser.</p>
+<A NAME="TI2461"></A><p>For more about the Browser, see the <i>PowerBuilder
+User's Guide</i>
+.</p>
+

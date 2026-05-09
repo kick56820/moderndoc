@@ -1,0 +1,154 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Setting properties for the TreeView DataWindow</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp233.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp235.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABGGBHA"></A><h1>Setting properties for the TreeView DataWindow</h1>
+<A NAME="TI8095"></A><p>You can set three types of properties for the TreeView DataWindow:<A NAME="TI8096"></A>
+<ul>
+<li class=fi>General
+properties</li>
+<li class=ds>TreeView level properties</li>
+<li class=ds>Detail band properties
+</li>
+</ul>
+</p>
+<A NAME="TI8097"></A><h4>Specifying images for tree node icons</h4>
+<A NAME="TI8098"></A><p>In the sample DataWindow shown in <A HREF="pbugp229.htm#BABEJEJC">"Creating a new TreeView DataWindow"</A>, different tree node icons display
+for collapsed and expanded levels. The icons are also different
+for each level. You specify images for these icons as TreeView level
+band properties.</p>
+<A NAME="TI8099"></A><p>The sample DataWindow also displays a tree node icon next
+to every row in the detail band. You specify an image for this icon
+as a detail band property.</p>
+<A NAME="TI8100"></A><p>Tree node icons do not display by default. After specifying
+images for icons, select the Use Tree Node Icon general property.</p>
+<A NAME="BABCFIHD"></A><h2>Setting general TreeView properties</h2>
+<A NAME="TI8101"></A><p>You set most TreeView DataWindow properties on the General
+page in the DataWindow Properties view. </p>
+<br><img src="images/dwprops.gif">
+<A NAME="TI8102"></A><p>The properties that are specific to a TreeView DataWindow are
+the TreeView properties and the Grid properties in the General page
+in the Properties view. The Grid properties display in the Properties
+view only if you select the Grid Style check box when you define
+the TreeView DataWindow:</p>
+<A NAME="TI8103"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI8104"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI8105"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8106"></A>Display On (0)</td>
+<td  rowspan="1"  ><A NAME="TI8107"></A>Grid lines always display. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8108"></A>Display Off (1)</td>
+<td  rowspan="1"  ><A NAME="TI8109"></A>Grid lines never display, so users cannot
+resize columns at runtime. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8110"></A>Display Only (2)</td>
+<td  rowspan="1"  ><A NAME="TI8111"></A>Grid lines display only when the DataWindow object displays
+online. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8112"></A>Display Print Only (3)</td>
+<td  rowspan="1"  ><A NAME="TI8113"></A>Grid lines display only when the contents
+of the DataWindow object are printed.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8114"></A>Column Moving</td>
+<td  rowspan="1"  ><A NAME="TI8115"></A>Columns can be moved at runtime.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8116"></A>Mouse Selection</td>
+<td  rowspan="1"  ><A NAME="TI8117"></A>Data can be selected at runtime and,
+for example, copied to the clipboard.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8118"></A>Row Resize</td>
+<td  rowspan="1"  ><A NAME="TI8119"></A>Rows can be resized at runtime.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8120"></A>Indent Value</td>
+<td  rowspan="1"  ><A NAME="TI8121"></A>The indent value of the child node from
+its parent in the units specified for the DataWindow. The indent value
+defines the position of the state icon. The X position of the state
+icon is the X position of its parent plus the indent value.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8122"></A>Expand To Level By Default</td>
+<td  rowspan="1"  ><A NAME="TI8123"></A>Expand to TreeView level 1, 2, or 3.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8124"></A>State Icon Align Mode</td>
+<td  rowspan="1"  ><A NAME="TI8125"></A>Align the state icon in the middle (0),
+at the top (1), or at the bottom (2).</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8126"></A>Show Lines</td>
+<td  rowspan="1"  ><A NAME="TI8127"></A>Whether lines display that connect parent
+nodes and child nodes. If you want to display lines that connect the
+rows in the detail band to their parent, select Connect Leaf Nodes.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8128"></A>Connect Leaf Nodes</td>
+<td  rowspan="1"  ><A NAME="TI8129"></A>Whether lines display that connect the
+leaf nodes in the detail band rows.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8130"></A>Use Tree Node Icon</td>
+<td  rowspan="1"  ><A NAME="TI8131"></A>Whether an icon for the tree node displays.
+This applies to icons in the level and detail bands. For how to
+specify icon images, see <A HREF="pbugp234.htm#BABBBBGG">"Setting TreeView level properties"</A> and <A HREF="pbugp234.htm#BABFFIBJ">"Setting detail band properties"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8132"></A>Select Node By Mouse</td>
+<td  rowspan="1"  ><A NAME="TI8133"></A>Whether a Tree node is selected by clicking
+the Tree node with the mouse. </td>
+</tr>
+</table>
+<A NAME="BABBBBGG"></A><h2>Setting TreeView level properties</h2>
+<A NAME="TI8134"></A><p>In the Properties view, you can specify expanded and collapsed
+icons for each TreeView level. You access the Properties view by
+clicking the bar identifying the band for that level in the Design
+view in the DataWindow painter. You can also access the Properties
+view from the Rows menu, or by clicking any of the icons in the
+Design view that represent the locations of nodes, icons, and connecting
+lines. (See <A HREF="pbugp233.htm#BABGHABH">"Icons in the Design view"</A>.)</p>
+<A NAME="TI8135"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify properties for a level in a TreeView DataWindow:</p>
+<ol><li class=fi><p>Select Rows&gt;Edit TreeView Level
+from the menu bar and then select the number of the level from the
+list of levels, or click the bar identifying the band for that level
+or any of the icons in that band.</p></li>
+<li class=ds><p>Use the DataWindow TreeView Level properties view
+that displays to edit the properties for the level you selected.</p></li></ol>
+<br><br><img src="images/detailgp.gif">
+<A NAME="TI8136"></A><p>The properties that are specific to a TreeView level band
+are at the bottom of the Properties view:</p>
+<A NAME="TI8137"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI8138"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI8139"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8140"></A>Expanded Tree Node Icon File</td>
+<td  rowspan="1"  ><A NAME="TI8141"></A>The file name of the tree node icon in
+a TreeView level band when it is in the expanded state.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8142"></A>Collapsed Tree Node Icon File</td>
+<td  rowspan="1"  ><A NAME="TI8143"></A>The file name of the tree node icon in
+a TreeView level band when it is in the collapsed state.</td>
+</tr>
+</table>
+<A NAME="TI8144"></A><p>You set the tree node icon file name separately for each TreeView
+level band. You can use a quoted expression for the tree node icon
+file.</p>
+<A NAME="BABFFIBJ"></A><h2>Setting detail band properties</h2>
+<A NAME="TI8145"></A><p>You can specify an icon for the rows in the detail band by
+clicking the detail band in the DataWindow painter to display the Properties
+view.</p>
+<br><img src="images/detailbd.gif">
+<A NAME="TI8146"></A><p>The only property that is specific to the detail band is located
+at the bottom of the Properties view:</p>
+<A NAME="TI8147"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI8148"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI8149"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8150"></A>Tree Node Icon File</td>
+<td  rowspan="1"  ><A NAME="TI8151"></A>The file name of the tree node icon in
+the detail band. You can use a quoted expression.</td>
+</tr>
+</table>
+<A NAME="TI8152"></A><h4>For more information</h4>
+<A NAME="TI8153"></A><p>For reference information about TreeView DataWindow properties,
+methods and events, see the <i>DataWindow Reference</i>
+ or
+the online Help.</p>
+

@@ -1,0 +1,46 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Reusing a DataWindow object </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp24.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp26.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDGDFHD"></A><h1>Reusing a DataWindow object </h1>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>PowerBuilder only</span> <A NAME="TI887"></A>This technique uses PowerScript methods, which are not available
+in other DataWindow environments.</p>
+<A NAME="TI888"></A><p>You can reuse a DataWindow object by retrieving its syntax
+from the library it is stored in, then using the syntax to create
+a DataWindow object dynamically in a DataWindow control.</p>
+<A NAME="TI889"></A><p>Here is a typical way to accomplish this in an application.
+Use:<A NAME="TI890"></A>
+<ul>
+<li class=fi>The LibraryDirectory function to obtain
+a list of DataWindow objects and other library entries in the current
+library</li>
+<li class=ds>A DropDownListBox to list the DataWindow objects
+in the library and then allow the user to select a DataWindow from
+the list</li>
+<li class=ds>The LibraryExport function to export the selected
+DataWindow object syntax into a string variable</li>
+<li class=ds>The Create method to use the DataWindow syntax to
+create the DataWindow object in the specified DataWindow control</li>
+<li class=ds>The Describe method to get the current DataWindow
+object syntax&#8212;for example:<p><PRE> string dwSyntax</PRE><PRE> dwSyntax = dw_1.Describe("datawindow.syntax") </PRE></li>
+<li class=ds>The Modify method to allow the user to modify the
+DataWindow object</li>
+<li class=ds>The LibraryImport function to save the user-modified
+DataWindow object in a library
+</li>
+</ul>
+</p>
+<A NAME="TI891"></A><p>For information about the PowerScript functions,
+see the <i>PowerScript Reference</i>
+. For information
+about the DataWindow methods Create, Describe, and Modify, see the <i>DataWindow
+Reference</i>
+.</p>
+

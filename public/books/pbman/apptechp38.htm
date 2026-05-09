@@ -1,0 +1,102 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using window arrays</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp37.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp39.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAICDFGF"></A><h1>Using window arrays</h1>
+<A NAME="TI786"></A><p>To create an array of windows, declare an array of the datatype
+of the window. For example, the following
+statement declares an array named <b>myarray</b>,
+which contains five instances of the window <b>w_employee</b>:<p><PRE> w_employee myarray[5]</PRE></p>
+<A NAME="TI787"></A><p>You can also create unbounded arrays of windows if the number
+of windows to be opened is not known at compile time.</p>
+<A NAME="TI788"></A><h4>Opening an instance using an array</h4>
+<A NAME="TI789"></A><p>To open an instance of a window in an array, use the <b>Open</b> function
+and pass it the array index. Continuing the example above, the following
+statements open the first and second instances of the window <b>w_employee</b>:<p><PRE> Open(myarray[1])         // Opens the first instance<br>                         // of the window w_employee.<br>Open(myarray[2])         // Opens the second instance.</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Moving first instance opened</span> <A NAME="TI790"></A>The statements in this example open the second instance of
+the window at the same screen location as the first instance. Therefore,
+you should call the <b>Move</b> function in the script
+to relocate the first instance before the second <b>Open</b> function
+call.</p>
+<A NAME="TI791"></A><h4>Manipulating arrays</h4>
+<A NAME="TI792"></A><p>Using arrays of windows, you can manipulate particular instances
+by using the array index. For example, the following statement hides
+the second window in the array:<p><PRE> myarray[2].Hide()</PRE></p>
+<A NAME="TI793"></A><p>You can also reference controls in windows by using the array
+index, such as:<p><PRE> myarray[2].st_count.text = "2"</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Opening many windows</span> <A NAME="TI794"></A>When you open or close a large number of instances of a window,
+you may want to use a <b>FOR...NEXT</b> control structure
+in the main window to open or close the instances. For example:<p><PRE> w_employee myarray[5]<br>for i = 1 to 5<br>   Open(myarray[i])<br>next</PRE></p>
+<A NAME="TI795"></A><h4>Creating mixed arrays</h4>
+<A NAME="TI796"></A><p>In the previous example, all windows in the array are the
+same type. You can also create arrays of mixed type. Before you
+can understand this technique, you need to know one more thing about
+window inheritance: all windows you define are actually descendants
+of the built-in datatype window.</p>
+<A NAME="TI797"></A><p>Suppose you have a window <b>w_employee</b> that
+is defined from scratch, and <b>w_customer</b> that
+inherits from <b>w_employee</b>. The complete
+inheritance hierarchy is the following:</p>
+<A NAME="TI798"></A><caption><b>Figure 6-2: Window inheritance hierarchy</b></captionls>
+<br><img src="images/mgwin02.gif">
+<A NAME="TI799"></A><p>The system-defined object named window is the ancestor of
+all windows you define in PowerBuilder. The built-in object named
+window defines properties that are used in all windows (such as
+X, Y, and Title).</p>
+<A NAME="TI800"></A><p>If you declare a variable of type window, you can reference
+any type of window in the application. This is because all user-defined
+windows are a kind of window.</p>
+<A NAME="TI801"></A><p>The following code creates an array of three windows. The
+array is named <b>newarray</b>. The array can reference
+any type of window, because all user-defined windows are derived
+from the window datatype:<p><PRE> window newarray[3]<br>string win[3]<br>int iwin[1] = "w_employee"<br>win[2] = "w_customer"<br>win[3] = "w_sales"<br> <br>for i = 1 to 3<br>   Open(newarray[i], win[i])<br>next</PRE></p>
+<A NAME="TI802"></A><p>The code uses this form of the <b>Open</b> function:<p><PRE>Open ( <i>windowVariable, windowType</i> )</PRE></p>
+</p>
+<A NAME="TI803"></A><p>where <i>windowVariable</i> is a variable of
+type window (or a descendant of window) and <i>windowType</i> is
+a string that specifies the type of window.</p>
+<A NAME="TI804"></A><p>The preceding code opens three windows: an instance of <b>w_employee</b>,
+an instance of <b>w_customer</b>, and an
+instance of <b>w_sales</b>.</p>
+<A NAME="TI805"></A><h4>Using arrays versus reference variables</h4>
+<A NAME="TI806"></A><p><A HREF="apptechp38.htm#CHDICJAI">Table 6-1</A> shows
+when you use reference variables and when you use arrays to manipulate
+window instances. </p>
+<A NAME="CHDICJAI"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 6-1: Arrays as opposed to reference
+variables</caption>
+<tr><th  rowspan="1"  ><A NAME="TI807"></A>Item</th>
+<th  rowspan="1"  ><A NAME="TI808"></A>Advantages</th>
+<th  rowspan="1"  ><A NAME="TI809"></A>Disadvantages</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI810"></A>Arrays</td>
+<td  rowspan="1"  ><A NAME="TI811"></A>You can refer to particular instances.</td>
+<td  rowspan="1"  ><A NAME="TI812"></A>Arrays are more difficult to use. For
+example, if the user closes the second window in an array, then
+wants to open a new window, your code must determine whether to
+add a window to the end of the array (thereby using more memory
+than needed) or find an empty slot in the existing array for the
+new window.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI813"></A>Reference variables</td>
+<td  rowspan="1"  ><A NAME="TI814"></A>Easy to use&#8212;PowerBuilder manages them
+automatically.</td>
+<td  rowspan="1"  ><A NAME="TI815"></A>You cannot manipulate particular instances
+of windows created using reference variables.</td>
+</tr>
+</table>
+<A NAME="TI816"></A><p>Suppose you use <b>w_employee</b> to
+provide or modify data for individual employees. You may want to
+prevent a second instance of <b>w_employee</b> opening for
+the same employee, or to determine for which employees an instance
+of <b>w_employee</b> is open. To do this
+kind of management, you must use an array. If you do not need to
+manage specific window instances, use reference variables instead
+to take advantage of their ease of use. </p>
+

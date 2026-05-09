@@ -1,0 +1,104 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+HTML for inserting the controls on a Web page</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp53.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp55.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBDCAIG"></A><h1>HTML for inserting the controls on a Web page</h1>
+<A NAME="TI2323"></A><p>You include the controls on a Web page with an Object element
+and associated Param elements. Then you write scripts that direct
+the control to make database connections, retrieve and update data,
+and respond to user actions.</p>
+<A NAME="TI2324"></A><p>The way the Object and Param elements look in a Web page are
+described next. When you insert the controls and set their properties
+using the JSP Target user interface in PowerBuilder, these elements
+are coded for you.</p>
+<A NAME="TI2325"></A><h2>Object element</h2>
+<A NAME="TI2326"></A><h4>How it works</h4>
+<A NAME="TI2327"></A><p>ActiveX controls use the Object element to specify the GUID
+(a unique identifier) of the control as well as the space the control
+takes on the page. The Object tag looks like this:<p><PRE> &lt;OBJECT id=PSDWC1 height=357 classid="CLSID:A5A51503-A5A5-1000-8000-080009AC61A9" width=343&gt;</PRE><PRE> &lt;/OBJECT&gt;</PRE></p>
+<A NAME="TI2328"></A><p>In a Web target, when you insert the Web ActiveX control by
+dragging from the System Tree or by using the Insert&gt;Component
+menu item, the Object tag is written for you.</p>
+<A NAME="TI2329"></A><h4>CODEBASE attribute</h4>
+<A NAME="TI2330"></A><p>If your users need to download the controls, you can include
+the CODEBASE attribute in the Object element to identify the file
+to be downloaded. After the browser downloads the CAB file, it unpacks
+it and registers the ActiveX controls in the user's system
+registry.</p>
+<A NAME="TI2331"></A><p>The value for CODEBASE has the format:<p><PRE><i>url</i>#<i>version</i></PRE></p>
+</p>
+<A NAME="TI2332"></A><p>A typical value for CODEBASE uses a relative URL:<p><PRE> CODEBASE="cabs/psdwc105.cab#10,5,0,3514"</PRE></p>
+<p><b>URL</b>   The URL is the location of the DataWindow control's
+CAB file on your Web server. It can be an absolute or relative URL.</p>
+<p><b>Version</b>   The version is a set of four numbers, separated by commas.
+The numbers must match the version of the CAB file. The version
+number of the CAB file is the same as the version number for PowerBuilder.</p>
+<A NAME="TI2333"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To find out the 4-part version number in Windows:</p>
+<ol><li class=fi><p>Select the PowerBuilder executable or a
+PowerBuilder DLL in Windows Explorer.</p></li>
+<li class=ds><p>Select File&gt;Properties from the menu
+bar.</p></li>
+<li class=ds><p>On the Version tab, look at File Version. A typical
+number is 10.5.0.3514.</p></li></ol>
+<br><A NAME="TI2334"></A><h4>Example</h4>
+<A NAME="TI2335"></A><p>The Object element with a CODEBASE attribute looks like this:<p><PRE> &lt;OBJECT codeBase=<br>"http://www.domain.com/psdwc105.cab#Version=10,5,0,<br>3514" id=PSDWC1 height=357 classid="CLSID:A5A51503-A5A5-1000-8000-080009AC61A9" width=343&gt;<br>&lt;/OBJECT&gt;</PRE></p>
+<A NAME="TI2336"></A><h4>New versions</h4>
+<A NAME="TI2337"></A><p>When you get new versions of the CAB file, you can change
+the version numbers on the Web page and cause the browser to install
+a new version of the control.</p>
+<A NAME="TI2338"></A><p>For more information about how to deploy new versions, see <A HREF="dwprgugp60.htm#BGBDBIAA">"Deploying the Web ActiveX"</A>.</p>
+<A NAME="TI2339"></A><h4>Putting the Object tag in a separate file</h4>
+<A NAME="TI2340"></A><p>If the Cumulative Security Update for Internet Explorer (912812)
+or a subsequent update is installed on the computer where the Web
+ActiveX control is running, a browser refresh does not refresh the
+control correctly. This update is described in Microsoft Security
+Bulletin MS06-013, published in April 2006. </p>
+<A NAME="TI2341"></A><p>To work around this issue, put the &lt;OBJECT&gt; tag
+in a separate JavaScript file instead of the main HTML file, as
+shown in this example:<p><PRE> // HTML file<br>&lt;HTML&gt;<br>&lt;HEAD&gt;<br>   &lt;TITLE&gt;test&lt;/TITLE&gt;<br>&lt;/HEAD&gt;<br>&lt;BODY bgColor="white" PSPARAMS=""&gt;<br>&lt;P&gt;Put your data here &lt;/P&gt;<br>&lt;P&gt;&amp;nbsp;&lt;/P&gt;<br>&lt;P&gt;<br>   &lt;div id="DivID"&gt;<br>      &lt;script src="createElement.js"&gt;&lt;/script&gt;<br>   &lt;/div&gt;<br>&lt;/BODY&gt;<br>&lt;/HTML&gt;</PRE></p>
+<A NAME="TI2342"></A><p>The <i>createElement.js</i> JavaScript file
+contains the Object tag:<p><PRE> // createElement.js file<br>var d = document.getElementById("DivID");<br>d.innerHTML = <br>'&lt;OBJECT id="OBJECT1" style="WIDTH: 627px; HEIGHT: 320px" codeBase="psdwc105.cab" classid="CLSID:A5A51503-A5A5-1000-8000-080009AC61A9"&gt;'<br>+'&lt;PARAM NAME="_Version" VALUE="65536"&gt;&lt;/PARAM&gt;'<br>+'&lt;PARAM NAME="_ExtentX" VALUE="16589"&gt;&lt;/PARAM&gt;'<br>+'&lt;PARAM NAME="_ExtentY" VALUE="8467"&gt;&lt;/PARAM&gt;'<br>+'&lt;PARAM NAME="_StockProps" VALUE="2"&gt;&lt;/PARAM&gt;'<br>+'&lt;PARAM NAME="Caption" VALUE=""&gt;&lt;/PARAM&gt;'<br>+'&lt;PARAM NAME="SourceFileName" VALUE="test.psr"&gt;&lt;/PARAM&gt;'<br>+'&lt;PARAM NAME="DataWindowObject" VALUE="test.psr"&gt;&lt;/PARAM&gt;'<br>+'&lt;PARAM NAME="LogId" VALUE=""&gt;&lt;/PARAM&gt;'<br>+'&lt;PARAM NAME="LogPass" VALUE=""&gt;&lt;/PARAM&gt;'<br>+'&lt;PARAM NAME="dbParm" VALUE=""&gt;&lt;/PARAM&gt;'<br>+'&lt;PARAM NAME="SuppressEvents" VALUE="0"&gt;&lt;/PARAM&gt;'<br>+'&lt;PARAM NAME="VScrollBar" VALUE="0"&gt;&lt;/PARAM&gt;'<br>+'&lt;PARAM NAME="HScrollBar" VALUE="0"&gt;&lt;/PARAM&gt;'<br>+'&lt;PARAM NAME="HSplitScroll" VALUE="0"&gt;&lt;/PARAM&gt;'<br>+'&lt;PARAM NAME="LiveScroll" VALUE="0"&gt;&lt;/PARAM&gt;'<br>+'&lt;/OBJECT&gt;';</PRE></p>
+<A NAME="BGBDIHBJ"></A><h2>Properties and Param elements</h2>
+<A NAME="TI2343"></A><h4>How they work</h4>
+<A NAME="TI2344"></A><p>The Web ActiveX and the Transaction Object control have several
+properties that specify connection information. The Web ActiveX
+also has properties that specify a DataWindow object or a PSR. You
+provide values for the properties with Param elements, which are
+enclosed in the Object element.</p>
+<A NAME="TI2345"></A><p>When you insert the controls in a JSP target, Param elements
+are automatically added to the Web page. You can provide values
+for the Param elements using the control property sheets. You can
+also write scripts that set or change property values.</p>
+<A NAME="TI2346"></A><p>The inserted Param elements are grouped in an order that corresponds
+to pages in the control property sheets. The first group of Param
+elements contains standard ActiveX properties. You can assign values
+for the standard ActiveX properties in the ActiveX OBJECT<i>n</i> Properties
+dialog box, where <i>n</i> is the order in which the
+object is placed on the page.</p>
+<A NAME="TI2347"></A><p>The Web ActiveX also inserts Param elements for custom properties.
+You set these custom properties from the Sybase DataWindow Web Control
+Properties dialog box. To open this dialog box, you can click the
+Control Properties button on the ActiveX page of the ActiveX OBJECT<i>n</i> Properties
+dialog box for the Web ActiveX control.</p>
+<A NAME="TI2348"></A><p>The Sybase DataWindow Web Control Properties dialog box has
+four tab pages where you can set custom properties: General, Scrolling,
+Transaction, and Trans User. The Transaction Object control has
+only two custom property pages: Transaction and Trans User.</p>
+<A NAME="TI2349"></A><h4>Standard ActiveX properties</h4>
+<A NAME="TI2350"></A><p><p><PRE> &lt;PARAM VALUE=65536 NAME="_Version"&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM VALUE=9280 NAME="_ExtentX"&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM VALUE=5155 NAME="_ExtentY"&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM VALUE=2 NAME="_StockProps"&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM VALUE="" NAME=Caption&gt;&lt;/PARAM&gt;</PRE></p>
+<A NAME="TI2351"></A><h4>Properties on General page</h4>
+<A NAME="TI2352"></A><p><p><PRE> &lt;PARAM VALUE="javadwtest.pbl" NAME=SourceFileName&gt; &lt;/PARAM&gt;</PRE><PRE> &lt;PARAM VALUE="d_emp" NAME=DataWindowObject&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM VALUE=0 NAME=SuppressEvents&gt;&lt;/PARAM&gt;</PRE></p>
+<A NAME="TI2353"></A><h4>Properties on Scrolling page</h4>
+<A NAME="TI2354"></A><p><p><PRE> &lt;PARAM VALUE=0 NAME=VScrollBar&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM VALUE=0 NAME=HScrollBar&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM VALUE=0 NAME=HSplitScroll&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM VALUE=0 NAME=LiveScroll&gt;&lt;/PARAM&gt;</PRE></p>
+<A NAME="TI2355"></A><h4>Properties on Transaction page</h4>
+<A NAME="TI2356"></A><p><p><PRE> &lt;PARAM VALUE="Driver='com.sybase.jdbc2.jdbc.SybDriver', URL='jdbc:sybase:Tds:localhost:2638'" NAME=dbParm&gt; &lt;/PARAM&gt;</PRE></p>
+<A NAME="TI2357"></A><h4>Properties on Trans User page</h4>
+<A NAME="TI2358"></A><p><p><PRE> &lt;PARAM VALUE=dba NAME=LogId&gt;&lt;/PARAM&gt;</PRE><PRE> &lt;PARAM VALUE=sql NAME=LogPass&gt;&lt;/PARAM&gt;</PRE></p>
+

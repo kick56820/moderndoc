@@ -1,0 +1,79 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using menus in your applications</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp122.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp124.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CACDIAEFBH"></A><h1>Using menus in your applications</h1>
+<A NAME="TI3665"></A><p>You can use menus in two ways:</p>
+<A NAME="TI3666"></A><p><A NAME="TI3667"></A>
+<ul>
+<li class=fi>Place them in the
+menu bar of a window</li>
+<li class=ds>Display a menu as a pop-up menu
+</li>
+</ul>
+</p>
+<A NAME="TI3668"></A><h2>Adding a menu bar to a window</h2>
+<A NAME="TI3669"></A><p>To have a menu bar display when a window is opened by a user,
+you associate a menu with the window in the Window painter.</p>
+<A NAME="TI3670"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To associate a menu with a window:</p>
+<ol><li class=fi><p>Click the Open button in the PowerBar,
+select the window with which you want to associate the menu, and
+open the window.</p></li>
+<li class=ds><p>Do one of the following:<A NAME="TI3671"></A>
+<ul>
+<li class=fi>In
+the Properties view for the window, enter the name of the menu in the
+MenuName text box on the General tab page.</li>
+<li class=ds>Click the Browse button and select the menu from
+the Select Object dialog box, which lists all menus available to
+the application.<br>
+In the Select Object dialog box, you can search for a menu
+by clicking the Browse button.<br>
+</li>
+</ul>
+
+                      </p></li>
+<li class=ds><p>Click Save to associate the selected menu with
+the window.</p></li></ol>
+<br><A NAME="TI3672"></A><h4>Identifying menu items in window scripts</h4>
+<A NAME="TI3673"></A><p>You reference menu items in scripts in windows and controls
+using the following syntax:<p><PRE><i>menu.menu item</i></PRE></p>
+</p>
+<A NAME="TI3674"></A><p>You must always fully qualify the menu item with the name
+of the menu.</p>
+<A NAME="TI3675"></A><p>When referring to a menu item in a drop-down or cascading
+menu, you must specify each menu item on the path to the menu item
+you are referencing, separating the names with periods.</p>
+<A NAME="TI3676"></A><p>For example, to refer to the Enabled property of menu item <b>m_open</b>,
+which is under the menu bar item <b>m_file</b> in
+the menu saved in the library as <b>m_menu</b>,
+use:<p><PRE> m_menu.m_file.m_open.Enabled</PRE></p>
+<A NAME="TI3677"></A><h4>Changing a window's menu at runtime</h4>
+<A NAME="TI3678"></A><p>You can use the <b>ChangeMenu</b> function in
+a script to change the menu associated with a window at runtime.</p>
+<A NAME="TI3679"></A><h2>Displaying pop-up menus</h2>
+<A NAME="TI3680"></A><p>To display a pop-up menu in a window, use the <b>PopMenu</b> function
+to identify the menu and the location at which you want to display
+the menu.</p>
+<A NAME="TI3681"></A><h4>If the menu is associated with the window</h4>
+<A NAME="TI3682"></A><p>If the menu is currently associated with the window, you can
+simply call the PopMenu function.</p>
+<A NAME="TI3683"></A><p>The following statement in a CommandButton script displays <b>m_appl</b>.<b>m_help</b> as
+a pop-up menu at the current pointer position, assuming menu <b>m_appl</b> is already
+associated with the window:<p><PRE> m_appl.m_help.PopMenu(PointerX(), PointerY())</PRE></p>
+<A NAME="TI3684"></A><h4>If the menu is not associated with the window</h4>
+<A NAME="TI3685"></A><p>If the menu is not already associated with the window, you
+must create an instance of the menu before you can display it as
+a pop-up menu.</p>
+<A NAME="TI3686"></A><p>The following statements create an instance of the menu <b>m_new</b>,
+then pop up the menu <b>mymenu</b>.<b>m_file</b> at
+the pointer location, assuming <b>m_new</b> is
+not associated with the window containing the script:<p><PRE> m_new   mymenu<br>mymenu = create m_new<br>mymenu.m_file.PopMenu(PointerX(), PointerY())</PRE></p>
+

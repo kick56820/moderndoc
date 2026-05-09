@@ -1,0 +1,167 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Delivering your application to end users</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp267.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp269.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF295101284"></A><h1>Delivering your application to end users</h1>
+<A NAME="TI7916"></A><p>When you deliver the executable version of your application
+to users, you need to install all of the various files and programs
+in the right places, such as on their computers or on the network. </p>
+<A NAME="TI7917"></A><h4>Automating the deployment process</h4>
+<A NAME="TI7918"></A><p>If you want to automate the deployment process, you might
+want to use a software distribution application such as InstallShield.
+Such applications typically install all the executables, resource
+files, data sources, and configuration files your users need to
+run your application. They also update the users' initialization
+files and registry.</p>
+<A NAME="TI7919"></A><h2>Installation checklist</h2>
+<A NAME="TI7920"></A><p>You can use the following checklist to make sure you install
+everything that is needed. For easy reading, the checklist is divided
+into:</p>
+<A NAME="TI7921"></A><p><A NAME="TI7922"></A>
+<ul>
+<li class=fi>Installing environmental
+pieces</li>
+<li class=ds>Installing application pieces
+</li>
+</ul>
+</p>
+<A NAME="TI7923"></A><h4>Installing environmental pieces</h4>
+<A NAME="TI7924"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI7925"></A>Checklist item</th>
+<th  rowspan="1"  ><A NAME="TI7926"></A>Details</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7927"></A>Install the PowerBuilder runtime DLLs.</td>
+<td  rowspan="1"  ><A NAME="TI7928"></A>You should install all of these DLL files
+(which contain the PowerBuilder execution system) locally on each
+user computer. They are needed to run PowerBuilder applications
+independently (outside the development environment). This applies
+to applications generated in machine code as well as those generated
+in Pcode.<A NAME="TI7929"></A><p>For details on installing the runtime DLLs,
+see <A HREF="apptechp273.htm#BGBEBIEA">"PowerBuilder runtime files"</A>.</p><A NAME="TI7930"></A><p><i>Handling maintenance releases</i> If
+you are using a maintenance release of PowerBuilder in your development
+environment, make sure you provide users with the runtime DLLs from
+that maintenance release.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7931"></A>Install the database interface(s).</td>
+<td  rowspan="1"  ><A NAME="TI7932"></A>You should install on each user computer
+any database interfaces required by the application, such as the ODBC
+interface and other native database interfaces.<A NAME="TI7933"></A><p>For details on installing any database interfaces
+you need, see <A HREF="apptechp269.htm#CFHBBAEA">Chapter 41, "Deploying Applications
+and Components."</A> For more information about database interfaces,
+see <i>Connecting to Your Database</i>
+.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7934"></A>Configure any ODBC drivers you install.</td>
+<td  rowspan="1"  ><A NAME="TI7935"></A>If you install the ODBC interface (and
+one or more ODBC drivers) on user computers, you must also configure
+the ODBC drivers. This involves defining the specific data sources
+to be accessed through each driver.<A NAME="TI7936"></A><p>For details on configuring ODBC drivers, see <i>Connecting
+to Your Database</i>
+.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7937"></A>Set up network access if needed.</td>
+<td  rowspan="1"  ><A NAME="TI7938"></A>If the application needs to access any
+server databases or any other network services, make sure each user computer
+is properly connected.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7939"></A>Configure the operating (windowing) system.</td>
+<td  rowspan="1"  ><A NAME="TI7940"></A>A particular application might require
+some special adjustments to the operating or windowing system for performance
+or other reasons. If that is the case with your application, be
+sure to make those adjustments to each user computer.</td>
+</tr>
+</table>
+<A NAME="TI7941"></A><h4>Installing application pieces</h4>
+<A NAME="TI7942"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI7943"></A>Checklist item</th>
+<th  rowspan="1"  ><A NAME="TI7944"></A>Details</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7945"></A>Copy the executable application.</td>
+<td  rowspan="1"  ><A NAME="TI7946"></A>Make copies of the files that make up
+your executable application and install them on each user computer. These
+files can include:<A NAME="TI7947"></A><p><A NAME="TI7948"></A>
+<ul>
+<li class=fi>The executable (EXE)
+file</li>
+<li class=ds>Any dynamic libraries (DLL or PBD files)</li>
+<li class=ds>Any files for resources you are delivering separately
+(such as ICO, BMP, GIF, JPEG, RLE, WMF, or CUR files)
+</li>
+</ul>
+</p><A NAME="TI7949"></A><p><i>Handling maintenance releases</i> If
+you plan to revise these files on a regular basis, you might want
+to automate the process of copying the latest versions of them from
+a server on your network to each user computer. </p><A NAME="TI7950"></A><p>You might consider building this logic right into your application.
+You might also make it copy updates of the PowerBuilder runtime
+DLLs to a user's computer.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7951"></A>Copy any additional files.</td>
+<td  rowspan="1"  ><A NAME="TI7952"></A>Make copies of any additional files that
+the application uses and install them on each user computer. These
+files often include:<A NAME="TI7953"></A><p><A NAME="TI7954"></A>
+<ul>
+<li class=fi>Initialization (INI)
+files</li>
+<li class=ds>Help (HLP) files</li>
+<li class=ds>Possibly various others such as text or sound files
+</li>
+</ul>
+</p><A NAME="TI7955"></A><p> In some cases, you might want to install particular files
+on a server instead of locally, depending on their use.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7956"></A>Copy any local databases to be accessed.</td>
+<td  rowspan="1"  ><A NAME="TI7957"></A>If the application needs to access a
+local database, copy the files that comprise that database and install them
+on each user computer.<A NAME="TI7958"></A><p>Make sure that you also install the appropriate database interface
+and configure it properly if you have not already done so.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7959"></A>Install any other programs to be accessed.</td>
+<td  rowspan="1"  ><A NAME="TI7960"></A>If the application needs to access any
+external programs, install each one in an appropriate location&#8212;either
+on every user computer or on a server.<A NAME="TI7961"></A><p>Also, perform any configuration required to make those programs
+work properly. For example, you might need to register ActiveX controls.
+For more information, see <A HREF="apptechp270.htm#CFHCJDAG">"Deploying ActiveX controls"</A>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7962"></A>Ensure that the application can find
+the files it needs.</td>
+<td  rowspan="1"  ><A NAME="TI7963"></A>Make sure you install the various files
+that your application uses on paths where it can find them:<A NAME="TI7964"></A><p><A NAME="TI7965"></A>
+<ul>
+<li class=fi>If the application
+refers to a file <i>by a specific path</i>, then install
+the file on that path.</li>
+<li class=ds>If the application refers to a file <i>by
+name only</i>, then install the file on some path that the
+application is able to search&#8212;typically the current one.
+</li>
+</ul>
+</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7966"></A>Update the system registry with values
+for the application.</td>
+<td  rowspan="1"  ><A NAME="TI7967"></A>If you rely on the Windows registry to
+manage certain information needed by the application, such as the application
+path, be sure to update the registry with such values.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7968"></A>Set up the application's icon.</td>
+<td  rowspan="1"  ><A NAME="TI7969"></A>To enable users to start the application,
+use the windowing system on each user computer to display the executable
+file's icon where you want.<A NAME="TI7970"></A><p>Alternatively, users can also start the application in any
+other manner provided for native applications under their windowing
+system.</p></td>
+</tr>
+</table>
+<A NAME="BABBAAAI"></A><h2>Starting the deployed application</h2>
+<A NAME="TI7971"></A><p>Users can run your application just as they run other Windows
+applications. For example, they can double-click the executable
+file in Explorer or create an application shortcut on the desktop
+and double-click the shortcut. </p>
+<A NAME="TI7972"></A><p>If users create a shortcut, the Target text box on the Shortcut
+properties page should specify the path to the executable, and the
+Start In text box should specify the location of the runtime DLLs.</p>
+

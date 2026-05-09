@@ -1,0 +1,119 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Customizing the Tab control </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp42.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp44.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF352990342"></A><h1>Customizing the Tab control </h1>
+<A NAME="TI866"></A><p>The Tab control has settings
+for controlling the position and appearance of the tabs. Each tab
+can have its own label, picture, and background color.</p>
+<A NAME="TI867"></A><p>All tabs share the same font settings, which you set on the
+Tab control's Font property page.</p>
+<A NAME="TI868"></A><h4>Pop-up menus and property sheets for Tab controls
+and tab pages</h4>
+<A NAME="TI869"></A><p>A Tab control has several elements,
+each with its own pop-up menu and property sheet. To open the property
+sheet, double-click or select Properties on the pop-up menu.</p>
+<A NAME="TI870"></A><p>Where you click determines what element you access.</p>
+<A NAME="TI871"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 7-1: Accessing Tab control elements</caption>
+<tr><th  rowspan="1"  ><A NAME="TI872"></A>To access the pop-up menu or
+property sheet for a</th>
+<th  rowspan="1"  ><A NAME="TI873"></A>Do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI874"></A>Tab control</td>
+<td  rowspan="1"  ><A NAME="TI875"></A>Right-click or double-click in the tab
+area of the Tab control.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI876"></A>Tab page</td>
+<td  rowspan="1"  ><A NAME="TI877"></A>Click the tab to make the tab page active,
+then right-click or double-click somewhere in the tab page but not
+on a control on the page.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI878"></A>Control on a tab page</td>
+<td  rowspan="1"  ><A NAME="TI879"></A>Click the tab to make the tab page active
+and right-click or double-click the control.</td>
+</tr>
+</table>
+<A NAME="TI880"></A><h4>Position and size of tabs</h4>
+<A NAME="TI881"></A><p>The General tab in the Tab control's property sheet
+has several settings for controlling the position and size of the
+tabs. For example:</p>
+<A NAME="TI882"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 7-2: Controlling size and position of tabs</caption>
+<tr><th  rowspan="1"  ><A NAME="TI883"></A>To change</th>
+<th  rowspan="1"  ><A NAME="TI884"></A>Change the value for</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI885"></A>The side(s) of the Tab control on which
+the tabs appear</td>
+<td  rowspan="1"  ><A NAME="TI886"></A>Tab Position</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI887"></A>The size of the tabs relative to the
+size of the Tab control</td>
+<td  rowspan="1"  ><A NAME="TI888"></A>Ragged Right, MultiLine, Fixed Width</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI889"></A>The orientation of the text relative
+to the side of the Tab control (use this setting with caution&#8212;only TrueType
+fonts support perpendicular text)</td>
+<td  rowspan="1"  ><A NAME="TI890"></A>Perpendicular Text</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Fixed Width and Ragged Right</span> <A NAME="TI891"></A>When Fixed Width is checked, the tabs are all the same size.
+This is different from turning Ragged Right off, which stretches
+the tabs to fill the edge of the Tab control, like justified text.
+The effect is the same if all the tab labels are short, but if you
+have a mix of long and short labels, justified labels can be different
+sizes unless Fixed Width is on.</p>
+<A NAME="TI892"></A><p>This figure illustrates the effect of combining some of these
+settings. Tab Position is Top:</p>
+<br><img src="images/tab03.gif">
+<A NAME="TI893"></A><p>This sample Tab control is set up like an address book. It
+has tabs that flip between the left and right sides. With the Bold
+Selected Text setting on and the changing tab positions, it is easy
+to see which tab is selected:</p>
+<br><img src="images/tab04.gif">
+<A NAME="TI894"></A><h4>Tab labels</h4>
+<A NAME="TI895"></A><p>You can change the appearance of the tab using the property
+sheets of both the Tab control and the Tab page.</p>
+<A NAME="TI896"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 7-3: Changing the appearance of a tab</caption>
+<tr><th  rowspan="1"  ><A NAME="TI897"></A>Property sheet</th>
+<th  rowspan="1"  ><A NAME="TI898"></A>Property page</th>
+<th  rowspan="1"  ><A NAME="TI899"></A>Setting</th>
+<th  rowspan="1"  ><A NAME="TI900"></A>Affects</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI901"></A>Tab control</td>
+<td  rowspan="1"  ><A NAME="TI902"></A>General</td>
+<td  rowspan="1"  ><A NAME="TI903"></A>PictureOnRight, ShowPicture, ShowText</td>
+<td  rowspan="1"  ><A NAME="TI904"></A>All tabs in the control</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI905"></A>Tab page</td>
+<td  rowspan="1"  ><A NAME="TI906"></A>General</td>
+<td  rowspan="1"  ><A NAME="TI907"></A>Text, <br>BackColor</td>
+<td  rowspan="1"  ><A NAME="TI908"></A>The label on the tab and the background
+color of the tab page</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI909"></A>Tab page</td>
+<td  rowspan="1"  ><A NAME="TI910"></A>TabPage</td>
+<td  rowspan="1"  ><A NAME="TI911"></A>PictureName, TabTextColor, TabBackColor, PictureMaskColor</td>
+<td  rowspan="1"  ><A NAME="TI912"></A>The color of the text and picture on
+the tab and the background color of the tab itself (not the tab
+page)</td>
+</tr>
+</table>
+<A NAME="TI913"></A><p>If you are working in the User Object painter on an object
+you will use as a tab page, you can make the same settings on the
+TabPage page of the user object's property sheet that you
+can make in the tab page's property sheet.</p>
+<A NAME="TI914"></A><p>This example has a picture and text assigned to each tab page.
+Each tab has a different background color. The Show Picture and
+Show Text settings are both on:</p>
+<br><img src="images/tab05.gif">
+<A NAME="TI915"></A><h4>Changing tab appearance in scripts</h4>
+<A NAME="TI916"></A><p>All these settings in the painter have equivalent properties
+that you can set in a script, allowing you to change the appearance
+of the Tab control dynamically during execution.</p>
+

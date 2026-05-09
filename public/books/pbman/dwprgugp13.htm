@@ -1,0 +1,220 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Handling DataWindow errors</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp12.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp14.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF377435655"></A><h1>Handling DataWindow errors</h1>
+<A NAME="TI472"></A><p>There are several types of errors that can occur during DataWindow processing:<A NAME="TI473"></A>
+<ul>
+<li class=fi>Data items that are invalid (discussed in <A HREF="dwprgugp11.htm#X-REF354815179">"Manipulating data
+in a DataWindow control"</A>)</li>
+<li class=ds>Failures when retrieving or updating data</li>
+<li class=ds>Attempts to access invalid or nonexistent properties
+or data
+</li>
+</ul>
+</p>
+<A NAME="TI474"></A><p>This section explains how to handle the last two types of
+errors.</p>
+<A NAME="TI475"></A><h2>Retrieve and Update errors and the DBError event</h2>
+<A NAME="TI476"></A><h4>Retrieve and update testing</h4>
+<A NAME="TI477"></A><p>When using the Retrieve or Update method in a DataWindow control,
+you should test the method's return code to see whether
+the activity succeeded.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Do not test the SQLCode attribute</span> <A NAME="TI478"></A>After issuing a SQL statement (such as CONNECT, COMMIT, or DISCONNECT)
+or the equivalent method of the transaction object, you should always
+test the success/failure code (the SQLCode attribute in
+the transaction object). However, you should <i>not</i> use
+this type of error checking following a retrieval or update made
+in a DataWindow.</p>
+<A NAME="TI479"></A>For more information about error handling
+after a SQL statement, see:<A NAME="TI480"></A>
+<ul>
+<li class=fi><b>PowerBuilder</b>   The chapter on using transaction objects in <i>Application Techniques</i>
+</li>
+<li class=ds><b>Web ActiveX</b>   <A HREF="dwprgugp52.htm#CHDCDHDG">Chapter 8, "Using the DataWindow Web Control
+for ActiveX"</A>
+</li>
+</ul>
+</p>
+<A NAME="TI481"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-4: Return codes for the Retrieve and Update methods</caption>
+<tr><th  rowspan="1"  ><A NAME="TI482"></A>Method</th>
+<th  rowspan="1"  ><A NAME="TI483"></A>Return code</th>
+<th  rowspan="1"  ><A NAME="TI484"></A>Meaning</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI485"></A>Retrieve</td>
+<td  rowspan="1"  ><A NAME="TI486"></A>&gt;=1</td>
+<td  rowspan="1"  ><A NAME="TI487"></A>Retrieval succeeded; returns the number
+of rows retrieved.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI488"></A></td>
+<td  rowspan="1"  ><A NAME="TI489"></A>-1</td>
+<td  rowspan="1"  ><A NAME="TI490"></A>Retrieval failed; DBError event triggered.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI491"></A></td>
+<td  rowspan="1"  ><A NAME="TI492"></A>0</td>
+<td  rowspan="1"  ><A NAME="TI493"></A>No data retrieved.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI494"></A>Update</td>
+<td  rowspan="1"  ><A NAME="TI495"></A>1</td>
+<td  rowspan="1"  ><A NAME="TI496"></A>Update succeeded.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI497"></A></td>
+<td  rowspan="1"  ><A NAME="TI498"></A>-1</td>
+<td  rowspan="1"  ><A NAME="TI499"></A>Update failed; DBError event triggered.</td>
+</tr>
+</table>
+<A NAME="TI500"></A><h4>Example</h4>
+<p><b>PowerBuilder</b>   If you want to commit changes to the database only if an update
+succeeds, you can code:<p><PRE> IF dw_emp.Update() &gt; 0 THEN</PRE><PRE>         COMMIT USING EmpSQL;</PRE><PRE> ELSE</PRE><PRE>         ROLLBACK USING EmpSQL;</PRE><PRE> END IF</PRE></p>
+<p><b>Web ActiveX</b>   To commit changes to the database only if an update succeeds, you
+can code:<p><PRE> number rtn;</PRE><PRE> rtn = dw_emp.Update( );</PRE><PRE> if (rtn == 1) {</PRE><PRE>         trans_a.Commit( );</PRE><PRE> } else {</PRE><PRE>         trans_a.Rollback( );</PRE><PRE> }</PRE></p>
+<A NAME="TI501"></A><h4>Using the DBError event</h4>
+<A NAME="TI502"></A><p>The DataWindow control triggers its DBError event whenever
+there is an error following a retrieval or update; that is, if the
+Retrieve or Update methods return &#8211;1. For example, if you
+try to insert a row that does not have values for all columns that
+have been defined as not allowing NULL, the DBMS rejects the row
+and the DBError event is triggered.</p>
+<A NAME="TI503"></A><p>By default, the DataWindow control displays a message box
+describing the error message from the DBMS, as shown here:</p>
+<br><img src="images/udwo07.gif">
+<A NAME="TI504"></A><p>In many cases you might want to code your own processing in
+the DBError event and suppress the default message box. Here are
+some tips for doing this:</p>
+<A NAME="TI505"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-5: Tips for processing messages from DBError event</caption>
+<tr><th  rowspan="1"  ><A NAME="TI506"></A>To </th>
+<th  rowspan="1"  ><A NAME="TI507"></A>Do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI508"></A>Get the DBMS's error code</td>
+<td  rowspan="1"  ><A NAME="TI509"></A>Use the SQLDBCode argument of the DBError event.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI510"></A>Get the DBMS's message text</td>
+<td  rowspan="1"  ><A NAME="TI511"></A>Use the SQLErrText argument of the DBError event.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI512"></A>Suppress the default message box</td>
+<td  rowspan="1"  ><A NAME="TI513"></A>Specify an action/return code
+of 1.</td>
+</tr>
+</table>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About DataWindow action/return codes</span> <A NAME="TI514"></A>Some events for DataWindow controls
+have codes that you can set to override the default action that
+occurs when the event is triggered. The codes and their meaning
+depend on the event. In PowerBuilder, you set the code with a RETURN
+statement. In the Web ActiveX, you call the SetActionCode or setActionCode
+method.</p>
+<A NAME="TI515"></A><h4>Example</h4>
+<p><b>PowerBuilder</b>   Here is a sample script for the DBError event:<p><PRE> // Database error -195 means that some of the</PRE><PRE> // required values are missing</PRE><PRE> IF sqldbcode = -195 THEN</PRE><PRE>         MessageBox("Missing Information",  &amp;    </PRE><PRE>             "You have not supplied values for all " &amp;</PRE><PRE>             +"the required fields.")</PRE><PRE> END IF</PRE><PRE> // Return code suppresses default message box</PRE><PRE> RETURN 1</PRE></p>
+<A NAME="TI516"></A><p>During execution, the user would see the following message
+box after the error:</p>
+<br><img src="images/udwo08p.gif">
+<p><b>Web ActiveX</b>   In JavaScript, the code for the DBError event might look like this:<p><PRE> // Database error -195 means that some of the</PRE><PRE> // required values are missing</PRE><PRE> if (sqldbcode == -195) {</PRE><PRE>         alert("Missing information:\n" + </PRE><PRE>             "You have not supplied values for all " +</PRE><PRE>             "the required fields.");</PRE><PRE> }</PRE><PRE> // Action code suppresses default message box</PRE><PRE> dw_1.SetActionCode(1);</PRE></p>
+<A NAME="TI517"></A><h2>Errors in property and data expressions and the
+Error event</h2>
+<A NAME="TI518"></A><p>A DataWindow control's Error event is triggered whenever
+an error occurs in a data or property expression at execution time.
+These expressions that refer to data and properties of a DataWindow
+object might be valid under some execution-time conditions but not
+others. The Error event allows you to respond with error recovery
+logic when an expression is not valid.</p>
+<A NAME="TI519"></A><h4>PowerBuilder syntax checking</h4>
+<A NAME="TI520"></A><p>In PowerBuilder, when you use a data or property expression,
+the PowerScript compiler checks the syntax only as far as the Object
+property. Everything following the Object property is evaluated
+at execution time. For example, in the following expression, the
+column name emp_name and the property Visible are not checked
+until execution time:<p><PRE> dw_1.Object.emp_name.Visible = "0"</PRE></p>
+<A NAME="TI521"></A><p>If the emp_name column did not exist in the DataWindow,
+or if you had misspelled the property name, the compiler would not
+detect the error. However, at execution time, PowerBuilder would
+trigger the DataWindow control's Error event.</p>
+<A NAME="TI522"></A><h4>Using a Try-Catch block</h4>
+<A NAME="TI523"></A><p>The Error event is triggered even if you have surrounded an
+error-producing data or property expression in a Try-Catch block.
+The catch statement is executed after the Error event is triggered,
+but only if you do not code the Error event or do not change the
+default Error event action from ExceptionFail!. The following example
+shows a property expression in a Try-Catch block:<p><PRE> TRY<br>   dw_1.Object.emp_name.Visible = "0"<br>CATCH (dwruntimeerror dw_e)<br>   MessageBox ("DWRuntimeError", dw_e.text)<br>END TRY</PRE></p>
+<A NAME="TI524"></A><h4>Determining the cause of the error</h4>
+<A NAME="TI525"></A><p>The Error event has several arguments that provide information
+about the error condition. You can check the values of the arguments
+to determine the cause of the error. For example, you can obtain
+the internal error number and error text, the name of the object
+whose script caused the error, and the full text of the script where
+the error occurred. The information provided by the Error event's arguments
+can be helpful in debugging expressions that are not checked by
+the compiler.</p>
+<A NAME="TI526"></A><p>If you catch a DWRuntimeError error, you can use the properties
+of that class instead of the Error event arguments to provide information
+about the error condition. The following table displays the correspondences
+between the Error event arguments and the DWRuntimeError properties.</p>
+<A NAME="TI527"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-6: Correspondence between Error event arguments and DWRuntimeError
+properties</caption>
+<tr><th  rowspan="1"  ><A NAME="TI528"></A>Error
+event argument</th>
+<th  rowspan="1"  ><A NAME="TI529"></A>DWRuntimeError
+property</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI530"></A>errornumber </td>
+<td  rowspan="1"  ><A NAME="TI531"></A>number</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI532"></A>errorline</td>
+<td  rowspan="1"  ><A NAME="TI533"></A>line</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI534"></A>errortext</td>
+<td  rowspan="1"  ><A NAME="TI535"></A>text</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI536"></A>errorwindowmenu</td>
+<td  rowspan="1"  ><A NAME="TI537"></A>objectname</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI538"></A>errorobject</td>
+<td  rowspan="1"  ><A NAME="TI539"></A>class</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI540"></A>errorscript</td>
+<td  rowspan="1"  ><A NAME="TI541"></A>routinename</td>
+</tr>
+</table>
+<A NAME="TI542"></A><h4>Controlling the outcome of the event</h4>
+<A NAME="TI543"></A><p>When the Error event is triggered, you can have the application
+ignore the error and continue processing, substitute a different
+return value, or escalate the error by triggering the SystemError
+event. In the Error event, you can set two arguments passed by reference
+to control the outcome of the event. </p>
+<A NAME="TI544"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-7: Setting arguments in the Error event</caption>
+<tr><th  rowspan="1"  ><A NAME="TI545"></A>Argument</th>
+<th  rowspan="1"  ><A NAME="TI546"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI547"></A>Action</td>
+<td  rowspan="1"  ><A NAME="TI548"></A>A value you specify to control the application's
+course of action as a result of the error. Values are:<A NAME="TI549"></A><p><A NAME="TI550"></A>
+<ul>
+<li class=fi>ExceptionIgnore!</li>
+<li class=ds>ExceptionSubstituteReturnValue!</li>
+<li class=ds>ExceptionFail! (default action)
+</li>
+</ul>
+</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI551"></A>ReturnValue</td>
+<td  rowspan="1"  ><A NAME="TI552"></A>A value whose datatype matches the expected
+value that the DataWindow would have returned. This value is used
+when the value of action is ExceptionSubstituteReturnValue!.</td>
+</tr>
+</table>
+<A NAME="TI553"></A><p>For a complete description of the arguments
+of the Error event, see the <i>DataWindow Reference</i>
+.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>When to substitute a return value</span> <A NAME="TI554"></A>The ExceptionSubstituteReturnValue! action allows you to substitute
+a return value when the last element of an expression causes an
+error. Do not use ExceptionSubstituteReturnValue! to substitute
+a return value when an element in the middle of an expression causes
+an error.</p>
+<A NAME="TI555"></A>The ExceptionSubstituteReturnValue! action is most useful
+for handling errors in data expressions.</p>
+

@@ -1,0 +1,136 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Accessing and manipulating data in a DataStore </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp29.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp31.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299270063"></A><h1>Accessing and manipulating data in a DataStore </h1>
+<A NAME="TI932"></A><p>To access data using a DataStore, you need to read the data
+from the data source into the DataStore.</p>
+<A NAME="TI933"></A><h4>If the data source is a database</h4>
+<A NAME="TI934"></A><p>If the data for the DataStore is coming from a database (that
+is, the data source was defined as anything but External in the
+DataWindow painter), you need to communicate with the database to
+get the data. The steps you perform to communicate with the database
+are the same steps you use for a DataWindow control.</p>
+<A NAME="TI935"></A><p>For more information about communicating with
+the database, see <A HREF="dwprgugp9.htm#CAICJGDD">"Accessing the database"</A>.</p>
+<A NAME="TI936"></A><h4>If the data source is not a database</h4>
+<A NAME="TI937"></A><p>If the data for the DataWindow object is not coming from a
+database (that is, the data source was defined as External in the
+DataWindow painter), you can use the following methods to import
+data into the DataStore:<A NAME="TI938"></A>
+<ul>
+<li class=fi>ImportClipboard</li>
+<li class=ds>ImportFile</li>
+<li class=ds>ImportString
+</li>
+</ul>
+</p>
+<A NAME="TI939"></A><p>You can also get data into the DataStore by using a DataWindow
+data expression, or by using the SetItem method.</p>
+<A NAME="TI940"></A><p>For more information on accessing data in
+a DataStore, see the <i>DataWindow Reference</i>
+.</p>
+<A NAME="TI941"></A><h4>About the DataStore buffers</h4>
+<A NAME="TI942"></A><p>Like a DataWindow control, a DataStore uses three buffers
+to manage data:</p>
+<A NAME="TI943"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 4-1: DataStore buffers</caption>
+<tr><th  rowspan="1"  ><A NAME="TI944"></A>Buffer</th>
+<th  rowspan="1"  ><A NAME="TI945"></A>Contents</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI946"></A>Primary</td>
+<td  rowspan="1"  ><A NAME="TI947"></A>Data that has not been deleted or filtered
+out (that is, the rows that are viewable)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI948"></A>Filter</td>
+<td  rowspan="1"  ><A NAME="TI949"></A>Data that was filtered out</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI950"></A>Delete</td>
+<td  rowspan="1"  ><A NAME="TI951"></A>Data that was deleted by the user or
+in a script</td>
+</tr>
+</table>
+<A NAME="TI952"></A><h4>About the Edit control</h4>
+<A NAME="TI953"></A><p>The DataStore object has an Edit control. However, the Edit
+control for a DataStore behaves in a slightly different manner from
+the Edit control for a DataWindow. The Edit control for a DataWindow
+keeps track of text entered by the user in the current cell (row
+and column); the Edit control for a DataStore is used to manage
+data imported from an external source, such as the clipboard or
+a file. The text in the Edit control for a DataStore cannot be changed
+directly by the user. It must be manipulated programmatically.</p>
+<A NAME="TI954"></A><h4>Programming with DataStores</h4>
+<A NAME="TI955"></A><p>There are many methods for manipulating DataStore objects.
+These are some of the more commonly used:</p>
+<A NAME="TI956"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 4-2: Common methods in DataStore objects</caption>
+<tr><th  rowspan="1"  ><A NAME="TI957"></A>Method</th>
+<th  rowspan="1"  ><A NAME="TI958"></A>Purpose</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI959"></A>DeleteRow</td>
+<td  rowspan="1"  ><A NAME="TI960"></A>Deletes the specified row from the DataStore.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI961"></A>Filter</td>
+<td  rowspan="1"  ><A NAME="TI962"></A>Filters rows in the DataStore based on
+the current filter criteria.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI963"></A>InsertRow</td>
+<td  rowspan="1"  ><A NAME="TI964"></A>Inserts a new row.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI965"></A>Print</td>
+<td  rowspan="1"  ><A NAME="TI966"></A>Sends the contents of the DataStore to
+the current printer.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI967"></A>Reset</td>
+<td  rowspan="1"  ><A NAME="TI968"></A>Clears all rows in the DataStore.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI969"></A>Retrieve</td>
+<td  rowspan="1"  ><A NAME="TI970"></A>Retrieves rows from the database.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI971"></A>RowsCopy</td>
+<td  rowspan="1"  ><A NAME="TI972"></A>Copies rows from one DataStore to another
+DataStore or DataWindow control.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI973"></A>RowsMove</td>
+<td  rowspan="1"  ><A NAME="TI974"></A>Moves rows from one DataStore to another
+DataStore or DataWindow control.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI975"></A>ShareData</td>
+<td  rowspan="1"  ><A NAME="TI976"></A>Shares data among different DataStores
+or DataWindow controls. See <A HREF="dwprgugp31.htm#X-REF350671456">"Sharing information "</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI977"></A>Sort</td>
+<td  rowspan="1"  ><A NAME="TI978"></A>Sorts the rows of the DataStore based
+on the current sort criteria.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI979"></A>Update</td>
+<td  rowspan="1"  ><A NAME="TI980"></A>Sends to the database all inserts, changes,
+and deletions that have been made since the last Update.</td>
+</tr>
+</table>
+<A NAME="TI981"></A><p>For information about DataStore methods, see
+the <i>DataWindow Reference</i>
+.</p>
+<p><b>Dynamic DataWindow objects</b>   The methods in the table above manipulate data in the DataStore
+but do not change the definition of the underlying DataWindow object.
+In addition, you can use the Modify and Describe methods to access
+and manipulate <i>the definition of a DataWindow object</i>. Using
+these methods, you can change the DataWindow object during execution.
+For example, you can change the appearance of a DataWindow or allow
+your user to create ad hoc reports.</p>
+<A NAME="TI982"></A><p>For more information, see <A HREF="dwprgugp19.htm#BIIBCCDA">Chapter 3, "Dynamically Changing DataWindow
+Objects ."</A></p>
+<p><b>Property and data expressions</b>   You can use the same property and data expressions as for
+the DataWindow control. For information, see the <i>DataWindow
+Reference</i>
+.</p>
+<p><b>Using DataStore properties and events</b>   This chapter mentions only a few of the properties and events
+that you can use to manipulate DataStores. For more information
+about DataStore properties and events, see the <i>DataWindow Reference</i>
+.</p>
+

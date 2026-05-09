@@ -1,0 +1,31 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Invoking another server component's methods</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp172.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp174.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJDGHGX"></A><h1>Invoking another server component's methods</h1>
+<A NAME="TI5769"></A><p>COM+ allows the methods of one server component to
+call methods of another. The other server component does not need
+to be another PowerBuilder component; it can be implemented in any
+language supported by COM+.</p>
+<A NAME="TI5770"></A><h4>Using an OLEObject object</h4>
+<A NAME="TI5771"></A><p>To access methods of another component, declare a variable
+of type OLEObject and call the <b>ConnectToNewObject</b> function
+to connect to the component, just as you would when calling the
+component from a client. <b>ConnectToNewObject</b> inherits
+the server object's transaction context automatically. </p>
+<A NAME="TI5772"></A><h4>Using a TransactionServer object</h4>
+<A NAME="TI5773"></A><p>To access methods of another component in the current server,
+you can also use the transaction service context object that PowerBuilder
+provides called TransactionServer. The TransactionServer interface
+provides a method called <b>CreateInstance</b> that
+allows you to access other components that are available locally. <b>CreateInstance</b> uses
+the same user and password information that applies to the component
+from which it is called.</p>
+

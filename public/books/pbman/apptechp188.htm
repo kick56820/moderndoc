@@ -1,0 +1,109 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating a Java VM</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp187.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp189.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABDACIFA"></A><h1>Creating a Java VM</h1>
+<A NAME="TI6023"></A><p>Before calling
+an EJB component, you need to create a Java VM using the <b>CreateJavaVM</b> method
+of the JavaVM class. The first argument is a <b>string</b> that specifies
+a classpath to be added to the beginning of the classpath used by
+the Java VM. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>A Java VM might already be loaded</span> <A NAME="TI6024"></A>The classpath argument is ignored if the Java VM is already
+running. </p>
+<A NAME="TI6025"></A><p>The second argument to <b>createJavaVM</b> is
+a <b>boolean</b> that specifies whether debug information
+is written to a text file. See <A HREF="apptechp193.htm#BABDEHHFA">"Debugging the client"</A>.</p>
+<A NAME="TI6026"></A><p>The JavaVM class has other methods that you can use when you
+create a Java VM:<A NAME="TI6027"></A>
+<ul>
+<li class=fi>The <b>CreateJavaInstance</b> method
+creates an instance of the Java object from a proxy name.</li>
+<li class=ds>The <b>IsJavaVMLoaded</b> method determines
+whether the Java VM is already loaded. Use this method before calling <b>CreateJavaVM</b> if
+you want to enable or disable some features of your application
+depending on whether the Java VM has already been loaded. This will
+ensure that the classpath argument passed to CreateJavaVM is ignored.</li>
+<li class=ds>The <b>GetJavaVMVersion</b> method
+determines which version of the Java VM is running.</li>
+<li class=ds>The <b>GetJavaClasspath</b> method
+determines the runtime classpath of the Java VM.
+</li>
+</ul>
+</p>
+<A NAME="TI6028"></A><p>The JavaVM that you create using <b>CreateJavaVM</b> should
+be a global or instance variable for the client application and
+should not be destroyed explicitly.</p>
+<A NAME="BABEHDFJ"></A><h4>The Java VM classpath
+in the development environment</h4>
+<A NAME="TI6029"></A><p>When PowerBuilder starts a Java VM, the Java VM uses internal
+path and classpath information to ensure that required Java classes
+are always available. </p>
+<A NAME="TI6030"></A><p>In the development environment, you can check whether the
+JVM is running and, if so, which classpath it is using, on the Java
+page of the System Options dialog box. The classpath is constructed
+by concatenating these paths:<A NAME="TI6031"></A>
+<ul>
+<li class=fi>A classpath added
+programmatically when the Java VM is started. For example, the classpath
+you pass to the <b>CreateJavaVM</b> method.</li>
+<li class=ds>The PowerBuilder runtime static registry classpath.
+This path is built into the <i>pbjvm105.dll</i> and
+contains classes required at runtime for EJB clients and other PowerBuilder
+features that use a Java VM.</li>
+<li class=ds>The PowerBuilder system classpath. This path resides
+in a Windows registry key installed when you install PowerBuilder.
+It contains classes required at design time for Java-related PowerBuilder
+features such as JSP targets and JDBC connectivity.</li>
+<li class=ds>The PowerBuilder user classpath. This is the path
+that you specify on the Java page of the System Options dialog box.</li>
+<li class=ds>The system CLASSPATH environment variable.</li>
+<li class=ds>The current directory.
+</li>
+</ul>
+</p>
+<A NAME="TI6032"></A><h4>The runtime Java VM classpath</h4>
+<A NAME="TI6033"></A><p>At runtime, you can use the <b>GetJavaClasspath</b> method
+to determine what classpath the Java VM is using. The Java VM uses
+the following classpath at runtime:<A NAME="TI6034"></A>
+<ul>
+<li class=fi>A classpath
+added programmatically when the Java VM is started</li>
+<li class=ds>The PowerBuilder runtime static registry classpath</li>
+<li class=ds>The system CLASSPATH environment variable</li>
+<li class=ds>The current directory
+</li>
+</ul>
+</p>
+<A NAME="TI6035"></A><p>For more information about the Java classpath at runtime,
+see <A HREF="apptechp275.htm#BAJBFFIA">"Java support"</A>.</p>
+<A NAME="TI6036"></A><h4>Classes required by servers</h4>
+<A NAME="TI6037"></A><p>The classpath contains the classes required by EJB clients
+for <ABBR title = "e a server" >EAServer</ABBR> 4.2. If you are using
+a different J2EE server, you need to add additional classes required
+by the application server to the system CLASSPATH. For example:<A NAME="TI6038"></A>
+<ul>
+<li class=fi>For WebLogic, <i>weblogic.jar</i>.
+This file is installed in <i>wlserver6.1\lib</i> or <i>weblogic700\server\lib</i> on
+the server.</li>
+<li class=ds>For WebSphere, JAR files installed on the server
+in <i>websphere\appserver\lib.</i>
+</li>
+</ul>
+</p>
+<A NAME="TI6039"></A><p>For detailed information about the files required on the client
+by each application server, see the documentation for the server. </p>
+<A NAME="TI6040"></A><h4>Examples</h4>
+<A NAME="TI6041"></A><p>This example demonstrates the creation of an instance of the
+Java VM that specifies the <i>html\classes</i> folder
+in an <ABBR title = "e a server" >EAServer</ABBR> installation as
+a class path:<p><PRE> // global variables javavm g_jvm, <br>// boolean gb_jvm_started<br>boolean isdebug<br>string classpath<br> <br>if NOT gb_jvm_started then<br>  //create JAVAVM<br>  g_jvm = create javavm<br> <br>// The Java package for the EJB is in the <br>// EAServer html/classes folder<br>  classpath = &amp;<br>  "D:\Program Files\Sybase\EAServer\html\classes;"<br>  <br>  isdebug = true<br>  choose case g_jvm.createJavaVM(classpath, isdebug)<br>  case 0<br>    gb_jvm_started = true<br>  case -1 <br>    MessageBox("Error", "Failed to load JavaVM")<br>  case -2<br>    MessageBox("Error", "Failed to load EJBLocator")<br>  end choose<br>end if</PRE></p>
+<A NAME="TI6042"></A><p>This additional code can be added to the previous example
+to create a record of the Java VM version and classpath used: <p><PRE> integer li_FileNum<br>string ls_classpath, ls_version, ls_string<br> <br>li_FileNum = FileOpen("C:\temp\PBJavaVM.log", &amp;<br>   LineMode!, Write!, LockWrite!, Append!)<br> <br>ls_classpath = i_jvm.getjavaclasspath()<br>ls_version = i_jvm.getjavavmversion()<br>ls_string = String(Today()) + " " + String(Now())<br>ls_string += " Java VM Version: " + ls_version<br>ls_string += " ~r~n" + ls_classpath + "~r~n"<br> <br>FileWrite(li_FileNum, ls_string)<br>FileClose(li_filenum)</PRE></p>
+

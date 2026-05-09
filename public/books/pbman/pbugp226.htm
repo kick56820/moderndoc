@@ -1,0 +1,318 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Enhancing crosstabs </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp225.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp227.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF352128873"></A><h1>Enhancing crosstabs </h1>
+<A NAME="TI7938"></A><p>When you have provided the data definitions, the crosstab
+is functional, but you can enhance it before using it. Because a
+crosstab is a grid DataWindow object, you can enhance a crosstab using
+the same techniques you use in other DataWindow objects. For example, you
+can:<A NAME="TI7939"></A>
+<ul>
+<li class=fi>Sort or filter rows</li>
+<li class=ds>Change the column headers</li>
+<li class=ds>Specify fonts, colors, mouse pointers, and borders</li>
+<li class=ds>Specify column display formats
+</li>
+</ul>
+</p>
+<A NAME="TI7940"></A><p>For more on these and the other standard enhancements
+you can make to DataWindow objects, see <A HREF="pbugp167.htm#CAICGCGD">Chapter 19, "Enhancing DataWindow Objects ."</A></p>
+<A NAME="TI7941"></A><p>The rest of this section covers topics either unique to crosstabs
+or especially important when working with crosstabs:<A NAME="TI7942"></A>
+<ul>
+<li class=fi><A HREF="pbugp226.htm#CBBDJIGD">"Specifying basic properties"</A></li>
+<li class=ds><A HREF="pbugp226.htm#X-REF305405211">"Modifying the data
+associated with the crosstab"</A></li>
+<li class=ds><A HREF="pbugp226.htm#CBBDEHFF">"Changing the names used
+for the columns and rows"</A></li>
+<li class=ds><A HREF="pbugp226.htm#X-REF305405242">"Defining summary statistics"</A></li>
+<li class=ds><A HREF="pbugp226.htm#X-REF305463107">"Cross-tabulating ranges
+of values"</A></li>
+<li class=ds><A HREF="pbugp226.htm#X-REF305373728">"Creating static crosstabs"</A></li>
+<li class=ds><A HREF="pbugp226.htm#X-REF305834959">"Using property conditional
+expressions"</A>
+</li>
+</ul>
+</p>
+<A NAME="CBBDJIGD"></A><h2>Specifying basic properties</h2>
+<A NAME="TI7943"></A><p>Crosstabs are implemented as grid DataWindow objects, so you can
+specify the following grid properties for a crosstab:<A NAME="TI7944"></A>
+<ul>
+<li class=fi>When grid lines are displayed</li>
+<li class=ds>How users can interact with the crosstab at
+runtime
+</li>
+</ul>
+</p>
+<A NAME="TI7945"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To specify the crosstab's basic properties:</p>
+<ol><li class=fi><p>In the Properties view, select the General
+tab.</p></li>
+<li class=ds><p>Specify basic crosstab properties.</p></li></ol>
+<br><A NAME="TI7946"></A><p><A HREF="pbugp226.htm#CHDEFACC">Table 27-2</A> lists
+basic crosstab properties.</p>
+<A NAME="CHDEFACC"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 27-2: Basic properties for crosstabs</caption>
+<tr><th  rowspan="1"  ><A NAME="TI7947"></A>Option</th>
+<th  rowspan="1"  ><A NAME="TI7948"></A>Result</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7949"></A>Display</td>
+<td  rowspan="1"  ><A NAME="TI7950"></A><i>On</i> &#8212; Grid
+lines always display.<A NAME="TI7951"></A><p><i>Off</i> &#8212; Grid lines never display
+(columns cannot be resized at runtime).</p><A NAME="TI7952"></A><p><i>Display Only</i> &#8212; Grid lines display
+only when the crosstab displays online.</p><A NAME="TI7953"></A><p><i>Print Only</i> &#8212; Grid lines display
+only when the contents of the crosstab are printed.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7954"></A>Column Moving</td>
+<td  rowspan="1"  ><A NAME="TI7955"></A>Columns can be moved at runtime.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7956"></A>Mouse Selection</td>
+<td  rowspan="1"  ><A NAME="TI7957"></A>Data can be selected at runtime (and,
+for example, copied to the clipboard).</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI7958"></A>Row Resize</td>
+<td  rowspan="1"  ><A NAME="TI7959"></A>Rows can be resized at runtime.</td>
+</tr>
+</table>
+<A NAME="X-REF305405211"></A><h2>Modifying the data associated with the crosstab</h2>
+<A NAME="TI7960"></A><p>When you initially define the crosstab, you associate the
+crosstab rows and columns with columns in a database table or other
+data source. You can change the associated data anytime in the Crosstab
+Definition dialog box.</p>
+<A NAME="TI7961"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To open the Crosstab Definition dialog box:</p>
+<ol><li class=fi><p>Position the mouse below the footer band
+in the workspace and display the pop-up menu.</p></li>
+<li class=ds><p>Select Crosstab from the pop-up menu.</p><p>The Crosstab Definition dialog box displays.</p></li></ol>
+<br><A NAME="TI7962"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify the data associated with a crosstab:</p>
+<ol><li class=fi><p>In the Crosstab Definition dialog box,
+fill in the boxes for Columns, Rows, and Values as described in <A HREF="pbugp224.htm#X-REF352128847">"Associating data with
+a crosstab "</A>.</p></li>
+<li class=ds><p>Click OK.</p></li></ol>
+<br><A NAME="CBBDEHFF"></A><h2>Changing the names used for the columns and rows</h2>
+<A NAME="TI7963"></A><p>Sometimes names of columns in the database might not be meaningful.
+You can change the names that are used to label rows and columns
+in crosstabs so that the data is easier to understand.</p>
+<A NAME="TI7964"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To change the names used in crosstabs:</p>
+<ol><li class=fi><p>In the Crosstab Definition dialog box,
+double-click the name of the column in the Source Data box.</p><p>The New Name dialog box displays:</p></li>
+<li class=ds><p>Specify the name you want used to label the corresponding
+column. You can have multiple-word labels by using underscores:
+underscores are replaced by spaces in the Design view and at runtime.</p></li>
+<li class=ds><p>Click OK.</p><p>PowerBuilder changes the column name in the Source Data box
+and anywhere else the column is used.</p></li></ol>
+<br><A NAME="TI7965"></A><h4>Example</h4>
+<A NAME="TI7966"></A><p>For example, if you want the <b>product</b> column
+to be labeled <i>Printer Model</i>, double-click <b>product</b> in
+the Crosstab Definition dialog box and specify <FONT FACE="Courier New">printer_model</FONT> in
+the New Name dialog box.</p>
+<A NAME="TI7967"></A><p>When the crosstab runs, you see this:</p>
+<br><img src="images/cros22.gif">
+<A NAME="X-REF305405242"></A><h2>Defining summary statistics</h2>
+<A NAME="TI7968"></A><p>When you generate a crosstab, the columns and rows are automatically
+totaled for you. You can include other statistical summaries in
+crosstabs as well. To do that, you place computed fields in the
+workspace.</p>
+<A NAME="TI7969"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a column summary:</p>
+<ol><li class=fi><p>Enlarge the summary band to make room for
+the summaries.</p></li>
+<li class=ds><p>Select Insert&gt;Control&gt;Computed
+Field from the menu bar.</p></li>
+<li class=ds><p>Click the cell in the summary band where you want
+the summary to display.</p><p>The Modify Expression dialog box displays.</p></li>
+<li class=ds><p>Define the computed field. </p><p>For example, if you want the average value for a column, specify <FONT FACE="Courier New">avg(units
+for all)</FONT>, where <b>units</b> is
+the column providing the values in the crosstab.</p></li></ol>
+<br><A NAME="TI7970"></A><p>For example, this is a crosstab that has been enhanced to
+show averages and maximum values for each column. This is the Design
+view:</p>
+<br><img src="images/cros23.gif">
+<A NAME="TI7971"></A><p>This is the crosstab at runtime:</p>
+<br><img src="images/cros24.gif">
+<A NAME="TI7972"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a row summary:</p>
+<ol><li class=fi><p>Select Insert&gt;Control&gt;Computed
+Field from the menu bar.</p></li>
+<li class=ds><p>Click the empty cell to the right of the last
+column in the detail band.</p><p>The Modify Expression dialog box displays.</p></li>
+<li class=ds><p>Define the computed field. You should use one
+of the crosstab functions, described next. </p></li></ol>
+<br><A NAME="TI7973"></A><h3>Using crosstab functions</h3>
+<A NAME="TI7974"></A><p>There are nine special functions you can use only in crosstabs: <b>CrosstabAvg</b>, <b>CrosstabAvgDec</b>, <b>CrosstabCount</b>, <b>CrosstabMax</b>,<b> CrosstabMaxDec</b>, <b>CrosstabMin</b>, <b>CrosstabMinDec</b>, <b>CrosstabSum</b>,
+and <b>CrosstabSumDec</b>.</p>
+<A NAME="TI7975"></A><p>These functions are listed in the Functions box when you define
+a computed field in a crosstab:</p>
+<br><img src="images/cros25.gif">
+<A NAME="TI7976"></A><p>Each of these functions returns the corresponding statistic
+about a row in the crosstab (average, count, maximum value, minimum
+value, or sum). You place computed fields using these functions
+in the detail band in the Design view. Use the functions with the <b>Dec</b> suffix
+when you want to return a <b>decimal</b> datatype.</p>
+<A NAME="TI7977"></A><p>By default, PowerBuilder places <b>CrosstabSum</b> and CrosstabSumDec in
+the detail band, which returns the total for the corresponding row.</p>
+<A NAME="TI7978"></A><h4>How to specify the functions</h4>
+<A NAME="TI7979"></A><p>Each of these functions takes one numeric argument, which
+refers to the expression defined for Values in the Crosstab Definition
+dialog box. The first expression for Values is numbered 1, the second
+is numbered 2, and so on.</p>
+<A NAME="TI7980"></A><p>Generally, crosstabs have only one expression for Values,
+so the argument for the crosstab functions is 1. So, for example,
+if you defined <FONT FACE="Courier New">sum(units for crosstab)</FONT> as
+your Values expression, PowerBuilder places <FONT FACE="Courier New">CrosstabSum(1)</FONT> in
+the detail band.</p>
+<A NAME="TI7981"></A><p>If you want to cross-tabulate both total unit sales and a
+projection of future sales, assuming a 20 percent increase in sales
+(that is, sales that are 1.2 times the actual sales), you define
+two expressions for Values:<p><PRE> sum(units for crosstab)<br>sum(units * 1.2 for crosstab)</PRE></p>
+<A NAME="TI7982"></A><p>Here <FONT FACE="Courier New">CrosstabSum(1)</FONT> returns
+the total of <FONT FACE="Courier New">sum(units for crosstab)</FONT> for the
+corresponding row.<FONT FACE="Courier New"> CrosstabSum(2)</FONT> returns
+the total for <FONT FACE="Courier New">sum(units * 1.2 for crosstab)</FONT>.</p>
+<A NAME="TI7983"></A><h4>For more information</h4>
+<A NAME="TI7984"></A><p>For complete information about defining computed
+fields, see <A HREF="pbugp167.htm#CAICGCGD">Chapter 19, "Enhancing DataWindow Objects ."</A></p>
+<A NAME="TI7985"></A><p>For more about the crosstab functions, see the <i>DataWindow</i>
+ <i>Reference</i>
+.</p>
+<A NAME="X-REF305463107"></A><h2>Cross-tabulating ranges of values</h2>
+<A NAME="TI7986"></A><p>You can build a crosstab where each row tabulates a <i>range</i> of
+values, instead of one discrete value, and you can make each column
+in the crosstab correspond to a range of values.</p>
+<A NAME="TI7987"></A><p>For example, in cross-tabulating departmental salary information,
+you might want one row in the crosstab to count all employees making
+between $30,000 and $40,000, the next row to count
+all employees making between $40,000 and $50,000,
+and so on.</p>
+<A NAME="TI7988"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To cross-tabulate ranges of values:</p>
+<ol><li class=fi><p>Determine the expression that results in
+the raw values being converted into one of a small set of fixed
+values.</p><p>Each of those values will form a row or column in the crosstab.</p></li>
+<li class=ds><p>Specify the expression in the Columns or Rows
+box in the Crosstab Definition dialog box. </p><p>You choose the box depending on whether you want the columns
+or rows to correspond to the range of values.</p></li>
+<li class=ds><p>In the Values column, apply the appropriate aggregate
+function to the expression.</p></li></ol>
+<br><A NAME="TI7989"></A><h4>Example</h4>
+<A NAME="TI7990"></A><p>This is best illustrated with an example.</p>
+<A NAME="TI7991"></A><p>You want to know how many employees in each department earn
+between $30,000 and $40,000, how many earn between $40,000
+and $50,000, how many earn between $50,000 and $60,000,
+and so on. To do this, you want a crosstab where each row corresponds
+to a $10,000 range of salary.</p>
+<A NAME="TI7992"></A><p>The first step is to determine the expression that, given
+a salary, returns the next smaller salary that is a multiple of $10,000.
+For example, given a salary of $34,000, the expression
+would return $30,000, and given a salary of $47,000, the
+expression would return $40,000. You can use the <b>Int</b> function
+to accomplish this, as follows:</p>
+<A NAME="TI7993"></A><p><p><PRE> int(salary/10000) * 10000</PRE></p>
+<A NAME="TI7994"></A><p>That expression divides the salary by 10,000 and takes the
+integer portion, then multiplies the result by 10,000. So for $34,000,
+the expression returns $30,000, as follows:<p><PRE> 34000/10000 = 3.4<br>int(3.4) = 3<br>3 * 10000 = 30000</PRE></p>
+<A NAME="TI7995"></A><p>With this information you can build the crosstab. The following
+uses the <b>Employee</b> table in the EAS Demo DB:<A NAME="TI7996"></A>
+<ol>
+</li>
+<li class=ds>Build a crosstab and retrieve
+the <b>dept_id</b> and <b>salary</b> columns.</li>
+<li class=ds>In the Crosstab Definition dialog box, drag the <b>dept_id</b> column
+to the Columns box.</li>
+<li class=ds>Drag the <b>salary</b> column to the
+Rows box <i>and</i> to the Values box and edit the expressions.<br>
+In the Rows box, use:<p><PRE> int(salary/10000) * 10000</PRE><br><br>
+In the Values box, use:<p><PRE> count(int(salary/10000) * 10000 for crosstab)</PRE><br><br>
+For more on providing expressions in a crosstab,
+see <A HREF="pbugp224.htm#X-REF305465003">"Using expressions"</A>.<br></li>
+<li class=ds>Click OK.<br>
+This is the result in the Design view:<br><br><img src="images/cros28.gif">
+<br>
+This is the crosstab at runtime:<br><br><img src="images/cros29.gif">
+
+</li>
+</ol>
+</p>
+<A NAME="TI7997"></A><p>You can see, for example, that 2 people in department 400
+and 5 in department 500 earn between $20,000 and $30,000.</p>
+<A NAME="TI7998"></A><h4>Displaying blank values as zero</h4>
+<A NAME="TI7999"></A><p>In the preceding crosstab, several of the cells in the grid
+are blank. There are no employees in some salary ranges, so the
+value of those cells is null. To make the crosstab easier to read,
+you can add a display format to fields that can have null values
+so that they display a zero.</p>
+<A NAME="TI8000"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display blank values in a crosstab as zero:</p>
+<ol><li class=fi><p>Select the column you want to modify and
+click the Format tab in the Properties view.</p></li>
+<li class=ds><p>Replace [General] in the Format
+box with <FONT FACE="Courier New">###0;###0;0;0</FONT>.</p><p>The fourth section in the mask causes a null value to be represented
+as zero.</p></li></ol>
+<br><A NAME="X-REF305373728"></A><h2>Creating static crosstabs</h2>
+<A NAME="TI8001"></A><p>By default, crosstabs are dynamic: when you run them, PowerBuilder retrieves the
+data and dynamically builds the columns and rows based on the retrieved data.
+For example, if you define a crosstab that computes sales of printers
+and a new printer type is entered in the database after you define
+the crosstab, you want the new printer to be in the crosstab. That
+is, you want PowerBuilder to build the rows and columns dynamically
+based on current data, not the data that existed when the crosstab
+was defined.</p>
+<A NAME="TI8002"></A><p>Occasionally, however, you might want a crosstab to be static.
+That is, you want its columns to be established when you define
+the crosstab. You do not want additional columns to display in the
+crosstab at runtime; no matter what the data looks like, you do
+not want the number of columns to change. You want only the updated
+statistics for the predefined columns. The following procedure shows
+how to do that.</p>
+<A NAME="TI8003"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a static crosstab:</p>
+<ol><li class=fi><p>In the wizard page or in the Crosstab Definition
+dialog box, clear the Rebuild Columns At Runtime check box.</p></li>
+<li class=ds><p>Define the data for the crosstab as usual, and
+click OK.</p></li></ol>
+<br><A NAME="TI8004"></A><h4>What happens</h4>
+<A NAME="TI8005"></A><p>With the check box cleared, instead of immediately building
+the crosstab's structure, PowerBuilder first retrieves the
+data from the database. Using the retrieved data, PowerBuilder then
+builds the crosstab structure and displays the workspace. It places
+all the values for the column specified in the Columns box in the
+workspace. These values become part of the crosstab's definition.</p>
+<A NAME="TI8006"></A><p>For example, in the following screenshot, the four values
+for Quarter (Q1, Q2, Q3, and Q4) are displayed in the Design view:</p>
+<br><img src="images/cros31.gif">
+<A NAME="TI8007"></A><p>At runtime, no matter what values are in the database for
+the column, the crosstab shows only the values that were specified
+when the crosstab was defined. In the printer example, the crosstab
+always has the four columns it had when it was first defined.</p>
+<A NAME="TI8008"></A><h4>Making changes</h4>
+<A NAME="TI8009"></A><p>You can modify the properties of any of the columns in a static
+crosstab. You can modify the properties of each column individually,
+since each column is displayed in the workspace as part of the crosstab's
+definition. For example, in the printer crosstab you can directly
+modify the way values are presented in each individual quarter,
+since each quarter is represented in the Design view. (The values
+are shown as <FONT FACE="Courier New">units</FONT>, <FONT FACE="Courier New">units_1</FONT>, <FONT FACE="Courier New">units_2</FONT>,
+and <FONT FACE="Courier New">units_3</FONT>.)</p>
+<A NAME="X-REF305834959"></A><h2>Using property conditional expressions</h2>
+<A NAME="TI8010"></A><p>As with other DataWindow objects, you can specify property conditional expressions
+to modify properties at runtime. You can use them with either dynamic
+or static crosstabs. With dynamic crosstabs, you specify an expression once
+for a column or value, and PowerBuilder assigns the appropriate properties
+when it builds the individual columns at runtime. With static crosstabs,
+you have to specify an expression for each individual column or value,
+because the columns are already specified at definition time.</p>
+<A NAME="TI8011"></A><h4>Example</h4>
+<A NAME="TI8012"></A><p>In the following crosstab, an expression has been specified
+for Units:</p>
+<br><img src="images/cros32.gif">
+<A NAME="TI8013"></A><p>The expression is for the Font.Weight property of the <b>units</b> column:<p><PRE> if (units &gt; 100, 700, 400)</PRE></p>
+<A NAME="TI8014"></A><p>The expression specifies to use bold font (weight = 700)
+if the number of units is greater than 100. Otherwise, use normal
+font (weight = 400).</p>
+<A NAME="TI8015"></A><p>This is the crosstab at runtime:</p>
+<br><img src="images/cros33.gif">
+<A NAME="TI8016"></A><p>Values larger than 100 are shown in bold.</p>
+<A NAME="TI8017"></A><p>For more information about property conditional
+expressions, see <A HREF="pbugp205.htm#BFCBCADF">Chapter 24, "Highlighting Information
+in DataWindow Objects."</A></p>
+

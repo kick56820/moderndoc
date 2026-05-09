@@ -1,0 +1,34 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Providing MicroHelp </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp30.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp32.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF352147761"></A><h1>Providing MicroHelp </h1>
+<A NAME="TI628"></A><p>MDI provides a MicroHelp facility that you can use to display
+information to the user in the status area at the bottom of the
+frame. For example, when the user selects a menu item, the MicroHelp
+facility displays a description of the selected item in the status
+area.</p>
+<A NAME="TI629"></A><p>You can define MicroHelp for menu items and for controls in
+custom frame windows.</p>
+<A NAME="TI630"></A><h4>Providing MicroHelp for menu items</h4>
+<A NAME="TI631"></A><p>You specify the text for the MicroHelp associated with a menu
+item on the General property page in the Menu painter. To change the text
+of the MicroHelp in a script for a menu item, use the <b>SetMicroHelp</b> function.</p>
+<A NAME="TI632"></A><h4>Providing MicroHelp for controls</h4>
+<A NAME="TI633"></A><p>You can associate MicroHelp with a control in a custom frame
+window by using the control's Tag property. For example,
+say you have added a Print button to the client area. To display
+MicroHelp for the button, write a script for the button's
+GetFocus event that sets the Tag property to the desired text and then
+uses <b>SetMicroHelp</b> to display the text. For example:<p><PRE> cb_print.Tag="Prints information about current job"<br>w_genapp_frame.SetMicroHelp(This.Tag)</PRE></p>
+<A NAME="TI634"></A><p>You can also set a control's Tag property in the
+control's property sheet.</p>
+<A NAME="TI635"></A><p>In the LoseFocus event, you should restore the MicroHelp:<p><PRE> w_genapp_frame.SetMicroHelp("Ready")</PRE></p>
+

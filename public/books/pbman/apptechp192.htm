@@ -1,0 +1,40 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Client-managed transactions</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp191.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp193.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABJIAFEA"></A><h1>Client-managed transactions</h1>
+<A NAME="TI6120"></A><p>EJB client applications can control transactions on the server
+using the EJBTransaction object. This object has methods that enable
+the client to begin, commit, or roll back a transaction. The client
+can also get the status of a transaction, change its timeout value,
+or modify the transaction so that it cannot be committed.</p>
+<A NAME="TI6121"></A><p>The EJBTransaction methods map directly to the methods of
+the <b>javax.transaction.UserTransaction</b> interface,
+which is documented in the <A HREF="http://java.sun.com/products/jta">JTA Specification on the Sun Java Web site</A>
+. </p>
+<A NAME="TI6122"></A><h4>Beginning and ending transactions</h4>
+<A NAME="TI6123"></A><p>Clients can obtain access to the methods of the EJBTransaction
+class by calling the <b>getEJBTransaction</b> method
+of the EJBConnection class: <p><PRE> ejbconnection conn<br>ejbtransaction trans<br>string properties[]<br> <br>conn = create ejbconnection<br>TRY<br>  conn.connectToServer(properties)<br>  trans = conn.getEJBTransaction()<br>CATCH (exception e)<br>  messagebox("exception", e.getmessage())<br>END TRY</PRE></p>
+<A NAME="TI6124"></A><p>If an EJBTransaction instance is obtained successfully, you
+use its <b>begin</b> method to start the transaction
+and its <b>commit</b> or <b>rollback</b> methods
+to end it:<p><PRE> TRY<br>  // Start the transaction<br>  trans.begin()<br>  // Create a component and call methods to be executed<br>  // within the transaction<br>  ...<br>  // Commit the transaction<br>  trans.commit();<br>CATCH (exception e)<br>  messagebox("exception", e1.getmessage())<br>  trans.rollback()<br>END TRY</PRE></p>
+<A NAME="TI6125"></A><h4>Getting information about the transaction</h4>
+<A NAME="TI6126"></A><p><b>GetStatus</b> returns an integer that indicates
+whether the transaction is active, has been marked for rollback,
+is in the <b>prepare</b> phase or <b>commit</b> phase,
+or has been committed or rolled back. </p>
+<A NAME="TI6127"></A><h4>Setting a timeout period for transactions</h4>
+<A NAME="TI6128"></A><p>A calling thread can specify a timeout period after which
+a transaction will be rolled back. This example sets the timeout
+period to 3 minutes (180 seconds):</p>
+<A NAME="TI6129"></A><p><p><PRE> trans.SetTimeout(180)<br>trans.Begin()</PRE></p>
+

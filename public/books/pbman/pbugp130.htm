@@ -1,0 +1,231 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Communicating between a window and a user object </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp129.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp131.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAHCAHDE"></A><h1>Communicating between a window and a user object </h1>
+<A NAME="TI3891"></A><p>Often you need to exchange information between a window and
+a visual user object in the window. Consider these situations:<A NAME="TI3892"></A>
+<ul>
+<li class=fi>You have a set of buttons
+in a custom user object. Each of the buttons acts upon a file that
+is listed in a SingleLineEdit control in the window (but not in
+the user object).<br>
+You need to pass the contents of the SingleLineEdit control
+from the window to the user object.<br></li>
+<li class=ds>You have a user object color toolbar. When the user
+clicks one of the colors in the user object, a control in the window
+changes to that color.<br>
+You need to pass the color from the user object to the window
+control.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI3893"></A><p>This section discusses two techniques for handling this communication
+and presents a simple example.</p>
+<A NAME="TI3894"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 15-4: Techniques for communicating information in a window</caption>
+<tr><th  rowspan="1"  ><A NAME="TI3895"></A>Technique</th>
+<th  rowspan="1"  ><A NAME="TI3896"></A>Advantages</th>
+<th  rowspan="1"  ><A NAME="TI3897"></A>Disadvantages</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3898"></A>Functions</td>
+<td  rowspan="1"  ><A NAME="TI3899"></A>Easy to use<A NAME="TI3900"></A><p>Supports parameters and return types, so is not prone to errors</p><A NAME="TI3901"></A><p>Supports data encapsulation and information hiding</p><A NAME="TI3902"></A><p>Best for complex operations</p></td>
+<td  rowspan="1"  ><A NAME="TI3903"></A>Creates overhead, might be unnecessary
+for simple operations</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI3904"></A>User events</td>
+<td  rowspan="1"  ><A NAME="TI3905"></A>Very flexible and powerful</td>
+<td  rowspan="1"  ><A NAME="TI3906"></A>Uses no type checking, so is prone to
+error</td>
+</tr>
+</table>
+<A NAME="TI3907"></A><p>Communication with both techniques can be either synchronous
+(using <b>Send</b> for functions and the <b>EVENT</b> keyword
+for events) or asynchronous (using <b>Post</b> for functions
+and the <b>POST</b> keyword for events).</p>
+<A NAME="TI3908"></A><h4>Directly referencing properties</h4>
+<A NAME="TI3909"></A><p>Instead of using functions or user events, it is possible
+to reference properties of a user object directly. If you have a
+user object control, <b>uo_1</b>, associated
+with a custom user object that has a SingleLineEdit, <b>sle_1</b>,
+you can use the following in a script for the window:<p><PRE> uo_1.sle_1.Text = "new text"</PRE></p>
+<A NAME="TI3910"></A><p>However, it is better to communicate with user objects through
+functions and user events, as described below, in order to maintain
+a clean interface between your user object and the rest of your
+application.</p>
+<A NAME="TI3911"></A><h4>The functions technique</h4>
+<A NAME="TI3912"></A><p>Exchanging information using functions is straightforward.
+After a user object calls a function, any return value is available
+to any control within that object.</p>
+<A NAME="TI3913"></A><p>For how to use this technique, see <A HREF="pbugp130.htm#BCAEAAID">"Example 1: using functions "</A>.</p>
+<A NAME="TI3914"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To pass information from a window to a user object:</p>
+<ol><li class=fi><p>Define a public, user object-level function
+that takes as arguments the information needed from the window.</p></li>
+<li class=ds><p>Place the user object in the window.</p></li>
+<li class=ds><p>When appropriate, call the function from a script
+in the window, passing the needed information as arguments.</p></li></ol>
+<br><A NAME="TI3915"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To pass information from a user object to a window:</p>
+<ol><li class=fi><p>Define a public, window-level function
+that takes as parameters the information needed from the user object.</p></li>
+<li class=ds><p>Place the user object in the window.</p></li>
+<li class=ds><p>When appropriate, call the function from a script
+in the user object, passing the needed information as parameters.</p></li></ol>
+<br><A NAME="TI3916"></A><h4>The user events technique</h4>
+<A NAME="TI3917"></A><p>You can define user-defined events, also called user events,
+to communicate between a window and a user object. You can declare
+user events for any PowerBuilder object or control.</p>
+<A NAME="TI3918"></A><p>A custom visual user object often requires a user event. After
+you place a custom visual user object in a window or in another
+custom user object, you can write scripts only for events that occur
+in the user object itself. You cannot write scripts for events in
+the controls in the user object. </p>
+<A NAME="TI3919"></A><p>You can, however, define user events for the user object,
+and trigger those events in scripts for the controls contained in
+that user object. In the Window painter, you write scripts for the
+user events, referencing components of the window as needed.</p>
+<A NAME="TI3920"></A><p>For more information about user events, see <A HREF="pbugp75.htm#BFCBCEEE">Chapter 9, "Working with User Events ,"</A> and <i>Application
+Techniques</i>
+. For instructions for using this technique, see <A HREF="pbugp130.htm#BCADAACD">"Example 2: using user events "</A>.</p>
+<A NAME="TI3921"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define and trigger a user event in a visual
+user object:</p>
+<ol><li class=fi><p>In the User Object painter, select the
+user object.</p><p>Make sure no control in the user object is selected.</p></li>
+<li class=ds><p>In the Event List view, select Add from the pop-up
+menu. </p></li>
+<li class=ds><p>In the Prototype window that displays, define
+the user event.</p><p>For how to do so, see <A HREF="pbugp77.htm#X-REF345206685">"Defining user events "</A>.</p></li>
+<li class=ds><p>Use the <b>Event</b> keyword in scripts
+for a control to trigger the user event in the user object:</p><p><p><PRE><i>userobject</i>.<b>Event</b> <i>eventname </i>( )</PRE></p>
+</p><p>For example, the following statement in the Clicked event
+of a CommandButton contained in a custom visual user object triggers
+the Max_requested event in the user object:<p><PRE> Parent.Event Max_requested()</PRE></p><p>This statement uses the pronoun <b>Parent</b>,
+referring to the custom visual user object itself, to trigger the
+Max_requested event in that user object.</p></li>
+<li class=ds><p>Implement these user events in the Window painter.</p></li></ol>
+<br><A NAME="TI3922"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To implement the user event in the window:</p>
+<ol><li class=fi><p>Open the window.</p></li>
+<li class=ds><p>In the Window painter, select Insert&gt;Control
+from the menu bar and place the custom visual user object in the
+window.</p></li>
+<li class=ds><p>Double-click the user object and then in the Script
+view, write scripts for the user events you defined in the User
+Object painter.</p></li></ol>
+<br><A NAME="X-REF382100057"></A><h2>Examples of user object controls affecting a window</h2>
+<A NAME="TI3923"></A><p>To illustrate these techniques, consider a simple custom visual
+user object, <b>uo_minmax</b>, that contains
+two buttons, Maximize and Minimize. </p>
+<br><img src="images/uo08.gif">
+<A NAME="TI3924"></A><p>If the user clicks the Maximize button in an application window
+containing this user object, the current window becomes maximized.
+If the user clicks Minimize, the window closes to an icon.</p>
+<A NAME="TI3925"></A><p>Because the user object can be associated with any window,
+the scripts for the buttons cannot reference the window that has
+the user object. The user object must get the name of the window
+so that the buttons can reference the window.</p>
+<A NAME="TI3926"></A><p><A HREF="pbugp130.htm#BCAEAAID">"Example 1: using functions "</A> shows
+how PowerBuilder uses functions to pass a window name to a user
+object, allowing controls in the user object to affect the window
+the user object is in.</p>
+<A NAME="TI3927"></A><p><A HREF="pbugp130.htm#BCADAACD">"Example 2: using user events "</A> shows
+how PowerBuilder uses unmapped user events to allow controls in
+a user object to affect the window the user object is in.</p>
+<A NAME="BCAEAAID"></A><h4>Example 1: using functions </h4>
+<A NAME="TI3928"></A><p><A NAME="TI3929"></A>
+<ol>
+</li>
+<li class=ds>In the Script view
+in the User Object painter, define an instance variable, <b>mywin</b>,
+of type window. <p><PRE> window mywin</PRE><br>
+This variable will hold the name of the window that has the
+user object.<br></li>
+<li class=ds>Define a user object-level function, <b>f_setwin</b>,
+with: <A NAME="TI3930"></A>
+<ul>
+<li class=fi>Public access</li>
+<li class=ds>No return value</li>
+<li class=ds>One argument, <b>win_param</b>,
+of type window and passed by value
+</li>
+</ul>
+</li>
+<li class=ds>Type the following script for the function:<p><PRE> mywin = win_param</PRE><br>
+When <b>f_setwin</b> is called, the window
+name passed in <b>win_param</b> will be assigned
+to <b>mywin</b>, where user object controls can reference
+the window that has the user object.<br></li>
+<li class=ds>Write scripts for the two buttons:<A NAME="TI3931"></A>
+<ul>
+<li class=fi><b>cb_max</b>:<FONT FACE="Courier New"> mywin.WindowState = Maximized!</FONT></li>
+<li class=ds><b>cb_min</b>:<FONT FACE="Courier New"> mywin.WindowState = Minimized!</FONT>
+</li>
+</ul>
+</li>
+<li class=ds>Save the user object as <b>uo_minmax</b> and
+close the User Object painter.</li>
+<li class=ds>Open the window, drag <b>uo_minmax</b> onto
+the window in the Layout view, and name it <b>uo_func</b> in
+the Properties view.</li>
+<li class=ds>In the Open event for the window, call the user
+object-level function, passing the name of the window:<p><PRE> uo_func.f_setwin(This)</PRE><br>
+The pronoun <b>This</b> refers to the window's
+name, which will be passed to the user object's <b>f_setwin</b> function.<br>
+</li>
+</ol>
+</p>
+<p><b>What happens</b>   When the window opens, it calls the user object-level function <b>f_setwin</b>,
+which passes the window name to the user object. The user object
+stores the name in its instance variable mywin. When the user clicks
+a button control in the user object, the control references the
+window through mywin.</p>
+<A NAME="BCADAACD"></A><h4>Example 2: using user events </h4>
+<A NAME="TI3932"></A><p><A NAME="TI3933"></A>
+<ol>
+</li>
+<li class=ds>In the Script view
+in the User Object painter, define two unmapped user events for
+the user object: Max_requested and Min_requested.<br>
+Leave the Event ID fields blank to define them as unmapped.<br></li>
+<li class=ds>Trigger user events of the user object in the scripts
+for the Clicked event of each CommandButton:<A NAME="TI3934"></A>
+<ul>
+<li class=fi><b>cb_max</b>:<FONT FACE="Courier New"> Parent.Event
+Max_requested()</FONT></li>
+<li class=ds><b>cb_min</b>:<FONT FACE="Courier New"> Parent.Event
+Min_requested()</FONT>
+</li>
+</ul>
+</li>
+<li class=ds>Save the user object and name it <b>uo_event</b> and
+close the User Object painter.</li>
+<li class=ds>Open the window and in the Window painter, select
+Insert&gt;Object from the menu bar and then place <b>uo_event</b> in
+the window.</li>
+<li class=ds>Double-click <b>uo_event</b> to
+display its Script view.<br>
+The two new user events display in the second drop-down list
+in the Script view.<br></li>
+<li class=ds>Write scripts for the two user events:<A NAME="TI3935"></A>
+<ul>
+<li class=fi><b>max_requested</b>:<FONT FACE="Courier New"> Parent.WindowState = Maximized!</FONT></li>
+<li class=ds><b>min_requested</b>:<FONT FACE="Courier New"> Parent.WindowState = Minimized!</FONT>
+</li>
+</ul>
+<br>
+These scripts reference the window containing the user object
+with the pronoun <b>Parent</b>.<br>
+</li>
+</ol>
+</p>
+<p><b>What happens</b>   When a user clicks a button, the Clicked event script for
+that button triggers a user event in its parent, the user object.
+The user object script for that event modifies its parent, the window.</p>
+<A NAME="TI3936"></A><A NAME="TI3937"></A><p>This part describes how to use PowerBuilder to manage your
+database and how to use the Data Pipeline painter to copy data from
+one database to another.</p>
+

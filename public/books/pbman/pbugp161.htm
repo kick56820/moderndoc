@@ -1,0 +1,48 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using External</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp160.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp162.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CACCDGDC"></A><h1>Using External</h1>
+<A NAME="TI5090"></A><p>If the data for the DataWindow object does not come from a database (either through
+a native Sybase database interface or through a standard database interface),
+specify External as the data source. You then specify the data columns
+and their types so PowerBuilder can build the appropriate DataWindow object to
+hold the data. These columns make up the result set. PowerBuilder places
+the columns you specified in the result set in the DataWindow object.</p>
+<A NAME="TI5091"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define the data using External:</p>
+<ol><li class=fi><p>Click External in the Choose Data Source
+dialog box in the wizard and click Next.</p><p>The Define Result Set dialog box displays for you to specify
+the first column in the result set.</p></li>
+<li class=ds><p>Enter the name and type of the column. </p><p>Available datatypes are listed in the drop-down list. The <b>number</b> datatype is
+equivalent to the PowerBuilder <b>double</b> datatype.</p></li>
+<li class=ds><p>Click Add to enter the name and type of any additional
+columns you want in the result set.</p></li>
+<li class=ds><p>Click Next when you have added all the columns
+you want.</p></li></ol>
+<br><A NAME="TI5092"></A><h4>What you do next</h4>
+<A NAME="TI5093"></A><p>In code, you need to tell PowerBuilder how to get data into
+the DataWindow object in your application. Typically, you import data at
+runtime using a method (such as <b>ImportFile or</b> <b>ImportString</b>)
+or do some data manipulation and use the <b>SetItem</b> method
+to populate the DataWindow.</p>
+<A NAME="TI5094"></A><p>For more about these methods, see the online
+help. </p>
+<A NAME="TI5095"></A><p>You can also import data values from an external file into
+the DataWindow object or report.</p>
+<A NAME="TI5096"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To import the data values from an external file:</p>
+<ol><li class=fi><p>Make sure the Preview view of the DataWindow object is
+selected.</p></li>
+<li class=ds><p>Select Rows&gt;Import from the menu bar.</p><p>The Select Import File dialog box displays.</p></li>
+<li class=ds><p>Select the type of files to list from the List
+Files of Type drop-down list (an XML, CSV, TXT, or DBF file).</p></li>
+<li class=ds><p>Enter the name of the import file and click OK.</p><p>Alternatively, you can select the name from the file list.
+Use the Drives drop-down list and the Directories box as needed
+to display the list of files that includes the one you want.</p></li></ol>
+<br>

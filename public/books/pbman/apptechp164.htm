@@ -1,0 +1,82 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Establishing a secure connection</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp163.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp165.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CIHJAABG"></A><h1>Establishing a secure connection</h1>
+<A NAME="TI5469"></A><p>To establish
+a secure connection to <ABBR title = "e a server" >EAServer</ABBR>,
+follow these steps:<A NAME="TI5470"></A>
+<ol>
+</li>
+<li class=ds>Create
+an instance of the SSLServiceProvider object.</li>
+<li class=ds>Optionally use the <b>GetGlobalProperty</b> function
+to obtain security information from the server.</li>
+<li class=ds>Set properties required by the server using the <b>SetGlobalProperty</b> function.</li>
+<li class=ds>Connect to the server using the <b>ConnectToServer</b> function
+of the Connection object.
+</li>
+</ol>
+</p>
+<A NAME="TI5471"></A><h4>Creating an instance of SSLServiceProvider</h4>
+<A NAME="TI5472"></A><p>This code creates an instance of the SSLServiceProvider object:</p>
+<A NAME="TI5473"></A><p><p><PRE> SSLServiceProvider sp<br>GetContextService( "SSLServiceProvider", sp )</PRE></p>
+<A NAME="TI5474"></A><h4>Getting information from the server</h4>
+<A NAME="TI5475"></A><p>Use <b>GetGlobalProperty</b> to obtain information
+about the security characteristics of the server. This example gets
+information about supported CipherSuites from the availableQop property,
+and displays the information in a drop-down list:<p><PRE> int i, rc<br>string ls_values[]<br> <br>rc = sp.GetGlobalProperty("availableQop", ls_values)<br> <br>IF rc &lt;&gt; 0 THEN<br>   MessageBox("Get Qop Failed", "rc = " + string(rc))<br>   RETURN<br>END IF<br> <br>FOR i = 1 to UpperBound(ls_values)<br>   ddlb_1.AddItem( ls_values[i] )<br>NEXT<br>RETURN</PRE></p>
+<A NAME="TI5476"></A><h4>Setting global properties</h4>
+<A NAME="TI5477"></A><p>Before you connect to the server, you must set required global
+properties. This code sets qop to the value sybpks_intl
+and pin to the value sybase:<p><PRE> int rc<br> <br>rc = sp.SetGlobalProperty( "qop", "sybpks_intl" )<br>IF rc &lt;&gt; 0 THEN<br>   MessageBox( "Setting QOP Failed", &amp;<br>      "rc = " + string(rc) )<br>ELSE<br>   MessageBox( "Set SSL QOP Property", "succeeded" )<br>END IF<br>rc = sp.SetGlobalProperty( "pin", "sybase" )<br>IF rc &lt;&gt; 0 THEN<br>   MessageBox( "Setting PIN Failed", &amp;<br>      "rc = " + string(rc) )<br>ELSE<br>   MessageBox( "Set SSL PIN Property", "succeeded" )<br>END IF</PRE></p>
+<A NAME="TI5478"></A><p>Most of the properties set using <b>SetGlobalProperty</b> can
+be set only once for the lifetime of the client executable. The
+properties remain in effect when the client disconnects from or
+reconnects to the server. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Restarting PowerBuilder</span> <A NAME="TI5479"></A>When you run a client application in PowerBuilder, you can
+set global properties only <i>once</i> during the
+PowerBuilder session. You will need to restart PowerBuilder each
+time you test the code that sets global SSL properties.</p>
+<A NAME="TI5480"></A><p>If you want to use an instance of the SSLCallback object to
+obtain user input interactively, you need to set the global property
+CallBackImpl. See <A HREF="apptechp165.htm#CIHBDGIC">"Using SSL callbacks"</A>.</p>
+<A NAME="TI5481"></A><h4>Connecting to the server</h4>
+<A NAME="TI5482"></A><p>When you begin a secure session, the client and server exchange
+messages in the SSL handshake process. The client provides information
+that the server needs in order to communicate with the server, then
+the server must always authenticate itself to the client before
+the process can continue. If the server requires client authentication,
+the client must be authenticated before the process can continue.
+When the required authentication is complete, the client and server
+create symmetric keys that will be used for encryption, decryption, and
+tamper detection in the SSL session. To catch any exceptions that
+are raised during this process, you should enclose the <b>ConnectToServer</b> call
+in a try-catch block.</p>
+<A NAME="TI5483"></A><p>When you establish a secure connection, use <FONT FACE="Courier New">iiops</FONT> instead
+of <FONT FACE="Courier New">iiop</FONT> in the location property
+of the connection object. The server typically listens for secure
+connections on ports 9001 or 9002. This example uses a Connection object, <b>g_connect</b>,
+that has been declared as a global variable. The example uses the
+options property of the Connection object to specify a different CypherSuite
+for this connection:</p>
+<A NAME="TI5484"></A><p><p><PRE> long l_rc<br>g_connect.userid   = sle_user.text<br>g_connect.password = sle_password.text<br>g_connect.driver   = "jaguar"<br>g_connect.application = "myserverpkg"<br>g_connect.location = "iiops://myserver:9001"<br>g_connect.options = "ORBqop='sybpks_simple'"<br> <br>TRY<br>   l_rc = g_connect.ConnectToServer()<br>CATCH (userabortedexception uae)   <br>   MessageBox("UserAbortedException Caught", &amp;<br>      "ConnectToServer caught: " +  uae.getMessage() )<br>   l_rc = 999<br> <br>CATCH ( CORBASystemException cse )<br>   MessageBox("CORBASystemException Caught", &amp;<br>      "ConnectToServer caught: " +  cse.getMessage() )<br>   l_rc = 998<br>END TRY<br>IF l_rc &lt;&gt; 0 THEN<br>   MessageBox("Error", "Connection Failed - code: " &amp;<br>      + string(l_rc) )<br>   MessageBox("Error Info", "ErrorCode= " &amp;<br>      + string(g_connect.ErrCode) + "~nErrText= " &amp;<br>      + g_connect.ErrText)<br>ELSE<br>   MessageBox("OK", "Connection Established")<br>END IF</PRE></p>
+<A NAME="TI5485"></A><h4>Troubleshooting connections</h4>
+<A NAME="TI5486"></A><p>When a secure connection fails, the error message that displays
+is the same as for insecure connections. It does not provide any
+additional information about the reason for failure. To obtain more
+information in a log file, you can enable the ORBLogIIOP option
+and specify a value for the ORBLogFile option. In the example above,
+you would replace the <FONT FACE="Courier New">g_connect.options</FONT> statement
+with something like this:<p><PRE> g_connect.options = "ORBqop='sybpks_simple'" + &amp;<br>  "ORBLogIIOP='TRUE', ORBLogFile='d:\temp\ORBLog.txt'"</PRE></p>
+<A NAME="TI5487"></A><p>Alternatively, you can set the JAG_LOGFILE environment
+variable to specify the log file in which initialization errors
+are recorded.</p>
+

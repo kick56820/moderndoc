@@ -1,0 +1,239 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Creating remote databases</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp72.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp74.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BCGJBBCH"></A><h1>Creating remote databases</h1>
+<A NAME="TI2044"></A><p>Any <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere database
+can be converted for use as a remote database in a MobiLink installation.
+You can also create a new <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+remote database that uses all or part of the schema of the consolidated <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere database. </p>
+<A NAME="TI2045"></A><p>You create the database on your desktop using the Sybase Central <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere plug-in, the Create <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere Database utility in
+the Database painter, or another tool. If your database uses an
+English character set, use the 1252 Latin1 collation sequence.</p>
+<A NAME="TI2046"></A><p>To use a database as a remote database for MobiLink synchronization,
+you need to create at least one publication and MobiLink user, then
+add a subscription to the publication for the user. See <A HREF="apptechp73.htm#BCGJCEDD">"Creating and modifying publications"</A>, <A HREF="apptechp73.htm#BCGBADDB">"Creating MobiLink users"</A>, and <A HREF="apptechp73.htm#BCGFJDFF">"Adding subscriptions"</A>.</p>
+<A NAME="TI2047"></A><h4>Remote database schemas</h4>
+<A NAME="TI2048"></A><p>Tables in a remote database need not be identical to those
+in the consolidated database, but you can often simplify your design
+by using a table structure in the remote database that is a subset
+of the one in the consolidated database. Using this method ensures
+that every table in the remote database exists in the consolidated
+database. Corresponding tables have the same structure and foreign
+key relationships as those in the consolidated database.</p>
+<A NAME="TI2049"></A><p>Tables in the consolidated database frequently contain extra
+columns that are not synchronized. Extra columns can even aid synchronization.
+For example, a timestamp column can identify new or updated rows
+in the consolidated database. In other cases, extra columns or tables
+in the consolidated database might hold information that is not
+required at remote sites.</p>
+<A NAME="TI2050"></A><p>For more information about the relationship between consolidated
+and remote databases, see the <i>MobiLink Synchronization
+User's Guide</i>
+.</p>
+<A NAME="BCGJCEDD"></A><h2>Creating and modifying publications</h2>
+<A NAME="TI2051"></A><p>You create publications using Sybase Central or the <ACRONYM title = "sequel" >SQL</ACRONYM> <b>CREATE PUBLICATION</b> statement.
+In Sybase Central, all publications and articles appear in the Publications
+folder. This section describes how to create publications in Sybase
+Central. For information about creating and modifying publications
+using <ACRONYM title = "sequel" >SQL</ACRONYM>, see the <i>MobiLink
+Synchronization User's Guide</i>
+.</p>
+<A NAME="BCGIAEJE"></A><h4>Connecting to Sybase Central</h4>
+<A NAME="TI2052"></A><p>You use the <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+plug-in in Sybase Central, not the MobiLink Synchronization plug-in,
+to work with MobiLink clients and remote databases. The <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere plug-in has a MobiLink
+Synchronization Client folder where you perform all actions related
+to remote databases. For information on starting Sybase Central
+from the PowerBuilder design time environment, see the <i>User's
+Guide</i>
+.</p>
+<A NAME="TI2053"></A><p>You must have DBA authority to create or modify publications,
+MobiLink users, and subscriptions.</p>
+<A NAME="TI2054"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To connect to Sybase Central to work with MobiLink
+Synchronization clients: </p>
+<ol><li class=fi><p>Start Sybase Central, select Tools&gt;Connect
+from the Sybase Central menu bar, select <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere from
+the New Connection dialog box, and click OK.</p></li>
+<li class=ds><p>On the Identification page in the Connect dialog
+box, enter DBA as the user name and <ACRONYM title = "sequel" >SQL</ACRONYM> as
+the password, select the ODBC DataSource Name radio button, browse
+to select the remote database, and click OK.</p></li>
+<li class=ds><p>In the <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere plug-in,
+expand the node for the remote database and open the MobiLink Synchronization
+Client folder.</p></li></ol>
+<br><A NAME="BCGGGEAB"></A><h4>Publishing all the rows and
+columns in a table</h4>
+<A NAME="TI2055"></A><p>The simplest publication you can create is a single article
+that consists of all rows and columns of one or more tables. The
+tables must already exist.</p>
+<A NAME="TI2056"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To publish one or more entire tables in Sybase
+Central: </p>
+<ol><li class=fi><p>Connect to Sybase Central as described
+in <A HREF="apptechp73.htm#BCGIAEJE">"Connecting to Sybase Central"</A>.</p></li>
+<li class=ds><p>Open the Publications folder and double-click
+Add Publication.</p></li>
+<li class=ds><p>Type a name for the new publication and click
+Next.</p></li>
+<li class=ds><p>On the Tables page, select a table from the list
+of Matching Tables and click Add.</p><p>The table appears in the list of Selected Tables on the right.</p></li>
+<li class=ds><p>Optionally, add more tables. The order of the
+tables is not important.</p></li>
+<li class=ds><p>Click Finish.</p></li></ol>
+<br><A NAME="TI2057"></A><h4>Publishing only some columns in a table</h4>
+<A NAME="TI2058"></A><p>You can create a publication that contains all the rows but
+only some of the columns of a table. </p>
+<A NAME="TI2059"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To publish only some columns in a table in Sybase
+Central: </p>
+<ol><li class=fi><p>Follow the first four steps of the procedure
+in <A HREF="apptechp73.htm#BCGGGEAB">"Publishing all the rows and
+columns in a table"</A>.</p></li>
+<li class=ds><p>On the Columns page, double-click the table's
+icon to expand the list of available columns, select each column
+you want to publish, and click Add.</p><p>The selected columns appear on the right.</p></li>
+<li class=ds><p>Click Finish.</p></li></ol>
+<br><A NAME="TI2060"></A><h4>Publishing only some rows in a table</h4>
+<A NAME="TI2061"></A><p>You can create a publication that contains some or all of
+the columns in a table, but only some of the rows. You do so by
+writing a search condition that matches only the rows you want to
+publish.In MobiLink, you can use the <b>WHERE</b> clause
+to exclude the same set of rows from all subscriptions to a publication.
+All subscribers to the publication upload any changes to the rows
+that satisfy the search condition.</p>
+<A NAME="TI2062"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a publication using a WHERE clause in
+Sybase Central: </p>
+<ol><li class=fi><p>Follow the first four steps of the procedure
+in <A HREF="apptechp73.htm#BCGGGEAB">"Publishing all the rows and
+columns in a table"</A>.</p></li>
+<li class=ds><p>On the Where page, select the table and type the
+search condition in the lower box. </p><p>Optionally, you can use the Insert dialog box to help you
+format the search condition.</p></li>
+<li class=ds><p>Click Finish.</p></li></ol>
+<br><A NAME="TI2063"></A><h4>Adding articles</h4>
+<A NAME="TI2064"></A><p>You can add articles to existing publications.</p>
+<A NAME="TI2065"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add articles in Sybase Central: </p>
+<ol><li class=fi><p>Connect to Sybase Central and open the
+MobiLink Synchronization Client folder as described in <A HREF="apptechp73.htm#BCGIAEJE">"Connecting to Sybase Central"</A>.</p></li>
+<li class=ds><p>Open the Publications folder and double-click
+the name of the publication to which you want to add an article.</p></li>
+<li class=ds><p>Double-click Add Article.</p></li>
+<li class=ds><p>In the Article Creation wizard, select a table
+and click Next.</p></li>
+<li class=ds><p>If you want only some columns to be synchronized,
+select the Selected Columns radio button and select the columns.</p></li>
+<li class=ds><p>If you want to add a <b>WHERE</b> clause,
+click Next and enter the clause.</p></li>
+<li class=ds><p>Click Finish.</p></li></ol>
+<br><A NAME="TI2066"></A><h4>Modifying and removing publications and articles</h4>
+<A NAME="TI2067"></A><p>You can modify or drop existing publications in Sybase Central
+by navigating to the location of the publication and selecting Properties
+or Delete from its pop-up menu. You can modify and remove articles
+in the same way.</p>
+<A NAME="TI2068"></A><p>Publications can be modified only by the DBA or the publication's
+owner. You must have DBA authority to drop a publication. If you
+drop a publication, all subscriptions to that publication are automatically
+deleted as well.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Avoid altering publications in a running MobiLink setup</span> <A NAME="TI2069"></A>Altering publications in a running MobiLink setup is likely
+to cause replication errors and can lead to loss of data unless
+carried out with care.</p>
+<A NAME="BCGBADDB"></A><h2>Creating MobiLink users</h2>
+<A NAME="TI2070"></A><p>MobiLink users are not the same as database users. Each type
+of user resides in a different namespace. MobiLink user IDs can
+match the names of database users, but there is no requirement that
+they match.</p>
+<A NAME="TI2071"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a MobiLink user to a remote database in
+Sybase Central: </p>
+<ol><li class=fi><p>Connect to Sybase Central and open the
+MobiLink Synchronization Client folder as described in <A HREF="apptechp73.htm#BCGIAEJE">"Connecting to Sybase Central"</A>.</p></li>
+<li class=ds><p>Open the MobiLink Users folder and double-click
+Add MobiLink User.</p></li>
+<li class=ds><p>Enter a name for the MobiLink user. </p><p>The name is supplied to the MobiLink synchronization server
+during synchronization. In production databases, each user name
+is usually added to the consolidated database, then provided to
+the individual user.</p></li>
+<li class=ds><p>Click Finish.</p></li></ol>
+<br><A NAME="TI2072"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To configure MobiLink user properties in Sybase
+Central: </p>
+<ol><li class=fi><p>Connect to Sybase Central and open the
+MobiLink Synchronization Client folder as described in <A HREF="apptechp73.htm#BCGIAEJE">"Connecting to Sybase Central"</A>.</p></li>
+<li class=ds><p>Open the MobiLink Users folder, right-click the
+MobiLink user, and select</p><p>Properties from the pop-up menu.</p></li>
+<li class=ds><p>Change the properties as needed.</p></li></ol>
+<br><A NAME="TI2073"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To drop a MobiLink user in Sybase Central: </p>
+<ol><li class=fi><p>Connect to Sybase Central and open the
+MobiLink Synchronization Client folder as described in <A HREF="apptechp73.htm#BCGIAEJE">"Connecting to Sybase Central"</A>.</p></li>
+<li class=ds><p>Open the MobiLink Users folder, right-click the
+MobiLink user, and select</p><p>Delete from the pop-up menu.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Dropping MobiLink users</span> <A NAME="TI2074"></A>You must drop all subscriptions for a MobiLink user before
+you drop the user from a remote database.</p>
+<A NAME="BCGFAIDB"></A><h4>Adding MobiLink users
+to the consolidated database</h4>
+<A NAME="TI2075"></A><p>The consolidated database contains a table called <b>ml_user</b> that
+is used to authenticate the names of MobiLink users when a synchronization
+is requested. When you add a user to a remote database, you need
+to be sure that the user is also added to the <b>ml_user</b> table. </p>
+<A NAME="TI2076"></A><p>You can add users automatically by selecting the Automatic
+Addition of Users check box in the MobiLink Synchronization Server
+Options dialog box and then starting the server. You open this dialog
+box from the Utilities folder in the Database painter or Database
+Profiles dialog box. You can also start the server from a command
+prompt, passing it the <b>-zu+</b> switch.</p>
+<A NAME="TI2077"></A><p>Any users defined in the remote database are added to the <b>ml_user</b> table
+in the consolidated database, as long as the script for the <b>authenticate_user</b> connection
+event is undefined. Typically the <b>-zu+</b> switch
+is not used in a production environment. Names are usually added
+to the <b>ml_user</b> table in the consolidated
+database, then added to each of the remote databases. Each user is
+given a unique name and optional password.</p>
+<A NAME="BCGFJDFF"></A><h2>Adding subscriptions</h2>
+<A NAME="TI2078"></A><p>A synchronization subscription links a particular MobiLink
+user with a publication. It can also carry other information needed
+for synchronization. For example, you can specify the address of
+the MobiLink server and other connection options. Values for a specific
+subscription override those set for individual MobiLink users.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Overriding options in the wizard</span> <A NAME="TI2079"></A>You can override the MobiLink server name and port set for
+the subscription and user in the MobiLink Synchronization for ASA
+wizard.</p>
+<A NAME="TI2080"></A><p>Synchronization subscriptions are required in MobiLink <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere remote databases. Server
+logic is implemented through synchronization scripts, stored in
+the MobiLink system tables in the consolidated database.</p>
+<A NAME="TI2081"></A><p>A
+single <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere database
+can synchronize with more than one MobiLink synchronization server.
+To allow synchronization with multiple servers, create different
+subscriptions for each server.</p>
+<A NAME="TI2082"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a subscription for a MobiLink user in Sybase
+Central: </p>
+<ol><li class=fi><p>Connect to Sybase Central and open the
+MobiLink Synchronization Client folder as described in <A HREF="apptechp73.htm#BCGIAEJE">"Connecting to Sybase Central"</A>.</p></li>
+<li class=ds><p>Open the MobiLink Users folder, right-click the
+user for whom you want to add a subscription, and select Properties
+from the pop-up menu.</p></li>
+<li class=ds><p>On the Subscriptions page, click the Subscribe
+button.</p></li>
+<li class=ds><p>Select the Publication for which you want to add
+a subscription and click OK.</p></li></ol>
+<br><A NAME="TI2083"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To modify a subscription in Sybase Central: </p>
+<ol><li class=fi><p>Connect to Sybase Central and open the
+MobiLink Synchronization Client folder as described in <A HREF="apptechp73.htm#BCGIAEJE">"Connecting to Sybase Central"</A>.</p></li>
+<li class=ds><p>Open the MobiLink Users folder, right-click the
+MobiLink user, and select Properties from the pop-up menu.</p></li>
+<li class=ds><p>On the Subscriptions page, select the subscription
+you want to change and click Advanced.</p></li>
+<li class=ds><p>Change the properties as needed.</p></li></ol>
+<br><A NAME="TI2084"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete a synchronization subscription in Sybase
+Central: </p>
+<ol><li class=fi><p>Connect to Sybase Central and open the
+MobiLink Synchronization Client folder as described in <A HREF="apptechp73.htm#BCGIAEJE">"Connecting to Sybase Central"</A>.</p></li>
+<li class=ds><p>Open the MobiLink Users folder, right-click the
+MobiLink user, and select Properties from the pop-up menu.</p></li>
+<li class=ds><p>On the Subscriptions page, select the subscription
+you want to delete and click Unsubscribe.</p></li></ol>
+<br>

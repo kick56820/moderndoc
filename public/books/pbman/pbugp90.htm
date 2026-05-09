@@ -1,0 +1,119 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Writing scripts in windows </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp89.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp91.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF343488974"></A><h1>Writing scripts in windows </h1>
+<A NAME="TI2447"></A><p>You write scripts for window and control events. To support
+these scripts, you can define:</p>
+<A NAME="TI2448"></A><p><A NAME="TI2449"></A>
+<ul>
+<li class=fi>Window-level and control-level
+functions</li>
+<li class=ds>Instance variables for the window
+</li>
+</ul>
+</p>
+<A NAME="TI2450"></A><h2>About events for windows and controls</h2>
+<A NAME="TI2451"></A><p>Windows have several events including Open, which is triggered
+when the window is opened (before it is displayed), and Close, which
+is triggered when the window is closed. For example, you might
+connect to a database and initialize some values in the window's
+Open event, and disconnect from a database in the Close event.</p>
+<A NAME="TI2452"></A><p>Each type of control also has its own set of events. Buttons,
+for example, have Clicked events, which trigger when a user clicks
+the button. SingleLineEdits and MultiLineEdits have Modified events,
+which trigger when the contents of the edit control change.</p>
+<A NAME="TI2453"></A><h4>Defining your own events</h4>
+<A NAME="TI2454"></A><p>You can also define your own events, called user events, for
+a window or control, then use the <b>EVENT</b> keyword
+to trigger your user event.</p>
+<A NAME="TI2455"></A><p>For example, assume that you offer the user several ways to
+update the database from a window, such as clicking a button or
+selecting a menu item. In addition, when the user closes the window,
+you want to update the database after asking for confirmation. You
+want the same type of processing to happen after different system
+events.</p>
+<A NAME="TI2456"></A><p>You can define a user event for the window, write a script
+for that event, and then everywhere you want that event triggered,
+use the <b>EVENT</b> keyword.</p>
+<A NAME="TI2457"></A><p>To learn how to use user events, see <A HREF="pbugp75.htm#BFCBCEEE">Chapter 9, "Working with User Events ."</A></p>
+<A NAME="TI2458"></A><h2>About functions for windows and controls</h2>
+<A NAME="TI2459"></A><p>PowerBuilder
+provides built-in functions that act on windows and on different types
+of controls. You can use these functions in scripts to manipulate
+your windows and controls. For example, to open a window, you can
+use the built-in window-level function <b>Open</b>,
+or you can pass parameters between windows by opening them with
+the function <b>OpenWithParm</b> and closing them with <b>CloseWithReturn</b>.</p>
+<A NAME="TI2460"></A><p>You can define your own window-level functions to make it
+easier to manipulate your windows. For more information, see <A HREF="pbugp70.htm#CDECDFID">Chapter 8, "Working with User-Defined Functions ."</A></p>
+<A NAME="TI2461"></A><h2>About properties of windows and controls</h2>
+<A NAME="TI2462"></A><p>In scripts, you can assign values to the properties of objects
+and controls to change their appearance or behavior. You can also
+test the values of properties to obtain information about the object. </p>
+<A NAME="TI2463"></A><p>For example, you can change the text displayed in a StaticText
+control when the user clicks a CommandButton, or use data entered
+in a SingleLineEdit to determine what information is retrieved and
+displayed in a DataWindow control.</p>
+<A NAME="TI2464"></A><p>To refer to properties of an object or control, use dot notation
+to identify the object and the property:<p><PRE><i>object.property</i></PRE></p>
+<p><PRE><i>control.property</i></PRE></p>
+</p>
+<A NAME="TI2465"></A><p>Unless you identify the object or control when you refer to
+a property, PowerBuilder assumes you are referring to a property
+of the object or control the script is written for.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>The reserved word <b>Parent</b></span> <A NAME="TI2466"></A>In the script
+for a window control, you can use the reserved word <b>Parent</b> to
+refer to the window containing the control. For example, the following
+line in a script for a CommandButton closes the window containing
+the button:<p><PRE> close(Parent)</PRE></p>
+<A NAME="TI2467"></A>It is easier to reuse a script if you use <b>Parent</b> instead
+of the name of the window.</p>
+<A NAME="TI2468"></A><p>All properties, events, and built-in functions
+for all PowerBuilder objects, including windows, and each type of
+control are described in <i>Objects and Controls</i>
+.</p>
+<A NAME="TI2469"></A><h2>Declaring instance variables</h2>
+<A NAME="TI2470"></A><p>Often, data needs to be accessible in several scripts within
+a window. For example, assume a window displays information about
+one customer. You might want several CommandButtons to manipulate
+the data, and the script for each button needs to know the customer's
+ID. There are several ways to accomplish this: </p>
+<A NAME="TI2471"></A><p><A NAME="TI2472"></A>
+<ul>
+<li class=fi>Declare a global variable
+containing the current customer ID <br>
+All scripts in the application have access to this variable.<br></li>
+<li class=ds>Declare an instance variable within the window<br>
+All scripts for the window and controls in the window have
+access to this variable.<br></li>
+<li class=ds>Declare a shared variable within the window<br>
+All scripts for the window and its controls have access to
+this variable. In addition, all other windows of the same type have
+access to the same variable.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI2473"></A><p>When declaring variables, you need to consider what the scope
+of the variable is. If the variable is meaningful only within a
+window, declare it as a window-level variable, generally
+an instance variable. If the variable is meaningful throughout the
+entire application, make it a global variable.</p>
+<A NAME="TI2474"></A><p>For a complete description of the types of variables and how
+to declare them, see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI2475"></A><h2>Examples of statements</h2>
+<A NAME="TI2476"></A><p>The following assignment statement in the script for the Clicked
+event for a CommandButton changes the text in the StaticText object <b>st_greeting</b> when
+the button is clicked:<p><PRE> st_greeting.Text = "Hello User"</PRE></p>
+<A NAME="TI2477"></A><p>The following statement tests the value entered in the SingleLineEdit <b>sle_state</b> and
+displays the window <b>w_state1</b> if the
+text is "AL":<p><PRE> if sle_State.Text= "AL" then Open(w_state1)</PRE></p>
+

@@ -1,0 +1,218 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Testing and debugging the component</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp147.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp149.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDDHCCJ"></A><h1>Testing and debugging the component</h1>
+<A NAME="TI4973"></A><p>This section describes three techniques you can use to test
+your component:</p>
+<A NAME="TI4974"></A><p><A NAME="TI4975"></A>
+<ul>
+<li class=fi><A HREF="apptechp148.htm#CHDBAHDC">Live editing</A></li>
+<li class=ds><A HREF="apptechp148.htm#CEGBEGBH">Remote debugging</A></li>
+<li class=ds><A HREF="apptechp148.htm#CCJBHGCA">Putting messages into the <ABBR title = "e a server" >EAServer</ABBR> log</A>
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Troubleshooting <ABBR title = "e a server" >EAServer</ABBR> components</span> <A NAME="TI4976"></A>For more information about troubleshooting components, see
+the <i>EAServer Troubleshooting Guide</i>
+.</p>
+<A NAME="CHDBAHDC"></A><h2>Live editing</h2>
+<A NAME="TI4977"></A><p>To test or debug a component, you can use a feature of PowerBuilder
+called <strong>live editing</strong> that allows you to build
+the project automatically from the User Object painter. When live
+editing is enabled, PowerBuilder builds the project for an <ABBR title = "e a server" >EAServer</ABBR> component each time you
+save the corresponding user object. The generator does not deploy <i>PBD</i>s
+to <ABBR title = "e a server" >EAServer</ABBR>, but instead tells <ABBR title = "e a server" >EAServer</ABBR> how to access the PBLs
+that contain the required object definition(s).</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Service components</span> <A NAME="TI4978"></A>You cannot use live editing to test a component that you have
+set up as a service component. Service components are always in
+use when the server is running, so the changes that you make in
+the User Object painter cannot be saved.</p>
+<A NAME="TI4979"></A><h4>How to enable live editing</h4>
+<A NAME="TI4980"></A><p>To enable live editing for a user object, you need to:<A NAME="TI4981"></A>
+<ol>
+</li>
+<li class=ds>Create a project that includes
+the user object for which you want to generate an <ABBR title = "e a server" >EAServer</ABBR> component.<br>
+You can use an existing PBL that allows for deployment to <ABBR title = "e a server" >EAServer</ABBR>, or alternatively, you
+create a new project and use this just for testing purposes.<br></li>
+<li class=ds>Optionally modify the live editing library list
+for the project.<br>
+When you are testing a component with a server that resides
+on a remote machine, you need to tell <ABBR title = "e a server" >EAServer</ABBR> where
+to find the PBLs. To do this, you modify the library list on the
+Advanced page of the component's property sheet in the
+Project painter, shown below:<br><br><img src="images/livee2.gif">
+<br>
+The library list you specify must contain fully qualified
+paths that use Universal Naming Convention (UNC) names. UNC names
+take the form: <i>\\servername\sharename\path\file</i><br><br>
+By default, the live editing library list is based on the
+application library list. You do not need to modify the live editing
+library list if your server is local.<br></li>
+<li class=ds>Specify the project that will be used to generate
+the component in the User object painter. <br>
+Enter the project name in the <ABBR title = "e a server" >EAServer</ABBR> Project
+field, which is located on the General property page of the user
+object property sheet shown below. <br><br><img src="images/livee1.gif">
+<br>
+The project name you specify must meet these requirements:<A NAME="TI4982"></A>
+<ul>
+<li class=fi>It must be an <ABBR title = "e a server" >EAServer</ABBR> component
+project.</li>
+<li class=ds>It must include the user object that you currently
+have open in the User Object painter.</li>
+<li class=ds>The library list for the project must match the
+current application library list.
+</li>
+</ul>
+<br>
+</li>
+</ol>
+</p>
+<A NAME="TI4983"></A><h4>How to generate the component</h4>
+<A NAME="TI4984"></A><p>To generate an <ABBR title = "e a server" >EAServer</ABBR> component
+from the User Object painter, select File&gt;Save.</p>
+<A NAME="TI4985"></A><h4>What happens when you generate the component</h4>
+<A NAME="TI4986"></A><p>When you build a project from the User Object painter, PowerBuilder
+performs these operations:<A NAME="TI4987"></A>
+<ul>
+<li class=fi>Generates CORBA
+IDL that describes the nonvisual object you saved<br>
+The IDL is in turn used to build stubs and skeletons. The
+names of the IDL file, the stubs, and the skeletons are based on
+the name of the object.<br><br>
+The component generator stores the new IDL in the Repository subdirectory
+of the <ABBR title = "e a server" >EAServer</ABBR> installation directory.<br></li>
+<li class=ds>Generates a <i>PROPS</i> file that
+describes the properties of the <ABBR title = "e a server" >EAServer</ABBR> component<br>
+The <i>PROPS</i> file is stored in the following
+subdirectory of the <ABBR title = "e a server" >EAServer</ABBR> installation
+directory: <i>Repository\Component\package-name</i><br>
+</li>
+</ul>
+</p>
+<A NAME="TI4988"></A><p>PowerBuilder builds the component just as it would at deployment
+time, except that it does <i>not</i> generate <i>PBD</i>s
+for the component. In addition, it sets the pb.live_edit
+property to <b>TRUE</b> and assigns the library list
+you specified for live editing to the pb.librarylist property.</p>
+<A NAME="TI4989"></A><p>If the project build results in errors, PowerBuilder displays
+the error messages in the Output window. </p>
+<A NAME="TI4990"></A><p>If instance pooling is enabled for the user object, the generator
+disables pooling for the current build. Pooling is not supported
+with live editing because PowerBuilder cannot save the user object
+if the <i>PBL</i> that contains the user object is
+locked by <ABBR title = "e a server" >EAServer</ABBR>. </p>
+<A NAME="CEGBEGBH"></A><h2>Remote debugging</h2>
+<A NAME="TI4991"></A><p>When you are building a PowerBuilder custom class user object
+as an <ABBR title = "e a server" >EAServer</ABBR> component, you
+can use the PowerBuilder debugger to debug the <ABBR title = "e a server" >EAServer</ABBR> component. You can debug
+the component whether you use the live editing feature in the User
+Object painter or deploy the component to <ABBR title = "e a server" >EAServer</ABBR> from
+the Project painter. </p>
+<A NAME="TI4992"></A><p>For more information about live editing, see <A HREF="apptechp148.htm#CHDBAHDC">"Live editing"</A>.</p>
+<A NAME="TI4993"></A><h4>Getting ready to debug a component</h4>
+<A NAME="TI4994"></A><p>Before you begin debugging a remote component, check that
+your configuration meets the following requirements:<A NAME="TI4995"></A>
+<ul>
+<li class=fi>You are using the same version of the application and <i>PBL</i>s
+as were used to develop the deployed component. If you want to debug
+several deployed components in the same session, they must all have
+been built using the same versions of the <i>PBL</i>s,
+the same application name, and the same library list. </li>
+<li class=ds>The Supports Remote Debugging check box on the Components properties
+page in the Project painter is checked. You can also set the debugging
+option by checking the Supports Remote Debugging check box in the
+Project wizard. </li>
+<li class=ds>You have a client application that exercises the
+methods and properties in the deployed components. This can be a
+compiled executable built with any compatible development tool or
+a PowerBuilder application running in another PowerBuilder session.
+</li>
+</ul>
+</p>
+<A NAME="TI4996"></A><h4>Starting the debugger</h4>
+<A NAME="TI4997"></A><p>To begin debugging, open the target that contains the deployed
+components. Click the Start Remote Debugging button in the PainterBar
+and complete the wizard. You can select only components that were
+generated in PowerBuilder with remote debugging support turned on.
+Remote debugging support is a security setting that does not add
+any debugging information to the component. You turn remote debugging
+support on when you are testing a component, then turn it off when
+you deploy the component to a user's site to prevent users
+from stepping into and examining your code. </p>
+<A NAME="TI4998"></A><p>Set breakpoints as you would when debugging a local application,
+then start the client application that invokes the remote components
+(if it is not already running).</p>
+<A NAME="TI4999"></A><h4>Differences from local debugging</h4>
+<A NAME="TI5000"></A><p>You will notice two major differences between debugging local
+and remote applications:<A NAME="TI5001"></A>
+<ul>
+<li class=fi>When you start the
+debugger, it does not minimize. </li>
+<li class=ds>The new Instances view shows each instance of the
+components you are debugging. For each instance, it shows the component
+and package names, an instance number, and its current state: running,
+idle, or stopped. If there is more than one instance, a yellow arrow
+indicates which one is currently being debugged. 
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Unsupported features</span> <A NAME="TI5002"></A>The Objects In Memory view, expression evaluation, and changing
+variable values are not supported.</p>
+<A NAME="TI5003"></A><h4>About states</h4>
+<A NAME="TI5004"></A><p>The instances view shows the state of each instance of each
+component:<A NAME="TI5005"></A>
+<ul>
+<li class=fi><b>Idle</b>   The component is idle or in the instance pool.</li>
+<li class=ds><b>Running</b>   The component is currently executing code.</li>
+<li class=ds><b>Stopped</b>   The component is stopped at a breakpoint waiting for a debugger
+action.
+</li>
+</ul>
+</p>
+<A NAME="TI5006"></A><p>When an instance is destroyed, it is removed from the Instances
+view. </p>
+<A NAME="TI5007"></A><h4>Multiple instances</h4>
+<A NAME="TI5008"></A><p>Multiple component instances can be stopped at the same time,
+but actions you take in the debugger act only on the first instance
+that hits a breakpoint. This instance is indicated by a yellow arrow
+in the Instances view. The current instance changes to the next
+instance in the queue when the method completes or when you click
+Continue. </p>
+<A NAME="TI5009"></A><p>You can also change context from one instance to another by
+double-clicking the new instance in the Instances view. You might
+want to do this if you step over a call to another component instance
+and the Instances view shows that the called instance stopped.</p>
+<A NAME="CCJBHGCA"></A><h2>Putting messages into the EAServer log</h2>
+<A NAME="TI5010"></A><p>To record errors generated by PowerBuilder objects running
+in <ABBR title = "e a server" >EAServer</ABBR> to the <ABBR title = "e a server" >EAServer</ABBR> log, create an instance
+of the ErrorLogging service context object and invoke its <b>log</b> method.
+For example: <p><PRE> ErrorLogging inv_el<br>this.GetContextService("ErrorLogging", inv_el)<br>inv_el.log("Write this string to log")</PRE></p>
+<A NAME="TI5011"></A><p>You can use the ErrorLogging service to provide detailed information
+about the context of a system or runtime error on the server. This
+information is useful to system administrators and developers in
+resolving problems.</p>
+<A NAME="TI5012"></A><p>While you are developing components, you can use the ErrorLogging
+service to trace the execution of your component. For example, you
+can write a message to the log when you enter and exit functions.
+The message can identify the name of the component, whether it is
+entering or exiting a function, and which function it is in.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Automatic recording of exception information</span> <A NAME="TI5013"></A>Information about the exception type and location of an exception
+caused by a PowerBuilder component running on the server is recorded
+automatically in the server log. It is no longer necessary to invoke
+the error logging service to obtain minimal information about these
+exceptions.</p>
+<A NAME="TI5014"></A><p>When you use the XSL-FO technique to generate a PDF file,
+detailed informational and warning messages are sent to the log.
+You can suppress these messages by setting the PB_FOP_SUPPRESSLOG
+environment variable to 1.</p>
+

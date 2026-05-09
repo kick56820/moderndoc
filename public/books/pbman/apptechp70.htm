@@ -1,0 +1,162 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About MobiLink synchronization</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp69.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp71.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BCGHDGFA"></A><h1>About MobiLink synchronization</h1>
+<A NAME="TI1843"></A><p>MobiLink is a session-based synchronization system that allows
+two-way synchronization between a main database, called the consolidated database,
+and many remote databases. </p>
+<A NAME="TI1844"></A><p>Detailed information about MobiLink synchronization is provided
+in the <i>MobiLink Synchronization User's Guide</i>
+ and
+the <i>Mobilink Synchronization Reference</i>
+. These
+books are available in the <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+compiled help file, which is installed by default when you install
+Sybase <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere. Information
+is also available on the PowerBuilder Technical Library CD and from
+the link to the SQL Anywhere documentation on the <A HREF="http://www.sybase.com/support/manuals/">Sybase Product Manuals Web site</A>
+.</p>
+<A NAME="TI1845"></A><p>If you are already familiar with MobiLink, go to <A HREF="apptechp71.htm#BCGEFGHC">"Working with PowerBuilder
+synchronization objects"</A> to learn about PowerBuilder
+integration with MobiLink.</p>
+<A NAME="TI1846"></A><p>This section introduces some MobiLink terms and concepts.</p>
+<A NAME="TI1847"></A><h4>Data movement and synchronization</h4>
+<A NAME="TI1848"></A><p>Data movement occurs when shared data is distributed over
+multiple databases on multiple nodes and changes to data in one
+database are applied to the corresponding data in other databases.
+Data can be moved using replication or synchronization.</p>
+<A NAME="TI1849"></A><p>Data replication moves all transactions from one database
+to another, whereas data synchronization moves only the net result
+of transactions. Both techniques get their information by scanning
+transaction log files, but synchronization uses only updated log
+file segments instead of the full log file, making data movement
+much faster and more efficient.</p>
+<A NAME="TI1850"></A><p>With synchronization, data is available locally and can be
+modified without a connection to a server. MobiLink synchronization
+uses a loose consistency model, which means that all changes are
+synchronized with each site over time in a consistent manner, but
+different sites might have different copies of data at any instant.
+Only successful transactions are synchronized.</p>
+<A NAME="TI1851"></A><h4>Consolidated and remote databases</h4>
+<A NAME="TI1852"></A><p>The consolidated database, which can be any ODBC-compliant
+database, such as SQL Anywhere, Sybase Adaptive Server Enterprise,
+Oracle, IBM DB2 UDB, or Microsoft SQL Server, holds the master copy
+of all the data. </p>
+<A NAME="TI1853"></A><p>The remote database contains a subset of the consolidated
+data. Although MobiLink can synchronize <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+and UltraLite databases, for PowerBuilder 10.5 applications, remote
+databases must be <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere databases.</p>
+<A NAME="TI1854"></A><h4>The MobiLink synchronization server</h4>
+<A NAME="TI1855"></A><p>The MobiLink synchronization server, <b>dbmlsrv10</b>,
+manages the synchronization process and provides the interface between
+remote databases and the consolidated database server. All communication
+between the MobiLink synchronization server and the consolidated
+database occurs through an ODBC connection.The consolidated database
+and synchronization server often reside on the same machine, but
+that is not a requirement.</p>
+<A NAME="TI1856"></A><p>The MobiLink server must be running before a synchronization
+process is launched. </p>
+<A NAME="TI1857"></A><p>As you build and test PowerBuilder applications, you can start
+the server from the Utilities folder in the Objects view in the
+Database painter. For more information, see the chapter on managing
+databases in the PowerBuilder <i>User's Guide</i>
+.
+For information about starting the server from the command line,
+see "<b>dbmlsrv10</b>" in the index
+of the <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere online books.</p>
+<A NAME="TI1858"></A><h4>MobiLink hierarchy</h4>
+<A NAME="TI1859"></A><p>MobiLink typically uses a hierarchical configuration. The
+nodes in the hierarchy can reside on servers, desktop computers,
+and handheld or embedded devices. A simple hierarchy might consist
+of a consolidated database on a server and multiple remote databases
+on mobile devices. A more complex hierarchy might contain multiple
+levels in which some sites act as both remote and consolidated databases.
+For PowerBuilder applications, any consolidated database that also
+acts as a remote database must be a <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+database. </p>
+<A NAME="TI1860"></A><p>For example, suppose remote sites A1, A2, and A3 synchronize
+with a consolidated database A on a local server, and remote sites
+B1, B2, and B3 synchronize with a consolidated database B on another
+local server. A and B in turn act as remote sites and synchronize
+with a consolidated database C on a master server. C can be any
+ODBC-compliant database, but A and B must both be <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere databases.</p>
+<A NAME="TI1861"></A><caption><b>Figure 13-1: MobiLink hierarchy</b></captionls>
+<br><img src="images/mobhier1.gif">
+<A NAME="TI1862"></A><h4>Synchronization scripts</h4>
+<A NAME="TI1863"></A><p>MobiLink synchronization is an event-driven process. When
+a MobiLink client initiates a synchronization, a number of synchronization
+events occur inside the MobiLink server. When an event occurs, MobiLink
+looks for a script to match the synchronization event. If you want
+the MobiLink server to take an action, you must provide a script
+for the event.</p>
+<A NAME="TI1864"></A><p>You can write synchronization scripts for connection-level
+events and for events for each table in the remote database. You
+save these scripts in the consolidated database.</p>
+<A NAME="TI1865"></A><p>You can write scripts using <ABBR title = "sequel" >SQL</ABBR>,
+Java, or <ACRONYM title = "dot net" >.NET</ACRONYM>. For more information
+about event scripts and writing them in the MobiLink Synchronization
+plug-in in Sybase Central, see <A HREF="apptechp72.htm#BCGHDGGA">"Preparing consolidated databases"</A>.</p>
+<A NAME="TI1866"></A><h4>The MobiLink synchronization client</h4>
+<A NAME="TI1867"></A><p><ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere clients at
+remote sites initiate synchronization by running a command-line
+utility called <b>dbmlsync</b>. This utility synchronizes
+one or more subscriptions in a remote database with the MobiLink
+synchronization server. Subscriptions are described in <A HREF="apptechp70.htm#BCGIEJGE">"Publications, articles, users,
+and subscriptions"</A>. For more information
+about the <b>dbmlsync</b> utility and its options, see "<b>dbmlsync</b> utility" in
+the index of the <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+online books.</p>
+<A NAME="TI1868"></A><p>In PowerBuilder, synchronization objects that you create with
+the MobiLink Synchronization for ASA wizard manage the <b>dbmlsync</b> process.
+For more information, see <A HREF="apptechp71.htm#BCGEFGHC">"Working with PowerBuilder
+synchronization objects"</A>.</p>
+<A NAME="BCGIEJGE"></A><h4>Publications, articles, users,
+and subscriptions</h4>
+<A NAME="TI1869"></A><p>A publication is a database object on the remote database
+that identifies tables and columns to be synchronized. Each publication
+can contain one or more articles. An article is a database object
+that represents a whole table, or a subset of the columns and rows
+in a table. </p>
+<A NAME="TI1870"></A><p>A user is a database object in the remote database describing
+a unique synchronization client. There is one MobiLink user name
+for each remote database in the MobiLink system. The <b>ml_user</b> MobiLink
+system table, located in the consolidated database, holds a list
+of MobiLink user names. These names are used for authentication.</p>
+<A NAME="TI1871"></A><p>A subscription associates a user with one or more publications.
+It specifies the synchronization protocol (such as TCP/IP,
+HTTP, or HTTPS), address (such as <i>myserver.acmetools.com</i>),
+and additional optional connection and extended options.</p>
+<A NAME="TI1872"></A><p>Users, publications, and subscriptions are created in the remote database.
+You can create them in Sybase Central with the <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+plug-in (not the MobiLink Synchronization plug-in). For information
+about creating users, publications, and subscriptions, see <A HREF="apptechp73.htm#BCGJBBCH">"Creating remote databases"</A>. </p>
+<A NAME="TI1873"></A><h4>The synchronization process</h4>
+<A NAME="TI1874"></A><p><b>Dbmlsync</b> connects to the remote database
+using TCP/IP, HTTP, or HTTPS, and prepares a stream of
+data (the upload stream) to be uploaded to the consolidated database. <b>Dbmlsync</b> uses
+information contained in the transaction log of the remote database
+to build the upload stream. The upload stream contains the MobiLink
+user name and password, the version of synchronization scripts to use,
+the last synchronization timestamp, the schema of tables and columns
+in the publication, and the net result of all inserts, updates,
+and deletes since the last synchronization.</p>
+<A NAME="TI1875"></A><p>After building the upload stream, <b>dbmlsync</b> uses
+information stored in the specified publication and subscription
+to connect to the MobiLink synchronization server and to exchange
+data.</p>
+<A NAME="TI1876"></A><p>When the MobiLink synchronization server receives data, it
+updates the consolidated database, then builds a download stream
+that contains all relevant changes and sends it back to the remote
+site. At the end of each successful synchronization, the consolidated
+and remote databases are consistent. Either a whole transaction
+is synchronized, or none of it is synchronized. This ensures transactional
+integrity at each database.</p>
+

@@ -1,0 +1,91 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Performing some initial housekeeping </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp97.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp99.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF304004424"></A><h1>Performing some initial housekeeping </h1>
+<A NAME="TI2852"></A><p>Now that you have the basic objects you need, you are ready
+to start writing code to make your pipeline work in the application.
+To begin, you must take care of some setup chores that will prepare
+the application to handle pipeline execution.</p>
+<A NAME="TI2853"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To get the application ready for pipeline execution:</p>
+<ol><li class=fi><p>Connect to the source and destination databases
+for the pipeline. </p><p>To do this, write the usual connection code in an appropriate
+script. Just make sure you use one Transaction object when connecting
+to the source database and a different Transaction object when connecting
+to the destination database (even if it is the same database).</p><p>For details on connecting to a database, see <A HREF="apptechp64.htm#CDECFFIF">Chapter 12, "Using Transaction Objects."</A></p></li>
+<li class=ds><p>Create an instance of your supporting user object
+(so that the application can use its properties, events, and functions). </p><p>To do this, first declare a variable whose type is that user
+object. Then, in an appropriate script, code the <b>CREATE</b> statement
+to create an instance of the user object and assign it to that variable.</p></li>
+<li class=ds><p>Specify the particular Pipeline object you want
+to use.   </p><p>To do this, code an <b>Assignment</b> statement
+in an appropriate script; assign a string containing the name of
+the desired Pipeline object to the DataObject property of your user-object
+instance.</p></li></ol>
+<br><A NAME="TI2854"></A><p>For more information on coding the <b>CREATE</b> and <b>Assignment</b> statements,
+see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI2855"></A><h4>Example</h4>
+<A NAME="TI2856"></A><p>The following sample code takes care of these pipeline setup
+chores in the order entry application.</p>
+<p><b>Connecting to the source and destination database</b>   In this case, the company's sales database (<b>ABNCSALE.DB</b>)
+is used as both the source and the destination database. To establish
+the necessary connections to the sales database, write code in a
+user event named <b>uevent_pipe_setup</b> (which
+is posted from the Open event of the <b>w_sales_extract</b> window).</p>
+<A NAME="TI2857"></A><p>The following code establishes the <i>source database
+connection</i>:<p><PRE> // Create a new instance of the Transaction object</PRE><PRE> // and store it in itrans_source (a variable</PRE><PRE> // declared earlier of type transaction).</PRE><PRE> itrans_source = CREATE transaction</PRE><PRE> </PRE><PRE> // Next, assign values to the properties of the</PRE><PRE> // itrans_source Transaction object.</PRE><PRE> ...</PRE><br><PRE> // Now connect to the source database.</PRE><PRE> CONNECT USING itrans_source;</PRE></p>
+<A NAME="TI2858"></A><p>The following code establishes the <i>destination database
+connection</i>:<p><PRE> // Create a new instance of the Transaction object</PRE><PRE> // and store it in itrans_destination (a variable</PRE><PRE> // declared earlier of type transaction).</PRE><PRE> </PRE><PRE> itrans_destination = CREATE transaction</PRE><PRE> </PRE><PRE> // Next, assign values to the properties of the</PRE><PRE> // itrans_destination Transaction object.</PRE><PRE> ...</PRE><PRE> // Now connect to the destination database.</PRE><PRE> </PRE><PRE> CONNECT USING itrans_destination;</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Setting USERID for native drivers</span> <A NAME="TI2859"></A>When you execute a pipeline in the Pipeline painter, if you
+are using a native driver, PowerBuilder automatically qualifies
+table names with the owner of the table. When you execute a pipeline
+in an application, if you are using a native driver, you must set
+the USERID property in the Transaction object so that the table
+name is properly qualified. </p>
+<A NAME="TI2860"></A>Failing to set the USERID property in the Transaction object
+for the destination database causes pipeline execution errors. If
+the source database uses a native driver, extended attributes are
+not piped if USERID is not set. </p>
+<p><b>Creating an instance of the user object</b>   Earlier you learned how to develop a supporting user object
+named <b>u_sales_pipe_logistics</b>.
+To use <b>u_sales_pipe_logistics</b> in
+the application, first declare a variable of its type:</p>
+<A NAME="TI2861"></A><p><p><PRE> // This is an instance variable for the</PRE><PRE> // w_sales_extract window.</PRE><PRE> </PRE><PRE> u_sales_pipe_logistics iuo_pipe_logistics</PRE></p>
+<A NAME="TI2862"></A><p>Then write code in the <b>uevent_pipe_setup</b> user
+event to create an instance of <b>u_sales_pipe_logistics</b> and
+store this instance in the variable <i>iuo_pipe_logistics</i>:<p><PRE> iuo_pipe_logistics = CREATE u_sales_pipe_logistics</PRE></p>
+<p><b>Specifying the Pipeline object to use</b>   The application uses one of two different Pipeline objects,
+depending on the kind of piping operation the user wants to perform:</p>
+<A NAME="TI2863"></A><p><A NAME="TI2864"></A>
+<ul>
+<li class=fi><i>pipe_sales_extract1</i> (which
+you saw in detail earlier) creates a new <b>Quarterly_extract</b> table
+(and assumes that this table <i>does not</i> currently exist)</li>
+<li class=ds><i>pipe_sales_extract2</i> inserts
+rows into the <b>Quarterly_extract</b> table
+(and assumes that this table <i>does</i> currently
+exist)
+</li>
+</ul>
+</p>
+<A NAME="TI2865"></A><p>To choose a Pipeline object and prepare to use it, write the
+following code in the Clicked event of the <b>cb_write</b> CommandButton
+(which users click when they want to start piping):<p><PRE> // Look at which radio button is checked in the</PRE><PRE> // w_sales_extract window. Then assign the matching</PRE><PRE> // Pipeline object to iuo_pipe_logistics.</PRE><PRE> </PRE><PRE> IF rb_create.checked = true THEN</PRE><PRE>  iuo_pipe_logistics.dataobject =       "pipe_sales_extract1"</PRE><PRE> ELSE</PRE><PRE>  iuo_pipe_logistics.dataobject =                "pipe_sales_extract2"</PRE><PRE> END IF</PRE></p>
+<A NAME="TI2866"></A><p>This code appears at the beginning of the script, before the
+code that starts the chosen pipeline.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Deploying Pipeline objects for an application</span> <A NAME="TI2867"></A>Because an application must always reference its Pipeline
+objects <i>dynamically</i> at runtime (through string
+variables), you must package these objects in one or more dynamic
+libraries when deploying the application. You cannot include Pipeline
+objects in an executable (<i>EXE</i>) file.</p>
+<A NAME="TI2868"></A>For more information on deployment, see Part
+9, "Deployment Techniques."</p>
+

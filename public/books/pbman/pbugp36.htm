@@ -1,0 +1,39 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Checking the OOM model</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp35.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp37.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CEGBHAEJ"></A><h1>Checking the OOM model</h1>
+<A NAME="TI1122"></A><p>When you create a new OOM in the plug-in, default properties
+and operations are added to the application, window, and function
+classes, making it easier to design and generate PowerBuilder code.</p>
+<A NAME="TI1123"></A><p>You can use the PowerDesigner Check Model feature to verify
+that an OOM is valid before generating a PowerBuilder target from
+the model. If you run Check Model in the plug-in, errors are reported
+for the following conditions:</p>
+<A NAME="TI1124"></A><p><A NAME="TI1125"></A>
+<ul>
+<li class=fi>Class names that do not correspond to
+legal PowerBuilder object names</li>
+<li class=ds>More than one Application class in the same Class
+Diagram</li>
+<li class=ds>More than one operation in a Function class, or
+an operation name that differs from the Function class name</li>
+<li class=ds>Structure classes that contain identifiers or operations</li>
+<li class=ds>Top-level Class Diagram contains non-Package symbols</li>
+<li class=ds>There is no syntax (in the Script or Preview tab
+of the Class Properties dialog box) for an object to be generated</li>
+<li class=ds>Control or binary classes can be generated as inner
+classes only</li>
+<li class=ds>The DataWindow compiler cannot compile the script
+of a class with the DataWindow stereotype
+</li>
+</ul>
+</p>
+

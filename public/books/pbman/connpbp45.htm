@@ -1,0 +1,132 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Setting database parameters</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp44.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp46.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF301952627"></A><h1>Setting database parameters</h1>
+<A NAME="TI1421"></A><p>In PowerBuilder, you can set database parameters by doing
+either of the following: <A NAME="TI1422"></A>
+<ul>
+<li class=fi>Editing
+the Database Profile Setup dialog box for your connection in the development
+environment</li>
+<li class=ds>Specifying connection parameters in an application
+script
+</li>
+</ul>
+</p>
+<A NAME="X-REF340485458"></A><h2>Setting database parameters in the development environment</h2>
+<A NAME="TI1423"></A><h4>Editing database profiles</h4>
+<A NAME="TI1424"></A><p>To set database parameters for a database connection in the PowerBuilder development
+environment, you must edit the database profile for that connection. </p>
+<A NAME="TI1425"></A><h4>Character limit for strings</h4>
+<A NAME="TI1426"></A><p>Strings containing database parameters that you specify in
+the Database Profile Setup dialog box for your connection can be
+up to 999 characters in length.</p>
+<A NAME="TI1427"></A><p>This limit applies only to database parameters that you set
+in a database profile in the development environment. Database strings
+specified in PowerBuilder scripts as properties of the Transaction
+object are <i>not</i> limited to a specified length.</p>
+<A NAME="TI1428"></A><h4>What
+you do</h4>
+<A NAME="TI1429"></A><p>You set database parameters in the Database Profile Setup
+dialog box for your connection.</p>
+<A NAME="X-REF302385556"></A><h2>Setting database parameters in a PowerBuilder application script</h2>
+<A NAME="TI1430"></A><p>If you are developing an application that connects to a database,
+you must specify the required connection parameters in the appropriate
+script as properties of the default Transaction object (<ACRONYM title = "sequel C A" >SQLCA</ACRONYM>) or a Transaction object that
+you create. For example, you might specify connection parameters
+in the script that opens the application.</p>
+<A NAME="TI1431"></A><p>One of the connection parameters you might want to specify
+in a script is DBParm. You can do this by:<A NAME="TI1432"></A>
+<ul>
+<li class=fi><i>(Recommended)</i> Copying DBParm syntax
+from the Preview tab in the Database Profile Setup dialog box into
+your script</li>
+<li class=ds>Coding PowerScript to set values for the DBParm
+property of the Transaction object</li>
+<li class=ds>Reading DBParm values from an external text file
+</li>
+</ul>
+</p>
+<A NAME="CCJDDFHH"></A><h3>Copying DBParm syntax from the Preview tab</h3>
+<A NAME="TI1433"></A><p>The easiest way to specify DBParm parameters in a PowerBuilder application script is
+to copy the DBParm syntax from the Preview tab in the Database Profile
+Setup dialog box into your code, modifying the default Transaction object
+name (<ACRONYM title = "sequel C A" >SQLCA</ACRONYM>) if necessary.</p>
+<A NAME="TI1434"></A><p>As you set parameters in the Database Profile Setup dialog
+box in the development environment, PowerBuilder generates the correct
+connection syntax on the Preview tab. Therefore, copying the syntax
+directly from the Preview tab ensures that you use the correct DBParm syntax
+in your code.</p>
+<A NAME="TI1435"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To copy DBParm syntax from the Preview tab into
+your code:</p>
+<ol><li class=fi><p>On one or more tab pages in the Database
+Profile Setup dialog box for your connection, supply values for
+any parameters you want to set.</p><p>For instructions, see <A HREF="connpbp45.htm#X-REF340485458">"Setting database parameters
+in the development environment"</A>.</p><p>For information about the parameters for your
+interface and the values to supply, click Help.</p></li>
+<li class=ds><p>Click Apply to save your changes to the current
+tab without closing the Database Profile Setup dialog box.</p></li>
+<li class=ds><p>Click the Preview tab.</p><p>The correct DBParm syntax for each selected option displays
+in the Database Connection Syntax box.</p></li>
+<li class=ds><p>Select one or more lines of text in the Database
+Connection Syntax box and click Copy.</p><p>PowerBuilder copies the selected text to the clipboard.</p></li>
+<li class=ds><p>Click OK to close the Database Profile Setup dialog
+box.</p></li>
+<li class=ds><p>Paste the selected text from the Preview tab into
+your code, modifying the default Transaction object name (<ACRONYM title = "sequel C A" >SQLCA</ACRONYM>) if necessary.</p></li></ol>
+<br><A NAME="TI1436"></A><h3>Coding PowerScript to set values for the DBParm
+property</h3>
+<A NAME="TI1437"></A><p>Another way to specify connection parameters in a script is
+by coding PowerScript to assign values to properties of the Transaction
+object. PowerBuilder uses a special nonvisual object called a <strong>Transaction
+object</strong> to communicate with the database. The default
+Transaction object is named <ACRONYM title = "sequel C A" >SQLCA</ACRONYM>,
+which stands for <ACRONYM title = "sequel" >SQL</ACRONYM> Communications
+Area.</p>
+<A NAME="TI1438"></A><p><ACRONYM title = "sequel C A" >SQLCA</ACRONYM> has 15 properties,
+10 of which are used to connect to your database. One of the 10
+connection properties is DBParm. DBParm contains DBMS-specific
+parameters that let your application take advantage of various features
+supported by the database interface.</p>
+<A NAME="TI1439"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To set values for the DBParm property in a PowerBuilder script:</p>
+<ol><li class=fi><p>Open the application script in which you
+want to specify connection parameters.</p><p>For instructions, see the <i>User's
+Guide</i>
+.</p></li>
+<li class=ds><p>Use the following PowerScript syntax to specify
+DBParm parameters. Make sure you separate the DBParm parameters
+with commas, and enclose the entire DBParm string in double quotes.</p><p><p><PRE><b>SQLCA.dbParm = "</b><i>parameter_1</i><b>,</b><i> parameter_2</i><b>,</b><i> parameter_n</i>"</PRE></p>
+</p><p>For example, the following statement in a PowerBuilder script
+sets the DBParm property for an ODBC data source named Sales. In
+this example, the DBParm property consists of two parameters: ConnectString
+and Async.<p><PRE> SQLCA.dbParm="ConnectString='DSN=Sales;UID=PB;</PRE><PRE>    PWD=xyz',Async=1"</PRE></p></li>
+<li class=ds><p>Compile the PowerBuilder script to save your changes.</p><p>For instructions, see the <i>User's
+Guide</i>
+.</p></li></ol>
+<br><A NAME="TI1440"></A><h3>Reading DBParm values from an external text file</h3>
+<A NAME="TI1441"></A><p>As an alternative to setting the DBParm property in a PowerBuilder application script,
+you can use the PowerScript <b>ProfileString</b> function
+to read DBParm values from a specified section of an external text
+file, such as an application-specific initialization file.</p>
+<A NAME="TI1442"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To read DBParm values from an external text file:</p>
+<ol><li class=fi><p>Open the application script in which you
+want to specify connection parameters.</p><p>For instructions, see the<i> User's
+Guide</i>
+.</p></li>
+<li class=ds><p>Use the following PowerScript syntax to specify
+the <b>ProfileString</b> function with the <ACRONYM title = "sequel C A dot D B Parm" >SQLCA.DBParm</ACRONYM> property:</p><p><p><PRE><b>SQLCA.dbParm</b> = <b>ProfileString</b> ( <i>file</i>, <i>section</i>, <i>key</i>, <br>     <i>default</i> )</PRE></p>
+</p><p>For example, the following statement in a PowerBuilder script
+reads the DBParm values from the [Database] section
+of the <i>APP.INI</i> file:<p><PRE> SQLCA.dbParm=ProfileString("APP.INI","Database",<br>   "dbParm","")</PRE></p></li>
+<li class=ds><p>Compile the script to save your changes.</p><p>For instructions, see the<i> User's
+Guide</i>
+.</p></li></ol>
+<br>

@@ -1,0 +1,189 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Starting the pipeline </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp98.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp100.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF304004438"></A><h1>Starting the pipeline </h1>
+<A NAME="TI2869"></A><p>With the setup chores taken care of, you can now start the
+execution of your pipeline.</p>
+<A NAME="TI2870"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To start pipeline execution:</p>
+<ol><li class=fi><p>Code
+the <b>Start</b> function in an appropriate script.
+In this function, you specify:</p><p><A NAME="TI2871"></A>
+<ul>
+<li class=fi>The Transaction object
+for the source database</li>
+<li class=ds>The Transaction object for the destination database</li>
+<li class=ds>The DataWindow control in which you want the <b>Start</b> function
+to display any error rows<br>
+The <b>Start</b> function automatically associates
+the PowerBuilder pipeline-error DataWindow object with your DataWindow
+control when needed. <br></li>
+<li class=ds>Values for retrieval arguments you have defined
+in the Pipeline object<br>
+If you omit these values, the <b>Start</b> function
+prompts the user for them automatically at runtime.<br>
+</li>
+</ul>
+</p></li>
+<li class=ds><p>Test the result of the <b>Start</b> function.</p></li></ol>
+<br><A NAME="TI2872"></A><p>For more information on coding the <b>Start</b> function,
+see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI2873"></A><h4>Example</h4>
+<A NAME="TI2874"></A><p>The following sample code starts pipeline execution in the
+order entry application.</p>
+<p><b>Calling the Start function</b>   When users want to start their selected pipeline, they click
+the <b>cb_write</b> CommandButton in the <b>w_sales_extract</b> window:</p>
+<br><img src="images/pipstar.gif">
+<A NAME="TI2875"></A><p>This executes the Clicked event of <b>cb_write</b>,
+which contains the <b>Start</b> function:<p><PRE> // Now start piping.</PRE><PRE> integer li_start_result</PRE><PRE> li_start_result = iuo_pipe_logistics.Start &amp;</PRE><PRE>    (itrans_source,itrans_destination,dw_pipe_errors)</PRE></p>
+<A NAME="TI2876"></A><p>Notice that the user did not supply a value for the pipeline's
+retrieval argument (<i>quarter</i>). As a consequence,
+the <b>Start</b> function prompts the user for it:</p>
+<br><img src="images/piprarg.gif">
+<p><b>Testing the result</b>   The next few lines of code in the Clicked event of <b>cb_write</b> check
+the <b>Start</b> function's return value. This
+lets the application know whether it succeeded or not (and if not,
+what went wrong):<p><PRE> CHOOSE CASE li_start_result</PRE><PRE> </PRE><PRE>    CASE -3</PRE><PRE>    Beep (1)</PRE><PRE>    MessageBox("Piping Error", &amp;</PRE><PRE>       "Quarterly_Extract table already exists ...</PRE><PRE>    RETURN</PRE><PRE> </PRE><PRE>    CASE -4</PRE><PRE>    Beep (1)</PRE><PRE>    MessageBox("Piping Error", &amp;</PRE><PRE>       "Quarterly_Extract table does not exist ...</PRE><PRE>    RETURN</PRE><PRE>    ...</PRE><PRE> END CHOOSE</PRE></p>
+<A NAME="X-REF304626868"></A><h2>Monitoring pipeline progress</h2>
+<A NAME="TI2877"></A><p>Testing the <b>Start</b> function's return
+value is not the only way to monitor the status of pipeline execution.
+Another technique you can use is to retrieve statistics that your
+supporting user object keeps concerning the number of rows processed.
+They provide a live count of:<A NAME="TI2878"></A>
+<ul>
+<li class=fi><i>The rows read</i> by
+the pipeline from the source tables </li>
+<li class=ds><i>The rows written</i> by the pipeline
+to the destination table or to the error DataWindow control </li>
+<li class=ds><i>The rows in error</i> that the
+pipeline has written to the error DataWindow control (but not to
+the destination table) 
+</li>
+</ul>
+</p>
+<A NAME="TI2879"></A><p>By retrieving these statistics from the supporting user object,
+you can dynamically display them in the window and enable users
+to watch the pipeline's progress.</p>
+<A NAME="TI2880"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To display pipeline row statistics:</p>
+<ol><li class=fi><p>Open your supporting user object in the
+User Object painter.</p><p>The User Object painter workspace displays, enabling you to
+edit your user object.</p></li>
+<li class=ds><p>Declare three instance variables of type StaticText:</p><p><p><PRE> statictext ist_status_read, ist_status_written, &amp;</PRE><PRE>       ist_status_error</PRE></p><p>You will use these instance variables later to hold three
+StaticText controls from your window. This will enable the user
+object to manipulate those controls directly and make them dynamically
+display the various pipeline row statistics.</p></li>
+<li class=ds><p>In the user object's PipeMeter event
+script, code statements to assign the values of properties inherited
+from the pipeline system object to the Text property of your three
+StaticText instance variables. </p><p><p><PRE> ist_status_read.text    = string(RowsRead)</PRE><PRE> ist_status_written.text = string(RowsWritten)</PRE><PRE> ist_status_error.text   = string(RowsInError)</PRE></p></li>
+<li class=ds><p>Save your changes to the user object, then close
+the User Object painter.</p></li>
+<li class=ds><p>Open your window in the Window painter.</p></li>
+<li class=ds><p>Insert three StaticText controls in the window:</p><p><A NAME="TI2881"></A>
+<ul>
+<li class=fi>One to display the RowsRead
+value</li>
+<li class=ds>One to display the RowsWritten value</li>
+<li class=ds>One to display the RowsInError value
+</li>
+</ul>
+</p><br><img src="images/pipwmon.gif"><br>
+</li>
+<li class=ds><p>Edit the window's Open event script (or
+some other script that executes right after the window opens).</p><p>In it, code statements to assign the three StaticText controls
+(which you just inserted in the window) to the three corresponding
+StaticText instance variables you declared earlier in the user object.
+This enables the user object to manipulate these controls directly.</p><p>In the sample order entry application, this logic is in a
+user event named <b>uevent_pipe_setup</b> (which
+is posted from the Open event of the <b>w_sales_extract</b> window):<p><PRE> iuo_pipe_logistics.ist_status_read =                st_status_read</PRE><PRE> iuo_pipe_logistics.ist_status_written = &amp;</PRE><PRE>       st_status_written</PRE><PRE> iuo_pipe_logistics.ist_status_error = &amp;</PRE><PRE>       st_status_error</PRE></p></li>
+<li class=ds><p>Save your changes to the window. Then close the
+Window painter.</p><p>When you start a pipeline in the <b>w_sales_extract</b> window
+of the order entry application, the user object's PipeMeter
+event triggers and executes its code to display pipeline row statistics
+in the three StaticText controls:</p><br><img src="images/piprmon.gif"><br>
+</li></ol>
+<br><A NAME="X-REF304951794"></A><h2>Canceling pipeline execution</h2>
+<A NAME="TI2882"></A><p>In many cases you will want to provide users (or the application
+itself) with the ability to stop execution of a pipeline while it
+is in progress. For instance, you may want to give users a way out
+if they start the pipeline by mistake or if execution is taking
+longer than desired (maybe because many rows are involved).</p>
+<A NAME="TI2883"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To cancel pipeline execution:</p>
+<ol><li class=fi><p>Code the <b>Cancel</b> function
+in an appropriate script</p><p>Make sure that either the user or your application can execute
+this function (if appropriate) once the pipeline has started. When <b>Cancel</b> is
+executed, it stops the piping of any more rows after that moment.</p><p>Rows that have already been piped up to that moment may or
+may not be committed to the destination table, depending on the
+Commit property you specified when building your Pipeline object
+in the Data Pipeline painter. You will learn more about committing
+in the next section.</p></li>
+<li class=ds><p>Test the result of the <b>Cancel</b> function</p></li></ol>
+<br><A NAME="TI2884"></A><p>For more information on coding the <b>Cancel</b> function,
+see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI2885"></A><h4>Example</h4>
+<A NAME="TI2886"></A><p>The following example uses a command button to let users cancel
+pipeline execution in the order entry application.</p>
+<p><b>Providing a CommandButton</b>   When creating the <b>w_sales_extract</b> window, include
+a CommandButton control named <b>cb_stop</b>.
+Then write code in a few of the application's scripts to
+enable this CommandButton when pipeline execution starts and to
+disable it when the piping is done.</p>
+<p><b>Calling the Cancel function</b>   Next write a script for the Clicked event of <b>cb_stop</b>.
+This script calls the <b>Cancel</b> function and tests
+whether or not it worked properly:<p><PRE> IF iuo_pipe_logistics.Cancel() = 1 THEN</PRE><PRE>    Beep (1)</PRE><PRE>    MessageBox("Operation Status", &amp;</PRE><PRE>    "Piping stopped (by your request).")</PRE><PRE> ELSE</PRE><PRE>    Beep (1)</PRE><PRE>    MessageBox("Operation Status", &amp;</PRE><PRE>    "Error when trying to stop piping.", &amp;</PRE><PRE>    Exclamation!)</PRE><PRE> END IF</PRE></p>
+<A NAME="TI2887"></A><p>Together, these features let a user of the application click
+the <b>cb_stop</b> CommandButton to cancel
+a pipeline that is currently executing.</p>
+<A NAME="X-REF304954378"></A><h2>Committing updates to the database</h2>
+<A NAME="TI2888"></A><p>When a Pipeline object executes, it commits updates to the
+destination table according to your specifications in the Data Pipeline
+painter. You do not need to write any <b>COMMIT</b> statements
+in your application's scripts (unless you specified the
+value <i>None</i> for the Pipeline object's
+Commit property).</p>
+<A NAME="TI2889"></A><h4>Example</h4>
+<A NAME="TI2890"></A><p>For instance, both of the Pipeline objects in the order entry
+application (<b>pipe_sales_extract1</b> and <b>pipe_sales_extract2</b>)
+are defined in the Data Pipeline painter to commit <i>all</i> rows.
+As a result, the <b>Start</b> function (or the <b>Repair</b> function)
+will pipe every appropriate row and then issue a commit.</p>
+<A NAME="TI2891"></A><p>You might want instead to define a Pipeline object that <i>periodically</i> issues commits
+as rows are being piped, such as after every 10 or 100 rows.</p>
+<A NAME="TI2892"></A><h4>If the Cancel function is called</h4>
+<A NAME="TI2893"></A><p>A related topic is what happens with committing if your application
+calls the <b>Cancel</b> function to stop a pipeline
+that is currently executing. In this case too, the Commit property
+in the Data Pipeline painter determines what to do, as shown in <A HREF="apptechp99.htm#CHDFECCI">Table 17-3</A>.</p>
+<A NAME="CHDFECCI"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 17-3: Commit property values</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2894"></A>If
+your Commit value is</th>
+<th  rowspan="1"  ><A NAME="TI2895"></A>Then
+Cancel does this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2896"></A>All</td>
+<td  rowspan="1"  ><A NAME="TI2897"></A>Rolls back every row that was piped by
+the current <b>Start</b> function (or <b>Repair</b> function)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2898"></A>A particular number of rows (such as <i>1</i>, <i>10</i>,
+or <i>100</i>)</td>
+<td  rowspan="1"  ><A NAME="TI2899"></A>Commits every row that was piped up to
+the moment of cancellation</td>
+</tr>
+</table>
+<A NAME="TI2900"></A><p>This is the same commit/rollback behavior that occurs
+when a pipeline reaches its Max Errors limit (which is also specified
+in the Data Pipeline painter).</p>
+<A NAME="TI2901"></A><p>For more information on controlling commits
+and rollbacks for a Pipeline object, see the <i>PowerBuilder
+User's Guide</i>
+.</p>
+

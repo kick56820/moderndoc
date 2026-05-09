@@ -1,0 +1,106 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Making database connections</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="dwprgugp57.htm">Previous</A>&nbsp;&nbsp;<A HREF="dwprgugp59.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BGBCHHGF"></A><h1>Making database connections</h1>
+<A NAME="TI2415"></A><h4>The connection process</h4>
+<A NAME="TI2416"></A><p>The Web ActiveX and Transaction Object controls make database
+connections using JDBC. Their Java classes interact with the Java
+classes of the database vendor's JDBC interface. The vendor's
+classes interact with the database.</p>
+<A NAME="TI2417"></A><h4>JDBC driver from a database vendor</h4>
+<A NAME="TI2418"></A><p>The classes for the JDBC database driver you plan to use must
+be available to the user's browser. If the user does not
+have them installed already, you can set up the Web page so that
+they are downloaded and installed just as you do for the Web ActiveX.</p>
+<A NAME="TI2419"></A><p>To have the JDBC driver classes installed automatically, you
+can:<A NAME="TI2420"></A>
+<ol>
+</li>
+<li class=ds>Convert the database
+vendor's Java classes into a CAB file. You can use a Microsoft
+utility called CABARC to do the conversion. The classes can be in
+a ZIP archive or directory tree.</li>
+<li class=ds>Add an Object element with a CODEBASE attribute
+for the CAB file to the Web page. 
+</li>
+</ol>
+</p>
+<A NAME="TI2421"></A><p>The browser downloads the CAB file and adds the classes to
+its internal class path. There is no change made to the CLASSPATH
+environment variable.</p>
+<A NAME="TI2422"></A><p>If you want to use the JDBC driver when you are defining DataWindow objects,
+you need to do some additional installation, such as putting the
+JDBC driver classes on the system class path. </p>
+<A NAME="TI2423"></A><p>For more information, see <i>Connecting to Your Database</i>
+ or
+the online Help for PowerBuilder.</p>
+<A NAME="TI2424"></A><h4>Connection properties</h4>
+<A NAME="TI2425"></A><p>The connection information for the Transaction Object or Web
+ActiveX is set as Param elements enclosed in the Object element.
+Whether you use a separate Transaction object or the internal connection
+properties of the Web ActiveX, the connection properties are the
+same:</p>
+<A NAME="TI2426"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 8-1: Connection properties of the Transaction Object and Web ActiveX
+controls</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2427"></A>Param name</th>
+<th  rowspan="1"  ><A NAME="TI2428"></A>Meaning</th>
+<th  rowspan="1"  ><A NAME="TI2429"></A>Typical value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2430"></A>LogID</td>
+<td  rowspan="1"  ><A NAME="TI2431"></A>The ID needed to log in to the database.</td>
+<td  rowspan="1"  ><A NAME="TI2432"></A>dba (default ID for ASA databases)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2433"></A>LogPass</td>
+<td  rowspan="1"  ><A NAME="TI2434"></A>The password needed to log in to the database.</td>
+<td  rowspan="1"  ><A NAME="TI2435"></A>sql (default password for ASA databases)</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2436"></A>dbParm</td>
+<td  rowspan="1"  ><A NAME="TI2437"></A>A string specifying the Java classes
+for the driver and the URL for the database.</td>
+<td  rowspan="1"  ><A NAME="TI2438"></A>For the JConnect driver: Driver='com.sybase.jdbc.SybDriver',URL='jdbc:sybase:Tds:199.1.1.1:9999/mydatabase'</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2439"></A>Lock</td>
+<td  rowspan="1"  ><A NAME="TI2440"></A>The isolation level of the connection.</td>
+<td  rowspan="1"  ><A NAME="TI2441"></A>Vendor-specific values</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2442"></A>AutoCommit</td>
+<td  rowspan="1"  ><A NAME="TI2443"></A>Whether a commit occurs immediately after
+the database is updated.</td>
+<td  rowspan="1"  ><A NAME="TI2444"></A>False (default)</td>
+</tr>
+</table>
+<A NAME="TI2445"></A><h4>About dbParm</h4>
+<A NAME="TI2446"></A><p>For JDBC drivers, the dbParm property specifies essential
+connection information. Its value is a string that contains at least
+two values. Those values identify the driver you want to use and
+the URL of the database, in a format understood by the driver.</p>
+<A NAME="TI2447"></A><p>The format is:<p><PRE>Driver='<i>JDBCclassname</i>',URL='<i>database_url </i>'</PRE></p>
+</p>
+<A NAME="TI2448"></A><p>To find the class name for Driver and the format of the database
+URL, check the documentation from the DBMS vendor.</p>
+<A NAME="TI2449"></A><p>For examples of setting these properties in Param elements,
+see <A HREF="dwprgugp54.htm#BGBDIHBJ">"Properties and Param elements"</A>.</p>
+<A NAME="TI2450"></A><h4>JConnect in the development environment</h4>
+<A NAME="TI2451"></A><p>If you want to use JConnect when you define DataWindow objects,
+put the Java classes for JConnect on the class path. </p>
+<A NAME="TI2452"></A><h2>Connecting and retrieving data</h2>
+<A NAME="TI2453"></A><p>To connect and retrieve data, you must write a script. The
+script can belong to a Retrieve button, or you can have the retrieval
+occur automatically by putting the code in the window's
+onLoad script.</p>
+<A NAME="TI2454"></A><p>For example, to connect and retrieve data for a Web ActiveX
+named <i>dw_1</i>, using a DataWindow Transaction
+Object control named <i>trans_1</i>, your
+script would be similar to this:<p><PRE> trans_1.Connect( );</PRE><PRE> dw_1.SetTransObject( trans_1 );</PRE><PRE> dw_1.Retrieve( );</PRE></p>
+<A NAME="TI2455"></A><p>When you use the internal transaction properties, the Web
+ActiveX makes the connection automatically. The script can be simpler,
+like this:<p><PRE> dw_1.Retrieve( );</PRE></p>
+

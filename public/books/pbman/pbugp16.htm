@@ -1,0 +1,158 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Starting PowerBuilder with an open workspace</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp15.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp17.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDGDGFH"></A><h1>Starting PowerBuilder with an open workspace</h1>
+<A NAME="TI469"></A><p>When you start PowerBuilder, you might want to resume work
+on an existing project. You can have PowerBuilder open the workspace
+that you used last, and even open the painters you had open, with
+the last Script view you touched open at the code you were working
+on.</p>
+<A NAME="TI470"></A><h2>Using options in the development environment</h2>
+<A NAME="TI471"></A><p>There are three options on the Workspaces page of the System
+Options dialog box that you can use to determine what displays when
+you start PowerBuilder.</p>
+<A NAME="TI472"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To open the System Options dialog box:</p>
+<ol><li class=fi><p>Select Tools&gt;System Options from
+the menu bar.</p></li></ol>
+<br><A NAME="TI473"></A><h4>Opening just the workspace</h4>
+<A NAME="TI474"></A><p>If you want PowerBuilder to open the last workspace you used
+at startup, check Reopen Workspace at Startup.</p>
+<A NAME="TI475"></A><h4>Opening the workspace, painters, and scripts</h4>
+<A NAME="TI476"></A><p>If you want PowerBuilder to open the last workspace you used <i>and</i> the
+painters and editors you were using, check Reopen Workspace on Startup
+and Reload Painters When Opening Workspace. When you open PowerBuilder,
+any painters and editors that were open when you closed PowerBuilder
+are reloaded. If you edited a script before closing PowerBuilder,
+the Script view is scrolled to show the last line you edited.</p>
+<A NAME="TI477"></A><h4>Opening with no workspace</h4>
+<A NAME="TI478"></A><p>If you want PowerBuilder to open without loading a workspace,
+clear Reopen Workspace on Startup. If you want the painters and
+editors that were open when you last used a workspace to be reloaded
+when you reopen it, clear Reopen Workspace on Startup and check
+Reload Painters When Opening Workspace.</p>
+<A NAME="TI479"></A><h4>Displaying the Welcome dialog box</h4>
+<A NAME="TI480"></A><p>If you want to see the Welcome to PowerBuilder dialog box
+when you start PowerBuilder, check Show Start Dialog at Startup
+with no Workspace and clear Reopen Workspace at Startup. The Welcome
+to PowerBuilder dialog box is shown in <A HREF="pbugp5.htm#BFCBIFCD">"The PowerBuilder environment"</A>.</p>
+<A NAME="TI481"></A><h2>Using a workspace file</h2>
+<A NAME="TI482"></A><p>Double-click a workspace file in Windows Explorer. Workspaces
+have a .<i>pbw</i> extension. PowerBuilder starts
+with the workspace open.</p>
+<A NAME="BFCBHECD"></A><h2>Using command line arguments</h2>
+<A NAME="TI483"></A><p>You can start
+PowerBuilder from a command line (or the Windows Run dialog box)
+and optionally open a workspace, target, and/or painter.
+These are the painters and tools you can open:<A NAME="TI484"></A>
+<ul>
+<li class=fi>Application painter</li>
+<li class=ds>Database painter</li>
+<li class=ds>Data Pipeline painter</li>
+<li class=ds>DataWindow painter</li>
+<li class=ds>Debugger</li>
+<li class=ds>File Editor</li>
+<li class=ds>Function painter</li>
+<li class=ds>Library painter</li>
+<li class=ds>Menu painter</li>
+<li class=ds>Query painter</li>
+<li class=ds>Structure painter</li>
+<li class=ds>User Object painter</li>
+<li class=ds>Window painter
+</li>
+</ul>
+</p>
+<A NAME="TI485"></A><p>The syntax is:<p><PRE><i>directory</i>\pb105.exe {/workspace <i>workspacepath</i>} {/target <i>targetpath</i>} {/painter <i>paintername</i>} {/output <i>outputpath</i>}</PRE></p>
+</p>
+<A NAME="TI486"></A><p>where <i>directory</i> is the fully qualified
+name of the directory containing PowerBuilder.</p>
+<A NAME="TI487"></A><p>You can also add one or more of the following options to the
+command line after <b>/painter</b> <i>paintername</i> to
+open a specific object or create a new one: </p>
+<A NAME="TI488"></A><p><p><PRE>{/library <i>libraryname</i>} {/object <i>objectname</i>} {/inherit objectname} {/new} {/run} {/runonly} {/argument <i>arguments</i>}</PRE></p>
+</p>
+<A NAME="TI489"></A><p>The syntax statements show the long form of option names.
+You need only use the initial letter or letters of the option name
+as long as the option is uniquely identified, as shown in <A HREF="pbugp16.htm#CHDJDDAG">Table 2-1</A>. </p>
+<A NAME="CHDJDDAG"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 2-1: Command-line options for opening
+PowerBuilder</caption>
+<tr><th  rowspan="1"  ><A NAME="TI490"></A>Option</th>
+<th  rowspan="1"  ><A NAME="TI491"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI492"></A><b>/W</b> <i>workspacepath</i></td>
+<td  rowspan="1"  ><A NAME="TI493"></A>Opens the workspace <i>workspacepath</i>.
+The default is the most recently used workspace if you have selected
+the Reopen Workspace on Startup check box in the System Options
+dialog box. If you have not selected this check box, you must specify the<b> /W</b> option
+before specifying any other options. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI494"></A><b>/T</b><i> targetpath</i></td>
+<td  rowspan="1"  ><A NAME="TI495"></A>Opens the target <i>targetpath</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI496"></A><b>/P</b> <i>paintername</i></td>
+<td  rowspan="1"  ><A NAME="TI497"></A>Opens the painter <i>paintername</i>.
+The default is the window that displays when you begin a new PowerBuilder
+session. <A NAME="TI498"></A><p>The painter name must uniquely identify the painter. You do not
+have to enter the entire name. For example, you can enter <FONT FACE="Courier New">q</FONT> to
+open the Query painter and <FONT FACE="Courier New">datab</FONT> to
+open the Database painter. If you enter the full name, omit any
+spaces in the name (enter <FONT FACE="Courier New">UserObject</FONT> and <FONT FACE="Courier New">DataPipeline</FONT>,
+for example).</p><A NAME="TI499"></A><p>The painter name is not case sensitive. To open the file editor, you
+could set <i>paintername</i> to <FONT FACE="Courier New">FI</FONT> or <FONT FACE="Courier New">fileeditor</FONT>.</p><A NAME="TI500"></A><p>Except for the <b>/W</b>,<b> /T</b>,
+and <b>/L</b> switches, other switches must follow <b>/P</b> <i>paintername</i> on
+the command line, as shown in the examples after the table. </p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI501"></A><b>/OU</b> <i>outputpath</i></td>
+<td  rowspan="1"  ><A NAME="TI502"></A>Logs the contents of the Output window
+to <i>outputpath</i>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI503"></A><b>/L</b> <i>libraryname</i></td>
+<td  rowspan="1"  ><A NAME="TI504"></A>Identifies the library that contains
+the object you want to open. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI505"></A><b>/O</b> <i>objectname</i></td>
+<td  rowspan="1"  ><A NAME="TI506"></A>Identifies the object, such as a DataWindow
+object or window, you want to open.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI507"></A><b>/I</b> <i>objectname</i></td>
+<td  rowspan="1"  ><A NAME="TI508"></A>Identifies the object you want to inherit
+from.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI509"></A><b>/</b><b>N</b></td>
+<td  rowspan="1"  ><A NAME="TI510"></A>Creates a new DataWindow object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI511"></A><b>/R</b></td>
+<td  rowspan="1"  ><A NAME="TI512"></A>Runs the DataWindow object specified
+with <b>/O</b> and allows designing.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI513"></A><b>/RO</b></td>
+<td  rowspan="1"  ><A NAME="TI514"></A>Runs the DataWindow object specified
+with <b>/O</b> but does not allow designing.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI515"></A><b>/A</b> <i>arguments</i></td>
+<td  rowspan="1"  ><A NAME="TI516"></A>Provides arguments for the specified
+DataWindow object. </td>
+</tr>
+</table>
+<A NAME="TI517"></A><h4>Examples</h4>
+<A NAME="TI518"></A><p>The following examples assume that the location of the PowerBuilder executable
+file is in your system path.</p>
+<A NAME="TI519"></A><p>This example starts a PowerBuilder session by opening the
+Window painter in the Client <ACRONYM title = "pibble" >PBL</ACRONYM> in
+the Math workspace. The output of the session is sent to a file
+called <i>math.log</i>. The workspace file, the <ACRONYM title = "pibble" >PBL</ACRONYM>, and the log file are all in
+the current directory:<p><PRE> pb105 /w Math.pbw /l Client.pbl /p window /out math.log</PRE></p>
+<A NAME="TI520"></A><p>Enter this command to start PowerBuilder and open the DataWindow
+object called <b>d_emp_report</b> in
+the workspace <i>Emp.pbw</i>:</p>
+<A NAME="TI521"></A><p><p><PRE> pb105 /w D:\pbws\Emp.pbw /P dataw /O d_emp_report</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Building from the command line</span> <A NAME="TI522"></A>You can also build and deploy a workspace from the command
+line. For more information, see <A HREF="pbugp11.htm#CEGJEBBB">"Building workspaces"</A>.</p>
+

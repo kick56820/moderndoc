@@ -1,0 +1,145 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Completing the style </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp262.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp264.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCCFGCE"></A><h1>Completing the style </h1>
+<A NAME="TI7711"></A><p>To complete your form style, enhance the window and menu to
+provide the processing you want. For example, you can:</p>
+<A NAME="TI7712"></A><p><A NAME="TI7713"></A>
+<ul>
+<li class=fi>Work with the central
+DataWindow control</li>
+<li class=ds>Add controls to the window</li>
+<li class=ds>Define actions (functions that appear as actions
+in your form style)</li>
+<li class=ds>Modify the menu and its associated toolbar</li>
+<li class=ds>Write scripts for the window, its controls, and
+menu items</li>
+<li class=ds>Add other capabilities, such as drag and drop, to
+the window
+</li>
+</ul>
+</p>
+<A NAME="TI7714"></A><h2>Working with the central DataWindow controls</h2>
+<A NAME="TI7715"></A><p>The DataWindow controls with special names are the heart of
+a form. It is in these controls that users manipulate the data in
+the form.</p>
+<A NAME="TI7716"></A><p>You need to understand:</p>
+<A NAME="TI7717"></A><p><A NAME="TI7718"></A>
+<ul>
+<li class=fi>How the freeform DataWindow
+is sized in the form</li>
+<li class=ds>How to retrieve data into the control in the form
+</li>
+</ul>
+</p>
+<A NAME="TI7719"></A><h4>How the freeform DataWindow is sized</h4>
+<A NAME="TI7720"></A><p>All form styles you build contain a freeform DataWindow (as
+do all the built-in styles). Regardless of what size you
+specify for the freeform DataWindow control in the Window painter
+in PowerBuilder, the freeform DataWindow fills the entire form in
+the Form painter in InfoMaker. InfoMaker enlarges the freeform DataWindow
+so that users can place data (such as computed fields) anywhere
+in the form.</p>
+<A NAME="TI7721"></A><p>This means that a window background color that you specify
+in PowerBuilder is ignored in the form.</p>
+<A NAME="TI7722"></A><h4>Retrieving rows into the central DataWindow control</h4>
+<A NAME="TI7723"></A><p>When an InfoMaker user runs a form, InfoMaker automatically
+populates the SQLCA Transaction object with the correct values,
+so you do not have to do that in a script. To retrieve rows into
+the central DataWindow control, all you have to do is set the Transaction
+object for the control and then retrieve rows.</p>
+<A NAME="TI7724"></A><p>For example, to retrieve data into the control named dw_freeform,
+code:<p><PRE> dw_freeform.SetTransObject(SQLCA)</PRE><PRE> dw_freeform.Retrieve()</PRE></p>
+<A NAME="TI7725"></A><p>You would code this in the window's Open event to
+present the data to the user when the form opens.</p>
+<A NAME="TI7726"></A><p>For more information about Transaction objects,
+see <A HREF="apptechp64.htm#CDECFFIF">Chapter 12, "Using Transaction Objects."</A></p>
+<A NAME="TI7727"></A><h2>Adding controls</h2>
+<A NAME="TI7728"></A><p>All windows serving as the basis for a form style have at
+least one DataWindow control. In addition, you can add any other
+controls that you can add to standard PowerBuilder windows, such
+as command buttons, user objects, text, edit boxes, pictures, and
+drawing objects.</p>
+<A NAME="TI7729"></A><p>Users of the form can move the controls you place in the window,
+but they cannot delete them.</p>
+<A NAME="TI7730"></A><p>Users can also add controls to the form in the Form painter.
+They make CommandButtons and PictureButtons work by associating
+actions with them. Actions are described next.</p>
+<A NAME="TI7731"></A><h2>Defining actions</h2>
+<A NAME="TI7732"></A><p>Often users want to add buttons (CommandButtons or PictureButtons)
+to a form created using a custom form style. When you create the
+form style, you specify what the added buttons can do by defining
+actions for the form style. When users place a button, they select
+the desired action from a list:</p>
+<br><img src="images/bdsty10.gif">
+<A NAME="TI7733"></A><p>Actions are implemented as public window-level functions.</p>
+<A NAME="TI7734"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define an action:</p>
+<ol><li class=fi><p>In the Script view in the Window painter,
+select Insert&gt;Function from the menu bar.</p></li>
+<li class=ds><p>Define the window-level function (for how, see
+the <i>PowerBuilder User's</i>
+ <i>Guide</i>
+).</p><p>If you want the window function to be available to a form
+user as an action, be sure to define the function as public. Function
+arguments you define are used as parameters of the action. Each
+public window function you define is listed as an action in the
+Select Action dialog box in the Form painter.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Defining functions not available as actions</span> <A NAME="TI7735"></A>If you want to define and use window functions that are not
+available as actions in forms, define them as private.</p>
+</li></ol>
+<br><A NAME="TI7736"></A><h2>Using menus</h2>
+<A NAME="TI7737"></A><p>You specify the menu and toolbar that display when users run
+a form by defining a menu in the Menu painter and associating it
+with the window that serves as the basis for your form style.</p>
+<A NAME="TI7738"></A><p>Each menu item in the menu you define displays when a form
+is run. In addition, InfoMaker adds Window and Help menus to allow
+users to manipulate windows and get online Help when running a form
+in the InfoMaker environment.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Providing online Help</span> <A NAME="TI7739"></A>You can define a Help item in the menu bar, then define menu
+items that display in the Help drop-down menu. The Help items do
+not display when users run a form within InfoMaker, but they do
+display when a form is run from an executable. For more information
+about InfoMaker executable files, see the <i>InfoMaker User's
+Guide</i>
+.</p>
+<A NAME="TI7740"></A><h4>Item in a toolbar</h4>
+<A NAME="TI7741"></A><p>As with MDI applications, you can specify that a menu item
+should display as an item in a toolbar when the form is run.</p>
+<A NAME="TI7742"></A><h4>Scripting</h4>
+<A NAME="TI7743"></A><p>You use the same scripting techniques for menus used in forms
+as you do for menus used in standard windows. Typically you communicate
+between a window and its menu by defining user events for the window,
+then triggering them from the menu using the menu object's
+ParentWindow property to refer to the form window; this technique
+is used in the built-in form styles.</p>
+<A NAME="TI7744"></A><h4>For more information</h4>
+<A NAME="TI7745"></A><p>For more information about using menus and
+user events, see the <i>PowerBuilder User's Guide</i>
+.</p>
+<A NAME="TI7746"></A><p>For more information about associating toolbars
+with menus, see <A HREF="apptechp27.htm#CCJDICHB">Chapter 5, "Building an MDI Application ."</A></p>
+<A NAME="TI7747"></A><h2>Writing scripts</h2>
+<A NAME="TI7748"></A><p>You write scripts for the window, its controls, and Menu objects
+the same way you write them for standard windows and menus. When
+working with DataWindow controls, remember that you do not have
+to set the properties of the SQLCA Transaction object&#8212;InfoMaker
+does that automatically when users run a form.</p>
+<A NAME="TI7749"></A><p>You can define global user-defined functions and structures
+to support the scripts you code, but note that since InfoMaker does
+not have an application object, form styles cannot use global variables
+or global external function declarations.</p>
+<A NAME="TI7750"></A><h2>Adding other capabilities</h2>
+<A NAME="TI7751"></A><p>You can make forms as sophisticated as you want. For example,
+you can implement drag and drop features, and mail-enable your form.</p>
+<A NAME="TI7752"></A><p>For complete information about the features
+you can build into a window, see the <i>PowerBuilder User's
+Guide</i>
+.</p>
+

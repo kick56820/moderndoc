@@ -1,0 +1,149 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Invoking component methods</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp189.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp191.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJECFJIA"></A><h1>Invoking component methods</h1>
+<A NAME="TI6066"></A><p>After a connection to the server has been established and
+a proxy object or objects created, the client application can begin
+using the EJB components. To invoke an EJB
+component method, you need to execute the PowerScript statements
+required to perform these operations:</p>
+<A NAME="TI6067"></A><p><A NAME="TI6068"></A>
+<ol>
+</li>
+<li class=ds>Use the<b> lookup</b> method
+of EJBConnection to access the component's home interface. </li>
+<li class=ds>Invoke the <b>create</b> or <b>findByPrimaryKey</b> method
+on the home interface to create or find an instance of the component and
+get a reference to the component's remote interface.</li>
+<li class=ds>Invoke the business methods on the remote interface.
+</li>
+</ol>
+</p>
+<A NAME="TI6069"></A><p>This procedure relies on the <i>pbejbclient105.jar</i> file,
+which is included in the Java VM classpath automatically at design
+time and runtime by the <i>pbjvm105.dll</i>.</p>
+<A NAME="TI6070"></A><h4>Using the <b>lookup</b> method</h4>
+<A NAME="TI6071"></A><p>The <b>lookup</b> method takes three string arguments:
+the name of the proxy for the home interface, the JNDI name of the
+EJB component, and the fully qualified home interface name of the
+EJB component.</p>
+<A NAME="TI6072"></A><p>The home interface name is the fully qualified class name
+of the EJB home interface. For example, if the class's
+location relative to the Java naming context is ejbsample, the home
+interface name is <FONT FACE="Courier New">ejbsample.HelloEJBHome</FONT>.</p>
+<A NAME="TI6073"></A><p>The following example shows the invocation of the <b>lookup</b> method
+for HelloEJB on WebLogic.<p><PRE> HelloEJBHome homeobj<br> <br>homeobj = conn.lookup("HelloEJBHome",<br>  "ejbsample.HelloEJB", "ejbsample.HelloEJBHome")</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Lookup is case sensitive</span> <A NAME="TI6074"></A>Lookup in EJB servers is case sensitive. Make sure that the
+case in the string you specify for the arguments to the <b>lookup</b> method
+matches the case on the server.</p>
+<A NAME="TI6075"></A><h4>Creating or finding an instance of an EJB</h4>
+<A NAME="TI6076"></A><p>A session bean is created in response to a client request.
+A client usually has exclusive use of the session bean for the duration
+of that client session. An entity bean represents persistent information
+stored in a database. A client uses an entity bean concurrently
+with other clients. Since an entity bean persists beyond the lifetime
+of the client, you must use a primary key class name to find an
+instance of the entity bean if one exists or create a new instance
+if it does not.</p>
+<A NAME="TI6077"></A><p>For a session bean, you use the proxy object's <b>create</b> method
+to create the instance of the EJB. The <b>create</b> method
+can throw <b>CreateException</b> and <b>RemoteException</b>.
+Assuming that you have obtained a reference to the home interface
+in homeobj, <b>create</b> is used in the same way on
+all EJB servers:<p><PRE> HelloEJB beanobj<br>try<br>  beanobj = homeobj.create()<br>catch (remoteexception re)<br>  MessageBox("Remote exception", re.getmessage())<br>catch (createexception ce)<br>  MessageBox("Create exception", ce.getmessage())<br>end try</PRE></p>
+<A NAME="TI6078"></A><p>For an entity bean, you provide a primary key. The <b>FindByPrimaryKey</b> method can
+throw <b>FinderException</b> and <b>RemoteException</b>.
+In this example, the key is the ID of a specific customer that is
+passed as an argument to the function:<p><PRE> try<br>  beanobj = homeobj.findByPrimaryKey(customerID)<br>catch (remoteexception re)<br>  MessageBox("Remote exception", re.getmessage())<br>catch (finderexception fe)<br>  MessageBox("Finder exception", fe.getmessage())<br>end try</PRE></p>
+<A NAME="TI6079"></A><h4>Invoking EJB component methods</h4>
+<A NAME="TI6080"></A><p>When the bean instance has been created or found, you can
+invoke its methods. For example:<p><PRE> string msg<br>msg = beanobj.displaymessage()    </PRE></p>
+<A NAME="TI6081"></A><h4>Creating an instance of a Java class</h4>
+<A NAME="TI6082"></A><p>If the bean has a method that accepts a Java class as an argument,
+you use the <b>CreateJavaInstance</b> method of the
+JavaVM object to create it. For example, if the primary key in a
+call to the <b>findByPrimaryKey</b> method is a Java
+class, you would use the <b>CreateJavaInstance</b> method
+to create that class, and then use a PowerBuilder proxy to communicate
+with it. </p>
+<A NAME="TI6083"></A><p>In this example, the <b>create</b> method accepts
+a Java <b>Integer</b> class argument. PowerBuilder
+creates a proxy called <b>java_integer</b> (the
+prefix <b>java_</b> is required to prevent
+a conflict with the PowerBuilder <b>integer</b> type).
+The call to <b>CreateJavaInstance</b> sets the value
+of that variable so you can call the EJB <b>create</b> method:<p><PRE> CustomerRemoteHome homeobj<br>CustomerRemote beanobj<br>java_integer jint_a<br> <br>try<br>  homeobj = conn.lookup("CustomerRemoteHome", &amp;<br>  "custpkg/Customer", "custpkg.CustomerRemoteHome" )<br>catch (Exception e)<br>  MessageBox( "Exception in Lookup", e.getMessage() )<br>  return<br>end try<br> <br>try<br>  g_jvm.createJavaInstance(jint_a, "java_integer")<br>  jint_a.java_integer("8")<br>  beanobj = homeobj.create( jint_a, sle_name.text )<br> <br><br>catch (RemoteException re)<br>  MessageBox( "Remote Exception", re.getMessage() )<br>  return<br>catch (CreateException ce)<br>  MessageBox( "Create Exception", ce.getMessage() )<br>  return<br>catch (Throwable t)<br>  MessageBox(" Other Exception", t.getMessage())<br>end try<br> <br>MessageBox( "Info", &amp;<br>  "This record has been successfully saved " &amp;<br>  + "~r~ninto the database" )</PRE></p>
+<A NAME="TI6084"></A><h4>Downcasting return values</h4>
+<A NAME="TI6085"></A><p>When
+Java code returns a common Java object that needs to be downcast
+for use in Java programming, the Java method always sets the return
+value as <b>Java.lang.Object</b>. In a PowerBuilder
+EJB client proxy, <b>java.lang.Object</b> is mapped
+to the <b>any</b> datatype. At runtime, PowerBuilder
+gets the correct Java object and indexes the generated mapping structure
+to get the PowerBuilder proxy name. The <b>any</b> value
+is set as this proxy object. If the returned Java object can map
+to a PowerBuilder standard datatype, the <b>any</b> value
+is set as the PowerBuilder standard datatype.</p>
+<A NAME="TI6086"></A><p>Suppose the remote interface includes the method: <p><PRE> java.lang.Object account::getPrimaryKey()</PRE></p>
+</p>
+<A NAME="TI6087"></A><p>and the home interface includes the method: <p><PRE>account accounthome::findByPrimaryKey(java.lang.String)</PRE></p>
+</p>
+<A NAME="TI6088"></A><p>The return value <b>java.lang.Object</b> is
+really a <b>java.lang.String</b> at runtime. PowerBuilder
+automatically downcasts the return value to the PowerBuilder <b>string</b> datatype: <p><PRE> any nid<br>try<br>  account beanobj<br>  homeobj = conn.lookup("AccountHome", &amp;<br>    ejb20-containerManaged-AccountHome, &amp;<br>    examples.ejb20.basic.containerManaged.AccountHome)<br>  beanobj = homeobj.create("101", 0, "savings")<br>  nid = beanobj.getPrimaryKey()<br>  accounts = homeobj.findByPrimaryKey(string(nid))<br>catch (exception e)<br>  messagebox("exception", e.getmessage())<br>end try    </PRE></p>
+<A NAME="TI6089"></A><h4>Dynamic casting</h4>
+<A NAME="TI6090"></A><p>There
+are two scenarios in which a Java object returned from a call to
+an EJB method can be represented by a proxy that does not provide
+the methods you need:<A NAME="TI6091"></A>
+<ul>
+<li class=fi>If the class of a Java
+object returned from an EJB method call is dynamically generated,
+PowerBuilder uses a proxy for the first interface implemented by
+the Java class. </li>
+<li class=ds>The prototype of an EJB method that actually returns <i>someclass</i> can
+be defined to return a class that <i>someclass</i> extends
+or implements. For example, a method that actually returns an object
+of type <b>java.util.ArrayList</b> can be defined to
+return <b>java.util.Collection</b>.<b>java.util.ArrayList</b>,
+which inherits from <b>java.util.AbstractList</b>, which
+inherits from <b>java.util.AbstractCollection</b>, which
+implements <b>java.util.Collection</b>. In this case,
+PowerBuilder uses a proxy for <b>java.util.Collection</b>.
+</li>
+</ul>
+</p>
+<A NAME="TI6092"></A><p>The <b>DynamicCast</b> method allows you to cast
+the returned proxy object to a proxy for the interface you require,
+or for the actual class of the object returned at runtime so that
+the methods of that object can be used. </p>
+<A NAME="TI6093"></A><p>You can obtain the actual class of the object using the <b>GetActualClass</b> method. You
+can also use the <b>DynamicCast</b> method with the <b>GetSuperClass</b> method, which
+returns the immediate parent of the Java class, and the <b>GetInterfaces</b> method,
+which writes a list of interfaces implemented by the class to an
+array of strings.</p>
+<A NAME="TI6094"></A><p>For example, given the following class:<p><PRE>public class java.util.LinkedList extends java.util.AbstractSequentialList implements java.util.List, java.lang.Cloneable, java.io.Serializable</PRE></p>
+<b>GetActualClass</b> returns<b> java.util.LinkedList</b>, <b>GetSuperClass</b> returns <b>java.util.AbstractSequentialList</b>,
+and <b>GetInterfaces</b> returns 3 and writes three strings
+to the referenced string array: <b>java.util.List</b>, <b>java.lang.Cloneable</b>,
+and <b>java.io.Serializable</b>.</p>
+<A NAME="TI6095"></A><h4>Java collection classes</h4>
+<A NAME="TI6096"></A><p>EJB proxy generation
+generates Java common collection classes such as Enumeration, Iterator,
+Vector, and so forth. PowerBuilder can manipulate these collection
+classes in the same way as a Java client.</p>
+<A NAME="TI6097"></A><p>For example, suppose the home interface includes the following
+method with the return value <b>java.util.Enumeration</b>: <p><PRE>Enumeration accounthome:: findNullAccounts ()</PRE></p>
+</p>
+<A NAME="TI6098"></A><p>The following code shows how a PowerBuilder EJB client can
+manipulate the enumeration class through the PowerBuilder proxy: <p><PRE> Enumeration enum <br>try<br>  enum = homeobj.findNullAccounts()<br>  if (not enum.hasMoreElements())  then<br>  msg = "No accounts found with a null account type"<br>  end if<br>catch (exception e)<br>  messagebox("exception", e.getmessage())<br>end try    </PRE></p>
+

@@ -1,0 +1,298 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using the ODBC Driver Manager Trace</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="connpbp50.htm">Previous</A>&nbsp;&nbsp;<A HREF="connpbp52.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABCAAHG"></A><h1>Using the ODBC Driver Manager Trace</h1>
+<A NAME="TI1679"></A><p>This section describes how to use the ODBC Driver Manager
+Trace tool. </p>
+<A NAME="X-REF347115744"></A><h2>About ODBC Driver Manager Trace</h2>
+<A NAME="TI1680"></A><p>You can use the ODBC Driver Manager Trace tool to trace a
+connection to any ODBC data source that you access in PowerBuilder through
+the ODBC interface.</p>
+<A NAME="TI1681"></A><p>Unlike the Database Trace tool, the ODBC Driver Manager Trace
+tool <i>cannot</i> trace connections through one of
+the native database interfaces.</p>
+<A NAME="TI1682"></A><h4>What this tool does</h4>
+<A NAME="TI1683"></A><p>ODBC Driver Manager Trace records information about ODBC API
+calls (such as <b>SQLDriverConnect</b>, <b>SQLGetInfo</b>,
+and <b>SQLFetch</b>) made by PowerBuilder while connected
+to an ODBC data source. It writes this information to a default
+log file named <i>SQL.LOG</i> or to a log file that
+you specify.</p>
+<A NAME="TI1684"></A><h4>What both tools do</h4>
+<A NAME="TI1685"></A><p>The information from ODBC Driver Manager Trace, like Database
+Trace, can help you:<A NAME="TI1686"></A>
+<ul>
+<li class=fi>Understand what PowerBuilder is
+doing <i>internally</i> while connected to an ODBC
+data source</li>
+<li class=ds>Identify and resolve problems with your ODBC connection</li>
+<li class=ds>Provide useful information to Technical Support
+if you call them for help with your database connection
+</li>
+</ul>
+</p>
+<A NAME="TI1687"></A><h4>When to use this tool</h4>
+<A NAME="TI1688"></A><p>Use ODBC Driver Manager Trace <i>instead</i> of
+the Database Trace tool if you want more detailed information about
+the ODBC API calls made by PowerBuilder.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Performance considerations</span> <A NAME="TI1689"></A>Turning on ODBC Driver Manager Trace can slow your performance
+while working in PowerBuilder. Therefore, use ODBC Driver Manager
+Trace for debugging purposes only and keep it turned off when you
+are not debugging.</p>
+<A NAME="TI1690"></A><h4><ACRONYM title = "sequel dot log" >SQL.LOG</ACRONYM> file</h4>
+<A NAME="TI1691"></A><p>PowerBuilder writes ODBC Driver Manager Trace output to a default
+log file named <i>SQL.LOG </i>or to a log file that
+you specify. The default location of <i>SQL.LOG</i> is
+in your root directory.</p>
+<A NAME="CCJDIJIG"></A><h2>Starting ODBC Driver Manager Trace</h2>
+<A NAME="TI1692"></A><p></p>
+<A NAME="TI1693"></A><p>By default, ODBC Driver Manager Trace is turned off in PowerBuilder.
+You can start it in order to trace your ODBC connection in two ways:<A NAME="TI1694"></A>
+<ul>
+<li class=fi>Edit your database profile in the PowerBuilder development
+environment</li>
+<li class=ds>Edit a script in a PowerBuilder application
+</li>
+</ul>
+</p>
+<A NAME="X-REF347574539"></A><h3>Starting ODBC Driver Manager Trace in the development environment</h3>
+<A NAME="TI1695"></A><p>To start ODBC Driver Manager Trace in the PowerBuilder development environment,
+edit the database profile for the connection you want to trace,
+as described in the following procedure.</p>
+<A NAME="TI1696"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To start ODBC Driver Manager Trace by editing
+the database profile:</p>
+<ol><li class=fi><p>Open the Database Profile Setup-ODBC dialog
+box for the ODBC connection you want to trace. </p></li>
+<li class=ds><p>On the Options tab, select the Trace ODBC API
+Calls check box.</p></li>
+<li class=ds><p>(Optional) To specify a log file where you want PowerBuilder to
+write the output of ODBC Driver Manager Trace, type the path name
+in the Trace File box</p><p><i>or</i></p><p>(Optional) Click Browse to display the pathname of an
+existing log file in the Trace File box.</p><p>By default, if the Trace ODBC API Calls check box is selected
+and no trace file is specified, PowerBuilder sends ODBC Driver Manager
+Trace output to the default <i>SQL.LOG</i> file.</p><br><img src="images/cn8odbtr.gif"><br>
+</li>
+<li class=ds><p>Click OK or Apply </p><p><i>or</i></p><p>Right-click on the connected database and select Re-connect
+from the drop-down menu in the Database Profiles dialog box.</p><p>The Database Profiles dialog box displays with the name of
+the edited profile highlighted.</p><p>PowerBuilder saves your settings in the database profile entry
+in the registry in the <i>HKEY_CURRENT_USER\Software\Sybase\<br>PowerBuilder\10.5\DatabaseProfiles</i> key.</p><p>For example, here is the relevant portion of a database profile
+entry for an ODBC data source named Employee. The settings that
+start ODBC Driver Manager Trace (corresponding to the ConnectOption
+DBParm parameter) are emphasized.<p><PRE> DBMS     "ODBC"</PRE><PRE> ...</PRE><PRE> DbParm   "ConnectString='DSN=Emloyee;UID=dba;<br>PWD=00c61737',<i>ConnectOption='SQL_OPT_TRACE,SQL_OPT_TRACE_ON;SQL_OPT_TRACEFILE,C:\Temp\odbctrce.log'</i>"</PRE></p></li>
+<li class=ds><p>Click Connect in the Database Profiles dialog
+box to connect to the database</p><p><i>or</i></p><p>Right-click on the connected database and select Re-connect
+from the drop-down menu in the Database Profiles dialog box.</p><p>PowerBuilder connects to the database, starts tracing the ODBC connection,
+and writes output to the log file you specified.</p></li></ol>
+<br><A NAME="TI1697"></A><h3>Starting ODBC Driver Manager Trace in a PowerBuilder
+application</h3>
+<A NAME="TI1698"></A><p>To start ODBC Driver Manager Trace in a PowerBuilder application,
+you must specify certain values for the ConnectOption DBParm parameter
+in the appropriate script. For example, you might include them in
+the script that opens the application.</p>
+<A NAME="TI1699"></A><p>You can specify the required ConnectOption values in a PowerBuilder
+script by:<A NAME="TI1700"></A>
+<ul>
+<li class=fi>(<i>Recommended</i>)
+Copying the PowerScript ConnectOption DBParm syntax from the Preview
+tab in the Database Profile Setup dialog box into your script</li>
+<li class=ds>Coding PowerScript to set a value for the DBParm
+property of the Transaction object</li>
+<li class=ds>Reading the DBParm values from an external text
+file
+</li>
+</ul>
+</p>
+<A NAME="TI1701"></A><p>For more about using Transaction objects to
+communicate with a database in a PowerBuilder application, see <i>Application
+Techniques</i>
+.</p>
+<A NAME="TI1702"></A><h4>About the ConnectOption DBParm parameter</h4>
+<A NAME="TI1703"></A><p>ConnectOption includes several parameters, two of which control
+the operation of ODBC Driver Manager Trace for any ODBC-compatible
+driver you are using in PowerBuilder.</p>
+<A NAME="TI1704"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 9-2: ConnectOption parameters for ODBC
+Driver Manager Trace</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1705"></A>Parameter</th>
+<th  rowspan="1"  ><A NAME="TI1706"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1707"></A><ACRONYM title = "sequel _ opt _ trace" >SQL_OPT_TRACE</ACRONYM></td>
+<td  rowspan="1"  ><p><b>Purpose</b>   Starts or stops ODBC Driver Manager Trace in PowerBuilder.</p>
+<p><b>Values</b>   The values you can specify are:<A NAME="TI1708"></A>
+<ul>
+<li class=fi><b><ACRONYM title = "sequel _ opt _ trace _ off" >SQL_OPT_TRACE_OFF</ACRONYM></b>   (Default) Stops ODBC Driver Manager Trace</li>
+<li class=ds><b><ACRONYM title = "sequel _ opt _ trace _ on" >SQL_OPT_TRACE_ON</ACRONYM></b>   Starts ODBC Driver Manager Trace
+</li>
+</ul>
+</p>
+</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1709"></A><ACRONYM title = "sequel _ opt _ trace file" >SQL_OPT_TRACEFILE</ACRONYM></td>
+<td  rowspan="1"  ><p><b>Purpose</b>   Specifies the name of the trace file where you want to send
+the output of ODBC Driver Manager Trace. PowerBuilder appends the
+output to the trace file you specify until you stop the trace. To
+display the trace file, you can use the File Editor (in PowerBuilder)
+or any text editor (outside PowerBuilder).</p>
+<p><b>Values</b>   You can specify any filename for the trace file, <i>following
+the naming conventions of your operating system</i>. By default,
+if tracing is on and you have not specified a trace file, PowerBuilder sends
+ODBC Driver Manager Trace output to a file named <i>SQL.LOG</i>.</p>
+<A NAME="TI1710"></A>For information about the location of <i>SQL.LOG</i> on different
+platforms, see <A HREF="connpbp51.htm#X-REF347115744">"About ODBC Driver
+Manager Trace"</A>.</td>
+</tr>
+</table>
+<A NAME="TI1711"></A><h4>Copying ConnectOption syntax from the Preview
+tab</h4>
+<A NAME="TI1712"></A><p>The easiest way to start ODBC Driver Manager Trace in a PowerBuilder application
+script is to copy the PowerScript ConnectString DBParm syntax from
+the Preview tab in the Database Profile Setup - ODBC dialog box
+into your script, modifying the default Transaction object name
+(<ACRONYM title = "sequel C A" >SQLCA</ACRONYM>) if necessary.</p>
+<A NAME="TI1713"></A><p>As you complete the Database Profile Setup dialog box in the
+development environment, PowerBuilder generates the correct connection
+syntax on the Preview tab. Therefore, copying the syntax directly
+from the Preview tab into your script ensures that it is accurate.</p>
+<A NAME="TI1714"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To copy ConnectOption syntax from the Preview
+tab into your script:</p>
+<ol><li class=fi><p>On the Options tab in the Database Profile
+Setup - ODBC dialog box for your connection, select the Trace ODBC
+API Calls check box and (optionally) specify a log file in the Trace
+File box to start ODBC Driver Manager Trace.</p></li>
+<li class=ds><p>Click Apply to save your changes to the Options
+tab without closing the dialog box.</p></li>
+<li class=ds><p>Click the Preview tab.</p><p>The correct PowerScript syntax for ODBC Driver Manager Trace
+and other selected options displays in the Database Connection Syntax
+box.</p><p>The following example shows the PowerScript syntax that starts
+ODBC Driver Manager Trace and sends output to the file <i>C:\TEMP\ODBCTRCE.LOG</i>.</p><p><p><PRE> // Profile Employee</PRE><PRE> SQLCA.DBMS = "ODBC"</PRE><PRE> SQLCA.AutoCommit = False</PRE><PRE> SQLCA.DBParm = "Connectstring='DSN=Employee',</PRE><PRE>    ConnectOption='SQL_OPT_TRACE,SQL_OPT_TRACE_ON;</PRE><PRE>    SQL_OPT_TRACEFILE,c:\temp\odbctrce.log'"</PRE></p></li>
+<li class=ds><p>Select the<ACRONYM title = "sequel C A dot D B Parm" > SQLCA.DBParm</ACRONYM> line
+and any other syntax you want to copy to your script and click Copy.</p><p>PowerBuilder copies the selected text to the clipboard.</p></li>
+<li class=ds><p>Paste the selected text from the Preview tab into
+your script, modifying the default Transaction object name (<ACRONYM title = "sequel C A" >SQLCA</ACRONYM>) if necessary.</p></li></ol>
+<br><A NAME="TI1715"></A><h4>Coding PowerScript to set a value for the DBParm
+property</h4>
+<A NAME="TI1716"></A><p>Another way to start ODBC Driver Manager Trace in a PowerBuilder application
+script is to include the ConnectOption parameters that control tracing
+as values for the DBParm property of the Transaction object.</p>
+<A NAME="TI1717"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To start ODBC Driver Manager Trace by setting
+the DBParm property:</p>
+<ol><li class=fi><p>In your application script, set the <ACRONYM title = "sequel _ opt _ trace" >SQL_OPT_TRACE</ACRONYM> and
+(optionally) <ACRONYM title = "sequel _ opt _ trace file" >SQL_OPT_TRACEFILE</ACRONYM> ConnectOption
+parameters to start the trace and to specify a nondefault trace
+file, respectively.</p></li></ol>
+<br><A NAME="TI1718"></A><p>For example, the following statement starts ODBC Driver Manager
+Trace in your application and sends output to a file named <i>MYTRACE.LOG</i>.
+Insert a comma to separate the ConnectString and ConnectOption values.</p>
+<A NAME="TI1719"></A><p>This example assumes you are using the default Transaction
+object <ACRONYM title = "sequel C A" >SQLCA</ACRONYM>, but you can
+also define your own Transaction object.<p><PRE> SQLCA.DBParm="ConnectString='DSN=Test;UID=PB;<br>   PWD=xyz',ConnectOption='SQL_OPT_TRACE,<br>   SQL_OPT_TRACE_ON;SQL_OPT_TRACEFILE,C:\TRC.LOG'"</PRE></p>
+<A NAME="TI1720"></A><h4>Reading the DBParm value from an external text
+file</h4>
+<A NAME="TI1721"></A><p>As an alternative to setting the DBParm property in your PowerBuilder application
+script, you can use the PowerScript <b>ProfileString</b> function
+to read DBParm values from a specified section of an external text
+file, such as an application-specific initialization file.</p>
+<A NAME="TI1722"></A><p>This assumes that the DBParm value read from your initialization
+file includes the ConnectOption parameter to start ODBC Driver Manager
+Trace, as shown in the preceding example.</p>
+<A NAME="TI1723"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To start ODBC Driver Manager Trace by reading
+DBParm values from an external text file:</p>
+<ol><li class=fi><p>Use the following PowerScript syntax to
+specify the <b>ProfileString</b> function with the DBParm
+property:</p><p><p><PRE><b>SQLCA.dbParm = </b><b><i></i><i></i>ProfileString</b>(<i>file</i>, <i>section</i>, <i>variable</i>,<br>   <i>default_value</i>)</PRE></p>
+</p><p>For example, the following statement in a PowerBuilder script
+reads the DBParm values from the [Database] section
+of the <i>APP.INI</i> file:<p><PRE> SQLCA.dbParm =</PRE><PRE>    ProfileString("APP.INI","Database","DBParm","")</PRE></p></li></ol>
+<br><A NAME="CCJCBAAE"></A><h2>Stopping ODBC Driver Manager Trace</h2>
+<A NAME="TI1724"></A><p>Once you start tracing an ODBC connection with ODBC Driver
+Manager Trace, PowerBuilder continues sending trace output to the
+log file until you stop tracing. After you stop tracing as described
+in the following sections, you must reconnect to have the changes
+take effect.</p>
+<A NAME="TI1725"></A><h3>Stopping ODBC Driver Manager Trace in the development
+environment</h3>
+<A NAME="TI1726"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To stop ODBC Driver Manager Trace by editing a
+database profile:</p>
+<ol><li class=fi><p>Open the Database Profile Setup - ODBC
+dialog box for the connection you are tracing.</p><p>For instructions, see <A HREF="connpbp51.htm#X-REF347574539">"Starting ODBC Driver
+Manager Trace in the development environment"</A>.</p></li>
+<li class=ds><p>On the Options tab, clear the Trace ODBC API Calls
+check box.</p><p>If you supplied the pathname of a log file in the Trace File
+box, you can leave it specified in case you want to restart tracing
+later.</p></li>
+<li class=ds><p>Click OK in the Database Profile Setup - ODBC
+dialog box.</p><p>The Database Profiles dialog box displays, with the name of
+the edited profile highlighted.</p></li>
+<li class=ds><p>Click Connect in the Database Profiles dialog
+box</p><p><i>or</i></p><p>Right-click on the connected database and select Re-connect
+from the drop-down menu in the Database Profiles dialog box.</p><p>PowerBuilder connects to the database and stops tracing the
+connection.</p></li></ol>
+<br><A NAME="X-REF347577310"></A><h3>Stopping ODBC Driver Manager Trace in a PowerBuilder application</h3>
+<A NAME="TI1727"></A><p>To stop ODBC Driver Manager Trace in a PowerBuilder application
+script, you must change the <ACRONYM title = "sequel _ opt _ trace" >SQL_OPT_TRACE</ACRONYM> ConnectOption
+parameter to <ACRONYM title = "sequel _ opt _ trace _ off" >SQL_OPT_TRACE_OFF</ACRONYM>.
+You can do this by:<A NAME="TI1728"></A>
+<ul>
+<li class=fi>Editing
+the value of the DBParm property of the Transaction object</li>
+<li class=ds>Reading the DBParm values from an external text
+file
+</li>
+</ul>
+</p>
+<A NAME="TI1729"></A><h4>Editing the DBParm property</h4>
+<A NAME="TI1730"></A><p>One way to change the ConnectOption value in a PowerBuilder script
+is to edit the DBParm property of the Transaction object.</p>
+<A NAME="TI1731"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To stop ODBC Driver Manager Trace by editing the
+DBParm property:</p>
+<ol><li class=fi><p>In your application script, edit the DBParm
+property of the Transaction object to change the value of the <ACRONYM title = "sequel _ opt _ trace" >SQL_OPT_TRACE</ACRONYM> ConnectOption parameter
+to <ACRONYM title = "sequel _ opt _ trace _ off" >SQL_OPT_TRACE_OFF</ACRONYM>.</p></li></ol>
+<br><A NAME="TI1732"></A><p>For example, the following statement starts ODBC Driver Manager
+Trace in your application and sends the output to a file named <i>MYTRACE.LOG</i>.
+(This example assumes you are using the default Transaction object <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>, but you can also define
+your own Transaction object.)<p><PRE> SQLCA.DBParm="ConnectString='DSN=Test;UID=PB;<br>   PWD=xyz',ConnectOption='SQL_OPT_TRACE,<br>   SQL_OPT_TRACE_ON;SQL_OPT_TRACEFILE,C:\TRC.LOG'"</PRE></p>
+<A NAME="TI1733"></A><p>Here is how the same statement should look after you edit
+it to stop ODBC Driver Manager Trace. (You can leave the name of
+the trace file specified in case you want to restart tracing later.)<p><PRE> SQLCA.DBParm="ConnectString='DSN=Test;UID=PB;<br>   PWD=xyz',ConnectOption='SQL_OPT_TRACE,<br>   <i>SQL_OPT_TRACE_OFF</i>;SQL_OPT_TRACEFILE,C:\TRC.LOG'"</PRE></p>
+<A NAME="TI1734"></A><h4>Reading DBParm values</h4>
+<A NAME="TI1735"></A><p>As an alternative to editing the DBParm property in your PowerBuilder application
+script, you can use the PowerScript ProfileString function to read DBParm
+values from a specified section of an external text file, such as
+an application-specific initialization file.</p>
+<A NAME="TI1736"></A><p>This assumes that the DBParm value read from your initialization
+file sets the value of <ACRONYM title = "sequel _ opt _ trace" >SQL_OPT_TRACE</ACRONYM> to <ACRONYM title = "sequel _ opt _ trace _ off" >SQL_OPT_TRACE_OFF</ACRONYM>,
+as shown in the preceding example.</p>
+<A NAME="CCJDDHJA"></A><h2>Viewing the ODBC Driver Manager Trace log</h2>
+<A NAME="TI1737"></A><p>You can display the contents of the ODBC Driver Manager Trace
+log file anytime during a PowerBuilder session.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Location of <ACRONYM title = "sequel dot log" >SQL.LOG</ACRONYM></span> <A NAME="TI1738"></A>For information about where to find the default <ACRONYM title = "sequel dot log" >SQL.LOG</ACRONYM> file, see <A HREF="connpbp51.htm#X-REF347115744">"About ODBC Driver
+Manager Trace"</A>.</p>
+<A NAME="TI1739"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To view the contents of the log file:</p>
+<ol><li class=fi><p>Open <ACRONYM title = "sequel dot log" >SQL.LOG </ACRONYM>or
+the log file you specified in one of the following ways:</p><p><A NAME="TI1740"></A>
+<ul>
+<li class=fi>Use the File Editor
+in PowerBuilder. (For instructions, see the <i>User's Guide</i>
+.)</li>
+<li class=ds>Use any text editor outside PowerBuilder.
+</li>
+</ul>
+</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Leaving the log file open</span> <A NAME="TI1741"></A>If you leave the log file open as you work in PowerBuilder,
+ODBC Driver Manager Trace <i>does not update it</i>.</p>
+<A NAME="CCJBAGDJ"></A><h2>Sample ODBC Driver Manager Trace output</h2>
+<A NAME="TI1742"></A><p>This section shows a partial example of output from ODBC Driver
+Manager Trace to give you an idea of the information it provides.
+The example is part of the trace on an ODBC connection to the <ACRONYM title = "E A S" >EAS</ACRONYM> Demo DB.</p>
+<A NAME="TI1743"></A><p>For more about a particular ODBC API call,
+see your ODBC documentation.</p>
+<A NAME="TI1744"></A><p><p><PRE> PB105 179:192   EXIT  SQLSetConnectOption  with return code 0 (SQL_SUCCESS)<br>      HDBC 0x036e1300<br>      UWORD    104 &lt;SQL_OPT_TRACE&gt;<br>      UDWORD 1<br> <br>PB105 179:192   ENTER SQLSetConnectOption <br>   HDBC 0x036e1300<br>   UWORD 105 &lt;SQL_OPT_TRACEFILE&gt;<br>   UDWORD 160694373<br>PB105 179:192   EXIT  SQLSetConnectOption  with return code 0 (SQL_SUCCESS)<br>   HDBC 0x036e1300<br>   UWORD 105 &lt;SQL_OPT_TRACEFILE&gt;<br>   UDWORD 160694373<br>PB105 179:192   ENTER SQLDriverConnectW <br>   HDBC 0x036e1300<br>   HWND 0x004607fa<br>   WCHAR * 0x1f4be068 [      -3] "******\ 0"<br>   SWORD -3 <br>   WCHAR * 0x1f4be068 <br>   SWORD 8 <br>   SWORD * 0x00000000<br>   UWORD 1 &lt;SQL_DRIVER_COMPLETE&gt;<br>PB105 179:192   EXIT  SQLDriverConnectW  with return code 0 (SQL_SUCCESS)<br>   HDBC 0x036e1300<br>   HWND 0x004607fa<br>   WCHAR * 0x1f4be068 [      -3] "******\ 0"<br>   SWORD -3 <br>   WCHAR * 0x1f4be068 <br>   SWORD 8 <br>   SWORD * 0x00000000<br>      UWORD 1 &lt;SQL_DRIVER_COMPLETE&gt;<br>PB105 179:192   ENTER SQLGetInfoW <br>      HDBC 0x036e1300<br>      UWORD 6 &lt;SQL_DRIVER_NAME&gt;<br>      PTR 0x036e2098 <br>      SWORD 6 <br>      SWORD * 0x0012cd30<br>PB105 179:192   EXIT  SQLGetInfoW  with return code 1 (SQL_SUCCESS_WITH_INFO)<br>      HDBC 0x036e1300<br>      UWORD 6 &lt;SQL_DRIVER_NAME&gt;<br>      PTR 0x036e2098 [       6] "DB\ 0"<br>      SWORD 6 <br>      SWORD * 0x0012cd30 (22)<br>   DIAG [01054] [Sybase][ODBC Driver]Data truncated (0) <br>PB105 179:192   ENTER SQLGetInfoW <br>      HDBC 0x036e1300<br>      UWORD 10 &lt;SQL_ODBC_VER&gt;<br>      PTR 0x036e39f8 <br>      SWORD 100 <br>      SWORD * 0x0012cd38<br>PB105 179:192   EXIT  SQLGetInfoW  with return code 0 (SQL_SUCCESS)<br>      HDBC 0x036e1300<br>      UWORD 10 &lt;SQL_ODBC_VER&gt;<br>      PTR 0x036e39f8 [      20] "03.51.0000"<br>      SWORD 100 <br>      SWORD * 0x0012cd38 (20)<br>PB105 179:192   ENTER SQLGetInfoW <br>      HDBC 0x036e1300<br>      UWORD 2 &lt;SQL_DATA_SOURCE_NAME&gt;<br>      PTR 0x036e3c88 <br>      SWORD 512 <br>      SWORD * 0x0012cc32<br>PB105 179:192   EXIT  SQLGetInfoW  with return code 0 (SQL_SUCCESS)<br>      HDBC 0x036e1300<br>      UWORD 2 &lt;SQL_DATA_SOURCE_NAME&gt;<br>      PTR 0x036e3c88 [      28] "EAS Demo DB"<br>      SWORD 512 <br>      SWORD * 0x0012cc32 (28)<br>PB105 179:192   ENTER SQLGetInfoW <br>      HDBC 0x036e1300<br>      UWORD 16 &lt;SQL_DATABASE_NAME&gt;<br>      PTR 0x036e3c88 <br>      SWORD 512 <br>      SWORD * 0x0012cc32<br>PB105 179:192   EXIT  SQLGetInfoW  with return code 0 (SQL_SUCCESS)<br>      HDBC 0x036e1300<br>      UWORD 16 &lt;SQL_DATABASE_NAME&gt;<br>      PTR 0x036e3c88 [      16] "easdemodb"<br>      SWORD 512 <br>      SWORD * 0x0012cc32 (16)<br>PB105 179:192   ENTER SQLGetInfoW <br>      HDBC 0x036e1300<br>      UWORD 25 &lt;SQL_DATA_SOURCE_READ_ONLY&gt;<br>      PTR 0x036e3c88 <br>      SWORD 512 <br>      SWORD * 0x0012cc32<br>PB105 179:192   EXIT  SQLGetInfoW  with return code 0 (SQL_SUCCESS)<br>      HDBC 0x036e1300<br>      UWORD 25 &lt;SQL_DATA_SOURCE_READ_ONLY&gt;<br>      PTR 0x036e3c88 [       2] "N"<br>      SWORD 512 <br>      SWORD * 0x0012cc32 (2)<br>PB105 179:192   ENTER SQLGetInfoW <br>      HDBC 0x036e1300<br>      UWORD 13 &lt;SQL_SERVER_NAME&gt;<br>      PTR 0x036e3c88 <br>      SWORD 512 <br>      SWORD * 0x0012cc32<br>PB105 179:192   EXIT  SQLGetInfoW  with return code 0 (SQL_SUCCESS)<br>      HDBC 0x036e1300<br>      UWORD 13 &lt;SQL_SERVER_NAME&gt;<br>      PTR 0x036e3c88 [      16] "easdemodb"<br>      SWORD 512 <br>      SWORD * 0x0012cc32 (16)<br>PB105 179:192   ENTER SQLGetInfoW <br>      HDBC 0x036e1300<br>      UWORD 17 &lt;SQL_DBMS_NAME&gt;<br>      PTR 0x036e3c88 <br>      SWORD 512 <br>      SWORD * 0x0012cab6<br>PB105 179:192   EXIT  SQLGetInfoW  with return code 0 (SQL_SUCCESS)<br>      HDBC 0x036e1300<br>      UWORD 17 &lt;SQL_DBMS_NAME&gt;<br>      PTR 0x036e3c88 [  48] "Adaptive Server Anywhere"<br>      SWORD 512 <br>      SWORD * 0x0012cab6 (48)<br>PB105 179:192   ENTER SQLGetInfoW <br>      HDBC 0x036e1300<br>      UWORD 6 &lt;SQL_DRIVER_NAME&gt;<br>      PTR 0x036e1a10 <br>      SWORD 550 <br>      SWORD * 0x0012cbbc<br>PB105 179:192   EXIT  SQLGetInfoW  with return code 0 (SQL_SUCCESS)<br>      HDBC 0x036e1300<br>      UWORD 6 &lt;SQL_DRIVER_NAME&gt;<br>      PTR 0x036e1a10 [      22] "DBODBC9.DLL"<br>      SWORD 550 <br>      SWORD * 0x0012cbbc (22)<br>PB105 179:192   ENTER SQLAllocStmt <br>      HDBC 0x036e1300<br>      HSTMT * 0x0012d0b4 <br>PB105 179:192   EXIT  SQLAllocStmt  with return code 0 (SQL_SUCCESS)<br>      HDBC 0x036e1300<br>      HSTMT * 0x0012d0b4 ( 0x036e1c48)<br>PB105 179:192   ENTER SQLGetTypeInfo <br>      HSTMT 0x036e1c48<br>      SWORD 0 &lt;SQL_ALL_TYPES&gt;</PRE></p>
+

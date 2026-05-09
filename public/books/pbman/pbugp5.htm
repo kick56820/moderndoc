@@ -1,0 +1,332 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+The PowerBuilder environment</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp4.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp6.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCBIFCD"></A><h1>The PowerBuilder environment</h1>
+<A NAME="TI115"></A><p>When you start PowerBuilder for the first time, the Welcome
+to PowerBuilder dialog box lets you create a new workspace with
+or without targets:</p>
+<br><img src="images/wrkg01.gif">
+<A NAME="TI116"></A><p>When PowerBuilder starts, it opens in a window that contains
+a menu bar and the PowerBar at the top and the System Tree and Clip
+window on the left. The remaining area will display the painters
+and editors you open when you start working with objects. </p>
+<br><img src="images/wrkgpb11.gif">
+<A NAME="CHDDFCFF"></A><h2>The System Tree </h2>
+<A NAME="TI117"></A><p>The System Tree provides an active resource of programming
+information you use while developing targets. It lets you not only get
+information, but also drag objects into painter views (such as the
+Script view, Layout view, and HTML editor) for immediate use. </p>
+<A NAME="TI118"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI119"></A>This tab</th>
+<th  rowspan="1"  ><A NAME="TI120"></A>Displays this content</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI121"></A>Workspace</td>
+<td  rowspan="1"  ><A NAME="TI122"></A>Workspace contents&#8212;including
+targets, folders, files, and libraries</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI123"></A>Page</td>
+<td  rowspan="1"  ><A NAME="TI124"></A>The page components of the active page
+open in the HTML editor</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI125"></A>Language</td>
+<td  rowspan="1"  ><A NAME="TI126"></A>HTML tags, client and server-side object
+models (objects, properties, methods, and events), and JavaScript,
+and VBScript syntax elements</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI127"></A>Components</td>
+<td  rowspan="1"  ><A NAME="TI128"></A>ActiveX controls, Plugins, Java Applets,
+JavaBeans, <ACRONYM title = "E A Server" >EAServer</ACRONYM> hosts,
+and JSP custom tag libraries available to your target</td>
+</tr>
+</table>
+<A NAME="TI129"></A><p>The System Tree displays by default when you start PowerBuilder
+for the first time. You can hide or display the System Tree using
+the System Tree button on the PowerBar or by selecting Window&gt;System
+Tree. </p>
+<A NAME="TI130"></A><h3>Using the Workspace tab page</h3>
+<A NAME="TI131"></A><p>The Workspace tab page in the System Tree displays the current
+workspace and all its targets. PowerScript targets display the library
+list for the target and all the objects in each <ACRONYM title = "pibble" >PBL</ACRONYM>. Web targets display the contents
+of the root folder of the Web target. The Workspace tab page in
+the System Tree works like a tree view in the Library painter, but
+you can keep it open all the time to serve as the control center
+of the development environment. </p>
+<A NAME="TI132"></A><p>As in the Library painter, you can set the root of the Workspace
+page to your computer's root directory, the current selection,
+or any directory or library, as well as to the current workspace. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Working with targets</span> <A NAME="TI133"></A>To see the pop-up menu that lets you perform operations on
+a target such as search, build, and migrate, you must set the root
+of the System Tree or the view in the Library painter to the current
+workspace.</p>
+<A NAME="TI134"></A><p>The following illustration shows a workspace with two PowerScript
+targets. The first PowerScript target, orders, has a second library
+in its library search path.</p>
+<br><img src="images/wnnew01.gif">
+<A NAME="TI135"></A><p>You can use the Workspace page as the hub of your PowerBuilder
+session. Pop-up menus let you build and deploy targets
+and open and edit any object. The following table lists the actions
+you can take on each item that displays on the Workspace page. You
+can also set properties for each item, choose which object types
+display in the tree view, change the root of the Workspace page, and
+reset the root to the current workspace.</p>
+<A NAME="TI136"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 1-1: Action items for objects in the System Tree</caption>
+<tr><th  rowspan="1"  ><A NAME="TI137"></A>Item</th>
+<th  rowspan="1"  ><A NAME="TI138"></A>Menu action items</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI139"></A>Workspace</td>
+<td  rowspan="1"  ><A NAME="TI140"></A>New (opens New dialog box), Add Target,
+Open Workspace, Incremental Build, Full Build, Deploy, Debug, Run,
+Close, Show, Properties.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI141"></A>PowerScript target</td>
+<td  rowspan="1"  ><A NAME="TI142"></A>New, Search, Incremental Build, Full
+Build, Migrate, Deploy, Debug, Run, Remove Target, Show, Properties.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI143"></A>Web or JSP target</td>
+<td  rowspan="1"  ><A NAME="TI144"></A>New, New Folder, Import Files, Import
+Folder, Incremental Build, Full Build, Migrate Web, Deploy, Deploy
+to EP, Run, Remove Target, Show, Properties.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI145"></A><ACRONYM title = "pibble" >PBL</ACRONYM></td>
+<td  rowspan="1"  ><A NAME="TI146"></A>Delete, Remove Library, Search, Optimize,
+Print Directory, Build Runtime Library, Import, Import PB Extension,
+Show, Properties.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI147"></A>PBD</td>
+<td  rowspan="1"  ><A NAME="TI148"></A>Remove Library, Show</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI149"></A>PowerBuilder object</td>
+<td  rowspan="1"  ><A NAME="TI150"></A>Edit, Edit Source, Inherit, Run/Preview,
+Copy, Move, Delete, Export, Regenerate, Search, Print, Properties.<A NAME="TI151"></A><p>Edit Source is not available for project and proxy objects. Inherit
+and Run/Preview are available only for some object types.
+Source control items are available only if source control information
+is associated with the target.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI152"></A>Functions and events</td>
+<td  rowspan="1"  ><A NAME="TI153"></A>Properties.<A NAME="TI154"></A><p>The Properties dialog box shows the prototype of the function
+or event and its "signature." The signature is
+a string that represents the argument types, return types, and passing
+style. You use this string when you write a PBNI extension that
+calls the function or event. For more information, see the <i>PBNI
+Programmer's Guide and Reference</i>
+.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI155"></A>Web target object</td>
+<td  rowspan="1"  ><A NAME="TI156"></A>Edit, Rename, Delete, Build, Properties.</td>
+</tr>
+</table>
+<A NAME="TI157"></A><h3>Using the Page tab page</h3>
+<A NAME="TI158"></A><p>The Page tab page in the System Tree displays the Microsoft
+Internet Explorer object model and hierarchy for the page currently
+displayed in the HTML editor. This page is used only with Web targets.</p>
+<A NAME="TI159"></A><p>The Page tab lists properties, methods, and events for the
+following types of objects on your page:<A NAME="TI160"></A>
+<ul>
+<li class=fi>Predefined
+HTML and JavaScript objects that are part of the IE object model</li>
+<li class=ds>User-defined objects for which you have set a name
+or ID attribute, such as forms and scripts
+</li>
+</ul>
+</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>If you are developing a Web target</span> <A NAME="TI161"></A>For more information on using the System tree when you are
+developing a Web target, see <i>Working with Web and JSP
+Targets</i>
+. The Page and Language tabs are relevant <i>only</i> when
+you are developing a Web target. </p>
+<A NAME="TI162"></A><h3>Using the Language tab page</h3>
+<A NAME="TI163"></A><p>The Language tab page in the System Tree lists the language
+elements available to Web targets: <A NAME="TI164"></A>
+<ul>
+<li class=fi>The HTML
+elements and attributes defined in HTML Version 3.2, as well as
+extensions to HTML defined by Microsoft and Netscape, organized alphabetically
+and by category</li>
+<li class=ds>Syntax and object models for the client- and server-side
+scripting languages used by Web and JSP targets
+</li>
+</ul>
+</p>
+<br><img src="images/wrkg801.gif">
+<A NAME="TI165"></A><h3>Using the Components tab page</h3>
+<A NAME="TI166"></A><p>The Components tab page in the System Tree displays the ActiveX
+controls, plugins, Java applets, and JavaBeans installed on your
+system as well as the <ACRONYM title = "E A Server" >EAServer</ACRONYM> components
+and JSP custom tag libraries accessible from your system. </p>
+<br><img src="images/wrkg802.gif">
+<A NAME="TI167"></A><h2>The PowerBar</h2>
+<A NAME="TI168"></A><p>Like the System Tree, the PowerBar provides a main control
+point for building PowerBuilder applications. From the PowerBar
+you can create new objects and applications, open existing objects,
+and debug and run the current application.</p>
+<br><img src="images/wrkg805.gif">
+<A NAME="TI169"></A><p>While you are getting
+used to using PowerBuilder, you can display a label on each button
+in a toolbar to remind you of its purpose. To do so, right-click
+a toolbar button and select Show Text from the pop-up menu.</p>
+<A NAME="TI170"></A><p><A HREF="pbugp5.htm#CEGDCGBJ">Table 1-2</A> lists
+the buttons from left to right on the PowerBar.</p>
+<A NAME="CEGDCGBJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 1-2: PowerBar buttons and their uses</caption>
+<tr><th  rowspan="1"  ><A NAME="TI171"></A>This PowerBar button</th>
+<th  rowspan="1"  ><A NAME="TI172"></A>Lets you do this</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI173"></A>New</td>
+<td  rowspan="1"  ><A NAME="TI174"></A>Create new objects.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI175"></A>Inherit</td>
+<td  rowspan="1"  ><A NAME="TI176"></A>Create new windows, user objects, and
+menus by inheriting from an existing object.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI177"></A>Open</td>
+<td  rowspan="1"  ><A NAME="TI178"></A>Open existing objects.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI179"></A>Run/Preview</td>
+<td  rowspan="1"  ><A NAME="TI180"></A>Run windows or preview DataWindows.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI181"></A>System Tree</td>
+<td  rowspan="1"  ><A NAME="TI182"></A>Work in the System Tree window, which
+can serve as the hub of your development session. For more information
+see <A HREF="pbugp5.htm#CHDDFCFF">"The System Tree "</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI183"></A>Output Window</td>
+<td  rowspan="1"  ><A NAME="TI184"></A>Examine the output of a variety of operations
+(migration, builds, deployment, project execution, object saves,
+and searches). See <A HREF="pbugp5.htm#CEGIECAJ">"The Output window"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI185"></A>Next Error, Previous Error</td>
+<td  rowspan="1"  ><A NAME="TI186"></A>Navigate through the Output window.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI187"></A>To-Do List</td>
+<td  rowspan="1"  ><A NAME="TI188"></A>Keep track of development tasks you need
+to do for the current application and use links to get you quickly
+to the place where you complete the tasks.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI189"></A>Browser</td>
+<td  rowspan="1"  ><A NAME="TI190"></A>View information about system objects
+and objects in your application, such as their properties, events,
+functions, and global variables, and copy, export, or print the
+information.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI191"></A>Clip Window</td>
+<td  rowspan="1"  ><A NAME="TI192"></A>Store objects or code you use frequently.
+You can drag or copy items to the Clip window to be saved and then
+drag or copy these items to the appropriate painter view when you
+want to use them. See <A HREF="pbugp5.htm#CEGDJEHA">"The Clip window"</A>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI193"></A>Library</td>
+<td  rowspan="1"  ><A NAME="TI194"></A>Manage your libraries using the Library
+painter.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI195"></A>DB Profile</td>
+<td  rowspan="1"  ><A NAME="TI196"></A>Define and use named sets of parameters
+to connect to a particular database. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI197"></A><ACRONYM title = "E A Server" >EAServer</ACRONYM> Profile</td>
+<td  rowspan="1"  ><A NAME="TI198"></A>Define the connection parameters for
+a particular server. You can then use this predefined profile whenever
+you need to connect to <ACRONYM title = "E A Server" >EAServer</ACRONYM>.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI199"></A>Database</td>
+<td  rowspan="1"  ><A NAME="TI200"></A>Maintain databases and database tables,
+control user access to databases, and manipulate data in databases
+using the Database painter.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI201"></A>Edit</td>
+<td  rowspan="1"  ><A NAME="TI202"></A>Edit text files (such as source, resource,
+and initialization files) in the file editor.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI203"></A>Incremental Build Workspace</td>
+<td  rowspan="1"  ><A NAME="TI204"></A>Update all the targets and objects in
+the workspace that have changed since the last build.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI205"></A>Full Build Workspace</td>
+<td  rowspan="1"  ><A NAME="TI206"></A>Update all the targets and objects in
+the workspace.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI207"></A>Deploy Workspace</td>
+<td  rowspan="1"  ><A NAME="TI208"></A>Deploy all the targets in the workspace.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI209"></A>Skip, Stop</td>
+<td  rowspan="1"  ><A NAME="TI210"></A>Interrupt a build, deploy, or search
+operation. When a series of operations is in progress, such as a
+full deploy of the workspace, the Skip button lets you jump to the
+next operation. The Stop button cancels all operations.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI211"></A>Debug</td>
+<td  rowspan="1"  ><A NAME="TI212"></A>Debug the last target you ran or debugged.
+You can set breakpoints and watch expressions, step through your
+code, examine and change variables during execution, and view the call
+stack and objects in memory.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI213"></A>Select &amp; Debug</td>
+<td  rowspan="1"  ><A NAME="TI214"></A>Select a target and open the Debugger.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI215"></A>Run</td>
+<td  rowspan="1"  ><A NAME="TI216"></A>Run the last target you ran or debugged
+just as your users would run it.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI217"></A>Select &amp; Run</td>
+<td  rowspan="1"  ><A NAME="TI218"></A>Select a target and run it.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI219"></A>Exit</td>
+<td  rowspan="1"  ><A NAME="TI220"></A>Close PowerBuilder.</td>
+</tr>
+</table>
+<A NAME="TI221"></A><h4>Customizing the PowerBar</h4>
+<A NAME="TI222"></A><p>You can customize the PowerBar. For example, you can choose
+whether to move the PowerBar around, add buttons for operations
+you perform frequently, and display text in the buttons.</p>
+<A NAME="TI223"></A><p>For more information, see <A HREF="pbugp18.htm#X-REF342804801">"Using toolbars"</A>.</p>
+<A NAME="TI224"></A><h4>About PowerTips</h4>
+<A NAME="TI225"></A><p>In the PowerBar, when you leave the mouse pointer over a button
+for a second or two, PowerBuilder displays a brief description of
+the button, called a PowerTip. PowerTips
+display in PowerBuilder wherever there are toolbar buttons.</p>
+<A NAME="CEGDJEHA"></A><h2>The Clip window</h2>
+<A NAME="TI226"></A><p>You can store code fragments you use frequently in the Clip
+window. You copy text to the Clip window to save it and then drag
+or copy this text to the appropriate Script view or editor when
+you want to use it. </p>
+<A NAME="TI227"></A><h4>Using the Clip window</h4>
+<A NAME="TI228"></A><p>The Clip window displays a list of named clips, a preview
+of the information contained in the clip, and a description. It
+provides buttons to move Clip window contents to the clipboard,
+copy clipboard contents to the Clip window, rename a clip, delete
+a clip, and modify the clip's description. Clips you save in
+one workspace are available in all your workspaces; you might want
+to use a naming convention that reflects this. </p>
+<A NAME="TI229"></A><p>For example, you might use standard error-checking code when
+you use the <b>ConnectToServer</b> function to connect
+to <ACRONYM title = "E A Server" >EAServer</ACRONYM>. To copy it
+to the clipboard, highlight the code in a Script view and select
+Copy from the pop-up menu. In the Clip window, click the Paste icon,
+and name the clip. The Clip Description dialog box opens so that
+you can enter a description. To change the description later, select
+the clip's name and click the Modify button.</p>
+<A NAME="TI230"></A><p>You can drag a clip from the Clip window to any script in
+which you want to connect to <ACRONYM title = "E A Server" >EAServer</ACRONYM>.
+You can also use the Copy icon to copy the clip to the clipboard.</p>
+<A NAME="TI231"></A><p>You can hide or display the Clip window using the Clip Window
+button on the PowerBar or by selecting Window&gt;Clip. </p>
+<br><img src="images/wrkg804.gif">
+<A NAME="CEGIECAJ"></A><h2>The Output window</h2>
+<A NAME="TI232"></A><p>The output of a variety of operations (migration, builds,
+deployment, project execution, object saves, and searches) displays
+in the Output window. You control operations in the window using
+the Skip, Stop, Next Error, and Previous Error buttons or menu options. </p>
+<A NAME="TI233"></A><p>You can hide or display the Output window by using the Output
+button on the PowerBar or selecting Window&gt;Output. </p>
+<A NAME="TI234"></A><h4>Using the Output window</h4>
+<A NAME="TI235"></A><p>When appropriate, lines in the Output window provide links
+that invoke the correct painter when you double-click on that line.
+The pop-up menu also provides the options Edit and Edit Source to
+open an object in a painter or the Source editor.</p>
+<br><img src="images/wrkgoutp.gif">
+

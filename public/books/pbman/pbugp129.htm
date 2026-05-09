@@ -1,0 +1,158 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using user objects </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp128.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp130.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF343487203"></A><h1>Using user objects </h1>
+<A NAME="TI3851"></A><p>Once you have built a user object, you are ready to use it
+in an application. This section describes how to use:<A NAME="TI3852"></A>
+<ul>
+<li class=fi>Visual user objects</li>
+<li class=ds>Class user objects
+</li>
+</ul>
+</p>
+<A NAME="TI3853"></A><h2>Using visual user objects</h2>
+<A NAME="TI3854"></A><p>You use visual user objects by placing them in a window or
+in a custom visual user object. The techniques
+are similar whether you are working in the Window painter or the
+User Object painter.</p>
+<A NAME="TI3855"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To place a user object:</p>
+<ol><li class=fi><p>Open the window or custom visual user object
+in which you want to place the visual user object.</p></li>
+<li class=ds><p>Click the User Object button in the PainterBar,
+or select Insert&gt;Control from the menu bar and then select
+User Object.</p></li>
+<li class=ds><p>Select the user object you want to use and click
+the location where you want the user object to display.</p><p>PowerBuilder creates a descendent user object that inherits
+its definition from the selected user object and places it in the
+window or user object.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Dragging the user object from the System Tree</span> <A NAME="TI3856"></A>You can drag a user object from the System Tree to the Layout
+view in the Window painter.</p>
+<A NAME="TI3857"></A><h4>What you can do</h4>
+<A NAME="TI3858"></A><p>After you place a user object in a window or a custom visual
+user object, you can name it, size it, position it, write scripts
+for it, and do anything else you can do with a control.</p>
+<A NAME="TI3859"></A><p>When you place the user object in a window, PowerBuilder assigns
+it a unique name, just as it does when you place a control. The
+name is a concatenation of the default prefix for a user object
+control (initially, <b>uo_</b>) and a default
+suffix, which is a number that makes the name unique.</p>
+<A NAME="TI3860"></A><p>You should change the default suffix to a suffix that has
+meaning for the user object in your application.</p>
+<A NAME="TI3861"></A><p>For more information about naming, see <A HREF="pbugp98.htm#X-REF298661128">"Naming controls "</A>.</p>
+<A NAME="TI3862"></A><h4>Writing scripts</h4>
+<A NAME="TI3863"></A><p>When you place a user object in a window or a custom user
+object, you are actually creating a descendant of the user object.
+All scripts defined for the ancestor user object are inherited.
+You can choose to override or extend those scripts.</p>
+<A NAME="TI3864"></A><p>For more information, see <A HREF="pbugp114.htm#X-REF343932951">"Using inherited scripts "</A>.</p>
+<A NAME="TI3865"></A><p>You place a user object <i>as a unit</i> in
+a window (or another user object). You cannot write scripts for
+individual controls in a custom user object after placing it in
+a window or custom user object; you do that only when you are defining the
+user object itself.</p>
+<A NAME="TI3866"></A><h4>Placing a user object at runtime</h4>
+<A NAME="TI3867"></A><p>You can add a user object to a window at runtime using the
+PowerScript functions <b>OpenUserObject</b> and <b>OpenUserObjectWithParm</b> in
+a script. You can remove a user object from a window using the <b>CloseUserObject</b> function.</p>
+<A NAME="BABBGAEH"></A><h2>Using class user objects</h2>
+<A NAME="TI3868"></A><h4>How you insert a nonvisual object</h4>
+<A NAME="TI3869"></A><p>There are two ways to use a class user object when the user
+object is not autoinstantiating: you can create an instance of it
+in a script, or you can insert the user object in a window or user
+object using the Insert menu.</p>
+<A NAME="TI3870"></A><p>For more information on autoinstantiation, see <A HREF="pbugp127.htm#CHDCEHHD">"Using AutoInstantiate"</A>.</p>
+<A NAME="TI3871"></A><p>The nonvisual object you insert can be a custom class user
+object or a standard class user object of most types. </p>
+<A NAME="TI3872"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To instantiate a class user object:</p>
+<ol><li class=fi><p>In the window or user object in which you
+want to use the class user object, declare a variable of the user
+object type and create an instance of it using the <b>CREATE</b> statement.
+For example:<p><PRE> // declared instance variable: <br>// n_myobject invo_myobject<br>invo_myobject = CREATE n_myobject</PRE></p></li>
+<li class=ds><p>Use the user object's properties and
+functions to do the required processing.</p></li>
+<li class=ds><p>When you have finished using the user object,
+destroy it using the <b>DESTROY</b> statement.</p><p>If you select Autoinstantiate in the properties of the class
+user object, you cannot use the <b>CREATE</b> and <b>DESTROY</b> statements.</p></li></ol>
+<br><A NAME="TI3873"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To insert a class user object:</p>
+<ol><li class=fi><p>Open the window or user object in which
+you want to insert the class user object.</p></li>
+<li class=ds><p>Select Insert&gt;Object from the menu bar.</p></li>
+<li class=ds><p>Select User Object (at the bottom of the list)
+and then select the class user object you want to insert.</p><p>PowerBuilder inserts the selected class user object.</p></li>
+<li class=ds><p>Modify the properties and code the events of the
+nonvisual object as needed.</p></li></ol>
+<br><A NAME="TI3874"></A><p>When the user object is created in an application, the nonvisual
+object it contains is created automatically. When the user object
+is destroyed, the nonvisual object is destroyed automatically.</p>
+<A NAME="TI3875"></A><h4>Using the Non-Visual Object List view</h4>
+<A NAME="TI3876"></A><p>You can use the same technique to insert standard class user
+objects. Since all class user objects are nonvisual, you cannot
+see them, but if you look at the Non-Visual Object List view, you
+see all the class user objects that exist in your user object.</p>
+<A NAME="TI3877"></A><p>Using the Non-Visual Object List view's pop-up menu,
+you can display a class user object's properties in the
+Properties view, display the Script view for the object to code
+its behavior, or delete the object.</p>
+<A NAME="X-REF305922054"></A><h2>Using global standard class user objects</h2>
+<A NAME="TI3878"></A><p>Five of the standard class user object types are inherited
+from predefined global objects used in all PowerBuilder applications:<A NAME="TI3879"></A>
+<ul>
+<li class=fi>Transaction (<ACRONYM title = "sequel c a" >SQLCA</ACRONYM>)</li>
+<li class=ds>DynamicDescriptionArea (<ACRONYM title = "sequel d a" >SQLDA</ACRONYM>)</li>
+<li class=ds>DynamicStagingArea (<ACRONYM title = "sequel s a" >SQLSA</ACRONYM>)</li>
+<li class=ds>Error</li>
+<li class=ds>Message
+</li>
+</ul>
+</p>
+<A NAME="TI3880"></A><h4>Replacing the built-in global object</h4>
+<A NAME="TI3881"></A><p>If you want your standard class user object to <i>replace</i> the
+built-in global object, you tell PowerBuilder to use your user object <i>instead
+of</i> the built-in system object that it inherits from.
+You will probably use this technique if you have built a user object
+inheriting from the Error or Message object.</p>
+<A NAME="TI3882"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To replace the built-in global object with a standard
+class user object:</p>
+<ol><li class=fi><p>Open the Application object.</p></li>
+<li class=ds><p>In the Properties view, click the Additional Properties
+button on the General tab page.</p></li>
+<li class=ds><p>In the Application properties dialog box, select
+the Variable Types tab. </p></li>
+<li class=ds><p>Specify the standard class user object you defined
+in the corresponding field and click OK.</p><br><img src="images/uo06.gif"><br>
+</li></ol>
+<br><A NAME="TI3883"></A><p>After you have specified your user object as the default global
+object, it replaces the built-in object and is created automatically
+when the application starts up. You do not create it (or destroy
+it) yourself.</p>
+<A NAME="TI3884"></A><p>The properties and functions defined in the user object are
+available anywhere in the application. Reference them using dot
+notation, just as you access those of other PowerBuilder objects
+such as windows.</p>
+<A NAME="TI3885"></A><h4>Supplementing the built-in global object</h4>
+<A NAME="TI3886"></A><p>You can use a user object inherited from one of these global
+objects by inserting one in your user object as described in <A HREF="pbugp129.htm#BABBGAEH">"Using class user objects"</A>. If you do,
+your user object is used <i>in addition to</i> the
+built-in global object variable. Typically you use this technique
+with user objects inherited from the Transaction object. You now
+have access to two Transaction objects: the built-in <ACRONYM title = "sequel c a" >SQLCA</ACRONYM> and the one you defined.</p>
+<A NAME="TI3887"></A><h4>For more information</h4>
+<A NAME="TI3888"></A><p>For more information about using the Error object, see <A HREF="pbugp255.htm#X-REF355687295">"Using the Error
+object"</A>.</p>
+<A NAME="TI3889"></A><p>For information about using the Message object, and about
+creating your own Transaction object to support database remote
+procedure calls, see <i>Application Techniques</i>
+.</p>
+<A NAME="TI3890"></A><p>For more information about the DynamicDescriptionArea and DynamicStagingArea
+objects used in dynamic <ACRONYM title = "sequel" >SQL</ACRONYM>,
+see the <i>PowerScript Reference</i>
+.</p>
+

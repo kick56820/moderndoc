@@ -1,0 +1,73 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Writing application-level scripts</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp42.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp44.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF300034917"></A><h1>Writing application-level scripts</h1>
+<A NAME="TI1327"></A><p>When a user runs an application, an Open event
+is triggered in the Application object. The script you write for
+the Open event initiates the activity in the application. Typically
+it sets up the environment and opens the initial window. For a server
+component, there may be no application-level scripts.</p>
+<A NAME="TI1328"></A><p>When a user ends an application, a Close event
+is triggered in the Application object. The script you write for
+the Close event usually does all the cleanup required, such as closing
+a database or writing a preferences file.</p>
+<A NAME="TI1329"></A><p>If there are serious errors during execution,
+a SystemError event is triggered in the Application object.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Batch applications</span> <A NAME="TI1330"></A>If your application performs only batch processing, all processing
+takes place in the script for the application Open event.</p>
+<A NAME="TI1331"></A><p><A HREF="pbugp43.htm#CEGBBIDB">Table 5-1</A> lists
+all events that can occur in the Application object (the ConnectionBegin
+and ConnectionEnd events are obsolete). The only event that requires
+a script is Open.</p>
+<A NAME="CEGBBIDB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 5-1: Events in the Application object</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1332"></A>Event</th>
+<th  rowspan="1"  ><A NAME="TI1333"></A>Occurs when</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1334"></A>Open</td>
+<td  rowspan="1"  ><A NAME="TI1335"></A>The user starts the application.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1336"></A>Close</td>
+<td  rowspan="1"  ><A NAME="TI1337"></A>The user closes the application. Typically,
+you write a script for this event that shuts everything down (such
+as closing the database connection and writing out a preferences
+file).</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1338"></A>SystemError</td>
+<td  rowspan="1"  ><A NAME="TI1339"></A>A serious error occurs during execution
+(such as trying to open a nonexistent window). If there is no script
+for this event, PowerBuilder displays a message box with the PowerBuilder error
+number and message text. If there is a script, PowerBuilder executes
+the script.<A NAME="TI1340"></A><p>For more about error handling, see <A HREF="pbugp255.htm#CAIBBEHG">"Handling errors at runtime"</A>.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1341"></A>Idle</td>
+<td  rowspan="1"  ><A NAME="TI1342"></A>The Idle PowerScript function has been
+called and the specified number of seconds has elapsed with no mouse
+or keyboard activity.</td>
+</tr>
+</table>
+<A NAME="TI1343"></A><h2>Setting application properties in scripts</h2>
+<A NAME="TI1344"></A><p>The Application object has several properties that specify
+application-level properties. For example, the property ToolbarText
+specifies whether text displays on toolbars in an MDI application.</p>
+<A NAME="TI1345"></A><p>You can reference these properties in <i>any </i>script
+in the application using this syntax:<p><PRE>AppName.property</PRE></p>
+</p>
+<A NAME="TI1346"></A><p>For example, to specify that text displays on toolbars in
+the Test application, code this in a script:</p>
+<A NAME="TI1347"></A><p><p><PRE> Test.ToolbarText = TRUE</PRE></p>
+<A NAME="TI1348"></A><p>If the script is in the Application object itself, you do
+not need to qualify the property name with the application name.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Application name cannot be changed</span> <A NAME="TI1349"></A>The name of an application is one of the Application object's
+properties, but you cannot change it. </p>
+<A NAME="TI1350"></A><p>For a complete list of the properties of the
+Application object, see <i>Objects and Controls</i>
+.</p>
+

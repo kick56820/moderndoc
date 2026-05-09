@@ -1,0 +1,48 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Declaring instances of windows</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp36.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp38.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CAICEDED"></A><h1>Declaring instances of windows</h1>
+<A NAME="TI774"></A><p>Because a window is actually a datatype, you can declare variables
+of that datatype, just as you can declare integers, strings, and
+so on. You can then refer to those variables in code.</p>
+<A NAME="TI775"></A><p>For example:<p><PRE> w_employee mywin</PRE></p>
+<A NAME="TI776"></A><p>declares a variable named <i>mywin</i> of type <b>w_employee</b>.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Limitation of using variables</span> <A NAME="TI777"></A>When you declare a window instance, you cannot reference it
+from another window. For example, if there are three windows open,
+you cannot explicitly refer to the first one from the second or
+third. There is no global handle for windows opened using reference
+variables. To maintain references to window instances using a script,
+see <A HREF="apptechp38.htm#CAICDFGF">"Using window arrays"</A>.</p>
+<A NAME="TI778"></A><h4>Opening an instance</h4>
+<A NAME="TI779"></A><p>To open a window instance, you refer to the window variable
+in the <b>Open</b> function:<p><PRE> w_employee mywin<br>Open(mywin)</PRE></p>
+<A NAME="TI780"></A><p>Here the <b>Open</b> function determines that
+the datatype of the variable <i>mywin</i> is <b>w_employee</b>.
+It then creates an instance of <b>w_employee</b> and
+assigns a reference to the <i>mywin</i> variable.</p>
+<A NAME="TI781"></A><p>If you code the above script for the Clicked event for a CommandButton,
+each time the button is clicked, a new instance of <b>w_employee</b> is
+created. In other words, a new window is opened each time the button
+is clicked.</p>
+<A NAME="TI782"></A><p>By creating variables whose datatype is the name of a window,
+you can open multiple instances of a window. This is easy and straightforward. PowerBuilder
+manages the windows for you&#8212;for example, freeing memory when
+you close the windows.</p>
+<A NAME="TI783"></A><h4>Closing an instance</h4>
+<A NAME="TI784"></A><p>A common way to close the instances of a window is to put
+a CommandButton in the window with this script for the Clicked event:<p><PRE> Close(Parent)</PRE></p>
+<A NAME="TI785"></A><p>This script closes the parent of the button (the window in
+which the button displays). Continuing the example above, if you
+put a CommandButton in <b>w_employee</b>,
+the script closes the current instance of <b>w_employee</b>.
+If you click the CommandButton in the <i>mywin</i> instance
+of <b>w_employee</b>, <i>mywin</i> closes.</p>
+

@@ -1,0 +1,198 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Deploying applications, components, and supporting files</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp269.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp271.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABCDEAE"></A><h1>Deploying applications, components, and supporting files</h1>
+<A NAME="TI7995"></A><p>Regardless of the type of application you are deploying, you
+must include any supporting files such as dynamic libraries, resources
+like BMP and ICO files, online Help files, and initialization files.
+Each application type requires a different set of supporting files.</p>
+<A NAME="TI7996"></A><h4>Planning for deployment</h4>
+<A NAME="TI7997"></A><p><A HREF="apptechp265.htm#CDEDDAFI">Chapter 40, "Packaging an Application
+for Deployment,"</A> helps you make decisions about deploying
+a PowerBuilder executable application, such as whether to use dynamic
+libraries, Pcode or machine code, and resource files. It also provides
+a checklist to make sure you install all the required pieces. </p>
+<A NAME="TI7998"></A><p>If you are deploying a Web application or a transaction server
+component, you will find the information about PowerBuilder dynamic
+libraries (PBDs) and PowerBuilder resource files (PBRs) in that
+chapter helpful. You should also read the documentation for the
+component or plug-in elsewhere in this book or in the <i>DataWindow
+Programmer's Guide</i>
+. </p>
+<A NAME="TI7999"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-1: Component and plug-in documentation</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8000"></A>Application type</th>
+<th  rowspan="1"  ><A NAME="TI8001"></A>Where to find
+information</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8002"></A><ABBR title = "e a server" >EAServer</ABBR> components</td>
+<td  rowspan="1"  ><A NAME="TI8003"></A><A HREF="apptechp150.htm#CCJCFEBI">"Deploying a component to <ABBR title = "e a server" >EAServer</ABBR>"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8004"></A>Application server components</td>
+<td  rowspan="1"  ><A NAME="TI8005"></A>The <i>User's Guide</i>
+ in
+the PowerBuilder Application Server Plug-in documentation set.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8006"></A>COM components</td>
+<td  rowspan="1"  ><A NAME="TI8007"></A><A HREF="apptechp177.htm#CEGDFIJA">"Deploying a PowerBuilder
+COM server"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8008"></A>DataWindow plug-in applications</td>
+<td  rowspan="1"  ><A NAME="TI8009"></A><A HREF="apptechp213.htm#BFCEAFGB">Chapter 32, "Using the DataWindow Plug-in"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8010"></A>PowerBuilder window plug-in </td>
+<td  rowspan="1"  ><A NAME="TI8011"></A><A HREF="apptechp219.htm#CAIBECCC">Chapter 33, "Using the PowerBuilder
+Window Plug-in"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8012"></A>PowerBuilder window ActiveX </td>
+<td  rowspan="1"  ><A NAME="TI8013"></A><A HREF="apptechp228.htm#BABIIIJB">Chapter 34, "Using the PowerBuilder
+Window ActiveX"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8014"></A>Web DataWindow and DataWindow Web control
+for ActiveX</td>
+<td  rowspan="1"  ><A NAME="TI8015"></A><i>DataWindow Programmer's
+Guide</i>
+</td>
+</tr>
+</table>
+<A NAME="TI8016"></A><h4>Finding information in this chapter</h4>
+<A NAME="TI8017"></A><p>This chapter is intended to help you write installation programs
+using a third-party software package that creates installation
+configurations. It tells you which files each computer needs, where
+you can find the files, where they should be installed, and what
+registry settings need to be made. PowerBuilder also provides a
+tool, described in <A HREF="apptechp271.htm#BAJDBEAB">"PowerBuilder Runtime Packager"</A>, to help you package the files
+your application needs. </p>
+<A NAME="TI8018"></A><p>Use <A HREF="apptechp270.htm#BAJBIECB">Table 41-2</A> to
+locate information about the specific files you need to deploy with
+your application.</p>
+<A NAME="BAJBIECB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 41-2: PowerBuilder files required for
+deployment</caption>
+<tr><th  rowspan="1"  ><A NAME="TI8019"></A>Scenario</th>
+<th  rowspan="1"  ><A NAME="TI8020"></A>See these
+sections</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8021"></A>All PowerBuilder client applications</td>
+<td  rowspan="1"  ><A NAME="TI8022"></A><A HREF="apptechp273.htm#BGBEBIEA">"PowerBuilder runtime files"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8023"></A>PowerBuilder client application accessing
+data on a database server</td>
+<td  rowspan="1"  ><A NAME="TI8024"></A> <A HREF="apptechp274.htm#BAJIGDCH">"Database connections"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8025"></A>PowerBuilder clients for EJBs, SOAP Web
+services, and XML services </td>
+<td  rowspan="1"  ><A NAME="TI8026"></A><A HREF="apptechp276.htm#BAJHJBBB">"PowerBuilder extensions"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8027"></A>PowerBuilder clients that save data in
+PDF or XSL-FO format</td>
+<td  rowspan="1"  ><A NAME="TI8028"></A><A HREF="apptechp277.htm#BAJIEEAF">"PDF and XSL-FO export"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8029"></A>Web application using the DataWindow
+Web control for ActiveX</td>
+<td  rowspan="1"  ><A NAME="TI8030"></A><A HREF="apptechp278.htm#BGBBGBEI">"DataWindow Web control for
+ActiveX"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8031"></A>Web application using PowerBuilder plug-ins
+or the window ActiveX</td>
+<td  rowspan="1"  ><A NAME="TI8032"></A><A HREF="apptechp279.htm#BGBDGIAH">"Plug-ins and PowerBuilder
+window ActiveX controls"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8033"></A><ABBR title = "e a server" >EAServer</ABBR> component
+created in PowerBuilder</td>
+<td  rowspan="1"  ><A NAME="TI8034"></A><A HREF="apptechp280.htm#BGBBJEIE">"PowerBuilder components
+on <ABBR title = "e a server" >EAServer</ABBR> "</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8035"></A>COM component created in PowerBuilder</td>
+<td  rowspan="1"  ><A NAME="TI8036"></A><A HREF="apptechp281.htm#BGBDACJF">"PowerBuilder COM servers"</A></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8037"></A>Web application using Web DataWindow
+with <ABBR title = "e a server" >EAServer</ABBR></td>
+<td  rowspan="1"  ><A NAME="TI8038"></A><A HREF="apptechp283.htm#BGBDCDAA">"Files required on the transaction
+server"</A><A NAME="TI8039"></A><p><A HREF="apptechp283.htm#BGBBBEBJ">"Files required on the dynamic
+page server"</A></p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI8040"></A>Web application using Web DataWindow
+with ASP and COM+ or IIS</td>
+<td  rowspan="1"  ><A NAME="TI8041"></A><A HREF="apptechp284.htm#BGBCJIHC">"Files required on the COM+ or
+IIS server"</A><A NAME="TI8042"></A><p><A HREF="apptechp284.htm#BGBDDDGF">"Files required on the ASP
+server"</A></p></td>
+</tr>
+</table>
+<A NAME="TI8043"></A><h4>Installed and deployment paths</h4>
+<A NAME="TI8044"></A><p>The <i>Installed path</i> listed after some
+of the tables in this chapter is the location where files are installed
+when you install PowerBuilder and select the default installation
+location. When you build an installation program for your application,
+you can copy files from this location to your staging area.</p>
+<A NAME="TI8045"></A><p>The <i>Deployment path</i> tells you where these
+files can be installed on the computer on which you install your
+application or component. </p>
+<A NAME="BGBCIHAF"></A><h4>App Path registry key</h4>
+<A NAME="TI8046"></A><p>Some tables are followed by a list of the <i>Registry
+entries</i> your installation program needs to make so that
+your application or component can find the files it needs. When
+an application runs on Windows, it looks for supporting files in these
+locations and in this order:<A NAME="TI8047"></A>
+<ol>
+</li>
+<li class=ds>The
+directory where the executable file is installed.</li>
+<li class=ds>The Windows system and Windows directories (for
+example, in <i>C:\WINDOWS\SYSTEM32</i>, <i>C:\WINDOWS\SYSTEM</i>,
+and <i>C:\WINDOWS</i>).</li>
+<li class=ds>In an application path that can be specified in
+the registry.</li>
+<li class=ds>In the system path.
+</li>
+</ol>
+</p>
+<A NAME="TI8048"></A><p>You do not need to specify an application path, but it is
+recommended. </p>
+<A NAME="TI8049"></A><h4>Specifying an application path</h4>
+<A NAME="TI8050"></A><p>To specify the path the application uses to locate supporting
+files, your installation program should create an App Path key for
+your application in this registry location:<p><PRE>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\<br>     CurrentVersion\App Paths </PRE></p>
+</p>
+<A NAME="TI8051"></A><p>Set the data value of the (Default) string value to the directory
+where the application is installed and create a new string value
+called Path that specifies the location of shared files. The following
+example shows a typical registry entry for an application called <i>myapp.exe</i> that
+uses <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere. The registry
+key is enclosed in square brackets and is followed by string values
+for the key in the format <FONT FACE="Courier New">"<i>Name</i>"="<i>Value</i>"</FONT>:<p><PRE> [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\<br>   CurrentVersion\App Paths\myapp.exe]<br>"Default"="C:\Program Files\myapps\myapp.exe"<br>"Path"="C:\Program Files\myapps;C:\Program Files\<br>   sybase\shared\PowerBuilder;c:\program files\<br>   SQL Anywhere 10\win32\;"</PRE></p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About REG files</span> <A NAME="TI8052"></A>Registry update files that have a .<i>REG</i> extension
+can be used to import information into the registry. The format
+used in registry key examples in this chapter is similar to the
+format used in registry update files, but these examples are <i>not
+intended</i> to be used as update files. The path names in
+data value strings in registry update files typically use a pair
+of backslashes instead of a single backslash, and the "Default"
+string value is represented by the at sign (@).</p>
+<A NAME="TI8053"></A>Use the examples to help determine which registry keys your
+installation program should add or update.</p>
+<A NAME="CFHCJDAG"></A><h4>Deploying ActiveX controls</h4>
+<A NAME="TI8054"></A><p>If your application uses ActiveX controls, OLE controls, or
+OCX controls, you must:<A NAME="TI8055"></A>
+<ul>
+<li class=fi>Deploy the control files with your application</li>
+<li class=ds>Make sure each control is registered</li>
+<li class=ds>Make sure required files are in the target computer's
+system directory
+</li>
+</ul>
+</p>
+<A NAME="TI8056"></A><p>If your application uses a control that is not self registering,
+your setup program needs to register it manually on each user's
+computer. To find out whether a control is self registering, see
+the documentation provided with the control. Depending on the development
+and deployment platforms and the controls you are deploying, you
+might need to copy additional DLLs or license files to the Windows<i></i> system
+directories on the target computer.</p>
+

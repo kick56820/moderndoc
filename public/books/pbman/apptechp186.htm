@@ -1,0 +1,50 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Adding pbejbclient105.pbx to your application</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp185.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp187.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CIHDDCDJ"></A><h1>Adding pbejbclient105.pbx to your application</h1>
+<A NAME="TI5929"></A><p>The simplest way to add the PBEJBClient classes to a PowerBuilder
+target is to import the object descriptions in the <i>pbejbclient105.pbx</i> PBX
+file into a library in the PowerBuilder System Tree</p>
+<A NAME="TI5930"></A><p>The <i>pbejbclient105.pbx</i> and<i> pbejbclient105.pbd</i> files
+are installed in the <i>Shared/PowerBuilder</i> directory
+when you install PowerBuilder. When you create an EJB client application,
+you do not need to copy <i>pbejbclient105.pbx</i> to
+another location, but you do need to deploy it with the client executable
+in a directory in the application's search path. </p>
+<A NAME="TI5931"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To import the descriptions in an extension into
+a library:</p>
+<ol><li class=fi><p>In the System Tree, expand the target in
+which you want to use the extension, right-click a library, and
+select Import PB Extension from the pop-up menu.</p></li>
+<li class=ds><p>Navigate to the location of the PBX<i></i> file
+and click Open.</p><p>Each class in the PBX displays in the System Tree so that
+you can expand it, view its properties, events, and methods, and
+drag and drop to add them to your scripts.</p></li></ol>
+<br><A NAME="TI5932"></A><p>After
+you import <i>pbejbclient105.pbx</i>, the following
+objects display in the System Tree:</p>
+<A NAME="TI5933"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><tr><th  rowspan="1"  ><A NAME="TI5934"></A>Object</th>
+<th  rowspan="1"  ><A NAME="TI5935"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5936"></A>EJBConnection</td>
+<td  rowspan="1"  ><A NAME="TI5937"></A>Used to connect to an EJB server and
+locate an EJB.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5938"></A>EJBTransaction</td>
+<td  rowspan="1"  ><A NAME="TI5939"></A>Maps to the <b>javax.transaction.UserTransaction</b> interface. Used
+to control transactions from the EJB client.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI5940"></A>JavaVM</td>
+<td  rowspan="1"  ><A NAME="TI5941"></A>Used to create an instance of the Java
+VM.</td>
+</tr>
+</table>
+

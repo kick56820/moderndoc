@@ -1,0 +1,43 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About drag and drop</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp56.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp58.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BFCDFEDE"></A><h1>About drag and drop</h1>
+<A NAME="TI1391"></A><p>Drag and drop allows users to initiate activities by dragging
+a control and dropping it on another control. It provides a simple
+way to make applications graphical and easy to use. For example,
+in a manufacturing application you might allow the user to pick
+parts from a bin for an assembly by dragging a picture of the part
+and dropping it in the picture of the finished assembly.</p>
+<A NAME="TI1392"></A><p>Drag and drop involves at least two controls: the control
+that is being dragged (the <strong>drag control</strong>)
+and the control to which it is being dragged (the <strong>target</strong>).
+In PowerBuilder, all controls except drawing objects (lines, ovals,
+rectangles, and rounded rectangles) can be dragged.</p>
+<A NAME="TI1393"></A><h4>Automatic drag mode</h4>
+<A NAME="TI1394"></A><p>When a control is being dragged, it is in drag mode. You can
+define a control so that PowerBuilder puts it automatically in drag
+mode whenever a Clicked event occurs in the control, or you can
+write a script to put a control into drag mode when an event occurs
+in the window or the application.</p>
+<A NAME="TI1395"></A><h4>Drag icons</h4>
+<A NAME="TI1396"></A><p>When you define the style for a draggable object in the Window
+painter, you can specify a drag icon for the control. The drag icon
+displays when the control is dragged over a valid drop area (an
+area in which the control can be dropped). If you do not specify
+a drag icon, a rectangle the size of the control displays.</p>
+<A NAME="TI1397"></A><h4>Drag events</h4>
+<A NAME="TI1398"></A><p>Window objects and all controls except drawing objects have
+events that occur when they are the drag target. When a dragged
+control is within the target or dropped on the target, these events
+can trigger scripts. The scripts determine the activity that is
+performed when the drag control enters, is within, leaves, or is dropped
+on the target.</p>
+

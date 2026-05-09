@@ -1,0 +1,189 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About Web services </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp204.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp206.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABGAHJH"></A><h1>About Web services </h1>
+<A NAME="TI6195"></A><p>Web services allow you to use preexisting components (available
+on the Internet or on a local network) instead of writing new business
+logic to perform common tasks invoked by the applications that you
+develop. Web services originated when the Simple Object Access Protocol
+(SOAP) was introduced. SOAP leverages Extensible Markup Language
+(XML) and usually employs Hypertext Transfer Protocol (HTTP) as
+the transport. Invoking Web services through SOAP requires serialization
+and deserialization of datatypes, and the building and parsing of
+SOAP messages.</p>
+<A NAME="TI6196"></A><p>Part of the value of Web
+services comes from the Web Services Description Language (WSDL),
+which enables a service to be self-describing. WSDL defines an XML
+grammar for describing Web services as collections of communication
+endpoints capable of exchanging messages. WSDL service definitions
+provide documentation for distributed systems and serve as a recipe for
+automating the details involved in applications communication. </p>
+<A NAME="TI6197"></A><p>Web services that are described in WSDL files can be registered
+on a Universal Description, Discovery, and Integration (UDDI) Web
+site. You can search UDDI registry sites from PowerBuilder at design
+time and find the services you need for your application. </p>
+<A NAME="TI6198"></A><p>With SOAP, WSDL, and UDDI, using third-party components is
+easier because interfaces between applications become standardized
+across disparate platforms. </p>
+<A NAME="TI6199"></A><p>PowerBuilder supports the following Web services standards:<A NAME="TI6200"></A>
+<ul>
+<li class=fi>SOAP 1.1 or later</li>
+<li class=ds>WSDL 1.1 or later</li>
+<li class=ds>HTTP or HTTPS
+</li>
+</ul>
+</p>
+<A NAME="TI6201"></A><p>You can access Web services from a PowerScript target or a
+JSP target. For information on accessing Web services in JSP applications
+that you create with PowerBuilder, see the chapter on JSP targets
+in the<i> Working with JSP Targets</i>
+ book or the
+JSP page authoring topic in the online Help.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Producing a Web service</span> <A NAME="TI6202"></A>PowerBuilder
+provides tools for developing custom class (nonvisual) user objects
+and deploying them as <ABBR title = "e a server" >EAServer</ABBR> components
+and exposing them as Web services. You can deploy a component to
+an <ABBR title = "e a server" >EAServer</ABBR> host running on Windows
+and UNIX operating systems. For more information, see <A HREF="apptechp137.htm#CBBBFDAD">Chapter 24, "Building an <ABBR title = "e a server" >EAServer</ABBR> Component."</A></p>
+<A NAME="BABFHDDF"></A><h2>About building a Web services client</h2>
+<A NAME="TI6203"></A><p>A PowerBuilder application can act as a client consuming a
+Web service that is accessed through the Internet. Using SOAP and
+WSDL, a collection of functions published remotely as a single entity
+can become part of your PowerBuilder application. A Web service
+accepts and responds to requests sent by applications or other Web
+services.</p>
+<A NAME="TI6204"></A><p>Invoking Web services through SOAP requires serialization
+and deserialization of data types, and the building and parsing
+of XML-based SOAP messages. Using objects from an extension file
+or dynamic library that installs with PowerBuilder, the Web services
+client proxy performs these tasks for you&#8212;thereby eliminating
+the need to have extensive knowledge of the SOAP specification and
+schema, the XML Schema specification, or the WSDL specification
+and schema. </p>
+<A NAME="TI6205"></A><h2>Choosing a Web service engine</h2>
+<A NAME="TI6206"></A><p>PowerBuilder lets you choose between the .NET Web service
+engine and the EasySoap Web service engine to construct SOAP requests
+and parse the SOAP messages returned from a Web service. </p>
+<A NAME="TI6207"></A><h3>Using the .NET Web service engine</h3>
+<A NAME="TI6208"></A><h4>Generating a .NET assembly</h4>
+<A NAME="TI6209"></A><p>The .NET Web service engine
+supports the latest Web service standards. To use this engine, you
+must have the <i>wsdl.exe</i> Web service tool on
+the development machine. This tool is required to parse WSDL files
+and generate C# code for a .NET assembly. The <i>wsdl.exe</i> file
+installs with the .NET SDK. It is not required on deployment machines,
+although deployment machines must have the .NET Framework to consume
+a Web service that depends on the .NET Web service engine. </p>
+<A NAME="TI6210"></A><p>If you select the .NET Web service engine in the Web Service
+Proxy wizard, the wizard generates a .NET assembly (DLL) in addition
+to a proxy object. To use the Web service at runtime, you must deploy
+the wizard-generated DLL along with your application. </p>
+<A NAME="TI6211"></A><p>You can also select the .NET Web service engine in the Project
+painter for a new Web service proxy. If you select the .NET Web
+service engine on the Web Service tab of the Properties dialog box
+for the Web Service Proxy Generator, PowerBuilder attempts to generate
+an assembly DLL after you click Apply or OK. You cannot use the
+Properties dialog box to change the Web service engine for a proxy
+that you already generated with the Web Service Proxy wizard.</p>
+<A NAME="TI6212"></A><h4>Naming the DLL</h4>
+<A NAME="TI6213"></A><p>You can name the DLL generated by the Web Service Proxy wizard
+or by the Project painter in the Proxy Assembly Name text box. You
+do not need to include the DLL extension. The name of the wizard-generated
+assembly is <i>Web_service</i>.DLL, where <i>Web_service</i> is
+the name you provide in the Proxy Assembly Name field. If you do
+not provide a name, the assembly takes the name of the Web service
+to be consumed by the DLL. The assembly is generated in the current
+target directory.</p>
+<A NAME="TI6214"></A><h4>Deploying the DLL</h4>
+<A NAME="TI6215"></A><p>You must deploy the DLL created for your Web service project
+to the directory where you deploy the client executable. You must
+also copy the <i>Sybase.PowerBuilder.WebService.Runtime.dll</i> and
+the <i>Sybase.PowerBuilder.WebService.RuntimeRemoteLoader.dll</i> system assemblies
+to this directory..</p>
+<A NAME="TI6216"></A><h4>Extension objects</h4>
+<A NAME="TI6217"></A><p>Although you use the same SOAP connection and exception-handling
+objects for the .NET Web service engine as for the EasySoap Web
+service engine, the objects that reference the .NET Web service
+engine require a different extension file or library. </p>
+<A NAME="TI6218"></A><p>The methods available on the SoapConnection object depend
+on which extension file or library you are using and on which Web
+service engine you are using. The methods for a .NET Web service
+engine allows you to include security information in the SOAP client
+header. </p>
+<A NAME="TI6219"></A><p>For more information, see <A HREF="apptechp206.htm#BABEGFIJ">"Importing objects from an
+extension file."</A> </p>
+<A NAME="TI6220"></A><h3>Using the EasySoap Web service engine</h3>
+<A NAME="TI6221"></A><p>If you decide not to use
+the .NET SOAP engine, PowerBuilder uses the EasySoap Web service
+engine. Earlier releases of PowerBuilder supported the EasySoap
+Web service engine only. Unlike the .NET Web service engine, the EasySoap
+engine does not support the XML-type array datatype or
+header sections in SOAP message envelopes. The EasySoap Web service
+engine is retained for backward compatibility and for use with targets
+deployed to UNIX machines.</p>
+<A NAME="TI6222"></A><p>You set the Web service engine that you want to use on the
+first page of the Web Service Proxy Wizard or on the Web Service
+tab of the Property sheet for a Web service project. The Use .NET
+Engine check box is selected by default for new Web service projects.
+You must clear the check box if you are developing a Web service
+application that you intend to deploy to UNIX machines. </p>
+<A NAME="TI6223"></A><h2>Assigning firewall settings to access a Web service</h2>
+<A NAME="TI6224"></A><p>When you add a Web service at design time
+and your development machine is behind a firewall, you must assign
+proxy server settings to connect to the Internet. </p>
+<A NAME="TI6225"></A><p><A HREF="apptechp205.htm#BABFJHHE">Table 31-1</A> displays
+the design-time proxy server settings that you can enter on the
+Firewall Settings page of the PowerBuilder System Options dialog
+box. To enter runtime proxy server settings, you must use the <b>SoapConnection</b> <b>SetProxyServer</b> or
+the <b>SetProxyServerOptions</b> methods.</p>
+<A NAME="TI6226"></A><p>For information about the <b>SetProxyServer</b> or
+the <b>SetProxyServerOptions</b> methods, see the <i>PowerBuilder
+Extension Reference</i>
+ in the online Help.</p>
+<A NAME="BABFJHHE"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 31-1: Design-time firewall settings </caption>
+<tr><th  rowspan="1"  ><A NAME="TI6227"></A>Firewall setting</th>
+<th  rowspan="1"  ><A NAME="TI6228"></A>Description</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6229"></A>Proxy host</td>
+<td  rowspan="1"  ><A NAME="TI6230"></A>Name of the proxy server that you use
+to access Web pages</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6231"></A>Port</td>
+<td  rowspan="1"  ><A NAME="TI6232"></A>The port used for connecting to the proxy
+server</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6233"></A>User name</td>
+<td  rowspan="1"  ><A NAME="TI6234"></A>User name for accessing the proxy server</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6235"></A>Password</td>
+<td  rowspan="1"  ><A NAME="TI6236"></A>Password for the user accessing the proxy
+server</td>
+</tr>
+</table>
+<A NAME="TI6237"></A><p>PowerBuilder uses the values you enter for the proxy server
+settings only if you also select the Use Above Values as System
+Defaults check box on the Firewall Setting page. The type of engine
+you select for consuming a Web service can also affect the settings
+that PowerBuilder uses to connect to the Internet at design time. </p>
+<p><b>.NET Web service engine</b>   If the development machine is located behind a firewall but
+you do not select the Use Above Values as System Defaults check box,
+PowerBuilder attempts to connect to the Internet using settings
+entered in the Internet Options dialog box of the Internet Explorer
+browser. The selections you make on the Firewall Setting page have
+no effect if the development machine is not located behind a firewall. </p>
+<p><b>EasySoap Web service engine</b>   If you do not select the Use Above Values as System Defaults
+check box, PowerBuilder assumes that the development machine is
+not behind a firewall and makes no attempt to use settings from
+the Internet Options dialog box of the Internet Explorer browser.
+If you select the Use Above Values as System Defaults check box,
+but the development machine is not located behind a firewall, the
+Web service invocation can fail.</p>
+

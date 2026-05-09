@@ -1,0 +1,165 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Populating TreeViews</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp46.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp48.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CCJCGIJJ"></A><h1>Populating TreeViews</h1>
+<A NAME="TI1050"></A><p>You must write a script to add items to a TreeView. You cannot
+add items in the painter as with other list controls. Although you
+can populate all the levels of the TreeView at once, TreeView events
+allow you to populate only branches the user looks at, which saves
+unnecessary processing.</p>
+<A NAME="TI1051"></A><p>Typically, you populate the first level of the TreeView when
+the control is displayed. This code might be in a window's
+Open event, a user event triggered from the Open event, or the TreeView's
+Constructor event. Then a script for the control's ItemPopulate
+event would insert an item's children when the user chooses
+to expand it.</p>
+<A NAME="TI1052"></A><p>The ItemPopulate event is triggered when the user clicks on
+an item's plus button or double-clicks the item, but only
+if the item's Children property is <b>TRUE</b>.
+Therefore, when you insert an item that will have children, you
+must set its Children property to <b>TRUE</b> so that
+it can be populated with child items when the user expands it.</p>
+<A NAME="TI1053"></A><p>You are not restricted to adding items in the ItemPopulate
+event. For example, you might let the user insert items by dragging
+from a ListBox or filling in a text box.</p>
+<A NAME="TI1054"></A><h2>Functions for inserting items</h2>
+<A NAME="TI1055"></A><p>There are several functions for adding items to a TreeView
+control, as shown in <A HREF="apptechp47.htm#CJGCDIIB">Table 8-2</A>.</p>
+<A NAME="CJGCDIIB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 8-2: Functions for adding items to
+TreeView control</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1056"></A>This
+function</th>
+<th  rowspan="1"  ><A NAME="TI1057"></A>Adds an item here</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1058"></A><b>InsertItem</b></td>
+<td  rowspan="1"  ><A NAME="TI1059"></A>After a sibling item for the specified
+parent.<A NAME="TI1060"></A><p>If no siblings exist, you must use one of the other insertion functions.</p></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1061"></A><b>InsertItemFirst</b></td>
+<td  rowspan="1"  ><A NAME="TI1062"></A>First child of the parent item.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1063"></A><b>InsertItemLast</b></td>
+<td  rowspan="1"  ><A NAME="TI1064"></A>Last child of the parent item.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1065"></A><b>InsertItemSort</b></td>
+<td  rowspan="1"  ><A NAME="TI1066"></A>As a child of the parent item in alphabetic
+order, if possible.</td>
+</tr>
+</table>
+<A NAME="TI1067"></A><p>For all the <b>InsertItem</b> functions, the SortType
+property can also affect the position of the added item.</p>
+<A NAME="TI1068"></A><p>There are two ways to supply information about the item you
+add, depending on the item properties that need to be set. </p>
+<A NAME="TI1069"></A><h4>Method 1: specifying the label and picture index
+only</h4>
+<A NAME="TI1070"></A><p>You can add an item by supplying the picture index and label.
+All the other properties of the item will have default values. You
+can set additional properties later as needed, using the item's
+handle.</p>
+<p><b>Example</b>   This example inserts a new item after the currently selected
+item on the same level as that item. First it gets the handles of
+the currently selected item and its parent, and then it inserts
+an item labeled <b>Hindemith</b> after the currently
+selected item. The item's picture index is 2:</p>
+<A NAME="TI1071"></A><p><p><PRE> long ll_tvi, ll_tvparent<br> <br>ll_tvi = tv_list.FindItem(CurrentTreeItem!, 0)<br>ll_tvparent = tv_list.FindItem(ParentTreeItem!, &amp;<br>   ll_tvi)<br>tv_list.<i>InsertItem</i>(ll_tvparent, ll_tvi, &amp;<br>   "Hindemith", 2)</PRE></p>
+<A NAME="TI1072"></A><h4>Method 2: setting item properties in a TreeViewItem structure</h4>
+<A NAME="TI1073"></A><p>You can add items by supplying a TreeViewItem structure with
+properties set to specific values. The only required property is
+a label. Properties you might set are shown in <A HREF="apptechp47.htm#CJGFJEJA">Table 8-3</A>.</p>
+<A NAME="CJGFJEJA"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 8-3: TreeViewItem properties</caption>
+<tr><th  rowspan="1"  ><A NAME="TI1074"></A>Property</th>
+<th  rowspan="1"  ><A NAME="TI1075"></A>Value</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1076"></A>Label</td>
+<td  rowspan="1"  ><A NAME="TI1077"></A>The text that is displayed for the item.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1078"></A>PictureIndex</td>
+<td  rowspan="1"  ><A NAME="TI1079"></A>A value from the regular picture list.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1080"></A>SelectedPictureIndex</td>
+<td  rowspan="1"  ><A NAME="TI1081"></A>A value from the regular picture list,
+specifying a picture that is displayed only when the item is selected.
+If 0, no picture is displayed for the item when selected.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1082"></A>StatePictureIndex</td>
+<td  rowspan="1"  ><A NAME="TI1083"></A>A value from the State picture list.
+The picture is displayed to the left of the regular picture.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1084"></A>Children</td>
+<td  rowspan="1"  ><A NAME="TI1085"></A>Must be <b>TRUE</b> if you
+want double-clicking to trigger the ItemPopulate event. That event
+script can insert child items.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI1086"></A>Data</td>
+<td  rowspan="1"  ><A NAME="TI1087"></A>An optional value of any datatype that
+you want to associate with the item. You might use the value to
+control sorting or to make a database query.</td>
+</tr>
+</table>
+<p><b>Example</b>   This example sets all these properties in a TreeViewItem structure before
+adding the item to the TreeView control. The item is inserted as
+a child of the current item:</p>
+<A NAME="TI1088"></A><p><p><PRE> treeviewitem tvi<br>long h_item = 0, h_parent = 0<br> <br>h_parent = tv_1.FindItem(CurrentTreeItem!, 0)<br>tvi.Label = "Choral"<br>tvi.PictureIndex = 1<br>tvi.SelectedPictureIndex = 2<br>tvi.Children = true<br>tvi.StatePictureIndex = 0<br>h_item = tv_1.InsertItemSort(h_parent, tvi)</PRE></p>
+<A NAME="TI1089"></A><p>For more information about inserting items
+into a TreeView control, see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI1090"></A><h2>Inserting items at the root level</h2>
+<A NAME="TI1091"></A><p>The very first item you insert does not have any sibling for
+specifying a relative position, so you cannot use the <b>InsertItem</b> function&#8212;you
+must use <b>InsertItemFirst</b> or <b>InsertItemLast</b>.
+For an item inserted at the root level, you specify 0 as its parent.</p>
+<A NAME="TI1092"></A><p>This sample code is in a user event triggered from the Open
+event of the window containing the TreeView. It assumes two instance
+variable arrays:<A NAME="TI1093"></A>
+<ul>
+<li class=fi>A string array called <b>item_label</b> that
+contains labels for all the items that will be inserted at the root
+level (here composer names) </li>
+<li class=ds>An integer array that has values for the Data property
+(the century for each composer); the century value is for user-defined
+sorting:<p><PRE> int ct<br>long h_item = 0<br>treeviewitem tvi<br> <br>FOR ct = 1 TO UpperBound(item_label)<br>      tvi.Label = item_label[ct]<br>      tvi.Data = item_data[ct]<br>      tvi.PictureIndex = 1<br>      tvi.SelectedPictureIndex = 2<br>      tvi.Children = TRUE<br>      tvi.StatePictureIndex = 0<br>      tvi.DropHighlighted = TRUE<br>      h_item = tv_1.InsertItemSort(0, tvi)<br>NEXT</PRE>
+</li>
+</ul>
+</p>
+<A NAME="TI1094"></A><p>After inserting all the items, this code scrolls the TreeView
+back to the top and makes the first item current:<p><PRE> // Scroll back to top<br>h_item = tv_1.FindItem(RootTreeItem!, 0)<br>tv_1.SetFirstVisible(h_item)<br>tv_1.SelectItem(h_item)</PRE></p>
+<A NAME="TI1095"></A><h2>Inserting items below the root level</h2>
+<A NAME="TI1096"></A><p>The first time a user tries to expand an item to see its children,
+PowerBuilder triggers the ItemPopulate event <i>if and only
+if</i> the value of the item's Children property
+is <b>TRUE</b>. In the ItemPopulate event, you can add
+child items for the item being expanded.</p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Parent item's Children property</span> <A NAME="TI1097"></A>If the ItemPopulate event does not occur when you expect,
+make sure the Children property for the expanding item is <b>TRUE</b>.
+It should be set to <b>TRUE</b> for any item that will
+have children.</p>
+<p><b>Inserting items not restricted to the ItemPopulate
+event</b>   The ItemPopulate event helps you design an efficient program.
+It will not populate an item that the user never looks at. However,
+you do not have to wait until the user wants to view an item's
+children. You can add children in any script, just as you added
+items at the root level.</p>
+<A NAME="TI1098"></A><p>For example, you might fully populate a small TreeView when
+its window opens and use the <b>ExpandAll</b> function
+to display its items fully expanded.</p>
+<p><b>Has an item been populated?</b>   You can check an item's ExpandedOnce property to
+find out if the user has looked at the item's children.
+If the user is currently looking at an item's children,
+the Expanded property is also <b>TRUE</b>.</p>
+<p><b>Example</b>   This TreeView lists composers and their music organized into categories.
+The script for its ItemPopulate event checks whether the item being expanded
+is at level 1 (a composer) or level 2 (a category). Level 3 items
+are not expandable. </p>
+<A NAME="TI1099"></A><p>For a level 1 item, the script adds three standard categories.
+For a level 2 item, it adds pieces of music to the category being
+expanded, in this pattern:<p><PRE> Mozart<br>   Orchestral<br>      Symphony No. 33<br>      Overture to the Magic Flute<br>   Chamber<br>      Quintet in Eb for Horn and Strings<br>      Eine Kleine Nachtmusik<br>   Vocal<br>      Don Giovanni<br>      Idomeneo</PRE></p>
+<A NAME="TI1100"></A><p>This is the script for ItemPopulate:<p><PRE> TreeViewItem tvi_current, tvi_child, tvi_root<br>long hdl_root<br>Integer ct<br>string categ[]<br> <br>// The current item is the parent for the new itemsThis.GetItem(handle, tvi_current)<br> <br>IF tvi_current.Level = 1 THEN<br>   // Populate level 2 with some standard categories<br>   categ[1] = "Orchestral"<br>   categ[2] = "Chamber"<br>   categ[3] = "Vocal"<br> <br>      tvi_child.StatePictureIndex = 0<br>   tvi_child.PictureIndex = 3<br>   tvi_child.SelectedPictureIndex = 4<br>   tvi_child.OverlayPictureIndex = 0<br>   tvi_child.Children = TRUE<br> <br>   FOR ct = 1 to UpperBound(categ)<br>      tvi_child.Label = categ[ct]<br>      This.InsertItemLast(handle, tvi_child)<br>   NEXT<br>END IF<br> <br>// Populate level 3 with music titles<br>IF tvi_current.Level = 2 THEN<br> <br>   // Get parent of current item - it's the root of<br>   // this branch and is part of the key for choosing<br>   // the children<br> <br>   hdl_root = This.FindItem(ParentTreeItem!, handle)<br>   This.GetItem(hdl_root, tvi_root) <br> <br>   FOR ct = 1 to 4<br>      // This statement constructs a label -<br>      // it is more realistic to look up data in a<br>      // table or database or accept user input   <br>      This.InsertItemLast(handle, &amp;<br>      tvi_root.Label + " Music " &amp;<br>      + tvi_current.Label + String(ct), 3)<br>   NEXT<br>END IF</PRE></p>
+

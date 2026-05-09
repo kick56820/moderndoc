@@ -1,0 +1,67 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Providing online Help for users </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp62.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp64.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF299522464"></A><h1>Providing online Help for users </h1>
+<A NAME="TI1482"></A><h4>Two ways to call Help from an application</h4>
+<A NAME="TI1483"></A><p>PowerBuilder provides two principal ways of calling an online
+Help file from a PowerBuilder application:</p>
+<A NAME="TI1484"></A><p><A NAME="TI1485"></A>
+<ul>
+<li class=fi>Use the <b>ShowHelp</b> and <b>ShowPopupHelp</b> PowerScript
+functions in your application scripts to call Help topics.</li>
+<li class=ds>Declare the WinHelp API as an external function
+and use the <b>WinHelp</b> function in your application
+scripts to call Help topics.
+</li>
+</ul>
+</p>
+<A NAME="TI1486"></A><h4>Using ShowHelp</h4>
+<A NAME="TI1487"></A><p><b>ShowHelp</b> is simpler to implement than the
+WinHelp API. You can use the <b>ShowHelp</b> PowerScript
+function to search for Help topics by Help context ID, by keyword,
+and by accessing the Help file Contents topic (the topic defined
+in the project file as the Help Contents topic). <b>ShowHelp</b> can
+also be used with compiled HTML (<i>.chm</i>) files.</p>
+<A NAME="TI1488"></A><p><b>ShowPopupHelp</b> displays pop-up help for
+a control. Typically, you use <b>ShowPopupHelp</b> in
+the Help event of a response window with the Context Help property
+enabled. Events relating to movement of the cursor over a control
+or to the dragging of a control or object are also logical places
+for a <b>ShowPopupHelp</b> call. </p>
+<A NAME="TI1489"></A><p>For more information on the <b>ShowHelp</b> and <b>ShowPopupHelp</b> functions
+as well as the Help event, see the <i>PowerScript Reference</i>
+.</p>
+<A NAME="TI1490"></A><h4>Using the WinHelp API</h4>
+<A NAME="TI1491"></A><p>Declaring and using the WinHelp API allows access to the full
+range of WinHelp functions, many of which are not available in <b>ShowHelp</b>.
+For example, using the <b>WinHelp</b> function, you
+can easily specify a window type or window name in which to present
+a Help topic. </p>
+<A NAME="TI1492"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To declare the WinHelp API as an external function:</p>
+<ol><li class=fi><p>Select Declare&gt;Global External
+Functions from the menu bar of any painter that accesses the Script
+view.</p></li>
+<li class=ds><p>Enter the function declaration in the text box
+and click OK. </p><p>This example declares the WinHelp API:<p><PRE> FUNCTION boolean WinHelpW(long hWndMain, &amp;</PRE><PRE>             string lpszHelp, long uCommand, &amp;</PRE><PRE>             long dwData) &amp;</PRE><PRE> LIBRARY "USER32.DLL"</PRE></p></li></ol>
+<br><A NAME="TI1493"></A><p>For more information about the WinHelp API,
+see the online Help for the Microsoft Help Workshop or the documentation
+for your Help authoring tool. For more information about declaring
+and using global external functions, see the <i>PowerScript
+Reference</i>
+ and <A HREF="apptechp129.htm#X-REF299420549">"Using external functions"</A>.</p>
+<A NAME="TI1494"></A><A NAME="TI1495"></A><p>This part presents a collection of techniques you can
+use to implement data access features in the applications you develop
+with PowerBuilder. It includes using Transaction objects, XML processing,
+graphs, rich text, and piping of data between data sources. The
+use of DataWindow objects and DataStores for data access is described
+in the <i>DataWindow Programmer's Guide</i>
+.</p>
+

@@ -1,0 +1,89 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About windows </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp84.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp86.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF298578341"></A><h1>About windows </h1>
+<A NAME="TI2260"></A><p>Windows form the interface between the user and a PowerBuilder application.
+Windows can display information, request information from a user,
+and respond to the user's mouse or keyboard actions.</p>
+<A NAME="TI2261"></A><p>A window consists of:</p>
+<A NAME="TI2262"></A><p><A NAME="TI2263"></A>
+<ul>
+<li class=fi>Properties that define
+the window's appearance and behavior<br>
+For example, a window might have a title bar or a minimize
+box.<br></li>
+<li class=ds>Events<br>
+Windows have events like other PowerBuilder objects.<br></li>
+<li class=ds>Controls placed in the window
+</li>
+</ul>
+</p>
+<A NAME="TI2264"></A><h4>At the window level</h4>
+<A NAME="TI2265"></A><p>When you create a window, you specify its properties in the
+Window painter's Properties view. You can also dynamically
+change window properties in scripts during execution. </p>
+<A NAME="TI2266"></A><p>You can write scripts for window events that specify what
+happens when a window is manipulated. For example, you can connect
+to a database when a window is opened by coding the appropriate
+statements in the script for the window's Open event.</p>
+<A NAME="TI2267"></A><h4>At the control level</h4>
+<A NAME="TI2268"></A><p>You place PowerBuilder controls, such as CheckBox, CommandButton,
+or MultiLineEdit controls, in the window to request and receive
+information from the user and to present information to the user. </p>
+<A NAME="TI2269"></A><p>After you place a control in the window, you can define the
+style of the control, move and resize it, and build scripts to determine
+how the control responds to events.</p>
+<A NAME="TI2270"></A><h2>Designing windows</h2>
+<A NAME="TI2271"></A><p>The Microsoft Windows operating environment has certain standards
+that graphical applications are expected to conform to. Windows,
+menus, and controls are supposed to look and behave in predictable
+ways from application to application.</p>
+<A NAME="TI2272"></A><p>This chapter describes some of the guidelines
+you should follow when designing windows and applications, but a
+full discussion is beyond the scope of this book. You should acquire
+a book that specifically addresses design guidelines for applications
+on the Windows platform and apply the rules when you use PowerBuilder
+to create your application. </p>
+<A NAME="TI2273"></A><h2>Building windows</h2>
+<A NAME="TI2274"></A><p>When you build a window, you:</p>
+<A NAME="TI2275"></A><p><A NAME="TI2276"></A>
+<ul>
+<li class=fi>Specify the appearance
+and behavior of the window by setting its properties</li>
+<li class=ds>Add controls to the window</li>
+<li class=ds>Build scripts that determine how to respond to events
+in the window and its controls<br>
+To support these scripts, you can define new events for the
+window and its controls, and declare functions, structures, and
+variables for the window.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI2277"></A><h4>Two ways</h4>
+<A NAME="TI2278"></A><p>There are two ways to build a window. You can:</p>
+<A NAME="TI2279"></A><p><A NAME="TI2280"></A>
+<ul>
+<li class=fi>Build a new window
+from scratch<br>
+You use this technique to create windows that are not based
+on existing windows.<br></li>
+<li class=ds>Build a window that inherits its style, events,
+functions, structures, variables, and scripts from an existing window<br>
+You use inheritance to create windows that are derived from
+existing windows, thereby saving you time and coding.<br>
+</li>
+</ul>
+</p>
+<A NAME="TI2281"></A><h4>For more information</h4>
+<A NAME="TI2282"></A><p>For information on building windows from scratch, see <A HREF="pbugp88.htm#X-REF361718469">"Building a new window"</A>.</p>
+<A NAME="TI2283"></A><p>For information on using inheritance to build a window, see <A HREF="pbugp92.htm#CFHBDDIF">"Using inheritance to build
+a window "</A>.</p>
+

@@ -1,0 +1,119 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+About user events </TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp75.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp77.htm" >Next</A>
+<!-- End Header -->
+<A NAME="X-REF356024905"></A><h1>About user events </h1>
+<A NAME="TI2122"></A><p>Windows, user objects, controls, menus, and Application objects
+each have a predefined set of events. In most cases, the predefined
+events are all you need, but there are times when you want to declare
+your own user event. You can use predefined event IDs to trigger
+a user event, or you can trigger it exclusively from within your
+application scripts.</p>
+<A NAME="TI2123"></A><p>Features that you might want to add to your application by
+creating user events include keystroke processing, providing multiple
+ways to perform a task, and communication between a user object
+and a window.</p>
+<A NAME="TI2124"></A><h4>Keystroke processing</h4>
+<A NAME="TI2125"></A><p>Suppose that you want to modify the way keystrokes are processed
+in your application. For example, in a DataWindow control, you want
+the user to be able to press the Down Arrow and Up Arrow keys to
+scroll among radio buttons in a DataWindow column. Normally, pressing
+these keys moves the focus to the next or preceding row.</p>
+<A NAME="TI2126"></A><p>To do this, you define user events corresponding to Windows
+events that PowerBuilder does not define.</p>
+<A NAME="TI2127"></A><h4>Multiple methods</h4>
+<A NAME="TI2128"></A><p>Suppose that you want to provide several ways to accomplish
+a certain task within a window. For example, you want the user to
+be able to update the database by either clicking a button or selecting
+a menu item. In addition, you want to provide the option of updating
+the database when the user closes the window. </p>
+<A NAME="TI2129"></A><p>To do this, you define a user event to update the database. </p>
+<A NAME="TI2130"></A><h4>Communication between user object and window</h4>
+<A NAME="TI2131"></A><p>Suppose that you have placed a custom visual user object in
+a window and need to communicate between the user object and the
+window. For information, see <A HREF="pbugp130.htm#CAHCAHDE">"Communicating between a
+window and a user object "</A>.</p>
+<A NAME="X-REF351171362"></A><h2>User events and event IDs</h2>
+<A NAME="TI2132"></A><p>An event ID connects events related to user actions or system
+activity to a system message. PowerBuilder defines (or maps) events
+to commonly used event IDs, and when it receives a system message,
+it uses the mapped event ID to trigger an event. </p>
+<A NAME="TI2133"></A><p>User-defined events do not have to be mapped to an event ID.
+See <A HREF="pbugp77.htm#X-REF345206685">"Defining user events "</A>.</p>
+<A NAME="TI2134"></A><h3>Event ID names</h3>
+<A NAME="TI2135"></A><p>The PowerBuilder naming convention for user event IDs is similar
+to the convention Windows uses to name messages. All PowerBuilder
+event IDs begin with <b>pbm_</b>. </p>
+<A NAME="TI2136"></A><h4>Event IDs associated with Windows messages</h4>
+<A NAME="TI2137"></A><p>Several Windows messages and notifications map to PowerBuilder
+event IDs. </p>
+<A NAME="TI2138"></A><p>For Windows messages that begin with <b>wm_</b>,
+the PowerBuilder event ID typically has the same name with <b>pbm_</b> substituted
+for <b>wm_</b>. For messages from controls,
+the PowerBuilder event ID typically has the same name but begins with <b>pbm_</b> and
+has the Windows prefix for the control added to the message name.
+For example:<A NAME="TI2139"></A>
+<ul>
+<li class=fi><b>wm_keydown</b> maps
+to <b>pbm_keydown</b></li>
+<li class=ds><b>bm_getcheck</b> (a button
+control message) maps to <b>pbm_bmgetcheck</b></li>
+<li class=ds><b>bn_clicked</b> (a button
+control notification message) maps to <b>pbm_bnclicked</b>
+</li>
+</ul>
+</p>
+<A NAME="TI2140"></A><p>To see a list of event IDs to which you can
+map a user-defined event, select Insert&gt;Event and display
+the Event ID drop-down list in the Prototype window that displays.</p>
+<A NAME="TI2141"></A><p>Windows messages that are not mapped to a
+PowerBuilder event ID map to the <b>pbm_other</b> event
+ID. The PowerBuilder Message object is populated with information
+about system events that are not mapped to PowerBuilder event IDs.
+For more information about the Message object, see <i>Objects
+and Controls</i>
+ or <i>Application Techniques</i>
+.</p>
+<A NAME="TI2142"></A><p>For more information about Windows messages
+and notifications, see the information about Windows controls and
+Windows management in the section on user interface design and development
+in the <A HREF="http://msdn.microsoft.com/library/default.asp">Microsoft MSDN Library</A>
+.</p>
+<A NAME="TI2143"></A><h4>Event IDs associated with PowerBuilder events</h4>
+<A NAME="TI2144"></A><p>PowerBuilder has its own events, each of which has an event
+ID. For example, the PowerBuilder event DragDrop has the event ID <b>pbm_dragdrop</b>.
+The event name and event ID of the predefined PowerBuilder events
+are protected; they cannot be modified. The event IDs for predefined
+events are shown in the Event List view:</p>
+<br><img src="images/ue01.gif">
+<A NAME="X-REF298910986"></A><h4>Custom event IDs</h4>
+<A NAME="TI2145"></A><p>The list of event IDs that displays in the Event ID drop-down
+list in the Prototype window includes custom event IDs. Custom user
+events can be mapped from Windows <b>wm_user</b> message
+numbers to <b>pbm_custom</b><i>xx</i> event IDs. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Obsolete technique</span> <A NAME="TI2146"></A><i>This technique is not recommended and is considered
+to be obsolete. </i>The ability to use this technique has
+been retained for backward compatibility. If you do not want to
+map a user event to a named <b>pbm_</b> code,
+use an unmapped user event as described in <A HREF="pbugp77.htm#CHDBCEAI">"Unmapped user events"</A>.</p>
+<A NAME="TI2147"></A><p>These event IDs were intended for use with DataWindow controls,
+windows, and user objects other than standard visual user objects,
+which behave like the built-in controls they inherit from. They
+were not intended for use with standard controls. </p>
+<A NAME="TI2148"></A><p>Defining custom user events for standard controls can cause
+unexpected behavior because all standard controls respond to standard
+events in the range 0 to 1023. Most controls also define their own
+range of custom events beyond 1023, corresponding to <b>wm_user</b> messages,
+and some controls have custom events that overlap with the PowerBuilder
+custom events. The <b>pbm_custom01</b> event
+ID maps to <b>wm_user+0</b>, <b>pbm_custom02</b> maps
+to <b>wm_user+1</b>, and so on, through <b>pbm_custom75</b>,
+which maps to <b>wm_user+74</b>.</p>
+

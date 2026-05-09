@@ -1,0 +1,90 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Using stored procedures to update the database</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="pbugp186.htm">Previous</A>&nbsp;&nbsp;<A HREF="pbugp188.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABCDFEGJ"></A><h1>Using stored procedures to update the database</h1>
+<A NAME="TI6017"></A><p>Updates to the database can be performed using stored procedures. </p>
+<A NAME="TI6018"></A><h4>Why use stored procedures?</h4>
+<A NAME="TI6019"></A><p>The DataWindow control submits updates to the database by
+dynamically generating <b>INSERT</b>, <b>DELETE</b>,
+and <b>UPDATE</b> <ACRONYM title = "sequel" >SQL</ACRONYM> statements
+after determining the status of each row in the DataWindow object.
+You can also define procedural <ACRONYM title = "sequel" >SQL</ACRONYM> statements
+in a stored procedure for use by all applications accessing a database.
+Using stored procedures to perform database updates allows you to
+enhance database security, integrity, and performance. Since stored
+procedures provide for conditional execution, you can also use them
+to enforce additional business rules. </p>
+<A NAME="TI6020"></A><h4>Updating using stored procedures</h4>
+<A NAME="TI6021"></A><p>The Stored Procedure Update dialog box only allows you to
+associate an existing stored procedure with your DataWindow object.
+The stored procedure must have been previously defined in the database.</p>
+<br><img src="images/sp.gif">
+<A NAME="TI6022"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To use stored procedures to update the database</p>
+<ol><li class=fi><p>In the DataWindow painter, select Rows&gt;Stored
+Procedure Update to display the Stored Procedure Update dialog box.</p></li>
+<li class=ds><p>Select the tab for the <ACRONYM title = "sequel" >SQL</ACRONYM> update
+method (Delete, Insert, or Update) with which you want to associate
+a stored procedure. </p></li>
+<li class=ds><p>Click the Procedure button, select the stored
+procedure you want to have execute when the <ACRONYM title = "sequel" >SQL</ACRONYM> update
+method is generated, and click OK.</p><p>The parameters used in the stored procedure are displayed
+in the Argument Name list in the order in which they are defined
+in the procedure. Column Name lists the columns used in your DataWindow
+object. </p></li>
+<li class=ds><p>Associate a column in the DataWindow object or
+an expression with a procedure parameter. </p><p>If a stored procedure uses parameters that are not matched
+to column names, you can substitute the value from a DataWindow
+object computed field or expression.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Matching a column to a procedure parameter</span> <A NAME="TI6023"></A>You must be careful to correctly match a column in the DataWindow object
+to a procedure parameter, since PowerBuilder is able to verify only that
+datatypes match. </p>
+</li>
+<li class=ds><p>If the parameter is to receive a column value,
+indicate whether the parameter will receive the updated column value
+entered through the DataWindow object or retain the original column
+value from the database.</p><p>Typically, you select Use Original when the parameter is used
+in a <b>WHERE</b> clause in an <b>UPDATE</b> or <b>DELETE</b> <ACRONYM title = "sequel" >SQL</ACRONYM> statement. If you do not select
+Use Original, the parameter will use the new value entered for that
+column. Typically, you would use the new value when the parameter
+is used in an <b>INSERT</b> or <b>UPDATE</b> <ACRONYM title = "sequel" >SQL</ACRONYM> statement.</p></li></ol>
+<br><A NAME="TI6024"></A><h4>What happens when the stored procedure is executed</h4>
+<A NAME="TI6025"></A><p>The stored procedure you associate with a <ACRONYM title = "sequel" >SQL</ACRONYM> update method in the Stored Procedure
+Update dialog box is executed when the DataWindow control calls the <b>Update</b> method.
+The DataWindow control examines the table in the DataWindow object,
+determines the appropriate <ACRONYM title = "sequel" >SQL</ACRONYM> statement
+for each row, and submits the appropriate stored procedure (as defined
+in the Stored Procedure Update dialog box) with the appropriate
+column values substituted for the procedure arguments. </p>
+<A NAME="TI6026"></A><p>If a stored procedure for a particular <ACRONYM title = "sequel" >SQL</ACRONYM> update
+method is not defined, the DataWindow control submits the appropriate <ACRONYM title = "sequel" >SQL</ACRONYM> syntax in the same manner it
+always has. </p>
+<A NAME="TI6027"></A><p>Return values from procedures cannot be handled by the DataWindow
+control. The <b>Update</b> method returns 1 if it succeeds
+and -1 if an error occurs. Additional information is returned to <ACRONYM title = "sequel c a" >SQLCA</ACRONYM>. </p>
+<A NAME="TI6028"></A><h4>Using Describe and Modify </h4>
+<A NAME="TI6029"></A><p>You can use the DataWindow <b>Describe</b> and <b>Modify</b> methods
+to access DataWindow property values including the stored procedures
+associated with a DataWindow object. For information, see the DataWindow
+object property Table.property in the <i>DataWindow Reference</i>
+. </p>
+<A NAME="TI6030"></A><h4>Restrictions on the use of Modify</h4>
+<A NAME="TI6031"></A><p>Since a database driver can only report stored procedure names
+and parameter names and position, it cannot verify that changes
+made to stored procedures are valid. Consequently, if you use <b>Modify</b> to
+change a stored procedure, be careful that you do not inadvertently
+introduce changes into the database. </p>
+<A NAME="TI6032"></A><p>In addition, using <b>Modify</b> to enable a DataWindow
+object to use stored procedures to update the database when it is
+not already using stored procedures requires that the type qualifier
+be specified first. Calling the type qualifier ensures that internal
+structures are built before subsequent calls to <b>Modify</b>.
+If a new method or method arguments are specified without a preceding definition
+of type, <b>Modify</b> fails.</p>
+

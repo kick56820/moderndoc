@@ -1,0 +1,117 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Defining and managing tab pages</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp41.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp43.htm" >Next</A>
+<!-- End Header -->
+<A NAME="CHDDCAJJ"></A><h1>Defining and managing tab pages</h1>
+<A NAME="TI838"></A><p>A tab page is a user object. </p>
+<A NAME="TI839"></A><h4>Two methods</h4>
+<A NAME="TI840"></A><p>There are different ways to approach tab page definition.
+You can define: </p>
+<A NAME="TI841"></A><p><A NAME="TI842"></A>
+<ul>
+<li class=fi><b>An embedded
+tab page</b>   In the painter, insert tab pages in the Tab control and add
+controls to those pages. An embedded tab page is of class UserObject,
+but is not reusable.</li>
+<li class=ds><b>An independent user object</b>   In the User Object painter, create a custom visual user object
+and add the controls that will display on the tab page. You can
+use the user object as a tab page in a Tab control, either in the painter
+or by calling OpenTab in a script. A tab page defined as an independent
+user object is reusable.
+</li>
+</ul>
+</p>
+<A NAME="TI843"></A><p>You can mix and match the two methods&#8212;one Tab control
+can contain both embedded tab pages and independent user objects.</p>
+<A NAME="TI844"></A><h4>Creating tab pages</h4>
+<A NAME="TI845"></A><p>When you create a new Tab control, it has one embedded tab
+page. You can use that tab page or you can delete it.</p>
+<A NAME="TI846"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To create a new tab page within the Tab control:</p>
+<ol><li class=fi><p>Right-click in the tab area of the Tab
+control. Do not click a tab page.</p></li>
+<li class=ds><p>Select Insert TabPage from the pop-up menu.</p></li>
+<li class=ds><p>Add controls to the new page.</p></li></ol>
+<br><A NAME="TI847"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To define a tab page independent of a Tab control:</p>
+<ol><li class=fi><p>Select Custom Visual on the Object tab
+in the New dialog box.</p></li>
+<li class=ds><p>In the User Object painter, size the user object
+to match the size of the display area of the Tab control in which
+you will use it.</p></li>
+<li class=ds><p>Add the controls that will appear on the tab page
+to the user object and write scripts for their events.</p></li>
+<li class=ds><p>On the user object's property sheet,
+click the TabPage tab and fill in information to be used by the
+tab page.</p></li></ol>
+<br><A NAME="TI848"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a tab page that exists as an independent
+user object to a Tab control:</p>
+<ol><li class=fi><p>Right-click in the tab area of the Tab
+control. Do not click a tab page.</p></li>
+<li class=ds><p>Select Insert User Object from the pop-up menu.</p></li>
+<li class=ds><p>Select a user object.</p><p>The tab page is inherited from the user object you select.
+You can set tab page properties and write scripts for the inherited
+user object just as you do for tab pages defined within the Tab
+control.</p><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Editing the controls on the tab page user object</span> <A NAME="TI849"></A>You cannot edit the content of the user object within the
+Tab control. If you want to edit or write scripts for the controls,
+close the window or user object containing the Tab control and go
+back to the User Object painter to make changes. </p>
+</li></ol>
+<br><A NAME="TI850"></A><h4>Managing tab pages</h4>
+<A NAME="TI851"></A><p>You can view, reorder, and delete the tab pages on a Tab control.</p>
+<A NAME="TI852"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To view a different tab page:</p>
+<ol><li class=fi><p>Click the page's tab.</p><p>The tab page comes to the front and becomes the active tab
+page. The tabs are rearranged according to the Tab position setting
+you have chosen.</p></li></ol>
+<br><A NAME="TI853"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To reorder the tabs within a Tab control:</p>
+<ol><li class=fi><p>Click the Page Order tab on the Tab control's
+property sheet.</p></li>
+<li class=ds><p>Drag the names of the tab pages to the desired
+order.</p></li></ol>
+<br><A NAME="TI854"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To delete a tab page from a Tab control:</p>
+<ol><li class=fi><p>Click the page's tab.</p></li>
+<li class=ds><p>Right-click the tab page and select Cut or Clear
+from the pop-up menu.</p></li></ol>
+<br><p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Selecting tab controls and tab pages</span> <A NAME="TI855"></A>As you click on various areas within a tab control, you will
+notice the Properties view changing to show the properties of the
+tab control itself, one of the tab pages, or a control on a tab
+page. Before you select an item such as Cut from the pop-up menu,
+make sure that you have selected the right object. </p>
+<A NAME="TI856"></A>Clicking anywhere in the tab area of a tab control selects
+the tab control. When you click the tab for a specific page, that
+tab page becomes active, but the selected object is still the tab
+control. To select the tab page, click its tab to make it active
+and then click anywhere on the background of the page except on
+the tab itself.</p>
+<A NAME="TI857"></A><h4>Controls on tab pages</h4>
+<A NAME="TI858"></A><p>The real purpose of a Tab control is to display other controls
+on its pages. You can think of the tab page as a miniature window.
+You add controls to it just as you do to a window.</p>
+<A NAME="TI859"></A><p>When you are working on a Tab control, you can add controls
+only to a tab page created within the Tab control. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Adding controls to an independent user object tab page</span> <A NAME="TI860"></A>To add controls to an independent user object tab page, open
+it in the User Object painter. </p>
+<A NAME="TI861"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a control to an embedded tab page:</p>
+<ol><li class=fi><p>Choose a control from the toolbar or the
+Insert menu and click the tab page, just as you do to add a control
+to a window.</p><p>When you click inside the tab page, the tab page becomes the
+control's parent.</p></li></ol>
+<br><A NAME="TI862"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To move a control from one tab page to another:</p>
+<ol><li class=fi><p>Cut or copy the control and paste it on
+the destination tab page.</p></li></ol>
+<br><A NAME="TI863"></A><p>The source and destination tab pages must both be embedded
+tab pages, not independent user objects.</p>
+<A NAME="TI864"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To move a control between a tab page and the window
+containing the Tab control:</p>
+<ol><li class=fi><p>Cut or copy the control and paste it on
+the destination window or tab page.</p><p>You cannot drag the control out of the Tab control onto the
+window.</p></li></ol>
+<br><A NAME="TI865"></A><p>Moving the control between a tab page and the window changes
+the control's parent, which affects scripts that refer
+to the control.</p>
+

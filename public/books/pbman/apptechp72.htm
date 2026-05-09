@@ -1,0 +1,255 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Preparing consolidated databases</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp71.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp73.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BCGHDGGA"></A><h1>Preparing consolidated databases</h1>
+<A NAME="TI1988"></A><p>Whether you are designing a new database or preparing an existing
+one to be used as a MobiLink consolidated database, you must install
+the MobiLink system tables in that database. <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+provides setup scripts for Sybase Adaptive Server Enterprise, Oracle,
+Microsoft <ACRONYM title = "sequel" >SQL</ACRONYM> Server, and IBM DB2.
+A setup script is not required for <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+databases.</p>
+<A NAME="TI1989"></A><p>MobiLink system tables store information for MobiLink users,
+tables, scripts, and script versions in the consolidated database.
+You will probably not directly access these tables, but you alter
+them when you perform actions such as adding synchronization scripts.</p>
+<A NAME="TI1990"></A><h4>ODBC connections and drivers</h4>
+<A NAME="TI1991"></A><p>To carry out synchronization, the MobiLink synchronization
+server needs an ODBC connection to the consolidated database. You
+must have an ODBC driver for your server and you must create an
+ODBC data source for the database on the machine on which your MobiLink
+synchronization server is running. For a list of supported drivers,
+see <A HREF="http://www.sybase.com/detail?id=1025763">Recommended ODBC Drivers for 9.0.0 MobiLink</A>
+.</p>
+<A NAME="TI1992"></A><h4>Writing synchronization scripts</h4>
+<A NAME="TI1993"></A><p>There are two types of events that occur during synchronization
+and for which you need to write synchronization scripts:<A NAME="TI1994"></A>
+<ul>
+<li class=fi><A HREF="apptechp72.htm#BCGGDJDE">Connection events</A> that
+perform global tasks required during every synchronization</li>
+<li class=ds><A HREF="apptechp72.htm#BCGDIFDD">Table events</A> that
+are associated with a specific table and perform tasks related to
+modifying data in that table
+</li>
+</ul>
+</p>
+<A NAME="BCGGDJDE"></A><h2>Connection events</h2>
+<A NAME="TI1995"></A><p>At the connection level, the sequence of major events is as
+follows:<p><PRE>begin_connection<br>   begin_synchronization<br>      begin_upload<br>      end_upload<br>      prepare_for_download<br>      begin_download<br>      end_download<br>   end_synchronization<br>end_connection</PRE></p>
+</p>
+<A NAME="TI1996"></A><p>When a synchronization request occurs, the <b>begin_connection</b> event
+is fired. When all synchronization requests for the current script
+version have been completed, the <b>end_connection</b> event
+is fired. Typically you place initialization and cleanup code in
+the scripts for these events, such as variable declaration and database
+cleanup.</p>
+<A NAME="TI1997"></A><p>Apart from <b>begin_connection</b> and <b>end_connection</b>,
+all of these events take the MobiLink user name stored in the <b>ml_user</b> table
+in the consolidated database as a parameter. You can use parameters
+in your scripts by placing question marks where the parameter value
+should be substituted.</p>
+<A NAME="TI1998"></A><p>To make scripts in <ACRONYM title = "sequel" >SQL</ACRONYM> Anywhere
+databases easier to read, you might declare a variable in the <b>begin_connection</b> script,
+then set it to the value of <b>ml_username</b> in
+the <b>begin_synchronization</b> script. </p>
+<A NAME="TI1999"></A><p>For example, in <b>begin_connection</b>:<p><PRE> CREATE VARIABLE @sync_user VARCHAR(128);</PRE></p>
+<A NAME="TI2000"></A><p>In <b>begin_synchronization</b>:<p><PRE> SET @sync_user = ?</PRE></p>
+<A NAME="TI2001"></A><p>The <b>begin_synchronization</b> and <b>end_synchronization</b> events
+are fired before and after changes are applied to the remote and
+consolidated databases. </p>
+<A NAME="TI2002"></A><p>The <b>begin_upload</b> event marks the
+beginning of the upload transaction. Applicable inserts and updates
+to the consolidated database are performed for all remote tables,
+then rows are deleted as applicable for all remote tables. After <b>end_upload</b>,
+upload changes are committed.</p>
+<A NAME="TI2003"></A><p>If you do not want to delete rows from the consolidated database,
+do not write scripts for the <b>upload_delete</b> event,
+or use the <b>STOP SYNCHRONIZATION DELETE</b> statement
+in your PowerScript code. For more information, see <A HREF="apptechp74.htm#BCGCFGJH">"Deleting rows from the remote
+database only"</A>.</p>
+<A NAME="TI2004"></A><p>The <b>begin_download</b> event marks
+the beginning of the download transaction. Applicable deletes are
+performed for all remote tables, and then rows are added as applicable
+for all remote tables in the <b>download_cursor</b>.
+After <b>end_download</b>, download changes
+are committed. These events have the date of the last download as
+a parameter.</p>
+<A NAME="TI2005"></A><p>Other connection-level events can also occur, such as <b>handle_error</b>, <b>report_error</b>,
+and <b>synchronization_statistics</b>. For
+a complete list of events and examples of their use, see the chapter
+on synchronization events in the <i>MobiLink Synchronization
+User's Guide</i>
+.</p>
+<A NAME="BCGDIFDD"></A><h2>Table events</h2>
+<A NAME="TI2006"></A><p>Many of the connection events that occur between the <b>begin_synchronization</b> and <b>end_synchronization</b> events,
+such as <b>begin_download</b> and <b>end_upload</b>,
+also have table equivalents. These and other overall table events
+might be used for tasks such as creating an intermediate table to
+hold changes or printing information to a log file. </p>
+<A NAME="TI2007"></A><p>You can also script table events that apply to each row in
+the table. For row-level events, the order of the columns
+in your scripts must match the order in which they appear in the <b>CREATE
+TABLE</b> statement in the remote database, and the column
+names in the scripts must refer to the column names in the consolidated
+database.</p>
+<A NAME="TI2008"></A><h4>Generating default scripts</h4>
+<A NAME="TI2009"></A><p>Although there are several row-level events, most tables need
+scripts for three upload events (for <b>INSERT</b>, <b>UPDATE</b>,
+and <b>DELETE)</b> and one download event. To speed
+up the task of creating these four scripts for every table, you
+can generate scripts for them automatically by starting the MobiLink synchronization
+server with the <b>-za</b> switch and setting the SendColumnNames extended
+option for <b>dbmlsync</b>. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Read-only remote databases</span> <A NAME="TI2010"></A>If the remote database is read-only&#8212;that is, you
+never want to upload any data&#8212;you should not implement
+the upload scripts. You can use the <b>-ze</b> switch to
+generate sample scripts, and use the download samples as templates
+for your download scripts.</p>
+<A NAME="TI2011"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To generate synchronization scripts automatically
+in PowerBuilder:</p>
+<ol><li class=fi><p>Select the Automatic Script Generation
+check box in the MobiLink Synchronize Server Options dialog box
+and click OK to start the server.</p><p>You can open this dialog box from the Utilities folder in
+the Database painter or the Database Profiles dialog box.</p></li>
+<li class=ds><p>In your application, enter <FONT FACE="Courier New">SendColumnNames=ON</FONT> in
+the Extended text box on the Settings page of the <b>w_</b><i>appname</i><b>_sync_options</b> window.</p><p>You must have at least one publication, user, and subscription
+defined in the remote database. If you have more than one publication
+or user, you must use the <b>-n</b> and/or <b>-u</b> switches
+to specify which subscription you want to work with.</p><p>If there are existing scripts in the consolidated database,
+MobiLink does nothing. If there are no existing scripts, MobiLink
+generates them for all tables specified in the publication. The
+scripts control the upload and download of data to and from your
+client and consolidated databases.</p><p>If the column names on the remote and consolidated database
+differ, the generated scripts must be modified to match the names
+on the consolidated database.</p></li></ol>
+<br><A NAME="TI2012"></A><p>You can also generate synchronization scripts from a command
+prompt. Start the server using the <b>-za</b> switch,
+then run <b>dbmlsync</b> and set the SendColumnNames
+extended option to <b>on</b>. For example:<p><PRE> dbmlsrv10 -c "dsn=masterdb" -za</PRE><PRE> dbmlsync -c "dsn=remotedb" -e SendColumnNames=ON</PRE></p>
+<A NAME="TI2013"></A><h4>Generated scripts</h4>
+<A NAME="TI2014"></A><p><A HREF="apptechp72.htm#BJFBDIAF">Table 13-3</A> shows
+the scripts that are generated for a table named <b>emp</b> with
+the columns <b>emp_id</b>, <b>emp_name</b>,
+and <b>dept_id</b>. The primary key is <b>emp_id</b>.</p>
+<A NAME="BJFBDIAF"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 13-3: Sample default scripts generated
+by dbmlsrv10 -za</caption>
+<tr><th  rowspan="1"  ><A NAME="TI2015"></A>Script name</th>
+<th  rowspan="1"  ><A NAME="TI2016"></A>Script</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2017"></A><b>upload_insert</b></td>
+<td  rowspan="1"  ><A NAME="TI2018"></A><FONT FACE="Courier New">INSERT INTO emp (emp_id,
+emp_name, dept_id)<br>VALUES (?,?,?)</FONT></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2019"></A><b>upload_update</b></td>
+<td  rowspan="1"  ><A NAME="TI2020"></A><FONT FACE="Courier New">UPDATE emp SET emp_name = ?,
+dept_id = ?<br>WHERE emp_id=?</FONT></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2021"></A><b>upload_delete</b></td>
+<td  rowspan="1"  ><A NAME="TI2022"></A><FONT FACE="Courier New">DELETE FROM emp<br>WHERE
+emp_id=?</FONT></td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI2023"></A><b>download_cursor</b></td>
+<td  rowspan="1"  ><A NAME="TI2024"></A><FONT FACE="Courier New">SELECT emp_id,
+emp_name, dept_id FROM emp</FONT></td>
+</tr>
+</table>
+<A NAME="TI2025"></A><p>The scripts generated for downloading data perform "snapshot" synchronization.
+A complete image of the table is downloaded to the remote database.
+Typically you need to edit these scripts to limit the data transferred. For
+more information, see <A HREF="apptechp74.htm#BJFDGGAD">"Limiting data downloads"</A>.</p>
+<A NAME="TI2026"></A><p>Before modifying any scripts, you should test the synchronization
+process to make sure that the generated scripts behave as expected.
+Performing a test after each modification will help you narrow down
+errors.</p>
+<A NAME="BCGHHBEE"></A><h2>Working with scripts and users in Sybase Central</h2>
+<A NAME="TI2027"></A><p>You can view and modify existing scripts and write new ones
+in the MobiLink Synchronization plug-in in Sybase Central. These
+procedures describe how to connect to the plug-in and write scripts,
+and how to add a user to the consolidated database.</p>
+<A NAME="TI2028"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To connect to a consolidated database in Sybase
+Central:</p>
+<ol><li class=fi><p>Start Sybase Central, select Tools&gt;Connect
+from the menu bar, select MobiLink Synchronization from the New
+Connection dialog box, and click OK.</p></li>
+<li class=ds><p>On the Identification page in the Connect dialog
+box, select ODBC DataSource Name, browse to select the DSN of the
+consolidated database, and click OK.</p></li></ol>
+<br><A NAME="TI2029"></A><p>When you expand the node for a consolidated database in the
+MobiLink Synchronization plug-in, you see five folders: Tables,
+Connection Scripts, Synchronized Tables, Users, and Versions. All
+the procedures in this section begin by opening one of these folders.</p>
+<A NAME="TI2030"></A><h4>Script versions</h4>
+<A NAME="TI2031"></A><p>Scripts are organized into groups called script versions.
+By specifying a particular version, MobiLink clients can select
+which set of synchronization scripts is used to process the upload
+stream and prepare the download stream. If you want to define different
+versions for scripts, you must add a script version to the consolidated
+database before you add scripts for it.</p>
+<A NAME="TI2032"></A><p>If you create two different versions, make sure that you have
+scripts for all required events in both versions.</p>
+<A NAME="TI2033"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a script version:</p>
+<ol><li class=fi><p>Select the Versions folder and double-click
+Add Version.</p></li>
+<li class=ds><p>In the Add a New Script Version dialog box, provide
+a name for the version and optionally a description, and click Finish.</p><p>Sybase Central creates the new version and gives it a unique
+integer identifier.</p></li></ol>
+<br><A NAME="TI2034"></A><h4>Adding scripts</h4>
+<A NAME="TI2035"></A><p>Scripts added for connection events are executed for every
+synchronization. Scripts added for table events are executed when
+a specific table has been modified. You must specify that a table
+is synchronized before you can add scripts for it.</p>
+<A NAME="TI2036"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a synchronized table to a consolidated
+database:</p>
+<ol><li class=fi><p>Select the Tables folder and double-click
+DBA.</p></li>
+<li class=ds><p>Right-click the table you want to add to the list
+of synchronized tables and select Add to Synchronized Tables from
+its pop-up menu.</p></li></ol>
+<br><A NAME="TI2037"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a script to a synchronized table:</p>
+<ol><li class=fi><p>Select the Synchronized Tables folder,
+select the table for which you want to add a script, and double-click
+Add Table Script.</p></li>
+<li class=ds><p>From the first drop-down list, select
+the version for which you want to add a script.</p></li>
+<li class=ds><p>From the second drop-down list, select
+the event for which you want to add a script.</p><p>Events that already have a script do not appear in the drop-down
+list.</p></li>
+<li class=ds><p>From the third drop-down list, select
+the language in which you want to write a script.</p></li>
+<li class=ds><p>Make sure the Edit the Script of the New Event
+Immediately check box is selected and click Finish.</p></li>
+<li class=ds><p>Type your script in the editor that displays,
+then save and close the file.</p><p>For example, if you want to remove rows that have been shipped
+from the <b>Order</b> table in a remote database,
+you can place the following <b>SELECT</b> statement
+in the <b>download_delete_cursor</b> event,
+where <b>order_id</b> is the primary key
+column. The first parameter to this event is the <b>last_download</b> timestamp.
+It is used here to supply the value for a <b>last_modified</b> column:<p><PRE> SELECT order_id<br>  FROM Order<br>WHERE status = 'Shipped'<br>  AND last_modified &gt;= ?</PRE></p><p>For more information about using the <b>download_delete_cursor</b> event,
+see the section on handling deletes in the <i>MobiLink Synchronization
+User's Guide</i>
+.</p></li></ol>
+<br><A NAME="TI2038"></A><p><img src="images/proc.gif" width=17 height=17 border=0 align="bottom" alt="Steps"> To add a connection-level script:</p>
+<ol><li class=fi><p>Select the Connection Scripts folder and
+double-click Add Connection Script.</p></li>
+<li class=ds><p>Follow steps 2 to 6 in the previous procedure.</p></li></ol>
+<br><A NAME="TI2039"></A><h4>Modifying scripts</h4>
+<A NAME="TI2040"></A><p>To modify an existing script, navigate to the script in Sybase
+Central as described in the preceding procedures, then double-click
+the Edit icon to the left of the version name.</p>
+<A NAME="TI2041"></A><h4>Adding users</h4>
+<A NAME="TI2042"></A><p>You can add users directly to the <b>ml_user</b> table
+in the consolidated database, then provide the user names and optional
+passwords to your users. To add a user, select the Users folder,
+double-click Add User, and complete the Add User wizard.</p>
+<A NAME="TI2043"></A><p>You also have to add at least one user name to each remote
+database, as described in <A HREF="apptechp73.htm#BCGBADDB">"Creating MobiLink users"</A>. </p>
+

@@ -1,0 +1,384 @@
+
+<html><HEAD>
+<LINK REL=STYLESHEET HREF="default.css" TYPE="text/css">
+<TITLE>
+Generating Web service proxy objects</TITLE>
+</HEAD>
+<BODY>
+
+<!-- Header -->
+<p class="ancestor" align="right"><A HREF="apptechp206.htm">Previous</A>&nbsp;&nbsp;<A HREF="apptechp208.htm" >Next</A>
+<!-- End Header -->
+<A NAME="BABFADAI"></A><h1>Generating Web service proxy objects</h1>
+<A NAME="TI6252"></A><h4>Creating a Web service proxy object</h4>
+<A NAME="TI6253"></A><p>To create
+a new Web service proxy, select the Web Service Proxy Wizard icon from
+the Projects page in the New dialog box. The Web Service Proxy Wizard helps
+you create the proxy so you can use the Web service in PowerScript.
+If you select the EasySoap Web service engine, one proxy is created
+for each port.</p>
+<A NAME="TI6254"></A><p>In the wizard you specify:<A NAME="TI6255"></A>
+<ul>
+<li class=fi>Which Web
+service engine you want to use</li>
+<li class=ds>Which WSDL file you want to access</li>
+<li class=ds>Which service within the WSDL file you want to select</li>
+<li class=ds>Which port or ports you want to use (EasySoap engine
+only)</li>
+<li class=ds>What prefix you want to append to a port name (EasySoap)
+and include in the proxy name (EasySoap and .NET engines)</li>
+<li class=ds>Which PowerBuilder library you want to deploy the
+proxy to
+</li>
+</ul>
+</p>
+<A NAME="TI6256"></A><p>You can also select the Web Service Proxy icon from the Projects
+page in the New dialog box. The Web Service Proxy icon opens the
+Project painter for Web services so that you can create a project,
+specify options, and build the proxy library. The new project lists
+the Web service (and, for the EasySoap engine, the ports for which
+proxies will be generated) and specifies the name of the output
+library that will contain the generated proxy objects.</p>
+<A NAME="TI6257"></A><p>Whether you create the Web service project through the wizard
+or in the painter, the final step is to build the proxy objects
+by clicking the Build icon on the painter bar or selecting Design&gt;Deploy
+project from the menu bar. </p>
+<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>Circular references</span> <A NAME="TI6258"></A>Generation of a Web service proxy from a WSDL file that contains
+a circular reference is not supported in PowerBuilder. An example
+of such a "circular reference" is a structure
+that includes itself as a child class member.</p>
+<A NAME="CEGCHBEB"></A><h4>Using the UDDI browser
+in the wizard</h4>
+<A NAME="TI6259"></A><p>PowerBuilder provides live access to Universal Description,
+Discovery, and Integration (UDDI) registries for both PowerScript
+and JSP targets. The UDDI service is an industry-wide effort to
+bring a common standard for business-to-business integration. It
+defines a set of standard interfaces for accessing a database of
+Web services.</p>
+<A NAME="TI6260"></A><p>The UDDI browser is incorporated in the Web Service Proxy
+wizard as well as in the JSP Web Service Proxy wizard. You open
+UDDI search pages by clicking the Search From UDDI button on the
+Select WSDL File page of these wizards or on the Web Service page
+of the properties dialog box for a Web Service Proxy Generator project.
+The UDDI Search page has search fields and options listed in <A HREF="apptechp207.htm#CEGEIEJB">Table 31-2</A>.</p>
+<A NAME="CEGEIEJB"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 31-2: UDDI search fields and options</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6261"></A>Search field or option</th>
+<th  rowspan="1"  ><A NAME="TI6262"></A>Description </th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6263"></A>UDDI profile</td>
+<td  rowspan="1"  ><A NAME="TI6264"></A>Editable drop-down list for the name
+of a UDDI operator. You can associate a UDDI profile with a query URL.
+The drop-down list allows you to select predefined profiles for
+the Microsoft and IBM public UDDI registries.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6265"></A>Query URL</td>
+<td  rowspan="1"  ><A NAME="TI6266"></A>Text box that displays the URL for the
+Web service registry in which you want to find a Web service. If
+you selected a predefined profile in the UDDI Profile drop-down
+list, the URL associated with that profile displays in the text
+box. You can also enter a query URL and associate the URL with a
+profile name by clicking the Save Profile button.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6267"></A>Search For </td>
+<td  rowspan="1"  ><A NAME="TI6268"></A>Text box for entering the key word you
+want to use in a UDDI search. </td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6269"></A>In </td>
+<td  rowspan="1"  ><A NAME="TI6270"></A>Drop-down list for "Service
+Names" (default) or "Business Names."</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6271"></A>Exact Match</td>
+<td  rowspan="1"  ><A NAME="TI6272"></A>Check box option. If selected, limits
+search to the current value in the Search For drop-down list.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6273"></A>Case Sensitive</td>
+<td  rowspan="1"  ><A NAME="TI6274"></A>Check box option. If selected, limits
+the search to the capitalization used by the current value in the
+Search For drop-down list.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6275"></A>Sort</td>
+<td  rowspan="1"  ><A NAME="TI6276"></A>Radio button option. Sorts search results
+in ascending or descending order.</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6277"></A>Maximum Rows</td>
+<td  rowspan="1"  ><A NAME="TI6278"></A>Spin button option. Limits the number
+of search results returned to the number that you enter in this
+spin button control.</td>
+</tr>
+</table>
+<A NAME="TI6279"></A><p>The next wizard page in the UDDI search depends on whether
+you are searching a key word in business names or service names:<A NAME="TI6280"></A>
+<ul>
+<li class=fi><b>For a business name search</b>   The Select Business wizard page returns a list of business
+names and descriptions that meet your search criteria. After you
+select a business name and click Next, a list of service names is returned
+on the Select Service wizard page, along with a service description
+and WSDL file name for each service listed.</li>
+<li class=ds><b>For a service name search</b>   The Select Service wizard page returns a list of service names
+along with a business name, service description, and WSDL file name
+for each service listed.
+</li>
+</ul>
+</p>
+<A NAME="TI6281"></A><p>After you select a service on the Select Service page of a
+wizard, the UDDI search is complete and you continue your selections
+on the remaining pages of the wizard.</p>
+<A NAME="TI6282"></A><p>The Web Service page of the properties dialog box for a Web
+Service proxy object displays the WSDL file selection that you made
+in the Web Service Proxy wizard. It also allows you to modify that
+search through a UDDI search wizard that contains the same search
+options and search result lists as the UDDI search pages in the
+Web Service Proxy wizard.</p>
+<A NAME="TI6283"></A><h4>Generated proxies</h4>
+<A NAME="TI6284"></A><p>The generated proxies display in the System Tree. You can
+expand the proxy nodes to display the signatures of the methods.</p>
+<br><img src="images/genprox.gif">
+<A NAME="TI6285"></A><h4>Aliases for XML methods</h4>
+<A NAME="TI6286"></A><p>PowerBuilder is not case sensitive,
+whereas XML, SOAP, C#, and .NET are. To ensure that PowerScript
+code can call XML methods correctly, each method in the proxy uses
+an alias. The string that follows <FONT FACE="Courier New">alias for</FONT> contains
+the name and the signature of the corresponding XML or SOAP method
+in case-sensitive mode. </p>
+<A NAME="TI6287"></A><p>For example:</p>
+<A NAME="TI6288"></A><p><p><PRE> function real getquote(string ticker) alias for getQuote(xsd:string symbol)#<br>return xsd:float StockPrice@urn:xmethods-delayed-quotes@SoapAction</PRE></p>
+<A NAME="TI6289"></A><h4>PowerBuilder system types cannot be used as variable
+names in proxies</h4>
+<A NAME="TI6290"></A><p>In PowerBuilder 10.5 and later versions, system types cannot
+be used as variable names in Web service proxies. If a PowerBuilder
+system type is used as a variable name, the Web Service Proxy wizard
+renames the variable by applying the prefix <b>ws_</b>.
+If you are migrating Web service applications from PowerBuilder
+10.2 or earlier and regenerating the Web service proxies in PowerBuilder
+10.5 or later, your code may need to be modified to reflect the change
+in variable names.</p>
+<A NAME="TI6291"></A><p>PowerBuilder system types include not only the objects and
+controls listed on the System tab page in the PowerBuilder Browser,
+but also the enumerated types listed on the Enumerated page in the
+Browser, such as band, button, encoding, location, and weekday.
+For example, if you build a Web service from a PowerBuilder custom
+class user object, and one of its functions has a <b>string</b> argument
+named <i>location</i>, in the proxy generated for
+that Web service, the argument is changed to <b>string</b> <i>ws_location</i>. </p>
+<A NAME="TI6292"></A><h4>Web services across time zones</h4>
+<A NAME="TI6293"></A><p>When an application consumes a Web service that uses the date,
+time, or datetime datatypes, it is possible that the service implementation
+processes and returns different data for application users who access
+the service from different time zones. This is typically the result
+of design considerations of the Web service and not the result of
+precision differences or translation errors between the Web service
+and the application that calls it. </p>
+<A NAME="TI6294"></A><h4>Datatype mappings for EasySoap Web service engine</h4>
+<A NAME="TI6295"></A><p>The Web service proxy
+generator maps datatypes between XML and PowerBuilder if you use
+the EasySoap Web engine, and between XML, C#, .NET, and
+PowerBuilder if you use the .NET Web service engine. All XML data
+types are based on schemas from the <A HREF="http://www.w3.org/1999/XMLSchema">World Wide Web Consortium Web site</A>
+ <A HREF="http://www.w3.org/2001/XMLSchema">and</A>
+.</p>
+<A NAME="TI6296"></A><p><A HREF="apptechp207.htm#CHDDJDCE">Table 31-3</A> shows
+the datatype mappings between XML and PowerScript. If you use the
+.NET Web service engine, datatypes are converted to C#,
+then to .NET datatypes. (<A HREF="apptechp207.htm#CHDGABIJ">Table 31-4</A> and <A HREF="apptechp207.htm#CHDEICDD">Table 31-5</A> show datatype mappings used with the
+.NET Web service engine.)</p>
+<A NAME="CHDDJDCE"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 31-3: Datatype mappings between XML
+and PowerBuilder</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6297"></A>XML Type</th>
+<th  rowspan="1"  ><A NAME="TI6298"></A>PowerScript Type</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6299"></A>boolean</td>
+<td  rowspan="1"  ><A NAME="TI6300"></A>boolean</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6301"></A>byte (-128 to 127) or short</td>
+<td  rowspan="1"  ><A NAME="TI6302"></A>int</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6303"></A>unsignedByte (0 to 255) or unsignedShort</td>
+<td  rowspan="1"  ><A NAME="TI6304"></A>uint</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6305"></A>int</td>
+<td  rowspan="1"  ><A NAME="TI6306"></A>long</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6307"></A>unsignedInt</td>
+<td  rowspan="1"  ><A NAME="TI6308"></A>ulong</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6309"></A>long (-9223372036854775808 to 9223372036854775807), unsignedLong
+(0 to 9223372036854775807), integer (-9223372036854775808
+to 9223372036854775807), nonNegativeInteger (0 to 9223372036854775807), <br>negativeInteger
+(-1 to -9223372036854775808),<br>nonPositiveInteger (0 to
+-9223372036854775808), or<br>positiveInteger (1 to 9223372036854775807)</td>
+<td  rowspan="1"  ><A NAME="TI6310"></A>longlong</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6311"></A>decimal (-999999999999999999 to 999999999999999999)</td>
+<td  rowspan="1"  ><A NAME="TI6312"></A>decimal</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6313"></A>float</td>
+<td  rowspan="1"  ><A NAME="TI6314"></A>real</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6315"></A>double</td>
+<td  rowspan="1"  ><A NAME="TI6316"></A>double</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6317"></A>gYear, gYearMonth, gMonthDay, gDay, anyURI,
+QName, <br>NOTATION, string, normalizedSting, token, or datatypes
+derived from token<p><img src="images/note.gif" width=17 height=17 border=0 align="bottom" alt="Note"> <span class=shaded>About normalizedString, token, and derived datatypes</span> <A NAME="TI6318"></A>A normalized string does not contain carriage return, line
+feed, or tab characters. A token is similar to similar to a normalizedString, but
+does not contain leading or trailing spaces or an internal sequence
+of two or more spaces. Datatypes that derive from token include
+language, Name, NCName, NMTOKEN, NMTOKENS, ID, IDREF, IDREFS, ENTITY,
+ENTITIES.</p>
+</td>
+<td  rowspan="1"  ><A NAME="TI6319"></A>string</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6320"></A>date</td>
+<td  rowspan="1"  ><A NAME="TI6321"></A>date</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6322"></A>time</td>
+<td  rowspan="1"  ><A NAME="TI6323"></A>time</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6324"></A>dateTime</td>
+<td  rowspan="1"  ><A NAME="TI6325"></A>datetime</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6326"></A>base64, base64Binary, or hexBinary</td>
+<td  rowspan="1"  ><A NAME="TI6327"></A>blob</td>
+</tr>
+</table>
+<A NAME="TI6328"></A><h4>Datatype mappings for .NET Web service engine</h4>
+<A NAME="TI6329"></A><p>When you use the .NET Web Service engine, PowerBuilder converts
+the XML from WSDL files to C# code and compiles it in a
+.NET assembly. <A HREF="apptechp207.htm#CHDGABIJ">Table 31-4</A> displays
+datatype mappings for these conversions.</p>
+<A NAME="CHDGABIJ"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 31-4: Datatype mappings for the .NET
+Web service engine</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6330"></A>XML type</th>
+<th  rowspan="1"  ><A NAME="TI6331"></A>C# type</th>
+<th  rowspan="1"  ><A NAME="TI6332"></A>.NET type</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6333"></A>int</td>
+<td  rowspan="1"  ><A NAME="TI6334"></A>int</td>
+<td  rowspan="1"  ><A NAME="TI6335"></A>System.Int32</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6336"></A>unsignedInt</td>
+<td  rowspan="1"  ><A NAME="TI6337"></A>uint</td>
+<td  rowspan="1"  ><A NAME="TI6338"></A>System.UInt32</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6339"></A>boolean</td>
+<td  rowspan="1"  ><A NAME="TI6340"></A>bool</td>
+<td  rowspan="1"  ><A NAME="TI6341"></A>System.Boolean</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6342"></A>unsignedByte</td>
+<td  rowspan="1"  ><A NAME="TI6343"></A>Byte</td>
+<td  rowspan="1"  ><A NAME="TI6344"></A>System.Byte</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6345"></A>short</td>
+<td  rowspan="1"  ><A NAME="TI6346"></A>short</td>
+<td  rowspan="1"  ><A NAME="TI6347"></A>System.Int16</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6348"></A>unsignedShort</td>
+<td  rowspan="1"  ><A NAME="TI6349"></A>ushort</td>
+<td  rowspan="1"  ><A NAME="TI6350"></A>System.UInt16</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6351"></A>long</td>
+<td  rowspan="1"  ><A NAME="TI6352"></A>long</td>
+<td  rowspan="1"  ><A NAME="TI6353"></A>System.Int64</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6354"></A>unsignedLong</td>
+<td  rowspan="1"  ><A NAME="TI6355"></A>ulong</td>
+<td  rowspan="1"  ><A NAME="TI6356"></A>System.UInt64</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6357"></A>Decimal</td>
+<td  rowspan="1"  ><A NAME="TI6358"></A>Decimal</td>
+<td  rowspan="1"  ><A NAME="TI6359"></A>System.Decimal</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6360"></A>Float</td>
+<td  rowspan="1"  ><A NAME="TI6361"></A>Float</td>
+<td  rowspan="1"  ><A NAME="TI6362"></A>System.Float</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6363"></A>Double</td>
+<td  rowspan="1"  ><A NAME="TI6364"></A>Double</td>
+<td  rowspan="1"  ><A NAME="TI6365"></A>System.Double</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6366"></A>Datetime, Date, and Time</td>
+<td  rowspan="1"  ><A NAME="TI6367"></A>System.DateTime</td>
+<td  rowspan="1"  ><A NAME="TI6368"></A>System.DateTime</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6369"></A>hexBinary and hex64Binary</td>
+<td  rowspan="1"  ><A NAME="TI6370"></A>Byte [ ]</td>
+<td  rowspan="1"  ><A NAME="TI6371"></A>System.Byte [ ]</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6372"></A>nonNegativeInteger, negativeInteger, nonPositiveInteger, positiveInteger,
+gYear, gMonth, gMonthDay, gDay, duration, anyURI, QName, NOTATION, normalizedString,
+token, language, NMTOKEN, NMTOKENS, Name, NCName,ID, IDREF, IDREFS, ENTITY,
+ENTITIES, and String</td>
+<td  rowspan="1"  ><A NAME="TI6373"></A>String</td>
+<td  rowspan="1"  ><A NAME="TI6374"></A>System.String</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6375"></A>AnyType</td>
+<td  rowspan="1"  ><A NAME="TI6376"></A>Object</td>
+<td  rowspan="1"  ><A NAME="TI6377"></A>System.Object</td>
+</tr>
+</table>
+<A NAME="TI6378"></A><p><A HREF="apptechp207.htm#CHDEICDD">Table 31-5</A> displays
+the datatype mapping between C# datatypes and PowerBuilder.</p>
+<A NAME="CHDEICDD"></A><table cellspacing=0 cellpadding=6 border=1 frame="void" rules="all"><caption>Table 31-5: Datatype mappings between C# and
+PowerBuilder</caption>
+<tr><th  rowspan="1"  ><A NAME="TI6379"></A>C# type</th>
+<th  rowspan="1"  ><A NAME="TI6380"></A>PowerScript type</th>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6381"></A>byte</td>
+<td  rowspan="1"  ><A NAME="TI6382"></A>byte</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6383"></A>sbyte</td>
+<td  rowspan="1"  ><A NAME="TI6384"></A>int</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6385"></A>short</td>
+<td  rowspan="1"  ><A NAME="TI6386"></A>int</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6387"></A>int</td>
+<td  rowspan="1"  ><A NAME="TI6388"></A>long</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6389"></A>long</td>
+<td  rowspan="1"  ><A NAME="TI6390"></A>longlong</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6391"></A>ushort</td>
+<td  rowspan="1"  ><A NAME="TI6392"></A>uint</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6393"></A>uint</td>
+<td  rowspan="1"  ><A NAME="TI6394"></A>ulong</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6395"></A>ulong</td>
+<td  rowspan="1"  ><A NAME="TI6396"></A>longlong</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6397"></A>float</td>
+<td  rowspan="1"  ><A NAME="TI6398"></A>real</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6399"></A>double</td>
+<td  rowspan="1"  ><A NAME="TI6400"></A>double</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6401"></A>object</td>
+<td  rowspan="1"  ><A NAME="TI6402"></A>any</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6403"></A>char</td>
+<td  rowspan="1"  ><A NAME="TI6404"></A>uint</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6405"></A>string</td>
+<td  rowspan="1"  ><A NAME="TI6406"></A>string</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6407"></A>decimal</td>
+<td  rowspan="1"  ><A NAME="TI6408"></A>decimal</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6409"></A>bool</td>
+<td  rowspan="1"  ><A NAME="TI6410"></A>boolean</td>
+</tr>
+<tr><td  rowspan="1"  ><A NAME="TI6411"></A>System.DateTime</td>
+<td  rowspan="1"  ><A NAME="TI6412"></A>datetime</td>
+</tr>
+</table>
+<A NAME="TI6413"></A><h4>Arrays of arrays</h4>
+<A NAME="TI6414"></A><p>Unlike XML, PowerBuilder
+can support only unbounded one-dimensional arrays. If an array in
+a WSDL file is bounded and one-dimensional, PowerBuilder automatically
+converts it to an unbounded array. If an array in a WSDL file is
+multidimensional, the return type is invalid and cannot be used. </p>
+<A NAME="TI6415"></A><p>In function prototypes, PowerBuilder displays an array type
+as a PowerBuilder <b>any</b> type. You must declare
+an array of the appropriate type to hold the return value.</p>
+
