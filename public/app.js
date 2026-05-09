@@ -711,7 +711,7 @@ searchSource.addEventListener("change", () => {
   loadSearch();
 });
 
-results.addEventListener("click", (event) => {
+function openSearchTargetFromClick(event) {
   const button = event.target.closest("[data-topic], [data-book]");
   if (!button) return;
   if (button.dataset.book) {
@@ -720,7 +720,10 @@ results.addEventListener("click", (event) => {
     selectedIndexLabel = button.dataset.title || button.textContent.trim();
     openTopic(button.dataset.topic);
   }
-});
+}
+
+searchInsight.addEventListener("click", openSearchTargetFromClick);
+results.addEventListener("click", openSearchTargetFromClick);
 
 async function init() {
   applyTheme(localStorage.getItem(STORAGE_KEYS.theme) || "light");
