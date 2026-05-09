@@ -531,6 +531,56 @@ h4 {
   background: var(--pb-accent-soft);
 }
 
+.insight-section-header,
+.insight-category-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.insight-section-header h4,
+.insight-category-header h5 {
+  margin: 0;
+  min-width: 0;
+}
+
+.insight-section-header span,
+.insight-category-header span {
+  color: var(--pb-muted);
+  font-size: 0.76em;
+  font-weight: 600;
+}
+
+.insight-section-toggle {
+  border: 1px solid var(--pb-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--pb-panel-strong) 78%, transparent);
+  color: var(--pb-muted);
+  font-size: 0.74rem;
+  line-height: 1;
+  padding: 0.36rem 0.62rem;
+  white-space: nowrap;
+}
+
+.insight-section-toggle:hover,
+.insight-section-toggle:focus-visible {
+  border-color: var(--pb-accent);
+  color: var(--pb-accent);
+  background: var(--pb-accent-soft);
+}
+
+.insight-section-content,
+.insight-category-content {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.insight-section.collapsed > .insight-section-content,
+.insight-category.collapsed > .insight-category-content {
+  display: none;
+}
+
 .insight-overview,
 .syntax-chip span {
   color: var(--pb-muted);
@@ -570,6 +620,10 @@ h4 {
   margin: 0 0 0.45rem;
   font-size: 0.98rem;
   line-height: 1.25;
+}
+
+.insight-section-header h4 {
+  margin: 0;
 }
 
 .insight-section .syntax-chip {
@@ -612,6 +666,61 @@ h4 {
   margin-top: 0.15rem;
   padding-top: 0.8rem;
   border-top: 1px solid var(--pb-border);
+}
+
+.insight-category {
+  display: grid;
+  gap: 0.55rem;
+  border: 1px solid var(--pb-border);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--pb-panel-strong) 78%, transparent);
+  padding: 0.65rem;
+}
+
+.insight-category h5 {
+  font-size: 0.9rem;
+  line-height: 1.25;
+  color: var(--pb-text);
+}
+
+.insight-related-item {
+  display: grid;
+  gap: 0.22rem;
+  width: 100%;
+  border: 1px solid var(--pb-border) !important;
+  border-left: 3px solid color-mix(in srgb, var(--pb-accent) 48%, var(--pb-border)) !important;
+  border-radius: 10px !important;
+  background: color-mix(in srgb, var(--pb-panel-strong) 88%, transparent) !important;
+  padding: 0.54rem 0.6rem !important;
+  text-align: left;
+}
+
+.insight-related-item.primary {
+  border-left-color: var(--pb-accent) !important;
+  background: var(--pb-accent-soft) !important;
+}
+
+.insight-related-item:hover,
+.insight-related-item:focus-visible {
+  border-color: var(--pb-accent) !important;
+}
+
+.insight-related-item strong,
+.insight-related-item span {
+  display: block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.insight-related-item strong {
+  color: var(--pb-text);
+  font-size: 0.82rem;
+}
+
+.insight-related-item span {
+  color: var(--pb-muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
 }
 
 .example-preview pre {

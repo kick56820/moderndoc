@@ -37,6 +37,7 @@ let ignoreNextHashChange = false;
 let currentPage = null;
 let currentHighlightQuery = "";
 let insightCollapsed = false;
+const insightCollapsedSections = new Set();
 const contentTopicByTitle = new Map();
 const STORAGE_KEYS = {
   recent: "pbdocs.recent",
@@ -282,6 +283,7 @@ function renderSearchInsight(insight) {
     sections.commonUses?.length ||
     sections.examples?.length ||
     sections.notes?.length ||
+    sections.relatedGroups?.length ||
     sections.eventFlow;
   if (!hasDetails) return "";
 
@@ -305,6 +307,7 @@ function renderSearchInsight(insight) {
           ${renderInsightUses(sections.commonUses || [])}
           ${renderInsightExamples(sections.examples || [])}
           ${renderInsightNotes(sections.notes || [])}
+          ${renderInsightRelatedGroups(sections.relatedGroups || [])}
           ${renderInsightEventFlow(sections.eventFlow)}
         </div>
       </div>
@@ -314,77 +317,104 @@ function renderSearchInsight(insight) {
 
 function renderInsightSyntax(items) {
   if (!items.length) return "";
-  return `
-    <div class="insight-section">
-      <h4>Syntax</h4>
-      <div class="syntax-chips">
-        ${items.map((item) => `
-          <button type="button" class="syntax-chip" data-topic="${escapeHtml(item.topicId)}" data-title="${escapeHtml(item.title)}">
-            <strong>${escapeHtml(item.label)}</strong>
-            ${item.summary ? `<span>${escapeHtml(item.summary)}</span>` : ""}
-          </button>
-        `).join("")}
-      </div>
+  return renderInsightSection("syntax", "Syntax", `
+    <div class="syntax-chips">
+      ${items.map((item) => `
+        <button type="button" class="syntax-chip" data-topic="${escapeHtml(item.topicId)}" data-title="${escapeHtml(item.title)}">
+          <strong>${escapeHtml(item.label)}</strong>
+          ${item.summary ? `<span>${escapeHtml(item.summary)}</span>` : ""}
+        </button>
+      `).join("")}
     </div>
-  `;
+  `, items.length);
 }
 
 function renderInsightUses(items) {
   if (!items.length) return "";
-  return `
-    <div class="insight-section">
-      <h4>Common uses</h4>
-      <div class="use-grid">
-        ${items.map((item) => `
-          <div class="use-row small">
-            <span>${escapeHtml(item.to)}</span>
-            <strong>${escapeHtml(item.use)}</strong>
-          </div>
-        `).join("")}
-      </div>
+  return renderInsightSection("common-uses", "Common uses", `
+    <div class="use-grid">
+      ${items.map((item) => `
+        <div class="use-row small">
+          <span>${escapeHtml(item.to)}</span>
+          <strong>${escapeHtml(item.use)}</strong>
+        </div>
+      `).join("")}
     </div>
-  `;
+  `, items.length);
 }
 
 function renderInsightExamples(items) {
   if (!items.length) return "";
-  return `
-    <div class="insight-section">
-      <h4>Examples</h4>
-      ${items.map((item) => `
-        <article class="example-preview">
-          <button type="button" data-topic="${escapeHtml(item.id)}" data-title="${escapeHtml(item.title)}">${escapeHtml(item.title)}</button>
-          ${item.intro ? `<p>${escapeHtml(item.intro)}</p>` : ""}
-          ${item.code ? `<pre><code>${highlightPowerScript(item.code)}</code></pre>` : ""}
-        </article>
-      `).join("")}
-    </div>
-  `;
+  return renderInsightSection("examples", "Examples", items.map((item) => `
+    <article class="example-preview">
+      <button type="button" data-topic="${escapeHtml(item.id)}" data-title="${escapeHtml(item.title)}">${escapeHtml(item.title)}</button>
+      ${item.intro ? `<p>${escapeHtml(item.intro)}</p>` : ""}
+      ${item.code ? `<pre><code>${highlightPowerScript(item.code)}</code></pre>` : ""}
+    </article>
+  `).join(""), items.length);
 }
 
 function renderInsightNotes(items) {
   if (!items.length) return "";
-  return `
-    <div class="insight-section">
-      <h4>Notes</h4>
-      <ul class="note-list">
-        ${items.map((item) => `<li><strong>${escapeHtml(item.title)}:</strong> ${escapeHtml(item.text)}</li>`).join("")}
-      </ul>
-    </div>
-  `;
+  return renderInsightSection("notes", "Notes", `
+    <ul class="note-list">
+      ${items.map((item) => `<li><strong>${escapeHtml(item.title)}:</strong> ${escapeHtml(item.text)}</li>`).join("")}
+    </ul>
+  `, items.length);
 }
 
 function renderInsightEventFlow(item) {
   if (!item) return "";
+  return renderInsightSection("event-flow", "Event flow", `
+    <p>Function usage is closely related to the event topic below when a window or object opens.</p>
+    <button type="button" data-topic="${escapeHtml(item.id)}" data-title="${escapeHtml(item.title)}">
+      ${escapeHtml(item.title)}
+    </button>
+    ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ""}
+  `, 1, "event-flow");
+}
+
+function renderInsightRelatedGroups(groups) {
+  const visibleGroups = groups.filter((group) => group.items?.length);
+  if (!visibleGroups.length) return "";
+  return renderInsightSection("related-topics", "Related topics", visibleGroups.map((group) => {
+    const key = `related-${group.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+    const collapsed = insightCollapsedSections.has(key);
+    return `
+      <section class="insight-category ${collapsed ? "collapsed" : ""}" data-insight-section="${escapeHtml(key)}">
+        <div class="insight-category-header">
+          <h5>${escapeHtml(group.label)} <span>${group.items.length}</span></h5>
+          <button class="insight-section-toggle" type="button" data-insight-section-toggle="${escapeHtml(key)}" aria-expanded="${collapsed ? "false" : "true"}">
+            ${collapsed ? "open" : "close"}
+          </button>
+        </div>
+        <div class="insight-category-content">
+          ${group.items.map((item) => `
+            <button type="button" class="insight-related-item ${item.primary ? "primary" : ""}" data-topic="${escapeHtml(item.id)}" data-title="${escapeHtml(item.title)}">
+              <strong>${escapeHtml(item.title)}</strong>
+              ${item.excerpt ? `<span>${escapeHtml(item.excerpt)}</span>` : ""}
+            </button>
+          `).join("")}
+        </div>
+      </section>
+    `;
+  }).join(""), visibleGroups.reduce((sum, group) => sum + group.items.length, 0));
+}
+
+function renderInsightSection(key, title, content, count = 0, extraClass = "") {
+  const collapsed = insightCollapsedSections.has(key);
   return `
-    <div class="insight-section event-flow">
-      <h4>Event flow</h4>
-      <p>Function usage is closely related to the event topic below when a window or object opens.</p>
-      <button type="button" data-topic="${escapeHtml(item.id)}" data-title="${escapeHtml(item.title)}">
-        ${escapeHtml(item.title)}
-      </button>
-      ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ""}
-    </div>
+    <section class="insight-section ${extraClass} ${collapsed ? "collapsed" : ""}" data-insight-section="${escapeHtml(key)}">
+      <div class="insight-section-header">
+        <h4>${escapeHtml(title)}${count ? ` <span>${count}</span>` : ""}</h4>
+        <button class="insight-section-toggle" type="button" data-insight-section-toggle="${escapeHtml(key)}" aria-expanded="${collapsed ? "false" : "true"}">
+          ${collapsed ? "open" : "close"}
+        </button>
+      </div>
+      <div class="insight-section-content">
+        ${content}
+      </div>
+    </section>
   `;
 }
 
@@ -925,6 +955,23 @@ function openSearchTargetFromClick(event) {
 }
 
 searchInsight.addEventListener("click", (event) => {
+  const sectionToggle = event.target.closest(".insight-section-toggle");
+  if (sectionToggle) {
+    event.preventDefault();
+    event.stopPropagation();
+    const key = sectionToggle.dataset.insightSectionToggle;
+    if (!key) return;
+    const isCollapsed = !insightCollapsedSections.has(key);
+    if (isCollapsed) insightCollapsedSections.add(key);
+    else insightCollapsedSections.delete(key);
+    const section = searchInsight.querySelector(`[data-insight-section="${CSS.escape(key)}"]`);
+    if (!section) return;
+    section.classList.toggle("collapsed", isCollapsed);
+    sectionToggle.textContent = isCollapsed ? "open" : "close";
+    sectionToggle.setAttribute("aria-expanded", isCollapsed ? "false" : "true");
+    return;
+  }
+
   const collapse = event.target.closest(".insight-collapse");
   if (!collapse) return;
   event.preventDefault();

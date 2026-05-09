@@ -1,4 +1,4 @@
-const { normalizeSearchText, normalizeTopicBaseTitle } = require("../utils/text");
+const { makeExcerpt, normalizeSearchText, normalizeTopicBaseTitle } = require("../utils/text");
 
 function createInsightService(store, topicService, searchService) {
   function searchInsight(query) {
@@ -29,6 +29,7 @@ function createInsightService(store, topicService, searchService) {
         commonUses: getCommonUses(baseBlocks),
         examples: getExamplePreviews(exampleTopics),
         notes: getInsightNotes(baseBlocks, relatedSyntax),
+        relatedGroups: getRelatedGroups(ranked, primary.id, q),
         eventFlow: eventTopic ? {
           id: eventTopic.id,
           title: eventTopic.title,
@@ -77,6 +78,34 @@ function createInsightService(store, topicService, searchService) {
       }
     }
     return notes;
+  }
+
+  function getRelatedGroups(ranked, primaryId, query) {
+    const order = ["Function", "Event", "Statement", "Syntax", "Examples", "DataWindow", "Reference"];
+    const groups = new Map();
+
+    for (const { topic, score } of ranked.slice(0, 80)) {
+      const category = searchService.classifyReferenceTopic(topic);
+      if (!groups.has(category)) groups.set(category, []);
+      const items = groups.get(category);
+      if (items.length >= 10) continue;
+      items.push({
+        id: topic.id,
+        title: topic.title,
+        context: topic.context,
+        excerpt: makeExcerpt(topic.text, query).slice(0, 220),
+        rank: score,
+        primary: topic.id === primaryId,
+      });
+    }
+
+    return Array.from(groups.entries())
+      .sort((a, b) => {
+        const ai = order.indexOf(a[0]);
+        const bi = order.indexOf(b[0]);
+        return (ai < 0 ? 999 : ai) - (bi < 0 ? 999 : bi);
+      })
+      .map(([label, items]) => ({ label, items }));
   }
 
   function getSectionText(blocks, heading) {
