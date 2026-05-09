@@ -12,6 +12,7 @@ const openIndex = document.querySelector("#openIndex");
 const indexStatus = document.querySelector("#indexStatus");
 const globalSearch = document.querySelector("#globalSearch");
 const searchSource = document.querySelector("#searchSource");
+const searchInsight = document.querySelector("#searchInsight");
 const results = document.querySelector("#results");
 const topic = document.querySelector("#topic");
 const bookFrame = document.querySelector("#bookFrame");
@@ -222,7 +223,13 @@ function selectIndexItem(item, shouldOpen) {
 async function loadSearch() {
   const query = globalSearch.value.trim();
   const source = searchSource.value;
-  const items = await fetchJson(`/api/search?q=${encodeURIComponent(query)}&source=${encodeURIComponent(source)}&limit=120`);
+  const [items, insight] = await Promise.all([
+    fetchJson(`/api/search?q=${encodeURIComponent(query)}&source=${encodeURIComponent(source)}&limit=120`),
+    source === "html-books" || !query
+      ? Promise.resolve({})
+      : fetchJson(`/api/search-insight?q=${encodeURIComponent(query)}&source=${encodeURIComponent(source)}`),
+  ]);
+  searchInsight.innerHTML = renderSearchInsight(insight);
   results.innerHTML = items.map((item) => `
     <button class="result" ${renderResultTargetAttrs(item)}>
       <strong>${escapeHtml(item.title)}</strong>
@@ -230,6 +237,109 @@ async function loadSearch() {
       <p>${escapeHtml(item.excerpt)}</p>
     </button>
   `).join("");
+}
+
+function renderSearchInsight(insight) {
+  if (!insight || !insight.primary || !insight.sections) return "";
+  const sections = insight.sections;
+  const hasDetails = sections.overview ||
+    sections.syntax?.length ||
+    sections.commonUses?.length ||
+    sections.examples?.length ||
+    sections.notes?.length ||
+    sections.eventFlow;
+  if (!hasDetails) return "";
+
+  return `
+    <section class="insight-card">
+      <div class="insight-eyebrow">Search insight</div>
+      <button class="insight-title" type="button" data-topic="${escapeHtml(insight.primary.id)}" data-title="${escapeHtml(insight.primary.title)}">
+        ${escapeHtml(insight.primary.title)}
+      </button>
+      ${sections.overview ? `<p class="insight-overview">${escapeHtml(sections.overview)}</p>` : ""}
+      ${renderInsightSyntax(sections.syntax || [])}
+      ${renderInsightUses(sections.commonUses || [])}
+      ${renderInsightExamples(sections.examples || [])}
+      ${renderInsightNotes(sections.notes || [])}
+      ${renderInsightEventFlow(sections.eventFlow)}
+    </section>
+  `;
+}
+
+function renderInsightSyntax(items) {
+  if (!items.length) return "";
+  return `
+    <div class="insight-section">
+      <h4>Syntax</h4>
+      <div class="syntax-chips">
+        ${items.map((item) => `
+          <button type="button" class="syntax-chip" data-topic="${escapeHtml(item.topicId)}" data-title="${escapeHtml(item.title)}">
+            <strong>${escapeHtml(item.label)}</strong>
+            ${item.summary ? `<span>${escapeHtml(item.summary)}</span>` : ""}
+          </button>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function renderInsightUses(items) {
+  if (!items.length) return "";
+  return `
+    <div class="insight-section">
+      <h4>Common uses</h4>
+      <div class="use-grid">
+        ${items.map((item) => `
+          <div class="use-row">
+            <span>${escapeHtml(item.to)}</span>
+            <strong>${escapeHtml(item.use)}</strong>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function renderInsightExamples(items) {
+  if (!items.length) return "";
+  return `
+    <div class="insight-section">
+      <h4>Examples</h4>
+      ${items.map((item) => `
+        <article class="example-preview">
+          <button type="button" data-topic="${escapeHtml(item.id)}" data-title="${escapeHtml(item.title)}">${escapeHtml(item.title)}</button>
+          ${item.intro ? `<p>${escapeHtml(item.intro)}</p>` : ""}
+          ${item.code ? `<pre><code>${highlightPowerScript(item.code)}</code></pre>` : ""}
+        </article>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderInsightNotes(items) {
+  if (!items.length) return "";
+  return `
+    <div class="insight-section">
+      <h4>Notes</h4>
+      <ul class="note-list">
+        ${items.map((item) => `<li><strong>${escapeHtml(item.title)}:</strong> ${escapeHtml(item.text)}</li>`).join("")}
+      </ul>
+    </div>
+  `;
+}
+
+function renderInsightEventFlow(item) {
+  if (!item) return "";
+  return `
+    <div class="insight-section event-flow">
+      <h4>Event flow</h4>
+      <p>Function usage is closely related to the event topic below when a window or object opens.</p>
+      <button type="button" data-topic="${escapeHtml(item.id)}" data-title="${escapeHtml(item.title)}">
+        ${escapeHtml(item.title)}
+      </button>
+      ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ""}
+    </div>
+  `;
 }
 
 function renderResultTargetAttrs(item) {

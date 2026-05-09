@@ -47,6 +47,7 @@ const topics = JSON.parse(fs.readFileSync(topicsPath, "utf8")).map((topic, index
 });
 const topicByTitle = new Map(topics.map((topic) => [topic.title.toLowerCase(), topic]));
 const topicByContext = new Map(topics.map((topic) => [topic.context.toLowerCase(), topic]));
+const topicById = new Map(topics.map((topic) => [topic.id, topic]));
 const relatedLinksByTopicId = buildRelatedLinksByTopicId(topics, topicByTitle);
 const aliases = readHelpAliases(helpProjectPath);
 const bookEntries = fs.existsSync(bookContentsPath) ? JSON.parse(fs.readFileSync(bookContentsPath, "utf8")) : [];
@@ -173,17 +174,9 @@ function searchTopics(query, limit) {
   if (!q) {
     return topics.slice(0, limit).map(summary).map((item) => ({ ...item, source: "reference" }));
   }
-  const starts = [];
-  const contains = [];
-  for (const topic of topics) {
-    const title = topic.title.toLowerCase();
-    const context = topic.context.toLowerCase();
-    const item = { ...summary(topic), source: "reference" };
-    if (title.startsWith(q) || context.startsWith(q)) starts.push(item);
-    else if (topic.search.includes(q)) contains.push(item);
-    if (starts.length + contains.length >= limit * 2) break;
-  }
-  return starts.concat(contains).slice(0, limit);
+  return rankReferenceTopics(q)
+    .slice(0, limit)
+    .map(({ topic, score }) => ({ ...summary(topic), source: "reference", rank: score }));
 }
 
 function searchAll(query, limit, source = "all") {
@@ -225,6 +218,55 @@ function searchBooks(query, limit) {
     if (starts.length + contains.length >= limit * 2) break;
   }
   return starts.concat(contains).slice(0, limit);
+}
+
+function rankReferenceTopics(query) {
+  const q = normalizeSearchText(query);
+  if (!q) return [];
+
+  return topics
+    .map((topic) => ({ topic, score: scoreTopic(topic, q) }))
+    .filter((item) => item.score > 0)
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      if (a.topic.title.length !== b.topic.title.length) return a.topic.title.length - b.topic.title.length;
+      return a.topic.index - b.topic.index;
+    });
+}
+
+function scoreTopic(topic, query) {
+  const title = normalizeSearchText(topic.title);
+  const baseTitle = normalizeTopicBaseTitle(topic.title);
+  const context = normalizeSearchText(topic.context);
+  const keywords = topic.keywords.map(normalizeSearchText);
+  const text = normalizeSearchText(topic.text);
+  let score = 0;
+
+  if (baseTitle === query && / powerscript function$/i.test(topic.title)) score = Math.max(score, 12000);
+  if (baseTitle === query && / powerscript event$/i.test(topic.title)) score = Math.max(score, 10500);
+  if (baseTitle === query) score = Math.max(score, 9800);
+  if (title === query) score = Math.max(score, 9600);
+  if (keywords.includes(query)) score = Math.max(score, 9000);
+  if (title.startsWith(`${query} `)) score = Math.max(score, 8000);
+  if (keywords.some((keyword) => keyword.startsWith(query))) score = Math.max(score, 7200);
+  if (context === query) score = Math.max(score, 6800);
+  if (title.includes(query)) score = Math.max(score, 5200);
+  if (text.includes(query)) score = Math.max(score, 1200);
+
+  if (/^examples for /i.test(topic.title)) score -= 500;
+  if (/^syntax\s+\d+\b/i.test(topic.title)) score -= 350;
+  return Math.max(0, score);
+}
+
+function normalizeTopicBaseTitle(title) {
+  return normalizeSearchText(title)
+    .replace(/\s+powerscript\s+(function|event|statement)$/, "")
+    .replace(/\s+datawindow\s+expression\s+function$/, "")
+    .replace(/\s+database\s+parameter$/, "");
+}
+
+function normalizeSearchText(value) {
+  return String(value || "").trim().replace(/\s+/g, " ").toLowerCase();
 }
 
 function searchIndex(query, limit) {
@@ -338,6 +380,170 @@ function makeExcerpt(text, query) {
   return `${prefix}${text.slice(start, start + 260)}`;
 }
 
+function searchInsight(query) {
+  const q = normalizeSearchText(query);
+  if (!q) return null;
+
+  const ranked = rankReferenceTopics(q)
+    .filter(({ topic }) => !/^examples for /i.test(topic.title))
+    .filter(({ topic }) => !/^syntax\s+\d+\b/i.test(topic.title));
+  const primary = ranked[0] ? ranked[0].topic : null;
+  if (!primary) return null;
+
+  const baseBlocks = renderBlocks(primary);
+  const relatedSyntax = getRelatedSyntax(primary);
+  const exampleTopics = getInsightExampleTopics(primary, relatedSyntax);
+  const eventTopic = findCompanionEventTopic(primary, q);
+
+  return {
+    query,
+    primary: {
+      id: primary.id,
+      title: primary.title,
+      context: primary.context,
+    },
+    sections: {
+      overview: getOverview(baseBlocks),
+      syntax: relatedSyntax,
+      commonUses: getCommonUses(baseBlocks),
+      examples: getExamplePreviews(exampleTopics),
+      notes: getInsightNotes(baseBlocks, relatedSyntax),
+      eventFlow: eventTopic ? {
+        id: eventTopic.id,
+        title: eventTopic.title,
+        summary: getOverview(renderBlocks(eventTopic)),
+      } : null,
+    },
+  };
+}
+
+function getOverview(blocks) {
+  const firstParagraph = blocks.find((block) => block.type === "paragraph" && block.text);
+  return firstParagraph ? firstParagraph.text.replace(/\s+/g, " ").slice(0, 360) : "";
+}
+
+function getRelatedSyntax(topic) {
+  const links = relatedLinksByTopicId.get(topic.id) || {};
+  return Object.keys(links)
+    .sort((a, b) => Number(syntaxNumber(a) || 0) - Number(syntaxNumber(b) || 0))
+    .map((label) => {
+      const target = topicById.get(links[label]);
+      return {
+        label: titleCaseSyntaxLabel(label),
+        topicId: links[label],
+        title: target ? target.title : titleCaseSyntaxLabel(label),
+        summary: target ? getOverview(renderBlocks(target)) : "",
+      };
+    });
+}
+
+function titleCaseSyntaxLabel(label) {
+  return label.replace(/\bsyntax\b/i, "Syntax");
+}
+
+function syntaxNumber(label) {
+  const match = label.match(/\d+/);
+  return match ? match[0] : "";
+}
+
+function getCommonUses(blocks) {
+  const table = blocks.find((block) => block.type === "table" && Array.isArray(block.rows) && block.rows.length > 1);
+  if (!table) return [];
+
+  const header = table.rows[0].map((cell) => normalizeSearchText(cell));
+  const toIndex = header.findIndex((cell) => /^(to|to obtain|to open|object)$/.test(cell));
+  const useIndex = header.findIndex((cell) => /^(use|see)$/.test(cell));
+  if (toIndex < 0 || useIndex < 0) return [];
+
+  return table.rows.slice(1, 7).map((row) => ({
+    to: row[toIndex] || "",
+    use: row[useIndex] || "",
+  })).filter((row) => row.to || row.use);
+}
+
+function getNotes(blocks) {
+  const notes = [];
+  for (const heading of ["Return value", "Usage", "Controls"]) {
+    const section = getSectionText(blocks, heading).replace(/\s+/g, " ").trim();
+    if (section) notes.push({ title: heading, text: section.slice(0, 360) });
+  }
+  return notes;
+}
+
+function getInsightNotes(baseBlocks, syntaxItems) {
+  const notes = getNotes(baseBlocks);
+  if (notes.length >= 2) return notes.slice(0, 4);
+
+  for (const syntax of syntaxItems) {
+    const topic = topicById.get(syntax.topicId);
+    if (!topic) continue;
+    for (const note of getNotes(renderBlocks(topic))) {
+      if (!notes.some((existing) => existing.title === note.title && existing.text === note.text)) {
+        notes.push({ ...note, title: `${syntax.label}: ${note.title}` });
+      }
+      if (notes.length >= 4) return notes;
+    }
+  }
+  return notes;
+}
+
+function getSectionText(blocks, heading) {
+  const start = blocks.findIndex((block) => block.type === "heading" && normalizeSearchText(block.text) === normalizeSearchText(heading));
+  if (start < 0) return "";
+
+  const parts = [];
+  for (const block of blocks.slice(start + 1)) {
+    if (block.type === "heading") break;
+    if (block.type === "paragraph" || block.type === "code") parts.push(block.text || "");
+    if (block.type === "list") parts.push((block.items || []).join(" "));
+  }
+  return parts.join(" ");
+}
+
+function getInsightExampleTopics(primary, syntaxItems) {
+  const candidates = [];
+  const direct = topicByTitle.get(`examples for ${primary.title}`.toLowerCase());
+  if (direct) candidates.push(direct);
+
+  for (const syntax of syntaxItems) {
+    const syntaxTopic = topicById.get(syntax.topicId);
+    if (!syntaxTopic) continue;
+    const example = topicByTitle.get(`examples for ${syntaxTopic.title}`.toLowerCase());
+    if (example) candidates.push(example);
+  }
+
+  const seen = new Set();
+  return candidates.filter((topic) => {
+    if (seen.has(topic.id)) return false;
+    seen.add(topic.id);
+    return true;
+  }).slice(0, 3);
+}
+
+function getExamplePreviews(exampleTopics) {
+  return exampleTopics.map((topic) => {
+    const blocks = renderBlocks(topic);
+    const introBlock = blocks.find((block) => block.type === "paragraph");
+    const codeBlock = blocks.find((block) => block.type === "code");
+    const intro = introBlock ? introBlock.text : "";
+    const code = codeBlock ? codeBlock.text : "";
+    return {
+      id: topic.id,
+      title: topic.title,
+      intro: intro.replace(/\s+/g, " ").slice(0, 260),
+      code: code.slice(0, 900),
+    };
+  }).filter((example) => example.intro || example.code);
+}
+
+function findCompanionEventTopic(primary, query) {
+  if (/ powerscript event$/i.test(primary.title)) return null;
+  return topics.find((topic) => (
+    normalizeTopicBaseTitle(topic.title) === query &&
+    / powerscript event$/i.test(topic.title)
+  )) || null;
+}
+
 function buildRelatedLinksByTopicId(allTopics, byTitle) {
   const linksByTopicId = new Map();
 
@@ -370,6 +576,11 @@ function route(req, res) {
       Number(parsed.query.limit || 80),
       String(parsed.query.source || "all"),
     ));
+    return;
+  }
+
+  if (pathname === "/api/search-insight") {
+    sendJson(res, searchInsight(String(parsed.query.q || "")) || {});
     return;
   }
 

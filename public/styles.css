@@ -346,6 +346,159 @@ button.primary {
   margin-top: 12px;
 }
 
+.search-insight {
+  margin-top: 12px;
+}
+
+.insight-card {
+  display: grid;
+  gap: 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 7%, var(--panel));
+  padding: 12px;
+}
+
+.insight-eyebrow {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.insight-title {
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  padding: 0;
+  text-align: left;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.insight-title:hover,
+.insight-section button:hover {
+  color: var(--accent);
+}
+
+.insight-overview,
+.insight-section p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.insight-section {
+  display: grid;
+  gap: 7px;
+}
+
+.insight-section h4 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.syntax-chips {
+  display: grid;
+  gap: 6px;
+}
+
+.syntax-chip {
+  display: grid;
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 8px;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.syntax-chip span {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.use-grid {
+  display: grid;
+  gap: 5px;
+}
+
+.use-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: start;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 5px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.use-row strong {
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.example-preview {
+  display: grid;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 8px;
+}
+
+.example-preview button,
+.event-flow button {
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  padding: 0;
+  text-align: left;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.example-preview pre {
+  max-height: 190px;
+  margin: 0;
+  border: 1px solid var(--code-line);
+  border-radius: 6px;
+  background: var(--code-bg);
+  color: var(--code-ink);
+  padding: 8px;
+  overflow: auto;
+  font-size: 11px;
+}
+
+.note-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.note-list li {
+  margin-bottom: 5px;
+}
+
+.note-list strong {
+  color: var(--ink);
+}
+
+.event-flow {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+
 .result {
   width: 100%;
   border: 1px solid var(--line);
