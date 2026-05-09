@@ -64,6 +64,8 @@ const contents = JSON.parse(fs.readFileSync(contentsPath, "utf8")).map((entry) =
     topicId: topic ? topic.id : "",
   };
 });
+const referenceSequence = buildReferenceSequence(contents);
+const referencePosition = new Map(referenceSequence.map((topicId, index) => [topicId, index]));
 
 const indexEntries = [];
 for (const topic of topics) {
@@ -169,6 +171,36 @@ function resolveContentTopic(entry) {
   return topicByTitle.get(String(entry.title || "").toLowerCase()) || null;
 }
 
+function buildReferenceSequence(entries) {
+  const seen = new Set();
+  const sequence = [];
+  for (const entry of entries) {
+    if (!entry.topicId || seen.has(entry.topicId)) continue;
+    seen.add(entry.topicId);
+    sequence.push(entry.topicId);
+  }
+  return sequence;
+}
+
+function getTopicNav(topicId) {
+  const index = referencePosition.get(topicId);
+  if (index === undefined) return { prev: null, next: null };
+  return {
+    prev: topicNavItem(referenceSequence[index - 1]),
+    next: topicNavItem(referenceSequence[index + 1]),
+  };
+}
+
+function topicNavItem(topicId) {
+  if (!topicId) return null;
+  const topic = topicById.get(topicId);
+  if (!topic) return null;
+  return {
+    id: topic.id,
+    title: topic.title,
+  };
+}
+
 function searchTopics(query, limit) {
   const q = query.trim().toLowerCase();
   if (!q) {
@@ -196,6 +228,7 @@ function searchBooks(query, limit) {
   if (!q) {
     return bookSearchEntries.slice(0, limit).map((entry) => ({
       source,
+      category: "HTML Books",
       id: entry.local,
       local: entry.local,
       title: entry.title,
@@ -208,6 +241,7 @@ function searchBooks(query, limit) {
   for (const entry of bookSearchEntries) {
     const item = {
       source,
+      category: "HTML Books",
       id: entry.local,
       local: entry.local,
       title: entry.title,
@@ -266,7 +300,7 @@ function normalizeTopicBaseTitle(title) {
 }
 
 function normalizeSearchText(value) {
-  return String(value || "").trim().replace(/\s+/g, " ").toLowerCase();
+  return String(value || "").trim().replace(/[.]+/g, " ").replace(/\s+/g, " ").toLowerCase();
 }
 
 function searchIndex(query, limit) {
@@ -331,7 +365,18 @@ function summary(topic) {
     context: topic.context,
     keywords: topic.keywords.slice(0, 8),
     excerpt: topic.text.replace(/\s+/g, " ").slice(0, 260),
+    category: classifyReferenceTopic(topic),
   };
+}
+
+function classifyReferenceTopic(topic) {
+  if (/^examples for /i.test(topic.title)) return "Examples";
+  if (/^syntax\s+\d+\b/i.test(topic.title)) return "Syntax";
+  if (/ powerscript function$/i.test(topic.title)) return "Function";
+  if (/ powerscript event$/i.test(topic.title)) return "Event";
+  if (/ powerscript statement$/i.test(topic.title)) return "Statement";
+  if (/datawindow/i.test(topic.title)) return "DataWindow";
+  return "Reference";
 }
 
 function buildBookSearchEntries(entries) {
@@ -418,7 +463,11 @@ function searchInsight(query) {
 }
 
 function getOverview(blocks) {
-  const firstParagraph = blocks.find((block) => block.type === "paragraph" && block.text);
+  const firstParagraph = blocks.find((block, index) => (
+    block.type === "paragraph" &&
+    block.text &&
+    !(index === 0 && /^examples for | powerscript (function|event|statement)$/i.test(block.text))
+  ));
   return firstParagraph ? firstParagraph.text.replace(/\s+/g, " ").slice(0, 360) : "";
 }
 
@@ -512,6 +561,15 @@ function getInsightExampleTopics(primary, syntaxItems) {
     if (example) candidates.push(example);
   }
 
+  if (!candidates.length) {
+    const baseTitle = normalizeTopicBaseTitle(primary.title);
+    const fallback = topics.find((topic) => (
+      /^examples for /i.test(topic.title) &&
+      normalizeTopicBaseTitle(topic.title.replace(/^examples for\s+/i, "")) === baseTitle
+    ));
+    if (fallback) candidates.push(fallback);
+  }
+
   const seen = new Set();
   return candidates.filter((topic) => {
     if (seen.has(topic.id)) return false;
@@ -524,9 +582,12 @@ function getExamplePreviews(exampleTopics) {
   return exampleTopics.map((topic) => {
     const blocks = renderBlocks(topic);
     const introBlock = blocks.find((block) => block.type === "paragraph");
-    const codeBlock = blocks.find((block) => block.type === "code");
+    const code = blocks
+      .filter((block) => block.type === "code")
+      .slice(0, 2)
+      .map((block) => block.text)
+      .join("\n\n");
     const intro = introBlock ? introBlock.text : "";
-    const code = codeBlock ? codeBlock.text : "";
     return {
       id: topic.id,
       title: topic.title,
@@ -609,6 +670,7 @@ function route(req, res) {
       keywords: topic.keywords,
       blocks: renderTopicBlocks(topic),
       links: relatedLinksByTopicId.get(topic.id) || {},
+      nav: getTopicNav(topic.id),
     });
     return;
   }
@@ -680,11 +742,16 @@ function mergeAdjacentTextBlocks(blocks) {
       merged.push(block);
     }
   }
-  return merged;
+  return merged.map((block) => (
+    block.type === "code" ? { ...block, text: normalizePowerScriptIndent(block.text) } : block
+  ));
 }
 
 function segmentText(text) {
-  const raw = text.split(/\n{2,}/).map((part) => part.trim()).filter(Boolean);
+  const raw = text
+    .split(/\n{2,}/)
+    .map((part) => part.replace(/^\n+|\n+$/g, ""))
+    .filter((part) => part.trim());
   const blocks = [];
   for (const part of raw) {
     const lines = part.split(/\n/).map((line) => line.replace(/\s+$/g, ""));
@@ -694,18 +761,26 @@ function segmentText(text) {
       continue;
     }
     if (isBullet(lines)) {
-      blocks.push({ type: "list", items: [lines[0].replace(/^·\s*/, "")] });
+      const split = splitBulletWithInlineCode(lines[0]);
+      blocks.push({ type: "list", items: [split.item] });
+      if (split.code) blocks.push({ type: "code", language: "powerscript", text: formatCodeText([split.code]) });
       continue;
     }
     if (isCodeBlock(lines)) {
-      blocks.push({ type: "code", language: "powerscript", text: lines.join("\n") });
+      blocks.push({ type: "code", language: "powerscript", text: formatCodeText(lines) });
     } else if (isHeading(lines)) {
       blocks.push({ type: "heading", text: lines.join(" ") });
     } else {
-      blocks.push({ type: "paragraph", text: lines.join("\n") });
+      blocks.push({ type: "paragraph", text: lines.join("\n").trim() });
     }
   }
   return mergeCodeBlocks(blocks);
+}
+
+function formatCodeText(lines) {
+  return lines
+    .map((line) => line.replace(/^( {4})+/g, (spaces) => "\t".repeat(spaces.length / 4)))
+    .join("\n");
 }
 
 function isHeading(lines) {
@@ -720,18 +795,28 @@ function isBullet(lines) {
   return lines.length === 1 && /^·\s*/.test(lines[0]);
 }
 
+function splitBulletWithInlineCode(line) {
+  const text = line.replace(/^·\s*/, "");
+  const match = text.match(/^(.*?\btrue)(IF\s+.+\bTHEN)$/i);
+  if (!match) return { item: text, code: "" };
+  return { item: match[1].trim(), code: match[2].trim() };
+}
+
 function isCodeBlock(lines) {
   const text = lines.join("\n").trim();
   if (!text) return false;
+  if (/^Example\s+\d+\s+/i.test(text)) return false;
+  if (/^(?:do\s+(?:until|while)|loop\s+(?:until|while))\s{2,}\S/i.test(text)) return false;
   if (lines.length === 1 && / {2,}/.test(text) && /^[\d.+\-:"'~A-Za-z][\d\s.+\-:"'~A-Za-z]+(?:\/\/.*)?$/.test(text)) return true;
   if (/&\s*$/.test(text)) return true;
   if (/\/\//.test(text) && !/[.!?]\s/.test(text)) return true;
   if (/^["']/.test(text)) return true;
   if (/^[a-z_]\w*\)$/i.test(text)) return true;
   if (/^[a-z_][\w.]*\s*,.+\)$/i.test(text)) return true;
-  if (/^(\/\/|do\b|choose case|try\b|catch\b|finally\b|return\b|next\b|loop\b|end if\b|end choose\b|else\b)/i.test(text)) return true;
+  if (/^(\/\/|do\b|choose case|case\b|try\b|catch\b|finally\b|return\b|next\b|loop\b|end if\b|end choose\b|elseif\b|else\b)/i.test(text)) return true;
   if (/^if\s+.+\bthen\b/i.test(text)) return true;
   if (/^for\s+\w+\s*=/i.test(text)) return true;
+  if (/^[a-z_][\w.]*\s*\(.+\)\s*;/i.test(text)) return true;
   if (/^[a-z_][\w.]*\s*=\s*.+/i.test(text)) return true;
   if (/^[a-z_][\w.]*\s*\(.+\)$/i.test(text)) return true;
   if (/^(integer|long|longlong|decimal|dec|double|real|string|char|boolean|date|time|datetime|blob|any|object|window|datawindow|datastore)\s+[a-z_]\w*(?:\s*(?:=|,|\[|\(|$))/i.test(text)) return true;
@@ -749,7 +834,50 @@ function mergeCodeBlocks(blocks) {
       merged.push(block);
     }
   }
-  return merged;
+  return merged.map((block) => (
+    block.type === "code" ? { ...block, text: normalizePowerScriptIndent(block.text) } : block
+  ));
+}
+
+function normalizePowerScriptIndent(text) {
+  if (/^if\b/im.test(text)) return normalizeIfIndent(text);
+  if (/^do\b|^loop\b/im.test(text)) return normalizeDoLoopIndent(text);
+  if (!/^choose case\b/im.test(text)) return text;
+  return text.split("\n").map((line) => {
+    const trimmed = line.trim();
+    if (!trimmed) return "";
+    if (/^(choose case|case\b|end choose\b)/i.test(trimmed)) return trimmed;
+    return line.startsWith("\t") ? line : `\t${trimmed}`;
+  }).join("\n");
+}
+
+function normalizeIfIndent(text) {
+  let depth = 0;
+  return text.split("\n").map((line) => {
+    const trimmed = line.trim();
+    if (!trimmed) return "";
+    const isEnd = /^end if\b/i.test(trimmed);
+    const isBranch = /^(elseif\b|else\b)/i.test(trimmed);
+    if (isEnd) depth = Math.max(0, depth - 1);
+    const indent = Math.max(0, depth - (isBranch ? 1 : 0));
+    const formatted = `${"\t".repeat(indent)}${trimmed}`;
+    if (/^if\b.+\bthen\b/i.test(trimmed) && !/\belse\b/i.test(trimmed)) depth += 1;
+    return formatted;
+  }).join("\n");
+}
+
+function normalizeDoLoopIndent(text) {
+  let depth = 0;
+  return text.split("\n").map((line) => {
+    const trimmed = line.trim();
+    if (!trimmed) return "";
+    const isLoopEnd = /^loop\b/i.test(trimmed);
+    const indent = Math.max(0, depth - (isLoopEnd ? 1 : 0));
+    const formatted = `${"\t".repeat(indent)}${trimmed}`;
+    if (/^do\b/i.test(trimmed) && !/^do\s+until\s+.+\s+the following/i.test(trimmed)) depth += 1;
+    if (isLoopEnd) depth = Math.max(0, depth - 1);
+    return formatted;
+  }).join("\n");
 }
 
 const port = Number(process.env.PORT || process.argv[2] || 8787);

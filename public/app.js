@@ -34,6 +34,7 @@ let currentMode = "contents";
 let currentTopicLinks = {};
 let ignoreNextHashChange = false;
 let currentPage = null;
+let currentHighlightQuery = "";
 const contentTopicByTitle = new Map();
 const STORAGE_KEYS = {
   recent: "pbdocs.recent",
@@ -230,13 +231,44 @@ async function loadSearch() {
       : fetchJson(`/api/search-insight?q=${encodeURIComponent(query)}&source=${encodeURIComponent(source)}`),
   ]);
   searchInsight.innerHTML = renderSearchInsight(insight);
-  results.innerHTML = items.map((item) => `
+  results.innerHTML = renderSearchResults(items);
+}
+
+function renderSearchResults(items) {
+  if (!items.length) return `<div class="empty-state compact">No search results</div>`;
+  return groupSearchResults(items).map((group) => `
+    <section class="result-group">
+      <h4>${escapeHtml(group.label)} <span>${group.items.length}</span></h4>
+      ${group.items.map(renderSearchResult).join("")}
+    </section>
+  `).join("");
+}
+
+function groupSearchResults(items) {
+  const order = ["Function", "Event", "Statement", "Syntax", "Examples", "DataWindow", "Reference", "HTML Books"];
+  const groups = new Map();
+  for (const item of items) {
+    const label = item.category || (item.source === "html-books" ? "HTML Books" : "Reference");
+    if (!groups.has(label)) groups.set(label, []);
+    groups.get(label).push(item);
+  }
+  return Array.from(groups.entries())
+    .sort((a, b) => {
+      const ai = order.indexOf(a[0]);
+      const bi = order.indexOf(b[0]);
+      return (ai < 0 ? 999 : ai) - (bi < 0 ? 999 : bi);
+    })
+    .map(([label, groupItems]) => ({ label, items: groupItems }));
+}
+
+function renderSearchResult(item) {
+  return `
     <button class="result" ${renderResultTargetAttrs(item)}>
       <strong>${escapeHtml(item.title)}</strong>
-      <span class="result-source">${item.source === "html-books" ? "HTML Books" : "Reference"}</span>
+      <span class="result-source">${escapeHtml(item.category || (item.source === "html-books" ? "HTML Books" : "Reference"))}</span>
       <p>${escapeHtml(item.excerpt)}</p>
     </button>
-  `).join("");
+  `;
 }
 
 function renderSearchInsight(insight) {
@@ -367,9 +399,12 @@ async function openTopic(id, options = {}) {
         <code>${escapeHtml(data.context)}</code>
         ${data.keywords?.length ? ` - ${escapeHtml(data.keywords.slice(0, 10).join("; "))}` : ""}
       </div>
+      ${renderTopicNav(data.nav, "top")}
       ${renderOnThisPage(data.blocks)}
       ${data.blocks.map((block, index) => renderBlock(block, index)).join("")}
+      ${renderTopicNav(data.nav, "bottom")}
     `;
+    highlightTopicQuery(options.highlightQuery ?? currentHighlightQuery);
     setActiveStatus(selectedIndexLabel ? `Opened: ${selectedIndexLabel}` : "Topic opened");
     recordRecent(currentPage);
     updateFavoriteButton();
@@ -378,6 +413,70 @@ async function openTopic(id, options = {}) {
   } catch (error) {
     setActiveStatus(`Open failed: ${error.message}`);
   }
+}
+
+function highlightTopicQuery(query) {
+  const words = String(query || "")
+    .trim()
+    .split(/\s+/)
+    .filter((word) => word.length >= 2)
+    .slice(0, 4);
+  if (!words.length) return;
+
+  const pattern = new RegExp(`(${words.map(escapeRegExp).join("|")})`, "gi");
+  const walker = document.createTreeWalker(topic, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      const parent = node.parentElement;
+      if (!parent || !pattern.test(node.nodeValue || "")) return NodeFilter.FILTER_REJECT;
+      pattern.lastIndex = 0;
+      if (parent.closest("pre, code, button, nav, .topic-meta, .on-this-page")) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    },
+  });
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+
+  for (const node of nodes) {
+    const fragment = document.createDocumentFragment();
+    const parts = String(node.nodeValue || "").split(pattern);
+    for (const part of parts) {
+      if (!part) continue;
+      if (pattern.test(part)) {
+        const mark = document.createElement("mark");
+        mark.className = "search-mark";
+        mark.textContent = part;
+        fragment.appendChild(mark);
+      } else {
+        fragment.appendChild(document.createTextNode(part));
+      }
+      pattern.lastIndex = 0;
+    }
+    node.parentNode.replaceChild(fragment, node);
+  }
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function renderTopicNav(nav, position) {
+  if (!nav || (!nav.prev && !nav.next)) return "";
+  return `
+    <nav class="topic-nav ${position === "bottom" ? "bottom" : ""}" aria-label="Topic navigation">
+      ${nav.prev ? `
+        <button class="topic-jump topic-nav-link prev" data-topic="${escapeHtml(nav.prev.id)}" data-title="${escapeHtml(nav.prev.title)}">
+          <span>Previous</span>
+          ${escapeHtml(nav.prev.title)}
+        </button>
+      ` : "<span></span>"}
+      ${nav.next ? `
+        <button class="topic-jump topic-nav-link next" data-topic="${escapeHtml(nav.next.id)}" data-title="${escapeHtml(nav.next.title)}">
+          <span>Next</span>
+          ${escapeHtml(nav.next.title)}
+        </button>
+      ` : "<span></span>"}
+    </nav>
+  `;
 }
 
 function openBookPage(local, title, options = {}) {
@@ -390,6 +489,31 @@ function openBookPage(local, title, options = {}) {
   recordRecent(currentPage);
   updateFavoriteButton();
   if (updateHash) setRouteHash(`#/book/${encodeURIComponent(local)}`);
+}
+
+function applyBookFrameTheme() {
+  const doc = bookFrame.contentDocument;
+  if (!doc) return;
+
+  let style = doc.querySelector("#pbdocs-book-theme");
+  if (!style) {
+    style = doc.createElement("style");
+    style.id = "pbdocs-book-theme";
+    doc.head.appendChild(style);
+  }
+
+  // Legacy HTML Books were authored for a white page. Keep them readable inside dark UI.
+  style.textContent = `
+    html, body {
+      background: #ffffff !important;
+      color: #111827 !important;
+    }
+    a { color: #0645ad !important; }
+    p, li, td, th, div, span {
+      color: inherit;
+    }
+  `;
+  bookFrame.style.backgroundColor = "#ffffff";
 }
 
 function showReaderPane(kind) {
@@ -583,6 +707,7 @@ function applyTheme(theme) {
   document.documentElement.dataset.theme = next;
   localStorage.setItem(STORAGE_KEYS.theme, next);
   themeToggle.textContent = next === "dark" ? "Light mode" : "Dark mode";
+  applyBookFrameTheme();
 }
 
 function toggleTheme() {
@@ -610,6 +735,7 @@ document.querySelectorAll(".tab").forEach((tab) => {
 
 themeToggle.addEventListener("click", toggleTheme);
 favoriteToggle.addEventListener("click", toggleFavorite);
+bookFrame.addEventListener("load", applyBookFrameTheme);
 
 document.querySelector(".quick-panel").addEventListener("click", (event) => {
   const item = event.target.closest(".quick-item");
@@ -718,7 +844,8 @@ function openSearchTargetFromClick(event) {
     openBookPage(button.dataset.book, button.dataset.title || button.textContent.trim());
   } else {
     selectedIndexLabel = button.dataset.title || button.textContent.trim();
-    openTopic(button.dataset.topic);
+    currentHighlightQuery = globalSearch.value.trim();
+    openTopic(button.dataset.topic, { highlightQuery: currentHighlightQuery });
   }
 }
 
