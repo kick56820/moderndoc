@@ -12,7 +12,7 @@
     "release:package": "node scripts/package-release.js"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=20"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",

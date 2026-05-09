@@ -49,7 +49,7 @@ try {
       Sync-Directory (Join-Path $SourceRoot $dir) (Join-Path $DeployRoot $dir)
     }
 
-    foreach ($file in @("package.json", "package-lock.json", "README.md", "server.js", "start-pbdocs.cmd", "start-pbdocs.ps1")) {
+    foreach ($file in @("package.json", "package-lock.json", "README.md", "DEPLOYMENT.md", "server.js", "start-pbdocs.cmd", "start-pbdocs.ps1")) {
       $sourceFile = Join-Path $SourceRoot $file
       if (Test-Path -LiteralPath $sourceFile) {
         Copy-Item -LiteralPath $sourceFile -Destination $DeployRoot -Force
